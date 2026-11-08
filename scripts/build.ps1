@@ -22,6 +22,7 @@ New-Item -ItemType Directory -Path $distributionDirectory -Force | Out-Null
 $overlayExecutable = Join-Path $distributionDirectory 'PW Quest Overlay.exe'
 $borderlessExecutable = Join-Path $distributionDirectory 'PW Borderless.exe'
 $routeDestination = Join-Path $distributionDirectory 'quest_routes.json'
+$workbookDestination = Join-Path $distributionDirectory 'rota_leveling_pw_144.xlsx'
 $readmeDestination = Join-Path $distributionDirectory 'LEIA-ME.txt'
 
 $overlaySources = @(
@@ -49,6 +50,7 @@ if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar o PW Quest Overlay.' }
 if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar o PW Borderless Monitor.' }
 
 Copy-Item -LiteralPath (Join-Path $dataDirectory 'quest_routes.json') -Destination $routeDestination -Force
+Copy-Item -LiteralPath (Join-Path $dataDirectory 'rota_leveling_pw_144.xlsx') -Destination $workbookDestination -Force
 Copy-Item -LiteralPath (Join-Path $projectRoot 'docs\MANUAL-USUARIO.md') -Destination $readmeDestination -Force
 
 Write-Host "Compilação concluída em: $distributionDirectory"
@@ -63,6 +65,7 @@ if ($Package) {
         $overlayExecutable,
         $borderlessExecutable,
         $routeDestination,
+        $workbookDestination,
         $readmeDestination
     ) -DestinationPath $packagePath -CompressionLevel Optimal
     Write-Host "Pacote criado: $packagePath"

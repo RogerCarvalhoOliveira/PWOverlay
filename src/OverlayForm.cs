@@ -27,6 +27,7 @@ namespace PWQuestOverlay
         private readonly Button _doneButton;
         private readonly Button _previousButton;
         private readonly Button _skipButton;
+        private readonly Button _markerButton;
         private readonly Button _profilesButton;
         private readonly Button _lockButton;
         private readonly Button _hideButton;
@@ -47,12 +48,15 @@ namespace PWQuestOverlay
         private CharacterProgress _progress;
         private List<QuestMission> _currentRoute;
         private QuestMission _currentMission;
+        private QuestStep _currentStep;
+        private int _currentStepIndex;
         private Screen _currentScreen;
         private string _currentMonitorKey;
         private bool _dragging;
         private Point _dragCursorStart;
         private Point _dragFormStart;
         private bool _allowExit;
+        private bool _markerBusy;
 
         private static readonly Regex PrimaryTitlePattern = new Regex(
             @"^\s*(?<name>.+?)\s*[\[\(\{]\s*(?<class>WB|WF|EA|EP|WR|MC)\s*[\]\)\}]\s*$",
@@ -75,7 +79,7 @@ namespace PWQuestOverlay
             FormBorderStyle = FormBorderStyle.None;
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.Manual;
-            ClientSize = new Size(550, 180);
+            ClientSize = new Size(620, 210);
             MinimumSize = ClientSize;
             MaximumSize = ClientSize;
             BackColor = Color.FromArgb(17, 24, 39);
@@ -97,22 +101,22 @@ namespace PWQuestOverlay
             _profileLabel = new Label
             {
                 Location = new Point(10, 6),
-                Size = new Size(315, 19),
+                Size = new Size(365, 19),
                 ForeColor = Color.White,
                 Font = new Font("Segoe UI", 9.0f, FontStyle.Bold),
                 Text = "PW Quest Overlay — aguardando cliente",
                 AutoEllipsis = true
             };
 
-            _profilesButton = MakeTopButton("Perfis", 334, 70);
-            _lockButton = MakeTopButton("Mover", 410, 86);
-            _hideButton = MakeTopButton("×", 510, 30);
+            _profilesButton = MakeTopButton("Perfis", 404, 70);
+            _lockButton = MakeTopButton("Mover", 480, 86);
+            _hideButton = MakeTopButton("×", 580, 30);
             _hideButton.Font = new Font("Segoe UI", 11.0f, FontStyle.Bold);
 
             _questLabel = new Label
             {
                 Location = new Point(12, 38),
-                Size = new Size(526, 40),
+                Size = new Size(596, 34),
                 ForeColor = Color.White,
                 Font = new Font("Segoe UI", 13.0f, FontStyle.Bold),
                 Text = "Abra ou selecione um cliente do Perfect World.",
@@ -121,8 +125,8 @@ namespace PWQuestOverlay
 
             _npcLabel = new Label
             {
-                Location = new Point(12, 81),
-                Size = new Size(526, 20),
+                Location = new Point(12, 75),
+                Size = new Size(596, 45),
                 ForeColor = Color.FromArgb(226, 232, 240),
                 Font = new Font("Segoe UI", 10.0f, FontStyle.Regular),
                 AutoEllipsis = true
@@ -130,20 +134,21 @@ namespace PWQuestOverlay
 
             _locationLabel = new Label
             {
-                Location = new Point(12, 103),
-                Size = new Size(526, 18),
+                Location = new Point(12, 122),
+                Size = new Size(596, 18),
                 ForeColor = Color.FromArgb(148, 163, 184),
                 AutoEllipsis = true
             };
 
-            _previousButton = MakeActionButton("Voltar", 12, 132, 82, Color.FromArgb(71, 85, 105));
-            _doneButton = MakeActionButton("Concluída", 101, 132, 112, Color.FromArgb(22, 163, 74));
-            _skipButton = MakeActionButton("Pular", 220, 132, 82, Color.FromArgb(180, 83, 9));
+            _previousButton = MakeActionButton("Voltar", 12, 151, 82, Color.FromArgb(71, 85, 105));
+            _doneButton = MakeActionButton("Etapa feita", 101, 151, 112, Color.FromArgb(22, 163, 74));
+            _skipButton = MakeActionButton("Pular etapa", 220, 151, 100, Color.FromArgb(180, 83, 9));
+            _markerButton = MakeActionButton("Marcar", 327, 151, 92, Color.FromArgb(37, 99, 235));
 
             _statusLabel = new Label
             {
-                Location = new Point(314, 139),
-                Size = new Size(224, 22),
+                Location = new Point(426, 157),
+                Size = new Size(182, 22),
                 ForeColor = Color.FromArgb(203, 213, 225),
                 TextAlign = ContentAlignment.MiddleRight,
                 AutoEllipsis = true
@@ -160,6 +165,7 @@ namespace PWQuestOverlay
             Controls.Add(_previousButton);
             Controls.Add(_doneButton);
             Controls.Add(_skipButton);
+            Controls.Add(_markerButton);
             Controls.Add(_statusLabel);
 
             AttachDragHandlers(_topBar);
@@ -170,6 +176,7 @@ namespace PWQuestOverlay
             _doneButton.Click += delegate { CompleteCurrent(); };
             _previousButton.Click += delegate { GoBack(); };
             _skipButton.Click += delegate { SkipCurrent(); };
+            _markerButton.Click += delegate { MarkCurrentLocation(); };
 
             _trayMenu = new ContextMenuStrip();
             _showMenuItem = new ToolStripMenuItem("Mostrar overlay");
@@ -580,6 +587,7 @@ namespace PWQuestOverlay
                 _locationLabel.Text = string.Empty;
                 _statusLabel.Text = string.Empty;
                 _currentMission = null;
+                _currentStep = null;
                 UpdateActionAvailability();
                 return;
             }
@@ -595,6 +603,7 @@ namespace PWQuestOverlay
                 _locationLabel.Text = "A detecção automática usa o título Personagem[CLASSE].";
                 _statusLabel.Text = "Seleção manual disponível";
                 _currentMission = null;
+                _currentStep = null;
                 UpdateActionAvailability();
                 return;
             }
@@ -606,15 +615,23 @@ namespace PWQuestOverlay
                 _npcLabel.Text = "Todas as missões da rota foram marcadas.";
                 _locationLabel.Text = string.Empty;
                 _statusLabel.Text = finished + "/" + _currentRoute.Count;
+                _currentStep = null;
                 UpdateActionAvailability();
                 return;
             }
 
-            _questLabel.Text = _currentMission.name;
-            _npcLabel.Text = "NPC: " + _currentMission.npc;
-            _locationLabel.Text = "Local: " + _currentMission.location;
-            _statusLabel.Text = _currentMission.priority + "  ·  Nv. " + _currentMission.minLevel +
-                "  ·  " + (finished + 1) + "/" + _currentRoute.Count;
+            _currentStepIndex = _currentMission.steps.FindIndex(step =>
+                !_progress.MissionStates.ContainsKey(StageKey(_currentMission, step)));
+            if (_currentStepIndex < 0) _currentStepIndex = Math.Max(0, _currentMission.steps.Count - 1);
+            _currentStep = _currentMission.steps[_currentStepIndex];
+
+            _questLabel.Text = _currentMission.name + "  ·  Etapa " + (_currentStepIndex + 1) + "/" + _currentMission.steps.Count;
+            _npcLabel.Text = _currentStep.action;
+            _locationLabel.Text = _currentStep.markerX.HasValue && _currentStep.markerY.HasValue
+                ? "Marcador: " + _currentStep.markerX.Value + ", " + _currentStep.markerY.Value
+                : "Sem coordenada para esta etapa";
+            _statusLabel.Text = _currentMission.priority + " · Nv. " + _currentMission.minLevel +
+                " · " + (finished + 1) + "/" + _currentRoute.Count;
             _statusLabel.ForeColor = string.Equals(_currentMission.priority, "Opcional", StringComparison.OrdinalIgnoreCase)
                 ? Color.FromArgb(251, 191, 36)
                 : Color.FromArgb(203, 213, 225);
@@ -623,31 +640,128 @@ namespace PWQuestOverlay
 
         private void CompleteCurrent()
         {
-            if (!CanChangeProgress() || _currentMission == null) return;
-            _progress.MissionStates[_currentMission.id] = "done";
+            if (!CanChangeProgress() || _currentMission == null || _currentStep == null) return;
+            _progress.MissionStates[StageKey(_currentMission, _currentStep)] = "done";
+            bool lastStep = _currentStepIndex >= _currentMission.steps.Count - 1;
+            if (lastStep) _progress.MissionStates[_currentMission.id] = "done";
             _store.Save(_state);
-            _store.Log(_characterName + " concluiu: " + _currentMission.name);
+            _store.Log(_characterName + " concluiu etapa " + (_currentStepIndex + 1) + "/" +
+                _currentMission.steps.Count + ": " + _currentMission.name);
             RefreshMissionDisplay();
         }
 
         private void SkipCurrent()
         {
-            if (!CanChangeProgress() || _currentMission == null) return;
-            _progress.MissionStates[_currentMission.id] = "skipped";
+            if (!CanChangeProgress() || _currentMission == null || _currentStep == null) return;
+            _progress.MissionStates[StageKey(_currentMission, _currentStep)] = "skipped";
+            bool lastStep = _currentStepIndex >= _currentMission.steps.Count - 1;
+            if (lastStep) _progress.MissionStates[_currentMission.id] = "skipped";
             _store.Save(_state);
-            _store.Log(_characterName + " pulou: " + _currentMission.name);
+            _store.Log(_characterName + " pulou etapa " + (_currentStepIndex + 1) + "/" +
+                _currentMission.steps.Count + ": " + _currentMission.name);
             RefreshMissionDisplay();
         }
 
         private void GoBack()
         {
             if (!CanChangeProgress() || _progress == null) return;
+            if (_currentMission != null)
+            {
+                QuestStep completedStep = _currentMission.steps.LastOrDefault(step =>
+                    _progress.MissionStates.ContainsKey(StageKey(_currentMission, step)));
+                if (completedStep != null)
+                {
+                    _progress.MissionStates.Remove(StageKey(_currentMission, completedStep));
+                    _progress.MissionStates.Remove(_currentMission.id);
+                    _store.Save(_state);
+                    _store.Log(_characterName + " voltou uma etapa em: " + _currentMission.name);
+                    RefreshMissionDisplay();
+                    return;
+                }
+            }
             QuestMission previous = _currentRoute.LastOrDefault(m => _progress.MissionStates.ContainsKey(m.id));
             if (previous == null) return;
             _progress.MissionStates.Remove(previous.id);
+            QuestStep previousStep = previous.steps.LastOrDefault(step =>
+                _progress.MissionStates.ContainsKey(StageKey(previous, step)));
+            if (previousStep != null)
+            {
+                _progress.MissionStates.Remove(StageKey(previous, previousStep));
+            }
+            else
+            {
+                // Estado 0.1: havia somente a marca da missão. Voltar deve abrir a última etapa.
+                for (int index = 0; index < previous.steps.Count - 1; index++)
+                    _progress.MissionStates[StageKey(previous, previous.steps[index])] = "done";
+            }
             _store.Save(_state);
-            _store.Log(_characterName + " voltou para: " + previous.name);
+            _store.Log(_characterName + " voltou uma etapa para: " + previous.name);
             RefreshMissionDisplay();
+        }
+
+        private static string StageKey(QuestMission mission, QuestStep step)
+        {
+            return mission.id + "|STEP|" + step.id;
+        }
+
+        private void MarkCurrentLocation()
+        {
+            if (_markerBusy || _activeGame == IntPtr.Zero || _currentStep == null ||
+                !_currentStep.markerX.HasValue || !_currentStep.markerY.HasValue) return;
+
+            _markerBusy = true;
+            string originalText = _markerButton.Text;
+            NativeMethods.POINT originalCursor;
+            NativeMethods.GetCursorPos(out originalCursor);
+            try
+            {
+                NativeMethods.SetForegroundWindow(_activeGame);
+                System.Threading.Thread.Sleep(100);
+
+                // Abre Marcadores, remove todos os pontos salvos e cria somente PWOverlay.
+                NativeMethods.ClickClientPoint(_activeGame, 1760, 158);
+                System.Threading.Thread.Sleep(180);
+                NativeMethods.ClickClientPoint(_activeGame, 291, 382);
+                System.Threading.Thread.Sleep(120);
+
+                NativeMethods.ClickClientPoint(_activeGame, 218, 41);
+                NativeMethods.PressKey(NativeMethods.VK_END);
+                for (int index = 0; index < 24; index++) NativeMethods.PressKey(NativeMethods.VK_BACK);
+                SendKeys.SendWait(_currentStep.markerX.Value + ", " + _currentStep.markerY.Value);
+                System.Threading.Thread.Sleep(80);
+                NativeMethods.ClickClientPoint(_activeGame, 291, 41);
+                System.Threading.Thread.Sleep(180);
+
+                NativeMethods.ClickClientPoint(_activeGame, 953, 536);
+                SendKeys.SendWait("PWOverlay");
+                System.Threading.Thread.Sleep(60);
+                NativeMethods.ClickClientPoint(_activeGame, 970, 560);
+                System.Threading.Thread.Sleep(160);
+                NativeMethods.ClickClientPoint(_activeGame, 294, 16);
+
+                _markerButton.Text = "Marcado ✓";
+                _store.Log(_characterName + " marcou " + _currentStep.markerX.Value + ", " +
+                    _currentStep.markerY.Value + " em " + _currentMission.name);
+            }
+            catch (Exception error)
+            {
+                _markerButton.Text = "Falhou";
+                _store.Log("Falha ao criar marcador: " + error.GetType().Name + ": " + error.Message);
+            }
+            finally
+            {
+                NativeMethods.SetCursorPos(originalCursor.X, originalCursor.Y);
+                _markerBusy = false;
+                var resetTimer = new Timer { Interval = 1200 };
+                resetTimer.Tick += delegate
+                {
+                    resetTimer.Stop();
+                    resetTimer.Dispose();
+                    _markerButton.Text = originalText;
+                    UpdateActionAvailability();
+                };
+                resetTimer.Start();
+            }
         }
 
         private bool CanChangeProgress()
@@ -661,6 +775,8 @@ namespace PWQuestOverlay
             _doneButton.Enabled = hasRoute && _currentMission != null;
             _skipButton.Enabled = hasRoute && _currentMission != null;
             _previousButton.Enabled = hasRoute && _progress.MissionStates.Count > 0;
+            _markerButton.Enabled = hasRoute && _currentStep != null &&
+                _currentStep.markerX.HasValue && _currentStep.markerY.HasValue;
         }
 
         private void SetManualClass(string code)

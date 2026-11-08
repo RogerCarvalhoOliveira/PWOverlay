@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "generatedFrom": "rota_leveling_pw_144.xlsx",
   "missions": [
     {
@@ -16,7 +16,25 @@
       "xp3": 225,
       "priority": "Essencial",
       "benefit": "Espada inicial e poções",
-      "instruction": "Faça imediatamente e aceite também A Cidade das Espadas."
+      "instruction": "Faça imediatamente e aceite também A Cidade das Espadas.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Guia (422, 835)",
+          "markerX": 422,
+          "markerY": 835
+        },
+        {
+          "id": "e2",
+          "action": "Você pode escolher entre Matar (10) Inseto de Jade ou (10) Planta Devoradora"
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Guia (422, 835)",
+          "markerX": 422,
+          "markerY": 835
+        }
+      ]
     },
     {
       "id": "WR|WR|1|A Cidade das Espadas",
@@ -32,7 +50,25 @@
       "xp3": 150,
       "priority": "Essencial",
       "benefit": "Leva à capital racial",
-      "instruction": "Entregue no Guarda Torong Gurds (433, 886)."
+      "instruction": "Entregue no Guarda Torong Gurds (433, 886).",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Guia (422, 835)",
+          "markerX": 422,
+          "markerY": 835
+        },
+        {
+          "id": "e2",
+          "action": "Matar (10) Besouro Luz Estelar"
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Guarda Torong Gurds da Cidade das Espadas (433, 886)",
+          "markerX": 433,
+          "markerY": 886
+        }
+      ]
     },
     {
       "id": "WR|WR|1|Revitalizando a Pátria",
@@ -48,7 +84,51 @@
       "xp3": 300,
       "priority": "Essencial",
       "benefit": "Conjunto inicial completo",
-      "instruction": "Fale com os cinco artesãos da cidade antes de voltar ao Ancião."
+      "instruction": "Fale com os cinco artesãos da cidade antes de voltar ao Ancião.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Ancião Cidade das Espadas (433, 887)",
+          "markerX": 433,
+          "markerY": 887
+        },
+        {
+          "id": "e2",
+          "action": "Fale com Ferreiro Valmoren Albor (431, 874)",
+          "markerX": 431,
+          "markerY": 874
+        },
+        {
+          "id": "e3",
+          "action": "Fale com Alfaiate Ilsa Bagsley (427, 878)",
+          "markerX": 427,
+          "markerY": 878
+        },
+        {
+          "id": "e4",
+          "action": "Fale com Boticário Skyle Tretz (433, 876)",
+          "markerX": 433,
+          "markerY": 876
+        },
+        {
+          "id": "e5",
+          "action": "Fale com Artesã Sylis Tanner (426, 877)",
+          "markerX": 426,
+          "markerY": 877
+        },
+        {
+          "id": "e6",
+          "action": "Fale com Comerciante Sirier Varek (428, 879)",
+          "markerX": 428,
+          "markerY": 879
+        },
+        {
+          "id": "e7",
+          "action": "Entregue a missão para Ancião Cidade das Espadas (433, 887)",
+          "markerX": 433,
+          "markerY": 887
+        }
+      ]
     },
     {
       "id": "WR|WR|3|Duende Desertor / A Chama do Túmulo",
@@ -64,7 +144,27 @@
       "xp3": 900,
       "priority": "Alta",
       "benefit": "Manta de Treinamento",
-      "instruction": "Escolha a variante feminina ou masculina; mesma recompensa."
+      "instruction": "Escolha a variante feminina ou masculina; mesma recompensa.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite Duende Desertor (personagem feminino) ou A Chama do Túmulo (masculino) com Alfaiate Ilsa Bagsley (427, 878)",
+          "markerX": 427,
+          "markerY": 878
+        },
+        {
+          "id": "e2",
+          "action": "Pegue 5 Tinturas da Alfaiate matando Duende Desertor ou Chama do Túmulo (440, 859)",
+          "markerX": 440,
+          "markerY": 859
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Alfaiate Ilsa Bagsley (427, 878)",
+          "markerX": 427,
+          "markerY": 878
+        }
+      ]
     },
     {
       "id": "WR|WR|4|Teste de Salto",
@@ -80,7 +180,27 @@
       "xp3": 450,
       "priority": "Essencial",
       "benefit": "Amuleto pequeno de HP ou MP",
-      "instruction": "Pegue o baú sobre o Portão Sul; priorize o amuleto de HP para WR."
+      "instruction": "Pegue o baú sobre o Portão Sul; priorize o amuleto de HP para WR.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Ancião (433, 886)",
+          "markerX": 433,
+          "markerY": 886
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (1) Sinal de Refinamento em 5 minutos no Baú de Tesouros em cima do Portão Sul na coordenada (425, 873, A30)",
+          "markerX": 425,
+          "markerY": 873
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Ancião (433, 886)",
+          "markerX": 433,
+          "markerY": 886
+        }
+      ]
     },
     {
       "id": "WR|WR|4|Fazer Armas",
@@ -96,7 +216,39 @@
       "xp3": 2520,
       "priority": "Alta",
       "benefit": "Pedra Aleatória e XP forte",
-      "instruction": "Faça antes de seguir para a Vila dos Eremitas."
+      "instruction": "Faça antes de seguir para a Vila dos Eremitas.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Ferreiro Valmoren Albor (431, 874)",
+          "markerX": 431,
+          "markerY": 874
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (5) Presa de Duende Desertor matando Duende Desertor () (442, 858)",
+          "markerX": 442,
+          "markerY": 858
+        },
+        {
+          "id": "e3",
+          "action": "Pegar (5) Espinho de Cacto matando Cacto (Arredores da Vila dos Eremitas) (442, 858)",
+          "markerX": 442,
+          "markerY": 858
+        },
+        {
+          "id": "e4",
+          "action": "Falar com a Alfaite Ilsa Bagsley (427, 878) – Item Adquirido: (10) Coque Queimado",
+          "markerX": 427,
+          "markerY": 878
+        },
+        {
+          "id": "e5",
+          "action": "Entregue a missão para Ferreiro Valmoren Albor (431, 874)",
+          "markerX": 431,
+          "markerY": 874
+        }
+      ]
     },
     {
       "id": "WR|WR|5|Espinho de Ouriço",
@@ -112,7 +264,27 @@
       "xp3": 1800,
       "priority": "Alta",
       "benefit": "Colar à escolha",
-      "instruction": "Faça junto de Caçador Confuso e Troca de Presentes se ainda faltar nível."
+      "instruction": "Faça junto de Caçador Confuso e Troca de Presentes se ainda faltar nível.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Caçador Djer Sahuré (459, 838)",
+          "markerX": 459,
+          "markerY": 838
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (5) Espinho de Ouriço Selvagem matando Ouriço Selvagem (Subúrbio da Cidade das Espadas) (448, 818)",
+          "markerX": 448,
+          "markerY": 818
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Caçador Djer Sahuré (459, 838)",
+          "markerX": 459,
+          "markerY": 838
+        }
+      ]
     },
     {
       "id": "WR|WR|6|Espírito do Fogo",
@@ -128,7 +300,27 @@
       "xp3": 2580,
       "priority": "Alta",
       "benefit": "Pedra Aleatória e XP",
-      "instruction": "Aceite antes de sair da cidade; objetivo fica na rota da vila."
+      "instruction": "Aceite antes de sair da cidade; objetivo fica na rota da vila.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Alfaiate Ilsa Bagsley (427, 878)",
+          "markerX": 427,
+          "markerY": 878
+        },
+        {
+          "id": "e2",
+          "action": "Matar (10) Espírito do Fogo (Montanha da Formiga) (500, 870)",
+          "markerX": 500,
+          "markerY": 870
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Alfaiate Ilsa Bagsley (427, 878)",
+          "markerX": 427,
+          "markerY": 878
+        }
+      ]
     },
     {
       "id": "WR|WR|6|Vila dos Eremitas",
@@ -144,7 +336,21 @@
       "xp3": 1200,
       "priority": "Essencial",
       "benefit": "Abre o próximo polo",
-      "instruction": "Saia da cidade somente depois de aceitar Espírito do Fogo; entregue no Antigo Chefe da Vila."
+      "instruction": "Saia da cidade somente depois de aceitar Espírito do Fogo; entregue no Antigo Chefe da Vila.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Antigo Chefe da Vila (497, 867)",
+          "markerX": 497,
+          "markerY": 867
+        },
+        {
+          "id": "e2",
+          "action": "Entregue a missão para Antigo Chefe da Vila (497, 867)",
+          "markerX": 497,
+          "markerY": 867
+        }
+      ]
     },
     {
       "id": "WR|WR|7|Lágrimas do Dragão",
@@ -160,7 +366,27 @@
       "xp3": 3000,
       "priority": "Essencial",
       "benefit": "Cinturão à escolha",
-      "instruction": "Missão cronometrada; faça assim que pegar."
+      "instruction": "Missão cronometrada; faça assim que pegar.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Ferreiro Selder Treej (499, 868)",
+          "markerX": 499,
+          "markerY": 868
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (5) Lágrima de Javali Dragão matando Javali Dragão (Montanha da Formiga) (540, 850)",
+          "markerX": 540,
+          "markerY": 850
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Ferreiro Selder Treej (499, 868)",
+          "markerX": 499,
+          "markerY": 868
+        }
+      ]
     },
     {
       "id": "WR|WR|8|Castigo Local",
@@ -176,7 +402,27 @@
       "xp3": 4800,
       "priority": "Alta",
       "benefit": "XP forte e Pedra Aleatória",
-      "instruction": "Conclua antes de voltar à Cidade das Espadas."
+      "instruction": "Conclua antes de voltar à Cidade das Espadas.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Sentinela (495, 870)",
+          "markerX": 495,
+          "markerY": 870
+        },
+        {
+          "id": "e2",
+          "action": "Matar (10) Demônio Selvagem (Montanha da Formiga) (564, 855)",
+          "markerX": 564,
+          "markerY": 855
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Boticário Skyle Tretz da Cidade das Espadas (433, 876)",
+          "markerX": 433,
+          "markerY": 876
+        }
+      ]
     },
     {
       "id": "WR|WR|8|Poder Dobrado",
@@ -192,7 +438,27 @@
       "xp3": null,
       "priority": "Essencial",
       "benefit": "Amuletos de ataque ou redução de dano",
-      "instruction": "A recompensa defensiva exige personagem abaixo do nível 20."
+      "instruction": "A recompensa defensiva exige personagem abaixo do nível 20.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Sentinela (495, 870)",
+          "markerX": 495,
+          "markerY": 870
+        },
+        {
+          "id": "e2",
+          "action": "Matar (5) Tartaruga do Pântano (484, 898)",
+          "markerX": 484,
+          "markerY": 898
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Sentinela (495, 870)",
+          "markerX": 495,
+          "markerY": 870
+        }
+      ]
     },
     {
       "id": "WR|WR|8|Ouriço Retalhador",
@@ -208,7 +474,25 @@
       "xp3": 7140,
       "priority": "Alta",
       "benefit": "Equipamento e XP alta",
-      "instruction": "Faça ao retornar da Vila dos Eremitas."
+      "instruction": "Faça ao retornar da Vila dos Eremitas.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Guarda Torong Gurds (433, 886)",
+          "markerX": 433,
+          "markerY": 886
+        },
+        {
+          "id": "e2",
+          "action": "Matar (15) Ouriço Retalhador"
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Antigo Chefe da Vila (497, 867)",
+          "markerX": 497,
+          "markerY": 867
+        }
+      ]
     },
     {
       "id": "WR|WR|9|Cultivo – Orientação de Cultivo",
@@ -224,7 +508,21 @@
       "xp3": 120,
       "priority": "Essencial",
       "benefit": "Inicia o cultivo Nv. 9",
-      "instruction": "Nunca pule cultivos."
+      "instruction": "Nunca pule cultivos.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Taoísta Kalern Yoks (429, 890)",
+          "markerX": 429,
+          "markerY": 890
+        },
+        {
+          "id": "e2",
+          "action": "Entregue a missão para Taoísta Kalern Yoks (429, 890)",
+          "markerX": 429,
+          "markerY": 890
+        }
+      ]
     },
     {
       "id": "WR|WR|9|O Surgimento de Lingxu",
@@ -240,7 +538,33 @@
       "xp3": null,
       "priority": "Essencial",
       "benefit": "Estima Astuto, fama e Chi",
-      "instruction": "Conclua antes de continuar a rota de XP."
+      "instruction": "Conclua antes de continuar a rota de XP.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Taoísta Kalern Yoks (429, 890)",
+          "markerX": 429,
+          "markerY": 890
+        },
+        {
+          "id": "e2",
+          "action": "Fale com a Antigo Chefe da Vila (497, 867)",
+          "markerX": 497,
+          "markerY": 867
+        },
+        {
+          "id": "e3",
+          "action": "Matar (9) Traidor Fantasma (Montanha da Formiga) (533, 851)",
+          "markerX": 533,
+          "markerY": 851
+        },
+        {
+          "id": "e4",
+          "action": "Entregue a missão para Antigo Chefe da Vila (497, 867)",
+          "markerX": 497,
+          "markerY": 867
+        }
+      ]
     },
     {
       "id": "WR|WR|10|Mandado do Ferreiro",
@@ -256,7 +580,25 @@
       "xp3": 8700,
       "priority": "Alta",
       "benefit": "XP forte",
-      "instruction": "Prioridade alta com multiplicador 3x."
+      "instruction": "Prioridade alta com multiplicador 3x.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Comerciante Sirier Varek (429, 880)",
+          "markerX": 429,
+          "markerY": 880
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (10) Escama de Víbora matando Víbora de Chifre (Montanha da Formiga) ()"
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Ferreiro Langi Bash da Vila Quadrada (563, 871)",
+          "markerX": 563,
+          "markerY": 871
+        }
+      ]
     },
     {
       "id": "WR|WR|11|Vila Quadrada",
@@ -272,7 +614,21 @@
       "xp3": 6000,
       "priority": "Essencial",
       "benefit": "Abre novo polo",
-      "instruction": "Aceite Trabalho em Conjunto ao chegar."
+      "instruction": "Aceite Trabalho em Conjunto ao chegar.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Guarda (577, 894)",
+          "markerX": 577,
+          "markerY": 894
+        },
+        {
+          "id": "e2",
+          "action": "Entregue a missão para Guarda (577, 894)",
+          "markerX": 577,
+          "markerY": 894
+        }
+      ]
     },
     {
       "id": "WR|WR|11|Trabalho em Conjunto",
@@ -288,7 +644,27 @@
       "xp3": 6390,
       "priority": "Alta",
       "benefit": "Cadeia de XP",
-      "instruction": "Continua em Esforços Concentrados."
+      "instruction": "Continua em Esforços Concentrados.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Guarda (577, 894)",
+          "markerX": 577,
+          "markerY": 894
+        },
+        {
+          "id": "e2",
+          "action": "Matar (20) Lince da Montanha (Montanha Desolada) (551, 982)",
+          "markerX": 551,
+          "markerY": 982
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Guarda (577, 894)",
+          "markerX": 577,
+          "markerY": 894
+        }
+      ]
     },
     {
       "id": "WR|WR|11|Esforços Concentrados",
@@ -304,7 +680,27 @@
       "xp3": 7440,
       "priority": "Alta",
       "benefit": "Pedra Aleatória e XP",
-      "instruction": "Conclua no mesmo circuito de monstros."
+      "instruction": "Conclua no mesmo circuito de monstros.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Guarda (577, 894)",
+          "markerX": 577,
+          "markerY": 894
+        },
+        {
+          "id": "e2",
+          "action": "Matar (30) Víbora de Chifres (Montanha da Formiga)(546, 894)",
+          "markerX": 546,
+          "markerY": 894
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Guarda (577, 894)",
+          "markerX": 577,
+          "markerY": 894
+        }
+      ]
     },
     {
       "id": "WR|WR|12|Intercomunicação",
@@ -320,7 +716,33 @@
       "xp3": 12000,
       "priority": "Essencial",
       "benefit": "Teletransportes e XP alta",
-      "instruction": "Faça o circuito entre as capitais raciais usando teleportadores."
+      "instruction": "Faça o circuito entre as capitais raciais usando teleportadores.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Ancião (433, 887)",
+          "markerX": 433,
+          "markerY": 887
+        },
+        {
+          "id": "e2",
+          "action": "Fale com o Ancião da Cidade das Feras (246, 646)",
+          "markerX": 246,
+          "markerY": 646
+        },
+        {
+          "id": "e3",
+          "action": "Fale com o Ancião da Cidade das Espadas (433, 887)",
+          "markerX": 433,
+          "markerY": 887
+        },
+        {
+          "id": "e4",
+          "action": "Entregue a missão para Ancião da Cidade das Espadas (433, 887)",
+          "markerX": 433,
+          "markerY": 887
+        }
+      ]
     },
     {
       "id": "WR|WR|13|Armadura do Lobo",
@@ -336,7 +758,27 @@
       "xp3": 14220,
       "priority": "Alta",
       "benefit": "Equipamento e XP alta",
-      "instruction": "Pegue antes das caçadas da Montanha da Formiga."
+      "instruction": "Pegue antes das caçadas da Montanha da Formiga.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Alfaiate Lindie (567, 883)",
+          "markerX": 567,
+          "markerY": 883
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (15) Pelagem de Lobo Insano matando Lobo-Rei Insano (Terra de Hades) (562, 944)",
+          "markerX": 562,
+          "markerY": 944
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Guarda (577, 894)",
+          "markerX": 577,
+          "markerY": 894
+        }
+      ]
     },
     {
       "id": "WR|WR|14|Emoção da Caça",
@@ -352,7 +794,39 @@
       "xp3": 21900,
       "priority": "Alta",
       "benefit": "Grande XP e Pedra Aleatória",
-      "instruction": "Uma das melhores missões de XP desta faixa."
+      "instruction": "Uma das melhores missões de XP desta faixa.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Velho Caçador (498, 970)",
+          "markerX": 498,
+          "markerY": 970
+        },
+        {
+          "id": "e2",
+          "action": "Matar (20) Espinho do Orgulho (Terra de Hades) (517, 968)",
+          "markerX": 517,
+          "markerY": 968
+        },
+        {
+          "id": "e3",
+          "action": "Reporte ao Velho Caçador (498, 970)",
+          "markerX": 498,
+          "markerY": 970
+        },
+        {
+          "id": "e4",
+          "action": "Matar (20) Carniçal da Fronteira (Terra de Hades) (517, 968)",
+          "markerX": 517,
+          "markerY": 968
+        },
+        {
+          "id": "e5",
+          "action": "Entregue a missão para Velho Caçador (498, 970)",
+          "markerX": 498,
+          "markerY": 970
+        }
+      ]
     },
     {
       "id": "WR|WR|15|A Promessa",
@@ -368,7 +842,45 @@
       "xp3": 23400,
       "priority": "Alta",
       "benefit": "Grande XP e Pedra Aleatória",
-      "instruction": "Faça na passagem pela cidade; pule missões menores se já abriu o Nv. 16."
+      "instruction": "Faça na passagem pela cidade; pule missões menores se já abriu o Nv. 16.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Alfaiate Lisa Bagsley (427, 878)",
+          "markerX": 427,
+          "markerY": 878
+        },
+        {
+          "id": "e2",
+          "action": "Fale com a Garota Misteriosa (488, 887)",
+          "markerX": 488,
+          "markerY": 887
+        },
+        {
+          "id": "e3",
+          "action": "Fale com o Guarda da Montanha da Formiga (577, 894)",
+          "markerX": 577,
+          "markerY": 894
+        },
+        {
+          "id": "e4",
+          "action": "Ir até o Sul da Montanha das Formigas (571, 835) procurar os restos do homem. Ao chegar na coordenada abrirá uma janela",
+          "markerX": 571,
+          "markerY": 835
+        },
+        {
+          "id": "e5",
+          "action": "Fale com a Garota Misteriosa (488, 887)",
+          "markerX": 488,
+          "markerY": 887
+        },
+        {
+          "id": "e6",
+          "action": "Entregue a missão para Alfaiate Lisa Bagsley (427, 878)",
+          "markerX": 427,
+          "markerY": 878
+        }
+      ]
     },
     {
       "id": "WR|WR|16|Fortaleza da Montanha",
@@ -384,7 +896,21 @@
       "xp3": 9000,
       "priority": "Essencial",
       "benefit": "Abre o polo final",
-      "instruction": "Entregue e aceite Vingança do Boticário."
+      "instruction": "Entregue e aceite Vingança do Boticário.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Velho Caçador (498, 970)",
+          "markerX": 498,
+          "markerY": 970
+        },
+        {
+          "id": "e2",
+          "action": "Entregue a missão para Velho Caçador (498, 970)",
+          "markerX": 498,
+          "markerY": 970
+        }
+      ]
     },
     {
       "id": "WR|WR|16|Vingança do Boticário",
@@ -400,7 +926,27 @@
       "xp3": 12300,
       "priority": "Alta",
       "benefit": "XP e Pedra Aleatória",
-      "instruction": "Faça junto das missões do Galpão."
+      "instruction": "Faça junto das missões do Galpão.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Boticário Hitzerin Reut (498, 964)",
+          "markerX": 498,
+          "markerY": 964
+        },
+        {
+          "id": "e2",
+          "action": "Matar (20) Tarântula (Terra de Hades) (476, 926)",
+          "markerX": 476,
+          "markerY": 926
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Boticário Hitzerin Reut (498, 964)",
+          "markerX": 498,
+          "markerY": 964
+        }
+      ]
     },
     {
       "id": "WR|WR|17|Flauta do Passado",
@@ -416,7 +962,39 @@
       "xp3": 27000,
       "priority": "Alta",
       "benefit": "Uma das maiores XP pré-19",
-      "instruction": "Priorize assim que estiver disponível."
+      "instruction": "Priorize assim que estiver disponível.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Ancião (433, 887)",
+          "markerX": 433,
+          "markerY": 887
+        },
+        {
+          "id": "e2",
+          "action": "Fale com o Antigo Chefe da Vila na Vila dos Eremitas (496, 867)",
+          "markerX": 496,
+          "markerY": 867
+        },
+        {
+          "id": "e3",
+          "action": "Fale com o Antigo Chefe da Vila (496, 867)",
+          "markerX": 496,
+          "markerY": 867
+        },
+        {
+          "id": "e4",
+          "action": "Ir até (589, 883)",
+          "markerX": 589,
+          "markerY": 883
+        },
+        {
+          "id": "e5",
+          "action": "Entregue a missão para Antigo Chefe da Vila (496, 867)",
+          "markerX": 496,
+          "markerY": 867
+        }
+      ]
     },
     {
       "id": "WR|WR|18|A Lista de Xin",
@@ -432,7 +1010,45 @@
       "xp3": 30000,
       "priority": "Alta",
       "benefit": "XP muito alta",
-      "instruction": "Leva rapidamente ao nível 19 com bônus 3x."
+      "instruction": "Leva rapidamente ao nível 19 com bônus 3x.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Ancião (433, 887)",
+          "markerX": 433,
+          "markerY": 887
+        },
+        {
+          "id": "e2",
+          "action": "Fale com o Caçador Djer Sahuré no Subúrbio da Cidade das Espadas(458, 838)",
+          "markerX": 458,
+          "markerY": 838
+        },
+        {
+          "id": "e3",
+          "action": "Fale com o Velho Caçador (498, 970)",
+          "markerX": 498,
+          "markerY": 970
+        },
+        {
+          "id": "e4",
+          "action": "Pegar (3) Pelagem de Lobo das Neves matando Lobo-rei da Neve (408, 938)",
+          "markerX": 408,
+          "markerY": 938
+        },
+        {
+          "id": "e5",
+          "action": "Fale com o Velho Caçador (498, 970)",
+          "markerX": 498,
+          "markerY": 970
+        },
+        {
+          "id": "e6",
+          "action": "Entregue a missão para Ancião da Cidade das Espadas (433, 887)",
+          "markerX": 433,
+          "markerY": 887
+        }
+      ]
     },
     {
       "id": "WR|WR|19|Orientação de Cultivo – Aumentar Cultivo",
@@ -448,7 +1064,21 @@
       "xp3": 150,
       "priority": "Essencial",
       "benefit": "Inicia cultivo Harmonioso",
-      "instruction": "Obrigatória para abrir a etapa seguinte."
+      "instruction": "Obrigatória para abrir a etapa seguinte.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com Taoísta Kalern Yoks (429, 890)",
+          "markerX": 429,
+          "markerY": 890
+        },
+        {
+          "id": "e2",
+          "action": "Entregue a missão para Taoísta Kalern Yoks (429, 890)",
+          "markerX": 429,
+          "markerY": 890
+        }
+      ]
     },
     {
       "id": "WR|WR|19|A Harmonia do Céu e a Terra",
@@ -464,7 +1094,31 @@
       "xp3": null,
       "priority": "Essencial",
       "benefit": "Estima Harmonioso e teleporte da Cidade do Dragão",
-      "instruction": "Ao concluir, o ponto da Cidade do Dragão é liberado."
+      "instruction": "Ao concluir, o ponto da Cidade do Dragão é liberado.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Taoísta Kalern Yoks (429, 890)",
+          "markerX": 429,
+          "markerY": 890
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (1) Humano Celestal matando Lobo das Neves (Montanha das Árvores)"
+        },
+        {
+          "id": "e3",
+          "action": "Coletar (1) Cavalo Celestial em alguma dessas coordenadas: (544, 901) ou (574, 905)",
+          "markerX": 544,
+          "markerY": 901
+        },
+        {
+          "id": "e4",
+          "action": "Entregue a missão para Taoísta Miao Miao (244, 647)",
+          "markerX": 244,
+          "markerY": 647
+        }
+      ]
     },
     {
       "id": "WR|WR|19|Moeda Sangrenta de Ferro",
@@ -480,7 +1134,15 @@
       "xp3": 0,
       "priority": "Essencial",
       "benefit": "1 moeda da DG19",
-      "instruction": "Pegue depois do cultivo; esta missão deixa de estar disponível após o nível 30."
+      "instruction": "Pegue depois do cultivo; esta missão deixa de estar disponível após o nível 30.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Pegue a Moeda Sangrenta de Ferro com Ancião (433, 887)",
+          "markerX": 433,
+          "markerY": 887
+        }
+      ]
     },
     {
       "id": "WR|WR|19|Missão Desafio – Portão de Devildom",
@@ -496,7 +1158,29 @@
       "xp3": 13818,
       "priority": "Essencial",
       "benefit": "Arma 3 estrelas e Pedra do Céu Celestial",
-      "instruction": "Complete a Caverna de Fogo; ative a moeda como líder do grupo."
+      "instruction": "Complete a Caverna de Fogo; ative a moeda como líder do grupo.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Ancião (433, 886)",
+          "markerX": 433,
+          "markerY": 886
+        },
+        {
+          "id": "e2",
+          "action": "Matar (8) Escaravelho das Cavernas e (8) Centopéia de Fogo (Dentro da Caverna de Fogo)"
+        },
+        {
+          "id": "e3",
+          "action": "Matar (1) Pahana (Boss)"
+        },
+        {
+          "id": "e4",
+          "action": "Entregue a missão para Ancião (433, 886)",
+          "markerX": 433,
+          "markerY": 886
+        }
+      ]
     },
     {
       "id": "WR|WR|19|Aquecimento",
@@ -512,7 +1196,45 @@
       "xp3": 42000,
       "priority": "Opcional",
       "benefit": "Maior XP da rota humana",
-      "instruction": "Faça depois da rota essencial apenas se quiser XP/alma extra; exige desvio ao Galpão."
+      "instruction": "Faça depois da rota essencial apenas se quiser XP/alma extra; exige desvio ao Galpão.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Velho Caçador (498, 970)",
+          "markerX": 498,
+          "markerY": 970
+        },
+        {
+          "id": "e2",
+          "action": "Matar (30) Predador de Elite (Montanha das Árvores)"
+        },
+        {
+          "id": "e3",
+          "action": "Reporte ao Velho Caçador (498, 970)",
+          "markerX": 498,
+          "markerY": 970
+        },
+        {
+          "id": "e4",
+          "action": "Matar (30) Soldado Formiga Gigante (Montanha das Árvores)"
+        },
+        {
+          "id": "e5",
+          "action": "Reporte ao Velho Caçador (498, 970)",
+          "markerX": 498,
+          "markerY": 970
+        },
+        {
+          "id": "e6",
+          "action": "Matar (30) Lobo-rei das Neves (Montanha das Árvores)"
+        },
+        {
+          "id": "e7",
+          "action": "Entregue a missão para Velho Caçador (498, 970)",
+          "markerX": 498,
+          "markerY": 970
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|1|Primeira Viagem",
@@ -528,7 +1250,25 @@
       "xp3": 240,
       "priority": "Essencial",
       "benefit": "Arma inicial e poções",
-      "instruction": "Faça imediatamente e aceite A Cidade das Feras."
+      "instruction": "Faça imediatamente e aceite A Cidade das Feras.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Guia (256, 689)",
+          "markerX": 256,
+          "markerY": 689
+        },
+        {
+          "id": "e2",
+          "action": "Matar (10) Filhote de Mandrágora (Arredores da Vila Inicial)"
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Guia (256, 689)",
+          "markerX": 256,
+          "markerY": 689
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|1|A Cidade das Feras",
@@ -544,7 +1284,25 @@
       "xp3": 150,
       "priority": "Essencial",
       "benefit": "Leva à capital racial",
-      "instruction": "Entregue no Ancião (246, 646)."
+      "instruction": "Entregue no Ancião (246, 646).",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Guia (256, 689)",
+          "markerX": 256,
+          "markerY": 689
+        },
+        {
+          "id": "e2",
+          "action": "Matar (10) Inseto Esmeralda (Arredores da Vila Inicial)"
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Ancião Cidade das Feras (246, 646)",
+          "markerX": 246,
+          "markerY": 646
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|1|Os Poderosos Selvagens",
@@ -560,7 +1318,51 @@
       "xp3": 300,
       "priority": "Essencial",
       "benefit": "Conjunto inicial completo",
-      "instruction": "Fale com os cinco artesãos e volte ao Ancião."
+      "instruction": "Fale com os cinco artesãos e volte ao Ancião.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Ancião Cidade das Feras (246, 646)",
+          "markerX": 246,
+          "markerY": 646
+        },
+        {
+          "id": "e2",
+          "action": "Fale com Ferreiro Bashan (252, 642)",
+          "markerX": 252,
+          "markerY": 642
+        },
+        {
+          "id": "e3",
+          "action": "Fale com Artesã Viena Andrews (256, 640)",
+          "markerX": 256,
+          "markerY": 640
+        },
+        {
+          "id": "e4",
+          "action": "Fale com Alfaiate Tina Parson (259, 639)",
+          "markerX": 259,
+          "markerY": 639
+        },
+        {
+          "id": "e5",
+          "action": "Fale com Boticário Mahu (262, 638)",
+          "markerX": 262,
+          "markerY": 638
+        },
+        {
+          "id": "e6",
+          "action": "Fale com Comerciante Sylvia Potts (261, 636)",
+          "markerX": 261,
+          "markerY": 636
+        },
+        {
+          "id": "e7",
+          "action": "Entregue a missão para Ancião Cidade das Feras (246, 646)",
+          "markerX": 246,
+          "markerY": 646
+        }
+      ]
     },
     {
       "id": "WBWF|WF|3|Habilidade de Controle",
@@ -576,7 +1378,27 @@
       "xp3": null,
       "priority": "Essencial",
       "benefit": "Pet inicial, Curar e Ressuscitar Mascote",
-      "instruction": "Exclusiva para WF; faça antes de sair da cidade."
+      "instruction": "Exclusiva para WF; faça antes de sair da cidade.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Domesticadora Rilay (257, 644)",
+          "markerX": 257,
+          "markerY": 644
+        },
+        {
+          "id": "e2",
+          "action": "Pegue um certificado: Filhote de Lobo Feroz (232, 639) ou Escorpião Venenoso ao sul da Cidade das Feras",
+          "markerX": 232,
+          "markerY": 639
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Domesticadora Rilay (257, 644)",
+          "markerX": 257,
+          "markerY": 644
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|3|Injustiças",
@@ -592,7 +1414,27 @@
       "xp3": 750,
       "priority": "Alta",
       "benefit": "Manta de Treinamento",
-      "instruction": "Equipamento útil e missão curta."
+      "instruction": "Equipamento útil e missão curta.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Selvagem Excêntrico (246, 648)",
+          "markerX": 246,
+          "markerY": 648
+        },
+        {
+          "id": "e2",
+          "action": "Matar (10) Vela Fantasmagórica (Oeste da Cidade das Feras – Vale dos Dragões) (228, 637)",
+          "markerX": 228,
+          "markerY": 637
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Selvagem Excêntrico (246, 648)",
+          "markerX": 246,
+          "markerY": 648
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|4|Habilidade Primária",
@@ -608,7 +1450,27 @@
       "xp3": 450,
       "priority": "Essencial",
       "benefit": "Amuleto pequeno de HP ou MP",
-      "instruction": "WB prioriza HP; WF escolhe conforme necessidade."
+      "instruction": "WB prioriza HP; WF escolhe conforme necessidade.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Ancião Cidade das Feras (246, 646)",
+          "markerX": 246,
+          "markerY": 646
+        },
+        {
+          "id": "e2",
+          "action": "Pegar o Sinal de Refinamento em 5 minutos no Baú em cima da ponte sul da Cidade das Feras (255, 677 A28)",
+          "markerX": 255,
+          "markerY": 677
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Ancião Cidade das Feras (246, 646)",
+          "markerX": 246,
+          "markerY": 646
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|4|União Contra o Inimigo",
@@ -624,7 +1486,51 @@
       "xp3": 3750,
       "priority": "Alta",
       "benefit": "XP muito forte para o nível",
-      "instruction": "Prioridade alta no servidor 3x."
+      "instruction": "Prioridade alta no servidor 3x.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Ferreiro Bashan (252, 642)",
+          "markerX": 252,
+          "markerY": 642
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (5) Pedra Pontiaguda matando Recruta Duende (Oeste da Cidade das Feras – Vale dos Dragões) (234, 635)",
+          "markerX": 234,
+          "markerY": 635
+        },
+        {
+          "id": "e3",
+          "action": "Pegar (5) Galho Recurvado matando Pulador-Agulha (Leste da Cidade das Feras – Vale dos Dragões) (233, 620)",
+          "markerX": 233,
+          "markerY": 620
+        },
+        {
+          "id": "e4",
+          "action": "Reporte ao Ferreiro Bashan (252, 642)",
+          "markerX": 252,
+          "markerY": 642
+        },
+        {
+          "id": "e5",
+          "action": "Fale com a Alfaiate Tina Parson (260, 639)",
+          "markerX": 260,
+          "markerY": 639
+        },
+        {
+          "id": "e6",
+          "action": "Pegar (5) Seda Verde matando Chama Fantasma Esverdeada (Leste da Cidade das Feras – Vale dos Dragões) (245, 605)",
+          "markerX": 245,
+          "markerY": 605
+        },
+        {
+          "id": "e7",
+          "action": "Entregue a missão para Alfaiate Tina Parson (260, 639)",
+          "markerX": 260,
+          "markerY": 639
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|5|Armadura de Casco",
@@ -640,7 +1546,25 @@
       "xp3": 3930,
       "priority": "Alta",
       "benefit": "Colar à escolha",
-      "instruction": "Melhor combinação de item e XP desta faixa."
+      "instruction": "Melhor combinação de item e XP desta faixa.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Alfaiate Tina Parson (259, 639)",
+          "markerX": 259,
+          "markerY": 639
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (10) Casco de Tartaruga do Charco matando Tartaruga do Charco (Dentro do rio a Leste da Cidade das Feras)"
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Alfaiate Tina Parson (259, 639)",
+          "markerX": 259,
+          "markerY": 639
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|6|Mais Urgente",
@@ -656,7 +1580,31 @@
       "xp3": 3600,
       "priority": "Alta",
       "benefit": "XP e Pedra Aleatória",
-      "instruction": "Aceite antes de viajar para a Vila da Ponte Quebrada."
+      "instruction": "Aceite antes de viajar para a Vila da Ponte Quebrada.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Guarda Estec (249, 644)",
+          "markerX": 249,
+          "markerY": 644
+        },
+        {
+          "id": "e2",
+          "action": "Fale com o Guarda Bestrus da Vila da Ponte Quebrada (231, 556)",
+          "markerX": 231,
+          "markerY": 556
+        },
+        {
+          "id": "e3",
+          "action": "Matar (10) Esqueleto Artesão de Flechas"
+        },
+        {
+          "id": "e4",
+          "action": "Entregue a missão para Guarda Bestrus da Vila da Ponte Quebrada (231, 556)",
+          "markerX": 231,
+          "markerY": 556
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|6|Vila da Ponte Quebrada",
@@ -672,7 +1620,21 @@
       "xp3": 1200,
       "priority": "Essencial",
       "benefit": "Abre o próximo polo",
-      "instruction": "Viaje depois de aceitar Mais Urgente; entregue no Guarda Bestrus."
+      "instruction": "Viaje depois de aceitar Mais Urgente; entregue no Guarda Bestrus.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Guarda Bestrus da Vila da Ponte Quebrada (231, 556)",
+          "markerX": 231,
+          "markerY": 556
+        },
+        {
+          "id": "e2",
+          "action": "Entregue a missão para Guarda Bestrus (231, 556)",
+          "markerX": 231,
+          "markerY": 556
+        }
+      ]
     },
     {
       "id": "WBWF|WF|7|Capturar Fera Psíquica",
@@ -688,7 +1650,25 @@
       "xp3": null,
       "priority": "Essencial",
       "benefit": "Domesticar Mascote e 1 espaço de jaula",
-      "instruction": "Exclusiva para WF; não pule."
+      "instruction": "Exclusiva para WF; não pule.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Domesticadora Rilay (257, 644)",
+          "markerX": 257,
+          "markerY": 644
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (1) Pedaço de Carne Fresca matando Javali da Montanha"
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Domesticadora Rilay (257, 644)",
+          "markerX": 257,
+          "markerY": 644
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|7|Pescador Minotauro",
@@ -704,7 +1684,25 @@
       "xp3": 3840,
       "priority": "Alta",
       "benefit": "XP e Pedra Aleatória",
-      "instruction": "Faça junto de Óleo Negro Mágico."
+      "instruction": "Faça junto de Óleo Negro Mágico.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Comerciante Helga (228, 559)",
+          "markerX": 228,
+          "markerY": 559
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (10) Ferradura Grossa matando Pescador Minotauro (Norte da Vila da Ponte Quebrada)"
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Comerciante Helga (228, 559)",
+          "markerX": 228,
+          "markerY": 559
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|7|Óleo Negro Mágico",
@@ -720,7 +1718,25 @@
       "xp3": 3840,
       "priority": "Essencial",
       "benefit": "Cinturão à escolha",
-      "instruction": "Faça no mesmo circuito do Pescador Minotauro."
+      "instruction": "Faça no mesmo circuito do Pescador Minotauro.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Ferreiro Naruky (232, 559)",
+          "markerX": 232,
+          "markerY": 559
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (10) Coque Queimado matando Cacto Mutante (Noroeste da Vila da Ponte Quebrada)"
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Ferreiro Naruky (232, 559)",
+          "markerX": 232,
+          "markerY": 559
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|8|Uma Boa Estratégia",
@@ -736,7 +1752,35 @@
       "xp3": 4500,
       "priority": "Alta",
       "benefit": "XP e Pedra Aleatória",
-      "instruction": "Priorize; pule Sopa de Tartaruga se já abriu o nível 9."
+      "instruction": "Priorize; pule Sopa de Tartaruga se já abriu o nível 9.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Comerciante Helga (228, 559)",
+          "markerX": 228,
+          "markerY": 559
+        },
+        {
+          "id": "e2",
+          "action": "Matar (5) Brigão da Montanha (Arredores da Vila da Ponte Quebrada)"
+        },
+        {
+          "id": "e3",
+          "action": "Reporte a Comerciante Helga (228 559)",
+          "markerX": 228,
+          "markerY": 559
+        },
+        {
+          "id": "e4",
+          "action": "Matar (10) Marta (Arredores da Vila da Ponte Quebrada)"
+        },
+        {
+          "id": "e5",
+          "action": "Entregue a missão para Comerciante Helga (228, 559)",
+          "markerX": 228,
+          "markerY": 559
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|9|Jornada Tranquila",
@@ -752,7 +1796,25 @@
       "xp3": 5400,
       "priority": "Alta",
       "benefit": "XP forte",
-      "instruction": "Faça antes de voltar à Cidade das Feras."
+      "instruction": "Faça antes de voltar à Cidade das Feras.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Comerciante Helga (228, 559)",
+          "markerX": 228,
+          "markerY": 559
+        },
+        {
+          "id": "e2",
+          "action": "Matar (10) Worg (Sul da Vila da Ponte Quebrada)"
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Comerciante Helga (228, 559)",
+          "markerX": 228,
+          "markerY": 559
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|9|Cultivo – Orientação de Cultivo",
@@ -768,7 +1830,21 @@
       "xp3": 120,
       "priority": "Essencial",
       "benefit": "Inicia o cultivo Nv. 9",
-      "instruction": "Nunca pule cultivos."
+      "instruction": "Nunca pule cultivos.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com Taoísta Miao Miao (244, 647)",
+          "markerX": 244,
+          "markerY": 647
+        },
+        {
+          "id": "e2",
+          "action": "Entregue a missão para Taoísta Miao Miao (244, 647)",
+          "markerX": 244,
+          "markerY": 647
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|9|O Surgimento de Lingxu",
@@ -784,7 +1860,31 @@
       "xp3": null,
       "priority": "Essencial",
       "benefit": "Estima Astuto, fama e Chi",
-      "instruction": "Conclua antes de seguir."
+      "instruction": "Conclua antes de seguir.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Taoísta Miao Miao (244, 647)",
+          "markerX": 244,
+          "markerY": 647
+        },
+        {
+          "id": "e2",
+          "action": "Fale com o Eremita ao Sul da Vila da Ponte Quebradas (216, 542)",
+          "markerX": 216,
+          "markerY": 542
+        },
+        {
+          "id": "e3",
+          "action": "Matar (9) Ouriço Peçonhento (Sul da Vila da Ponte Quebrada)"
+        },
+        {
+          "id": "e4",
+          "action": "Entregue a missão para Eremita ao Sul da Vila da Ponte Quebradas (216, 542)",
+          "markerX": 216,
+          "markerY": 542
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|10|Remédio Útil",
@@ -800,7 +1900,29 @@
       "xp3": 11250,
       "priority": "Alta",
       "benefit": "XP muito alta",
-      "instruction": "Melhor missão de XP do nível 10."
+      "instruction": "Melhor missão de XP do nível 10.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Boticário Lother Gaven (229, 560)",
+          "markerX": 229,
+          "markerY": 560
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (10) Presa de Lince matando Lince da Montanha (Vale dos Lobos)"
+        },
+        {
+          "id": "e3",
+          "action": "Pegar (10) Garra Rústica matando Servo Vândalo (Vale dos Lobos)"
+        },
+        {
+          "id": "e4",
+          "action": "Entregue a missão para Boticário Lother Gaven (229, 560)",
+          "markerX": 229,
+          "markerY": 560
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|11|Irmandade",
@@ -816,7 +1938,25 @@
       "xp3": 8250,
       "priority": "Alta",
       "benefit": "XP e Pedra Aleatória",
-      "instruction": "Pegue antes da viagem para a Garganta."
+      "instruction": "Pegue antes da viagem para a Garganta.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Guarda Syrek (231, 554)",
+          "markerX": 231,
+          "markerY": 554
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (10) Escama Brilhante matando Serpente Brilhante (Vale dos Lobos)"
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Ferreiro Baros Hotem da Garganta dos Ventos (387, 514)",
+          "markerX": 387,
+          "markerY": 514
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|11|Garganta dos Ventos Ancestrais",
@@ -832,7 +1972,21 @@
       "xp3": 3000,
       "priority": "Essencial",
       "benefit": "Abre novo polo",
-      "instruction": "Saia da vila depois de aceitar Irmandade; entregue no Guarda Urek."
+      "instruction": "Saia da vila depois de aceitar Irmandade; entregue no Guarda Urek.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Guarda Urek (387, 521)",
+          "markerX": 387,
+          "markerY": 521
+        },
+        {
+          "id": "e2",
+          "action": "Entregue a missão para Guarda Urek (387, 521)",
+          "markerX": 387,
+          "markerY": 521
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|12|O Rugido das Feras",
@@ -848,7 +2002,45 @@
       "xp3": 12000,
       "priority": "Essencial",
       "benefit": "Abre teleportes raciais",
-      "instruction": "Faça o circuito usando teleportadores."
+      "instruction": "Faça o circuito usando teleportadores.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Ancião (246, 646)",
+          "markerX": 246,
+          "markerY": 646
+        },
+        {
+          "id": "e2",
+          "action": "Fale com o Guarda Shymm (240, 651) para abrir um ponto de teleporte para a Cidade das Plumas",
+          "markerX": 240,
+          "markerY": 651
+        },
+        {
+          "id": "e3",
+          "action": "Fale com o Ancião da Cidade das Feras (246, 646) novamente para abrir um ponto de teleporte para a Cidade das Espadas",
+          "markerX": 246,
+          "markerY": 646
+        },
+        {
+          "id": "e4",
+          "action": "Fale com o Guarda Torong Gurds da Cidade das Espadas (433, 886)",
+          "markerX": 433,
+          "markerY": 886
+        },
+        {
+          "id": "e5",
+          "action": "Fale com a Guarda Ewlen da Cidade das Plumas (321, 419)",
+          "markerX": 321,
+          "markerY": 419
+        },
+        {
+          "id": "e6",
+          "action": "Entregue a missão para Ancião da Cidade das Feras (246, 646)",
+          "markerX": 246,
+          "markerY": 646
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|12|Sangue de Lobo Feroz",
@@ -864,7 +2056,31 @@
       "xp3": 10710,
       "priority": "Alta",
       "benefit": "XP forte",
-      "instruction": "Entregue no Boticário Karana (389, 515)."
+      "instruction": "Entregue no Boticário Karana (389, 515).",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Alfaiate Tina Parson (259, 639)",
+          "markerX": 259,
+          "markerY": 639
+        },
+        {
+          "id": "e2",
+          "action": "Fale com o Boticário Karana da Garganta dos Ventos (389, 515)",
+          "markerX": 389,
+          "markerY": 515
+        },
+        {
+          "id": "e3",
+          "action": "Pegar (10) Sangue de Lobo Feroz matando Lobo Feroz (Leste do Vale dos Lobos)"
+        },
+        {
+          "id": "e4",
+          "action": "Entregue a missão para Boticário Karana da Garganta dos Ventos (389, 515)",
+          "markerX": 389,
+          "markerY": 515
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|13|Pesadelo Perturbador",
@@ -880,7 +2096,31 @@
       "xp3": 10740,
       "priority": "Essencial",
       "benefit": "Braceletes e Fragmento de Pedra Imortal",
-      "instruction": "Bom item para WB e WF."
+      "instruction": "Bom item para WB e WF.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Altram Sutzer (242, 642)",
+          "markerX": 242,
+          "markerY": 642
+        },
+        {
+          "id": "e2",
+          "action": "Fale com o Guarda Urek da Garganta dos Ventos (387, 521)",
+          "markerX": 387,
+          "markerY": 521
+        },
+        {
+          "id": "e3",
+          "action": "Matar (20) Espinho Maligno (Oeste da Garganta dos Ventos)"
+        },
+        {
+          "id": "e4",
+          "action": "Entregue a missão para Altram Sutzer (242, 642)",
+          "markerX": 242,
+          "markerY": 642
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|14|Vantagens Sem Esforço",
@@ -896,7 +2136,29 @@
       "xp3": 22290,
       "priority": "Essencial",
       "benefit": "Arma e Fragmento de Pedra Imortal",
-      "instruction": "Uma das melhores missões da rota."
+      "instruction": "Uma das melhores missões da rota.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Guarda Urek (387, 521)",
+          "markerX": 387,
+          "markerY": 521
+        },
+        {
+          "id": "e2",
+          "action": "Matar (20) Gato-rei Sentinela (Norte da Garganta dos Ventos)"
+        },
+        {
+          "id": "e3",
+          "action": "Matar (20) Lobo Arqueiro (Oeste da Garganta dos Ventos)"
+        },
+        {
+          "id": "e4",
+          "action": "Entregue a missão para Guarda Urek (387, 521)",
+          "markerX": 387,
+          "markerY": 521
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|15|Piggy",
@@ -912,7 +2174,33 @@
       "xp3": 20250,
       "priority": "Alta",
       "benefit": "Grande XP",
-      "instruction": "Faça antes de ir para a Cidade do Rio."
+      "instruction": "Faça antes de ir para a Cidade do Rio.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Ferreiro Baros Hotem (387, 514)",
+          "markerX": 387,
+          "markerY": 514
+        },
+        {
+          "id": "e2",
+          "action": "Matar (15) Retalhador Selvagem (386, 573)",
+          "markerX": 386,
+          "markerY": 573
+        },
+        {
+          "id": "e3",
+          "action": "Matar (20) Lobo Sangrento Demoníaco (386, 573)",
+          "markerX": 386,
+          "markerY": 573
+        },
+        {
+          "id": "e4",
+          "action": "Entregue a missão para Ferreiro Baros Hotem da Garganta dos Ventos (387, 514)",
+          "markerX": 387,
+          "markerY": 514
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|16|Fortaleza da Cidade do Rio",
@@ -928,7 +2216,21 @@
       "xp3": 10500,
       "priority": "Essencial",
       "benefit": "Abre o polo final",
-      "instruction": "Entregue no Sentinela Sark."
+      "instruction": "Entregue no Sentinela Sark.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Sentinela Sark (425, 659)",
+          "markerX": 425,
+          "markerY": 659
+        },
+        {
+          "id": "e2",
+          "action": "Entregue a missão para Sentinela Sark (425, 659)",
+          "markerX": 425,
+          "markerY": 659
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|16|Cortar Montanhas",
@@ -944,7 +2246,29 @@
       "xp3": 21000,
       "priority": "Alta",
       "benefit": "Grande XP e Pedra Aleatória",
-      "instruction": "Faça na mudança para Cidade do Rio."
+      "instruction": "Faça na mudança para Cidade do Rio.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Boticário Karana (389, 515)",
+          "markerX": 389,
+          "markerY": 515
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (10) Enxofre matando Marta dos Ventos (Sudoeste da Cidade do Rio)"
+        },
+        {
+          "id": "e3",
+          "action": "Pegar (10) Salitre matando Ouriço Raivoso (Arredores da Cidade do Rio)"
+        },
+        {
+          "id": "e4",
+          "action": "Entregue a missão para Boticário Talis Cornix da Cidade do Rio (423, 645)",
+          "markerX": 423,
+          "markerY": 645
+        }
+      ]
     },
     {
       "id": "WBWF|WF|17|Domesticar Marta-Rei",
@@ -960,7 +2284,25 @@
       "xp3": 10500,
       "priority": "Opcional",
       "benefit": "Mascote e fama",
-      "instruction": "Exclusiva para WF; faça somente se quiser esse pet."
+      "instruction": "Exclusiva para WF; faça somente se quiser esse pet.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Curandeiro (422, 648)",
+          "markerX": 422,
+          "markerY": 648
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (1) Embrião de Marta-rei dos Ventos usando a Habilidade de Domar"
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Curandeiro (422, 648)",
+          "markerX": 422,
+          "markerY": 648
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|17|A Sobrancelha de Zhang",
@@ -976,7 +2318,35 @@
       "xp3": 22950,
       "priority": "Alta",
       "benefit": "XP muito alta",
-      "instruction": "Conclua as duas ondas na mesma área."
+      "instruction": "Conclua as duas ondas na mesma área.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Mãe Divina (417, 645)",
+          "markerX": 417,
+          "markerY": 645
+        },
+        {
+          "id": "e2",
+          "action": "Matar (20) Marta-rei dos Ventos (Arredores da Cidade do Rio)"
+        },
+        {
+          "id": "e3",
+          "action": "Reporte a Mãe Divina (417, 645)",
+          "markerX": 417,
+          "markerY": 645
+        },
+        {
+          "id": "e4",
+          "action": "Matar (20) Goblin Tigre (Arredores da Cidade do Rio)"
+        },
+        {
+          "id": "e5",
+          "action": "Entregue a missão para Mãe Divina (417, 645)",
+          "markerX": 417,
+          "markerY": 645
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|18|Beleza Divina",
@@ -992,7 +2362,43 @@
       "xp3": 28500,
       "priority": "Essencial",
       "benefit": "Pedra de alma Nv. 4 e XP alta",
-      "instruction": "Priorize pelo item e pela XP."
+      "instruction": "Priorize pelo item e pela XP.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Mãe Divina (417, 645)",
+          "markerX": 417,
+          "markerY": 645
+        },
+        {
+          "id": "e2",
+          "action": "Fale com Ancião da Cidade das Feras (246, 646)",
+          "markerX": 246,
+          "markerY": 646
+        },
+        {
+          "id": "e3",
+          "action": "Fale com a Mãe Divina (417, 645)",
+          "markerX": 417,
+          "markerY": 645
+        },
+        {
+          "id": "e4",
+          "action": "Fale com Ancião da Cidade das Feras (246, 646)",
+          "markerX": 246,
+          "markerY": 646
+        },
+        {
+          "id": "e5",
+          "action": "Pegar (10) Taça de Sangue Verdejante matando Aranha do Gramado (Noroeste da Cidade do Rio)"
+        },
+        {
+          "id": "e6",
+          "action": "Entregue a missão para Mãe Divina (417, 645)",
+          "markerX": 417,
+          "markerY": 645
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|19|Orientação de Cultivo – Aumentar Cultivo",
@@ -1008,7 +2414,21 @@
       "xp3": 150,
       "priority": "Essencial",
       "benefit": "Inicia cultivo Harmonioso",
-      "instruction": "Obrigatória."
+      "instruction": "Obrigatória.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com Taoísta Miao Miao (244, 647)",
+          "markerX": 244,
+          "markerY": 647
+        },
+        {
+          "id": "e2",
+          "action": "Entregue a missão para Taoísta Miao Miao (244, 647)",
+          "markerX": 244,
+          "markerY": 647
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|19|A Harmoniosa Céu-Terra",
@@ -1024,7 +2444,31 @@
       "xp3": null,
       "priority": "Essencial",
       "benefit": "Estima Harmonioso e teleporte da Cidade do Dragão",
-      "instruction": "Ao concluir, o ponto da Cidade do Dragão é liberado."
+      "instruction": "Ao concluir, o ponto da Cidade do Dragão é liberado.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Taoísta Miao Miao (244, 647)",
+          "markerX": 244,
+          "markerY": 647
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (1) Humano Celestal matando Leão Nômade (Sudoeste da Cidade do Rio)"
+        },
+        {
+          "id": "e3",
+          "action": "Coletar (1) Cavalo de Íris em alguma dessas coordenadas: (368, 685), (374, 648) ou (354 669)",
+          "markerX": 368,
+          "markerY": 685
+        },
+        {
+          "id": "e4",
+          "action": "Entregue a missão para Taoísta Miao Miao (244, 647)",
+          "markerX": 244,
+          "markerY": 647
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|19|Moeda Sangrenta de Ferro",
@@ -1040,7 +2484,15 @@
       "xp3": 0,
       "priority": "Essencial",
       "benefit": "1 moeda da DG19",
-      "instruction": "Pegue depois do cultivo; deixa de estar disponível após o nível 30."
+      "instruction": "Pegue depois do cultivo; deixa de estar disponível após o nível 30.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Pegue a Moeda Sangrenta de Ferro com Ancião (246, 646)",
+          "markerX": 246,
+          "markerY": 646
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|19|Missão Desafio – Despachos aos Alados",
@@ -1056,7 +2508,29 @@
       "xp3": 13818,
       "priority": "Essencial",
       "benefit": "Arma 3 estrelas e Pedra do Céu Celestial",
-      "instruction": "Complete a Toca dos Lobos e mate o Lobo Rei."
+      "instruction": "Complete a Toca dos Lobos e mate o Lobo Rei.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Ancião (246, 646)",
+          "markerX": 246,
+          "markerY": 646
+        },
+        {
+          "id": "e2",
+          "action": "Matar (8) Lobo-rei das Profundezas e (8) Arqueiro das Profundezas (Dentro da Toca dos Lobos)"
+        },
+        {
+          "id": "e3",
+          "action": "Matar (1) Lobo Rei (Boss)"
+        },
+        {
+          "id": "e4",
+          "action": "Entregue a missão para Ancião (246, 646)",
+          "markerX": 246,
+          "markerY": 646
+        }
+      ]
     },
     {
       "id": "WBWF|WB/WF|19|Teste do Curandeiro",
@@ -1072,7 +2546,45 @@
       "xp3": 39150,
       "priority": "Opcional",
       "benefit": "Maior XP da rota selvagem",
-      "instruction": "Faça depois da rota essencial apenas se quiser XP/alma extra; exige retorno à Cidade do Rio."
+      "instruction": "Faça depois da rota essencial apenas se quiser XP/alma extra; exige retorno à Cidade do Rio.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Curandeiro (422, 648)",
+          "markerX": 422,
+          "markerY": 648
+        },
+        {
+          "id": "e2",
+          "action": "Matar (30) Leão Nômade (Sudoeste da Cidade do Rio)"
+        },
+        {
+          "id": "e3",
+          "action": "Reporte ao Curandeiro (422, 648)",
+          "markerX": 422,
+          "markerY": 648
+        },
+        {
+          "id": "e4",
+          "action": "Matar (30) Lobo das Cavernas (Arredores da Toca dos Lobos)"
+        },
+        {
+          "id": "e5",
+          "action": "Reporte ao Curandeiro (422, 648)",
+          "markerX": 422,
+          "markerY": 648
+        },
+        {
+          "id": "e6",
+          "action": "Matar (30) Feroz Lobo das Cavernas (Arredores da Toca dos Lobos)"
+        },
+        {
+          "id": "e7",
+          "action": "Entregue a missão para Curandeiro (422, 648)",
+          "markerX": 422,
+          "markerY": 648
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|1|Nova Chegada / Primeira Visita",
@@ -1088,7 +2600,25 @@
       "xp3": 225,
       "priority": "Essencial",
       "benefit": "Arma inicial; EA recebe também flechas",
-      "instruction": "Faça imediatamente e aceite Presente Para o Guarda."
+      "instruction": "Faça imediatamente e aceite Presente Para o Guarda.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Guia Jace Johnson (369, 461)",
+          "markerX": 369,
+          "markerY": 461
+        },
+        {
+          "id": "e2",
+          "action": "Você pode escolher entre Matar (10) Inseto Verde ou (10) Broto Carnívoro (Arredores da Vila Lou Ying)"
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Guia Jace Johnson (369, 461)",
+          "markerX": 369,
+          "markerY": 461
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|1|Presente Para o Guarda",
@@ -1104,7 +2634,27 @@
       "xp3": 450,
       "priority": "Essencial",
       "benefit": "Leva à capital racial",
-      "instruction": "Entregue na Guarda Ewlen (321, 419)."
+      "instruction": "Entregue na Guarda Ewlen (321, 419).",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Guia Jace Johnson (369, 461)",
+          "markerX": 369,
+          "markerY": 461
+        },
+        {
+          "id": "e2",
+          "action": "Matar (10) Besouro (Arredores da Vila Lou Ying - Floresta Yuja) (363, 469)",
+          "markerX": 363,
+          "markerY": 469
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Guarda Ewlen da Cidade das Plumas (321, 419)",
+          "markerX": 321,
+          "markerY": 419
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|1|O Renascer dos Alados",
@@ -1120,7 +2670,51 @@
       "xp3": 300,
       "priority": "Essencial",
       "benefit": "Conjunto inicial completo",
-      "instruction": "Fale com os cinco artesãos e volte à Anciã."
+      "instruction": "Fale com os cinco artesãos e volte à Anciã.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Anciã Cidade das Plumas (328, 428)",
+          "markerX": 328,
+          "markerY": 428
+        },
+        {
+          "id": "e2",
+          "action": "Fale com Ferreiro Endrieth (339, 406)",
+          "markerX": 339,
+          "markerY": 406
+        },
+        {
+          "id": "e3",
+          "action": "Fale com Comerciante Dawgorn (343, 407)",
+          "markerX": 343,
+          "markerY": 407
+        },
+        {
+          "id": "e4",
+          "action": "Fale com Artesã Raven (344, 413)",
+          "markerX": 344,
+          "markerY": 413
+        },
+        {
+          "id": "e5",
+          "action": "Fale com Boticário Muriel (342, 414)",
+          "markerX": 342,
+          "markerY": 414
+        },
+        {
+          "id": "e6",
+          "action": "Fale com Alfaiate Hevin (320, 432)",
+          "markerX": 320,
+          "markerY": 432
+        },
+        {
+          "id": "e7",
+          "action": "Entregue a missão para Anciã Cidade das Plumas (328, 428)",
+          "markerX": 328,
+          "markerY": 428
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|3|Aldeões Feridos",
@@ -1136,7 +2730,39 @@
       "xp3": 1050,
       "priority": "Alta",
       "benefit": "Manta de Treinamento",
-      "instruction": "Equipamento útil e missão curta."
+      "instruction": "Equipamento útil e missão curta.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Guarda Ewlen (321, 419)",
+          "markerX": 321,
+          "markerY": 419
+        },
+        {
+          "id": "e2",
+          "action": "Fale com o Aldeão Preocupado (372, 427)",
+          "markerX": 372,
+          "markerY": 427
+        },
+        {
+          "id": "e3",
+          "action": "Fale com o Boticário Muriel (342, 413)",
+          "markerX": 342,
+          "markerY": 413
+        },
+        {
+          "id": "e4",
+          "action": "Pegar (12) Sangue de Besouro Chifres matando Besouro Chifre (Leste da Cidade das Plumas - Floresta Yuja) (355, 438)",
+          "markerX": 355,
+          "markerY": 438
+        },
+        {
+          "id": "e5",
+          "action": "Entregue a missão para Aldeão Preocupado (372, 427)",
+          "markerX": 372,
+          "markerY": 427
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|4|Primeiro Voo",
@@ -1152,7 +2778,27 @@
       "xp3": 450,
       "priority": "Essencial",
       "benefit": "Amuleto pequeno de HP ou MP",
-      "instruction": "EA tende a priorizar HP; EP escolhe conforme necessidade."
+      "instruction": "EA tende a priorizar HP; EP escolhe conforme necessidade.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Anciã (328, 428)",
+          "markerX": 328,
+          "markerY": 428
+        },
+        {
+          "id": "e2",
+          "action": "Pegar o Sinal de Refinamento em 5 minutos no Baú de Tesouros em cima das árvores na coordenada (323, 427, A30)",
+          "markerX": 323,
+          "markerY": 427
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Anciã (328, 428)",
+          "markerX": 328,
+          "markerY": 428
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|4|O Cacto Espinhoso",
@@ -1168,7 +2814,27 @@
       "xp3": 2160,
       "priority": "Alta",
       "benefit": "XP e Pedra Aleatória",
-      "instruction": "Faça junto de Livro de Fundição."
+      "instruction": "Faça junto de Livro de Fundição.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Sacerdotisa (325, 424)",
+          "markerX": 325,
+          "markerY": 424
+        },
+        {
+          "id": "e2",
+          "action": "Matar (12) Cacto Espinhoso (Leste da Cidade das Plumas - Floresta Yuja) (366, 431)",
+          "markerX": 366,
+          "markerY": 431
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Sacerdotisa (325, 424)",
+          "markerX": 325,
+          "markerY": 424
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|4|Livro de Fundição – O Livro Perdido",
@@ -1184,7 +2850,39 @@
       "xp3": 1740,
       "priority": "Alta",
       "benefit": "XP e cadeia curta",
-      "instruction": "Conclua antes de sair para a Vila do Bambu."
+      "instruction": "Conclua antes de sair para a Vila do Bambu.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Alfaiate Silen (334, 408) ou Alfaiate Hevin (321, 433)",
+          "markerX": 334,
+          "markerY": 408
+        },
+        {
+          "id": "e2",
+          "action": "Fale com o Ferreiro Endrieth (337 406)",
+          "markerX": 337,
+          "markerY": 406
+        },
+        {
+          "id": "e3",
+          "action": "Pegar (10) Pedaços de Lenha matando Pulador-Arpão (Leste da Cidade das Plumas - Floresta Yuja) (364, 426)",
+          "markerX": 364,
+          "markerY": 426
+        },
+        {
+          "id": "e4",
+          "action": "Pegar (10) Pedras de Minério de Ferro matando Duente Amotinado (Leste da Cidade das Plumas - Floresta Yuja) (360, 422)",
+          "markerX": 360,
+          "markerY": 422
+        },
+        {
+          "id": "e5",
+          "action": "Entregue a missão para Ferreiro Endrieth (337 406)",
+          "markerX": 337,
+          "markerY": 406
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|5|Confiança dos Guardas",
@@ -1200,7 +2898,27 @@
       "xp3": 1200,
       "priority": "Essencial",
       "benefit": "Colar à escolha",
-      "instruction": "Boa melhoria de equipamento antes da vila."
+      "instruction": "Boa melhoria de equipamento antes da vila.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Guarda Ewlen (321, 419)",
+          "markerX": 321,
+          "markerY": 419
+        },
+        {
+          "id": "e2",
+          "action": "Matar (10) Filhote de Ouriço (Leste da Cidade das Plumas - Depois da Ponte do Vento - Lago das Plumas) (362, 405)",
+          "markerX": 362,
+          "markerY": 405
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Guarda Ewlen (321, 419)",
+          "markerX": 321,
+          "markerY": 419
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|6|Bambu dos Selvagens",
@@ -1216,7 +2934,27 @@
       "xp3": 1500,
       "priority": "Alta",
       "benefit": "XP e Pedra Aleatória",
-      "instruction": "Pegue antes de ir à Vila do Bambu."
+      "instruction": "Pegue antes de ir à Vila do Bambu.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Gerente do Estaleiro (340, 371)",
+          "markerX": 340,
+          "markerY": 371
+        },
+        {
+          "id": "e2",
+          "action": "Fale com o Líder da Vila do Bambu (369, 351)",
+          "markerX": 369,
+          "markerY": 351
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Líder da Vila do Bambu (369, 351)",
+          "markerX": 369,
+          "markerY": 351
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|6|Vila do Bambu",
@@ -1232,7 +2970,21 @@
       "xp3": 1200,
       "priority": "Essencial",
       "benefit": "Abre o próximo polo",
-      "instruction": "Passe pelo Lago das Plumas para pegar Bambu dos Selvagens antes de entregar ao Líder da Vila."
+      "instruction": "Passe pelo Lago das Plumas para pegar Bambu dos Selvagens antes de entregar ao Líder da Vila.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Líder da Vila do Bambu (369, 351)",
+          "markerX": 369,
+          "markerY": 351
+        },
+        {
+          "id": "e2",
+          "action": "Entregue a missão para Líder da Vila do Bambu (369, 351)",
+          "markerX": 369,
+          "markerY": 351
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|7|Mãe e Coração de Ouro",
@@ -1248,7 +3000,27 @@
       "xp3": 5550,
       "priority": "Essencial",
       "benefit": "Cinturão à escolha",
-      "instruction": "Excelente item e XP para a faixa."
+      "instruction": "Excelente item e XP para a faixa.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Nana Johnson (372, 351)",
+          "markerX": 372,
+          "markerY": 351
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (10) Espinho de Cacto Espinhento matando Cacto Espinhento (Arredores da Vila do Bambu) (364, 354)",
+          "markerX": 364,
+          "markerY": 354
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Nana Johnson (372, 351)",
+          "markerX": 372,
+          "markerY": 351
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|8|Estar em Perigo",
@@ -1264,7 +3036,27 @@
       "xp3": 7650,
       "priority": "Alta",
       "benefit": "XP muito alta e Pedra Aleatória",
-      "instruction": "Missão de 1 hora; faça assim que pegar."
+      "instruction": "Missão de 1 hora; faça assim que pegar.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Lider da Vila do Bambu (369, 351)",
+          "markerX": 369,
+          "markerY": 351
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (10) Ovo de Bicho-Pau matando Serpente Verde (Arredores da Vila do Bambu) (371, 359)",
+          "markerX": 371,
+          "markerY": 359
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Boticário Muriel da Cidade das Plumas (341, 413)",
+          "markerX": 341,
+          "markerY": 413
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|8|As Fadas das Águas",
@@ -1280,7 +3072,27 @@
       "xp3": 1200,
       "priority": "Essencial",
       "benefit": "Amuletos de ataque ou redução de dano",
-      "instruction": "A recompensa defensiva exige personagem abaixo do nível 20."
+      "instruction": "A recompensa defensiva exige personagem abaixo do nível 20.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Lider da Vila do Bambu (369, 351)",
+          "markerX": 369,
+          "markerY": 351
+        },
+        {
+          "id": "e2",
+          "action": "Fale com Comerciante Junien da Vila do Bambu (371, 350)",
+          "markerX": 371,
+          "markerY": 350
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Comerciante Junien da Vila do Bambu (371, 350)",
+          "markerX": 371,
+          "markerY": 350
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|8|O Desastre dos Espíritos das Águas",
@@ -1296,7 +3108,27 @@
       "xp3": 900,
       "priority": "Essencial",
       "benefit": "Arma de EA ou EP e Fragmento Imortal",
-      "instruction": "Faça pelo item, mesmo com XP baixa."
+      "instruction": "Faça pelo item, mesmo com XP baixa.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Lider da Vila do Bambu (369, 351)",
+          "markerX": 369,
+          "markerY": 351
+        },
+        {
+          "id": "e2",
+          "action": "Matar (5) Cobra Naga Feroz (Arredores do Estaleiro - Lago das Plumas) (333, 365)",
+          "markerX": 333,
+          "markerY": 365
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Lider da Vila do Bambu (369, 351)",
+          "markerX": 369,
+          "markerY": 351
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|8|Bênção de Aniversário",
@@ -1312,7 +3144,27 @@
       "xp3": 4800,
       "priority": "Alta",
       "benefit": "XP e Pedra Aleatória",
-      "instruction": "Faça no mesmo circuito da vila."
+      "instruction": "Faça no mesmo circuito da vila.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Nana Johnson (372, 351)",
+          "markerX": 372,
+          "markerY": 351
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (5) Casco de Tartaruga matando Tartaruga Negra (Poço da Alegria) (277, 362)",
+          "markerX": 277,
+          "markerY": 362
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Nana Johnson (372, 351)",
+          "markerX": 372,
+          "markerY": 351
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|9|Força da Floresta",
@@ -1328,7 +3180,27 @@
       "xp3": 4500,
       "priority": "Essencial",
       "benefit": "Anel físico ou mágico",
-      "instruction": "EA escolhe físico; EP, mágico."
+      "instruction": "EA escolhe físico; EP, mágico.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Nana Johnson (372, 351)",
+          "markerX": 372,
+          "markerY": 351
+        },
+        {
+          "id": "e2",
+          "action": "Matar (25) Besouro Estrela (Montanha Branca) (377, 309)",
+          "markerX": 377,
+          "markerY": 309
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Nana Johnson (372, 351)",
+          "markerX": 372,
+          "markerY": 351
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|9|Cultivo – Orientação de Cultivo",
@@ -1344,7 +3216,21 @@
       "xp3": 120,
       "priority": "Essencial",
       "benefit": "Inicia o cultivo Nv. 9",
-      "instruction": "Nunca pule cultivos."
+      "instruction": "Nunca pule cultivos.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Taoísta Coranthir (322, 421)",
+          "markerX": 322,
+          "markerY": 421
+        },
+        {
+          "id": "e2",
+          "action": "Entregue a missão para Taoísta Coranthir (322, 421)",
+          "markerX": 322,
+          "markerY": 421
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|9|O Surgimento de Lingxu",
@@ -1360,7 +3246,33 @@
       "xp3": null,
       "priority": "Essencial",
       "benefit": "Estima Astuto, fama e Chi",
-      "instruction": "Conclua antes de seguir."
+      "instruction": "Conclua antes de seguir.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Taoísta Coranthir (322, 421)",
+          "markerX": 322,
+          "markerY": 421
+        },
+        {
+          "id": "e2",
+          "action": "Fale com a Asceta Alada (319, 330)",
+          "markerX": 319,
+          "markerY": 330
+        },
+        {
+          "id": "e3",
+          "action": "Matar (9) Fantasma Amotinado (Montanha Branca) (317,312)",
+          "markerX": 317,
+          "markerY": 312
+        },
+        {
+          "id": "e4",
+          "action": "Entregue a missão para Asceta Alada (319, 330)",
+          "markerX": 319,
+          "markerY": 330
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|10|Emblema da Coragem",
@@ -1376,7 +3288,33 @@
       "xp3": 8250,
       "priority": "Alta",
       "benefit": "XP e Pedra Aleatória",
-      "instruction": "Faça junto de Flor Sangrenta."
+      "instruction": "Faça junto de Flor Sangrenta.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Anciã (327, 427)",
+          "markerX": 327,
+          "markerY": 427
+        },
+        {
+          "id": "e2",
+          "action": "Fale com o Guarda Jeroth (303, 343)",
+          "markerX": 303,
+          "markerY": 343
+        },
+        {
+          "id": "e3",
+          "action": "Pegar (1) Emblema da Coragem matando Espírito da Água (Arredores do Estaleiro - Enseada das Plumas) (327, 359)",
+          "markerX": 327,
+          "markerY": 359
+        },
+        {
+          "id": "e4",
+          "action": "Entregue a missão para Guarda Jeroth (303, 343)",
+          "markerX": 303,
+          "markerY": 343
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|10|Flor Sangrenta",
@@ -1392,7 +3330,27 @@
       "xp3": 8250,
       "priority": "Alta",
       "benefit": "XP e Pedra Aleatória",
-      "instruction": "Mesma faixa e retorno na capital."
+      "instruction": "Mesma faixa e retorno na capital.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Sacerdotisa (326, 425)",
+          "markerX": 326,
+          "markerY": 425
+        },
+        {
+          "id": "e2",
+          "action": "Coletar (2) Flor Sangrenta (Arredores do Estaleiro) (329, 362) (329, 357) (324, 357)",
+          "markerX": 329,
+          "markerY": 362
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Sacerdote (326, 425)",
+          "markerX": 326,
+          "markerY": 425
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|11|Vila Nanke",
@@ -1408,7 +3366,21 @@
       "xp3": 5700,
       "priority": "Essencial",
       "benefit": "Abre novo polo",
-      "instruction": "Entregue ao Líder da Vila Nanke."
+      "instruction": "Entregue ao Líder da Vila Nanke.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Líder da Vila Nanke (209, 308)",
+          "markerX": 209,
+          "markerY": 308
+        },
+        {
+          "id": "e2",
+          "action": "Entregue a missão para Líder da Vila Nanke (209, 308)",
+          "markerX": 209,
+          "markerY": 308
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|12|Troca de Técnicas",
@@ -1424,7 +3396,33 @@
       "xp3": 12000,
       "priority": "Essencial",
       "benefit": "XP alta e Pedra Aleatória",
-      "instruction": "Priorize no circuito entre Cidade das Plumas e Vila Nanke."
+      "instruction": "Priorize no circuito entre Cidade das Plumas e Vila Nanke.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Ferreiro Endrieth (337, 406)",
+          "markerX": 337,
+          "markerY": 406
+        },
+        {
+          "id": "e2",
+          "action": "Fale com o Ferreiro Valmoren Albor da Cidade das Espadas (431, 874)",
+          "markerX": 431,
+          "markerY": 874
+        },
+        {
+          "id": "e3",
+          "action": "Fale com o Ferreiro Bashan da Cidade das Feras (252, 642)",
+          "markerX": 252,
+          "markerY": 642
+        },
+        {
+          "id": "e4",
+          "action": "Entregue a missão para Ferreiro Endrieth da Cidade das Plumas (337, 406)",
+          "markerX": 337,
+          "markerY": 406
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|13|O Sonho de Nanke",
@@ -1440,7 +3438,27 @@
       "xp3": 9000,
       "priority": "Alta",
       "benefit": "XP e equipamento da faixa",
-      "instruction": "Faça antes de avançar para a Montanha dos Cisnes."
+      "instruction": "Faça antes de avançar para a Montanha dos Cisnes.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Boticário Elfin Kosh (210, 326)",
+          "markerX": 210,
+          "markerY": 326
+        },
+        {
+          "id": "e2",
+          "action": "Matar (30) Peste Escandalosa (Norte da Vila Nanke) (215, 330)",
+          "markerX": 215,
+          "markerY": 330
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Boticário Elfin Kosh (210, 326)",
+          "markerX": 210,
+          "markerY": 326
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|14|A Linha de Defesa",
@@ -1456,7 +3474,51 @@
       "xp3": 9000,
       "priority": "Alta",
       "benefit": "XP e Pedra Aleatória",
-      "instruction": "Pegue na passagem pela capital."
+      "instruction": "Pegue na passagem pela capital.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Anciã (327, 427)",
+          "markerX": 327,
+          "markerY": 427
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (1) Inspiração Amarga matando o Mini Boss Espectro Alado (Nordeste da Cidade das Plumas) (313, 439 A22)",
+          "markerX": 313,
+          "markerY": 439
+        },
+        {
+          "id": "e3",
+          "action": "Reporte a Anciã (327, 427)",
+          "markerX": 327,
+          "markerY": 427
+        },
+        {
+          "id": "e4",
+          "action": "Fale com a Asceta Alada (319, 330)",
+          "markerX": 319,
+          "markerY": 330
+        },
+        {
+          "id": "e5",
+          "action": "Fale com a Anciã da Cidade das Plumas (327, 427)",
+          "markerX": 327,
+          "markerY": 427
+        },
+        {
+          "id": "e6",
+          "action": "Pegar (1) Pergaminho Verdadeiro matando o Mini Boss Selvagem Andarilho (Norte da Vila Nanke) (214, 329 A53)",
+          "markerX": 214,
+          "markerY": 329
+        },
+        {
+          "id": "e7",
+          "action": "Entregue a missão para Anciã da Cidade das Plumas (327, 427)",
+          "markerX": 327,
+          "markerY": 427
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|15|Veneno de Água Corrente",
@@ -1472,7 +3534,27 @@
       "xp3": 15000,
       "priority": "Alta",
       "benefit": "XP alta e Pedra Aleatória",
-      "instruction": "Prioridade alta com bônus 3x."
+      "instruction": "Prioridade alta com bônus 3x.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Comerciante Valmith (204, 324)",
+          "markerX": 204,
+          "markerY": 324
+        },
+        {
+          "id": "e2",
+          "action": "Matar (20) Espírito da Água Corrente (Sul da Vila Nanke) (221, 337)",
+          "markerX": 221,
+          "markerY": 337
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Comerciante Valmith (204, 324)",
+          "markerX": 204,
+          "markerY": 324
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|16|Amostra da Cobra Venenosa",
@@ -1488,7 +3570,27 @@
       "xp3": 10800,
       "priority": "Alta",
       "benefit": "XP e Pedra Aleatória",
-      "instruction": "Faça ao sair para a Montanha dos Cisnes."
+      "instruction": "Faça ao sair para a Montanha dos Cisnes.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Boticário Elfin Kosh (210, 326)",
+          "markerX": 210,
+          "markerY": 326
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (3) Amostra de Veneno matando Serpente Coral (Sul da Vila dos Bárbaros - Montanha dos Cisnes) (209, 405)",
+          "markerX": 209,
+          "markerY": 405
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Boticário Elfin Kosh (210, 326)",
+          "markerX": 210,
+          "markerY": 326
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|17|Força na Perna",
@@ -1504,7 +3606,27 @@
       "xp3": 11550,
       "priority": "Opcional",
       "benefit": "XP e Pedra Aleatória",
-      "instruction": "É um desvio. Faça somente se ainda faltar XP para o nível 18."
+      "instruction": "É um desvio. Faça somente se ainda faltar XP para o nível 18.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Ferreiro Lenon Osbarny (223, 413)",
+          "markerX": 223,
+          "markerY": 413
+        },
+        {
+          "id": "e2",
+          "action": "Matar (20) Marta-Rei Devorador de Cobras (Norte da Vila dos Bárbaros - Montanha dos Cisnes) (217, 456)",
+          "markerX": 217,
+          "markerY": 456
+        },
+        {
+          "id": "e3",
+          "action": "Entregue a missão para Ferreiro Lenon Osbarny (223, 413)",
+          "markerX": 223,
+          "markerY": 413
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|18|Morte Impiedosa",
@@ -1520,7 +3642,39 @@
       "xp3": 15000,
       "priority": "Alta",
       "benefit": "XP forte e Pedra Aleatória",
-      "instruction": "Faça na volta à capital."
+      "instruction": "Faça na volta à capital.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Anciã (327, 427)",
+          "markerX": 327,
+          "markerY": 427
+        },
+        {
+          "id": "e2",
+          "action": "Fale com a Sacerdotisa (325, 424)",
+          "markerX": 325,
+          "markerY": 424
+        },
+        {
+          "id": "e3",
+          "action": "Fale com o Sogohy na Montanha Branca (397, 313)",
+          "markerX": 397,
+          "markerY": 313
+        },
+        {
+          "id": "e4",
+          "action": "Fale com o General Lotor Akre da Cidade do Dragão (521, 629)",
+          "markerX": 521,
+          "markerY": 629
+        },
+        {
+          "id": "e5",
+          "action": "Entregue a missão para Sogohy na Montanha Branca (397, 313)",
+          "markerX": 397,
+          "markerY": 313
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|19|Orientação de Cultivo – Aumentar Cultivo",
@@ -1536,7 +3690,21 @@
       "xp3": 150,
       "priority": "Essencial",
       "benefit": "Inicia cultivo Harmonioso",
-      "instruction": "Obrigatória."
+      "instruction": "Obrigatória.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com Taoísta Coranthir (322, 421)",
+          "markerX": 322,
+          "markerY": 421
+        },
+        {
+          "id": "e2",
+          "action": "Entregue a missão para Taoísta Coranthir (322, 421)",
+          "markerX": 322,
+          "markerY": 421
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|19|A União Harmoniosa",
@@ -1552,7 +3720,33 @@
       "xp3": null,
       "priority": "Essencial",
       "benefit": "Estima Harmonioso e teleporte da Cidade do Dragão",
-      "instruction": "Ao concluir, o ponto da Cidade do Dragão é liberado."
+      "instruction": "Ao concluir, o ponto da Cidade do Dragão é liberado.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Taoísta Coranthir (322, 421)",
+          "markerX": 322,
+          "markerY": 421
+        },
+        {
+          "id": "e2",
+          "action": "Pegar (1) Humano Celestial matando Anta de Costas Ásperas (Vale do Escorpião-Serpente) (274, 490)",
+          "markerX": 274,
+          "markerY": 490
+        },
+        {
+          "id": "e3",
+          "action": "Coletar (1) Cavalo Celestial (Planta) em alguma dessas coordenadas: (295, 429), (281, 404), (292, 446)",
+          "markerX": 295,
+          "markerY": 429
+        },
+        {
+          "id": "e4",
+          "action": "Entregue a missão para Taoísta Coranthir (322, 421)",
+          "markerX": 322,
+          "markerY": 421
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|19|Moeda Sangrenta de Ferro",
@@ -1568,7 +3762,15 @@
       "xp3": 0,
       "priority": "Essencial",
       "benefit": "1 moeda da DG19",
-      "instruction": "Pegue depois do cultivo; deixa de estar disponível após o nível 30."
+      "instruction": "Pegue depois do cultivo; deixa de estar disponível após o nível 30.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Pegue a Moeda Sangrenta de Ferro com Anciã (327, 427)",
+          "markerX": 327,
+          "markerY": 427
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|19|Missão Desafio – Exibição de Talento",
@@ -1584,7 +3786,29 @@
       "xp3": 13818,
       "priority": "Essencial",
       "benefit": "Arma 3 estrelas e Pedra do Céu Celestial",
-      "instruction": "Complete a Caverna do Escorpião-Serpente."
+      "instruction": "Complete a Caverna do Escorpião-Serpente.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Anciã (327, 427)",
+          "markerX": 327,
+          "markerY": 427
+        },
+        {
+          "id": "e2",
+          "action": "Matar (12) Cobra Naga das Rochas"
+        },
+        {
+          "id": "e3",
+          "action": "Matar (1) Escorpião das Sombras (Boss - Ataque Físico a Curta Distância)"
+        },
+        {
+          "id": "e4",
+          "action": "Entregue a missão para Anciã (327, 427)",
+          "markerX": 327,
+          "markerY": 427
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|19|Teste de Capacidade",
@@ -1600,7 +3824,51 @@
       "xp3": 40500,
       "priority": "Opcional",
       "benefit": "Maior XP da rota alada",
-      "instruction": "Faça depois da rota essencial somente se quiser XP/alma extra."
+      "instruction": "Faça depois da rota essencial somente se quiser XP/alma extra.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Sacerdotisa (325, 424)",
+          "markerX": 325,
+          "markerY": 424
+        },
+        {
+          "id": "e2",
+          "action": "Matar (30) Anta de Chifre Longo (Região do Rio da Alegria) (309, 493)",
+          "markerX": 309,
+          "markerY": 493
+        },
+        {
+          "id": "e3",
+          "action": "Reporte a Sacerdotisa (325, 424)",
+          "markerX": 325,
+          "markerY": 424
+        },
+        {
+          "id": "e4",
+          "action": "Matar (30) Besteiro Lupino (Região do Rio da Alegria) (310, 470)",
+          "markerX": 310,
+          "markerY": 470
+        },
+        {
+          "id": "e5",
+          "action": "Reporte a Sacerdotisa (325, 424)",
+          "markerX": 325,
+          "markerY": 424
+        },
+        {
+          "id": "e6",
+          "action": "Matar (30) Escorpião-rei Letal (Região do Rio da Alegria) (310, 470)",
+          "markerX": 310,
+          "markerY": 470
+        },
+        {
+          "id": "e7",
+          "action": "Entregue a missão para Sacerdotisa (325, 424)",
+          "markerX": 325,
+          "markerY": 424
+        }
+      ]
     },
     {
       "id": "EAEP|EA/EP|19|As Contramedidas",
@@ -1616,7 +3884,33 @@
       "xp3": 15000,
       "priority": "Opcional",
       "benefit": "XP e Pedra Aleatória",
-      "instruction": "Com XP 3x, não é necessária para chegar à Cidade do Dragão."
+      "instruction": "Com XP 3x, não é necessária para chegar à Cidade do Dragão.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Aceite a missão com Anciã (327, 427)",
+          "markerX": 327,
+          "markerY": 427
+        },
+        {
+          "id": "e2",
+          "action": "Fale com o Boticário Muriel da Cidade das Plumas (341, 413)",
+          "markerX": 341,
+          "markerY": 413
+        },
+        {
+          "id": "e3",
+          "action": "Fale com a Artesã Raven da Cidade das Plumas (343, 412)",
+          "markerX": 343,
+          "markerY": 412
+        },
+        {
+          "id": "e4",
+          "action": "Entregue a missão para Anciã (327, 427)",
+          "markerX": 327,
+          "markerY": 427
+        }
+      ]
     },
     {
       "id": "MC|MC|1|Primeira Missão",
@@ -1632,7 +3926,23 @@
       "xp3": 156,
       "priority": "Essencial",
       "benefit": "Poções iniciais",
-      "instruction": "Mate o alvo aleatório e siga para Cidade das Tormentas."
+      "instruction": "Mate o alvo aleatório e siga para Cidade das Tormentas.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com Guia dos novatos (656, 208)",
+          "markerX": 656,
+          "markerY": 208
+        },
+        {
+          "id": "e2",
+          "action": "Mate 10 Filhote aquático ou 10 Pequeno caranguejo-Eremitão (atribuição aleatória)"
+        },
+        {
+          "id": "e3",
+          "action": "Retorne a Guia dos novatos"
+        }
+      ]
     },
     {
       "id": "MC|MC|2|Cidade das Tormentas",
@@ -1648,7 +3958,69 @@
       "xp3": null,
       "priority": "Essencial",
       "benefit": "Conjunto Congelado inicial completo",
-      "instruction": "Fale com os cinco artesãos na Cidade das Tormentas e retorne."
+      "instruction": "Fale com os cinco artesãos na Cidade das Tormentas e retorne.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com Guia dos novatos (656, 208)",
+          "markerX": 656,
+          "markerY": 208
+        },
+        {
+          "id": "e2",
+          "action": "Visite o Ancião (657, 143) - para ir nele é necessário se transportá-lo No edifício para trás e para a direita da Guia dos novato é uma matriz Teleport (662, 210). Isto irá transportá-lo para Cidade da Tormentas",
+          "markerX": 657,
+          "markerY": 143
+        },
+        {
+          "id": "e3",
+          "action": "Fale com Artesã (660, 122)",
+          "markerX": 660,
+          "markerY": 122
+        },
+        {
+          "id": "e4",
+          "action": "Fale com Ferreiro (661, 120)",
+          "markerX": 661,
+          "markerY": 120
+        },
+        {
+          "id": "e5",
+          "action": "Fale com Alfaiate (662, 121)",
+          "markerX": 662,
+          "markerY": 121
+        },
+        {
+          "id": "e6",
+          "action": "Fale com Comerciante (665, 118)",
+          "markerX": 665,
+          "markerY": 118
+        },
+        {
+          "id": "e7",
+          "action": "Converse com Boticário Ting Feng (667, 119)",
+          "markerX": 667,
+          "markerY": 119
+        },
+        {
+          "id": "e8",
+          "action": "Reporte ao Ancião (657, 143)",
+          "markerX": 657,
+          "markerY": 143
+        },
+        {
+          "id": "e9",
+          "action": "Retorne ao de Guia dos novatos (656, 208)",
+          "markerX": 656,
+          "markerY": 208
+        },
+        {
+          "id": "e10",
+          "action": "Fale com Guarda Vila Dente do Dragão (658, 203) (no interior do edifício)",
+          "markerX": 658,
+          "markerY": 203
+        }
+      ]
     },
     {
       "id": "MC|MC|2|Problema de Crustáceo",
@@ -1664,7 +4036,27 @@
       "xp3": 618,
       "priority": "Alta",
       "benefit": "XP curta",
-      "instruction": "Faça antes de avançar ao Campo da Fonte Negra."
+      "instruction": "Faça antes de avançar ao Campo da Fonte Negra.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Guarda Vila Dente do Dragão (658, 203)",
+          "markerX": 658,
+          "markerY": 203
+        },
+        {
+          "id": "e2",
+          "action": "Mate 10 Crustáceos de Tesoura (645, 202)",
+          "markerX": 645,
+          "markerY": 202
+        },
+        {
+          "id": "e3",
+          "action": "Retorne ao Guarda Vila Dente do Dragão (658, 203)",
+          "markerX": 658,
+          "markerY": 203
+        }
+      ]
     },
     {
       "id": "MC|MC|3|Item de Crédito",
@@ -1680,7 +4072,27 @@
       "xp3": 780,
       "priority": "Alta",
       "benefit": "XP e moeda",
-      "instruction": "Objetivo próximo da vila."
+      "instruction": "Objetivo próximo da vila.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Guarda Vila Dente do Dragão (658, 203)",
+          "markerX": 658,
+          "markerY": 203
+        },
+        {
+          "id": "e2",
+          "action": "Colete 1 Núcleo duro de inseto aquático (Mata pessoalmente o inseto aquático (629, 215)",
+          "markerX": 629,
+          "markerY": 215
+        },
+        {
+          "id": "e3",
+          "action": "Retorne ao Guarda Vila Dente do Dragão (658, 203)",
+          "markerX": 658,
+          "markerY": 203
+        }
+      ]
     },
     {
       "id": "MC|MC|4|Campo da Fonte Negra",
@@ -1696,7 +4108,29 @@
       "xp3": 660,
       "priority": "Essencial",
       "benefit": "Picador de Gelo Cristalino",
-      "instruction": "Entrega no Guarda do Rio da Fonte Negra (629, 242)."
+      "instruction": "Entrega no Guarda do Rio da Fonte Negra (629, 242).",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Guarda Vila Dente do Dragão (658, 203)",
+          "markerX": 658,
+          "markerY": 203
+        },
+        {
+          "id": "e2",
+          "action": "Retorne ao Guarda Rio da Fonte Negra (629, 242)",
+          "markerX": 629,
+          "markerY": 242
+        },
+        {
+          "id": "e3",
+          "action": "Aguarde 30 segundos"
+        },
+        {
+          "id": "e4",
+          "action": "Fala com ele novamente"
+        }
+      ]
     },
     {
       "id": "MC|MC|4|Pular em Telhado",
@@ -1712,7 +4146,27 @@
       "xp3": 600,
       "priority": "Essencial",
       "benefit": "Amuleto pequeno de HP ou MP",
-      "instruction": "Mercenário tende a priorizar HP."
+      "instruction": "Mercenário tende a priorizar HP.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Guarda Rio da Fonte Negra (629, 242)",
+          "markerX": 629,
+          "markerY": 242
+        },
+        {
+          "id": "e2",
+          "action": "Abrir uma caixa com a Placa de ordem de aprovação (631, 240 até 29) Iniciar os cogumelos em torno de 634, 244",
+          "markerX": 631,
+          "markerY": 240
+        },
+        {
+          "id": "e3",
+          "action": "Retorne ao Guarda Rio da Fonte Negra (629, 242)",
+          "markerX": 629,
+          "markerY": 242
+        }
+      ]
     },
     {
       "id": "MC|MC|4|Ameaça Marinha",
@@ -1728,7 +4182,27 @@
       "xp3": 1200,
       "priority": "Alta",
       "benefit": "XP e fama",
-      "instruction": "Faça junto de Tartarugas e Sinal."
+      "instruction": "Faça junto de Tartarugas e Sinal.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Guarda Rio da Fonte Negra (629, 242)",
+          "markerX": 629,
+          "markerY": 242
+        },
+        {
+          "id": "e2",
+          "action": "Colete 10 Casco de Tartaruga Roxa ( Dropa da Tartaruga de Boca de Leão (628, 238)",
+          "markerX": 628,
+          "markerY": 238
+        },
+        {
+          "id": "e3",
+          "action": "Retorne ao Guarda Rio da Fonte Negra (629, 242)",
+          "markerX": 629,
+          "markerY": 242
+        }
+      ]
     },
     {
       "id": "MC|MC|6|Ouvir Ensinamento",
@@ -1744,7 +4218,29 @@
       "xp3": 2130,
       "priority": "Alta",
       "benefit": "XP por conversa/espera",
-      "instruction": "30 XP na primeira etapa e 680 na segunda."
+      "instruction": "30 XP na primeira etapa e 680 na segunda.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Guarda Rio da Fonte Negra (629, 241)",
+          "markerX": 629,
+          "markerY": 241
+        },
+        {
+          "id": "e2",
+          "action": "Leia o Livro dos Sonhos Quebrados recebido"
+        },
+        {
+          "id": "e3",
+          "action": "Espere um minuto"
+        },
+        {
+          "id": "e4",
+          "action": "Fale novamente com o Guarda Rio da Fonte Negra (629, 241)",
+          "markerX": 629,
+          "markerY": 241
+        }
+      ]
     },
     {
       "id": "MC|MC|7|Pérola de Lágrimas",
@@ -1760,7 +4256,59 @@
       "xp3": 3300,
       "priority": "Essencial",
       "benefit": "Espinho Congelado",
-      "instruction": "Arma importante; cadeia continua no nível 8."
+      "instruction": "Arma importante; cadeia continua no nível 8.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Guarda Lufu (630, 243)",
+          "markerX": 630,
+          "markerY": 243
+        },
+        {
+          "id": "e2",
+          "action": "Fale novamente com o Guarda Lufu (630, 243)",
+          "markerX": 630,
+          "markerY": 243
+        },
+        {
+          "id": "e3",
+          "action": "Fale com Ferreiro Xiaodao (630, 241)",
+          "markerX": 630,
+          "markerY": 241
+        },
+        {
+          "id": "e4",
+          "action": "Aguarde 20 segundos"
+        },
+        {
+          "id": "e5",
+          "action": "Fale novamente com Ferreiro Xiaodao (630, 241)",
+          "markerX": 630,
+          "markerY": 241
+        },
+        {
+          "id": "e6",
+          "action": "Fale com o Guarda Lufu (630, 243)",
+          "markerX": 630,
+          "markerY": 243
+        },
+        {
+          "id": "e7",
+          "action": "Fale com o Bambu de Pedra Brilhante (658, 247)",
+          "markerX": 658,
+          "markerY": 247
+        },
+        {
+          "id": "e8",
+          "action": "Aguarde 7 segundo"
+        },
+        {
+          "id": "e9",
+          "action": "Relatório de Guarda Lufu (630, 243)",
+          "markerX": 630,
+          "markerY": 243
+        }
+      ]
     },
     {
       "id": "MC|MC|8|Paz de Noite",
@@ -1776,7 +4324,27 @@
       "xp3": 4500,
       "priority": "Alta",
       "benefit": "XP forte",
-      "instruction": "Faça junto de Vila Ametista."
+      "instruction": "Faça junto de Vila Ametista.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Guarda Lu Buwei e (645, 264)",
+          "markerX": 645,
+          "markerY": 264
+        },
+        {
+          "id": "e2",
+          "action": "Mate 10 Sereia Fantasma (637, 265)",
+          "markerX": 637,
+          "markerY": 265
+        },
+        {
+          "id": "e3",
+          "action": "Retorne ao Guarda Lu Buwei (645, 264)",
+          "markerX": 645,
+          "markerY": 264
+        }
+      ]
     },
     {
       "id": "MC|MC|9|Cultivo",
@@ -1792,7 +4360,15 @@
       "xp3": 0,
       "priority": "Essencial",
       "benefit": "Inicia o cultivo Nv. 9",
-      "instruction": "Nunca pule cultivos."
+      "instruction": "Nunca pule cultivos.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Astuto de Hades (657, 130)",
+          "markerX": 657,
+          "markerY": 130
+        }
+      ]
     },
     {
       "id": "MC|MC|9|O Surgimento de Lingxu",
@@ -1808,7 +4384,33 @@
       "xp3": 5850,
       "priority": "Essencial",
       "benefit": "Estima Astuto e fama",
-      "instruction": "Colete os cogumelos no alto da Floresta das Canções."
+      "instruction": "Colete os cogumelos no alto da Floresta das Canções.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Astuto de Hades (657, 130)",
+          "markerX": 657,
+          "markerY": 130
+        },
+        {
+          "id": "e2",
+          "action": "Fale com o Astuto xi (643, 278, acima de 26) você precisará saltar sobre um pequeno cogumelo, em seguida, um salto duplo para o cogumelo",
+          "markerX": 643,
+          "markerY": 278
+        },
+        {
+          "id": "e3",
+          "action": "Recolha-8 Cogumelo Roxo (Drop da Medusa Invocadora de Demônios 636, 274, acima de 28) Situado no topo dos cogumelos em torno da Floresta das Canções. Não são muitas, mas eles aparece rápido",
+          "markerX": 636,
+          "markerY": 274
+        },
+        {
+          "id": "e4",
+          "action": "Retorne ao Astuto xi (643, 278, acima de 26)",
+          "markerX": 643,
+          "markerY": 278
+        }
+      ]
     },
     {
       "id": "MC|MC|10|Limpar Monstros",
@@ -1824,7 +4426,33 @@
       "xp3": 6030,
       "priority": "Alta",
       "benefit": "XP forte",
-      "instruction": "Faça junto de Espinho Venenoso."
+      "instruction": "Faça junto de Espinho Venenoso.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Oficial de Comunicação (687, 255)",
+          "markerX": 687,
+          "markerY": 255
+        },
+        {
+          "id": "e2",
+          "action": "Matar 9 Cão Devorador de Ossos (669,276)",
+          "markerX": 669,
+          "markerY": 276
+        },
+        {
+          "id": "e3",
+          "action": "Matar 4 Caçador de Alma (669, 265)",
+          "markerX": 669,
+          "markerY": 265
+        },
+        {
+          "id": "e4",
+          "action": "Relatório de Oficial de Comunicação (687, 255)",
+          "markerX": 687,
+          "markerY": 255
+        }
+      ]
     },
     {
       "id": "MC|MC|10|Espinho Venenoso",
@@ -1840,7 +4468,27 @@
       "xp3": 7800,
       "priority": "Alta",
       "benefit": "XP muito alta",
-      "instruction": "Continua em Veneno Contra Veneno no nível 11."
+      "instruction": "Continua em Veneno Contra Veneno no nível 11.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com um Guarda Lu Buwei (645, 264)",
+          "markerX": 645,
+          "markerY": 264
+        },
+        {
+          "id": "e2",
+          "action": "Coletar 12 Chifre do Wuxin ( Dropa do Shura Filhote (670, 266)",
+          "markerX": 670,
+          "markerY": 266
+        },
+        {
+          "id": "e3",
+          "action": "Retorne a Guarda Altar de Fogo Noturno (687, 255)",
+          "markerX": 687,
+          "markerY": 255
+        }
+      ]
     },
     {
       "id": "MC|MC|11|Veneno Contra Veneno",
@@ -1856,7 +4504,37 @@
       "xp3": 11400,
       "priority": "Alta",
       "benefit": "XP muito alta",
-      "instruction": "Cadeia majoritariamente de conversa/espera."
+      "instruction": "Cadeia majoritariamente de conversa/espera.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Guarda Altar de Fogo Noturno (687, 255)",
+          "markerX": 687,
+          "markerY": 255
+        },
+        {
+          "id": "e2",
+          "action": "Fale com o Boticário Xiaotong (687, 256)",
+          "markerX": 687,
+          "markerY": 256
+        },
+        {
+          "id": "e3",
+          "action": "Espere 40 segundo"
+        },
+        {
+          "id": "e4",
+          "action": "Retorne ao Boticário Xiaotong (687, 256)",
+          "markerX": 687,
+          "markerY": 256
+        },
+        {
+          "id": "e5",
+          "action": "Envio de Relatório para Oficial de Transporte Changqin (686, 256)",
+          "markerX": 686,
+          "markerY": 256
+        }
+      ]
     },
     {
       "id": "MC|MC|12|Vingança do Oficial",
@@ -1872,7 +4550,27 @@
       "xp3": 12000,
       "priority": "Essencial",
       "benefit": "Armadura de Asa de Ferro",
-      "instruction": "Priorize pelo equipamento e XP."
+      "instruction": "Priorize pelo equipamento e XP.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Oficial de Transporte Changqin (686, 255)",
+          "markerX": 686,
+          "markerY": 255
+        },
+        {
+          "id": "e2",
+          "action": "Matar 15 Besta tatu (678, 234)",
+          "markerX": 678,
+          "markerY": 234
+        },
+        {
+          "id": "e3",
+          "action": "Retorne a Oficial de Transporte Changqin (686, 255)",
+          "markerX": 686,
+          "markerY": 255
+        }
+      ]
     },
     {
       "id": "MC|MC|12|Perfect World",
@@ -1888,7 +4586,15 @@
       "xp3": null,
       "priority": "Essencial",
       "benefit": "Abre teleportes das três capitais raciais",
-      "instruction": "Faça para facilitar deslocamentos posteriores."
+      "instruction": "Faça para facilitar deslocamentos posteriores.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Ancião (657, 143)",
+          "markerX": 657,
+          "markerY": 143
+        }
+      ]
     },
     {
       "id": "MC|MC|12|O Tesouro I",
@@ -1904,7 +4610,27 @@
       "xp3": 1260,
       "priority": "Essencial",
       "benefit": "7 Fragmentos Imortais e 2 Pedras Perfeitas",
-      "instruction": "XP baixa, mas recompensa importante."
+      "instruction": "XP baixa, mas recompensa importante.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com Peixe Caçador de Tesouro Mu Ji (618, 243)",
+          "markerX": 618,
+          "markerY": 243
+        },
+        {
+          "id": "e2",
+          "action": "Pegue 3 Baú de Tesouro (608, 255) ( no fundo do mar)",
+          "markerX": 608,
+          "markerY": 255
+        },
+        {
+          "id": "e3",
+          "action": "Retorne a Peixe Caçador de Tesouro Mu Ji (618, 243)",
+          "markerX": 618,
+          "markerY": 243
+        }
+      ]
     },
     {
       "id": "MC|MC|13|Uma Pedra Estranha",
@@ -1920,7 +4646,39 @@
       "xp3": 9000,
       "priority": "Alta",
       "benefit": "XP alta",
-      "instruction": "Cadeia curta de conversas."
+      "instruction": "Cadeia curta de conversas.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Guarda Lumiao (686, 256)",
+          "markerX": 686,
+          "markerY": 256
+        },
+        {
+          "id": "e2",
+          "action": "Fale com Ferreiro Xiaodao (630, 241)",
+          "markerX": 630,
+          "markerY": 241
+        },
+        {
+          "id": "e3",
+          "action": "Fale com o Oficial de Comunicação (687, 255)",
+          "markerX": 687,
+          "markerY": 255
+        },
+        {
+          "id": "e4",
+          "action": "Fale com o Oficial de Transporte Changqin (686, 255)",
+          "markerX": 686,
+          "markerY": 255
+        },
+        {
+          "id": "e5",
+          "action": "Fale com o Guarda Lumiao (686, 256)",
+          "markerX": 686,
+          "markerY": 256
+        }
+      ]
     },
     {
       "id": "MC|MC|13|Notícia Ruim",
@@ -1936,7 +4694,27 @@
       "xp3": 9900,
       "priority": "Essencial",
       "benefit": "Perneira de Asa de Ferro",
-      "instruction": "Guarde o crachá obtido para a cadeia posterior."
+      "instruction": "Guarde o crachá obtido para a cadeia posterior.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Oficial de Transporte Changqin (687, 255)",
+          "markerX": 687,
+          "markerY": 255
+        },
+        {
+          "id": "e2",
+          "action": "Mate Homem Monstro Violento (Torre de Osso de Tubarão 668, 220)",
+          "markerX": 668,
+          "markerY": 220
+        },
+        {
+          "id": "e3",
+          "action": "Retorne ao Oficial de Transporte Changqin (687, 255)",
+          "markerX": 687,
+          "markerY": 255
+        }
+      ]
     },
     {
       "id": "MC|MC|13|Minério Perdido",
@@ -1952,7 +4730,27 @@
       "xp3": 4500,
       "priority": "Essencial",
       "benefit": "Sapato de Asa de Ferro",
-      "instruction": "Faça pelo equipamento."
+      "instruction": "Faça pelo equipamento.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Guarda Alter do Fogo Noturno (687, 255)",
+          "markerX": 687,
+          "markerY": 255
+        },
+        {
+          "id": "e2",
+          "action": "Mata 1 Lu Xiusi (678, 241)",
+          "markerX": 678,
+          "markerY": 241
+        },
+        {
+          "id": "e3",
+          "action": "Retorne ao Guarda Alter do Fogo Noturno (687, 255)",
+          "markerX": 687,
+          "markerY": 255
+        }
+      ]
     },
     {
       "id": "MC|MC|14|Pedido do Guarda",
@@ -1968,7 +4766,27 @@
       "xp3": 15000,
       "priority": "Alta",
       "benefit": "XP muito alta",
-      "instruction": "Colete as quatro rochas vermelhas."
+      "instruction": "Colete as quatro rochas vermelhas.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Oficial de Comunicação (686, 255)",
+          "markerX": 686,
+          "markerY": 255
+        },
+        {
+          "id": "e2",
+          "action": "Colete 4 Não Traduzido ( é uma rocha vermelha (678, 234)679, 238 677, 241 672, 238 673, 224)",
+          "markerX": 678,
+          "markerY": 234
+        },
+        {
+          "id": "e3",
+          "action": "Retorne ao Oficial de Comunicação (686, 255)",
+          "markerX": 686,
+          "markerY": 255
+        }
+      ]
     },
     {
       "id": "MC|MC|15|Alma do Espantalho",
@@ -1984,7 +4802,27 @@
       "xp3": 12900,
       "priority": "Alta",
       "benefit": "XP e fama",
-      "instruction": "Autoativa ao sair para a periferia sul."
+      "instruction": "Autoativa ao sair para a periferia sul.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Ancião (657.143)",
+          "markerX": 657,
+          "markerY": 143
+        },
+        {
+          "id": "e2",
+          "action": "Recolha 8 Cristal de Invocação de Alma (Boneco de Palha em 683, 104)",
+          "markerX": 683,
+          "markerY": 104
+        },
+        {
+          "id": "e3",
+          "action": "Reporte ao Ancião (657, 143)",
+          "markerX": 657,
+          "markerY": 143
+        }
+      ]
     },
     {
       "id": "MC|MC|16|Nunca Mais Voltar",
@@ -2000,7 +4838,43 @@
       "xp3": 10584,
       "priority": "Essencial",
       "benefit": "Bracelete de Asa de Ferro",
-      "instruction": "Inicia a cadeia do Templo das Nuvens."
+      "instruction": "Inicia a cadeia do Templo das Nuvens.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Ancião (657.143)",
+          "markerX": 657,
+          "markerY": 143
+        },
+        {
+          "id": "e2",
+          "action": "Automaticamente a Teleport Temple Cloud (Outras formas de chegar lá, brilhando no círculo do edifício atrás do ancião, através da opção de busca no teleporter.)"
+        },
+        {
+          "id": "e3",
+          "action": "Fale com General Lu Guilhai (664, 133)",
+          "markerX": 664,
+          "markerY": 133
+        },
+        {
+          "id": "e4",
+          "action": "A sugestão será auto-disparador em torno de (631, 135)",
+          "markerX": 631,
+          "markerY": 135
+        },
+        {
+          "id": "e5",
+          "action": "Coletar um Escama de Peixe Branco (Corpo do Guarda 627, 135)",
+          "markerX": 627,
+          "markerY": 135
+        },
+        {
+          "id": "e6",
+          "action": "Retorne ao General Lu Guilhai (664, 133)",
+          "markerX": 664,
+          "markerY": 133
+        }
+      ]
     },
     {
       "id": "MC|MC|16|Traição",
@@ -2016,7 +4890,31 @@
       "xp3": 15168,
       "priority": "Alta",
       "benefit": "XP alta e fama",
-      "instruction": "Conclua antes de voltar ao Ancião."
+      "instruction": "Conclua antes de voltar ao Ancião.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Pessoa para falar Tagarela (622, 138)",
+          "markerX": 622,
+          "markerY": 138
+        },
+        {
+          "id": "e2",
+          "action": "Mate um Summoned Guarda"
+        },
+        {
+          "id": "e3",
+          "action": "Pessoa para falar Tagarela (622, 138)",
+          "markerX": 622,
+          "markerY": 138
+        },
+        {
+          "id": "e4",
+          "action": "Retorne a Ancião (657, 143)",
+          "markerX": 657,
+          "markerY": 143
+        }
+      ]
     },
     {
       "id": "MC|MC|16|Planos do Inimigo",
@@ -2032,7 +4930,27 @@
       "xp3": 16620,
       "priority": "Essencial",
       "benefit": "Ornamento de Alvorada",
-      "instruction": "Entrega final no Sacerdote Yun Kongji (662, 133)."
+      "instruction": "Entrega final no Sacerdote Yun Kongji (662, 133).",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Ancião (657.143)",
+          "markerX": 657,
+          "markerY": 143
+        },
+        {
+          "id": "e2",
+          "action": "Reporte ao General Lu Guilhai (664, 133)",
+          "markerX": 664,
+          "markerY": 133
+        },
+        {
+          "id": "e3",
+          "action": "Reporte ao Sacerdote Yun Kongji (662, 133)",
+          "markerX": 662,
+          "markerY": 133
+        }
+      ]
     },
     {
       "id": "MC|MC|17|Chave – Monstro do Mar",
@@ -2048,7 +4966,27 @@
       "xp3": 18942,
       "priority": "Essencial",
       "benefit": "Anel Estrelar do Céu",
-      "instruction": "Item importante antes da DG19 abissal."
+      "instruction": "Item importante antes da DG19 abissal.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com Sacerdote Yun Kongji (662, 133 acima 41)",
+          "markerX": 662,
+          "markerY": 133
+        },
+        {
+          "id": "e2",
+          "action": "Coletar um Mapa Escamade Peixe Branco (Dropa do Ladrão Fugido - Geralmente em torno de 683, 159)",
+          "markerX": 683,
+          "markerY": 159
+        },
+        {
+          "id": "e3",
+          "action": "Reporte ao Konchi Priest (662, 133)",
+          "markerX": 662,
+          "markerY": 133
+        }
+      ]
     },
     {
       "id": "MC|MC|18|Família Heirloom",
@@ -2064,7 +5002,27 @@
       "xp3": 30720,
       "priority": "Alta",
       "benefit": "XP muito alta",
-      "instruction": "Prioridade alta com multiplicador 3x."
+      "instruction": "Prioridade alta com multiplicador 3x.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Guarda Lu Youzhou (671, 116)",
+          "markerX": 671,
+          "markerY": 116
+        },
+        {
+          "id": "e2",
+          "action": "Coletar uma Tesouro dos Monstros de peixe (Dropa do Trabalhador Yaksha - (649, 145)",
+          "markerX": 649,
+          "markerY": 145
+        },
+        {
+          "id": "e3",
+          "action": "Reporte ao Guarda Lu Youzhouo (671, 116)",
+          "markerX": 671,
+          "markerY": 116
+        }
+      ]
     },
     {
       "id": "MC|MC|18|Resgate Soldado",
@@ -2080,7 +5038,39 @@
       "xp3": 25140,
       "priority": "Essencial",
       "benefit": "Colar de Firmeza",
-      "instruction": "Ótima combinação de item e XP."
+      "instruction": "Ótima combinação de item e XP.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com Guarda Acampamento Quebra Onda (670, 175)",
+          "markerX": 670,
+          "markerY": 175
+        },
+        {
+          "id": "e2",
+          "action": "Matar 4 Restante de Pedra de Gelo (670, 175)",
+          "markerX": 670,
+          "markerY": 175
+        },
+        {
+          "id": "e3",
+          "action": "Matar 8 Restante de Pedra de Fogo (670, 175)",
+          "markerX": 670,
+          "markerY": 175
+        },
+        {
+          "id": "e4",
+          "action": "Colete 1 Espada de Ferro (Pegar a Espada que esta na Pedra em 628, 167)",
+          "markerX": 628,
+          "markerY": 167
+        },
+        {
+          "id": "e5",
+          "action": "Reporte ao Guarda Acampamento Quebra Onda (670, 175)",
+          "markerX": 670,
+          "markerY": 175
+        }
+      ]
     },
     {
       "id": "MC|MC|19|Cultivo Espiritual",
@@ -2096,7 +5086,15 @@
       "xp3": 0,
       "priority": "Essencial",
       "benefit": "Inicia cultivo Harmonioso",
-      "instruction": "Obrigatória."
+      "instruction": "Obrigatória.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Astuto de Hades (657, 130)",
+          "markerX": 657,
+          "markerY": 130
+        }
+      ]
     },
     {
       "id": "MC|MC|19|A União Harmoniosa",
@@ -2112,7 +5110,33 @@
       "xp3": 24033,
       "priority": "Essencial",
       "benefit": "Estima Harmonioso e pergaminho",
-      "instruction": "Conclua antes da DG19."
+      "instruction": "Conclua antes da DG19.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Astuto de Hades (657, 130)",
+          "markerX": 657,
+          "markerY": 130
+        },
+        {
+          "id": "e2",
+          "action": "Pegar Humano Celestial (Dropa do Demônio Verdejante (656, 179))",
+          "markerX": 656,
+          "markerY": 179
+        },
+        {
+          "id": "e3",
+          "action": "Coletar Cavalo Celestial (Pegar a Flor Cavalo Celestial em (679, 179)",
+          "markerX": 679,
+          "markerY": 179
+        },
+        {
+          "id": "e4",
+          "action": "Relatório de Astuto de Hades (657, 130)",
+          "markerX": 657,
+          "markerY": 130
+        }
+      ]
     },
     {
       "id": "MC|MC|19|Matar o Monstro do Mar – DG19",
@@ -2128,7 +5152,29 @@
       "xp3": 18651,
       "priority": "Essencial",
       "benefit": "Adaga da Provação e 10 de fama",
-      "instruction": "A DG19 abissal não usa a mesma moeda das três raças clássicas."
+      "instruction": "A DG19 abissal não usa a mesma moeda das três raças clássicas.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com General Lu Guihai (664, 133)",
+          "markerX": 664,
+          "markerY": 133
+        },
+        {
+          "id": "e2",
+          "action": "Coletar um Olho do Dente do Mar (Dropa do Dente do Mar (Boss). Você deve ter uma equipe para entrar na caverna para coletar o item)"
+        },
+        {
+          "id": "e3",
+          "action": "Fale com o Serva do Monstro do Mar para sair da instância e de volta à entrada da caverna"
+        },
+        {
+          "id": "e4",
+          "action": "Relatório de General Lu Guihai (664, 133)",
+          "markerX": 664,
+          "markerY": 133
+        }
+      ]
     },
     {
       "id": "MC|MC|19|Bandeira da Expedição",
@@ -2144,7 +5190,27 @@
       "xp3": 16875,
       "priority": "Alta",
       "benefit": "XP e fama",
-      "instruction": "Boa missão final antes de partir para a Cidade do Dragão."
+      "instruction": "Boa missão final antes de partir para a Cidade do Dragão.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Fale com o Ministro Lu Jiuxi (662, 132)",
+          "markerX": 662,
+          "markerY": 132
+        },
+        {
+          "id": "e2",
+          "action": "Coletar um Bandeira da Expedição - Alados (Dropa do Grande Ladrão da Sombra Branca (678, 143 e 667 144)",
+          "markerX": 678,
+          "markerY": 143
+        },
+        {
+          "id": "e3",
+          "action": "Relatório de Emissário Comercial Yu Qianyin (659, 135)",
+          "markerX": 659,
+          "markerY": 135
+        }
+      ]
     }
   ]
 }

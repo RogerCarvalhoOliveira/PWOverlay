@@ -15,8 +15,18 @@ Confirme que `dist` contém os dois executáveis, as rotas, o manual e o ZIP.
 1. Abra o monitor borderless, o PW Helper e um cliente.
 2. Dê ao cliente um título como `Teste[EP]`.
 3. Inicie o overlay e coloque o cliente em foco.
-4. Confirme personagem, classe, primeira missão, NPC e localização.
-5. Marque uma missão, volte e pule; reinicie o overlay e confirme a persistência.
+4. Confirme personagem, classe, missão, texto e contador da etapa.
+5. Avance uma etapa, volte e pule; reinicie o overlay e confirme a persistência.
+6. Em uma missão com várias etapas, confirme que a missão seguinte só aparece após a última.
+
+## Marcador
+
+1. Use uma etapa com coordenadas e deixe o painel **Marcadores** fechado.
+2. Crie manualmente um marcador de teste no jogo.
+3. Clique em **Marcar** e não mova o mouse por cerca de um segundo.
+4. Abra o painel do jogo e confirme que há somente `PWOverlay` com a coordenada da etapa atual.
+5. Troque de cliente, clique em **Marcar** e confirme que o marcador foi criado apenas no cliente em foco.
+6. Use uma etapa sem coordenadas e confirme que o botão fica desativado.
 
 ## Associação manual
 
@@ -29,7 +39,7 @@ Confirme que `dist` contém os dois executáveis, as rotas, o manual e o ZIP.
 ## Multiclient
 
 1. Abra dois clientes com títulos diferentes e classes diferentes.
-2. Marque uma missão apenas no primeiro.
+2. Marque uma etapa apenas no primeiro.
 3. Alterne o foco várias vezes e confirme que missão e progresso acompanham o cliente correto.
 4. Clique no overlay e no painel `TODOS`; confirme que o teclado continua direcionado ao jogo ao voltar.
 5. Confirme que o Helper permanece visível acima do cliente e que o overlay não o cobre indevidamente.

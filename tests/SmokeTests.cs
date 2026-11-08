@@ -23,11 +23,23 @@ internal static class SmokeTests
                     throw new InvalidDataException(pair.Key + ": esperado " + pair.Value + ", obtido " + actual);
             }
 
+            List<QuestMission> wr = routes.GetForClass("WR");
+            List<QuestMission> mc = routes.GetForClass("MC");
+            if (wr[2].name != "Revitalizando a Pátria" || wr[2].steps.Count != 7)
+                throw new InvalidDataException("Etapas de Revitalizando a Pátria não foram carregadas.");
+            if (mc[1].name != "Cidade das Tormentas" || mc[1].steps.Count != 10)
+                throw new InvalidDataException("Etapas de Cidade das Tormentas não foram carregadas.");
+            foreach (QuestMission mission in mc)
+            {
+                if (mission.steps == null || mission.steps.Count == 0)
+                    throw new InvalidDataException("Missão MC sem etapas: " + mission.name);
+            }
+
             AppState state = new StateStore().Load();
             if (state.Characters == null || state.Positions == null || state.ClassAssociations == null)
                 throw new InvalidDataException("Estado carregado sem coleções obrigatórias.");
 
-            Console.WriteLine("Smoke tests aprovados para WR, WB, WF, EA, EP, MC e estado local.");
+            Console.WriteLine("Smoke tests aprovados para rotas, etapas e estado local.");
             return 0;
         }
         catch (Exception error)

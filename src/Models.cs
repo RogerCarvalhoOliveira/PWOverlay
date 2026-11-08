@@ -30,6 +30,15 @@ namespace PWQuestOverlay
         public string priority { get; set; }
         public string benefit { get; set; }
         public string instruction { get; set; }
+        public List<QuestStep> steps { get; set; }
+    }
+
+    public sealed class QuestStep
+    {
+        public string id { get; set; }
+        public string action { get; set; }
+        public int? markerX { get; set; }
+        public int? markerY { get; set; }
     }
 
     public sealed class CharacterProgress
@@ -89,6 +98,22 @@ namespace PWQuestOverlay
             RoutePayload payload = serializer.Deserialize<RoutePayload>(File.ReadAllText(path, Encoding.UTF8));
             if (payload == null || payload.missions == null || payload.missions.Count == 0)
                 throw new InvalidDataException("O arquivo de rotas está vazio ou inválido.");
+            foreach (QuestMission mission in payload.missions)
+            {
+                if (mission.steps == null || mission.steps.Count == 0)
+                {
+                    mission.steps = new List<QuestStep>
+                    {
+                        new QuestStep { id = "e1", action = mission.instruction }
+                    };
+                }
+                for (int index = 0; index < mission.steps.Count; index++)
+                {
+                    QuestStep step = mission.steps[index];
+                    if (string.IsNullOrWhiteSpace(step.id)) step.id = "e" + (index + 1);
+                    if (string.IsNullOrWhiteSpace(step.action)) step.action = mission.instruction;
+                }
+            }
             return new RouteRepository(payload.missions);
         }
 

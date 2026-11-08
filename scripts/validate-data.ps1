@@ -16,6 +16,24 @@ foreach ($mission in $missions) {
             $errors.Add("Campo obrigatório ausente: $field em $($mission.id)")
         }
     }
+    $steps = @($mission.steps)
+    if ($steps.Count -eq 0) {
+        $errors.Add("Missão sem etapas: $($mission.id)")
+        continue
+    }
+    foreach ($step in $steps) {
+        if ([string]::IsNullOrWhiteSpace($step.id) -or [string]::IsNullOrWhiteSpace($step.action)) {
+            $errors.Add("Etapa sem id/action em $($mission.id)")
+        }
+        $hasX = $null -ne $step.markerX
+        $hasY = $null -ne $step.markerY
+        if ($hasX -ne $hasY) {
+            $errors.Add("Par de coordenadas incompleto na etapa $($step.id) de $($mission.id)")
+        }
+    }
+    foreach ($duplicateStep in ($steps | Group-Object id | Where-Object Count -gt 1)) {
+        $errors.Add("ID de etapa duplicado em $($mission.id): $($duplicateStep.Name)")
+    }
 }
 
 $duplicateIds = $missions | Group-Object id | Where-Object Count -gt 1
@@ -43,4 +61,5 @@ $counts = [ordered]@{
 }
 
 Write-Host "Rotas válidas. Missões únicas: $($missions.Count)"
+Write-Host "Etapas: $(@($missions | ForEach-Object { @($_.steps) }).Count)"
 $counts.GetEnumerator() | Format-Table Name, Value -AutoSize

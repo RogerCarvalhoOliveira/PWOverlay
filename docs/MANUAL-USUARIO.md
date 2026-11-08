@@ -36,9 +36,10 @@ O menu do ícone ao lado do relógio também possui **Gerenciar perfis...** e um
 
 ## Botões
 
-- **Concluída:** marca a missão atual e mostra a próxima.
-- **Voltar:** desfaz a última marcação, inclusive uma missão pulada.
-- **Pular:** ignora a missão atual sem marcá-la como concluída.
+- **Etapa feita:** marca somente a etapa exibida. Na última etapa, conclui a missão e mostra a próxima.
+- **Voltar:** desfaz a última etapa concluída ou pulada.
+- **Pular etapa:** ignora somente a etapa atual.
+- **Marcar:** remove todos os marcadores do cliente ativo e cria um único marcador chamado `PWOverlay` na coordenada da etapa atual. Fica desativado quando a fonte não fornece coordenada.
 - **Mover/Fixado:** alterna entre permitir arraste e bloquear a posição.
 - **Perfis:** abre a associação entre título/nome do cliente e classe.
 - **X:** oculta o painel sem encerrar o programa.
@@ -49,7 +50,20 @@ O menu do ícone ao lado do relógio também possui **Gerenciar perfis...** e um
 - `Ctrl + Alt + Seta Esquerda`: voltar.
 - `Ctrl + Alt + Seta para Baixo`: pular.
 
-Os atalhos só modificam o progresso quando um cliente está ativo e o overlay não foi ocultado pelo usuário.
+Os atalhos avançam, voltam ou pulam uma etapa. Eles só modificam o progresso quando um cliente está ativo e o overlay não foi ocultado pelo usuário.
+
+## Etapas e marcador
+
+O título mostra `Etapa X/Y`. A linha principal descreve a ação corrente: pegar a missão, falar com um NPC, matar/coletar, aguardar ou entregar. Concluir uma etapa não pula o restante da mesma missão.
+
+Ao clicar em **Marcar**, não mova o mouse nem troque de cliente por cerca de um segundo. O overlay:
+
+1. abre o painel **Marcadores** do cliente em foco;
+2. usa **Excluir todos os marcadores**;
+3. digita a coordenada no formato aceito pelo cliente, como `433, 887`;
+4. cria `PWOverlay` e fecha o painel.
+
+O fluxo foi calibrado com o cliente 1.4.4 em 1920×1080 borderless e o PW Helper aberto. Outras resoluções são escaladas proporcionalmente; escala de interface personalizada pode exigir ajuste das coordenadas de referência em `OverlayForm.cs`.
 
 ## Mover o painel
 

@@ -16,8 +16,9 @@ Monitor de janelas Win32
 Perfil PERSONAGEM|CLASSE
         |
         +--> filtra data/quest_routes.json
-        +--> lê estados done/skipped
+        +--> lê estados de missão e de etapa
         |
+        +--> botão Marcar envia a coordenada à UI pública do cliente
         v
 Overlay WinForms sem ativação
 ```
@@ -34,6 +35,7 @@ Overlay WinForms sem ativação
 ### `Models.cs`
 
 - Define o formato das missões.
+- Define etapas com ação e coordenada opcional.
 - Carrega `quest_routes.json`.
 - Filtra missões por classe.
 - Lê e grava `%LOCALAPPDATA%\PWQuestOverlay\state.json`.
@@ -50,6 +52,7 @@ Contém somente a integração Win32 necessária:
 - `TOPMOST` sem ativação;
 - atalhos globais;
 - DPI awareness.
+- cliques e teclas usados exclusivamente na janela pública de Marcadores.
 
 Nenhuma função lê memória de outro processo.
 
@@ -59,6 +62,8 @@ Nenhuma função lê memória de outro processo.
 - Monitora o foco em intervalos de 100 ms.
 - Atualiza a rota quando o cliente muda.
 - Processa botões e atalhos.
+- Avança e desfaz progresso por etapa; a missão só fecha após a última.
+- Cria o marcador único `PWOverlay` no cliente ativo.
 - Salva posição e progresso.
 - Reeleva o tracker e, em seguida, o painel `TODOS`.
 
@@ -110,7 +115,7 @@ Assim o Helper permanece visível sem receber foco de teclado.
 
 - classe manual ou automática;
 - associações entre título da janela e classe;
-- missões `done` ou `skipped`;
+- missões e etapas `done` ou `skipped` (as etapas usam a chave `ID_DA_MISSAO|STEP|ID_DA_ETAPA`);
 - posição por monitor;
 - bloqueio de posição;
 - transparência;

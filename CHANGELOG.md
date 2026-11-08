@@ -1,5 +1,14 @@
 # Histórico de alterações
 
+## 0.2.0 - Etapas e marcadores
+
+- Adicionadas 485 etapas às 134 missões das seis classes.
+- Missões encadeadas agora avançam por conversa, objetivo e entrega.
+- Botões concluir, voltar e pular passaram a trabalhar por etapa.
+- Adicionado botão **Marcar**, que substitui marcadores anteriores por `PWOverlay` na coordenada atual.
+- Planilha atualizada com a coluna **Etapas** nas quatro abas.
+- Mantida compatibilidade com progresso antigo marcado no nível da missão.
+
 ## 0.1.0 - Protótipo inicial
 
 - Overlay de próxima missão para PW 1.4.4.

@@ -27,6 +27,11 @@ namespace PWQuestOverlay
         internal const int VK_LEFT = 0x25;
         internal const int VK_RIGHT = 0x27;
         internal const int VK_DOWN = 0x28;
+        internal const byte VK_END = 0x23;
+        internal const byte VK_BACK = 0x08;
+        internal const uint KEYEVENTF_KEYUP = 0x0002;
+        internal const uint MOUSEEVENTF_LEFTDOWN = 0x0002;
+        internal const uint MOUSEEVENTF_LEFTUP = 0x0004;
 
         internal static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
 
@@ -42,6 +47,13 @@ namespace PWQuestOverlay
 
             internal int Width { get { return Right - Left; } }
             internal int Height { get { return Bottom - Top; } }
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct POINT
+        {
+            internal int X;
+            internal int Y;
         }
 
         [DllImport("user32.dll")]
@@ -67,6 +79,24 @@ namespace PWQuestOverlay
 
         [DllImport("user32.dll")]
         internal static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll")]
+        internal static extern bool SetForegroundWindow(IntPtr window);
+
+        [DllImport("user32.dll")]
+        internal static extern bool ClientToScreen(IntPtr window, ref POINT point);
+
+        [DllImport("user32.dll")]
+        internal static extern bool SetCursorPos(int x, int y);
+
+        [DllImport("user32.dll")]
+        internal static extern bool GetCursorPos(out POINT point);
+
+        [DllImport("user32.dll")]
+        internal static extern void mouse_event(uint flags, uint dx, uint dy, uint data, UIntPtr extraInfo);
+
+        [DllImport("user32.dll")]
+        internal static extern void keybd_event(byte virtualKey, byte scanCode, uint flags, UIntPtr extraInfo);
 
         [DllImport("user32.dll")]
         internal static extern IntPtr GetAncestor(IntPtr window, int flags);
@@ -206,6 +236,27 @@ namespace PWQuestOverlay
         internal static bool IsTopmost(IntPtr window)
         {
             return (GetWindowLongPtr(window, GWL_EXSTYLE).ToInt64() & WS_EX_TOPMOST) != 0;
+        }
+
+        internal static void ClickClientPoint(IntPtr window, int referenceX, int referenceY)
+        {
+            RECT client;
+            if (!GetClientRect(window, out client) || client.Width <= 0 || client.Height <= 0) return;
+            var point = new POINT
+            {
+                X = (int)Math.Round(referenceX * client.Width / 1920.0),
+                Y = (int)Math.Round(referenceY * client.Height / 1080.0)
+            };
+            if (!ClientToScreen(window, ref point)) return;
+            SetCursorPos(point.X, point.Y);
+            mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, UIntPtr.Zero);
+            mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, UIntPtr.Zero);
+        }
+
+        internal static void PressKey(byte virtualKey)
+        {
+            keybd_event(virtualKey, 0, 0, UIntPtr.Zero);
+            keybd_event(virtualKey, 0, KEYEVENTF_KEYUP, UIntPtr.Zero);
         }
     }
 }

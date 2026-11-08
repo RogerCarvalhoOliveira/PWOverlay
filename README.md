@@ -2,7 +2,7 @@
 
 Overlay portátil para acompanhar rotas de missões do Perfect World 1.4.4 em multiclient.
 
-O programa identifica cada cliente pelo título criado pelo PW Helper, por exemplo `Cauton[EP]`, seleciona a rota da classe e mostra somente a próxima missão, o NPC e sua localização. Cada personagem e classe possui progresso independente.
+O programa identifica cada cliente pelo título criado pelo PW Helper, por exemplo `Cauton[EP]`, seleciona a rota da classe e mostra a missão e a etapa atuais. Cada personagem e classe possui progresso independente.
 
 ## Funcionalidades
 
@@ -10,7 +10,9 @@ O programa identifica cada cliente pelo título criado pelo PW Helper, por exemp
 - Detecção automática do padrão `Personagem[CLASSE]`.
 - Tela **Perfis** para associar manualmente qualquer título ou nome a uma classe.
 - Suporte a personagens com o mesmo nome em classes diferentes.
-- Botões para concluir, voltar e pular uma missão.
+- 485 etapas revisadas nas 134 missões; cadeias longas avançam conversa por conversa, coleta por coleta e retorno por retorno.
+- Botões para concluir, voltar e pular uma etapa.
+- Botão **Marcar**: apaga os marcadores anteriores do cliente ativo e cria somente `PWOverlay` na coordenada da etapa atual.
 - Atalhos globais configurados no código.
 - Painel arrastável, bloqueio de posição, transparência e restauração de posição.
 - Posição salva por monitor e resolução.
@@ -21,7 +23,7 @@ O programa identifica cada cliente pelo título criado pelo PW Helper, por exemp
 
 ## Limites de segurança
 
-O projeto não lê memória do jogo, não injeta DLL, não captura pacotes e não automatiza ações dentro do Perfect World. Ele utiliza somente títulos e propriedades públicas das janelas do Windows.
+O projeto não lê memória do jogo, não injeta DLL e não captura pacotes. Ele utiliza títulos e propriedades públicas das janelas do Windows. A única automação dentro do cliente é acionada manualmente pelo botão **Marcar** e reproduz cliques/teclas na janela pública de Marcadores; não movimenta o personagem, luta nem entrega missões.
 
 ## Compilação rápida
 
@@ -43,6 +45,7 @@ O resultado será criado em `dist\`:
 - `PW Quest Overlay.exe`
 - `PW Borderless.exe`
 - `quest_routes.json`
+- `rota_leveling_pw_144.xlsx`
 - `LEIA-ME.txt`
 - `PW Quest Overlay Prototipo.zip`, quando `-Package` for usado.
 
@@ -58,6 +61,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\run-dev.ps1
 | --- | --- |
 | `src/` | Código C# do aplicativo. |
 | `data/quest_routes.json` | Rotas e missões usadas pelo overlay. |
+| `data/rota_leveling_pw_144.xlsx` | Planilha editável com as quatro abas e todas as etapas. |
 | `scripts/build.ps1` | Compila e empacota o projeto. |
 | `scripts/validate-data.ps1` | Valida IDs, campos e contagens das rotas. |
 | `scripts/test.ps1` | Executa validação e smoke tests das rotas e do estado. |
