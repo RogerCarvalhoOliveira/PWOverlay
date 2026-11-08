@@ -28,6 +28,7 @@ Cada item de `steps` possui:
 | `id` | Identificador estável dentro da missão, como `e1`. |
 | `action` | Texto curto da ação atual. |
 | `markerX` / `markerY` | Coordenada usada pelo botão **Marcar**, quando conhecida. |
+| `routeOrder` | Ordem global da ação; permite intercalar etapas de missões diferentes sem alterar seus IDs. |
 
 ## Alterar uma missão
 
@@ -36,9 +37,10 @@ Cada item de `steps` possui:
 3. Corrija os campos necessários.
 4. Não troque o `id` se a missão for a mesma; isso preserva as marcações existentes.
 5. Mantenha os IDs de etapa existentes quando apenas corrigir texto ou coordenadas.
-6. Atualize também `data\rota_leveling_pw_144.xlsx`, colunas **Etapas** e **Nível previsto**, para manter a documentação sincronizada. O editor visual faz isso automaticamente quando o Excel está instalado.
-7. Execute `scripts\validate-data.ps1`.
-8. Compile e percorra as etapas anterior, alterada e seguinte no overlay.
+6. Preserve ou ajuste `routeOrder`; números menores aparecem antes, mesmo quando pertencem a outra missão.
+7. Atualize também `data\rota_leveling_pw_144.xlsx`, colunas **Etapas** e **Nível previsto**, para manter a documentação sincronizada. O editor visual faz isso automaticamente quando o Excel está instalado.
+8. Execute `scripts\validate-data.ps1`.
+9. Compile e percorra as etapas anterior, alterada e seguinte no overlay.
 
 ## Adicionar uma missão
 
@@ -65,4 +67,4 @@ O comportamento do painel de marcadores foi conferido na interface 1.4.4 e compa
 powershell -ExecutionPolicy Bypass -File .\scripts\validate-data.ps1
 ```
 
-O script verifica campos obrigatórios, IDs duplicados, escopos de classe, presença das etapas, IDs de etapa repetidos e pares de coordenadas incompletos. Em seguida, mostra a quantidade resultante por classe e o total de etapas.
+O script verifica campos obrigatórios, IDs duplicados, escopos de classe, presença das etapas, IDs e ordens globais repetidos e pares de coordenadas incompletos. Em seguida, mostra a quantidade resultante por classe e o total de etapas.

@@ -1,5 +1,14 @@
 # Histórico de alterações
 
+## 0.5.0 - Rotas intercaladas por região
+
+- Adicionada ordem global por etapa, permitindo alternar entre missões sem exigir a conclusão imediata de cada uma.
+- Otimizadas as rotas de Humanos, Selvagens, Alados e Abissais do nível 1 ao 20 por proximidade e dependências.
+- Pop-ups como a orientação de forja do nível 5 agora aguardam o retorno natural ao Ancião.
+- **Etapa feita**, **Voltar**, **Pular** e o seletor de etapas passaram a acompanhar a sequência global.
+- Editor e planilha exibem a ordem `R...` de cada ação.
+- Progresso salvo anteriormente continua usando os mesmos IDs de missão e etapa.
+
 ## 0.4.0 - Rota compartilhada até o nível 60
 
 - Expandido o guia de 138 para 226 missões únicas e de 493 para 836 etapas.

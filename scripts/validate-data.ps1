@@ -25,6 +25,9 @@ foreach ($mission in $missions) {
         if ([string]::IsNullOrWhiteSpace($step.id) -or [string]::IsNullOrWhiteSpace($step.action)) {
             $errors.Add("Etapa sem id/action em $($mission.id)")
         }
+        if ($null -eq $step.routeOrder -or [int]$step.routeOrder -le 0) {
+            $errors.Add("Etapa sem ordem global em $($mission.id): $($step.id)")
+        }
         $hasX = $null -ne $step.markerX
         $hasY = $null -ne $step.markerY
         if ($hasX -ne $hasY) {
@@ -33,6 +36,13 @@ foreach ($mission in $missions) {
     }
     foreach ($duplicateStep in ($steps | Group-Object id | Where-Object Count -gt 1)) {
         $errors.Add("ID de etapa duplicado em $($mission.id): $($duplicateStep.Name)")
+    }
+}
+
+foreach ($routeKey in @('WR','WBWF','EAEP','MC','COMMON')) {
+    $routeSteps = @($missions | Where-Object routeKey -eq $routeKey | ForEach-Object { $_.steps })
+    foreach ($duplicateOrder in ($routeSteps | Group-Object routeOrder | Where-Object Count -gt 1)) {
+        $errors.Add("Ordem global duplicada na rota ${routeKey}: $($duplicateOrder.Name)")
     }
 }
 

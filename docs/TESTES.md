@@ -18,6 +18,8 @@ Confirme que `dist` contém os dois executáveis, as rotas, o manual e o ZIP.
 4. Confirme personagem, classe, missão, texto e contador da etapa.
 5. Avance uma etapa, volte e pule; reinicie o overlay e confirme a persistência.
 6. Em uma missão com várias etapas, confirme que a missão seguinte só aparece após a última.
+7. No início da rota WR, confirme a intercalação: pegar **Fazer Armas**, fazer **Teste de Salto**, falar com o Ancião sobre forja e somente depois sair para os objetivos externos.
+8. Confirme que **Voltar** retorna à ação global anterior mesmo quando ela pertence a outra missão.
 
 ## Marcador
 

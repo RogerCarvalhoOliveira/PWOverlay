@@ -40,6 +40,7 @@ namespace PWQuestOverlay
         public string action { get; set; }
         public int? markerX { get; set; }
         public int? markerY { get; set; }
+        public int routeOrder { get; set; }
     }
 
     public sealed class CharacterProgress
@@ -164,6 +165,7 @@ namespace PWQuestOverlay
                     QuestStep step = mission.steps[index];
                     if (string.IsNullOrWhiteSpace(step.id)) step.id = "e" + (index + 1);
                     if (string.IsNullOrWhiteSpace(step.action)) step.action = mission.instruction;
+                    if (step.routeOrder <= 0) step.routeOrder = mission.order * 100 + index;
                 }
             }
             return new RouteRepository(payload);
@@ -171,7 +173,7 @@ namespace PWQuestOverlay
 
         public void Save(string path)
         {
-            _payload.schemaVersion = Math.Max(2, _payload.schemaVersion);
+            _payload.schemaVersion = Math.Max(5, _payload.schemaVersion);
             var serializer = new JavaScriptSerializer { MaxJsonLength = int.MaxValue };
             string temporary = path + ".tmp";
             File.WriteAllText(temporary, serializer.Serialize(_payload), new UTF8Encoding(false));

@@ -45,6 +45,10 @@ O menu do ícone ao lado do relógio também possui **Gerenciar perfis...** e um
 - **Perfis:** abre a associação entre título/nome do cliente e classe.
 - **X:** oculta o painel sem encerrar o programa.
 
+As etapas seguem uma ordem global otimizada. O overlay pode mandar pegar uma missão, depois outra missão próxima, realizar os dois objetivos e somente mais tarde voltar às entregas. O nome da missão muda conforme a ação atual, mas cada missão mantém seu progresso independente.
+
+Do nível 1 ao 20, Humanos, Selvagens, Alados e Abissais foram organizados por região. Pop-ups como **Aprenda sobre Habilidades de Forja** aguardam o retorno natural ao Ancião; não é necessário interromper o circuito apenas para entregá-los.
+
 ## Atalhos
 
 - `Ctrl + Alt + Seta Direita`: concluir.

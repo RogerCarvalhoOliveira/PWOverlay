@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using PWQuestOverlay;
 
 internal static class SmokeTests
@@ -35,7 +36,20 @@ internal static class SmokeTests
                     throw new InvalidDataException("Missão sem etapas: " + mission.name);
                 if (mission.expectedLevel < mission.minLevel)
                     throw new InvalidDataException("Nível previsto abaixo do mínimo: " + mission.name);
+                foreach (QuestStep step in mission.steps)
+                    if (step.routeOrder <= 0)
+                        throw new InvalidDataException("Etapa sem ordem global: " + mission.name + " / " + step.id);
             }
+
+            QuestMission forgeWr = wr.Find(m => m.name == "Aprenda sobre Habilidades de Forja");
+            QuestMission hedgehogWr = wr.Find(m => m.name == "Espinho de Ouriço");
+            if (forgeWr.steps[1].routeOrder >= hedgehogWr.steps[0].routeOrder)
+                throw new InvalidDataException("Rota WR ainda manda sair da cidade antes de falar com o Ancião no nível 5.");
+            QuestMission weaponsWr = wr.Find(m => m.name == "Fazer Armas");
+            QuestMission jumpWr = wr.Find(m => m.name == "Teste de Salto");
+            if (!(weaponsWr.steps[0].routeOrder < jumpWr.steps[0].routeOrder &&
+                  jumpWr.steps[jumpWr.steps.Count - 1].routeOrder < weaponsWr.steps[1].routeOrder))
+                throw new InvalidDataException("Rota WR não intercala Teste de Salto e Fazer Armas.");
 
             foreach (string classCode in expected.Keys)
             {
@@ -56,6 +70,17 @@ internal static class SmokeTests
                 foreach (string missionName in required)
                     if (route.Find(m => m.name == missionName) == null)
                         throw new InvalidDataException(missionName + " ausente em " + classCode);
+
+                var globalOrders = new HashSet<int>();
+                foreach (QuestMission mission in route)
+                    foreach (QuestStep step in mission.steps)
+                        if (!globalOrders.Add(step.routeOrder))
+                            throw new InvalidDataException("Ordem global repetida em " + classCode + ": " + step.routeOrder);
+
+                QuestMission forge = route.Find(m => m.name == "Aprenda sobre Habilidades de Forja");
+                int lastLevelSix = route.Where(m => m.minLevel == 6).SelectMany(m => m.steps).Max(step => step.routeOrder);
+                if (forge.steps[forge.steps.Count - 1].routeOrder >= lastLevelSix)
+                    throw new InvalidDataException("Orientação de forja ficou atrasada na rota " + classCode);
             }
 
             AppState state = new StateStore().Load();

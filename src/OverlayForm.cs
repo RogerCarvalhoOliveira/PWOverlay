@@ -56,6 +56,8 @@ namespace PWQuestOverlay
         private QuestMission _currentMission;
         private QuestStep _currentStep;
         private int _currentStepIndex;
+        private int _currentRouteStageIndex;
+        private List<RouteStage> _orderedStages;
         private Screen _currentScreen;
         private string _currentMonitorKey;
         private bool _dragging;
@@ -63,6 +65,13 @@ namespace PWQuestOverlay
         private Point _dragFormStart;
         private bool _allowExit;
         private bool _markerBusy;
+
+        private sealed class RouteStage
+        {
+            internal QuestMission Mission;
+            internal QuestStep Step;
+            internal int StepIndex;
+        }
 
         private static readonly Regex PrimaryTitlePattern = new Regex(
             @"^\s*(?<name>.+?)\s*[\[\(\{]\s*(?<class>WB|WF|EA|EP|WR|MC)\s*[\]\)\}]\s*$",
@@ -81,6 +90,7 @@ namespace PWQuestOverlay
             _routePath = routePath;
             _workbookPath = workbookPath;
             _currentRoute = new List<QuestMission>();
+            _orderedStages = new List<RouteStage>();
             _titleRefresh = new Dictionary<IntPtr, DateTime>();
 
             Text = "PW Quest Overlay";
@@ -622,6 +632,17 @@ namespace PWQuestOverlay
         {
             _classCode = _progress == null ? null : _progress.ClassCode;
             _currentRoute = _routes.GetForClass(_classCode);
+            _orderedStages = _currentRoute
+                .SelectMany(mission => mission.steps.Select((step, index) => new RouteStage
+                {
+                    Mission = mission,
+                    Step = step,
+                    StepIndex = index
+                }))
+                .OrderBy(stage => stage.Step.routeOrder)
+                .ThenBy(stage => stage.Mission.order)
+                .ThenBy(stage => stage.StepIndex)
+                .ToList();
             RefreshMissionDisplay();
         }
 
@@ -658,10 +679,10 @@ namespace PWQuestOverlay
                 return;
             }
 
-            _currentMission = _currentRoute.FirstOrDefault(m => !_progress.MissionStates.ContainsKey(m.id));
-            if (_currentMission == null)
+            RouteStage activeStage = _orderedStages.FirstOrDefault(stage => !IsStageComplete(stage));
+            if (activeStage == null)
             {
-                _questLabel.Text = "Rota concluída até a Cidade do Dragão";
+                _questLabel.Text = "Rota concluída até o nível 60";
                 _npcLabel.Text = "Todas as missões da rota foram marcadas.";
                 _locationLabel.Text = string.Empty;
                 _statusLabel.Text = finished + "/" + _currentRoute.Count;
@@ -672,10 +693,10 @@ namespace PWQuestOverlay
                 return;
             }
 
-            _currentStepIndex = _currentMission.steps.FindIndex(step =>
-                !_progress.MissionStates.ContainsKey(StageKey(_currentMission, step)));
-            if (_currentStepIndex < 0) _currentStepIndex = Math.Max(0, _currentMission.steps.Count - 1);
-            _currentStep = _currentMission.steps[_currentStepIndex];
+            _currentMission = activeStage.Mission;
+            _currentStep = activeStage.Step;
+            _currentStepIndex = activeStage.StepIndex;
+            _currentRouteStageIndex = _orderedStages.IndexOf(activeStage);
             ApplyStepType(_currentStep.action);
 
             _questLabel.Text = _currentMission.name + "  ·  Etapa " + (_currentStepIndex + 1) + "/" + _currentMission.steps.Count;
@@ -684,7 +705,7 @@ namespace PWQuestOverlay
                 ? "Marcador: " + _currentStep.markerX.Value + ", " + _currentStep.markerY.Value
                 : "Sem coordenada para esta etapa";
             _statusLabel.Text = _currentMission.priority + " · Prev. Nv. " + _currentMission.expectedLevel +
-                " · " + (finished + 1) + "/" + _currentRoute.Count;
+                " · Ação " + (_currentRouteStageIndex + 1) + "/" + _orderedStages.Count;
             _statusLabel.ForeColor = string.Equals(_currentMission.priority, "Opcional", StringComparison.OrdinalIgnoreCase)
                 ? Color.FromArgb(251, 191, 36)
                 : Color.FromArgb(203, 213, 225);
@@ -695,8 +716,7 @@ namespace PWQuestOverlay
         {
             if (!CanChangeProgress() || _currentMission == null || _currentStep == null) return;
             _progress.MissionStates[StageKey(_currentMission, _currentStep)] = "done";
-            bool lastStep = _currentStepIndex >= _currentMission.steps.Count - 1;
-            if (lastStep) _progress.MissionStates[_currentMission.id] = "done";
+            if (MissionStagesComplete(_currentMission)) _progress.MissionStates[_currentMission.id] = "done";
             _store.Save(_state);
             _store.Log(_characterName + " concluiu etapa " + (_currentStepIndex + 1) + "/" +
                 _currentMission.steps.Count + ": " + _currentMission.name);
@@ -707,8 +727,7 @@ namespace PWQuestOverlay
         {
             if (!CanChangeProgress() || _currentMission == null || _currentStep == null) return;
             _progress.MissionStates[StageKey(_currentMission, _currentStep)] = "skipped";
-            bool lastStep = _currentStepIndex >= _currentMission.steps.Count - 1;
-            if (lastStep) _progress.MissionStates[_currentMission.id] = "skipped";
+            if (MissionStagesComplete(_currentMission)) _progress.MissionStates[_currentMission.id] = "skipped";
             _store.Save(_state);
             _store.Log(_characterName + " pulou etapa " + (_currentStepIndex + 1) + "/" +
                 _currentMission.steps.Count + ": " + _currentMission.name);
@@ -718,19 +737,16 @@ namespace PWQuestOverlay
         private void GoBack()
         {
             if (!CanChangeProgress() || _progress == null) return;
-            if (_currentMission != null)
+            RouteStage previousStage = _orderedStages.LastOrDefault(stage =>
+                _progress.MissionStates.ContainsKey(StageKey(stage.Mission, stage.Step)));
+            if (previousStage != null)
             {
-                QuestStep completedStep = _currentMission.steps.LastOrDefault(step =>
-                    _progress.MissionStates.ContainsKey(StageKey(_currentMission, step)));
-                if (completedStep != null)
-                {
-                    _progress.MissionStates.Remove(StageKey(_currentMission, completedStep));
-                    _progress.MissionStates.Remove(_currentMission.id);
-                    _store.Save(_state);
-                    _store.Log(_characterName + " voltou uma etapa em: " + _currentMission.name);
-                    RefreshMissionDisplay();
-                    return;
-                }
+                _progress.MissionStates.Remove(StageKey(previousStage.Mission, previousStage.Step));
+                _progress.MissionStates.Remove(previousStage.Mission.id);
+                _store.Save(_state);
+                _store.Log(_characterName + " voltou uma ação em: " + previousStage.Mission.name);
+                RefreshMissionDisplay();
+                return;
             }
             QuestMission previous = _currentRoute.LastOrDefault(m => _progress.MissionStates.ContainsKey(m.id));
             if (previous == null) return;
@@ -755,6 +771,18 @@ namespace PWQuestOverlay
         private static string StageKey(QuestMission mission, QuestStep step)
         {
             return mission.id + "|STEP|" + step.id;
+        }
+
+        private bool IsStageComplete(RouteStage stage)
+        {
+            return _progress.MissionStates.ContainsKey(StageKey(stage.Mission, stage.Step)) ||
+                (_progress.MissionStates.ContainsKey(stage.Mission.id) &&
+                 !stage.Mission.steps.Any(step => _progress.MissionStates.ContainsKey(StageKey(stage.Mission, step))));
+        }
+
+        private bool MissionStagesComplete(QuestMission mission)
+        {
+            return mission.steps.All(step => _progress.MissionStates.ContainsKey(StageKey(mission, step)));
         }
 
         private void ApplyStepType(string action)
@@ -1098,25 +1126,23 @@ namespace PWQuestOverlay
 
         private void SetProgressPoint(int missionIndex, int stepIndex)
         {
-            for (int index = 0; index < _currentRoute.Count; index++)
+            QuestMission targetMission = _currentRoute[missionIndex];
+            QuestStep targetStep = targetMission.steps[stepIndex];
+            RouteStage target = _orderedStages.First(stage => stage.Mission == targetMission && stage.Step == targetStep);
+            int targetIndex = _orderedStages.IndexOf(target);
+
+            foreach (QuestMission mission in _currentRoute)
             {
-                QuestMission mission = _currentRoute[index];
                 _progress.MissionStates.Remove(mission.id);
                 foreach (QuestStep step in mission.steps) _progress.MissionStates.Remove(StageKey(mission, step));
-                if (index < missionIndex)
-                {
-                    foreach (QuestStep step in mission.steps) _progress.MissionStates[StageKey(mission, step)] = "done";
-                    _progress.MissionStates[mission.id] = "done";
-                }
-                else if (index == missionIndex)
-                {
-                    for (int done = 0; done < stepIndex; done++)
-                        _progress.MissionStates[StageKey(mission, mission.steps[done])] = "done";
-                }
             }
+            for (int index = 0; index < targetIndex; index++)
+                _progress.MissionStates[StageKey(_orderedStages[index].Mission, _orderedStages[index].Step)] = "done";
+            foreach (QuestMission mission in _currentRoute)
+                if (MissionStagesComplete(mission)) _progress.MissionStates[mission.id] = "done";
             _store.Save(_state);
-            _store.Log(_characterName + " reposicionou a rota em missão " + (missionIndex + 1) +
-                ", etapa " + (stepIndex + 1));
+            _store.Log(_characterName + " reposicionou a rota na ação global " + (targetIndex + 1) +
+                ": " + targetMission.name + " / etapa " + (stepIndex + 1));
             RefreshMissionDisplay();
         }
 

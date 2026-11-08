@@ -35,7 +35,7 @@ Overlay WinForms sem ativação
 ### `Models.cs`
 
 - Define o formato das missões.
-- Define etapas com ação e coordenada opcional.
+- Define etapas com ação, coordenada opcional e `routeOrder` global.
 - Carrega `quest_routes.json`.
 - Filtra missões por classe.
 - Lê e grava `%LOCALAPPDATA%\PWQuestOverlay\state.json`.
@@ -62,7 +62,8 @@ Nenhuma função lê memória de outro processo.
 - Monitora o foco em intervalos de 100 ms.
 - Atualiza a rota quando o cliente muda.
 - Processa botões e atalhos.
-- Avança e desfaz progresso por etapa; a missão só fecha após a última.
+- Achata as etapas de todas as missões e as ordena por `routeOrder`, permitindo intercalar missões.
+- Avança e desfaz progresso por ação global; a missão só fecha quando todas as próprias etapas forem resolvidas.
 - Cria o marcador único `PWOverlay` no cliente ativo.
 - Salva posição e progresso.
 - Reeleva o tracker e, em seguida, o painel `TODOS`.

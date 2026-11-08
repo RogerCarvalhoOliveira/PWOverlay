@@ -25,6 +25,7 @@ namespace PWQuestOverlay
         private readonly TextBox _actionBox;
         private readonly NumericUpDown _markerX;
         private readonly NumericUpDown _markerY;
+        private readonly NumericUpDown _routeOrder;
         private List<QuestMission> _missions;
         private QuestMission _mission;
 
@@ -82,6 +83,9 @@ namespace PWQuestOverlay
             Controls.Add(MakeLabel("Marcador Y", 632, 376));
             _markerY = MakeCoordinateBox(632, 398);
             Controls.Add(_markerY);
+            Controls.Add(MakeLabel("Ordem global da ação", 798, 376));
+            _routeOrder = new NumericUpDown { Location = new Point(798, 398), Size = new Size(170, 26), Minimum = 1, Maximum = 9999999 };
+            Controls.Add(_routeOrder);
 
             var applyStep = new Button { Text = "Aplicar etapa", Location = new Point(466, 444), Size = new Size(112, 32) };
             var addStep = new Button { Text = "Adicionar", Location = new Point(586, 444), Size = new Size(92, 32) };
@@ -165,6 +169,7 @@ namespace PWQuestOverlay
             _actionBox.Text = step.action;
             _markerX.Value = step.markerX ?? 0;
             _markerY.Value = step.markerY ?? 0;
+            _routeOrder.Value = Math.Max(1, Math.Min(9999999, step.routeOrder));
         }
 
         private void ApplyStepFields()
@@ -175,6 +180,7 @@ namespace PWQuestOverlay
             step.action = _actionBox.Text.Trim();
             step.markerX = _markerX.Value == 0 ? (int?)null : (int)_markerX.Value;
             step.markerY = _markerY.Value == 0 ? (int?)null : (int)_markerY.Value;
+            step.routeOrder = (int)_routeOrder.Value;
             ReloadSteps();
             _stepsBox.SelectedIndex = index;
         }
@@ -182,7 +188,8 @@ namespace PWQuestOverlay
         private void AddStep()
         {
             if (_mission == null) return;
-            _mission.steps.Add(new QuestStep { id = "e" + (_mission.steps.Count + 1), action = "Nova etapa" });
+            int nextOrder = _mission.steps.Count == 0 ? _mission.order * 100 : _mission.steps.Max(step => step.routeOrder) + 1;
+            _mission.steps.Add(new QuestStep { id = "e" + (_mission.steps.Count + 1), action = "Nova etapa", routeOrder = nextOrder });
             ReloadSteps();
             _stepsBox.SelectedIndex = _stepsBox.Items.Count - 1;
         }
@@ -304,7 +311,8 @@ namespace PWQuestOverlay
                     sheet.Cells[row, 12].Value2 = mission.benefit;
                     sheet.Cells[row, 13].Value2 = mission.instruction;
                     sheet.Cells[row, 14].Value2 = string.Join(Environment.NewLine,
-                        mission.steps.Select((step, stepIndex) => (stepIndex + 1) + ". " + step.action));
+                        mission.steps.Select((step, stepIndex) => "R" + step.routeOrder + " · " +
+                            (stepIndex + 1) + ". " + step.action));
                     sheet.Cells[row, 15].Value2 = mission.expectedLevel <= 0 ? mission.minLevel : mission.expectedLevel;
                 }
                 table = sheet.ListObjects[1];
