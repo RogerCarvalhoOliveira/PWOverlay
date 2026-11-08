@@ -1,0 +1,22 @@
+# Compilação e pacotes
+dist/
+bin/
+obj/
+*.pdb
+*.zip
+
+# IDEs
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Estado e diagnóstico locais
+state.json
+overlay.log
+*.tmp
+
+# Sistema operacional
+Thumbs.db
+Desktop.ini
+.DS_Store
