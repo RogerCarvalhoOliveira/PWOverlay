@@ -8,6 +8,7 @@
 - Adicionados seletor de missão/etapa e indicador colorido do tipo de ação.
 - Adicionados atalho `Ctrl + Alt + M` com alternativa automática, calibração visual e modo de apagar todos ou substituir somente `PWOverlay`.
 - O botão **Marcar** agora remove o `PWOverlay` anterior e cria o novo na mesma ação, sem exigir dois cliques e sem apagar os demais marcadores por padrão.
+- Corrigida a confirmação intermediária do cliente 1.4.4 que fazia exclusão e criação acontecerem em cliques separados; a confirmação agora usa teclado e não depende da posição da caixa.
 - Adicionado editor visual que sincroniza JSON e Excel com backup `.bak`.
 - Adicionadas exportação e restauração de backup dos perfis.
 

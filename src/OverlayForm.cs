@@ -807,14 +807,22 @@ namespace PWQuestOverlay
                     {
                         NativeMethods.ClickClientPoint(_activeGame, _state.Marker.DeleteAll);
                     }
-                    System.Threading.Thread.Sleep(180);
+                    System.Threading.Thread.Sleep(220);
+
+                    // O cliente 1.4.4 sempre pede confirmação antes de excluir waypoints.
+                    // A caixa muda alguns pixels conforme escala/resolução, portanto confirma
+                    // pelo teclado: Esquerda garante o botão afirmativo e Enter o aciona.
+                    NativeMethods.PressKey((byte)NativeMethods.VK_LEFT);
+                    System.Threading.Thread.Sleep(80);
+                    NativeMethods.PressKey(NativeMethods.VK_RETURN);
+                    System.Threading.Thread.Sleep(360);
 
                     // Excluir altera o estado do painel no cliente. Fechar e reabrir garante
                     // que a criação aconteça nesta mesma chamada, sem um segundo clique.
                     NativeMethods.ClickClientPoint(_activeGame, _state.Marker.PanelClose);
-                    System.Threading.Thread.Sleep(100);
-                    NativeMethods.ClickClientPoint(_activeGame, _state.Marker.TrackerButton);
                     System.Threading.Thread.Sleep(180);
+                    NativeMethods.ClickClientPoint(_activeGame, _state.Marker.TrackerButton);
+                    System.Threading.Thread.Sleep(260);
                 }
 
                 NativeMethods.ClickClientPoint(_activeGame, _state.Marker.CoordinateInput);

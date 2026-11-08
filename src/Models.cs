@@ -79,6 +79,7 @@ namespace PWQuestOverlay
         public MarkerPoint DeleteAll { get; set; }
         public MarkerPoint DeleteSelected { get; set; }
         public MarkerPoint MarkerList { get; set; }
+        public MarkerPoint DeleteConfirmYes { get; set; }
         public MarkerPoint CoordinateInput { get; set; }
         public MarkerPoint TrackCoordinates { get; set; }
         public MarkerPoint NameInput { get; set; }
@@ -93,7 +94,8 @@ namespace PWQuestOverlay
                 TrackerButton = new MarkerPoint(1760, 158),
                 DeleteAll = new MarkerPoint(291, 382),
                 DeleteSelected = new MarkerPoint(260, 382),
-                MarkerList = new MarkerPoint(80, 200),
+                MarkerList = new MarkerPoint(230, 200),
+                DeleteConfirmYes = new MarkerPoint(970, 560),
                 CoordinateInput = new MarkerPoint(218, 41),
                 TrackCoordinates = new MarkerPoint(291, 41),
                 NameInput = new MarkerPoint(953, 536),
@@ -116,7 +118,7 @@ namespace PWQuestOverlay
 
         public AppState()
         {
-            SchemaVersion = 2;
+            SchemaVersion = 3;
             Opacity = 0.92;
             Characters = new Dictionary<string, CharacterProgress>(StringComparer.OrdinalIgnoreCase);
             Positions = new Dictionary<string, SavedPosition>(StringComparer.OrdinalIgnoreCase);
@@ -247,6 +249,13 @@ namespace PWQuestOverlay
                     state.Marker.DeleteMode = "selected";
                     state.SchemaVersion = 2;
                 }
+                if (state.SchemaVersion < 3)
+                {
+                    MarkerSettings defaults = MarkerSettings.CreateDefault();
+                    state.Marker.MarkerList = defaults.MarkerList;
+                    state.Marker.DeleteConfirmYes = defaults.DeleteConfirmYes;
+                    state.SchemaVersion = 3;
+                }
                 NormalizeMarkerSettings(state.Marker);
                 foreach (CharacterProgress progress in state.Characters.Values)
                 {
@@ -277,6 +286,13 @@ namespace PWQuestOverlay
                 state.Marker.DeleteMode = "selected";
                 state.SchemaVersion = 2;
             }
+            if (state.SchemaVersion < 3)
+            {
+                MarkerSettings defaults = MarkerSettings.CreateDefault();
+                state.Marker.MarkerList = defaults.MarkerList;
+                state.Marker.DeleteConfirmYes = defaults.DeleteConfirmYes;
+                state.SchemaVersion = 3;
+            }
             NormalizeMarkerSettings(state.Marker);
             foreach (CharacterProgress progress in state.Characters.Values)
                 if (progress.MissionStates == null) progress.MissionStates = new Dictionary<string, string>();
@@ -296,6 +312,7 @@ namespace PWQuestOverlay
             if (marker.DeleteAll == null) marker.DeleteAll = defaults.DeleteAll;
             if (marker.DeleteSelected == null) marker.DeleteSelected = defaults.DeleteSelected;
             if (marker.MarkerList == null) marker.MarkerList = defaults.MarkerList;
+            if (marker.DeleteConfirmYes == null) marker.DeleteConfirmYes = defaults.DeleteConfirmYes;
             if (marker.CoordinateInput == null) marker.CoordinateInput = defaults.CoordinateInput;
             if (marker.TrackCoordinates == null) marker.TrackCoordinates = defaults.TrackCoordinates;
             if (marker.NameInput == null) marker.NameInput = defaults.NameInput;

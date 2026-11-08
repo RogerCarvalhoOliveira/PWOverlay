@@ -65,7 +65,7 @@ Ao clicar em **Marcar**, não mova o mouse nem troque de cliente por cerca de um
 3. digita a coordenada no formato aceito pelo cliente, como `433, 887`;
 4. cria `PWOverlay` e fecha o painel.
 
-O fluxo padrão foi calibrado com o cliente 1.4.4 em 1920×1080 borderless e o PW Helper aberto. Outras resoluções são escaladas proporcionalmente. Remoção e criação são feitas dentro do mesmo clique; o painel é normalizado entre as duas fases.
+O fluxo padrão foi calibrado com o cliente 1.4.4 em 1920×1080 borderless e o PW Helper aberto. Outras resoluções são escaladas proporcionalmente. Remoção, confirmação da exclusão por teclado e criação são feitas dentro do mesmo clique; o painel é normalizado entre as fases.
 
 Para ajustar uma escala diferente, abra o menu do ícone ao lado do relógio e escolha **Calibrar marcador...**. Selecione uma linha, deixe o painel de Marcadores aberto, posicione o mouse sobre o controle indicado e pressione `F8`. Repita os controles e salve. O menu **Ao criar marcador** alterna entre substituir somente `PWOverlay` (recomendado) ou apagar todos.
 

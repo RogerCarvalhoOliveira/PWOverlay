@@ -90,7 +90,7 @@ namespace PWQuestOverlay
                 new CalibrationItem { Name = "Botão Marcadores ao lado do minimapa", Read = () => _settings.TrackerButton, Write = value => _settings.TrackerButton = value },
                 new CalibrationItem { Name = "Excluir todos os marcadores", Read = () => _settings.DeleteAll, Write = value => _settings.DeleteAll = value },
                 new CalibrationItem { Name = "Excluir marcador selecionado", Read = () => _settings.DeleteSelected, Write = value => _settings.DeleteSelected = value },
-                new CalibrationItem { Name = "Área da lista de marcadores", Read = () => _settings.MarkerList, Write = value => _settings.MarkerList = value },
+                new CalibrationItem { Name = "Lista de waypoints criados (painel direito)", Read = () => _settings.MarkerList, Write = value => _settings.MarkerList = value },
                 new CalibrationItem { Name = "Campo de coordenadas", Read = () => _settings.CoordinateInput, Write = value => _settings.CoordinateInput = value },
                 new CalibrationItem { Name = "Botão rastrear coordenadas (>>)", Read = () => _settings.TrackCoordinates, Write = value => _settings.TrackCoordinates = value },
                 new CalibrationItem { Name = "Campo Nome da segunda janela", Read = () => _settings.NameInput, Write = value => _settings.NameInput = value },
@@ -149,7 +149,7 @@ namespace PWQuestOverlay
         private void ResetDefaults()
         {
             MarkerSettings defaults = MarkerSettings.CreateDefault();
-            MarkerPoint[] points = { defaults.TrackerButton, defaults.DeleteAll, defaults.DeleteSelected, defaults.MarkerList,
+            MarkerPoint[] points = { defaults.TrackerButton, defaults.DeleteAll, defaults.DeleteSelected, defaults.MarkerList, defaults.DeleteConfirmYes,
                 defaults.CoordinateInput, defaults.TrackCoordinates, defaults.NameInput, defaults.NameOk, defaults.PanelClose };
             for (int index = 0; index < points.Length; index++)
             {

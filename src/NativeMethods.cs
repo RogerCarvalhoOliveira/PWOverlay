@@ -28,6 +28,7 @@ namespace PWQuestOverlay
         internal const int VK_LEFT = 0x25;
         internal const int VK_RIGHT = 0x27;
         internal const int VK_DOWN = 0x28;
+        internal const byte VK_RETURN = 0x0D;
         internal const int VK_M = 0x4D;
         internal const byte VK_END = 0x23;
         internal const byte VK_BACK = 0x08;
