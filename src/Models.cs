@@ -182,30 +182,31 @@ namespace PWQuestOverlay
         public List<QuestMission> GetForClass(string classCode)
         {
             classCode = (classCode ?? string.Empty).Trim().ToUpperInvariant();
-            IEnumerable<QuestMission> query;
+            IEnumerable<QuestMission> race;
             switch (classCode)
             {
                 case "WR":
-                    query = _missions.Where(m => m.routeKey == "WR");
+                    race = _missions.Where(m => m.routeKey == "WR");
                     break;
                 case "WB":
-                    query = _missions.Where(m => m.routeKey == "WBWF" && m.classScope == "WB/WF");
+                    race = _missions.Where(m => m.routeKey == "WBWF" && m.classScope == "WB/WF");
                     break;
                 case "WF":
-                    query = _missions.Where(m => m.routeKey == "WBWF" &&
+                    race = _missions.Where(m => m.routeKey == "WBWF" &&
                         (m.classScope == "WB/WF" || m.classScope == "WF"));
                     break;
                 case "EA":
                 case "EP":
-                    query = _missions.Where(m => m.routeKey == "EAEP");
+                    race = _missions.Where(m => m.routeKey == "EAEP");
                     break;
                 case "MC":
-                    query = _missions.Where(m => m.routeKey == "MC");
+                    race = _missions.Where(m => m.routeKey == "MC");
                     break;
                 default:
                     return new List<QuestMission>();
             }
-            return query.OrderBy(m => m.order).ToList();
+            IEnumerable<QuestMission> common = _missions.Where(m => m.routeKey == "COMMON" && m.classScope == "ALL");
+            return race.Concat(common).OrderBy(m => m.order).ToList();
         }
     }
 

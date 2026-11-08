@@ -42,7 +42,7 @@ namespace PWQuestOverlay
 
             Controls.Add(MakeLabel("Rota", 12, 12));
             _routeBox = new ComboBox { Location = new Point(12, 34), Size = new Size(170, 26), DropDownStyle = ComboBoxStyle.DropDownList };
-            _routeBox.Items.AddRange(new object[] { "WR", "WBWF", "EAEP", "MC" });
+            _routeBox.Items.AddRange(new object[] { "WR", "WBWF", "EAEP", "MC", "COMMON" });
             Controls.Add(_routeBox);
             Controls.Add(MakeLabel("Missão", 194, 12));
             _missionBox = new ComboBox { Location = new Point(194, 34), Size = new Size(774, 26), Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right, DropDownStyle = ComboBoxStyle.DropDownList };
@@ -252,10 +252,11 @@ namespace PWQuestOverlay
                 excel.Visible = false;
                 excel.DisplayAlerts = false;
                 workbook = excel.Workbooks.Open(path);
-                SyncSheet(workbook, "Humanos - WR", missions.Where(m => m.routeKey == "WR").OrderBy(m => m.order).ToList());
-                SyncSheet(workbook, "Selvagens - WB-WF", missions.Where(m => m.routeKey == "WBWF").OrderBy(m => m.order).ToList());
-                SyncSheet(workbook, "Alados - EA-EP", missions.Where(m => m.routeKey == "EAEP").OrderBy(m => m.order).ToList());
-                SyncSheet(workbook, "Abissais - MC", missions.Where(m => m.routeKey == "MC").OrderBy(m => m.order).ToList());
+                List<QuestMission> common = missions.Where(m => m.routeKey == "COMMON").ToList();
+                SyncSheet(workbook, "Humanos - WR", missions.Where(m => m.routeKey == "WR").Concat(common).OrderBy(m => m.order).ToList());
+                SyncSheet(workbook, "Selvagens - WB-WF", missions.Where(m => m.routeKey == "WBWF").Concat(common).OrderBy(m => m.order).ToList());
+                SyncSheet(workbook, "Alados - EA-EP", missions.Where(m => m.routeKey == "EAEP").Concat(common).OrderBy(m => m.order).ToList());
+                SyncSheet(workbook, "Abissais - MC", missions.Where(m => m.routeKey == "MC").Concat(common).OrderBy(m => m.order).ToList());
                 workbook.Save();
             }
             finally

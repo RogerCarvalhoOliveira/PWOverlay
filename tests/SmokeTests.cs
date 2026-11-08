@@ -13,8 +13,8 @@ internal static class SmokeTests
             RouteRepository routes = RouteRepository.Load(args[0]);
             var expected = new Dictionary<string, int>
             {
-                { "WR", 33 }, { "WB", 33 }, { "WF", 36 },
-                { "EA", 35 }, { "EP", 35 }, { "MC", 34 }
+                { "WR", 116 }, { "WB", 116 }, { "WF", 121 },
+                { "EA", 117 }, { "EP", 117 }, { "MC", 115 }
             };
             foreach (KeyValuePair<string, int> pair in expected)
             {
@@ -46,6 +46,16 @@ internal static class SmokeTests
                 QuestMission firstLevelFive = routes.GetForClass(classCode).Find(m => m.expectedLevel >= 5);
                 if (firstLevelFive != forgePopup)
                     throw new InvalidDataException("Orientação de forja não é a primeira missão prevista do nível 5 em " + classCode);
+
+                List<QuestMission> route = routes.GetForClass(classCode);
+                if (route[route.Count - 1].expectedLevel != 60 || route[route.Count - 1].name != "Cargo Militar Nível 4")
+                    throw new InvalidDataException("Rota não termina corretamente no nível 60 em " + classCode);
+                string[] required = { "DG29 — Moeda Sangrenta de Ferro 2 Peão", "DG39 — Moeda Sangrenta de Ferro 3 Fantasma",
+                    "DG49 — Moeda Sangrenta de Ferro 4 Wanjun", "DG59 — Moeda Sangrenta de Ferro 5 Fera Sagrada",
+                    "Pilar Esquisito — cadeia completa", "Remover missão de voo do questlog" };
+                foreach (string missionName in required)
+                    if (route.Find(m => m.name == missionName) == null)
+                        throw new InvalidDataException(missionName + " ausente em " + classCode);
             }
 
             AppState state = new StateStore().Load();

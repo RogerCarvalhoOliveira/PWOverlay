@@ -10,7 +10,10 @@ O programa identifica cada cliente pelo título criado pelo PW Helper, por exemp
 - Detecção automática do padrão `Personagem[CLASSE]`.
 - Tela **Perfis** para associar manualmente qualquer título ou nome a uma classe.
 - Suporte a personagens com o mesmo nome em classes diferentes.
-- 493 etapas revisadas nas 138 missões; cadeias longas avançam conversa por conversa, coleta por coleta e retorno por retorno.
+- Rotas otimizadas do nível 1 ao 60, com 226 missões únicas e 836 etapas detalhadas.
+- Após a Cidade do Dragão, as seis classes compartilham a mesma sequência e se separam somente nas missões exclusivas de raça.
+- Cultivos, DGs 19/29/39/49/59, Moedas Sangrentas, Pilar Esquisito e cargos militares prioritários.
+- Missões de voo ficam fora da rota; o guia inclui a etapa para abandonar o pop-up no questlog.
 - Missão pop-up do nível 5 para falar com o Ancião sobre forja, sem incluir as missões específicas de ofício.
 - Nível previsto da rota exibido em cada missão, sem exigir o nível real do personagem.
 - Botões para concluir, voltar e pular uma etapa.

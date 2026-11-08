@@ -1,5 +1,15 @@
 # Histórico de alterações
 
+## 0.4.0 - Rota compartilhada até o nível 60
+
+- Expandido o guia de 138 para 226 missões únicas e de 493 para 836 etapas.
+- Criada a rota `COMMON`, compartilhada por WR, WB, WF, EA, EP e MC após a Cidade do Dragão.
+- Mantidos desvios separados somente para missões exclusivas de Humanos, Selvagens, Alados e WF.
+- Incluídos cultivos 29/39/49/59, DGs e Moedas Sangrentas 29/39/49/59, Pilar Esquisito e Cargo Militar Nível 4.
+- Missões de voo foram excluídas; o nível 30 contém uma etapa para abandonar o pop-up no questlog.
+- Missões de Dusk continuam fora desta versão.
+- Planilha ampliada e sincronizada nas quatro abas, com XP ×3 e nível previsto.
+
 ## 0.3.0 - Navegação, calibração e nível previsto
 
 - Adicionada a missão automática do nível 5 para falar com o Ancião sobre forja, mantendo fora as missões específicas dos quatro ofícios.

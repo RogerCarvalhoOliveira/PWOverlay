@@ -7,7 +7,7 @@ As rotas ficam em `data/quest_routes.json`. Normalmente o overlay somente lê e 
 | Campo | Uso |
 | --- | --- |
 | `id` | Identificador estável e único usado no progresso salvo. |
-| `routeKey` | Grupo da rota: `WR`, `WBWF`, `EAEP` ou `MC`. |
+| `routeKey` | Grupo da rota: `WR`, `WBWF`, `EAEP`, `MC` ou `COMMON` para o trecho compartilhado pós-Cidade do Dragão. |
 | `order` | Ordem de exibição dentro da rota. |
 | `classScope` | Classe à qual a missão se aplica. |
 | `minLevel` | Nível mínimo para pegar a missão. |
@@ -44,16 +44,18 @@ Cada item de `steps` possui:
 
 Crie um `id` que não será reutilizado. Use o mesmo `routeKey` e `classScope` das missões vizinhas e escolha um `order` que mantenha a sequência. Se duas classes compartilharem a missão, use o escopo compartilhado já adotado no grupo.
 
-As rotas terminam na chegada à Cidade do Dragão. A orientação automática do nível 5 para falar com o Ancião foi incluída; as missões específicas de Ferreiro, Alfaiate, Artesão e Boticário permanecem deliberadamente excluídas.
+As rotas vão até o nível 60. Depois da chegada à Cidade do Dragão, o repositório combina a rota racial com `COMMON`; apenas missões realmente exclusivas permanecem nas rotas de raça. A orientação automática do nível 5 para falar com o Ancião foi incluída, mas as missões específicas de Ferreiro, Alfaiate, Artesão e Boticário continuam excluídas. Missões de voo também foram removidas e substituídas por uma etapa explícita para abandonar o pop-up.
 
 ## Fontes das etapas
 
-As 138 missões foram cruzadas com guias clássicos separados por raça:
+As missões iniciais foram cruzadas com guias clássicos separados por raça:
 
 - Humanos: <https://pwbrasilquest.blogspot.com/2012/02/quest-humanos-level-1-19.html>
 - Selvagens: <https://pwbr2010.wordpress.com/quests-2/quests-selvagens-1-ao-19/>
 - Alados: <https://pweujogo.blogspot.com/p/missoes-alados-level-1-ao-19.html>
 - Abissais: <https://guiapw.forumbrasil.net/t77-guia-missoes-quests-para-lvl-1-19-dos-abissais>
+
+O trecho 20–59 usa o guia clássico de missões <https://pwmissoes1a59.blogspot.com/>. A cadeia do Pilar Esquisito foi conferida em <https://wikipw.com.br/index.php?title=Pilar_Esquisito> e no banco de dados <https://www.pwdatabase.com/br/npc/25808>. Os níveis e requisitos de Cargo Militar foram conferidos em <https://wikipw.com.br/index.php/Sistema_de_Rank_de_Fama>.
 
 O comportamento do painel de marcadores foi conferido na interface 1.4.4 e comparado com a documentação oficial da tela básica: <https://perfectworld.com.br/o-jogo/primeiros-passos/a-tela-e-os-comandos-basicos>.
 
