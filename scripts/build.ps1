@@ -29,7 +29,9 @@ $overlaySources = @(
     (Join-Path $sourceDirectory 'Program.cs'),
     (Join-Path $sourceDirectory 'Models.cs'),
     (Join-Path $sourceDirectory 'NativeMethods.cs'),
-    (Join-Path $sourceDirectory 'OverlayForm.cs')
+    (Join-Path $sourceDirectory 'OverlayForm.cs'),
+    (Join-Path $sourceDirectory 'MarkerCalibrationForm.cs'),
+    (Join-Path $sourceDirectory 'RouteEditorForm.cs')
 )
 
 & $compiler /nologo /target:winexe /optimize+ /platform:anycpu `
@@ -39,6 +41,7 @@ $overlaySources = @(
     /reference:System.Drawing.dll `
     /reference:System.Windows.Forms.dll `
     /reference:System.Web.Extensions.dll `
+    /reference:Microsoft.CSharp.dll `
     $overlaySources
 if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar o PW Quest Overlay.' }
 

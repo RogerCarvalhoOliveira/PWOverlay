@@ -25,10 +25,11 @@ namespace PWQuestOverlay
                 try
                 {
                     string routePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "quest_routes.json");
+                    string workbookPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "rota_leveling_pw_144.xlsx");
                     RouteRepository repository = RouteRepository.Load(routePath);
                     AppState state = store.Load();
                     store.Log("Overlay iniciado. Rotas: " + routePath);
-                    Application.Run(new OverlayForm(repository, store, state));
+                    Application.Run(new OverlayForm(repository, store, state, routePath, workbookPath));
                     store.Log("Overlay encerrado.");
                 }
                 catch (Exception error)

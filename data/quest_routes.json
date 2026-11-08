@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "generatedFrom": "rota_leveling_pw_144.xlsx",
   "missions": [
     {
@@ -34,7 +34,8 @@
           "markerX": 422,
           "markerY": 835
         }
-      ]
+      ],
+      "expectedLevel": 1
     },
     {
       "id": "WR|WR|1|A Cidade das Espadas",
@@ -68,7 +69,8 @@
           "markerX": 433,
           "markerY": 886
         }
-      ]
+      ],
+      "expectedLevel": 1
     },
     {
       "id": "WR|WR|1|Revitalizando a Pátria",
@@ -128,7 +130,8 @@
           "markerX": 433,
           "markerY": 887
         }
-      ]
+      ],
+      "expectedLevel": 1
     },
     {
       "id": "WR|WR|3|Duende Desertor / A Chama do Túmulo",
@@ -164,7 +167,8 @@
           "markerX": 427,
           "markerY": 878
         }
-      ]
+      ],
+      "expectedLevel": 3
     },
     {
       "id": "WR|WR|4|Teste de Salto",
@@ -200,7 +204,8 @@
           "markerX": 433,
           "markerY": 886
         }
-      ]
+      ],
+      "expectedLevel": 4
     },
     {
       "id": "WR|WR|4|Fazer Armas",
@@ -248,12 +253,42 @@
           "markerX": 431,
           "markerY": 874
         }
+      ],
+      "expectedLevel": 4
+    },
+    {
+      "id": "WR|WR|5|Aprenda sobre Habilidades de Forja",
+      "routeKey": "WR",
+      "order": 7,
+      "classScope": "WR",
+      "minLevel": 5,
+      "expectedLevel": 5,
+      "maxLevel": "Sem limite",
+      "name": "Aprenda sobre Habilidades de Forja",
+      "npc": "Ancião (433, 887)",
+      "location": "Cidade das Espadas (433, 887)",
+      "baseXp": 50,
+      "xp3": 150,
+      "priority": "Importante",
+      "benefit": "Explica a fabricação sem desviar para as missões específicas de ofício",
+      "instruction": "Ao aparecer o pop-up do nível 5, fale com o Ancião. Ignore as missões específicas de Ferreiro, Alfaiate, Artesão e Boticário.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Ao chegar ao nível 5, aceite a missão exibida automaticamente no pop-up"
+        },
+        {
+          "id": "e2",
+          "action": "Fale com Ancião (433, 887)",
+          "markerX": 433,
+          "markerY": 887
+        }
       ]
     },
     {
       "id": "WR|WR|5|Espinho de Ouriço",
       "routeKey": "WR",
-      "order": 7,
+      "order": 8,
       "classScope": "WR",
       "minLevel": 5,
       "maxLevel": "Sem limite",
@@ -284,12 +319,13 @@
           "markerX": 459,
           "markerY": 838
         }
-      ]
+      ],
+      "expectedLevel": 5
     },
     {
       "id": "WR|WR|6|Espírito do Fogo",
       "routeKey": "WR",
-      "order": 8,
+      "order": 9,
       "classScope": "WR",
       "minLevel": 6,
       "maxLevel": "Sem limite",
@@ -320,12 +356,13 @@
           "markerX": 427,
           "markerY": 878
         }
-      ]
+      ],
+      "expectedLevel": 6
     },
     {
       "id": "WR|WR|6|Vila dos Eremitas",
       "routeKey": "WR",
-      "order": 9,
+      "order": 10,
       "classScope": "WR",
       "minLevel": 6,
       "maxLevel": "Automática",
@@ -350,12 +387,13 @@
           "markerX": 497,
           "markerY": 867
         }
-      ]
+      ],
+      "expectedLevel": 6
     },
     {
       "id": "WR|WR|7|Lágrimas do Dragão",
       "routeKey": "WR",
-      "order": 10,
+      "order": 11,
       "classScope": "WR",
       "minLevel": 7,
       "maxLevel": "Sem limite",
@@ -386,12 +424,13 @@
           "markerX": 499,
           "markerY": 868
         }
-      ]
+      ],
+      "expectedLevel": 7
     },
     {
       "id": "WR|WR|8|Castigo Local",
       "routeKey": "WR",
-      "order": 11,
+      "order": 12,
       "classScope": "WR",
       "minLevel": 8,
       "maxLevel": "Sem limite",
@@ -422,12 +461,13 @@
           "markerX": 433,
           "markerY": 876
         }
-      ]
+      ],
+      "expectedLevel": 8
     },
     {
       "id": "WR|WR|8|Poder Dobrado",
       "routeKey": "WR",
-      "order": 12,
+      "order": 13,
       "classScope": "WR",
       "minLevel": 8,
       "maxLevel": "Sem limite",
@@ -458,12 +498,13 @@
           "markerX": 495,
           "markerY": 870
         }
-      ]
+      ],
+      "expectedLevel": 8
     },
     {
       "id": "WR|WR|8|Ouriço Retalhador",
       "routeKey": "WR",
-      "order": 13,
+      "order": 14,
       "classScope": "WR",
       "minLevel": 8,
       "maxLevel": "Sem limite",
@@ -492,12 +533,13 @@
           "markerX": 497,
           "markerY": 867
         }
-      ]
+      ],
+      "expectedLevel": 8
     },
     {
       "id": "WR|WR|9|Cultivo – Orientação de Cultivo",
       "routeKey": "WR",
-      "order": 14,
+      "order": 15,
       "classScope": "WR",
       "minLevel": 9,
       "maxLevel": "Automática",
@@ -522,12 +564,13 @@
           "markerX": 429,
           "markerY": 890
         }
-      ]
+      ],
+      "expectedLevel": 9
     },
     {
       "id": "WR|WR|9|O Surgimento de Lingxu",
       "routeKey": "WR",
-      "order": 15,
+      "order": 16,
       "classScope": "WR",
       "minLevel": 9,
       "maxLevel": "Sem limite",
@@ -564,12 +607,13 @@
           "markerX": 497,
           "markerY": 867
         }
-      ]
+      ],
+      "expectedLevel": 9
     },
     {
       "id": "WR|WR|10|Mandado do Ferreiro",
       "routeKey": "WR",
-      "order": 16,
+      "order": 17,
       "classScope": "WR",
       "minLevel": 10,
       "maxLevel": "Sem limite",
@@ -598,12 +642,13 @@
           "markerX": 563,
           "markerY": 871
         }
-      ]
+      ],
+      "expectedLevel": 10
     },
     {
       "id": "WR|WR|11|Vila Quadrada",
       "routeKey": "WR",
-      "order": 17,
+      "order": 18,
       "classScope": "WR",
       "minLevel": 11,
       "maxLevel": "Automática",
@@ -628,12 +673,13 @@
           "markerX": 577,
           "markerY": 894
         }
-      ]
+      ],
+      "expectedLevel": 11
     },
     {
       "id": "WR|WR|11|Trabalho em Conjunto",
       "routeKey": "WR",
-      "order": 18,
+      "order": 19,
       "classScope": "WR",
       "minLevel": 11,
       "maxLevel": "Sem limite",
@@ -664,12 +710,13 @@
           "markerX": 577,
           "markerY": 894
         }
-      ]
+      ],
+      "expectedLevel": 11
     },
     {
       "id": "WR|WR|11|Esforços Concentrados",
       "routeKey": "WR",
-      "order": 19,
+      "order": 20,
       "classScope": "WR",
       "minLevel": 11,
       "maxLevel": "Sem limite",
@@ -700,12 +747,13 @@
           "markerX": 577,
           "markerY": 894
         }
-      ]
+      ],
+      "expectedLevel": 11
     },
     {
       "id": "WR|WR|12|Intercomunicação",
       "routeKey": "WR",
-      "order": 20,
+      "order": 21,
       "classScope": "WR",
       "minLevel": 12,
       "maxLevel": "Sem limite",
@@ -742,12 +790,13 @@
           "markerX": 433,
           "markerY": 887
         }
-      ]
+      ],
+      "expectedLevel": 12
     },
     {
       "id": "WR|WR|13|Armadura do Lobo",
       "routeKey": "WR",
-      "order": 21,
+      "order": 22,
       "classScope": "WR",
       "minLevel": 13,
       "maxLevel": "Sem limite",
@@ -778,12 +827,13 @@
           "markerX": 577,
           "markerY": 894
         }
-      ]
+      ],
+      "expectedLevel": 13
     },
     {
       "id": "WR|WR|14|Emoção da Caça",
       "routeKey": "WR",
-      "order": 22,
+      "order": 23,
       "classScope": "WR",
       "minLevel": 14,
       "maxLevel": "Sem limite",
@@ -826,12 +876,13 @@
           "markerX": 498,
           "markerY": 970
         }
-      ]
+      ],
+      "expectedLevel": 14
     },
     {
       "id": "WR|WR|15|A Promessa",
       "routeKey": "WR",
-      "order": 23,
+      "order": 24,
       "classScope": "WR",
       "minLevel": 15,
       "maxLevel": "Sem limite",
@@ -880,12 +931,13 @@
           "markerX": 427,
           "markerY": 878
         }
-      ]
+      ],
+      "expectedLevel": 15
     },
     {
       "id": "WR|WR|16|Fortaleza da Montanha",
       "routeKey": "WR",
-      "order": 24,
+      "order": 25,
       "classScope": "WR",
       "minLevel": 16,
       "maxLevel": "Automática",
@@ -910,12 +962,13 @@
           "markerX": 498,
           "markerY": 970
         }
-      ]
+      ],
+      "expectedLevel": 16
     },
     {
       "id": "WR|WR|16|Vingança do Boticário",
       "routeKey": "WR",
-      "order": 25,
+      "order": 26,
       "classScope": "WR",
       "minLevel": 16,
       "maxLevel": "Sem limite",
@@ -946,12 +999,13 @@
           "markerX": 498,
           "markerY": 964
         }
-      ]
+      ],
+      "expectedLevel": 16
     },
     {
       "id": "WR|WR|17|Flauta do Passado",
       "routeKey": "WR",
-      "order": 26,
+      "order": 27,
       "classScope": "WR",
       "minLevel": 17,
       "maxLevel": "Sem limite",
@@ -994,12 +1048,13 @@
           "markerX": 496,
           "markerY": 867
         }
-      ]
+      ],
+      "expectedLevel": 17
     },
     {
       "id": "WR|WR|18|A Lista de Xin",
       "routeKey": "WR",
-      "order": 27,
+      "order": 28,
       "classScope": "WR",
       "minLevel": 18,
       "maxLevel": "Sem limite",
@@ -1048,12 +1103,13 @@
           "markerX": 433,
           "markerY": 887
         }
-      ]
+      ],
+      "expectedLevel": 18
     },
     {
       "id": "WR|WR|19|Orientação de Cultivo – Aumentar Cultivo",
       "routeKey": "WR",
-      "order": 28,
+      "order": 29,
       "classScope": "WR",
       "minLevel": 19,
       "maxLevel": "Automática",
@@ -1078,12 +1134,13 @@
           "markerX": 429,
           "markerY": 890
         }
-      ]
+      ],
+      "expectedLevel": 19
     },
     {
       "id": "WR|WR|19|A Harmonia do Céu e a Terra",
       "routeKey": "WR",
-      "order": 29,
+      "order": 30,
       "classScope": "WR",
       "minLevel": 19,
       "maxLevel": "Sem limite",
@@ -1118,12 +1175,13 @@
           "markerX": 244,
           "markerY": 647
         }
-      ]
+      ],
+      "expectedLevel": 19
     },
     {
       "id": "WR|WR|19|Moeda Sangrenta de Ferro",
       "routeKey": "WR",
-      "order": 30,
+      "order": 31,
       "classScope": "WR",
       "minLevel": 19,
       "maxLevel": "30",
@@ -1142,12 +1200,13 @@
           "markerX": 433,
           "markerY": 887
         }
-      ]
+      ],
+      "expectedLevel": 19
     },
     {
       "id": "WR|WR|19|Missão Desafio – Portão de Devildom",
       "routeKey": "WR",
-      "order": 31,
+      "order": 32,
       "classScope": "WR",
       "minLevel": 19,
       "maxLevel": "Sem limite",
@@ -1180,12 +1239,13 @@
           "markerX": 433,
           "markerY": 886
         }
-      ]
+      ],
+      "expectedLevel": 19
     },
     {
       "id": "WR|WR|19|Aquecimento",
       "routeKey": "WR",
-      "order": 32,
+      "order": 33,
       "classScope": "WR",
       "minLevel": 19,
       "maxLevel": "Sem limite",
@@ -1234,7 +1294,8 @@
           "markerX": 498,
           "markerY": 970
         }
-      ]
+      ],
+      "expectedLevel": 19
     },
     {
       "id": "WBWF|WB/WF|1|Primeira Viagem",
@@ -1268,7 +1329,8 @@
           "markerX": 256,
           "markerY": 689
         }
-      ]
+      ],
+      "expectedLevel": 1
     },
     {
       "id": "WBWF|WB/WF|1|A Cidade das Feras",
@@ -1302,7 +1364,8 @@
           "markerX": 246,
           "markerY": 646
         }
-      ]
+      ],
+      "expectedLevel": 1
     },
     {
       "id": "WBWF|WB/WF|1|Os Poderosos Selvagens",
@@ -1362,7 +1425,8 @@
           "markerX": 246,
           "markerY": 646
         }
-      ]
+      ],
+      "expectedLevel": 1
     },
     {
       "id": "WBWF|WF|3|Habilidade de Controle",
@@ -1398,7 +1462,8 @@
           "markerX": 257,
           "markerY": 644
         }
-      ]
+      ],
+      "expectedLevel": 3
     },
     {
       "id": "WBWF|WB/WF|3|Injustiças",
@@ -1434,7 +1499,8 @@
           "markerX": 246,
           "markerY": 648
         }
-      ]
+      ],
+      "expectedLevel": 3
     },
     {
       "id": "WBWF|WB/WF|4|Habilidade Primária",
@@ -1470,7 +1536,8 @@
           "markerX": 246,
           "markerY": 646
         }
-      ]
+      ],
+      "expectedLevel": 4
     },
     {
       "id": "WBWF|WB/WF|4|União Contra o Inimigo",
@@ -1530,12 +1597,42 @@
           "markerX": 260,
           "markerY": 639
         }
+      ],
+      "expectedLevel": 4
+    },
+    {
+      "id": "WBWF|WB/WF|5|Aprenda sobre Habilidades de Forja",
+      "routeKey": "WBWF",
+      "order": 8,
+      "classScope": "WB/WF",
+      "minLevel": 5,
+      "expectedLevel": 5,
+      "maxLevel": "Sem limite",
+      "name": "Aprenda sobre Habilidades de Forja",
+      "npc": "Ancião (246, 646)",
+      "location": "Cidade das Feras (246, 646)",
+      "baseXp": 50,
+      "xp3": 150,
+      "priority": "Importante",
+      "benefit": "Explica a fabricação sem desviar para as missões específicas de ofício",
+      "instruction": "Ao aparecer o pop-up do nível 5, fale com o Ancião. Ignore as missões específicas de Ferreiro, Alfaiate, Artesão e Boticário.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Ao chegar ao nível 5, aceite a missão exibida automaticamente no pop-up"
+        },
+        {
+          "id": "e2",
+          "action": "Fale com Ancião (246, 646)",
+          "markerX": 246,
+          "markerY": 646
+        }
       ]
     },
     {
       "id": "WBWF|WB/WF|5|Armadura de Casco",
       "routeKey": "WBWF",
-      "order": 8,
+      "order": 9,
       "classScope": "WB/WF",
       "minLevel": 5,
       "maxLevel": "Sem limite",
@@ -1564,12 +1661,13 @@
           "markerX": 259,
           "markerY": 639
         }
-      ]
+      ],
+      "expectedLevel": 5
     },
     {
       "id": "WBWF|WB/WF|6|Mais Urgente",
       "routeKey": "WBWF",
-      "order": 9,
+      "order": 10,
       "classScope": "WB/WF",
       "minLevel": 6,
       "maxLevel": "Sem limite",
@@ -1604,12 +1702,13 @@
           "markerX": 231,
           "markerY": 556
         }
-      ]
+      ],
+      "expectedLevel": 6
     },
     {
       "id": "WBWF|WB/WF|6|Vila da Ponte Quebrada",
       "routeKey": "WBWF",
-      "order": 10,
+      "order": 11,
       "classScope": "WB/WF",
       "minLevel": 6,
       "maxLevel": "Automática",
@@ -1634,12 +1733,13 @@
           "markerX": 231,
           "markerY": 556
         }
-      ]
+      ],
+      "expectedLevel": 6
     },
     {
       "id": "WBWF|WF|7|Capturar Fera Psíquica",
       "routeKey": "WBWF",
-      "order": 11,
+      "order": 12,
       "classScope": "WF",
       "minLevel": 7,
       "maxLevel": "Sem limite",
@@ -1668,12 +1768,13 @@
           "markerX": 257,
           "markerY": 644
         }
-      ]
+      ],
+      "expectedLevel": 7
     },
     {
       "id": "WBWF|WB/WF|7|Pescador Minotauro",
       "routeKey": "WBWF",
-      "order": 12,
+      "order": 13,
       "classScope": "WB/WF",
       "minLevel": 7,
       "maxLevel": "Sem limite",
@@ -1702,12 +1803,13 @@
           "markerX": 228,
           "markerY": 559
         }
-      ]
+      ],
+      "expectedLevel": 7
     },
     {
       "id": "WBWF|WB/WF|7|Óleo Negro Mágico",
       "routeKey": "WBWF",
-      "order": 13,
+      "order": 14,
       "classScope": "WB/WF",
       "minLevel": 7,
       "maxLevel": "Sem limite",
@@ -1736,12 +1838,13 @@
           "markerX": 232,
           "markerY": 559
         }
-      ]
+      ],
+      "expectedLevel": 7
     },
     {
       "id": "WBWF|WB/WF|8|Uma Boa Estratégia",
       "routeKey": "WBWF",
-      "order": 14,
+      "order": 15,
       "classScope": "WB/WF",
       "minLevel": 8,
       "maxLevel": "Sem limite",
@@ -1780,12 +1883,13 @@
           "markerX": 228,
           "markerY": 559
         }
-      ]
+      ],
+      "expectedLevel": 8
     },
     {
       "id": "WBWF|WB/WF|9|Jornada Tranquila",
       "routeKey": "WBWF",
-      "order": 15,
+      "order": 16,
       "classScope": "WB/WF",
       "minLevel": 9,
       "maxLevel": "Sem limite",
@@ -1814,12 +1918,13 @@
           "markerX": 228,
           "markerY": 559
         }
-      ]
+      ],
+      "expectedLevel": 9
     },
     {
       "id": "WBWF|WB/WF|9|Cultivo – Orientação de Cultivo",
       "routeKey": "WBWF",
-      "order": 16,
+      "order": 17,
       "classScope": "WB/WF",
       "minLevel": 9,
       "maxLevel": "Automática",
@@ -1844,12 +1949,13 @@
           "markerX": 244,
           "markerY": 647
         }
-      ]
+      ],
+      "expectedLevel": 9
     },
     {
       "id": "WBWF|WB/WF|9|O Surgimento de Lingxu",
       "routeKey": "WBWF",
-      "order": 17,
+      "order": 18,
       "classScope": "WB/WF",
       "minLevel": 9,
       "maxLevel": "Sem limite",
@@ -1884,12 +1990,13 @@
           "markerX": 216,
           "markerY": 542
         }
-      ]
+      ],
+      "expectedLevel": 9
     },
     {
       "id": "WBWF|WB/WF|10|Remédio Útil",
       "routeKey": "WBWF",
-      "order": 18,
+      "order": 19,
       "classScope": "WB/WF",
       "minLevel": 10,
       "maxLevel": "Sem limite",
@@ -1922,12 +2029,13 @@
           "markerX": 229,
           "markerY": 560
         }
-      ]
+      ],
+      "expectedLevel": 10
     },
     {
       "id": "WBWF|WB/WF|11|Irmandade",
       "routeKey": "WBWF",
-      "order": 19,
+      "order": 20,
       "classScope": "WB/WF",
       "minLevel": 11,
       "maxLevel": "Sem limite",
@@ -1956,12 +2064,13 @@
           "markerX": 387,
           "markerY": 514
         }
-      ]
+      ],
+      "expectedLevel": 11
     },
     {
       "id": "WBWF|WB/WF|11|Garganta dos Ventos Ancestrais",
       "routeKey": "WBWF",
-      "order": 20,
+      "order": 21,
       "classScope": "WB/WF",
       "minLevel": 11,
       "maxLevel": "Automática",
@@ -1986,12 +2095,13 @@
           "markerX": 387,
           "markerY": 521
         }
-      ]
+      ],
+      "expectedLevel": 11
     },
     {
       "id": "WBWF|WB/WF|12|O Rugido das Feras",
       "routeKey": "WBWF",
-      "order": 21,
+      "order": 22,
       "classScope": "WB/WF",
       "minLevel": 12,
       "maxLevel": "Sem limite",
@@ -2040,12 +2150,13 @@
           "markerX": 246,
           "markerY": 646
         }
-      ]
+      ],
+      "expectedLevel": 12
     },
     {
       "id": "WBWF|WB/WF|12|Sangue de Lobo Feroz",
       "routeKey": "WBWF",
-      "order": 22,
+      "order": 23,
       "classScope": "WB/WF",
       "minLevel": 12,
       "maxLevel": "Sem limite",
@@ -2080,12 +2191,13 @@
           "markerX": 389,
           "markerY": 515
         }
-      ]
+      ],
+      "expectedLevel": 12
     },
     {
       "id": "WBWF|WB/WF|13|Pesadelo Perturbador",
       "routeKey": "WBWF",
-      "order": 23,
+      "order": 24,
       "classScope": "WB/WF",
       "minLevel": 13,
       "maxLevel": "Sem limite",
@@ -2120,12 +2232,13 @@
           "markerX": 242,
           "markerY": 642
         }
-      ]
+      ],
+      "expectedLevel": 13
     },
     {
       "id": "WBWF|WB/WF|14|Vantagens Sem Esforço",
       "routeKey": "WBWF",
-      "order": 24,
+      "order": 25,
       "classScope": "WB/WF",
       "minLevel": 14,
       "maxLevel": "Sem limite",
@@ -2158,12 +2271,13 @@
           "markerX": 387,
           "markerY": 521
         }
-      ]
+      ],
+      "expectedLevel": 14
     },
     {
       "id": "WBWF|WB/WF|15|Piggy",
       "routeKey": "WBWF",
-      "order": 25,
+      "order": 26,
       "classScope": "WB/WF",
       "minLevel": 15,
       "maxLevel": "Sem limite",
@@ -2200,12 +2314,13 @@
           "markerX": 387,
           "markerY": 514
         }
-      ]
+      ],
+      "expectedLevel": 15
     },
     {
       "id": "WBWF|WB/WF|16|Fortaleza da Cidade do Rio",
       "routeKey": "WBWF",
-      "order": 26,
+      "order": 27,
       "classScope": "WB/WF",
       "minLevel": 16,
       "maxLevel": "Automática",
@@ -2230,12 +2345,13 @@
           "markerX": 425,
           "markerY": 659
         }
-      ]
+      ],
+      "expectedLevel": 16
     },
     {
       "id": "WBWF|WB/WF|16|Cortar Montanhas",
       "routeKey": "WBWF",
-      "order": 27,
+      "order": 28,
       "classScope": "WB/WF",
       "minLevel": 16,
       "maxLevel": "Sem limite",
@@ -2268,12 +2384,13 @@
           "markerX": 423,
           "markerY": 645
         }
-      ]
+      ],
+      "expectedLevel": 16
     },
     {
       "id": "WBWF|WF|17|Domesticar Marta-Rei",
       "routeKey": "WBWF",
-      "order": 28,
+      "order": 29,
       "classScope": "WF",
       "minLevel": 17,
       "maxLevel": "Sem limite",
@@ -2302,12 +2419,13 @@
           "markerX": 422,
           "markerY": 648
         }
-      ]
+      ],
+      "expectedLevel": 17
     },
     {
       "id": "WBWF|WB/WF|17|A Sobrancelha de Zhang",
       "routeKey": "WBWF",
-      "order": 29,
+      "order": 30,
       "classScope": "WB/WF",
       "minLevel": 17,
       "maxLevel": "Sem limite",
@@ -2346,12 +2464,13 @@
           "markerX": 417,
           "markerY": 645
         }
-      ]
+      ],
+      "expectedLevel": 17
     },
     {
       "id": "WBWF|WB/WF|18|Beleza Divina",
       "routeKey": "WBWF",
-      "order": 30,
+      "order": 31,
       "classScope": "WB/WF",
       "minLevel": 18,
       "maxLevel": "Sem limite",
@@ -2398,12 +2517,13 @@
           "markerX": 417,
           "markerY": 645
         }
-      ]
+      ],
+      "expectedLevel": 18
     },
     {
       "id": "WBWF|WB/WF|19|Orientação de Cultivo – Aumentar Cultivo",
       "routeKey": "WBWF",
-      "order": 31,
+      "order": 32,
       "classScope": "WB/WF",
       "minLevel": 19,
       "maxLevel": "Automática",
@@ -2428,12 +2548,13 @@
           "markerX": 244,
           "markerY": 647
         }
-      ]
+      ],
+      "expectedLevel": 19
     },
     {
       "id": "WBWF|WB/WF|19|A Harmoniosa Céu-Terra",
       "routeKey": "WBWF",
-      "order": 32,
+      "order": 33,
       "classScope": "WB/WF",
       "minLevel": 19,
       "maxLevel": "Sem limite",
@@ -2468,12 +2589,13 @@
           "markerX": 244,
           "markerY": 647
         }
-      ]
+      ],
+      "expectedLevel": 19
     },
     {
       "id": "WBWF|WB/WF|19|Moeda Sangrenta de Ferro",
       "routeKey": "WBWF",
-      "order": 33,
+      "order": 34,
       "classScope": "WB/WF",
       "minLevel": 19,
       "maxLevel": "30",
@@ -2492,12 +2614,13 @@
           "markerX": 246,
           "markerY": 646
         }
-      ]
+      ],
+      "expectedLevel": 19
     },
     {
       "id": "WBWF|WB/WF|19|Missão Desafio – Despachos aos Alados",
       "routeKey": "WBWF",
-      "order": 34,
+      "order": 35,
       "classScope": "WB/WF",
       "minLevel": 19,
       "maxLevel": "Sem limite",
@@ -2530,12 +2653,13 @@
           "markerX": 246,
           "markerY": 646
         }
-      ]
+      ],
+      "expectedLevel": 19
     },
     {
       "id": "WBWF|WB/WF|19|Teste do Curandeiro",
       "routeKey": "WBWF",
-      "order": 35,
+      "order": 36,
       "classScope": "WB/WF",
       "minLevel": 19,
       "maxLevel": "Sem limite",
@@ -2584,7 +2708,8 @@
           "markerX": 422,
           "markerY": 648
         }
-      ]
+      ],
+      "expectedLevel": 19
     },
     {
       "id": "EAEP|EA/EP|1|Nova Chegada / Primeira Visita",
@@ -2618,7 +2743,8 @@
           "markerX": 369,
           "markerY": 461
         }
-      ]
+      ],
+      "expectedLevel": 1
     },
     {
       "id": "EAEP|EA/EP|1|Presente Para o Guarda",
@@ -2654,7 +2780,8 @@
           "markerX": 321,
           "markerY": 419
         }
-      ]
+      ],
+      "expectedLevel": 1
     },
     {
       "id": "EAEP|EA/EP|1|O Renascer dos Alados",
@@ -2714,7 +2841,8 @@
           "markerX": 328,
           "markerY": 428
         }
-      ]
+      ],
+      "expectedLevel": 1
     },
     {
       "id": "EAEP|EA/EP|3|Aldeões Feridos",
@@ -2762,7 +2890,8 @@
           "markerX": 372,
           "markerY": 427
         }
-      ]
+      ],
+      "expectedLevel": 3
     },
     {
       "id": "EAEP|EA/EP|4|Primeiro Voo",
@@ -2798,7 +2927,8 @@
           "markerX": 328,
           "markerY": 428
         }
-      ]
+      ],
+      "expectedLevel": 4
     },
     {
       "id": "EAEP|EA/EP|4|O Cacto Espinhoso",
@@ -2834,7 +2964,8 @@
           "markerX": 325,
           "markerY": 424
         }
-      ]
+      ],
+      "expectedLevel": 4
     },
     {
       "id": "EAEP|EA/EP|4|Livro de Fundição – O Livro Perdido",
@@ -2882,12 +3013,42 @@
           "markerX": 337,
           "markerY": 406
         }
+      ],
+      "expectedLevel": 4
+    },
+    {
+      "id": "EAEP|EA/EP|5|Aprenda sobre Habilidades de Forja",
+      "routeKey": "EAEP",
+      "order": 8,
+      "classScope": "EA/EP",
+      "minLevel": 5,
+      "expectedLevel": 5,
+      "maxLevel": "Sem limite",
+      "name": "Aprenda sobre Habilidades de Forja",
+      "npc": "Anciã (328, 428)",
+      "location": "Cidade das Plumas (328, 428)",
+      "baseXp": 50,
+      "xp3": 150,
+      "priority": "Importante",
+      "benefit": "Explica a fabricação sem desviar para as missões específicas de ofício",
+      "instruction": "Ao aparecer o pop-up do nível 5, fale com o Ancião. Ignore as missões específicas de Ferreiro, Alfaiate, Artesão e Boticário.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Ao chegar ao nível 5, aceite a missão exibida automaticamente no pop-up"
+        },
+        {
+          "id": "e2",
+          "action": "Fale com Anciã (328, 428)",
+          "markerX": 328,
+          "markerY": 428
+        }
       ]
     },
     {
       "id": "EAEP|EA/EP|5|Confiança dos Guardas",
       "routeKey": "EAEP",
-      "order": 8,
+      "order": 9,
       "classScope": "EA/EP",
       "minLevel": 5,
       "maxLevel": "Sem limite",
@@ -2918,12 +3079,13 @@
           "markerX": 321,
           "markerY": 419
         }
-      ]
+      ],
+      "expectedLevel": 5
     },
     {
       "id": "EAEP|EA/EP|6|Bambu dos Selvagens",
       "routeKey": "EAEP",
-      "order": 9,
+      "order": 10,
       "classScope": "EA/EP",
       "minLevel": 6,
       "maxLevel": "Sem limite",
@@ -2954,12 +3116,13 @@
           "markerX": 369,
           "markerY": 351
         }
-      ]
+      ],
+      "expectedLevel": 6
     },
     {
       "id": "EAEP|EA/EP|6|Vila do Bambu",
       "routeKey": "EAEP",
-      "order": 10,
+      "order": 11,
       "classScope": "EA/EP",
       "minLevel": 6,
       "maxLevel": "Automática",
@@ -2984,12 +3147,13 @@
           "markerX": 369,
           "markerY": 351
         }
-      ]
+      ],
+      "expectedLevel": 6
     },
     {
       "id": "EAEP|EA/EP|7|Mãe e Coração de Ouro",
       "routeKey": "EAEP",
-      "order": 11,
+      "order": 12,
       "classScope": "EA/EP",
       "minLevel": 7,
       "maxLevel": "Sem limite",
@@ -3020,12 +3184,13 @@
           "markerX": 372,
           "markerY": 351
         }
-      ]
+      ],
+      "expectedLevel": 7
     },
     {
       "id": "EAEP|EA/EP|8|Estar em Perigo",
       "routeKey": "EAEP",
-      "order": 12,
+      "order": 13,
       "classScope": "EA/EP",
       "minLevel": 8,
       "maxLevel": "Sem limite",
@@ -3056,12 +3221,13 @@
           "markerX": 341,
           "markerY": 413
         }
-      ]
+      ],
+      "expectedLevel": 8
     },
     {
       "id": "EAEP|EA/EP|8|As Fadas das Águas",
       "routeKey": "EAEP",
-      "order": 13,
+      "order": 14,
       "classScope": "EA/EP",
       "minLevel": 8,
       "maxLevel": "Sem limite",
@@ -3092,12 +3258,13 @@
           "markerX": 371,
           "markerY": 350
         }
-      ]
+      ],
+      "expectedLevel": 8
     },
     {
       "id": "EAEP|EA/EP|8|O Desastre dos Espíritos das Águas",
       "routeKey": "EAEP",
-      "order": 14,
+      "order": 15,
       "classScope": "EA/EP",
       "minLevel": 8,
       "maxLevel": "Sem limite",
@@ -3128,12 +3295,13 @@
           "markerX": 369,
           "markerY": 351
         }
-      ]
+      ],
+      "expectedLevel": 8
     },
     {
       "id": "EAEP|EA/EP|8|Bênção de Aniversário",
       "routeKey": "EAEP",
-      "order": 15,
+      "order": 16,
       "classScope": "EA/EP",
       "minLevel": 8,
       "maxLevel": "Sem limite",
@@ -3164,12 +3332,13 @@
           "markerX": 372,
           "markerY": 351
         }
-      ]
+      ],
+      "expectedLevel": 8
     },
     {
       "id": "EAEP|EA/EP|9|Força da Floresta",
       "routeKey": "EAEP",
-      "order": 16,
+      "order": 17,
       "classScope": "EA/EP",
       "minLevel": 9,
       "maxLevel": "Sem limite",
@@ -3200,12 +3369,13 @@
           "markerX": 372,
           "markerY": 351
         }
-      ]
+      ],
+      "expectedLevel": 9
     },
     {
       "id": "EAEP|EA/EP|9|Cultivo – Orientação de Cultivo",
       "routeKey": "EAEP",
-      "order": 17,
+      "order": 18,
       "classScope": "EA/EP",
       "minLevel": 9,
       "maxLevel": "Automática",
@@ -3230,12 +3400,13 @@
           "markerX": 322,
           "markerY": 421
         }
-      ]
+      ],
+      "expectedLevel": 9
     },
     {
       "id": "EAEP|EA/EP|9|O Surgimento de Lingxu",
       "routeKey": "EAEP",
-      "order": 18,
+      "order": 19,
       "classScope": "EA/EP",
       "minLevel": 9,
       "maxLevel": "Sem limite",
@@ -3272,12 +3443,13 @@
           "markerX": 319,
           "markerY": 330
         }
-      ]
+      ],
+      "expectedLevel": 9
     },
     {
       "id": "EAEP|EA/EP|10|Emblema da Coragem",
       "routeKey": "EAEP",
-      "order": 19,
+      "order": 20,
       "classScope": "EA/EP",
       "minLevel": 10,
       "maxLevel": "Sem limite",
@@ -3314,12 +3486,13 @@
           "markerX": 303,
           "markerY": 343
         }
-      ]
+      ],
+      "expectedLevel": 10
     },
     {
       "id": "EAEP|EA/EP|10|Flor Sangrenta",
       "routeKey": "EAEP",
-      "order": 20,
+      "order": 21,
       "classScope": "EA/EP",
       "minLevel": 10,
       "maxLevel": "Sem limite",
@@ -3350,12 +3523,13 @@
           "markerX": 326,
           "markerY": 425
         }
-      ]
+      ],
+      "expectedLevel": 10
     },
     {
       "id": "EAEP|EA/EP|11|Vila Nanke",
       "routeKey": "EAEP",
-      "order": 21,
+      "order": 22,
       "classScope": "EA/EP",
       "minLevel": 11,
       "maxLevel": "Automática",
@@ -3380,12 +3554,13 @@
           "markerX": 209,
           "markerY": 308
         }
-      ]
+      ],
+      "expectedLevel": 11
     },
     {
       "id": "EAEP|EA/EP|12|Troca de Técnicas",
       "routeKey": "EAEP",
-      "order": 22,
+      "order": 23,
       "classScope": "EA/EP",
       "minLevel": 12,
       "maxLevel": "Sem limite",
@@ -3422,12 +3597,13 @@
           "markerX": 337,
           "markerY": 406
         }
-      ]
+      ],
+      "expectedLevel": 12
     },
     {
       "id": "EAEP|EA/EP|13|O Sonho de Nanke",
       "routeKey": "EAEP",
-      "order": 23,
+      "order": 24,
       "classScope": "EA/EP",
       "minLevel": 13,
       "maxLevel": "Sem limite",
@@ -3458,12 +3634,13 @@
           "markerX": 210,
           "markerY": 326
         }
-      ]
+      ],
+      "expectedLevel": 13
     },
     {
       "id": "EAEP|EA/EP|14|A Linha de Defesa",
       "routeKey": "EAEP",
-      "order": 24,
+      "order": 25,
       "classScope": "EA/EP",
       "minLevel": 14,
       "maxLevel": "Sem limite",
@@ -3518,12 +3695,13 @@
           "markerX": 327,
           "markerY": 427
         }
-      ]
+      ],
+      "expectedLevel": 14
     },
     {
       "id": "EAEP|EA/EP|15|Veneno de Água Corrente",
       "routeKey": "EAEP",
-      "order": 25,
+      "order": 26,
       "classScope": "EA/EP",
       "minLevel": 15,
       "maxLevel": "Sem limite",
@@ -3554,12 +3732,13 @@
           "markerX": 204,
           "markerY": 324
         }
-      ]
+      ],
+      "expectedLevel": 15
     },
     {
       "id": "EAEP|EA/EP|16|Amostra da Cobra Venenosa",
       "routeKey": "EAEP",
-      "order": 26,
+      "order": 27,
       "classScope": "EA/EP",
       "minLevel": 16,
       "maxLevel": "Sem limite",
@@ -3590,12 +3769,13 @@
           "markerX": 210,
           "markerY": 326
         }
-      ]
+      ],
+      "expectedLevel": 16
     },
     {
       "id": "EAEP|EA/EP|17|Força na Perna",
       "routeKey": "EAEP",
-      "order": 27,
+      "order": 28,
       "classScope": "EA/EP",
       "minLevel": 17,
       "maxLevel": "Sem limite",
@@ -3626,12 +3806,13 @@
           "markerX": 223,
           "markerY": 413
         }
-      ]
+      ],
+      "expectedLevel": 17
     },
     {
       "id": "EAEP|EA/EP|18|Morte Impiedosa",
       "routeKey": "EAEP",
-      "order": 28,
+      "order": 29,
       "classScope": "EA/EP",
       "minLevel": 18,
       "maxLevel": "Sem limite",
@@ -3674,12 +3855,13 @@
           "markerX": 397,
           "markerY": 313
         }
-      ]
+      ],
+      "expectedLevel": 18
     },
     {
       "id": "EAEP|EA/EP|19|Orientação de Cultivo – Aumentar Cultivo",
       "routeKey": "EAEP",
-      "order": 29,
+      "order": 30,
       "classScope": "EA/EP",
       "minLevel": 19,
       "maxLevel": "Automática",
@@ -3704,12 +3886,13 @@
           "markerX": 322,
           "markerY": 421
         }
-      ]
+      ],
+      "expectedLevel": 19
     },
     {
       "id": "EAEP|EA/EP|19|A União Harmoniosa",
       "routeKey": "EAEP",
-      "order": 30,
+      "order": 31,
       "classScope": "EA/EP",
       "minLevel": 19,
       "maxLevel": "Sem limite",
@@ -3746,12 +3929,13 @@
           "markerX": 322,
           "markerY": 421
         }
-      ]
+      ],
+      "expectedLevel": 19
     },
     {
       "id": "EAEP|EA/EP|19|Moeda Sangrenta de Ferro",
       "routeKey": "EAEP",
-      "order": 31,
+      "order": 32,
       "classScope": "EA/EP",
       "minLevel": 19,
       "maxLevel": "30",
@@ -3770,12 +3954,13 @@
           "markerX": 327,
           "markerY": 427
         }
-      ]
+      ],
+      "expectedLevel": 19
     },
     {
       "id": "EAEP|EA/EP|19|Missão Desafio – Exibição de Talento",
       "routeKey": "EAEP",
-      "order": 32,
+      "order": 33,
       "classScope": "EA/EP",
       "minLevel": 19,
       "maxLevel": "Sem limite",
@@ -3808,12 +3993,13 @@
           "markerX": 327,
           "markerY": 427
         }
-      ]
+      ],
+      "expectedLevel": 19
     },
     {
       "id": "EAEP|EA/EP|19|Teste de Capacidade",
       "routeKey": "EAEP",
-      "order": 33,
+      "order": 34,
       "classScope": "EA/EP",
       "minLevel": 19,
       "maxLevel": "Sem limite",
@@ -3868,12 +4054,13 @@
           "markerX": 325,
           "markerY": 424
         }
-      ]
+      ],
+      "expectedLevel": 19
     },
     {
       "id": "EAEP|EA/EP|19|As Contramedidas",
       "routeKey": "EAEP",
-      "order": 34,
+      "order": 35,
       "classScope": "EA/EP",
       "minLevel": 19,
       "maxLevel": "Sem limite",
@@ -3910,7 +4097,8 @@
           "markerX": 327,
           "markerY": 427
         }
-      ]
+      ],
+      "expectedLevel": 19
     },
     {
       "id": "MC|MC|1|Primeira Missão",
@@ -3942,7 +4130,8 @@
           "id": "e3",
           "action": "Retorne a Guia dos novatos"
         }
-      ]
+      ],
+      "expectedLevel": 1
     },
     {
       "id": "MC|MC|2|Cidade das Tormentas",
@@ -4020,7 +4209,8 @@
           "markerX": 658,
           "markerY": 203
         }
-      ]
+      ],
+      "expectedLevel": 2
     },
     {
       "id": "MC|MC|2|Problema de Crustáceo",
@@ -4056,7 +4246,8 @@
           "markerX": 658,
           "markerY": 203
         }
-      ]
+      ],
+      "expectedLevel": 2
     },
     {
       "id": "MC|MC|3|Item de Crédito",
@@ -4092,7 +4283,8 @@
           "markerX": 658,
           "markerY": 203
         }
-      ]
+      ],
+      "expectedLevel": 3
     },
     {
       "id": "MC|MC|4|Campo da Fonte Negra",
@@ -4130,7 +4322,8 @@
           "id": "e4",
           "action": "Fala com ele novamente"
         }
-      ]
+      ],
+      "expectedLevel": 4
     },
     {
       "id": "MC|MC|4|Pular em Telhado",
@@ -4166,7 +4359,8 @@
           "markerX": 629,
           "markerY": 242
         }
-      ]
+      ],
+      "expectedLevel": 4
     },
     {
       "id": "MC|MC|4|Ameaça Marinha",
@@ -4202,12 +4396,42 @@
           "markerX": 629,
           "markerY": 242
         }
+      ],
+      "expectedLevel": 4
+    },
+    {
+      "id": "MC|MC|5|Aprenda sobre Habilidades de Forja",
+      "routeKey": "MC",
+      "order": 8,
+      "classScope": "MC",
+      "minLevel": 5,
+      "expectedLevel": 5,
+      "maxLevel": "Sem limite",
+      "name": "Aprenda sobre Habilidades de Forja",
+      "npc": "Ancião (657, 143)",
+      "location": "Cidade das Tormentas (657, 143)",
+      "baseXp": 50,
+      "xp3": 150,
+      "priority": "Importante",
+      "benefit": "Explica a fabricação sem desviar para as missões específicas de ofício",
+      "instruction": "Ao aparecer o pop-up do nível 5, fale com o Ancião. Ignore as missões específicas de Ferreiro, Alfaiate, Artesão e Boticário.",
+      "steps": [
+        {
+          "id": "e1",
+          "action": "Ao chegar ao nível 5, aceite a missão exibida automaticamente no pop-up"
+        },
+        {
+          "id": "e2",
+          "action": "Fale com Ancião (657, 143)",
+          "markerX": 657,
+          "markerY": 143
+        }
       ]
     },
     {
       "id": "MC|MC|6|Ouvir Ensinamento",
       "routeKey": "MC",
-      "order": 8,
+      "order": 9,
       "classScope": "MC",
       "minLevel": 6,
       "maxLevel": "Sem limite",
@@ -4240,12 +4464,13 @@
           "markerX": 629,
           "markerY": 241
         }
-      ]
+      ],
+      "expectedLevel": 6
     },
     {
       "id": "MC|MC|7|Pérola de Lágrimas",
       "routeKey": "MC",
-      "order": 9,
+      "order": 10,
       "classScope": "MC",
       "minLevel": 7,
       "maxLevel": "Sem limite",
@@ -4308,12 +4533,13 @@
           "markerX": 630,
           "markerY": 243
         }
-      ]
+      ],
+      "expectedLevel": 7
     },
     {
       "id": "MC|MC|8|Paz de Noite",
       "routeKey": "MC",
-      "order": 10,
+      "order": 11,
       "classScope": "MC",
       "minLevel": 8,
       "maxLevel": "Sem limite",
@@ -4344,12 +4570,13 @@
           "markerX": 645,
           "markerY": 264
         }
-      ]
+      ],
+      "expectedLevel": 8
     },
     {
       "id": "MC|MC|9|Cultivo",
       "routeKey": "MC",
-      "order": 11,
+      "order": 12,
       "classScope": "MC",
       "minLevel": 9,
       "maxLevel": "Automática",
@@ -4368,12 +4595,13 @@
           "markerX": 657,
           "markerY": 130
         }
-      ]
+      ],
+      "expectedLevel": 9
     },
     {
       "id": "MC|MC|9|O Surgimento de Lingxu",
       "routeKey": "MC",
-      "order": 12,
+      "order": 13,
       "classScope": "MC",
       "minLevel": 9,
       "maxLevel": "Sem limite",
@@ -4410,12 +4638,13 @@
           "markerX": 643,
           "markerY": 278
         }
-      ]
+      ],
+      "expectedLevel": 9
     },
     {
       "id": "MC|MC|10|Limpar Monstros",
       "routeKey": "MC",
-      "order": 13,
+      "order": 14,
       "classScope": "MC",
       "minLevel": 10,
       "maxLevel": "Sem limite",
@@ -4452,12 +4681,13 @@
           "markerX": 687,
           "markerY": 255
         }
-      ]
+      ],
+      "expectedLevel": 10
     },
     {
       "id": "MC|MC|10|Espinho Venenoso",
       "routeKey": "MC",
-      "order": 14,
+      "order": 15,
       "classScope": "MC",
       "minLevel": 10,
       "maxLevel": "Sem limite",
@@ -4488,12 +4718,13 @@
           "markerX": 687,
           "markerY": 255
         }
-      ]
+      ],
+      "expectedLevel": 10
     },
     {
       "id": "MC|MC|11|Veneno Contra Veneno",
       "routeKey": "MC",
-      "order": 15,
+      "order": 16,
       "classScope": "MC",
       "minLevel": 11,
       "maxLevel": "Sem limite",
@@ -4534,12 +4765,13 @@
           "markerX": 686,
           "markerY": 256
         }
-      ]
+      ],
+      "expectedLevel": 11
     },
     {
       "id": "MC|MC|12|Vingança do Oficial",
       "routeKey": "MC",
-      "order": 16,
+      "order": 17,
       "classScope": "MC",
       "minLevel": 12,
       "maxLevel": "Sem limite",
@@ -4570,12 +4802,13 @@
           "markerX": 686,
           "markerY": 255
         }
-      ]
+      ],
+      "expectedLevel": 12
     },
     {
       "id": "MC|MC|12|Perfect World",
       "routeKey": "MC",
-      "order": 17,
+      "order": 18,
       "classScope": "MC",
       "minLevel": 12,
       "maxLevel": "Sem limite",
@@ -4594,12 +4827,13 @@
           "markerX": 657,
           "markerY": 143
         }
-      ]
+      ],
+      "expectedLevel": 12
     },
     {
       "id": "MC|MC|12|O Tesouro I",
       "routeKey": "MC",
-      "order": 18,
+      "order": 19,
       "classScope": "MC",
       "minLevel": 12,
       "maxLevel": "Sem limite",
@@ -4630,12 +4864,13 @@
           "markerX": 618,
           "markerY": 243
         }
-      ]
+      ],
+      "expectedLevel": 12
     },
     {
       "id": "MC|MC|13|Uma Pedra Estranha",
       "routeKey": "MC",
-      "order": 19,
+      "order": 20,
       "classScope": "MC",
       "minLevel": 13,
       "maxLevel": "Sem limite",
@@ -4678,12 +4913,13 @@
           "markerX": 686,
           "markerY": 256
         }
-      ]
+      ],
+      "expectedLevel": 13
     },
     {
       "id": "MC|MC|13|Notícia Ruim",
       "routeKey": "MC",
-      "order": 20,
+      "order": 21,
       "classScope": "MC",
       "minLevel": 13,
       "maxLevel": "Sem limite",
@@ -4714,12 +4950,13 @@
           "markerX": 687,
           "markerY": 255
         }
-      ]
+      ],
+      "expectedLevel": 13
     },
     {
       "id": "MC|MC|13|Minério Perdido",
       "routeKey": "MC",
-      "order": 21,
+      "order": 22,
       "classScope": "MC",
       "minLevel": 13,
       "maxLevel": "Sem limite",
@@ -4750,12 +4987,13 @@
           "markerX": 687,
           "markerY": 255
         }
-      ]
+      ],
+      "expectedLevel": 13
     },
     {
       "id": "MC|MC|14|Pedido do Guarda",
       "routeKey": "MC",
-      "order": 22,
+      "order": 23,
       "classScope": "MC",
       "minLevel": 14,
       "maxLevel": "Sem limite",
@@ -4786,12 +5024,13 @@
           "markerX": 686,
           "markerY": 255
         }
-      ]
+      ],
+      "expectedLevel": 14
     },
     {
       "id": "MC|MC|15|Alma do Espantalho",
       "routeKey": "MC",
-      "order": 23,
+      "order": 24,
       "classScope": "MC",
       "minLevel": 15,
       "maxLevel": "Sem limite",
@@ -4822,12 +5061,13 @@
           "markerX": 657,
           "markerY": 143
         }
-      ]
+      ],
+      "expectedLevel": 15
     },
     {
       "id": "MC|MC|16|Nunca Mais Voltar",
       "routeKey": "MC",
-      "order": 24,
+      "order": 25,
       "classScope": "MC",
       "minLevel": 16,
       "maxLevel": "Sem limite",
@@ -4874,12 +5114,13 @@
           "markerX": 664,
           "markerY": 133
         }
-      ]
+      ],
+      "expectedLevel": 16
     },
     {
       "id": "MC|MC|16|Traição",
       "routeKey": "MC",
-      "order": 25,
+      "order": 26,
       "classScope": "MC",
       "minLevel": 16,
       "maxLevel": "Sem limite",
@@ -4914,12 +5155,13 @@
           "markerX": 657,
           "markerY": 143
         }
-      ]
+      ],
+      "expectedLevel": 16
     },
     {
       "id": "MC|MC|16|Planos do Inimigo",
       "routeKey": "MC",
-      "order": 26,
+      "order": 27,
       "classScope": "MC",
       "minLevel": 16,
       "maxLevel": "Sem limite",
@@ -4950,12 +5192,13 @@
           "markerX": 662,
           "markerY": 133
         }
-      ]
+      ],
+      "expectedLevel": 16
     },
     {
       "id": "MC|MC|17|Chave – Monstro do Mar",
       "routeKey": "MC",
-      "order": 27,
+      "order": 28,
       "classScope": "MC",
       "minLevel": 17,
       "maxLevel": "Sem limite",
@@ -4986,12 +5229,13 @@
           "markerX": 662,
           "markerY": 133
         }
-      ]
+      ],
+      "expectedLevel": 17
     },
     {
       "id": "MC|MC|18|Família Heirloom",
       "routeKey": "MC",
-      "order": 28,
+      "order": 29,
       "classScope": "MC",
       "minLevel": 18,
       "maxLevel": "Sem limite",
@@ -5022,12 +5266,13 @@
           "markerX": 671,
           "markerY": 116
         }
-      ]
+      ],
+      "expectedLevel": 18
     },
     {
       "id": "MC|MC|18|Resgate Soldado",
       "routeKey": "MC",
-      "order": 29,
+      "order": 30,
       "classScope": "MC",
       "minLevel": 18,
       "maxLevel": "Sem limite",
@@ -5070,12 +5315,13 @@
           "markerX": 670,
           "markerY": 175
         }
-      ]
+      ],
+      "expectedLevel": 18
     },
     {
       "id": "MC|MC|19|Cultivo Espiritual",
       "routeKey": "MC",
-      "order": 30,
+      "order": 31,
       "classScope": "MC",
       "minLevel": 19,
       "maxLevel": "Automática",
@@ -5094,12 +5340,13 @@
           "markerX": 657,
           "markerY": 130
         }
-      ]
+      ],
+      "expectedLevel": 19
     },
     {
       "id": "MC|MC|19|A União Harmoniosa",
       "routeKey": "MC",
-      "order": 31,
+      "order": 32,
       "classScope": "MC",
       "minLevel": 19,
       "maxLevel": "Sem limite",
@@ -5136,12 +5383,13 @@
           "markerX": 657,
           "markerY": 130
         }
-      ]
+      ],
+      "expectedLevel": 19
     },
     {
       "id": "MC|MC|19|Matar o Monstro do Mar – DG19",
       "routeKey": "MC",
-      "order": 32,
+      "order": 33,
       "classScope": "MC",
       "minLevel": 19,
       "maxLevel": "Sem limite",
@@ -5174,12 +5422,13 @@
           "markerX": 664,
           "markerY": 133
         }
-      ]
+      ],
+      "expectedLevel": 19
     },
     {
       "id": "MC|MC|19|Bandeira da Expedição",
       "routeKey": "MC",
-      "order": 33,
+      "order": 34,
       "classScope": "MC",
       "minLevel": 19,
       "maxLevel": "Sem limite",
@@ -5210,7 +5459,8 @@
           "markerX": 659,
           "markerY": 135
         }
-      ]
+      ],
+      "expectedLevel": 19
     }
   ]
 }

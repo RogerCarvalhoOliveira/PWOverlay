@@ -1,5 +1,16 @@
 # Histórico de alterações
 
+## 0.3.0 - Navegação, calibração e nível previsto
+
+- Adicionada a missão automática do nível 5 para falar com o Ancião sobre forja, mantendo fora as missões específicas dos quatro ofícios.
+- Adicionado **Nível previsto** às 138 missões, à planilha, ao editor e ao overlay; nenhum nível real é armazenado.
+- Total atualizado para 493 etapas.
+- Adicionados seletor de missão/etapa e indicador colorido do tipo de ação.
+- Adicionados atalho `Ctrl + Alt + M` com alternativa automática, calibração visual e modo de apagar todos ou substituir somente `PWOverlay`.
+- O botão **Marcar** agora remove o `PWOverlay` anterior e cria o novo na mesma ação, sem exigir dois cliques e sem apagar os demais marcadores por padrão.
+- Adicionado editor visual que sincroniza JSON e Excel com backup `.bak`.
+- Adicionadas exportação e restauração de backup dos perfis.
+
 ## 0.2.0 - Etapas e marcadores
 
 - Adicionadas 485 etapas às 134 missões das seis classes.

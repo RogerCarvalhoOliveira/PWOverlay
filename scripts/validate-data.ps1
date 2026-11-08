@@ -7,7 +7,7 @@ $routePath = Join-Path $projectRoot 'data\quest_routes.json'
 $payload = Get-Content -LiteralPath $routePath -Raw | ConvertFrom-Json
 $missions = @($payload.missions)
 $errors = New-Object System.Collections.Generic.List[string]
-$requiredFields = @('id', 'routeKey', 'order', 'classScope', 'minLevel', 'name', 'npc', 'location')
+$requiredFields = @('id', 'routeKey', 'order', 'classScope', 'minLevel', 'expectedLevel', 'name', 'npc', 'location')
 
 foreach ($mission in $missions) {
     foreach ($field in $requiredFields) {

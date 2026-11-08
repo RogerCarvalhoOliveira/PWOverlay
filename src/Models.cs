@@ -21,6 +21,7 @@ namespace PWQuestOverlay
         public int order { get; set; }
         public string classScope { get; set; }
         public int minLevel { get; set; }
+        public int expectedLevel { get; set; }
         public string maxLevel { get; set; }
         public string name { get; set; }
         public string npc { get; set; }
@@ -46,6 +47,7 @@ namespace PWQuestOverlay
         public string CharacterName { get; set; }
         public string ClassCode { get; set; }
         public bool ManualClass { get; set; }
+        public bool HasOverlayMarker { get; set; }
         public Dictionary<string, string> MissionStates { get; set; }
 
         public CharacterProgress()
@@ -60,6 +62,47 @@ namespace PWQuestOverlay
         public int Y { get; set; }
     }
 
+    public sealed class MarkerPoint
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+
+        public MarkerPoint() { }
+        public MarkerPoint(int x, int y) { X = x; Y = y; }
+    }
+
+    public sealed class MarkerSettings
+    {
+        public string DeleteMode { get; set; }
+        public bool Calibrated { get; set; }
+        public MarkerPoint TrackerButton { get; set; }
+        public MarkerPoint DeleteAll { get; set; }
+        public MarkerPoint DeleteSelected { get; set; }
+        public MarkerPoint MarkerList { get; set; }
+        public MarkerPoint CoordinateInput { get; set; }
+        public MarkerPoint TrackCoordinates { get; set; }
+        public MarkerPoint NameInput { get; set; }
+        public MarkerPoint NameOk { get; set; }
+        public MarkerPoint PanelClose { get; set; }
+
+        public static MarkerSettings CreateDefault()
+        {
+            return new MarkerSettings
+            {
+                DeleteMode = "selected",
+                TrackerButton = new MarkerPoint(1760, 158),
+                DeleteAll = new MarkerPoint(291, 382),
+                DeleteSelected = new MarkerPoint(260, 382),
+                MarkerList = new MarkerPoint(80, 200),
+                CoordinateInput = new MarkerPoint(218, 41),
+                TrackCoordinates = new MarkerPoint(291, 41),
+                NameInput = new MarkerPoint(953, 536),
+                NameOk = new MarkerPoint(970, 560),
+                PanelClose = new MarkerPoint(294, 16)
+            };
+        }
+    }
+
     public sealed class AppState
     {
         public int SchemaVersion { get; set; }
@@ -69,25 +112,31 @@ namespace PWQuestOverlay
         public Dictionary<string, CharacterProgress> Characters { get; set; }
         public Dictionary<string, SavedPosition> Positions { get; set; }
         public Dictionary<string, string> ClassAssociations { get; set; }
+        public MarkerSettings Marker { get; set; }
 
         public AppState()
         {
-            SchemaVersion = 1;
+            SchemaVersion = 2;
             Opacity = 0.92;
             Characters = new Dictionary<string, CharacterProgress>(StringComparer.OrdinalIgnoreCase);
             Positions = new Dictionary<string, SavedPosition>(StringComparer.OrdinalIgnoreCase);
             ClassAssociations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            Marker = MarkerSettings.CreateDefault();
         }
     }
 
     public sealed class RouteRepository
     {
         private readonly List<QuestMission> _missions;
+        private readonly RoutePayload _payload;
 
-        private RouteRepository(List<QuestMission> missions)
+        private RouteRepository(RoutePayload payload)
         {
-            _missions = missions ?? new List<QuestMission>();
+            _payload = payload;
+            _missions = payload.missions ?? new List<QuestMission>();
         }
+
+        public List<QuestMission> AllMissions { get { return _missions; } }
 
         public static RouteRepository Load(string path)
         {
@@ -100,6 +149,7 @@ namespace PWQuestOverlay
                 throw new InvalidDataException("O arquivo de rotas está vazio ou inválido.");
             foreach (QuestMission mission in payload.missions)
             {
+                if (mission.expectedLevel <= 0) mission.expectedLevel = mission.minLevel;
                 if (mission.steps == null || mission.steps.Count == 0)
                 {
                     mission.steps = new List<QuestStep>
@@ -114,7 +164,17 @@ namespace PWQuestOverlay
                     if (string.IsNullOrWhiteSpace(step.action)) step.action = mission.instruction;
                 }
             }
-            return new RouteRepository(payload.missions);
+            return new RouteRepository(payload);
+        }
+
+        public void Save(string path)
+        {
+            _payload.schemaVersion = Math.Max(2, _payload.schemaVersion);
+            var serializer = new JavaScriptSerializer { MaxJsonLength = int.MaxValue };
+            string temporary = path + ".tmp";
+            File.WriteAllText(temporary, serializer.Serialize(_payload), new UTF8Encoding(false));
+            File.Copy(temporary, path, true);
+            File.Delete(temporary);
         }
 
         public List<QuestMission> GetForClass(string classCode)
@@ -181,11 +241,19 @@ namespace PWQuestOverlay
                     state.Positions = new Dictionary<string, SavedPosition>(StringComparer.OrdinalIgnoreCase);
                 if (state.ClassAssociations == null)
                     state.ClassAssociations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                if (state.Marker == null) state.Marker = MarkerSettings.CreateDefault();
+                if (state.SchemaVersion < 2)
+                {
+                    state.Marker.DeleteMode = "selected";
+                    state.SchemaVersion = 2;
+                }
+                NormalizeMarkerSettings(state.Marker);
                 foreach (CharacterProgress progress in state.Characters.Values)
                 {
                     if (progress.MissionStates == null)
                         progress.MissionStates = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
                 }
+                RestoreLegacyMarkerFlags(state);
                 if (state.Opacity < 0.65 || state.Opacity > 1.0) state.Opacity = 0.92;
                 return state;
             }
@@ -193,6 +261,59 @@ namespace PWQuestOverlay
             {
                 Log("Falha ao carregar estado: " + error.Message);
                 return new AppState();
+            }
+        }
+
+        public AppState LoadFrom(string path)
+        {
+            AppState state = _serializer.Deserialize<AppState>(File.ReadAllText(path, Encoding.UTF8));
+            if (state == null) throw new InvalidDataException("Backup de progresso inválido.");
+            if (state.Characters == null) state.Characters = new Dictionary<string, CharacterProgress>();
+            if (state.Positions == null) state.Positions = new Dictionary<string, SavedPosition>();
+            if (state.ClassAssociations == null) state.ClassAssociations = new Dictionary<string, string>();
+            if (state.Marker == null) state.Marker = MarkerSettings.CreateDefault();
+            if (state.SchemaVersion < 2)
+            {
+                state.Marker.DeleteMode = "selected";
+                state.SchemaVersion = 2;
+            }
+            NormalizeMarkerSettings(state.Marker);
+            foreach (CharacterProgress progress in state.Characters.Values)
+                if (progress.MissionStates == null) progress.MissionStates = new Dictionary<string, string>();
+            return state;
+        }
+
+        public void Export(AppState state, string path)
+        {
+            File.WriteAllText(path, _serializer.Serialize(state), new UTF8Encoding(false));
+        }
+
+        private static void NormalizeMarkerSettings(MarkerSettings marker)
+        {
+            MarkerSettings defaults = MarkerSettings.CreateDefault();
+            if (string.IsNullOrWhiteSpace(marker.DeleteMode)) marker.DeleteMode = defaults.DeleteMode;
+            if (marker.TrackerButton == null) marker.TrackerButton = defaults.TrackerButton;
+            if (marker.DeleteAll == null) marker.DeleteAll = defaults.DeleteAll;
+            if (marker.DeleteSelected == null) marker.DeleteSelected = defaults.DeleteSelected;
+            if (marker.MarkerList == null) marker.MarkerList = defaults.MarkerList;
+            if (marker.CoordinateInput == null) marker.CoordinateInput = defaults.CoordinateInput;
+            if (marker.TrackCoordinates == null) marker.TrackCoordinates = defaults.TrackCoordinates;
+            if (marker.NameInput == null) marker.NameInput = defaults.NameInput;
+            if (marker.NameOk == null) marker.NameOk = defaults.NameOk;
+            if (marker.PanelClose == null) marker.PanelClose = defaults.PanelClose;
+        }
+
+        private void RestoreLegacyMarkerFlags(AppState state)
+        {
+            if (!File.Exists(_logPath)) return;
+            string log = File.ReadAllText(_logPath, Encoding.UTF8);
+            foreach (CharacterProgress progress in state.Characters.Values)
+            {
+                if (!progress.HasOverlayMarker && !string.IsNullOrWhiteSpace(progress.CharacterName) &&
+                    log.IndexOf(" " + progress.CharacterName + " marcou ", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    progress.HasOverlayMarker = true;
+                }
             }
         }
 

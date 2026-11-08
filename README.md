@@ -10,9 +10,16 @@ O programa identifica cada cliente pelo título criado pelo PW Helper, por exemp
 - Detecção automática do padrão `Personagem[CLASSE]`.
 - Tela **Perfis** para associar manualmente qualquer título ou nome a uma classe.
 - Suporte a personagens com o mesmo nome em classes diferentes.
-- 485 etapas revisadas nas 134 missões; cadeias longas avançam conversa por conversa, coleta por coleta e retorno por retorno.
+- 493 etapas revisadas nas 138 missões; cadeias longas avançam conversa por conversa, coleta por coleta e retorno por retorno.
+- Missão pop-up do nível 5 para falar com o Ancião sobre forja, sem incluir as missões específicas de ofício.
+- Nível previsto da rota exibido em cada missão, sem exigir o nível real do personagem.
 - Botões para concluir, voltar e pular uma etapa.
-- Botão **Marcar**: apaga os marcadores anteriores do cliente ativo e cria somente `PWOverlay` na coordenada da etapa atual.
+- Tipo da etapa destacado: pegar, falar, matar, coletar, entregar, ir, esperar ou ação.
+- Botão **Etapas** para saltar deliberadamente para uma missão/etapa da rota.
+- Botão **Marcar** e atalho `Ctrl + Alt + M` (ou `Ctrl + Shift + M` se houver conflito). Uma única ação substitui somente o `PWOverlay` anterior; o modo de apagar todos continua opcional.
+- Assistente de calibração do marcador para outras escalas de interface e resoluções.
+- Editor visual de rotas e etapas, com sincronização do JSON e da planilha.
+- Exportação e restauração de backup dos perfis e do progresso.
 - Atalhos globais configurados no código.
 - Painel arrastável, bloqueio de posição, transparência e restauração de posição.
 - Posição salva por monitor e resolução.

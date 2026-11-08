@@ -27,6 +27,7 @@ Confirme que `dist` contém os dois executáveis, as rotas, o manual e o ZIP.
 4. Abra o painel do jogo e confirme que há somente `PWOverlay` com a coordenada da etapa atual.
 5. Troque de cliente, clique em **Marcar** e confirme que o marcador foi criado apenas no cliente em foco.
 6. Use uma etapa sem coordenadas e confirme que o botão fica desativado.
+7. Teste o atalho informado no menu (`Ctrl + Alt + M` ou o alternativo), os dois modos de exclusão e o assistente **Calibrar marcador...**.
 
 ## Associação manual
 
@@ -47,6 +48,13 @@ Confirme que `dist` contém os dois executáveis, as rotas, o manual e o ZIP.
 ## Posição e monitores
 
 Desbloqueie, arraste e fixe o painel. Reinicie e confira a posição. Se houver outro monitor, mova o cliente e verifique que a posição é salva separadamente. Teste também **Restaurar posição**.
+
+## Seleção, backup e editor
+
+1. Em **Etapas**, salte para uma etapa intermediária, confirme e teste **Voltar**.
+2. Exporte o backup, avance uma etapa e restaure o arquivo; confirme o retorno do progresso.
+3. Em uma cópia de teste, altere texto e nível previsto no editor de rotas, salve e confirme o JSON, a planilha e os arquivos `.bak`.
+4. Confirme que a missão **Aprenda sobre Habilidades de Forja** aparece primeiro no nível previsto 5 para as seis classes.
 
 ## Compatibilidade de estado
 

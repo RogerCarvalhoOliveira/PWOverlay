@@ -24,9 +24,11 @@ namespace PWQuestOverlay
         internal const int SW_SHOWNOACTIVATE = 4;
         internal const uint MOD_ALT = 0x0001;
         internal const uint MOD_CONTROL = 0x0002;
+        internal const uint MOD_SHIFT = 0x0004;
         internal const int VK_LEFT = 0x25;
         internal const int VK_RIGHT = 0x27;
         internal const int VK_DOWN = 0x28;
+        internal const int VK_M = 0x4D;
         internal const byte VK_END = 0x23;
         internal const byte VK_BACK = 0x08;
         internal const uint KEYEVENTF_KEYUP = 0x0002;
@@ -85,6 +87,12 @@ namespace PWQuestOverlay
 
         [DllImport("user32.dll")]
         internal static extern bool ClientToScreen(IntPtr window, ref POINT point);
+
+        [DllImport("user32.dll")]
+        internal static extern bool ScreenToClient(IntPtr window, ref POINT point);
+
+        [DllImport("user32.dll")]
+        internal static extern short GetAsyncKeyState(int virtualKey);
 
         [DllImport("user32.dll")]
         internal static extern bool SetCursorPos(int x, int y);
@@ -251,6 +259,11 @@ namespace PWQuestOverlay
             SetCursorPos(point.X, point.Y);
             mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, UIntPtr.Zero);
             mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, UIntPtr.Zero);
+        }
+
+        internal static void ClickClientPoint(IntPtr window, MarkerPoint point)
+        {
+            if (point != null) ClickClientPoint(window, point.X, point.Y);
         }
 
         internal static void PressKey(byte virtualKey)

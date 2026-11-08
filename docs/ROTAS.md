@@ -1,6 +1,6 @@
 # Edição das rotas
 
-As rotas ficam em `data/quest_routes.json`. O overlay nunca altera esse arquivo; ele somente lê e ordena as missões.
+As rotas ficam em `data/quest_routes.json`. Normalmente o overlay somente lê e ordena as missões; a ação explícita **Editar rotas...** pode salvar alterações e sincronizar a planilha.
 
 ## Campos de uma missão
 
@@ -11,6 +11,7 @@ As rotas ficam em `data/quest_routes.json`. O overlay nunca altera esse arquivo;
 | `order` | Ordem de exibição dentro da rota. |
 | `classScope` | Classe à qual a missão se aplica. |
 | `minLevel` | Nível mínimo para pegar a missão. |
+| `expectedLevel` | Nível em que a rota prevê fazer a missão. |
 | `maxLevel` | Nível máximo informado pela fonte, ou texto vazio quando não houver limite conhecido. |
 | `name` | Nome exibido no overlay. |
 | `npc` | NPC que inicia a missão. |
@@ -35,7 +36,7 @@ Cada item de `steps` possui:
 3. Corrija os campos necessários.
 4. Não troque o `id` se a missão for a mesma; isso preserva as marcações existentes.
 5. Mantenha os IDs de etapa existentes quando apenas corrigir texto ou coordenadas.
-6. Atualize também `data\rota_leveling_pw_144.xlsx`, coluna **Etapas**, para manter a documentação sincronizada.
+6. Atualize também `data\rota_leveling_pw_144.xlsx`, colunas **Etapas** e **Nível previsto**, para manter a documentação sincronizada. O editor visual faz isso automaticamente quando o Excel está instalado.
 7. Execute `scripts\validate-data.ps1`.
 8. Compile e percorra as etapas anterior, alterada e seguinte no overlay.
 
@@ -43,11 +44,11 @@ Cada item de `steps` possui:
 
 Crie um `id` que não será reutilizado. Use o mesmo `routeKey` e `classScope` das missões vizinhas e escolha um `order` que mantenha a sequência. Se duas classes compartilharem a missão, use o escopo compartilhado já adotado no grupo.
 
-As rotas terminam na chegada à Cidade do Dragão. Missões de liberação de forja ou craft foram deliberadamente excluídas desta versão.
+As rotas terminam na chegada à Cidade do Dragão. A orientação automática do nível 5 para falar com o Ancião foi incluída; as missões específicas de Ferreiro, Alfaiate, Artesão e Boticário permanecem deliberadamente excluídas.
 
 ## Fontes das etapas
 
-As 134 missões foram cruzadas com guias clássicos separados por raça:
+As 138 missões foram cruzadas com guias clássicos separados por raça:
 
 - Humanos: <https://pwbrasilquest.blogspot.com/2012/02/quest-humanos-level-1-19.html>
 - Selvagens: <https://pwbr2010.wordpress.com/quests-2/quests-selvagens-1-ao-19/>

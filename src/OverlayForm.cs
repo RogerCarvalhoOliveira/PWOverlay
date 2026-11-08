@@ -13,15 +13,19 @@ namespace PWQuestOverlay
         private const int HotkeyDone = 1001;
         private const int HotkeyPrevious = 1002;
         private const int HotkeySkip = 1003;
+        private const int HotkeyMarker = 1004;
 
         private readonly RouteRepository _routes;
         private readonly StateStore _store;
         private readonly AppState _state;
+        private readonly string _routePath;
+        private readonly string _workbookPath;
         private readonly Timer _timer;
         private readonly Panel _topBar;
         private readonly Label _profileLabel;
         private readonly Label _questLabel;
         private readonly Label _npcLabel;
+        private readonly Label _stepTypeLabel;
         private readonly Label _locationLabel;
         private readonly Label _statusLabel;
         private readonly Button _doneButton;
@@ -29,6 +33,7 @@ namespace PWQuestOverlay
         private readonly Button _skipButton;
         private readonly Button _markerButton;
         private readonly Button _profilesButton;
+        private readonly Button _stagesButton;
         private readonly Button _lockButton;
         private readonly Button _hideButton;
         private readonly NotifyIcon _trayIcon;
@@ -36,6 +41,7 @@ namespace PWQuestOverlay
         private readonly ToolStripMenuItem _showMenuItem;
         private readonly ToolStripMenuItem _lockMenuItem;
         private readonly ToolStripMenuItem _classMenuItem;
+        private readonly ToolStripMenuItem _markerHotkeyItem;
         private readonly Dictionary<IntPtr, DateTime> _titleRefresh;
 
         private IntPtr _activeGame;
@@ -66,11 +72,14 @@ namespace PWQuestOverlay
             @"(?:^|[\s\[\](){}_\-])(?<class>WB|WF|EA|EP|WR|MC)(?=$|[\s\[\](){}_\-])",
             RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
 
-        internal OverlayForm(RouteRepository routes, StateStore store, AppState state)
+        internal OverlayForm(RouteRepository routes, StateStore store, AppState state,
+            string routePath, string workbookPath)
         {
             _routes = routes;
             _store = store;
             _state = state;
+            _routePath = routePath;
+            _workbookPath = workbookPath;
             _currentRoute = new List<QuestMission>();
             _titleRefresh = new Dictionary<IntPtr, DateTime>();
 
@@ -101,15 +110,16 @@ namespace PWQuestOverlay
             _profileLabel = new Label
             {
                 Location = new Point(10, 6),
-                Size = new Size(365, 19),
+                Size = new Size(285, 19),
                 ForeColor = Color.White,
                 Font = new Font("Segoe UI", 9.0f, FontStyle.Bold),
                 Text = "PW Quest Overlay — aguardando cliente",
                 AutoEllipsis = true
             };
 
-            _profilesButton = MakeTopButton("Perfis", 404, 70);
-            _lockButton = MakeTopButton("Mover", 480, 86);
+            _profilesButton = MakeTopButton("Perfis", 294, 65);
+            _stagesButton = MakeTopButton("Etapas", 363, 72);
+            _lockButton = MakeTopButton("Mover", 439, 96);
             _hideButton = MakeTopButton("×", 580, 30);
             _hideButton.Font = new Font("Segoe UI", 11.0f, FontStyle.Bold);
 
@@ -125,11 +135,21 @@ namespace PWQuestOverlay
 
             _npcLabel = new Label
             {
-                Location = new Point(12, 75),
-                Size = new Size(596, 45),
+                Location = new Point(94, 75),
+                Size = new Size(514, 45),
                 ForeColor = Color.FromArgb(226, 232, 240),
                 Font = new Font("Segoe UI", 10.0f, FontStyle.Regular),
                 AutoEllipsis = true
+            };
+
+            _stepTypeLabel = new Label
+            {
+                Location = new Point(12, 78),
+                Size = new Size(74, 24),
+                TextAlign = ContentAlignment.MiddleCenter,
+                Font = new Font("Segoe UI", 8.0f, FontStyle.Bold),
+                ForeColor = Color.White,
+                BackColor = Color.FromArgb(71, 85, 105)
             };
 
             _locationLabel = new Label
@@ -156,10 +176,12 @@ namespace PWQuestOverlay
 
             _topBar.Controls.Add(_profileLabel);
             _topBar.Controls.Add(_profilesButton);
+            _topBar.Controls.Add(_stagesButton);
             _topBar.Controls.Add(_lockButton);
             _topBar.Controls.Add(_hideButton);
             Controls.Add(_topBar);
             Controls.Add(_questLabel);
+            Controls.Add(_stepTypeLabel);
             Controls.Add(_npcLabel);
             Controls.Add(_locationLabel);
             Controls.Add(_previousButton);
@@ -171,6 +193,7 @@ namespace PWQuestOverlay
             AttachDragHandlers(_topBar);
             AttachDragHandlers(_profileLabel);
             _profilesButton.Click += delegate { OpenProfileManager(); };
+            _stagesButton.Click += delegate { OpenStageSelector(); };
             _lockButton.Click += delegate { ToggleLock(); };
             _hideButton.Click += delegate { SetUserHidden(true); };
             _doneButton.Click += delegate { CompleteCurrent(); };
@@ -183,12 +206,36 @@ namespace PWQuestOverlay
             _showMenuItem.Click += delegate { SetUserHidden(false); };
             _trayMenu.Items.Add(_showMenuItem);
             _trayMenu.Items.Add(new ToolStripSeparator());
-            _trayMenu.Items.Add("Concluir missão", null, delegate { CompleteCurrent(); });
-            _trayMenu.Items.Add("Voltar uma missão", null, delegate { GoBack(); });
-            _trayMenu.Items.Add("Pular missão", null, delegate { SkipCurrent(); });
+            _trayMenu.Items.Add("Concluir etapa", null, delegate { CompleteCurrent(); });
+            _trayMenu.Items.Add("Voltar uma etapa", null, delegate { GoBack(); });
+            _trayMenu.Items.Add("Pular etapa", null, delegate { SkipCurrent(); });
             _trayMenu.Items.Add(new ToolStripSeparator());
 
             _trayMenu.Items.Add("Gerenciar perfis...", null, delegate { OpenProfileManager(); });
+            _trayMenu.Items.Add("Selecionar missão/etapa...", null, delegate { OpenStageSelector(); });
+            _trayMenu.Items.Add("Editar rotas...", null, delegate { OpenRouteEditor(); });
+            _trayMenu.Items.Add(new ToolStripSeparator());
+            _trayMenu.Items.Add("Exportar backup de perfis...", null, delegate { ExportBackup(); });
+            _trayMenu.Items.Add("Restaurar backup de perfis...", null, delegate { RestoreBackup(); });
+            _trayMenu.Items.Add(new ToolStripSeparator());
+            _trayMenu.Items.Add("Calibrar marcador...", null, delegate { OpenMarkerCalibration(); });
+            _markerHotkeyItem = new ToolStripMenuItem("Atalho do marcador: verificando...") { Enabled = false };
+            _trayMenu.Items.Add(_markerHotkeyItem);
+
+            ToolStripMenuItem cleanupMenu = new ToolStripMenuItem("Ao criar marcador");
+            ToolStripMenuItem deleteAllItem = new ToolStripMenuItem("Apagar todos") { CheckOnClick = true };
+            ToolStripMenuItem deleteSelectedItem = new ToolStripMenuItem("Substituir somente PWOverlay (recomendado)") { CheckOnClick = true };
+            Action refreshCleanupChecks = delegate
+            {
+                deleteAllItem.Checked = !string.Equals(_state.Marker.DeleteMode, "selected", StringComparison.OrdinalIgnoreCase);
+                deleteSelectedItem.Checked = !deleteAllItem.Checked;
+            };
+            deleteAllItem.Click += delegate { _state.Marker.DeleteMode = "all"; refreshCleanupChecks(); _store.Save(_state); };
+            deleteSelectedItem.Click += delegate { _state.Marker.DeleteMode = "selected"; refreshCleanupChecks(); _store.Save(_state); };
+            refreshCleanupChecks();
+            cleanupMenu.DropDownItems.Add(deleteAllItem);
+            cleanupMenu.DropDownItems.Add(deleteSelectedItem);
+            _trayMenu.Items.Add(cleanupMenu);
 
             _classMenuItem = new ToolStripMenuItem("Definir classe manualmente");
             foreach (string code in new[] { "WR", "WB", "WF", "EA", "EP", "MC" })
@@ -280,6 +327,7 @@ namespace PWQuestOverlay
                 if (id == HotkeyDone) CompleteCurrent();
                 else if (id == HotkeyPrevious) GoBack();
                 else if (id == HotkeySkip) SkipCurrent();
+                else if (id == HotkeyMarker) MarkCurrentLocation();
                 return;
             }
             base.WndProc(ref message);
@@ -588,6 +636,7 @@ namespace PWQuestOverlay
                 _statusLabel.Text = string.Empty;
                 _currentMission = null;
                 _currentStep = null;
+                _stepTypeLabel.Text = string.Empty;
                 UpdateActionAvailability();
                 return;
             }
@@ -604,6 +653,7 @@ namespace PWQuestOverlay
                 _statusLabel.Text = "Seleção manual disponível";
                 _currentMission = null;
                 _currentStep = null;
+                _stepTypeLabel.Text = string.Empty;
                 UpdateActionAvailability();
                 return;
             }
@@ -616,6 +666,8 @@ namespace PWQuestOverlay
                 _locationLabel.Text = string.Empty;
                 _statusLabel.Text = finished + "/" + _currentRoute.Count;
                 _currentStep = null;
+                _stepTypeLabel.Text = "FIM";
+                _stepTypeLabel.BackColor = Color.FromArgb(22, 163, 74);
                 UpdateActionAvailability();
                 return;
             }
@@ -624,13 +676,14 @@ namespace PWQuestOverlay
                 !_progress.MissionStates.ContainsKey(StageKey(_currentMission, step)));
             if (_currentStepIndex < 0) _currentStepIndex = Math.Max(0, _currentMission.steps.Count - 1);
             _currentStep = _currentMission.steps[_currentStepIndex];
+            ApplyStepType(_currentStep.action);
 
             _questLabel.Text = _currentMission.name + "  ·  Etapa " + (_currentStepIndex + 1) + "/" + _currentMission.steps.Count;
             _npcLabel.Text = _currentStep.action;
             _locationLabel.Text = _currentStep.markerX.HasValue && _currentStep.markerY.HasValue
                 ? "Marcador: " + _currentStep.markerX.Value + ", " + _currentStep.markerY.Value
                 : "Sem coordenada para esta etapa";
-            _statusLabel.Text = _currentMission.priority + " · Nv. " + _currentMission.minLevel +
+            _statusLabel.Text = _currentMission.priority + " · Prev. Nv. " + _currentMission.expectedLevel +
                 " · " + (finished + 1) + "/" + _currentRoute.Count;
             _statusLabel.ForeColor = string.Equals(_currentMission.priority, "Opcional", StringComparison.OrdinalIgnoreCase)
                 ? Color.FromArgb(251, 191, 36)
@@ -704,6 +757,22 @@ namespace PWQuestOverlay
             return mission.id + "|STEP|" + step.id;
         }
 
+        private void ApplyStepType(string action)
+        {
+            string text = (action ?? string.Empty).Trim().ToUpperInvariant();
+            string type = "AÇÃO";
+            Color color = Color.FromArgb(71, 85, 105);
+            if (text.StartsWith("ACEITE") || text.StartsWith("PEGUE A MISSÃO")) { type = "PEGAR"; color = Color.FromArgb(37, 99, 235); }
+            else if (text.StartsWith("FALE") || text.StartsWith("CONVERSE") || text.StartsWith("REPORTE") || text.StartsWith("RELATÓRIO") || text.StartsWith("PESSOA")) { type = "FALAR"; color = Color.FromArgb(124, 58, 237); }
+            else if (text.StartsWith("MATAR") || text.StartsWith("MATE") || text.StartsWith("MATA ")) { type = "MATAR"; color = Color.FromArgb(185, 28, 28); }
+            else if (text.StartsWith("COLETE") || text.StartsWith("COLETAR") || text.StartsWith("RECOLHA") || text.StartsWith("PEGAR")) { type = "COLETAR"; color = Color.FromArgb(5, 150, 105); }
+            else if (text.StartsWith("ESPERE") || text.StartsWith("AGUARDE")) { type = "ESPERAR"; color = Color.FromArgb(180, 83, 9); }
+            else if (text.StartsWith("ENTREGUE") || text.StartsWith("RETORNE")) { type = "ENTREGAR"; color = Color.FromArgb(14, 116, 144); }
+            else if (text.StartsWith("VISITE") || text.StartsWith("IR ") || text.StartsWith("VÁ ") || text.StartsWith("VAI ")) { type = "IR"; color = Color.FromArgb(79, 70, 229); }
+            _stepTypeLabel.Text = type;
+            _stepTypeLabel.BackColor = color;
+        }
+
         private void MarkCurrentLocation()
         {
             if (_markerBusy || _activeGame == IntPtr.Zero || _currentStep == null ||
@@ -718,26 +787,56 @@ namespace PWQuestOverlay
                 NativeMethods.SetForegroundWindow(_activeGame);
                 System.Threading.Thread.Sleep(100);
 
-                // Abre Marcadores, remove todos os pontos salvos e cria somente PWOverlay.
-                NativeMethods.ClickClientPoint(_activeGame, 1760, 158);
+                // Abre Marcadores. No modo recomendado, o PWOverlay criado anteriormente
+                // é o último item da lista: seleciona-o com End e remove somente ele.
+                NativeMethods.ClickClientPoint(_activeGame, _state.Marker.TrackerButton);
                 System.Threading.Thread.Sleep(180);
-                NativeMethods.ClickClientPoint(_activeGame, 291, 382);
-                System.Threading.Thread.Sleep(120);
 
-                NativeMethods.ClickClientPoint(_activeGame, 218, 41);
+                bool selectedMode = string.Equals(_state.Marker.DeleteMode, "selected", StringComparison.OrdinalIgnoreCase);
+                bool shouldDelete = !selectedMode || (_progress != null && _progress.HasOverlayMarker);
+                if (shouldDelete)
+                {
+                    if (selectedMode)
+                    {
+                        NativeMethods.ClickClientPoint(_activeGame, _state.Marker.MarkerList);
+                        NativeMethods.PressKey(NativeMethods.VK_END);
+                        System.Threading.Thread.Sleep(80);
+                        NativeMethods.ClickClientPoint(_activeGame, _state.Marker.DeleteSelected);
+                    }
+                    else
+                    {
+                        NativeMethods.ClickClientPoint(_activeGame, _state.Marker.DeleteAll);
+                    }
+                    System.Threading.Thread.Sleep(180);
+
+                    // Excluir altera o estado do painel no cliente. Fechar e reabrir garante
+                    // que a criação aconteça nesta mesma chamada, sem um segundo clique.
+                    NativeMethods.ClickClientPoint(_activeGame, _state.Marker.PanelClose);
+                    System.Threading.Thread.Sleep(100);
+                    NativeMethods.ClickClientPoint(_activeGame, _state.Marker.TrackerButton);
+                    System.Threading.Thread.Sleep(180);
+                }
+
+                NativeMethods.ClickClientPoint(_activeGame, _state.Marker.CoordinateInput);
                 NativeMethods.PressKey(NativeMethods.VK_END);
                 for (int index = 0; index < 24; index++) NativeMethods.PressKey(NativeMethods.VK_BACK);
                 SendKeys.SendWait(_currentStep.markerX.Value + ", " + _currentStep.markerY.Value);
                 System.Threading.Thread.Sleep(80);
-                NativeMethods.ClickClientPoint(_activeGame, 291, 41);
+                NativeMethods.ClickClientPoint(_activeGame, _state.Marker.TrackCoordinates);
                 System.Threading.Thread.Sleep(180);
 
-                NativeMethods.ClickClientPoint(_activeGame, 953, 536);
+                NativeMethods.ClickClientPoint(_activeGame, _state.Marker.NameInput);
                 SendKeys.SendWait("PWOverlay");
                 System.Threading.Thread.Sleep(60);
-                NativeMethods.ClickClientPoint(_activeGame, 970, 560);
+                NativeMethods.ClickClientPoint(_activeGame, _state.Marker.NameOk);
                 System.Threading.Thread.Sleep(160);
-                NativeMethods.ClickClientPoint(_activeGame, 294, 16);
+                NativeMethods.ClickClientPoint(_activeGame, _state.Marker.PanelClose);
+
+                if (_progress != null)
+                {
+                    _progress.HasOverlayMarker = true;
+                    _store.Save(_state);
+                }
 
                 _markerButton.Text = "Marcado ✓";
                 _store.Log(_characterName + " marcou " + _currentStep.markerX.Value + ", " +
@@ -926,6 +1025,156 @@ namespace PWQuestOverlay
             }
         }
 
+        private void OpenStageSelector()
+        {
+            if (_progress == null || _currentRoute == null || _currentRoute.Count == 0) return;
+            using (var dialog = new Form())
+            using (var missionBox = new ComboBox())
+            using (var stepBox = new ComboBox())
+            using (var description = new Label())
+            using (var applyButton = new Button())
+            using (var cancelButton = new Button())
+            {
+                dialog.Text = "Selecionar missão e etapa";
+                dialog.FormBorderStyle = FormBorderStyle.FixedDialog;
+                dialog.StartPosition = FormStartPosition.CenterScreen;
+                dialog.ClientSize = new Size(620, 205);
+                dialog.MaximizeBox = false;
+                dialog.MinimizeBox = false;
+                dialog.TopMost = true;
+                dialog.Font = new Font("Segoe UI", 9.0f);
+
+                description.Text = "Escolha o ponto exato da rota. Missões e etapas anteriores serão marcadas; as posteriores serão reabertas.";
+                description.Location = new Point(12, 12);
+                description.Size = new Size(596, 38);
+                missionBox.Location = new Point(12, 58);
+                missionBox.Size = new Size(596, 26);
+                missionBox.DropDownStyle = ComboBoxStyle.DropDownList;
+                stepBox.Location = new Point(12, 96);
+                stepBox.Size = new Size(596, 26);
+                stepBox.DropDownStyle = ComboBoxStyle.DropDownList;
+                foreach (QuestMission mission in _currentRoute)
+                    missionBox.Items.Add(mission.order + ". " + mission.name);
+
+                Action reloadSteps = delegate
+                {
+                    stepBox.Items.Clear();
+                    if (missionBox.SelectedIndex < 0) return;
+                    QuestMission mission = _currentRoute[missionBox.SelectedIndex];
+                    for (int index = 0; index < mission.steps.Count; index++)
+                        stepBox.Items.Add((index + 1) + "/" + mission.steps.Count + " — " + mission.steps[index].action);
+                    stepBox.SelectedIndex = mission == _currentMission ? Math.Max(0, _currentStepIndex) : 0;
+                };
+                missionBox.SelectedIndexChanged += delegate { reloadSteps(); };
+                int missionIndex = _currentMission == null ? 0 : _currentRoute.IndexOf(_currentMission);
+                missionBox.SelectedIndex = Math.Max(0, missionIndex);
+
+                applyButton.Text = "Ir para etapa";
+                applyButton.Location = new Point(400, 153);
+                applyButton.Size = new Size(104, 32);
+                applyButton.DialogResult = DialogResult.OK;
+                cancelButton.Text = "Cancelar";
+                cancelButton.Location = new Point(512, 153);
+                cancelButton.Size = new Size(96, 32);
+                cancelButton.DialogResult = DialogResult.Cancel;
+                dialog.Controls.AddRange(new Control[] { description, missionBox, stepBox, applyButton, cancelButton });
+                dialog.AcceptButton = applyButton;
+                dialog.CancelButton = cancelButton;
+                if (dialog.ShowDialog() != DialogResult.OK || missionBox.SelectedIndex < 0 || stepBox.SelectedIndex < 0) return;
+
+                if (MessageBox.Show("Reposicionar o progresso neste ponto da rota?", "PW Quest Overlay",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
+                SetProgressPoint(missionBox.SelectedIndex, stepBox.SelectedIndex);
+            }
+        }
+
+        private void SetProgressPoint(int missionIndex, int stepIndex)
+        {
+            for (int index = 0; index < _currentRoute.Count; index++)
+            {
+                QuestMission mission = _currentRoute[index];
+                _progress.MissionStates.Remove(mission.id);
+                foreach (QuestStep step in mission.steps) _progress.MissionStates.Remove(StageKey(mission, step));
+                if (index < missionIndex)
+                {
+                    foreach (QuestStep step in mission.steps) _progress.MissionStates[StageKey(mission, step)] = "done";
+                    _progress.MissionStates[mission.id] = "done";
+                }
+                else if (index == missionIndex)
+                {
+                    for (int done = 0; done < stepIndex; done++)
+                        _progress.MissionStates[StageKey(mission, mission.steps[done])] = "done";
+                }
+            }
+            _store.Save(_state);
+            _store.Log(_characterName + " reposicionou a rota em missão " + (missionIndex + 1) +
+                ", etapa " + (stepIndex + 1));
+            RefreshMissionDisplay();
+        }
+
+        private void OpenMarkerCalibration()
+        {
+            if (_activeGame == IntPtr.Zero)
+            {
+                MessageBox.Show("Coloque o cliente que deseja calibrar em foco primeiro.", "PW Quest Overlay");
+                return;
+            }
+            using (var dialog = new MarkerCalibrationForm(_activeGame, _state.Marker))
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    _state.Marker.Calibrated = true;
+                    _store.Save(_state);
+                }
+            }
+        }
+
+        private void OpenRouteEditor()
+        {
+            using (var dialog = new RouteEditorForm(_routes, _routePath, _workbookPath))
+                dialog.ShowDialog();
+            LoadRouteAndRefresh();
+        }
+
+        private void ExportBackup()
+        {
+            using (var dialog = new SaveFileDialog())
+            {
+                dialog.Title = "Exportar perfis e progresso";
+                dialog.Filter = "Backup JSON (*.json)|*.json";
+                dialog.FileName = "PWOverlay-backup-" + DateTime.Now.ToString("yyyy-MM-dd-HHmm") + ".json";
+                if (dialog.ShowDialog() != DialogResult.OK) return;
+                _store.Export(_state, dialog.FileName);
+                MessageBox.Show("Backup exportado com sucesso.", "PW Quest Overlay");
+            }
+        }
+
+        private void RestoreBackup()
+        {
+            using (var dialog = new OpenFileDialog())
+            {
+                dialog.Title = "Restaurar perfis e progresso";
+                dialog.Filter = "Backup JSON (*.json)|*.json";
+                if (dialog.ShowDialog() != DialogResult.OK) return;
+                AppState imported;
+                try { imported = _store.LoadFrom(dialog.FileName); }
+                catch (Exception error) { MessageBox.Show(error.Message, "Backup inválido", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+                if (MessageBox.Show("Substituir os perfis e o progresso atuais pelo backup?", "PW Quest Overlay",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
+                _state.Characters = imported.Characters;
+                _state.Positions = imported.Positions;
+                _state.ClassAssociations = imported.ClassAssociations;
+                _state.Marker = imported.Marker;
+                _state.PositionLocked = imported.PositionLocked;
+                _state.Opacity = imported.Opacity;
+                _store.Save(_state);
+                Opacity = _state.Opacity;
+                _characterKey = null;
+                if (_activeGame != IntPtr.Zero) RefreshActiveProfile(true);
+                MessageBox.Show("Backup restaurado.", "PW Quest Overlay");
+            }
+        }
+
         private void ReKeyCurrentProgress(string classCode)
         {
             if (_progress == null || string.IsNullOrWhiteSpace(_characterName)) return;
@@ -1088,7 +1337,19 @@ namespace PWQuestOverlay
                 NativeMethods.MOD_CONTROL | NativeMethods.MOD_ALT, NativeMethods.VK_LEFT);
             bool skip = NativeMethods.RegisterHotKey(Handle, HotkeySkip,
                 NativeMethods.MOD_CONTROL | NativeMethods.MOD_ALT, NativeMethods.VK_DOWN);
-            _store.Log("Atalhos registrados: concluir=" + done + " voltar=" + previous + " pular=" + skip);
+            bool markerPrimary = NativeMethods.RegisterHotKey(Handle, HotkeyMarker,
+                NativeMethods.MOD_CONTROL | NativeMethods.MOD_ALT, NativeMethods.VK_M);
+            bool markerFallback = false;
+            if (!markerPrimary)
+            {
+                markerFallback = NativeMethods.RegisterHotKey(Handle, HotkeyMarker,
+                    NativeMethods.MOD_CONTROL | NativeMethods.MOD_SHIFT, NativeMethods.VK_M);
+            }
+            string markerShortcut = markerPrimary ? "Ctrl + Alt + M"
+                : markerFallback ? "Ctrl + Shift + M" : "indisponível (use o botão Marcar)";
+            _markerHotkeyItem.Text = "Atalho do marcador: " + markerShortcut;
+            _store.Log("Atalhos registrados: concluir=" + done + " voltar=" + previous +
+                " pular=" + skip + " marcador=" + markerShortcut);
         }
 
         private void UnregisterHotkeys()
@@ -1097,6 +1358,7 @@ namespace PWQuestOverlay
             NativeMethods.UnregisterHotKey(Handle, HotkeyDone);
             NativeMethods.UnregisterHotKey(Handle, HotkeyPrevious);
             NativeMethods.UnregisterHotKey(Handle, HotkeySkip);
+            NativeMethods.UnregisterHotKey(Handle, HotkeyMarker);
         }
 
         private void OnFormClosing(object sender, FormClosingEventArgs e)

@@ -39,7 +39,8 @@ O menu do ícone ao lado do relógio também possui **Gerenciar perfis...** e um
 - **Etapa feita:** marca somente a etapa exibida. Na última etapa, conclui a missão e mostra a próxima.
 - **Voltar:** desfaz a última etapa concluída ou pulada.
 - **Pular etapa:** ignora somente a etapa atual.
-- **Marcar:** remove todos os marcadores do cliente ativo e cria um único marcador chamado `PWOverlay` na coordenada da etapa atual. Fica desativado quando a fonte não fornece coordenada.
+- **Marcar:** substitui o `PWOverlay` anterior e cria o novo na coordenada da etapa atual em uma única ação, preservando os demais marcadores. Fica desativado quando a fonte não fornece coordenada.
+- **Etapas:** abre a lista completa da classe para escolher uma missão e uma etapa. A alteração pede confirmação e ajusta o progresso anterior.
 - **Mover/Fixado:** alterna entre permitir arraste e bloquear a posição.
 - **Perfis:** abre a associação entre título/nome do cliente e classe.
 - **X:** oculta o painel sem encerrar o programa.
@@ -49,21 +50,40 @@ O menu do ícone ao lado do relógio também possui **Gerenciar perfis...** e um
 - `Ctrl + Alt + Seta Direita`: concluir.
 - `Ctrl + Alt + Seta Esquerda`: voltar.
 - `Ctrl + Alt + Seta para Baixo`: pular.
+- `Ctrl + Alt + M`: criar o marcador da etapa atual. Se esse atalho já pertencer a outro programa, o overlay usa `Ctrl + Shift + M`; o menu do ícone informa qual ficou ativo.
 
 Os atalhos avançam, voltam ou pulam uma etapa. Eles só modificam o progresso quando um cliente está ativo e o overlay não foi ocultado pelo usuário.
 
 ## Etapas e marcador
 
-O título mostra `Etapa X/Y`. A linha principal descreve a ação corrente: pegar a missão, falar com um NPC, matar/coletar, aguardar ou entregar. Concluir uma etapa não pula o restante da mesma missão.
+O título mostra `Etapa X/Y`. A etiqueta colorida informa o tipo da etapa e a linha principal descreve a ação corrente. O canto inferior mostra o **nível previsto** para aquela missão; o overlay não pede nem salva o nível real do personagem. Concluir uma etapa não pula o restante da mesma missão.
 
 Ao clicar em **Marcar**, não mova o mouse nem troque de cliente por cerca de um segundo. O overlay:
 
 1. abre o painel **Marcadores** do cliente em foco;
-2. usa **Excluir todos os marcadores**;
+2. seleciona e exclui somente o `PWOverlay` anterior, quando ele existe;
 3. digita a coordenada no formato aceito pelo cliente, como `433, 887`;
 4. cria `PWOverlay` e fecha o painel.
 
-O fluxo foi calibrado com o cliente 1.4.4 em 1920×1080 borderless e o PW Helper aberto. Outras resoluções são escaladas proporcionalmente; escala de interface personalizada pode exigir ajuste das coordenadas de referência em `OverlayForm.cs`.
+O fluxo padrão foi calibrado com o cliente 1.4.4 em 1920×1080 borderless e o PW Helper aberto. Outras resoluções são escaladas proporcionalmente. Remoção e criação são feitas dentro do mesmo clique; o painel é normalizado entre as duas fases.
+
+Para ajustar uma escala diferente, abra o menu do ícone ao lado do relógio e escolha **Calibrar marcador...**. Selecione uma linha, deixe o painel de Marcadores aberto, posicione o mouse sobre o controle indicado e pressione `F8`. Repita os controles e salve. O menu **Ao criar marcador** alterna entre substituir somente `PWOverlay` (recomendado) ou apagar todos.
+
+## Selecionar uma etapa
+
+Clique em **Etapas**, escolha a missão e a etapa e confirme. Use essa função quando o personagem já avançou no jogo ou quando uma cadeia começou em uma etapa posterior. O programa marca as etapas anteriores como concluídas para manter os botões **Voltar** e **Etapa feita** coerentes.
+
+## Backup e edição das rotas
+
+No menu do ícone ao lado do relógio:
+
+- **Exportar backup de perfis...** salva progresso, associações, posições e preferências em um JSON.
+- **Restaurar backup de perfis...** substitui o estado atual após confirmação.
+- **Editar rotas...** permite alterar missão, nível mínimo, nível previsto, textos, ordem das etapas e coordenadas. **Salvar JSON + Excel** cria cópias `.bak` e sincroniza os dois arquivos. A sincronização da planilha exige Microsoft Excel instalado.
+
+## Orientação de forja do nível 5
+
+Ao chegar ao nível 5, o jogo abre uma missão automática para falar com o Ancião sobre as habilidades de forja. Ela está na rota como a primeira tarefa prevista desse nível. As missões específicas de Ferreiro, Alfaiate, Artesão e Boticário continuam fora do guia.
 
 ## Mover o painel
 
