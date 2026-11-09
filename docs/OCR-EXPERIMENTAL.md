@@ -17,7 +17,7 @@ O teste não conclui, pula nem volta etapas. A calibração é salva proporciona
 
 ## Diagnóstico
 
-A última imagem enviada ao OCR fica em `%LOCALAPPDATA%\PWQuestOverlay\ocr-last.png`. O log registra duração, quantidade de caracteres e região capturada.
+A captura original fica em `%LOCALAPPDATA%\PWQuestOverlay\ocr-last-source.png`. A imagem filtrada realmente enviada ao Tesseract fica em `ocr-last.png`. O filtro preserva as cores de texto do quest log e remove o cenário visto através do painel transparente. O log registra duração, quantidade de caracteres e região capturada.
 
 Para uma leitura confiável:
 

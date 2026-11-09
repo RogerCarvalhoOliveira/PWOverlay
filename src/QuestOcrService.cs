@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -82,7 +83,9 @@ namespace PWQuestOverlay
             using (Bitmap prepared = PrepareForOcr(captured))
             {
                 Directory.CreateDirectory(diagnosticDirectory);
+                string sourceImagePath = Path.Combine(diagnosticDirectory, "ocr-last-source.png");
                 string imagePath = Path.Combine(diagnosticDirectory, "ocr-last.png");
+                captured.Save(sourceImagePath, ImageFormat.Png);
                 prepared.Save(imagePath, ImageFormat.Png);
 
                 string text = await RecognizeAsync(imagePath);
@@ -110,19 +113,76 @@ namespace PWQuestOverlay
 
         private static Bitmap PrepareForOcr(Bitmap source)
         {
-            var prepared = new Bitmap(
-                source.Width * UpscaleFactor,
-                source.Height * UpscaleFactor,
-                PixelFormat.Format32bppArgb);
-            prepared.SetResolution(96.0f * UpscaleFactor, 96.0f * UpscaleFactor);
-            using (Graphics graphics = Graphics.FromImage(prepared))
+            using (Bitmap mask = CreateQuestTextMask(source))
             {
-                graphics.Clear(Color.Black);
-                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                graphics.DrawImage(source, new Rectangle(0, 0, prepared.Width, prepared.Height));
+                var prepared = new Bitmap(
+                    source.Width * UpscaleFactor,
+                    source.Height * UpscaleFactor,
+                    PixelFormat.Format32bppArgb);
+                prepared.SetResolution(96.0f * UpscaleFactor, 96.0f * UpscaleFactor);
+                using (Graphics graphics = Graphics.FromImage(prepared))
+                {
+                    graphics.Clear(Color.White);
+                    graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
+                    graphics.PixelOffsetMode = PixelOffsetMode.Half;
+                    graphics.DrawImage(mask, new Rectangle(0, 0, prepared.Width, prepared.Height));
+                }
+                return prepared;
             }
-            return prepared;
+        }
+
+        private static Bitmap CreateQuestTextMask(Bitmap source)
+        {
+            var mask = new Bitmap(source.Width, source.Height, PixelFormat.Format32bppArgb);
+            Rectangle bounds = new Rectangle(0, 0, source.Width, source.Height);
+            BitmapData sourceData = source.LockBits(
+                bounds,
+                ImageLockMode.ReadOnly,
+                PixelFormat.Format32bppArgb);
+            BitmapData maskData = mask.LockBits(
+                bounds,
+                ImageLockMode.WriteOnly,
+                PixelFormat.Format32bppArgb);
+            try
+            {
+                int rowBytes = source.Width * 4;
+                byte[] sourceRow = new byte[rowBytes];
+                byte[] maskRow = new byte[rowBytes];
+                for (int y = 0; y < source.Height; y++)
+                {
+                    Marshal.Copy(IntPtr.Add(sourceData.Scan0, y * sourceData.Stride), sourceRow, 0, rowBytes);
+                    for (int x = 0; x < source.Width; x++)
+                    {
+                        int index = x * 4;
+                        int blue = sourceRow[index];
+                        int green = sourceRow[index + 1];
+                        int red = sourceRow[index + 2];
+                        int maximum = Math.Max(red, Math.Max(green, blue));
+                        int minimum = Math.Min(red, Math.Min(green, blue));
+
+                        bool lightNeutral = red >= 150 && green >= 150 && blue >= 135 &&
+                            maximum - minimum <= 90;
+                        bool golden = red >= 145 && green >= 100 && blue <= 150 &&
+                            red - blue >= 45 && green - blue >= 20;
+                        bool completedGreen = green >= 140 && green - red >= 30 &&
+                            green - blue >= 15;
+                        byte value = lightNeutral || golden || completedGreen
+                            ? (byte)0
+                            : (byte)255;
+                        maskRow[index] = value;
+                        maskRow[index + 1] = value;
+                        maskRow[index + 2] = value;
+                        maskRow[index + 3] = 255;
+                    }
+                    Marshal.Copy(maskRow, 0, IntPtr.Add(maskData.Scan0, y * maskData.Stride), rowBytes);
+                }
+            }
+            finally
+            {
+                source.UnlockBits(sourceData);
+                mask.UnlockBits(maskData);
+            }
+            return mask;
         }
 
         private static Task<string> RecognizeAsync(string imagePath)
