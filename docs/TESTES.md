@@ -44,12 +44,12 @@ Execute também `node scripts/verify-endgame-routes.mjs`, `node scripts/audit-ne
 
 ## PW Overlay Central
 
-1. Configure o launcher do PW e deixe as duas caixas marcadas; use **Iniciar selecionados + PW**.
+1. Abra o PW manualmente ou pelo Helper e marque as duas funções na Central; use **Aplicar ao PW já aberto**. Confirme que não existe campo de launcher nem botão que abre o jogo.
 2. Com clientes abertos, desmarque Overlay e use **Aplicar ao PW já aberto**; confirme que somente o overlay encerrou.
-3. Desative o toggle **Windowed Fullscreen** com um cliente aberto e confirme que bordas, tamanho e posição anteriores são restaurados sem fechar o cliente ou o PW Helper.
-4. Ative o toggle novamente e confirme que o cliente aberto retorna ao modo Windowed Fullscreen sem precisar usar **Aplicar ao PW já aberto**.
-5. Use **Abrir somente o PW** e confirme que Overlay/Borderless encerram sem fechar clientes ou PW Helper.
-4. Reabra as ferramentas pela Central e confirme que progresso e posição foram preservados.
+3. Desmarque **Windowed Fullscreen** e aplique; confirme que bordas, tamanho e posição anteriores são restaurados sem fechar o cliente ou o PW Helper.
+4. Marque novamente e aplique; confirme que o cliente aberto retorna ao modo Windowed Fullscreen. Marcar/desmarcar sem aplicar não deve iniciar/parar ferramentas.
+5. Use **Parar Overlay e Borderless** e confirme que as ferramentas encerram sem fechar clientes ou PW Helper.
+6. Reabra as ferramentas pela Central e confirme que seleções, progresso e posição foram preservados. Com o jogo fechado, Aplicar deve iniciar somente as ferramentas e aguardar os clientes.
 
 ## Marcador
 
@@ -97,7 +97,7 @@ Faça backup de `%LOCALAPPDATA%\PWQuestOverlay\state.json`, teste com uma cópia
 
 ## Instalador em outro computador
 
-1. Execute `PWQuestOverlay-Setup-v0.10.1.exe` como usuário comum e confirme que não pede elevação.
+1. Execute `PWQuestOverlay-Setup-v0.10.2.exe` como usuário comum e confirme que não pede elevação.
 2. Teste atalhos do menu Iniciar, opções de área de trabalho e inicialização automática.
 3. Confirme que o guia abre ao final e que overlay, rotas e planilha estão no diretório instalado.
 4. Importe um backup, associe um cliente sem sigla e refaça a calibração do marcador.

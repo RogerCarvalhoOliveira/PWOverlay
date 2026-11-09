@@ -2,7 +2,7 @@
 
 ## 1. Preparar
 
-Atualize `CHANGELOG.md` e, se o formato das rotas ou do estado mudou, aumente a versão de esquema correspondente. Mudanças devem continuar aceitando o estado da versão anterior sempre que possível.
+Atualize `VERSION`, os nomes de download no README/manual e `CHANGELOG.md`. O build usa `VERSION` para gerar metadados dos quatro executáveis e informar a versão ao instalador. Se o formato das rotas ou do estado mudou, aumente a versão de esquema correspondente. Mudanças devem continuar aceitando o estado da versão anterior sempre que possível. Antes da 1.0, confira também `PREPARACAO-1.0.md`.
 
 ## 2. Validar e compilar
 
@@ -10,6 +10,7 @@ Atualize `CHANGELOG.md` e, se o formato das rotas ou do estado mudou, aumente a 
 powershell -ExecutionPolicy Bypass -File .\scripts\validate-data.ps1
 powershell -ExecutionPolicy Bypass -File .\scripts\build.ps1 -Package
 powershell -ExecutionPolicy Bypass -File .\scripts\build.ps1 -Package -Installer
+powershell -ExecutionPolicy Bypass -File .\scripts\test-package.ps1 -Installer
 git diff --check
 ```
 
@@ -39,7 +40,9 @@ Os pacotes ficam em `dist\PWQuestOverlay-Portatil-vX.Y.Z.zip` e `dist\PWQuestOve
 - `INSTALACAO.txt`, `GUIAS-DEZ-CLASSES.txt` e `GUIA-61-105.txt`;
 - utilitário `PW Memory Probe.exe` no ZIP.
 
-O instalador exige Inno Setup 6 somente no computador de desenvolvimento. O computador de destino precisa apenas do .NET Framework 4.x; não precisa do Inno Setup.
+O instalador exige Inno Setup 6 somente no computador de desenvolvimento. O computador de destino precisa do .NET Framework 4.8 ou compatível; o instalador verifica esse requisito. Não precisa do Inno Setup.
+
+`assets/branding/PWOverlay.ico` é incorporado aos executáveis e ao instalador. A origem e a regeneração do ícone estão documentadas em `assets/branding/README.md`; o build normal não precisa do gerador de imagens nem do Pillow.
 
 Não inclua `state.json`, logs, nomes de personagens reais ou arquivos da instalação do jogo.
 

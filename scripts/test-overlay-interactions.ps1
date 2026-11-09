@@ -7,11 +7,12 @@ New-Item -ItemType Directory -Path $testDirectory -Force | Out-Null
 $compiler = 'C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe'
 $library = Join-Path $testDirectory 'OverlayCandidate.dll'
 $executable = Join-Path $testDirectory 'OverlayInteractionTests.exe'
-$sources = @('Models','NativeMethods','OverlayForm','CultivationChoiceForm','MarkerCalibrationForm','RouteEditorForm',
+$sources = @('AppBranding','Models','NativeMethods','OverlayForm','CultivationChoiceForm','MarkerCalibrationForm','RouteEditorForm',
     'ProcessMemoryReader','MemoryLayout',
     'TaskCatalog','RttiResolver','QuestMemoryReader','QuestStateTracker','QuestMemoryMonitor') |
     ForEach-Object { Join-Path $projectRoot ('src\' + $_ + '.cs') }
 & $compiler /nologo /target:library /optimize+ /platform:x86 /out:$library `
+    "/resource:$(Join-Path $projectRoot 'assets\branding\PWOverlay.ico'),PWOverlay.App.ico" `
     /reference:System.dll /reference:System.Core.dll /reference:System.Drawing.dll `
     /reference:System.Windows.Forms.dll /reference:System.Web.Extensions.dll /reference:Microsoft.CSharp.dll $sources
 if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar a interface para teste.' }

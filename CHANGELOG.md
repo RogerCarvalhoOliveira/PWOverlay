@@ -1,5 +1,14 @@
 # Histórico de alterações
 
+## 0.10.2 - Ícone e preparação da distribuição
+
+- Central reduzida às seleções Overlay/Windowed Fullscreen e aos botões Aplicar ao PW já aberto e Parar Overlay e Borderless. Removidas procura de launcher e abertura do jogo; o usuário abre pelo Helper ou manualmente. As caixas passam a ser aplicadas pelo botão, sem iniciar ferramentas apenas ao mudar a seleção.
+- Aplicada a opção aprovada Órbita de progresso como ícone dos quatro executáveis, da Central, da bandeja do overlay e do instalador/desinstalador. ICO com nove tamanhos, de 16 a 256 pixels, e fonte preservada no Git.
+- Build centraliza a versão em VERSION e grava metadados nos executáveis. O menu da bandeja mostra a versão para facilitar o suporte.
+- Instalador verifica .NET Framework 4.8, conforme o requisito documentado, e inclui links de suporte/atualização.
+- Corrigida a instrução de uso portátil, que ainda citava um ZIP antigo e omitia arquivos necessários.
+- Acrescentado verificador do pacote e documento com os testes de campo/decisões ainda pendentes antes da 1.0. Nenhuma missão ou ID de progresso foi alterado nesta versão.
+
 ## 0.10.1 - Liberação do Passado e Dusk necessária
 
 - Incluídas 24 entradas e 129 etapas de acesso à Dor Celestial, Floresta Kylin e Vale da Cicatriz, comuns a God/Evil e anteriores ao cultivo 100. Total: 585 entradas e 2.026 etapas.

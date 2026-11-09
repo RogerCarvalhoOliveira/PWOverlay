@@ -1,5 +1,5 @@
 #ifndef MyAppVersion
-  #define MyAppVersion "0.10.1"
+  #error Compile usando scripts/build.ps1 -Installer para carregar VERSION.
 #endif
 
 #define MyAppName "PW Quest Overlay"
@@ -11,6 +11,9 @@ AppId={{8D6C663D-85AB-4AD1-A56D-3861323EAC73}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppPublisher={#MyAppPublisher}
+AppPublisherURL=https://github.com/RogerCarvalhoOliveira/PWOverlay
+AppSupportURL=https://github.com/RogerCarvalhoOliveira/PWOverlay/issues
+AppUpdatesURL=https://github.com/RogerCarvalhoOliveira/PWOverlay/releases/latest
 DefaultDirName={localappdata}\Programs\PWQuestOverlay
 DefaultGroupName={#MyAppName}
 DisableProgramGroupPage=yes
@@ -23,6 +26,7 @@ Compression=lzma2/max
 SolidCompression=yes
 WizardStyle=modern
 UninstallDisplayIcon={app}\{#MyAppExeName}
+SetupIconFile=..\assets\branding\PWOverlay.ico
 AppMutex=Local\PWQuestOverlay
 CloseApplications=yes
 RestartApplications=no
@@ -71,15 +75,9 @@ Filename: "{app}\INSTALACAO.txt"; Description: "Abrir o guia de configuração";
 Filename: "{app}\PW Overlay Central.exe"; Description: "Abrir o PW Overlay Central"; Flags: postinstall nowait skipifsilent unchecked
 
 [Code]
-function HasDotNetFramework4(): Boolean;
-begin
-  Result := RegKeyExists(HKLM, 'SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full') or
-    (IsWin64 and RegKeyExists(HKLM64, 'SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full'));
-end;
-
 function InitializeSetup(): Boolean;
 begin
-  Result := HasDotNetFramework4();
+  Result := IsDotNetInstalled(net48, 0);
   if not Result then
     MsgBox('O PW Quest Overlay precisa do Microsoft .NET Framework 4.x. Instale o .NET Framework 4.8 e execute este instalador novamente.', mbError, MB_OK);
 end;

@@ -58,10 +58,10 @@ Nenhuma função lê memória de outro processo.
 
 ### `PWLauncher.cs`
 
-- Salva escolhas e caminho do launcher em `%LOCALAPPDATA%\PWQuestOverlay\launcher.json`.
+- Salva somente as escolhas Overlay/Windowed Fullscreen em `%LOCALAPPDATA%\PWQuestOverlay\launcher.json`; o nome legado do arquivo foi mantido para preservar as preferências.
 - Inicia ou encerra Overlay e PW Borderless sem interferir nos clientes do jogo.
-- Expõe um toggle imediato para o Windowed Fullscreen e solicita um encerramento cooperativo do monitor por evento nomeado.
-- Permite abrir o launcher configurado sem nenhuma ferramenta.
+- Aplica as caixas selecionadas pelo botão Aplicar e solicita um encerramento cooperativo do monitor por evento nomeado para restaurar as janelas.
+- Não procura executáveis do jogo nem abre clientes: a abertura é manual ou pelo PW Helper.
 
 ### `PWBorderlessMonitor.cs`
 

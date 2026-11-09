@@ -9,23 +9,21 @@
 
 ## Instalação recomendada
 
-1. Baixe `PWQuestOverlay-Setup-v0.10.1.exe` na página **Releases** do GitHub e copie-o para o outro computador.
+1. Baixe `PWQuestOverlay-Setup-v0.10.2.exe` na página **Releases** do GitHub e copie-o para o outro computador.
 2. Execute o instalador. Não é necessário acesso de administrador: o programa é instalado somente para o usuário atual.
 3. Escolha, se desejar, atalhos e inicialização automática. Deixe a inicialização direta do Overlay/PW Borderless desmarcada se quiser decidir a cada sessão.
-4. Ao terminar, abra **PW Overlay Central**, selecione as ferramentas desejadas e use **Iniciar selecionados + PW**.
+4. Abra o PW manualmente ou pelo PW Helper. Na **PW Overlay Central**, selecione as funções desejadas e use **Aplicar ao PW já aberto**.
 
 O instalador cria atalhos no menu Iniciar e registra um desinstalador. Atualizações podem ser instaladas por cima da versão anterior.
 
 ## Abrir com ou sem o overlay
 
-- **Iniciar selecionados + PW:** abre Overlay e/ou Windowed Fullscreen conforme as caixas marcadas e depois abre o launcher configurado.
-- **Abrir somente o PW:** encerra nossas duas ferramentas e abre o jogo normalmente.
-- **Aplicar ao PW já aberto:** inicia ou encerra as ferramentas conforme as caixas, sem abrir outro cliente.
+- **Aplicar ao PW já aberto:** inicia ou encerra as ferramentas conforme as caixas marcadas. As funções ativadas também acompanham os próximos clientes abertos.
 - **Parar Overlay e Borderless:** encerra somente nossas ferramentas; os clientes e o PW Helper continuam abertos.
 
-O botão **Windowed Fullscreen: ATIVADO/DESATIVADO** também funciona como toggle imediato. Ao ativar, aplica o modo aos clientes atuais e aos que forem abertos depois. Ao desativar, devolve a cada cliente aberto o estilo, o tamanho e a posição de janela registrados antes da aplicação.
+Para desligar somente Windowed Fullscreen, desmarque essa função e clique em **Aplicar ao PW já aberto**. O monitor devolve a cada cliente acompanhado o estilo, o tamanho e a posição registrados antes da aplicação. As seleções são aplicadas pelo botão, não ao marcar/desmarcar uma caixa.
 
-Na primeira utilização, a Central tenta localizar o launcher automaticamente. Se não encontrar, clique em **Procurar...** e selecione o launcher original do servidor, não um atalho.
+A Central não abre o PW e não tem configuração de caminho do jogo. Para jogar sem as ferramentas, use **Parar Overlay e Borderless** caso estejam ativas e abra o PW normalmente pelo método que preferir.
 
 ## Configuração inicial
 
@@ -46,7 +44,9 @@ O backup inclui progresso, associações de classe, posições, transparência, 
 
 ## Versão portátil
 
-Baixe e extraia `PWQuestOverlay-Portatil-v0.7.6.zip` para uma pasta em que o usuário tenha permissão de escrita e execute `PW Overlay Central.exe`. Não mova apenas um EXE: as três ferramentas e `quest_routes.json` devem permanecer juntas.
+Baixe e extraia `PWQuestOverlay-Portatil-v0.10.2.zip` para uma pasta em que o usuário tenha permissão de escrita e execute `PW Overlay Central.exe`. Não mova apenas um EXE: mantenha juntos todos os arquivos do pacote, incluindo rotas, catálogo, offsets e planilha.
+
+O símbolo do check dentro dos anéis identifica o projeto na bandeja do Windows, nos atalhos e no instalador. O menu da bandeja informa a versão. O ícone está incorporado: não é necessário copiar um ICO separado para a instalação.
 
 ## Dados locais e desinstalação
 

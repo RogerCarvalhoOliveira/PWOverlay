@@ -124,6 +124,7 @@ namespace PWQuestOverlay
             }
 
             Text = "PW Quest Overlay";
+            Icon = PWOverlayShared.AppBranding.Icon;
             Name = "PWQuestOverlay";
             FormBorderStyle = FormBorderStyle.None;
             ShowInTaskbar = false;
@@ -344,10 +345,12 @@ namespace PWQuestOverlay
             _trayMenu.Items.Add("Reiniciar progresso deste personagem", null, delegate { ResetProgress(); });
             _trayMenu.Items.Add(new ToolStripSeparator());
             _trayMenu.Items.Add("Sair", null, delegate { ExitApplication(); });
+            _trayMenu.Items.Insert(_trayMenu.Items.Count - 1, new ToolStripMenuItem(
+                "Versão " + Application.ProductVersion) { Enabled = false });
 
             _trayIcon = new NotifyIcon
             {
-                Icon = SystemIcons.Information,
+                Icon = PWOverlayShared.AppBranding.Icon,
                 Text = "PW Quest Overlay",
                 Visible = true,
                 ContextMenuStrip = _trayMenu

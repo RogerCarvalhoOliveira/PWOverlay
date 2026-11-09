@@ -2,7 +2,6 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Web.Script.Serialization;
@@ -12,7 +11,6 @@ namespace PWOverlayCentral
 {
     internal sealed class LauncherSettings
     {
-        public string GamePath { get; set; }
         public bool UseOverlay { get; set; }
         public bool UseBorderless { get; set; }
 
@@ -28,7 +26,6 @@ namespace PWOverlayCentral
         private readonly string _appDirectory = AppDomain.CurrentDomain.BaseDirectory;
         private readonly string _settingsPath;
         private readonly JavaScriptSerializer _serializer = new JavaScriptSerializer();
-        private readonly TextBox _gamePathBox;
         private readonly CheckBox _overlayBox;
         private readonly CheckBox _borderlessBox;
         private readonly Label _statusLabel;
@@ -44,10 +41,11 @@ namespace PWOverlayCentral
             _settings = LoadSettings();
 
             Text = "PW Overlay Central";
+            Icon = PWOverlayShared.AppBranding.Icon;
             StartPosition = FormStartPosition.CenterScreen;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-            ClientSize = new Size(560, 370);
+            ClientSize = new Size(560, 266);
             BackColor = Color.FromArgb(15, 23, 42);
             ForeColor = Color.White;
             Font = new Font("Segoe UI", 9.0f);
@@ -62,27 +60,16 @@ namespace PWOverlayCentral
             };
             var subtitle = new Label
             {
-                Text = "Escolha como deseja abrir o Perfect World hoje.",
+                Text = "Abra o PW manualmente ou pelo PW Helper e escolha o que ativar.",
                 Location = new Point(20, 48),
                 Size = new Size(520, 22),
                 ForeColor = Color.FromArgb(203, 213, 225)
             };
 
-            var pathLabel = new Label { Text = "Launcher do Perfect World", Location = new Point(20, 82), AutoSize = true };
-            _gamePathBox = new TextBox
-            {
-                Location = new Point(20, 104),
-                Size = new Size(424, 26),
-                ReadOnly = true,
-                Text = _settings.GamePath ?? string.Empty
-            };
-            var browseButton = MakeButton("Procurar...", 452, 102, 88, 30, Color.FromArgb(51, 65, 85));
-            browseButton.Click += delegate { ChooseGamePath(); };
-
             var optionsPanel = new Panel
             {
-                Location = new Point(20, 144),
-                Size = new Size(520, 82),
+                Location = new Point(20, 84),
+                Size = new Size(520, 76),
                 BackColor = Color.FromArgb(30, 41, 59)
             };
             _overlayBox = new CheckBox
@@ -95,43 +82,30 @@ namespace PWOverlayCentral
             };
             _borderlessBox = new CheckBox
             {
-                Appearance = Appearance.Button,
-                Location = new Point(14, 38),
-                Size = new Size(490, 32),
+                Text = "Ativar Windowed Fullscreen e manter o PW Helper acima",
+                Location = new Point(14, 40),
+                Size = new Size(490, 24),
                 Checked = _settings.UseBorderless,
-                FlatStyle = FlatStyle.Flat,
-                TextAlign = ContentAlignment.MiddleCenter,
-                Font = new Font("Segoe UI", 9.0f, FontStyle.Bold),
                 ForeColor = Color.White
             };
-            _borderlessBox.FlatAppearance.BorderSize = 0;
-            UpdateBorderlessToggleStyle();
-            _borderlessBox.CheckedChanged += delegate { ToggleBorderless(); };
             optionsPanel.Controls.Add(_overlayBox);
             optionsPanel.Controls.Add(_borderlessBox);
 
-            var startAllButton = MakeButton("Iniciar selecionados + PW", 20, 240, 250, 42, Color.FromArgb(3, 105, 161));
-            startAllButton.Font = new Font("Segoe UI", 10.0f, FontStyle.Bold);
-            startAllButton.Click += delegate { StartSelected(true); };
-            var onlyGameButton = MakeButton("Abrir somente o PW", 290, 240, 250, 42, Color.FromArgb(71, 85, 105));
-            onlyGameButton.Font = new Font("Segoe UI", 10.0f, FontStyle.Bold);
-            onlyGameButton.Click += delegate { StartGameOnly(); };
-
-            var applyButton = MakeButton("Aplicar ao PW já aberto", 20, 292, 250, 34, Color.FromArgb(21, 128, 61));
-            applyButton.Click += delegate { StartSelected(false); };
-            var stopButton = MakeButton("Parar Overlay e Borderless", 290, 292, 250, 34, Color.FromArgb(153, 27, 27));
+            var applyButton = MakeButton("Aplicar ao PW já aberto", 20, 174, 250, 34, Color.FromArgb(21, 128, 61));
+            applyButton.Click += delegate { StartSelected(); };
+            var stopButton = MakeButton("Parar Overlay e Borderless", 290, 174, 250, 34, Color.FromArgb(153, 27, 27));
             stopButton.Click += delegate { StopTools(); };
 
             _statusLabel = new Label
             {
-                Location = new Point(20, 338),
-                Size = new Size(520, 22),
+                Location = new Point(20, 220),
+                Size = new Size(520, 36),
                 ForeColor = Color.FromArgb(148, 163, 184),
-                Text = "As opções ficam salvas. O botão 'somente PW' encerra apenas nossas ferramentas."
+                Text = "Marque as funções e clique em Aplicar. As opções ficam salvas."
             };
 
-            Controls.AddRange(new Control[] { title, subtitle, pathLabel, _gamePathBox, browseButton,
-                optionsPanel, startAllButton, onlyGameButton, applyButton, stopButton, _statusLabel });
+            Controls.AddRange(new Control[] { title, subtitle,
+                optionsPanel, applyButton, stopButton, _statusLabel });
             FormClosing += delegate { SaveSettings(); };
         }
 
@@ -149,45 +123,6 @@ namespace PWOverlayCentral
             };
         }
 
-        private void UpdateBorderlessToggleStyle()
-        {
-            if (_borderlessBox.Checked)
-            {
-                _borderlessBox.Text = "Windowed Fullscreen: ATIVADO";
-                _borderlessBox.BackColor = Color.FromArgb(2, 132, 199);
-            }
-            else
-            {
-                _borderlessBox.Text = "Windowed Fullscreen: DESATIVADO";
-                _borderlessBox.BackColor = Color.FromArgb(71, 85, 105);
-            }
-        }
-
-        private void ToggleBorderless()
-        {
-            UpdateBorderlessToggleStyle();
-            SaveSettings();
-            try
-            {
-                if (_borderlessBox.Checked)
-                {
-                    StartTool("PW Borderless.exe");
-                    _statusLabel.Text = "Windowed Fullscreen ativado para clientes atuais e futuros.";
-                    _statusLabel.ForeColor = Color.FromArgb(134, 239, 172);
-                }
-                else
-                {
-                    StopBorderlessTool();
-                    _statusLabel.Text = "Windowed Fullscreen desativado; janelas originais restauradas.";
-                    _statusLabel.ForeColor = Color.FromArgb(253, 224, 71);
-                }
-            }
-            catch (Exception error)
-            {
-                ShowError(error.Message);
-            }
-        }
-
         private LauncherSettings LoadSettings()
         {
             try
@@ -196,44 +131,17 @@ namespace PWOverlayCentral
                     return _serializer.Deserialize<LauncherSettings>(File.ReadAllText(_settingsPath, Encoding.UTF8)) ?? new LauncherSettings();
             }
             catch { }
-            var settings = new LauncherSettings { GamePath = FindKnownLauncher() };
-            return settings;
-        }
-
-        private static string FindKnownLauncher()
-        {
-            string[] candidates =
-            {
-                @"C:\The Classic Games\The Classic Games Launcher.exe",
-                @"C:\The Classic Games\The Classic PW 1.4.4\launcher.exe",
-                @"C:\Level Up\Perfect World\launcher\Launcher.exe"
-            };
-            return candidates.FirstOrDefault(File.Exists) ?? string.Empty;
+            return new LauncherSettings();
         }
 
         private void SaveSettings()
         {
-            _settings.GamePath = _gamePathBox.Text.Trim();
             _settings.UseOverlay = _overlayBox.Checked;
             _settings.UseBorderless = _borderlessBox.Checked;
             File.WriteAllText(_settingsPath, _serializer.Serialize(_settings), new UTF8Encoding(false));
         }
 
-        private bool ChooseGamePath()
-        {
-            using (var dialog = new OpenFileDialog())
-            {
-                dialog.Title = "Selecione o launcher do Perfect World";
-                dialog.Filter = "Aplicativo (*.exe)|*.exe";
-                dialog.CheckFileExists = true;
-                if (dialog.ShowDialog() != DialogResult.OK) return false;
-                _gamePathBox.Text = dialog.FileName;
-                SaveSettings();
-                return true;
-            }
-        }
-
-        private void StartSelected(bool launchGame)
+        private void StartSelected()
         {
             SaveSettings();
             try
@@ -242,46 +150,13 @@ namespace PWOverlayCentral
                 else StopTool("PW Quest Overlay");
                 if (_borderlessBox.Checked) StartTool("PW Borderless.exe");
                 else StopBorderlessTool();
-                if (launchGame && !LaunchGame()) return;
-                _statusLabel.Text = launchGame ? "Perfect World iniciado com as opções selecionadas." : "Opções aplicadas aos clientes já abertos.";
+                _statusLabel.Text = "Opções aplicadas. As ferramentas também acompanharão os próximos clientes abertos.";
                 _statusLabel.ForeColor = Color.FromArgb(134, 239, 172);
             }
             catch (Exception error)
             {
                 ShowError(error.Message);
             }
-        }
-
-        private void StartGameOnly()
-        {
-            try
-            {
-                StopTool("PW Quest Overlay");
-                StopBorderlessTool();
-                if (!LaunchGame()) return;
-                _statusLabel.Text = "Perfect World iniciado sem Overlay e sem Windowed Fullscreen automático.";
-                _statusLabel.ForeColor = Color.FromArgb(253, 224, 71);
-            }
-            catch (Exception error)
-            {
-                ShowError(error.Message);
-            }
-        }
-
-        private bool LaunchGame()
-        {
-            string path = _gamePathBox.Text.Trim();
-            if (!File.Exists(path))
-            {
-                if (!ChooseGamePath()) return false;
-                path = _gamePathBox.Text.Trim();
-            }
-            Process.Start(new ProcessStartInfo(path)
-            {
-                WorkingDirectory = Path.GetDirectoryName(path),
-                UseShellExecute = true
-            });
-            return true;
         }
 
         private void StartTool(string fileName)
