@@ -48,7 +48,7 @@ Depois da instalação, execute **PW Overlay Central** para escolher se deseja a
 
 ## Limites de segurança
 
-A versão estável do overlay não lê memória do jogo, não injeta DLL e não captura pacotes. Nesta branch experimental existe um diagnóstico separado, somente leitura, para pesquisar a sincronização de missões. Ele não é usado pelo overlay e nunca escreve no processo do jogo. Consulte [MEMORIA-EXPERIMENTAL](docs/MEMORIA-EXPERIMENTAL.md).
+A versão estável do overlay não lê memória do jogo, não injeta DLL e não captura pacotes. Nesta branch experimental, o overlay pode usar leitura externa somente leitura para sincronizar missões. O recurso fica desligado por padrão, não escreve no processo do jogo e só avança etapas com evidências estáveis. Consulte [MEMORIA-EXPERIMENTAL](docs/MEMORIA-EXPERIMENTAL.md).
 
 A única automação da versão estável dentro do cliente é acionada manualmente pelo botão **Marcar** e reproduz cliques/teclas na janela pública de Marcadores; não movimenta o personagem, luta nem entrega missões.
 
@@ -101,9 +101,10 @@ powershell -ExecutionPolicy Bypass -File .\scripts\run-dev.ps1
 | --- | --- |
 | `src/` | Código C# do aplicativo. |
 | `src/PWLauncher.cs` | Inicializador que permite escolher quais ferramentas usar em cada sessão. |
-| `src/ProcessMemoryReader.cs` | Leitor externo somente leitura usado pelo diagnóstico experimental. |
-| `src/QuestMemoryReader.cs` | Leitura validada das listas ativa e histórica do cliente. |
+| `src/ProcessMemoryReader.cs` | Leitor externo somente leitura usado pelo modo experimental. |
+| `src/QuestMemoryReader.cs` | Leitura validada das listas ativa e histórica e do inventário de missão. |
 | `src/QuestStateTracker.cs` | Detecta transições sem confundir ausência com missão nunca aceita. |
+| `src/QuestMemoryMonitor.cs` | Mantém sessões estáveis e independentes para cada cliente aberto. |
 | `src/TaskCatalog.cs` | Relaciona os IDs da memória aos nomes dataminados do cliente. |
 | `data/quest_routes.json` | Rotas e missões usadas pelo overlay. |
 | `data/memory_offsets.json` | Perfil versionado de offsets do cliente x86. |

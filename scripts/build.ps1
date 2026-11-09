@@ -42,10 +42,17 @@ $overlaySources = @(
     (Join-Path $sourceDirectory 'RouteEditorForm.cs'),
     (Join-Path $sourceDirectory 'QuestOcrService.cs'),
     (Join-Path $sourceDirectory 'OcrRegionSelectionForm.cs'),
-    (Join-Path $sourceDirectory 'OcrResultForm.cs')
+    (Join-Path $sourceDirectory 'OcrResultForm.cs'),
+    (Join-Path $sourceDirectory 'ProcessMemoryReader.cs'),
+    (Join-Path $sourceDirectory 'MemoryLayout.cs'),
+    (Join-Path $sourceDirectory 'TaskCatalog.cs'),
+    (Join-Path $sourceDirectory 'RttiResolver.cs'),
+    (Join-Path $sourceDirectory 'QuestMemoryReader.cs'),
+    (Join-Path $sourceDirectory 'QuestStateTracker.cs'),
+    (Join-Path $sourceDirectory 'QuestMemoryMonitor.cs')
 )
 
-& $compiler /nologo /target:winexe /optimize+ /platform:anycpu `
+& $compiler /nologo /target:winexe /optimize+ /platform:x86 `
     /out:$overlayExecutable `
     /reference:System.dll `
     /reference:System.Core.dll `

@@ -38,6 +38,7 @@ namespace PWQuestOverlay.Memory
         public PointerRoot player { get; set; }
         public Dictionary<string, string> attributes { get; set; }
         public QuestMemoryLayout quests { get; set; }
+        public TaskInventoryMemoryLayout inventory { get; set; }
 
         internal uint PlayerBaseRva
         {
@@ -78,6 +79,42 @@ namespace PWQuestOverlay.Memory
             if (quests == null) throw new InvalidDataException(
                 "Perfil sem layout de missões.");
             quests.Validate();
+            if (inventory == null) throw new InvalidDataException(
+                "Perfil sem layout do inventário de missão.");
+            inventory.Validate();
+        }
+    }
+
+    internal sealed class TaskInventoryMemoryLayout
+    {
+        public string playerPointerOffset { get; set; }
+        public string taskInventoryOffset { get; set; }
+        public string slotsPointerOffset { get; set; }
+        public string slotCountOffset { get; set; }
+        public int slotMaximum { get; set; }
+        public string itemIdOffset { get; set; }
+        public string itemCountOffset { get; set; }
+
+        internal int PlayerPointerOffset { get { return ToInt(playerPointerOffset); } }
+        internal int TaskInventoryOffset { get { return ToInt(taskInventoryOffset); } }
+        internal int SlotsPointerOffset { get { return ToInt(slotsPointerOffset); } }
+        internal int SlotCountOffset { get { return ToInt(slotCountOffset); } }
+        internal int SlotMaximum { get { return slotMaximum; } }
+        internal int ItemIdOffset { get { return ToInt(itemIdOffset); } }
+        internal int ItemCountOffset { get { return ToInt(itemCountOffset); } }
+
+        internal void Validate()
+        {
+            if (PlayerPointerOffset < 0 || TaskInventoryOffset < 0 ||
+                SlotsPointerOffset < 0 || SlotCountOffset < 0 ||
+                SlotMaximum <= 0 || SlotMaximum > 256 ||
+                ItemIdOffset < 0 || ItemCountOffset < 0)
+                throw new InvalidDataException("Layout do inventário de missão inválido.");
+        }
+
+        private static int ToInt(string value)
+        {
+            return checked((int)HexValue.Parse(value));
         }
     }
 

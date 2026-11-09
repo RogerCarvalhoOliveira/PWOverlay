@@ -126,6 +126,20 @@ namespace PWQuestOverlay
         }
     }
 
+    public sealed class QuestMemorySettings
+    {
+        public bool AutoAdvanceEnabled { get; set; }
+        public string ProfileId { get; set; }
+
+        public static QuestMemorySettings CreateDefault()
+        {
+            return new QuestMemorySettings
+            {
+                ProfileId = "the_classic_144"
+            };
+        }
+    }
+
     public sealed class AppState
     {
         public int SchemaVersion { get; set; }
@@ -138,16 +152,18 @@ namespace PWQuestOverlay
         public Dictionary<string, string> ClassAssociations { get; set; }
         public MarkerSettings Marker { get; set; }
         public QuestOcrSettings Ocr { get; set; }
+        public QuestMemorySettings Memory { get; set; }
 
         public AppState()
         {
-            SchemaVersion = 9;
+            SchemaVersion = 10;
             Opacity = 0.82;
             Characters = new Dictionary<string, CharacterProgress>(StringComparer.OrdinalIgnoreCase);
             Positions = new Dictionary<string, SavedPosition>(StringComparer.OrdinalIgnoreCase);
             ClassAssociations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             Marker = MarkerSettings.CreateDefault();
             Ocr = QuestOcrSettings.CreateDefault();
+            Memory = QuestMemorySettings.CreateDefault();
         }
     }
 
@@ -311,6 +327,7 @@ namespace PWQuestOverlay
                     state.ClassAssociations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
                 if (state.Marker == null) state.Marker = MarkerSettings.CreateDefault();
                 if (state.Ocr == null) state.Ocr = QuestOcrSettings.CreateDefault();
+                if (state.Memory == null) state.Memory = QuestMemorySettings.CreateDefault();
                 if (state.SchemaVersion < 2)
                 {
                     state.Marker.DeleteMode = "selected";
@@ -357,6 +374,12 @@ namespace PWQuestOverlay
                     state.Ocr.AutoAdvanceEnabled = false;
                     state.SchemaVersion = 9;
                 }
+                if (state.SchemaVersion < 10)
+                {
+                    state.Ocr.AutoAdvanceEnabled = false;
+                    state.Memory = QuestMemorySettings.CreateDefault();
+                    state.SchemaVersion = 10;
+                }
                 NormalizeMarkerSettings(state.Marker);
                 foreach (CharacterProgress progress in state.Characters.Values)
                 {
@@ -386,6 +409,7 @@ namespace PWQuestOverlay
             if (state.ClassAssociations == null) state.ClassAssociations = new Dictionary<string, string>();
             if (state.Marker == null) state.Marker = MarkerSettings.CreateDefault();
             if (state.Ocr == null) state.Ocr = QuestOcrSettings.CreateDefault();
+            if (state.Memory == null) state.Memory = QuestMemorySettings.CreateDefault();
             if (state.SchemaVersion < 2)
             {
                 state.Marker.DeleteMode = "selected";
@@ -431,6 +455,12 @@ namespace PWQuestOverlay
             {
                 state.Ocr.AutoAdvanceEnabled = false;
                 state.SchemaVersion = 9;
+            }
+            if (state.SchemaVersion < 10)
+            {
+                state.Ocr.AutoAdvanceEnabled = false;
+                state.Memory = QuestMemorySettings.CreateDefault();
+                state.SchemaVersion = 10;
             }
             NormalizeMarkerSettings(state.Marker);
             foreach (CharacterProgress progress in state.Characters.Values)

@@ -9,11 +9,13 @@ namespace PWQuestOverlay.Memory
         {
             ActiveTasks = new List<ActiveQuestMemoryEntry>();
             FinishedTaskIds = new List<uint>();
+            TaskItemCounts = new Dictionary<uint, int>();
         }
 
         internal long TaskInterfaceAddress { get; set; }
         internal List<ActiveQuestMemoryEntry> ActiveTasks { get; private set; }
         internal List<uint> FinishedTaskIds { get; private set; }
+        internal Dictionary<uint, int> TaskItemCounts { get; private set; }
     }
 
     internal sealed class ActiveQuestMemoryEntry
@@ -22,8 +24,6 @@ namespace PWQuestOverlay.Memory
         internal int ParentIndex { get; set; }
         internal byte Flags { get; set; }
         internal byte StateCode { get { return (byte)(Flags & 0x0F); } }
-        internal bool SuccessFlag { get { return (StateCode & 0x01) != 0; } }
-        internal bool FinishedFlag { get { return (StateCode & 0x02) != 0; } }
         internal long Address { get; set; }
         internal byte[] RawData { get; set; }
     }
@@ -32,15 +32,19 @@ namespace PWQuestOverlay.Memory
     {
         private readonly ProcessMemoryReader _memory;
         private readonly QuestMemoryLayout _layout;
+        private readonly TaskInventoryMemoryLayout _inventory;
 
         internal QuestMemoryReader(
             ProcessMemoryReader memory,
-            QuestMemoryLayout layout)
+            QuestMemoryLayout layout,
+            TaskInventoryMemoryLayout inventory)
         {
             if (memory == null) throw new ArgumentNullException("memory");
             if (layout == null) throw new ArgumentNullException("layout");
+            if (inventory == null) throw new ArgumentNullException("inventory");
             _memory = memory;
             _layout = layout;
+            _inventory = inventory;
         }
 
         internal QuestMemorySnapshot Read(long player)
@@ -96,7 +100,39 @@ namespace PWQuestOverlay.Memory
                 uint taskId = _memory.ReadUInt32(idAddress);
                 if (taskId != 0) snapshot.FinishedTaskIds.Add(taskId);
             }
+            ReadTaskInventory(player, snapshot);
             return snapshot;
+        }
+
+        private void ReadTaskInventory(long player, QuestMemorySnapshot snapshot)
+        {
+            long inventories = ReadRequiredPointer(
+                player + _inventory.PlayerPointerOffset,
+                "inventários do personagem");
+            long taskInventory = inventories + _inventory.TaskInventoryOffset;
+            int slotCount = _memory.ReadInt32(
+                taskInventory + _inventory.SlotCountOffset);
+            if (slotCount < 0 || slotCount > _inventory.SlotMaximum)
+                throw new InvalidOperationException(
+                    "Quantidade de espaços do inventário de missão inválida: " + slotCount);
+            if (slotCount == 0) return;
+            long slots = ReadRequiredPointer(
+                taskInventory + _inventory.SlotsPointerOffset,
+                "espaços do inventário de missão");
+            for (int index = 0; index < slotCount; index++)
+            {
+                uint itemPointer = _memory.ReadUInt32(slots + index * 4L);
+                if (itemPointer == 0) continue;
+                if (itemPointer < 0x10000 || itemPointer >= 0x7FFF0000)
+                    throw new InvalidOperationException(
+                        "Ponteiro inválido no inventário de missão.");
+                uint itemId = _memory.ReadUInt32(itemPointer + _inventory.ItemIdOffset);
+                int itemCount = _memory.ReadInt32(itemPointer + _inventory.ItemCountOffset);
+                if (itemId == 0 || itemCount <= 0) continue;
+                int existing;
+                snapshot.TaskItemCounts.TryGetValue(itemId, out existing);
+                snapshot.TaskItemCounts[itemId] = checked(existing + itemCount);
+            }
         }
 
         private long FindTaskInterface(long player)

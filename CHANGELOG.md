@@ -3,11 +3,13 @@
 ## Em desenvolvimento - Estado de missão por memória
 
 - Criada a branch experimental `feature/memory-quest-state`, com leitura externa somente leitura do cliente x86.
-- Identificados `CECHostPlayer`, `CECTaskInterface`, lista ativa, relação pai/filho e histórico de missões.
-- Adicionado catálogo derivado do `tasks.data` com 24.277 missões e submissões, sem incorporar o parser de terceiros.
-- O diagnóstico agora exibe nomes, IDs, bits de sucesso/finalização e monitora transições em todos os clientes abertos.
+- Identificados `CECHostPlayer`, `CECTaskInterface`, lista ativa, relação pai/filho, histórico e inventário de missão.
+- Adicionado catálogo derivado do `tasks.data` com 24.277 missões e submissões e os itens exigidos pelos objetivos de coleta, sem incorporar o parser de terceiros.
+- O diagnóstico agora exibe nomes, IDs, código bruto de estado, itens de missão e monitora transições em todos os clientes abertos.
 - Ausência só gera evento depois que a missão foi observada ativa, evitando confundir missão nunca aceita com missão entregue.
-- A sincronização do overlay permanece desligada até as transições serem validadas em uma missão completa.
+- O overlay ganhou toggle e atalho para sincronização por memória, desligados por padrão e separados por cliente.
+- Aceites, conversas, coletas e entregas usam evidências estáveis em duas leituras consecutivas.
+- Validada a cadeia `Aldeões Feridos`: item 3502 em `10/10` avançou a coleta e o desaparecimento do ID 936 confirmou a entrega.
 
 ## 0.7.6 - Toggle de Windowed Fullscreen
 

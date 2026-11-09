@@ -20,15 +20,20 @@ namespace PWQuestOverlay.Memory
         internal bool NeedRecord { get; set; }
         internal bool ReadyToNotify { get; set; }
         internal bool AutoDeliver { get; set; }
+        internal Dictionary<uint, int> RequiredTaskItems { get; set; }
     }
 
     internal sealed class TaskCatalog
     {
         private readonly Dictionary<uint, TaskCatalogEntry> _entries;
+        private readonly Dictionary<string, List<TaskCatalogEntry>> _byName;
 
-        private TaskCatalog(Dictionary<uint, TaskCatalogEntry> entries)
+        private TaskCatalog(
+            Dictionary<uint, TaskCatalogEntry> entries,
+            Dictionary<string, List<TaskCatalogEntry>> byName)
         {
             _entries = entries;
+            _byName = byName;
         }
 
         internal int Count { get { return _entries.Count; } }
@@ -71,19 +76,45 @@ namespace PWQuestOverlay.Memory
                         ReadyToNotify = fields[15] == "1",
                         AutoDeliver = fields[16] == "1"
                     };
+                    entry.RequiredTaskItems = fields.Length >= 18
+                        ? ParseItemRequirements(fields[17], lineNumber)
+                        : new Dictionary<uint, int>();
                     if (entry.Id != 0 && !entries.ContainsKey(entry.Id))
                         entries.Add(entry.Id, entry);
                 }
             }
             if (entries.Count == 0)
                 throw new InvalidDataException("Catálogo de missões vazio.");
-            return new TaskCatalog(entries);
+            var byName = new Dictionary<string, List<TaskCatalogEntry>>(
+                StringComparer.OrdinalIgnoreCase);
+            foreach (TaskCatalogEntry entry in entries.Values)
+            {
+                string name = (entry.Name ?? string.Empty).Trim();
+                if (name.Length == 0) continue;
+                List<TaskCatalogEntry> matches;
+                if (!byName.TryGetValue(name, out matches))
+                {
+                    matches = new List<TaskCatalogEntry>();
+                    byName.Add(name, matches);
+                }
+                matches.Add(entry);
+            }
+            return new TaskCatalog(entries, byName);
         }
 
         internal TaskCatalogEntry Find(uint id)
         {
             TaskCatalogEntry entry;
             return _entries.TryGetValue(id, out entry) ? entry : null;
+        }
+
+        internal List<TaskCatalogEntry> FindByName(string name)
+        {
+            List<TaskCatalogEntry> matches;
+            if (string.IsNullOrWhiteSpace(name) ||
+                !_byName.TryGetValue(name.Trim(), out matches))
+                return new List<TaskCatalogEntry>();
+            return new List<TaskCatalogEntry>(matches);
         }
 
         private static uint ParseUInt(string value, int lineNumber)
@@ -100,6 +131,29 @@ namespace PWQuestOverlay.Memory
             if (!int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out parsed))
                 throw new InvalidDataException("Número inválido na linha " + lineNumber + ".");
             return parsed;
+        }
+
+        private static Dictionary<uint, int> ParseItemRequirements(
+            string value, int lineNumber)
+        {
+            var result = new Dictionary<uint, int>();
+            if (string.IsNullOrWhiteSpace(value)) return result;
+            foreach (string requirement in value.Split(';'))
+            {
+                string[] parts = requirement.Split(':');
+                if (parts.Length != 2)
+                    throw new InvalidDataException(
+                        "Item de missão inválido na linha " + lineNumber + ".");
+                uint itemId = ParseUInt(parts[0], lineNumber);
+                int count = ParseInt(parts[1], lineNumber);
+                if (itemId == 0 || count <= 0)
+                    throw new InvalidDataException(
+                        "Item de missão inválido na linha " + lineNumber + ".");
+                int existing;
+                result.TryGetValue(itemId, out existing);
+                result[itemId] = Math.Max(existing, count);
+            }
+            return result;
         }
     }
 }

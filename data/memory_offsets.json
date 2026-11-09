@@ -18,6 +18,15 @@
         "mp": "0x4D0",
         "mpMax": "0x51C"
       },
+      "inventory": {
+        "playerPointerOffset": "0xFDC",
+        "taskInventoryOffset": "0x78",
+        "slotsPointerOffset": "0xC",
+        "slotCountOffset": "0x10",
+        "slotMaximum": 64,
+        "itemIdOffset": "0xC",
+        "itemCountOffset": "0x14"
+      },
       "quests": {
         "className": "CECTaskInterface",
         "playerSearchSize": "0x1800",

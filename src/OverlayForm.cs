@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PWQuestOverlay.Memory;
 
 namespace PWQuestOverlay
 {
@@ -55,14 +56,18 @@ namespace PWQuestOverlay
         private readonly ToolStripMenuItem _markerHotkeyItem;
         private readonly ToolStripMenuItem _ocrHotkeyItem;
         private readonly ToolStripMenuItem _ocrAutoAdvanceItem;
+        private readonly ToolStripMenuItem _memoryAutoAdvanceItem;
         private readonly Dictionary<IntPtr, DateTime> _titleRefresh;
         private readonly Dictionary<string, OcrStabilityState> _ocrStability;
         private readonly Dictionary<string, OcrStepObservation> _ocrStepObservations;
+        private readonly TaskCatalog _taskCatalog;
+        private readonly QuestMemoryMonitor _memoryMonitor;
 
         private IntPtr _activeGame;
         private DateTime _helperNeutralUntil;
         private DateTime _nextRaiseAt;
         private DateTime _nextAutomaticOcrAt;
+        private DateTime _nextMemoryPollAt;
         private string _characterKey;
         private string _windowTitleKey;
         private string _characterName;
@@ -82,6 +87,7 @@ namespace PWQuestOverlay
         private bool _allowExit;
         private bool _markerBusy;
         private bool _ocrBusy;
+        private string _memoryDiagnosticSignature;
 
         private sealed class RouteStage
         {
@@ -133,6 +139,20 @@ namespace PWQuestOverlay
             _ocrStability = new Dictionary<string, OcrStabilityState>(StringComparer.OrdinalIgnoreCase);
             _ocrStepObservations = new Dictionary<string, OcrStepObservation>(
                 StringComparer.OrdinalIgnoreCase);
+            try
+            {
+                string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                _taskCatalog = TaskCatalog.Load(Path.Combine(
+                    baseDirectory, "task_catalog_144.tsv"));
+                _memoryMonitor = new QuestMemoryMonitor(
+                    Path.Combine(baseDirectory, "memory_offsets.json"),
+                    _state.Memory.ProfileId,
+                    _store.Log);
+            }
+            catch (Exception error)
+            {
+                _store.Log("Leitura de memória indisponível: " + error.Message);
+            }
 
             Text = "PW Quest Overlay";
             Name = "PWQuestOverlay";
@@ -274,6 +294,23 @@ namespace PWQuestOverlay
             _trayMenu.Items.Add("Restaurar backup de perfis...", null, delegate { RestoreBackup(); });
             _trayMenu.Items.Add(new ToolStripSeparator());
             _trayMenu.Items.Add("Calibrar marcador...", null, delegate { OpenMarkerCalibration(); });
+            ToolStripMenuItem memoryMenu = new ToolStripMenuItem("Estado por memória (experimental)");
+            _memoryAutoAdvanceItem = new ToolStripMenuItem(
+                "Sincronizar e avançar automaticamente")
+            {
+                CheckOnClick = true,
+                Checked = _state.Memory.AutoAdvanceEnabled,
+                Enabled = _memoryMonitor != null && _taskCatalog != null
+            };
+            _memoryAutoAdvanceItem.Click += delegate
+            {
+                SetMemoryAutoAdvance(_memoryAutoAdvanceItem.Checked, true);
+            };
+            memoryMenu.DropDownItems.Add(_memoryAutoAdvanceItem);
+            memoryMenu.DropDownItems.Add(new ToolStripSeparator());
+            memoryMenu.DropDownItems.Add(new ToolStripMenuItem(
+                "Somente nomes com ID único são avançados") { Enabled = false });
+            _trayMenu.Items.Add(memoryMenu);
             ToolStripMenuItem ocrMenu = new ToolStripMenuItem("OCR experimental");
             ocrMenu.DropDownItems.Add(
                 "Selecionar área e testar...",
@@ -284,15 +321,13 @@ namespace PWQuestOverlay
                 null,
                 delegate { TestSavedOcrRegion(); });
             _ocrAutoAdvanceItem = new ToolStripMenuItem(
-                "Sincronizar e avançar automaticamente")
+                "Avanço por OCR desativado nesta branch")
             {
-                CheckOnClick = true,
-                Checked = _state.Ocr.AutoAdvanceEnabled
+                CheckOnClick = false,
+                Checked = false,
+                Enabled = false
             };
-            _ocrAutoAdvanceItem.Click += delegate
-            {
-                SetOcrAutoAdvance(_ocrAutoAdvanceItem.Checked, true);
-            };
+            _state.Ocr.AutoAdvanceEnabled = false;
             ocrMenu.DropDownItems.Add(_ocrAutoAdvanceItem);
             _ocrHotkeyItem = new ToolStripMenuItem("Atalhos do OCR: verificando...") { Enabled = false };
             ocrMenu.DropDownItems.Add(new ToolStripSeparator());
@@ -381,6 +416,7 @@ namespace PWQuestOverlay
             FormClosed += delegate
             {
                 _timer.Stop();
+                if (_memoryMonitor != null) _memoryMonitor.Dispose();
                 UnregisterHotkeys();
                 _trayIcon.Visible = false;
                 _trayIcon.Dispose();
@@ -416,7 +452,7 @@ namespace PWQuestOverlay
                 else if (id == HotkeyOcrSelect) SelectAndTestOcr();
                 else if (id == HotkeyOcrScan) TestSavedOcrRegion();
                 else if (id == HotkeyOcrAutoAdvance)
-                    SetOcrAutoAdvance(!_state.Ocr.AutoAdvanceEnabled, true);
+                    SetMemoryAutoAdvance(!_state.Memory.AutoAdvanceEnabled, true);
                 return;
             }
             base.WndProc(ref message);
@@ -500,6 +536,16 @@ namespace PWQuestOverlay
                 bool helperForeground = NativeMethods.WindowBelongsToProcess(foreground, "PW Helper");
                 bool ownForeground = NativeMethods.WindowBelongsToCurrentProcess(foreground);
 
+                if (_state.Memory.AutoAdvanceEnabled && _memoryMonitor != null &&
+                    now >= _nextMemoryPollAt)
+                {
+                    _nextMemoryPollAt = now.AddMilliseconds(250);
+                    _memoryMonitor.Poll(games
+                        .Select(NativeMethods.GetProcessId)
+                        .Where(id => id > 0)
+                        .Distinct());
+                }
+
                 if (gameForeground)
                 {
                     if (_activeGame != foreground)
@@ -567,6 +613,9 @@ namespace PWQuestOverlay
                     _nextAutomaticOcrAt = now.AddSeconds(2);
                     BeginAutomaticOcrScan();
                 }
+
+                if (_state.Memory.AutoAdvanceEnabled)
+                    ApplyMemoryProgress();
             }
             catch (Exception error)
             {
@@ -2092,6 +2141,190 @@ namespace PWQuestOverlay
                 IsTalkStage(action);
         }
 
+        private static bool IsCollectionStage(string action)
+        {
+            return Regex.IsMatch(
+                action ?? string.Empty,
+                @"\b(?:peg(?:ar|ue)|colet(?:ar|e)|obte(?:r|nha)|consig(?:a|uir)|re[uú]na|junte)\b",
+                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        }
+
+        private void ApplyMemoryProgress()
+        {
+            if (_memoryMonitor == null || _taskCatalog == null ||
+                _activeGame == IntPtr.Zero || _progress == null ||
+                _currentMission == null || _currentStep == null)
+                return;
+
+            int processId = NativeMethods.GetProcessId(_activeGame);
+            QuestMemoryClientState client = _memoryMonitor.Find(processId);
+            if (client == null || !client.Ready || client.Snapshot == null) return;
+
+            for (int attempt = 0; attempt < 8 && _currentStep != null; attempt++)
+            {
+                uint taskId;
+                if (!TryResolveUniqueTaskId(
+                    _currentMission, _currentStep, out taskId))
+                {
+                    LogMemoryDiagnostic("sem ID único: " + _currentMission.name +
+                        " / " + _currentStep.title);
+                    return;
+                }
+
+                ActiveQuestMemoryEntry active = client.FindActive(taskId);
+                string action = _currentStep.action ?? string.Empty;
+                bool accepted = IsAcceptStage(action) && active != null;
+                TaskCatalogEntry currentTask = _taskCatalog.Find(taskId);
+                bool taskItemsComplete = active != null &&
+                    IsCollectionStage(action) && currentTask != null &&
+                    currentTask.RequiredTaskItems.Count > 0 &&
+                    currentTask.RequiredTaskItems.All(requirement =>
+                    {
+                        int currentCount;
+                        client.Snapshot.TaskItemCounts.TryGetValue(
+                            requirement.Key, out currentCount);
+                        return currentCount >= requirement.Value;
+                    });
+                bool nextUsesSameTask = false;
+                bool nextTaskResolved = false;
+                uint nextTaskId = 0;
+                if (_currentStepIndex + 1 < _currentMission.steps.Count)
+                {
+                    nextTaskResolved = TryResolveUniqueTaskId(
+                        _currentMission,
+                        _currentMission.steps[_currentStepIndex + 1],
+                        out nextTaskId);
+                    nextUsesSameTask = nextTaskResolved && nextTaskId == taskId;
+                }
+
+                bool waitsForDisappearance = IsTurnInStage(
+                    _currentMission, _currentStep) ||
+                    (IsTalkStage(action) && !nextUsesSameTask);
+                bool disappeared = waitsForDisappearance &&
+                    client.TryConsumeDisappearance(taskId);
+                TaskCatalogEntry nextTask = nextTaskResolved
+                    ? _taskCatalog.Find(nextTaskId) : null;
+                bool successorActive = waitsForDisappearance && active == null &&
+                    nextTaskResolved && nextTaskId != taskId &&
+                    client.FindActive(nextTaskId) != null &&
+                    currentTask != null && nextTask != null &&
+                    currentTask.TopId == nextTask.TopId;
+                if (!accepted && !taskItemsComplete &&
+                    !disappeared && !successorActive)
+                {
+                    LogMemoryDiagnostic("aguardando: " + _currentMission.name +
+                        " / " + _currentStep.title + " ID=" + taskId +
+                        " ativo=" + (active != null) +
+                        " espera-sumir=" + waitsForDisappearance +
+                        " próximo=" + (nextTaskResolved ? nextTaskId.ToString() : "-") +
+                        " próximo-ativo=" + (nextTaskResolved &&
+                            client.FindActive(nextTaskId) != null) +
+                        " itens=" + TaskItemEvidence(currentTask, client.Snapshot));
+                    return;
+                }
+
+                string evidence = accepted
+                    ? "ID " + taskId + " apareceu na lista ativa"
+                    : taskItemsComplete
+                        ? "itens de missão completos: " +
+                            TaskItemEvidence(currentTask, client.Snapshot)
+                    : disappeared
+                        ? "ID " + taskId + " foi observado e depois desapareceu"
+                        : "a próxima submissão da mesma cadeia, ID " +
+                            nextTaskId + ", já está ativa";
+                MarkCurrentStageFromMemory(evidence);
+            }
+        }
+
+        private static string TaskItemEvidence(
+            TaskCatalogEntry task,
+            QuestMemorySnapshot snapshot)
+        {
+            if (task == null || task.RequiredTaskItems == null ||
+                task.RequiredTaskItems.Count == 0 || snapshot == null)
+                return "-";
+            return string.Join(", ", task.RequiredTaskItems.Select(requirement =>
+            {
+                int current;
+                snapshot.TaskItemCounts.TryGetValue(requirement.Key, out current);
+                return requirement.Key + "=" + current + "/" + requirement.Value;
+            }));
+        }
+
+        private void LogMemoryDiagnostic(string message)
+        {
+            if (string.Equals(message, _memoryDiagnosticSignature, StringComparison.Ordinal))
+                return;
+            _memoryDiagnosticSignature = message;
+            _store.Log("Diagnóstico de memória: " + message);
+        }
+
+        private bool TryResolveUniqueTaskId(
+            QuestMission mission,
+            QuestStep step,
+            out uint taskId)
+        {
+            taskId = 0;
+            if (step == null || string.IsNullOrWhiteSpace(step.title)) return false;
+            List<TaskCatalogEntry> matches = _taskCatalog.FindByName(step.title);
+            List<TaskCatalogEntry> missionMatches = mission == null
+                ? new List<TaskCatalogEntry>()
+                : _taskCatalog.FindByName(mission.name);
+            HashSet<uint> topIds = new HashSet<uint>(
+                missionMatches.Select(entry => entry.TopId));
+            if (topIds.Count > 0)
+            {
+                List<TaskCatalogEntry> sameChain = matches
+                    .Where(entry => topIds.Contains(entry.TopId))
+                    .ToList();
+                if (sameChain.Count > 0) matches = sameChain;
+            }
+            if (matches.Count != 1) return false;
+            taskId = matches[0].Id;
+            return taskId != 0;
+        }
+
+        private void MarkCurrentStageFromMemory(string evidence)
+        {
+            QuestMission mission = _currentMission;
+            QuestStep step = _currentStep;
+            int stepIndex = _currentStepIndex;
+            _progress.MissionStates[StageKey(mission, step)] = "done-memory";
+            if (MissionStagesComplete(mission))
+                _progress.MissionStates[mission.id] = "done-memory";
+            _store.Save(_state);
+            _store.Log(_characterName + " avançou automaticamente por memória na etapa " +
+                (stepIndex + 1) + "/" + mission.steps.Count + ": " + mission.name +
+                "; evidência=" + evidence);
+            RefreshMissionDisplay();
+        }
+
+        private void SetMemoryAutoAdvance(bool enabled, bool notify)
+        {
+            if (enabled && (_memoryMonitor == null || _taskCatalog == null))
+            {
+                enabled = false;
+                if (notify)
+                    MessageBox.Show(
+                        "O leitor de memória não pôde ser iniciado. Consulte o overlay.log.",
+                        "Estado por memória",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+            }
+            _state.Memory.AutoAdvanceEnabled = enabled;
+            _memoryAutoAdvanceItem.Checked = enabled;
+            _nextMemoryPollAt = DateTime.MinValue;
+            _store.Save(_state);
+            _store.Log("Sincronização e avanço automáticos por memória " +
+                (enabled ? "ativados" : "desativados"));
+            if (!notify) return;
+            _trayIcon.ShowBalloonTip(
+                1800,
+                "PW Quest Overlay",
+                "Sincronização por memória " + (enabled ? "ATIVADA" : "DESATIVADA"),
+                enabled ? ToolTipIcon.Info : ToolTipIcon.Warning);
+        }
+
         private void SetOcrAutoAdvance(bool enabled, bool notify)
         {
             _state.Ocr.AutoAdvanceEnabled = enabled;
@@ -2361,12 +2594,12 @@ namespace PWQuestOverlay
                 NativeMethods.MOD_CONTROL | NativeMethods.MOD_SHIFT, NativeMethods.VK_A);
             _markerHotkeyItem.Text = "Atalho do marcador: " + markerShortcut;
             _ocrHotkeyItem.Text = ocrSelect && ocrScan
-                ? "Selecionar: Ctrl + Shift + O  ·  Ler: Ctrl + Alt + O  ·  Auto: Ctrl + Shift + A"
+                ? "OCR: Ctrl + Shift + O / Ctrl + Alt + O  ·  Memória: Ctrl + Shift + A"
                 : "Atalhos OCR indisponíveis; use este menu";
             _store.Log("Atalhos registrados: concluir=" + done + " voltar=" + previous +
                 " pular=" + skip + " marcador=" + markerShortcut +
                 " ocr-selecionar=" + ocrSelect + " ocr-ler=" + ocrScan +
-                " ocr-auto=" + ocrAutoAdvance);
+                " memoria-auto=" + ocrAutoAdvance);
         }
 
         private void UnregisterHotkeys()

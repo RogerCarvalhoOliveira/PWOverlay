@@ -61,16 +61,27 @@ internal static class SmokeTests
                 memoryProfile.quests.className != "CECTaskInterface" ||
                 memoryProfile.quests.ActiveEntryStride != 0x20 ||
                 memoryProfile.quests.ActiveParentIndexOffset != 0x2 ||
-                memoryProfile.quests.ActiveFlagsOffset != 0x7)
+                memoryProfile.quests.ActiveFlagsOffset != 0x7 ||
+                memoryProfile.inventory.PlayerPointerOffset != 0xFDC ||
+                memoryProfile.inventory.TaskInventoryOffset != 0x78 ||
+                memoryProfile.inventory.ItemIdOffset != 0xC ||
+                memoryProfile.inventory.ItemCountOffset != 0x14)
                 throw new InvalidDataException("Layout de memória 1.4.4 inesperado.");
 
             TaskCatalog taskCatalog = TaskCatalog.Load(args[2]);
             TaskCatalogEntry bamboo = taskCatalog.Find(2646);
             TaskCatalogEntry bambooFlight = taskCatalog.Find(2655);
+            TaskCatalogEntry beetleBlood = taskCatalog.Find(936);
+            int beetleBloodCount = 0;
+            if (beetleBlood != null)
+                beetleBlood.RequiredTaskItems.TryGetValue(3502, out beetleBloodCount);
             if (taskCatalog.Count != 24277 || bamboo == null ||
                 bamboo.Name != "Vila do Bambu" || bambooFlight == null ||
                 bambooFlight.Name != "Voe para a Vila do Bam" ||
-                bambooFlight.ParentId != bamboo.Id)
+                bambooFlight.ParentId != bamboo.Id ||
+                beetleBloodCount != 10 ||
+                taskCatalog.FindByName("Voe para a Vila do Bam").Count != 1 ||
+                taskCatalog.FindByName("Moeda Sangrenta de Fer").Count < 2)
                 throw new InvalidDataException("Catálogo dataminado de missões está divergente.");
 
             var tracker = new QuestStateTracker();
@@ -208,12 +219,14 @@ internal static class SmokeTests
             AppState state = new StateStore().Load();
             if (state.Characters == null || state.Positions == null || state.ClassAssociations == null)
                 throw new InvalidDataException("Estado carregado sem coleções obrigatórias.");
-            if (state.SchemaVersion < 9)
+            if (state.SchemaVersion < 10)
                 throw new InvalidDataException("Estado não foi migrado para a versão atual.");
             if (state.Marker == null || state.Marker.MarkerList == null)
                 throw new InvalidDataException("Calibração do marcador incompleta.");
             if (state.Ocr == null)
                 throw new InvalidDataException("Configuração do OCR não foi inicializada.");
+            if (state.Memory == null || string.IsNullOrWhiteSpace(state.Memory.ProfileId))
+                throw new InvalidDataException("Configuração de memória não foi inicializada.");
             if (!state.Marker.Calibrated && state.Marker.MarkerList.Y != 70)
                 throw new InvalidDataException("Ponto padrão da lista de marcadores não foi migrado para uma linha selecionável.");
             foreach (CharacterProgress progress in state.Characters.Values)

@@ -177,7 +177,7 @@ namespace PWQuestOverlay.Tools
             TaskCatalog catalog)
         {
             QuestMemorySnapshot snapshot = new QuestMemoryReader(
-                memory, profile.quests).Read(player);
+                memory, profile.quests, profile.inventory).Read(player);
             Console.WriteLine(
                 "  TaskInterface 0x{0:X8} | catálogo: {1} | ativas: {2} | histórico: {3}",
                 snapshot.TaskInterfaceAddress,
@@ -186,6 +186,11 @@ namespace PWQuestOverlay.Tools
                 snapshot.FinishedTaskIds.Count == 0
                     ? "nenhuma"
                     : string.Join(", ", snapshot.FinishedTaskIds));
+            foreach (KeyValuePair<uint, int> item in snapshot.TaskItemCounts)
+                Console.WriteLine(
+                    "    inventário de missão: item {0} x{1}",
+                    item.Key,
+                    item.Value);
             foreach (ActiveQuestMemoryEntry entry in snapshot.ActiveTasks)
                 Console.WriteLine("    " + FormatActive(entry, catalog));
         }
@@ -200,13 +205,11 @@ namespace PWQuestOverlay.Tools
             string parent = entry.ParentIndex < 0
                 ? "raiz" : "índice-pai " + entry.ParentIndex;
             return string.Format(
-                "ID {0} | {1} | {2} | estado {3} (sucesso={4}, finalizada={5}) | flags 0x{6:X2} | catálogo-pai {7}",
+                "ID {0} | {1} | {2} | código bruto {3} | flags 0x{4:X2} | catálogo-pai {5}",
                 entry.TaskId,
                 name,
                 parent,
                 entry.StateCode,
-                entry.SuccessFlag ? "sim" : "não",
-                entry.FinishedFlag ? "sim" : "não",
                 entry.Flags,
                 task == null || task.ParentId == 0 ? "-" : task.ParentId.ToString());
         }
@@ -289,7 +292,8 @@ namespace PWQuestOverlay.Tools
                 try
                 {
                     _player = ResolvePlayer(_memory, profile);
-                    _reader = new QuestMemoryReader(_memory, profile.quests);
+                    _reader = new QuestMemoryReader(
+                        _memory, profile.quests, profile.inventory);
                     _tracker = new QuestStateTracker();
                 }
                 catch

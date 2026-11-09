@@ -3402,11 +3402,11 @@
           "markerX": 342,
           "markerY": 413,
           "routeOrder": 10150,
-          "title": "Aldeões Feridos"
+          "title": "Cadê o Boticário?"
         },
         {
           "id": "e4",
-          "action": "Pegar (12) Sangue de Besouro Chifres matando Besouro Chifre (Leste da Cidade das Plumas - Floresta Yuja) (355, 438)",
+          "action": "Pegar (10) Sangue de Besouro Chifres matando Besouro Chifre (Leste da Cidade das Plumas - Floresta Yuja) (355, 438)",
           "markerX": 355,
           "markerY": 438,
           "routeOrder": 10160,
@@ -3418,7 +3418,7 @@
           "markerX": 372,
           "markerY": 427,
           "routeOrder": 10170,
-          "title": "Aldeões Ansiosos"
+          "title": "Besouro de Chifres"
         }
       ],
       "expectedLevel": 3
