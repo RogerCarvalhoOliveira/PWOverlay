@@ -9,7 +9,7 @@ $projectRoot = Split-Path -Parent $PSScriptRoot
 $sourceDirectory = Join-Path $projectRoot 'src'
 $dataDirectory = Join-Path $projectRoot 'data'
 $distributionDirectory = Join-Path $projectRoot 'dist'
-$version = '0.7.3'
+$version = '0.7.4'
 
 $compilerCandidates = @(
     'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe',

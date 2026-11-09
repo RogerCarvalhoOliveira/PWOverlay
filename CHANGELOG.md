@@ -1,5 +1,14 @@
 # Histórico de alterações
 
+## 0.7.4 - Nomes oficiais do cliente 1.4.4
+
+- Dataminado o `tasks.data` versão 124 do cliente instalado, com 24.277 missões e submissões extraídas integralmente.
+- Corrigidos 58 títulos das rotas de nível 1 a 20 para a grafia usada pelo cliente.
+- Atualizados 511 títulos de etapas com os nomes reais das missões ou submissões.
+- Corrigidas cadeias traduzidas de forma divergente, incluindo `Conspiração`, `Informação do Inimigo`, `A Montanha Nebulosa`, `Atrição do Velho Sold.` e `O Equilíbrio Celestial`.
+- Mantidos todos os IDs do overlay para preservar o progresso salvo.
+- Adicionado relatório técnico do datamine e testes para as traduções críticas.
+
 ## 0.7.3 - Todos os painéis do PW Helper no topo
 
 - Todos os painéis flutuantes visíveis do processo `PW Helper` agora são mantidos acima do jogo, sem depender do título `TODOS`.
