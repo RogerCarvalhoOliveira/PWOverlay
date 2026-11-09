@@ -20,6 +20,7 @@ namespace PWQuestOverlay
         private const int HotkeyMarker = 1004;
         private const int HotkeyOcrSelect = 1005;
         private const int HotkeyOcrScan = 1006;
+        private const int HotkeyOcrAutoAdvance = 1007;
         private static readonly Size FullClientSize = new Size(570, 180);
         private static readonly Size CompactClientSize = new Size(470, 122);
 
@@ -53,12 +54,14 @@ namespace PWQuestOverlay
         private readonly ToolStripMenuItem _classMenuItem;
         private readonly ToolStripMenuItem _markerHotkeyItem;
         private readonly ToolStripMenuItem _ocrHotkeyItem;
+        private readonly ToolStripMenuItem _ocrAutoAdvanceItem;
         private readonly Dictionary<IntPtr, DateTime> _titleRefresh;
         private readonly Dictionary<string, OcrStabilityState> _ocrStability;
 
         private IntPtr _activeGame;
         private DateTime _helperNeutralUntil;
         private DateTime _nextRaiseAt;
+        private DateTime _nextAutomaticOcrAt;
         private string _characterKey;
         private string _windowTitleKey;
         private string _characterName;
@@ -91,6 +94,14 @@ namespace PWQuestOverlay
             internal string Signature;
             internal int ConsecutiveReadings;
             internal DateTime LastReadAt;
+        }
+
+        private sealed class OcrQuestBlock
+        {
+            internal QuestMission Mission;
+            internal bool Completed;
+            internal int? CurrentCount;
+            internal int? TotalCount;
         }
 
         private static readonly Regex PrimaryTitlePattern = new Regex(
@@ -263,6 +274,17 @@ namespace PWQuestOverlay
                 "Testar área salva",
                 null,
                 delegate { TestSavedOcrRegion(); });
+            _ocrAutoAdvanceItem = new ToolStripMenuItem(
+                "Sincronizar e avançar automaticamente")
+            {
+                CheckOnClick = true,
+                Checked = _state.Ocr.AutoAdvanceEnabled
+            };
+            _ocrAutoAdvanceItem.Click += delegate
+            {
+                SetOcrAutoAdvance(_ocrAutoAdvanceItem.Checked, true);
+            };
+            ocrMenu.DropDownItems.Add(_ocrAutoAdvanceItem);
             _ocrHotkeyItem = new ToolStripMenuItem("Atalhos do OCR: verificando...") { Enabled = false };
             ocrMenu.DropDownItems.Add(new ToolStripSeparator());
             ocrMenu.DropDownItems.Add(_ocrHotkeyItem);
@@ -384,6 +406,8 @@ namespace PWQuestOverlay
                 else if (id == HotkeyMarker) MarkCurrentLocation();
                 else if (id == HotkeyOcrSelect) SelectAndTestOcr();
                 else if (id == HotkeyOcrScan) TestSavedOcrRegion();
+                else if (id == HotkeyOcrAutoAdvance)
+                    SetOcrAutoAdvance(!_state.Ocr.AutoAdvanceEnabled, true);
                 return;
             }
             base.WndProc(ref message);
@@ -526,6 +550,13 @@ namespace PWQuestOverlay
                         RaiseOverlayStack();
                         _nextRaiseAt = now.AddMilliseconds(150);
                     }
+                }
+
+                if (_state.Ocr.AutoAdvanceEnabled && _state.Ocr.Calibrated &&
+                    gameForeground && !_ocrBusy && now >= _nextAutomaticOcrAt)
+                {
+                    _nextAutomaticOcrAt = now.AddSeconds(2);
+                    BeginAutomaticOcrScan();
                 }
             }
             catch (Exception error)
@@ -1508,23 +1539,81 @@ namespace PWQuestOverlay
             return true;
         }
 
-        private async Task ScanOcrRegion(Rectangle region)
+        private async Task ScanOcrRegion(
+            Rectangle region,
+            bool showResult = true,
+            bool bringGameToFront = true)
         {
             IntPtr targetWindow = _activeGame;
-            NativeMethods.SetForegroundWindow(targetWindow);
-            await Task.Delay(180);
+            string targetCharacterKey = _characterKey;
+            if (bringGameToFront)
+            {
+                NativeMethods.SetForegroundWindow(targetWindow);
+                await Task.Delay(180);
+            }
             string directory = Path.GetDirectoryName(_store.LogPath);
             QuestOcrResult result = await QuestOcrService.ScanAsync(targetWindow, region, directory);
+            if (targetWindow != _activeGame ||
+                !string.Equals(targetCharacterKey, _characterKey, StringComparison.OrdinalIgnoreCase))
+            {
+                _store.Log("OCR descartado: o cliente ativo mudou durante a captura.");
+                return;
+            }
             result.Text = InterpretOcrText(result.Text);
             string stabilitySummary = UpdateOcrStability(result);
-            string matchSummary = BuildOcrMatchSummary(result.Text) + " " + stabilitySummary;
+            string comparisonSummary = BuildOcrMatchSummary(result.Text);
+            string advanceSummary = ApplyConfirmedOcrProgress(result);
+            string matchSummary = comparisonSummary + " " + stabilitySummary + " " + advanceSummary;
             _store.Log(string.Format(
                 "OCR concluído em {0} ms, caracteres={1}, região={2}",
                 result.ElapsedMilliseconds,
                 result.Text == null ? 0 : result.Text.Length,
                 region));
-            using (var resultForm = new OcrResultForm(result, matchSummary))
-                resultForm.ShowDialog();
+            if (showResult)
+            {
+                using (var resultForm = new OcrResultForm(result, matchSummary))
+                    resultForm.ShowDialog();
+            }
+        }
+
+        private async void BeginAutomaticOcrScan()
+        {
+            if (_ocrBusy || !_state.Ocr.AutoAdvanceEnabled ||
+                _activeGame == IntPtr.Zero || !NativeMethods.IsWindow(_activeGame))
+                return;
+            Rectangle region = GetSavedOcrRegion();
+            if (region.Width < 20 || region.Height < 20) return;
+
+            _ocrBusy = true;
+            bool hiddenForCapture = OverlayIntersectsOcrRegion(region) && Visible;
+            if (hiddenForCapture) Hide();
+            try
+            {
+                await ScanOcrRegion(region, false, false);
+            }
+            catch (Exception error)
+            {
+                _store.Log("Erro no OCR automático: " + error.GetType().Name + ": " + error.Message);
+            }
+            finally
+            {
+                _ocrBusy = false;
+                _nextAutomaticOcrAt = DateTime.UtcNow.AddSeconds(2);
+                if (hiddenForCapture) RestoreOverlayAfterOcr();
+            }
+        }
+
+        private bool OverlayIntersectsOcrRegion(Rectangle clientRegion)
+        {
+            if (_activeGame == IntPtr.Zero) return false;
+            var origin = new NativeMethods.POINT { X = 0, Y = 0 };
+            if (!NativeMethods.ClientToScreen(_activeGame, ref origin)) return false;
+            Rectangle screenRegion = new Rectangle(
+                origin.X + clientRegion.X,
+                origin.Y + clientRegion.Y,
+                clientRegion.Width,
+                clientRegion.Height);
+            return Bounds.IntersectsWith(screenRegion);
         }
 
         private void SaveOcrRegion(Rectangle region)
@@ -1576,7 +1665,7 @@ namespace PWQuestOverlay
                 ? 0
                 : (int)Math.Round(100.0 * found / expectedWords.Length);
             string summary = string.Format(
-                "Comparação com a etapa atual: {0}% ({1}/{2} palavras). Nenhum progresso foi alterado.",
+                "Comparação com a etapa atual: {0}% ({1}/{2} palavras).",
                 confidence,
                 found,
                 expectedWords.Length);
@@ -1666,6 +1755,151 @@ namespace PWQuestOverlay
                 }
             }
             return string.Join("|", parts.Distinct().OrderBy(part => part));
+        }
+
+        private string ApplyConfirmedOcrProgress(QuestOcrResult result)
+        {
+            if (!_state.Ocr.AutoAdvanceEnabled)
+                return "Avanço automático desativado (Ctrl + Shift + A).";
+            if (!result.StateConfirmed)
+                return "Nenhuma etapa alterada antes da confirmação 2/2.";
+            if (_progress == null || _currentMission == null || _currentStep == null)
+                return "Sem etapa ativa para avançar.";
+
+            List<OcrQuestBlock> blocks = ParseOcrQuestBlocks(result.Text);
+            var advances = new List<string>();
+            for (int attempt = 0; attempt < 2; attempt++)
+            {
+                OcrQuestBlock block = blocks.FirstOrDefault(candidate =>
+                    candidate.Mission != null && _currentMission != null &&
+                    string.Equals(candidate.Mission.id, _currentMission.id,
+                        StringComparison.OrdinalIgnoreCase));
+                if (block == null) break;
+
+                string action = _currentStep.action ?? string.Empty;
+                bool acceptStage = IsAcceptStage(action);
+                bool turnInStage = IsTurnInStage(action);
+                int? expectedTotal = GetExpectedCounterTotal();
+                int objectiveCountRequirements = Regex.Matches(
+                    action,
+                    @"\(\s*\d{1,4}\s*\)").Count;
+                bool counterFinished = expectedTotal.HasValue &&
+                    objectiveCountRequirements == 1 &&
+                    block.CurrentCount.HasValue && block.TotalCount.HasValue &&
+                    block.CurrentCount.Value >= expectedTotal.Value &&
+                    block.TotalCount.Value == expectedTotal.Value;
+                bool objectiveFinished = !turnInStage &&
+                    (counterFinished || (!acceptStage && block.Completed));
+                if (!acceptStage && !objectiveFinished) break;
+
+                string missionName = _currentMission.name;
+                int stepNumber = _currentStepIndex + 1;
+                string evidence = acceptStage
+                    ? "missão visível no quest log"
+                    : counterFinished
+                        ? "contador " + block.CurrentCount.Value + "/" + block.TotalCount.Value
+                        : "Missão Concluída no bloco correto";
+                MarkCurrentStageFromOcr(evidence);
+                advances.Add(missionName + " etapa " + stepNumber + " (" + evidence + ")");
+                if (!acceptStage) break;
+                if (_currentMission == null || _currentStep == null) break;
+            }
+
+            return advances.Count == 0
+                ? "Nenhuma etapa tinha evidência suficiente para avanço automático."
+                : "Avanço automático: " + string.Join("; ", advances) + ".";
+        }
+
+        private List<OcrQuestBlock> ParseOcrQuestBlocks(string recognizedText)
+        {
+            Dictionary<string, QuestMission> knownMissions = _currentRoute
+                .GroupBy(mission => NormalizeOcrText(mission.name))
+                .ToDictionary(group => group.Key, group => group.First(),
+                    StringComparer.OrdinalIgnoreCase);
+            var blocks = new List<OcrQuestBlock>();
+            OcrQuestBlock activeBlock = null;
+            string[] lines = (recognizedText ?? string.Empty)
+                .Replace("\r\n", "\n")
+                .Split('\n');
+            foreach (string line in lines)
+            {
+                Match numberedTitle = Regex.Match(line, @"^\s*\d+\s+(?<title>.+?)\s*$");
+                if (numberedTitle.Success)
+                {
+                    QuestMission mission;
+                    knownMissions.TryGetValue(
+                        NormalizeOcrText(numberedTitle.Groups["title"].Value),
+                        out mission);
+                    activeBlock = new OcrQuestBlock { Mission = mission };
+                    blocks.Add(activeBlock);
+                    continue;
+                }
+                if (activeBlock == null) continue;
+
+                string normalizedLine = NormalizeOcrText(line);
+                if (normalizedLine.Contains("missao concluida"))
+                    activeBlock.Completed = true;
+                Match counter = Regex.Match(
+                    line,
+                    @"\(\s*(?<current>\d{1,4}|\?)\s*/\s*(?<total>\d{1,4})\s*\)");
+                int current;
+                int total;
+                if (counter.Success &&
+                    int.TryParse(counter.Groups["total"].Value, out total))
+                {
+                    activeBlock.TotalCount = total;
+                    if (int.TryParse(counter.Groups["current"].Value, out current))
+                        activeBlock.CurrentCount = current;
+                }
+            }
+            return blocks;
+        }
+
+        private void MarkCurrentStageFromOcr(string evidence)
+        {
+            QuestMission mission = _currentMission;
+            QuestStep step = _currentStep;
+            int stepIndex = _currentStepIndex;
+            _progress.MissionStates[StageKey(mission, step)] = "done-ocr";
+            if (MissionStagesComplete(mission))
+                _progress.MissionStates[mission.id] = "done-ocr";
+            _store.Save(_state);
+            _store.Log(_characterName + " avançou automaticamente por OCR na etapa " +
+                (stepIndex + 1) + "/" + mission.steps.Count + ": " + mission.name +
+                "; evidência=" + evidence);
+            RefreshMissionDisplay();
+        }
+
+        private static bool IsAcceptStage(string action)
+        {
+            return Regex.IsMatch(
+                action ?? string.Empty,
+                @"\b(?:aceite|pegue\s+a\s+miss[aã]o|receba\s+a\s+miss[aã]o|inicie\s+a\s+miss[aã]o)\b",
+                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        }
+
+        private static bool IsTurnInStage(string action)
+        {
+            return Regex.IsMatch(
+                action ?? string.Empty,
+                @"\b(?:entregue|reporte|retorne|volte|fale\s+com)\b",
+                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        }
+
+        private void SetOcrAutoAdvance(bool enabled, bool notify)
+        {
+            _state.Ocr.AutoAdvanceEnabled = enabled;
+            _ocrAutoAdvanceItem.Checked = enabled;
+            _store.Save(_state);
+            _nextAutomaticOcrAt = DateTime.UtcNow;
+            _store.Log("Sincronização e avanço automáticos por OCR " +
+                (enabled ? "ativados" : "desativados"));
+            if (!notify) return;
+            _trayIcon.ShowBalloonTip(
+                1800,
+                "PW Quest Overlay",
+                "Sincronização e avanço por OCR " + (enabled ? "ATIVADOS" : "DESATIVADOS"),
+                enabled ? ToolTipIcon.Info : ToolTipIcon.Warning);
         }
 
         private string InterpretOcrText(string recognizedText)
@@ -1917,13 +2151,16 @@ namespace PWQuestOverlay
                 NativeMethods.MOD_CONTROL | NativeMethods.MOD_SHIFT, NativeMethods.VK_O);
             bool ocrScan = NativeMethods.RegisterHotKey(Handle, HotkeyOcrScan,
                 NativeMethods.MOD_CONTROL | NativeMethods.MOD_ALT, NativeMethods.VK_O);
+            bool ocrAutoAdvance = NativeMethods.RegisterHotKey(Handle, HotkeyOcrAutoAdvance,
+                NativeMethods.MOD_CONTROL | NativeMethods.MOD_SHIFT, NativeMethods.VK_A);
             _markerHotkeyItem.Text = "Atalho do marcador: " + markerShortcut;
             _ocrHotkeyItem.Text = ocrSelect && ocrScan
-                ? "Selecionar: Ctrl + Shift + O  ·  Ler salva: Ctrl + Alt + O"
+                ? "Selecionar: Ctrl + Shift + O  ·  Ler: Ctrl + Alt + O  ·  Auto: Ctrl + Shift + A"
                 : "Atalhos OCR indisponíveis; use este menu";
             _store.Log("Atalhos registrados: concluir=" + done + " voltar=" + previous +
                 " pular=" + skip + " marcador=" + markerShortcut +
-                " ocr-selecionar=" + ocrSelect + " ocr-ler=" + ocrScan);
+                " ocr-selecionar=" + ocrSelect + " ocr-ler=" + ocrScan +
+                " ocr-auto=" + ocrAutoAdvance);
         }
 
         private void UnregisterHotkeys()
@@ -1935,6 +2172,7 @@ namespace PWQuestOverlay
             NativeMethods.UnregisterHotKey(Handle, HotkeyMarker);
             NativeMethods.UnregisterHotKey(Handle, HotkeyOcrSelect);
             NativeMethods.UnregisterHotKey(Handle, HotkeyOcrScan);
+            NativeMethods.UnregisterHotKey(Handle, HotkeyOcrAutoAdvance);
         }
 
         private void OnFormClosing(object sender, FormClosingEventArgs e)

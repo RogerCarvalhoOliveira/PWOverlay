@@ -112,6 +112,7 @@ namespace PWQuestOverlay
     public sealed class QuestOcrSettings
     {
         public bool Calibrated { get; set; }
+        public bool AutoAdvanceEnabled { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
         public int Width { get; set; }
@@ -140,7 +141,7 @@ namespace PWQuestOverlay
 
         public AppState()
         {
-            SchemaVersion = 7;
+            SchemaVersion = 8;
             Opacity = 0.82;
             Characters = new Dictionary<string, CharacterProgress>(StringComparer.OrdinalIgnoreCase);
             Positions = new Dictionary<string, SavedPosition>(StringComparer.OrdinalIgnoreCase);
@@ -346,6 +347,11 @@ namespace PWQuestOverlay
                     state.Ocr = QuestOcrSettings.CreateDefault();
                     state.SchemaVersion = 7;
                 }
+                if (state.SchemaVersion < 8)
+                {
+                    state.Ocr.AutoAdvanceEnabled = false;
+                    state.SchemaVersion = 8;
+                }
                 NormalizeMarkerSettings(state.Marker);
                 foreach (CharacterProgress progress in state.Characters.Values)
                 {
@@ -410,6 +416,11 @@ namespace PWQuestOverlay
             {
                 state.Ocr = QuestOcrSettings.CreateDefault();
                 state.SchemaVersion = 7;
+            }
+            if (state.SchemaVersion < 8)
+            {
+                state.Ocr.AutoAdvanceEnabled = false;
+                state.SchemaVersion = 8;
             }
             NormalizeMarkerSettings(state.Marker);
             foreach (CharacterProgress progress in state.Characters.Values)

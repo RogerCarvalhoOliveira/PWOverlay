@@ -13,6 +13,18 @@ Esta função está isolada na branch `feature/ocr-quest-state`. Ela serve para 
 
 Os mesmos comandos continuam disponíveis no ícone do overlay ao lado do relógio, em **OCR experimental**.
 
+## Sincronização e avanço automáticos
+
+Pressione **Ctrl + Shift + A** para ativar ou desativar o modo automático. Quando ativo e o cliente estiver em foco, o overlay lê silenciosamente a área salva a cada dois segundos. Um resultado é descartado se o usuário trocar de cliente durante a captura.
+
+O avanço exige duas leituras interpretadas iguais. Nesta fase, são concluídas automaticamente somente:
+
+- a etapa de aceitar quando a missão canônica aparece no quest log;
+- uma etapa de objetivo quando o contador único chega ao total esperado;
+- uma etapa de objetivo quando `Missão Concluída` aparece dentro do bloco canônico correto.
+
+Etapas de entregar, reportar, voltar ou falar com NPC não avançam apenas porque o texto `Missão Concluída` apareceu: isso indica que a missão está pronta para entrega, não que ela já foi entregue. Objetivos com vários contadores também exigem `Missão Concluída`, evitando concluir a etapa quando somente um dos alvos terminou.
+
 O teste não conclui, pula nem volta etapas. A calibração é salva proporcionalmente à resolução do cliente e faz parte do backup do estado.
 
 ## Diagnóstico

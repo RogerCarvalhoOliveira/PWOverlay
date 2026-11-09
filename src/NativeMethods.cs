@@ -31,6 +31,7 @@ namespace PWQuestOverlay
         internal const byte VK_RETURN = 0x0D;
         internal const int VK_M = 0x4D;
         internal const int VK_O = 0x4F;
+        internal const int VK_A = 0x41;
         internal const byte VK_END = 0x23;
         internal const byte VK_BACK = 0x08;
         internal const uint KEYEVENTF_KEYUP = 0x0002;
