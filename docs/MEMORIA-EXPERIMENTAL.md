@@ -37,6 +37,7 @@ O byte de estado é mantido em formato bruto. Valores diferentes foram observado
 
 - aparecimento do ID para aceite;
 - item e quantidade exigidos presentes no inventário de missão para coleta;
+- primeiro contador de abates para objetivos dataminados com um único monstro, sem drops, até 255 abates (a partir da versão 0.8.1);
 - desaparecimento depois de presença confirmada para conversa ou entrega;
 - próxima submissão da mesma cadeia ativa para recuperar uma transição ocorrida antes de abrir o overlay.
 
@@ -48,10 +49,12 @@ No teste validado de `Aldeões Feridos`, a submissão `Besouro de Chifres` (ID 9
 
 As próximas validações devem ampliar a cobertura sem inferências arriscadas:
 
-1. identificar contadores de abates que não criam uma submissão sucessora;
+1. ampliar a leitura de abates para objetivos com vários tipos de monstro;
 2. validar objetivos com mais de um item ou mais de um tipo de condição;
 3. mapear explicitamente IDs para etapas cujos nomes são duplicados no catálogo;
 4. testar todas as raças e mais de um cliente simultaneamente;
 5. manter o modo desligado por padrão até a cobertura das rotas ser maior.
 
 Ausência de um ID nunca será tratada sozinha como missão entregue: o leitor precisará distinguir “nunca aceita”, “ativa” e “já finalizada” por estruturas independentes do cliente.
+
+Na versão 0.8.1, `Confiança dos Guardas` (ID 2714) foi validada com 10 abates do monstro 1037. O primeiro contador ocupa dois bytes no offset `0x15` da entrada ativa de 32 bytes. A assinatura de estabilidade inclui essa contagem, de modo que uma mudança no contador seja confirmada mesmo sem alteração na lista de IDs. Somente uma ação exclusivamente de matar avança por essa evidência; entregar ao NPC exige sua própria transição.

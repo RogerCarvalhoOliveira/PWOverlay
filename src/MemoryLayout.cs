@@ -129,6 +129,7 @@ namespace PWQuestOverlay.Memory
         public string activeIdOffset { get; set; }
         public string activeParentIndexOffset { get; set; }
         public string activeFlagsOffset { get; set; }
+        public string activeFirstMonsterCountOffset { get; set; }
         public int activeMaximum { get; set; }
         public string finishedListPointerOffset { get; set; }
         public string finishedCountOffset { get; set; }
@@ -144,6 +145,11 @@ namespace PWQuestOverlay.Memory
         internal int ActiveIdOffset { get { return ToInt(activeIdOffset); } }
         internal int ActiveParentIndexOffset { get { return ToInt(activeParentIndexOffset); } }
         internal int ActiveFlagsOffset { get { return ToInt(activeFlagsOffset); } }
+        internal int ActiveFirstMonsterCountOffset
+        {
+            get { return string.IsNullOrWhiteSpace(activeFirstMonsterCountOffset)
+                ? 0x15 : ToInt(activeFirstMonsterCountOffset); }
+        }
         internal int ActiveMaximum { get { return activeMaximum; } }
         internal int FinishedListPointerOffset { get { return ToInt(finishedListPointerOffset); } }
         internal int FinishedCountOffset { get { return ToInt(finishedCountOffset); } }
@@ -159,6 +165,8 @@ namespace PWQuestOverlay.Memory
                 ActiveIdOffset < 0 || ActiveIdOffset + 2 > ActiveEntryStride ||
                 ActiveParentIndexOffset < 0 || ActiveParentIndexOffset >= ActiveEntryStride ||
                 ActiveFlagsOffset < 0 || ActiveFlagsOffset >= ActiveEntryStride ||
+                ActiveFirstMonsterCountOffset < 0 ||
+                ActiveFirstMonsterCountOffset + 2 > ActiveEntryStride ||
                 ActiveMaximum <= 0 || FinishedEntryStride < 4 ||
                 FinishedMaximum <= 0)
                 throw new InvalidDataException("Layout de missões inválido.");

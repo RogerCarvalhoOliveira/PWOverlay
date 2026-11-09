@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace PWQuestOverlay.Memory
 {
@@ -21,6 +22,24 @@ namespace PWQuestOverlay.Memory
         internal bool ReadyToNotify { get; set; }
         internal bool AutoDeliver { get; set; }
         internal Dictionary<uint, int> RequiredTaskItems { get; set; }
+        internal uint RequiredMonsterId { get; set; }
+        internal int RequiredMonsterKills { get; set; }
+
+        internal bool TryGetKillProgress(
+            ActiveQuestMemoryEntry active, string action, out string evidence)
+        {
+            evidence = string.Empty;
+            if (active == null || active.TaskId != Id || Method != 1 ||
+                RequiredMonsterId == 0 || RequiredMonsterKills <= 0 ||
+                RequiredMonsterKills > 255 || RequiredTaskItems.Count != 0 ||
+                active.FirstMonsterKillCount < 0 || active.FirstMonsterKillCount > 255 ||
+                !Regex.IsMatch(action ?? string.Empty, @"^\s*(?:matar|mate)\b", RegexOptions.IgnoreCase) ||
+                Regex.IsMatch(action ?? string.Empty, @"\b(?:entreg|report|retorn|volt|fale)", RegexOptions.IgnoreCase))
+                return false;
+            evidence = RequiredMonsterId + "=" + active.FirstMonsterKillCount +
+                "/" + RequiredMonsterKills;
+            return active.FirstMonsterKillCount >= RequiredMonsterKills;
+        }
     }
 
     internal sealed class TaskCatalog
@@ -79,6 +98,17 @@ namespace PWQuestOverlay.Memory
                     entry.RequiredTaskItems = fields.Length >= 18
                         ? ParseItemRequirements(fields[17], lineNumber)
                         : new Dictionary<uint, int>();
+                    if (fields.Length >= 19 && fields[18] != "-")
+                    {
+                        var kills = ParseItemRequirements(fields[18], lineNumber);
+                        if (kills.Count != 1) throw new InvalidDataException(
+                            "Objetivo de abate único inválido na linha " + lineNumber + ".");
+                        foreach (var kill in kills)
+                        {
+                            entry.RequiredMonsterId = kill.Key;
+                            entry.RequiredMonsterKills = kill.Value;
+                        }
+                    }
                     if (entry.Id != 0 && !entries.ContainsKey(entry.Id))
                         entries.Add(entry.Id, entry);
                 }
@@ -137,7 +167,7 @@ namespace PWQuestOverlay.Memory
             string value, int lineNumber)
         {
             var result = new Dictionary<uint, int>();
-            if (string.IsNullOrWhiteSpace(value)) return result;
+            if (string.IsNullOrWhiteSpace(value) || value == "-") return result;
             foreach (string requirement in value.Split(';'))
             {
                 string[] parts = requirement.Split(':');

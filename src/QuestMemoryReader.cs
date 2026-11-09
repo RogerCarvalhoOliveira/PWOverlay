@@ -24,6 +24,7 @@ namespace PWQuestOverlay.Memory
         internal int ParentIndex { get; set; }
         internal byte Flags { get; set; }
         internal byte StateCode { get { return (byte)(Flags & 0x0F); } }
+        internal int FirstMonsterKillCount { get; set; }
         internal long Address { get; set; }
         internal byte[] RawData { get; set; }
     }
@@ -89,6 +90,8 @@ namespace PWQuestOverlay.Memory
                     TaskId = taskId,
                     ParentIndex = unchecked((sbyte)raw[_layout.ActiveParentIndexOffset]),
                     Flags = raw[_layout.ActiveFlagsOffset],
+                    FirstMonsterKillCount = BitConverter.ToUInt16(
+                        raw, _layout.ActiveFirstMonsterCountOffset),
                     Address = entryAddress,
                     RawData = raw
                 });

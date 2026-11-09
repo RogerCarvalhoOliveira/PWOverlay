@@ -2175,6 +2175,9 @@ namespace PWQuestOverlay
                 string action = _currentStep.action ?? string.Empty;
                 bool accepted = IsAcceptStage(action) && active != null;
                 TaskCatalogEntry currentTask = _taskCatalog.Find(taskId);
+                string killEvidence = string.Empty;
+                bool killsComplete = currentTask != null &&
+                    currentTask.TryGetKillProgress(active, action, out killEvidence);
                 bool taskItemsComplete = active != null &&
                     IsCollectionStage(action) && currentTask != null &&
                     currentTask.RequiredTaskItems.Count > 0 &&
@@ -2209,7 +2212,7 @@ namespace PWQuestOverlay
                     client.FindActive(nextTaskId) != null &&
                     currentTask != null && nextTask != null &&
                     currentTask.TopId == nextTask.TopId;
-                if (!accepted && !taskItemsComplete &&
+                if (!accepted && !taskItemsComplete && !killsComplete &&
                     !disappeared && !successorActive)
                 {
                     LogMemoryDiagnostic("aguardando: " + _currentMission.name +
@@ -2219,12 +2222,15 @@ namespace PWQuestOverlay
                         " próximo=" + (nextTaskResolved ? nextTaskId.ToString() : "-") +
                         " próximo-ativo=" + (nextTaskResolved &&
                             client.FindActive(nextTaskId) != null) +
-                        " itens=" + TaskItemEvidence(currentTask, client.Snapshot));
+                        " itens=" + TaskItemEvidence(currentTask, client.Snapshot) +
+                        " abates=" + killEvidence);
                     return;
                 }
 
                 string evidence = accepted
                     ? "ID " + taskId + " apareceu na lista ativa"
+                    : killsComplete
+                        ? "abates completos: " + killEvidence
                     : taskItemsComplete
                         ? "itens de missão completos: " +
                             TaskItemEvidence(currentTask, client.Snapshot)

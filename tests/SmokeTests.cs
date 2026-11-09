@@ -85,6 +85,32 @@ internal static class SmokeTests
                 throw new InvalidDataException("Catálogo dataminado de missões está divergente.");
 
             var tracker = new QuestStateTracker();
+            TaskCatalogEntry hedgehogs = taskCatalog.Find(2714);
+            string killEvidence;
+            var killEntry = new ActiveQuestMemoryEntry { TaskId = 2714 };
+            if (hedgehogs == null || hedgehogs.RequiredMonsterId != 1037 ||
+                hedgehogs.RequiredMonsterKills != 10)
+                throw new InvalidDataException("Requisitos dos filhotes de ouriço divergentes.");
+            foreach (int count in new[] { 0, 1, 9, 10, 11, 256 })
+            {
+                killEntry.FirstMonsterKillCount = count;
+                bool expectedComplete = count >= 10 && count <= 255;
+                if (hedgehogs.TryGetKillProgress(killEntry, "Matar (10) Filhote de Ouriço", out killEvidence) != expectedComplete)
+                    throw new InvalidDataException("Limiar de abates incorreto: " + count);
+            }
+            killEntry.FirstMonsterKillCount = 10;
+            foreach (string action in new[] {
+                "Aceite a missão com Guarda", "Entregue a missão para Guarda",
+                "Mate 10 filhotes e entregue ao Guarda", "Pegar 10 itens matando filhotes" })
+                if (hedgehogs.TryGetKillProgress(killEntry, action, out killEvidence))
+                    throw new InvalidDataException("Contador de abates avançou uma etapa incompatível.");
+            if (hedgehogs.TryGetKillProgress(null, "Matar (10) Filhote de Ouriço", out killEvidence) ||
+                beetleBlood.TryGetKillProgress(new ActiveQuestMemoryEntry {
+                    TaskId = 936, FirstMonsterKillCount = 10 }, "Matar besouros", out killEvidence))
+                throw new InvalidDataException("Contador avançou uma missão inativa ou uma coleta.");
+            killEntry.TaskId = 694;
+            if (hedgehogs.TryGetKillProgress(killEntry, "Matar (10) Filhote de Ouriço", out killEvidence))
+                throw new InvalidDataException("Contador de outra missão foi reutilizado.");
             var baseline = new QuestMemorySnapshot();
             baseline.ActiveTasks.Add(new ActiveQuestMemoryEntry
                 { TaskId = 10, Flags = 0xA1 });

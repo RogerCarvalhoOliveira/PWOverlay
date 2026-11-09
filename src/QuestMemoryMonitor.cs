@@ -227,7 +227,8 @@ namespace PWQuestOverlay.Memory
             private static string Signature(QuestMemorySnapshot snapshot)
             {
                 return string.Join(",", snapshot.ActiveTasks
-                    .Select(entry => entry.TaskId + ":" + entry.StateCode)
+                    .Select(entry => entry.TaskId + ":" + entry.StateCode +
+                        ":abates=" + entry.FirstMonsterKillCount)
                     .OrderBy(value => value)) + "|" +
                     string.Join(",", snapshot.FinishedTaskIds.OrderBy(id => id)) + "|" +
                     string.Join(",", snapshot.TaskItemCounts

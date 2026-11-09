@@ -1,5 +1,13 @@
 # Histórico de alterações
 
+## 0.8.1 - Contador de abates
+
+- Integrado o primeiro contador de abates da lista de missões ativas ao avanço automático, com confirmação em duas leituras estáveis.
+- Adicionados ao catálogo os requisitos de objetivos com um único tipo de monstro, sem coleta de itens, até 255 abates.
+- Etapas de aceite, entrega e ações mistas não avançam pelo contador de abates.
+- Validada no cliente a etapa dos 10 Filhotes de Ouriço de `Confiança dos Guardas` (ID 2714, monstro 1037), que avançou automaticamente em 10/10.
+- Testados os limites 0/10, 9/10, 10/10, contagem acima do limite, missão inativa, coleta e ID divergente.
+
 ## 0.8.0 - Rotas revisadas e estado por memória
 
 - Promovida a integração de memória à versão estável, com ativação opcional e avanço manual para objetivos ainda sem evidência suportada.

@@ -37,6 +37,7 @@
         "activeIdOffset": "0x0",
         "activeParentIndexOffset": "0x2",
         "activeFlagsOffset": "0x7",
+        "activeFirstMonsterCountOffset": "0x15",
         "activeMaximum": 30,
         "finishedListPointerOffset": "0xC",
         "finishedCountOffset": "0x0",
