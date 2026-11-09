@@ -6,10 +6,12 @@ Esta função está isolada na branch `feature/ocr-quest-state`. Ela serve para 
 
 1. Abra um cliente do Perfect World e deixe o diário de missões visível.
 2. Coloque esse cliente em foco para o overlay associar o personagem correto.
-3. No ícone do **PW Quest Overlay** ao lado do relógio, abra **OCR experimental**.
-4. Use **Selecionar área e testar...** e arraste somente sobre a lista ou descrição das missões.
+3. Com o jogo ainda em foco, pressione **Ctrl + Shift + O**.
+4. Arraste somente sobre a lista ou descrição das missões.
 5. Aguarde a janela de resultado. Ela mostra o texto reconhecido, o tempo total e a coincidência com a etapa esperada da rota.
-6. Para repetir sem recalibrar, use **Testar área salva**.
+6. Para repetir sem recalibrar e sem sair do jogo, pressione **Ctrl + Alt + O**.
+
+Os mesmos comandos continuam disponíveis no ícone do overlay ao lado do relógio, em **OCR experimental**.
 
 O teste não conclui, pula nem volta etapas. A calibração é salva proporcionalmente à resolução do cliente e faz parte do backup do estado.
 

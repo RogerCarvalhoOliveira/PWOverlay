@@ -18,6 +18,8 @@ namespace PWQuestOverlay
         private const int HotkeyPrevious = 1002;
         private const int HotkeySkip = 1003;
         private const int HotkeyMarker = 1004;
+        private const int HotkeyOcrSelect = 1005;
+        private const int HotkeyOcrScan = 1006;
         private static readonly Size FullClientSize = new Size(570, 180);
         private static readonly Size CompactClientSize = new Size(470, 122);
 
@@ -50,6 +52,7 @@ namespace PWQuestOverlay
         private readonly ToolStripMenuItem _compactMenuItem;
         private readonly ToolStripMenuItem _classMenuItem;
         private readonly ToolStripMenuItem _markerHotkeyItem;
+        private readonly ToolStripMenuItem _ocrHotkeyItem;
         private readonly Dictionary<IntPtr, DateTime> _titleRefresh;
 
         private IntPtr _activeGame;
@@ -251,6 +254,9 @@ namespace PWQuestOverlay
                 "Testar área salva",
                 null,
                 delegate { TestSavedOcrRegion(); });
+            _ocrHotkeyItem = new ToolStripMenuItem("Atalhos do OCR: verificando...") { Enabled = false };
+            ocrMenu.DropDownItems.Add(new ToolStripSeparator());
+            ocrMenu.DropDownItems.Add(_ocrHotkeyItem);
             _trayMenu.Items.Add(ocrMenu);
             _trayMenu.Items.Add("Abrir guia de configuração...", null, delegate { OpenConfigurationGuide(); });
             _markerHotkeyItem = new ToolStripMenuItem("Atalho do marcador: verificando...") { Enabled = false };
@@ -367,6 +373,8 @@ namespace PWQuestOverlay
                 else if (id == HotkeyPrevious) GoBack();
                 else if (id == HotkeySkip) SkipCurrent();
                 else if (id == HotkeyMarker) MarkCurrentLocation();
+                else if (id == HotkeyOcrSelect) SelectAndTestOcr();
+                else if (id == HotkeyOcrScan) TestSavedOcrRegion();
                 return;
             }
             base.WndProc(ref message);
@@ -1482,7 +1490,7 @@ namespace PWQuestOverlay
             if (!QuestOcrService.IsAvailable(out reason))
             {
                 MessageBox.Show(
-                    "O OCR do Windows não está disponível.\r\n\r\n" + reason,
+                    "O Tesseract OCR não está disponível.\r\n\r\n" + reason,
                     "OCR experimental",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
@@ -1697,9 +1705,17 @@ namespace PWQuestOverlay
             }
             string markerShortcut = markerPrimary ? "Ctrl + Alt + M"
                 : markerFallback ? "Ctrl + Shift + M" : "indisponível (use o botão Marcar)";
+            bool ocrSelect = NativeMethods.RegisterHotKey(Handle, HotkeyOcrSelect,
+                NativeMethods.MOD_CONTROL | NativeMethods.MOD_SHIFT, NativeMethods.VK_O);
+            bool ocrScan = NativeMethods.RegisterHotKey(Handle, HotkeyOcrScan,
+                NativeMethods.MOD_CONTROL | NativeMethods.MOD_ALT, NativeMethods.VK_O);
             _markerHotkeyItem.Text = "Atalho do marcador: " + markerShortcut;
+            _ocrHotkeyItem.Text = ocrSelect && ocrScan
+                ? "Selecionar: Ctrl + Shift + O  ·  Ler salva: Ctrl + Alt + O"
+                : "Atalhos OCR indisponíveis; use este menu";
             _store.Log("Atalhos registrados: concluir=" + done + " voltar=" + previous +
-                " pular=" + skip + " marcador=" + markerShortcut);
+                " pular=" + skip + " marcador=" + markerShortcut +
+                " ocr-selecionar=" + ocrSelect + " ocr-ler=" + ocrScan);
         }
 
         private void UnregisterHotkeys()
@@ -1709,6 +1725,8 @@ namespace PWQuestOverlay
             NativeMethods.UnregisterHotKey(Handle, HotkeyPrevious);
             NativeMethods.UnregisterHotKey(Handle, HotkeySkip);
             NativeMethods.UnregisterHotKey(Handle, HotkeyMarker);
+            NativeMethods.UnregisterHotKey(Handle, HotkeyOcrSelect);
+            NativeMethods.UnregisterHotKey(Handle, HotkeyOcrScan);
         }
 
         private void OnFormClosing(object sender, FormClosingEventArgs e)
