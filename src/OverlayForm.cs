@@ -1506,6 +1506,7 @@ namespace PWQuestOverlay
             await Task.Delay(180);
             string directory = Path.GetDirectoryName(_store.LogPath);
             QuestOcrResult result = await QuestOcrService.ScanAsync(targetWindow, region, directory);
+            result.Text = InterpretOcrText(result.Text);
             string matchSummary = BuildOcrMatchSummary(result.Text);
             _store.Log(string.Format(
                 "OCR concluído em {0} ms, caracteres={1}, região={2}",
@@ -1564,11 +1565,111 @@ namespace PWQuestOverlay
             int confidence = expectedWords.Length == 0
                 ? 0
                 : (int)Math.Round(100.0 * found / expectedWords.Length);
-            return string.Format(
+            string summary = string.Format(
                 "Comparação com a etapa atual: {0}% ({1}/{2} palavras). Nenhum progresso foi alterado.",
                 confidence,
                 found,
                 expectedWords.Length);
+            int? expectedTotal = GetExpectedCounterTotal();
+            if (!expectedTotal.HasValue) return summary;
+
+            Match counter = Regex.Match(
+                recognizedText ?? string.Empty,
+                @"\(\s*(?<current>\d{1,4})\s*/\s*(?<total>\d{1,4})\s*\)");
+            if (!counter.Success)
+                return summary + " Contador esperado: ?/" + expectedTotal.Value + ".";
+            return summary + " Contador lido: " + counter.Groups["current"].Value + "/" +
+                counter.Groups["total"].Value + "; esperado: " + expectedTotal.Value + ".";
+        }
+
+        private string InterpretOcrText(string recognizedText)
+        {
+            if (string.IsNullOrWhiteSpace(recognizedText)) return string.Empty;
+            List<string> knownTitles = _currentRoute
+                .SelectMany(mission => new[] { mission.name }
+                    .Concat(mission.steps.Select(step => step.title)))
+                .Where(title => !string.IsNullOrWhiteSpace(title))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToList();
+
+            string[] lines = recognizedText.Replace("\r\n", "\n").Split('\n');
+            for (int index = 0; index < lines.Length; index++)
+            {
+                Match numberedTitle = Regex.Match(lines[index], @"^(?<prefix>\s*\d+\s+)(?<title>.+?)\s*$");
+                if (!numberedTitle.Success) continue;
+
+                string observed = numberedTitle.Groups["title"].Value;
+                string normalizedObserved = NormalizeOcrText(observed);
+                string bestTitle = null;
+                double bestSimilarity = 0.0;
+                foreach (string title in knownTitles)
+                {
+                    double similarity = CalculateSimilarity(
+                        normalizedObserved,
+                        NormalizeOcrText(title));
+                    if (similarity > bestSimilarity)
+                    {
+                        bestSimilarity = similarity;
+                        bestTitle = title;
+                    }
+                }
+                if (bestTitle != null && bestSimilarity >= 0.78)
+                    lines[index] = numberedTitle.Groups["prefix"].Value + bestTitle;
+            }
+
+            string interpreted = string.Join(Environment.NewLine, lines);
+            int? expectedTotal = GetExpectedCounterTotal();
+            if (expectedTotal.HasValue && !Regex.IsMatch(
+                interpreted,
+                @"\(\s*\d{1,4}\s*/\s*\d{1,4}\s*\)"))
+            {
+                interpreted = Regex.Replace(
+                    interpreted,
+                    @"\((?![^\r\n)]*,)[^\r\n)]*\d[^\r\n)]*\)",
+                    "(?/" + expectedTotal.Value + ")",
+                    RegexOptions.None,
+                    TimeSpan.FromMilliseconds(100));
+            }
+            return interpreted;
+        }
+
+        private int? GetExpectedCounterTotal()
+        {
+            if (_currentStep == null || string.IsNullOrWhiteSpace(_currentStep.action))
+                return null;
+            Match match = Regex.Match(
+                _currentStep.action,
+                @"\b(?:matar|derrotar|pegar|coletar|obter|recolher)\b[^()\r\n]{0,50}\(\s*(?<total>\d{1,4})\s*\)",
+                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+            int total;
+            return match.Success && int.TryParse(match.Groups["total"].Value, out total)
+                ? (int?)total
+                : null;
+        }
+
+        private static double CalculateSimilarity(string left, string right)
+        {
+            if (string.Equals(left, right, StringComparison.Ordinal)) return 1.0;
+            if (string.IsNullOrEmpty(left) || string.IsNullOrEmpty(right)) return 0.0;
+            int[] previous = Enumerable.Range(0, right.Length + 1).ToArray();
+            int[] current = new int[right.Length + 1];
+            for (int leftIndex = 1; leftIndex <= left.Length; leftIndex++)
+            {
+                current[0] = leftIndex;
+                for (int rightIndex = 1; rightIndex <= right.Length; rightIndex++)
+                {
+                    int substitution = previous[rightIndex - 1] +
+                        (left[leftIndex - 1] == right[rightIndex - 1] ? 0 : 1);
+                    current[rightIndex] = Math.Min(
+                        Math.Min(previous[rightIndex] + 1, current[rightIndex - 1] + 1),
+                        substitution);
+                }
+                int[] swap = previous;
+                previous = current;
+                current = swap;
+            }
+            int maximumLength = Math.Max(left.Length, right.Length);
+            return 1.0 - (double)previous[right.Length] / maximumLength;
         }
 
         private static string NormalizeOcrText(string value)

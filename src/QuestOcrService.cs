@@ -3,9 +3,11 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace PWQuestOverlay
@@ -13,6 +15,8 @@ namespace PWQuestOverlay
     internal sealed class QuestOcrResult
     {
         internal string Text { get; set; }
+        internal string RawText { get; set; }
+        internal string SourceText { get; set; }
         internal long ElapsedMilliseconds { get; set; }
         internal string DiagnosticImagePath { get; set; }
         internal int Width { get; set; }
@@ -88,11 +92,27 @@ namespace PWQuestOverlay
                 captured.Save(sourceImagePath, ImageFormat.Png);
                 prepared.Save(imagePath, ImageFormat.Png);
 
-                string text = await RecognizeAsync(imagePath);
+                Task<string> filteredTask = RecognizeAsync(imagePath, 6);
+                Task<string> sourceTask = RecognizeAsync(sourceImagePath, 11);
+                await Task.WhenAll(filteredTask, sourceTask);
+                string rawText = filteredTask.Result == null ? string.Empty : filteredTask.Result.Trim();
+                string sourceText = sourceTask.Result == null ? string.Empty : sourceTask.Result.Trim();
+                string text = MergeReliableCounters(rawText, sourceText);
+                text = MergeNumberedQuestTitles(text, sourceText);
+                File.WriteAllText(
+                    Path.Combine(diagnosticDirectory, "ocr-last-filtered.txt"),
+                    rawText,
+                    new UTF8Encoding(false));
+                File.WriteAllText(
+                    Path.Combine(diagnosticDirectory, "ocr-last-source.txt"),
+                    sourceText,
+                    new UTF8Encoding(false));
                 stopwatch.Stop();
                 return new QuestOcrResult
                 {
-                    Text = text == null ? string.Empty : text.Trim(),
+                    Text = text,
+                    RawText = rawText,
+                    SourceText = sourceText,
                     ElapsedMilliseconds = stopwatch.ElapsedMilliseconds,
                     DiagnosticImagePath = imagePath,
                     Width = prepared.Width,
@@ -185,7 +205,116 @@ namespace PWQuestOverlay
             return mask;
         }
 
-        private static Task<string> RecognizeAsync(string imagePath)
+        private static string MergeReliableCounters(string filteredText, string sourceText)
+        {
+            MatchCollection sourceCounters = Regex.Matches(
+                sourceText ?? string.Empty,
+                @"\(\s*(?<current>\d{1,4})\s*/\s*(?<total>\d{1,4})\s*\)");
+            if (sourceCounters.Count == 0) return filteredText ?? string.Empty;
+
+            int counterIndex = 0;
+            string merged = Regex.Replace(
+                filteredText ?? string.Empty,
+                @"\((?![^\r\n)]*,)[^\r\n)]*\d[^\r\n)]*\)",
+                delegate(Match match)
+                {
+                    if (counterIndex >= sourceCounters.Count) return match.Value;
+                    Match counter = sourceCounters[counterIndex++];
+                    return "(" + counter.Groups["current"].Value + "/" +
+                        counter.Groups["total"].Value + ")";
+                });
+            return merged;
+        }
+
+        private static string MergeNumberedQuestTitles(string filteredText, string sourceText)
+        {
+            string[] filteredLines = (filteredText ?? string.Empty)
+                .Replace("\r\n", "\n")
+                .Split('\n');
+            string[] sourceLines = (sourceText ?? string.Empty)
+                .Replace("\r\n", "\n")
+                .Split('\n');
+            for (int index = 0; index < filteredLines.Length; index++)
+            {
+                Match filteredTitle = Regex.Match(
+                    filteredLines[index],
+                    @"^\s*(?<number>\d{1,2})\s+(?<title>\S.+?)\s*$");
+                if (!filteredTitle.Success) continue;
+
+                string bestSourceLine = null;
+                double bestSimilarity = 0.0;
+                foreach (string sourceLine in sourceLines)
+                {
+                    Match sourceTitle = Regex.Match(
+                        sourceLine,
+                        @"^\s*(?<number>\d{1,2})\s+(?<title>\S.+?)\s*$");
+                    if (!sourceTitle.Success || sourceTitle.Groups["number"].Value !=
+                        filteredTitle.Groups["number"].Value)
+                        continue;
+                    string filteredNormalized = NormalizeForComparison(
+                        filteredTitle.Groups["title"].Value);
+                    string sourceNormalized = NormalizeForComparison(
+                        sourceTitle.Groups["title"].Value);
+                    double similarity = CalculateSimilarity(filteredNormalized, sourceNormalized);
+                    if (similarity > bestSimilarity)
+                    {
+                        bestSimilarity = similarity;
+                        bestSourceLine = sourceTitle.Groups["number"].Value + " " +
+                            sourceTitle.Groups["title"].Value.Trim();
+                    }
+                }
+
+                if (bestSourceLine != null && bestSimilarity >= 0.65 &&
+                    bestSourceLine.Length <= filteredLines[index].Trim().Length)
+                    filteredLines[index] = bestSourceLine;
+            }
+            return string.Join(Environment.NewLine, filteredLines);
+        }
+
+        private static string NormalizeForComparison(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value)) return string.Empty;
+            string decomposed = value.Normalize(NormalizationForm.FormD);
+            var builder = new StringBuilder(decomposed.Length);
+            foreach (char character in decomposed)
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(character) ==
+                    UnicodeCategory.NonSpacingMark)
+                    continue;
+                builder.Append(char.IsLetterOrDigit(character)
+                    ? char.ToLowerInvariant(character)
+                    : ' ');
+            }
+            return Regex.Replace(builder.ToString(), @"\s+", " ").Trim();
+        }
+
+        private static double CalculateSimilarity(string left, string right)
+        {
+            if (string.Equals(left, right, StringComparison.Ordinal)) return 1.0;
+            if (string.IsNullOrEmpty(left) || string.IsNullOrEmpty(right)) return 0.0;
+            int[] previous = new int[right.Length + 1];
+            int[] current = new int[right.Length + 1];
+            for (int index = 0; index <= right.Length; index++) previous[index] = index;
+            for (int leftIndex = 1; leftIndex <= left.Length; leftIndex++)
+            {
+                current[0] = leftIndex;
+                for (int rightIndex = 1; rightIndex <= right.Length; rightIndex++)
+                {
+                    int substitution = previous[rightIndex - 1] +
+                        (left[leftIndex - 1] == right[rightIndex - 1] ? 0 : 1);
+                    current[rightIndex] = Math.Min(
+                        Math.Min(previous[rightIndex] + 1, current[rightIndex - 1] + 1),
+                        substitution);
+                }
+                int[] swap = previous;
+                previous = current;
+                current = swap;
+            }
+            return 1.0 - (double)previous[right.Length] /
+                Math.Max(left.Length, right.Length);
+        }
+
+        private static Task<string> RecognizeAsync(string imagePath, int pageSegmentationMode)
         {
             return Task.Run(delegate
             {
@@ -195,9 +324,10 @@ namespace PWQuestOverlay
 
                 string tessdata = Path.Combine(Path.GetDirectoryName(executable), "tessdata");
                 string arguments = string.Format(
-                    "\"{0}\" stdout --tessdata-dir \"{1}\" -l por --psm 6",
+                    "\"{0}\" stdout --tessdata-dir \"{1}\" -l por --psm {2}",
                     imagePath,
-                    tessdata);
+                    tessdata,
+                    pageSegmentationMode);
                 var startInfo = new ProcessStartInfo(executable, arguments)
                 {
                     UseShellExecute = false,

@@ -19,6 +19,8 @@ O teste não conclui, pula nem volta etapas. A calibração é salva proporciona
 
 A captura original fica em `%LOCALAPPDATA%\PWQuestOverlay\ocr-last-source.png`. A imagem filtrada realmente enviada ao Tesseract fica em `ocr-last.png`. O filtro preserva as cores de texto do quest log e remove o cenário visto através do painel transparente. O log registra duração, quantidade de caracteres e região capturada.
 
+O protótipo faz duas leituras em paralelo: a imagem filtrada fornece os nomes sem ruído e a captura original recupera contadores como `(1/10)`. Títulos numerados com alta semelhança são normalizados contra os nomes da rota. Quando a ação indica um total, mas o valor atual permanece ambíguo, o resultado usa `?/total` em vez de adivinhar.
+
 Para uma leitura confiável:
 
 - selecione somente a área útil do quest log;
