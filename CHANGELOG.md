@@ -1,5 +1,13 @@
 # Histórico de alterações
 
+## 0.8.5 - Overlay em outro monitor
+
+- Arrastar o painel para outra tela agora salva o monitor escolhido e a posição, sem trazê-lo de volta ao monitor do jogo.
+- A troca de cliente em foco continua selecionando o personagem sem mudar a tela escolhida para o overlay.
+- Adicionada a opção Acompanhar monitor do PW na bandeja para voltar ao comportamento automático.
+- Se a tela escolhida for desconectada, o painel usa temporariamente o monitor do jogo e retoma a preferência quando ela voltar.
+- Verificados monitores à esquerda, à direita e acima da tela principal, persistência da preferência e limite da área útil.
+
 ## 0.8.4 - Recuperação ao conectar outro cliente
 
 - Adicionado ao catálogo o indicador real de execução sequencial dos filhos.

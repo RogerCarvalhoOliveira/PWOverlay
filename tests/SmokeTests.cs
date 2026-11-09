@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Drawing;
 using System.Linq;
 using PWQuestOverlay;
 using PWQuestOverlay.Memory;
@@ -365,6 +366,30 @@ internal static class SmokeTests
                 if (mission.name.IndexOf('^') >= 0)
                     throw new InvalidDataException("Código de cor do cliente permaneceu no nome: " + mission.name);
             }
+
+            string[] dualMonitors = { "primary", "secondary" };
+            if (OverlayPlacement.ResolveMonitor("secondary", "primary", dualMonitors) != "secondary" ||
+                OverlayPlacement.ResolveMonitor(null, "primary", dualMonitors) != "primary" ||
+                OverlayPlacement.ResolveMonitor("secondary", "primary", new[] { "primary" }) != "primary" ||
+                OverlayPlacement.ResolveMonitor("secondary", "secondary", dualMonitors) != "secondary")
+                throw new InvalidDataException("Seleção do monitor fixo, automático ou desconectado incorreta.");
+            Size overlaySize = new Size(570, 180);
+            Rectangle leftScreen = new Rectangle(-1920, 0, 1920, 1032);
+            Rectangle rightScreen = new Rectangle(1920, 0, 1920, 1032);
+            Rectangle upperScreen = new Rectangle(0, -1080, 1920, 1080);
+            if (OverlayPlacement.Clamp(new Point(-1700, 70), overlaySize, leftScreen) != new Point(-1700, 70) ||
+                OverlayPlacement.Clamp(new Point(2100, 70), overlaySize, rightScreen) != new Point(2100, 70) ||
+                OverlayPlacement.Clamp(new Point(100, -1000), overlaySize, upperScreen) != new Point(100, -1000) ||
+                OverlayPlacement.Clamp(new Point(-100, 1000), overlaySize, leftScreen) != new Point(-570, 852))
+                throw new InvalidDataException("Overlay foi trazido para o monitor errado ou saiu da área útil.");
+            var positionState = new AppState { OverlayMonitorDeviceName = "secondary", PositionLocked = true };
+            positionState.Positions["secondary"] = new SavedPosition { X = -1700, Y = 70 };
+            var stateSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            AppState restoredPosition = stateSerializer.Deserialize<AppState>(stateSerializer.Serialize(positionState));
+            if (restoredPosition.OverlayMonitorDeviceName != "secondary" || !restoredPosition.PositionLocked ||
+                restoredPosition.Positions["secondary"].X != -1700 ||
+                !string.IsNullOrEmpty(new AppState().OverlayMonitorDeviceName))
+                throw new InvalidDataException("Monitor escolhido não sobreviveu à gravação ou alterou o padrão antigo.");
 
             AppState state = new StateStore().Load();
             if (state.Characters == null || state.Positions == null || state.ClassAssociations == null)

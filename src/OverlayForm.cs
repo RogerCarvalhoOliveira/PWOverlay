@@ -51,6 +51,7 @@ namespace PWQuestOverlay
         private readonly ContextMenuStrip _trayMenu;
         private readonly ToolStripMenuItem _showMenuItem;
         private readonly ToolStripMenuItem _lockMenuItem;
+        private readonly ToolStripMenuItem _followGameMonitorItem;
         private readonly ToolStripMenuItem _compactMenuItem;
         private readonly ToolStripMenuItem _classMenuItem;
         private readonly ToolStripMenuItem _markerHotkeyItem;
@@ -371,6 +372,16 @@ namespace PWQuestOverlay
                 _store.Save(_state);
             };
             _trayMenu.Items.Add(_lockMenuItem);
+            _followGameMonitorItem = new ToolStripMenuItem("Acompanhar monitor do PW")
+            {
+                CheckOnClick = true,
+                Checked = string.IsNullOrWhiteSpace(_state.OverlayMonitorDeviceName)
+            };
+            _followGameMonitorItem.Click += delegate
+            {
+                SetFollowGameMonitor(_followGameMonitorItem.Checked);
+            };
+            _trayMenu.Items.Add(_followGameMonitorItem);
             _compactMenuItem = new ToolStripMenuItem("Modo compacto");
             _compactMenuItem.Click += delegate { SetCompactMode(!_state.CompactMode, true); };
             _trayMenu.Items.Add(_compactMenuItem);
@@ -520,6 +531,11 @@ namespace PWQuestOverlay
                 if (!_dragging) return;
                 _dragging = false;
                 Capture = false;
+                // Use the screen the user dragged onto before clamping the position.
+                _currentScreen = Screen.FromRectangle(Bounds);
+                _currentMonitorKey = GetMonitorKey(_currentScreen);
+                _state.OverlayMonitorDeviceName = _currentScreen.DeviceName;
+                _followGameMonitorItem.Checked = false;
                 ClampToCurrentScreen();
                 SaveCurrentPosition();
             };
@@ -584,9 +600,16 @@ namespace PWQuestOverlay
                     RefreshActiveProfile(false);
                 }
 
-                Screen screen = Screen.FromHandle(_activeGame);
+                Screen gameScreen = Screen.FromHandle(_activeGame);
+                string targetMonitor = OverlayPlacement.ResolveMonitor(
+                    _state.OverlayMonitorDeviceName, gameScreen.DeviceName,
+                    Screen.AllScreens.Select(candidate => candidate.DeviceName));
+                Screen screen = Screen.AllScreens.FirstOrDefault(candidate =>
+                    string.Equals(candidate.DeviceName, targetMonitor, StringComparison.OrdinalIgnoreCase))
+                    ?? gameScreen;
                 string monitorKey = GetMonitorKey(screen);
-                if (_currentScreen == null || !string.Equals(_currentMonitorKey, monitorKey, StringComparison.Ordinal))
+                if (!_dragging && (_currentScreen == null ||
+                    !string.Equals(_currentMonitorKey, monitorKey, StringComparison.Ordinal)))
                 {
                     _currentScreen = screen;
                     _currentMonitorKey = monitorKey;
@@ -1349,6 +1372,9 @@ namespace PWQuestOverlay
                 _state.Marker = imported.Marker;
                 _state.Ocr = imported.Ocr;
                 _state.PositionLocked = imported.PositionLocked;
+                _state.OverlayMonitorDeviceName = imported.OverlayMonitorDeviceName;
+                _followGameMonitorItem.Checked = string.IsNullOrWhiteSpace(_state.OverlayMonitorDeviceName);
+                _currentScreen = null;
                 _state.CompactMode = imported.CompactMode;
                 _state.Opacity = imported.Opacity;
                 _store.Save(_state);
@@ -2569,10 +2595,26 @@ namespace PWQuestOverlay
         private void ClampToCurrentScreen()
         {
             if (_currentScreen == null) return;
-            Rectangle bounds = _currentScreen.Bounds;
-            int x = Math.Max(bounds.Left, Math.Min(Location.X, bounds.Right - Width));
-            int y = Math.Max(bounds.Top, Math.Min(Location.Y, bounds.Bottom - Height));
-            Location = new Point(x, y);
+            Location = OverlayPlacement.Clamp(Location, Size, _currentScreen.WorkingArea);
+        }
+
+        private void SetFollowGameMonitor(bool follow)
+        {
+            if (follow)
+            {
+                _state.OverlayMonitorDeviceName = null;
+                _currentScreen = null;
+                _currentMonitorKey = null;
+                _store.Save(_state);
+            }
+            else
+            {
+                _currentScreen = Screen.FromRectangle(Bounds);
+                _currentMonitorKey = GetMonitorKey(_currentScreen);
+                _state.OverlayMonitorDeviceName = _currentScreen.DeviceName;
+                SaveCurrentPosition();
+            }
+            _followGameMonitorItem.Checked = follow;
         }
 
         private void SaveCurrentPosition()

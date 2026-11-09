@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -66,6 +67,25 @@ namespace PWQuestOverlay
     {
         public int X { get; set; }
         public int Y { get; set; }
+    }
+
+    internal static class OverlayPlacement
+    {
+        internal static string ResolveMonitor(
+            string preferredMonitor, string gameMonitor, IEnumerable<string> availableMonitors)
+        {
+            if (!string.IsNullOrWhiteSpace(preferredMonitor) && availableMonitors.Any(name =>
+                string.Equals(name, preferredMonitor, StringComparison.OrdinalIgnoreCase)))
+                return preferredMonitor;
+            return gameMonitor;
+        }
+
+        internal static Point Clamp(Point location, Size size, Rectangle workingArea)
+        {
+            return new Point(
+                Math.Max(workingArea.Left, Math.Min(location.X, workingArea.Right - size.Width)),
+                Math.Max(workingArea.Top, Math.Min(location.Y, workingArea.Bottom - size.Height)));
+        }
     }
 
     public sealed class MarkerPoint
@@ -146,6 +166,7 @@ namespace PWQuestOverlay
     {
         public int SchemaVersion { get; set; }
         public bool PositionLocked { get; set; }
+        public string OverlayMonitorDeviceName { get; set; }
         public bool UserHidden { get; set; }
         public bool CompactMode { get; set; }
         public double Opacity { get; set; }

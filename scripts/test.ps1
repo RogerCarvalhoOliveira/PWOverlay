@@ -16,7 +16,7 @@ $testDirectory = Join-Path $projectRoot 'dist\tests'
 New-Item -ItemType Directory -Path $testDirectory -Force | Out-Null
 $testExecutable = Join-Path $testDirectory 'SmokeTests.exe'
 & $compiler /nologo /target:exe /optimize+ /out:$testExecutable `
-    /reference:System.dll /reference:System.Core.dll /reference:System.Web.Extensions.dll `
+    /reference:System.dll /reference:System.Core.dll /reference:System.Drawing.dll /reference:System.Web.Extensions.dll `
     (Join-Path $projectRoot 'src\Models.cs') `
     (Join-Path $projectRoot 'src\MemoryLayout.cs') `
     (Join-Path $projectRoot 'src\TaskCatalog.cs') `

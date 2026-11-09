@@ -50,6 +50,10 @@ O menu do ícone ao lado do relógio também possui **Gerenciar perfis...** e um
 - **Perfis:** abre a associação entre título/nome do cliente e classe.
 - **X:** oculta o painel sem encerrar o programa.
 
+Para deixar o overlay em outro monitor, clique em **Mover**, arraste pela barra superior até a tela desejada e solte. O monitor e a posição são salvos automaticamente. Clique em **Fixado** para impedir novos arrastes. Alternar entre os clientes do PW continua atualizando o personagem, sem mover o painel de tela.
+
+Para voltar a acompanhar a tela do cliente em foco, marque **Acompanhar monitor do PW** no menu do ícone ao lado do relógio. Se o monitor escolhido for desconectado, o painel aparece temporariamente na tela do jogo e recupera a preferência quando o monitor voltar.
+
 As etapas seguem uma ordem global otimizada. O overlay pode mandar pegar uma missão, depois outra missão próxima, realizar os dois objetivos e somente mais tarde voltar às entregas. O nome da missão muda conforme a ação atual, mas cada missão mantém seu progresso independente.
 
 Do nível 1 ao 60, a sequência foi organizada por região e dependências. Até a Cidade do Dragão, cada raça segue seu circuito; depois, todas usam a rota compartilhada e fazem apenas desvios curtos para missões exclusivas. Pop-ups como **Aprenda sobre Habilidades de Forja** aguardam o retorno natural ao Ancião; não é necessário interromper o circuito apenas para entregá-los.
