@@ -57,6 +57,7 @@ namespace PWQuestOverlay
         private readonly ToolStripMenuItem _ocrAutoAdvanceItem;
         private readonly Dictionary<IntPtr, DateTime> _titleRefresh;
         private readonly Dictionary<string, OcrStabilityState> _ocrStability;
+        private readonly Dictionary<string, OcrMissionObservation> _ocrMissionObservations;
 
         private IntPtr _activeGame;
         private DateTime _helperNeutralUntil;
@@ -99,9 +100,16 @@ namespace PWQuestOverlay
         private sealed class OcrQuestBlock
         {
             internal QuestMission Mission;
+            internal string ObservedTitle;
             internal bool Completed;
             internal int? CurrentCount;
             internal int? TotalCount;
+        }
+
+        private sealed class OcrMissionObservation
+        {
+            internal bool ReadyForTurnInSeen;
+            internal bool VisibleInLastConfirmedReading;
         }
 
         private static readonly Regex PrimaryTitlePattern = new Regex(
@@ -124,6 +132,8 @@ namespace PWQuestOverlay
             _orderedStages = new List<RouteStage>();
             _titleRefresh = new Dictionary<IntPtr, DateTime>();
             _ocrStability = new Dictionary<string, OcrStabilityState>(StringComparer.OrdinalIgnoreCase);
+            _ocrMissionObservations = new Dictionary<string, OcrMissionObservation>(
+                StringComparer.OrdinalIgnoreCase);
 
             Text = "PW Quest Overlay";
             Name = "PWQuestOverlay";
@@ -1716,43 +1726,18 @@ namespace PWQuestOverlay
         private string BuildRelevantOcrSignature(string recognizedText)
         {
             var parts = new List<string>();
-            Dictionary<string, string> knownTitles = _currentRoute
-                .Select(mission => mission.name)
-                .Where(title => !string.IsNullOrWhiteSpace(title))
-                .Distinct(StringComparer.OrdinalIgnoreCase)
-                .ToDictionary(
-                    title => NormalizeOcrText(title),
-                    title => title,
-                    StringComparer.OrdinalIgnoreCase);
-            string activeQuest = null;
-            string[] lines = (recognizedText ?? string.Empty)
-                .Replace("\r\n", "\n")
-                .Split('\n');
-            foreach (string line in lines)
+            foreach (OcrQuestBlock block in ParseOcrQuestBlocks(recognizedText))
             {
-                Match numberedTitle = Regex.Match(line, @"^\s*\d+\s+(?<title>.+?)\s*$");
-                if (numberedTitle.Success)
-                {
-                    string normalizedTitle = NormalizeOcrText(numberedTitle.Groups["title"].Value);
-                    activeQuest = knownTitles.ContainsKey(normalizedTitle)
-                        ? normalizedTitle
-                        : null;
-                    if (activeQuest != null) parts.Add("quest:" + activeQuest);
-                    continue;
-                }
-                if (activeQuest == null) continue;
-
-                string normalizedLine = NormalizeOcrText(line);
-                if (normalizedLine.Contains("missao concluida"))
-                    parts.Add("quest:" + activeQuest + ":status:concluida");
-                foreach (Match counter in Regex.Matches(
-                    line,
-                    @"\(\s*(?<current>\d{1,4}|\?)\s*/\s*(?<total>\d{1,4})\s*\)"))
-                {
-                    parts.Add("quest:" + activeQuest + ":counter:" +
-                        counter.Groups["current"].Value + "/" +
-                        counter.Groups["total"].Value);
-                }
+                string alias = FindBestKnownAlias(block.ObservedTitle);
+                if (alias == null) continue;
+                string normalizedAlias = NormalizeOcrText(alias);
+                parts.Add("entry:" + normalizedAlias);
+                if (block.Completed)
+                    parts.Add("entry:" + normalizedAlias + ":status:concluida");
+                if (block.TotalCount.HasValue)
+                    parts.Add("entry:" + normalizedAlias + ":counter:" +
+                        (block.CurrentCount.HasValue ? block.CurrentCount.Value.ToString() : "?") +
+                        "/" + block.TotalCount.Value);
             }
             return string.Join("|", parts.Distinct().OrderBy(part => part));
         }
@@ -1768,41 +1753,105 @@ namespace PWQuestOverlay
 
             List<OcrQuestBlock> blocks = ParseOcrQuestBlocks(result.Text);
             var advances = new List<string>();
-            for (int attempt = 0; attempt < 2; attempt++)
+            for (int attempt = 0; attempt < 8; attempt++)
             {
-                OcrQuestBlock block = blocks.FirstOrDefault(candidate =>
-                    candidate.Mission != null && _currentMission != null &&
-                    string.Equals(candidate.Mission.id, _currentMission.id,
-                        StringComparison.OrdinalIgnoreCase));
-                if (block == null) break;
-
                 string action = _currentStep.action ?? string.Empty;
                 bool acceptStage = IsAcceptStage(action);
-                bool turnInStage = IsTurnInStage(action);
+                bool turnInStage = IsTurnInStage(_currentMission, _currentStep);
+                bool talkStage = IsTalkStage(action) && !turnInStage;
+                OcrQuestBlock missionBlock = FindBestBlock(
+                    blocks,
+                    GetOcrAliases(_currentMission, _currentStep, true));
+                OcrQuestBlock stepBlock = FindBestBlock(
+                    blocks,
+                    GetOcrAliases(_currentMission, _currentStep, false));
+
+                if (turnInStage)
+                {
+                    OcrMissionObservation observation = GetMissionObservation(_currentMission);
+                    if (!observation.ReadyForTurnInSeen && _currentStepIndex > 0)
+                    {
+                        QuestStep previousStep = _currentMission.steps[_currentStepIndex - 1];
+                        string previousState;
+                        if (_progress.MissionStates.TryGetValue(
+                            StageKey(_currentMission, previousStep), out previousState) &&
+                            string.Equals(previousState, "done-ocr", StringComparison.OrdinalIgnoreCase))
+                        {
+                            observation.ReadyForTurnInSeen = true;
+                            observation.VisibleInLastConfirmedReading = true;
+                        }
+                    }
+                    bool missionStillVisible =
+                        FindBestBlock(blocks,
+                            GetOcrAliases(_currentMission, _currentStep, true)) != null ||
+                        HasMissionEvidence(_currentMission, blocks);
+                    if (missionStillVisible)
+                    {
+                        observation.VisibleInLastConfirmedReading = true;
+                        break;
+                    }
+                    if (!observation.ReadyForTurnInSeen ||
+                        !observation.VisibleInLastConfirmedReading ||
+                        !HasAnyKnownRouteEvidence(blocks))
+                        break;
+
+                    string deliveredMission = _currentMission.name;
+                    int deliveredStep = _currentStepIndex + 1;
+                    MarkCurrentStageFromOcr(
+                        "missão pronta foi vista e depois desapareceu do quest log");
+                    advances.Add(deliveredMission + " etapa " + deliveredStep +
+                        " (entrega confirmada pelo desaparecimento após presença)");
+                    observation.VisibleInLastConfirmedReading = false;
+                    observation.ReadyForTurnInSeen = false;
+                    continue;
+                }
+
+                if (acceptStage)
+                {
+                    if (!HasAcceptedMissionEvidence(_currentMission, blocks)) break;
+                    QuestMission acceptedMissionObject = _currentMission;
+                    string acceptedMission = _currentMission.name;
+                    int acceptedStep = _currentStepIndex + 1;
+                    MarkCurrentStageFromOcr("missão ou submissão apareceu no quest log");
+                    advances.Add(acceptedMission + " etapa " + acceptedStep +
+                        " (missão/submissão visível)");
+                    GetMissionObservation(acceptedMissionObject).VisibleInLastConfirmedReading = true;
+                    continue;
+                }
+
                 int? expectedTotal = GetExpectedCounterTotal();
                 int objectiveCountRequirements = Regex.Matches(
                     action,
                     @"\(\s*\d{1,4}\s*\)").Count;
                 bool counterFinished = expectedTotal.HasValue &&
                     objectiveCountRequirements == 1 &&
-                    block.CurrentCount.HasValue && block.TotalCount.HasValue &&
-                    block.CurrentCount.Value >= expectedTotal.Value &&
-                    block.TotalCount.Value == expectedTotal.Value;
-                bool objectiveFinished = !turnInStage &&
-                    (counterFinished || (!acceptStage && block.Completed));
-                if (!acceptStage && !objectiveFinished) break;
+                    missionBlock != null && missionBlock.CurrentCount.HasValue &&
+                    missionBlock.TotalCount.HasValue &&
+                    missionBlock.CurrentCount.Value >= expectedTotal.Value &&
+                    missionBlock.TotalCount.Value == expectedTotal.Value;
+                bool objectiveFinished = talkStage
+                    ? stepBlock != null && stepBlock.Completed
+                    : counterFinished ||
+                        (missionBlock != null && missionBlock.Completed) ||
+                        (stepBlock != null && stepBlock.Completed);
+                if (!objectiveFinished) break;
 
                 string missionName = _currentMission.name;
                 int stepNumber = _currentStepIndex + 1;
-                string evidence = acceptStage
-                    ? "missão visível no quest log"
-                    : counterFinished
-                        ? "contador " + block.CurrentCount.Value + "/" + block.TotalCount.Value
-                        : "Missão Concluída no bloco correto";
+                string evidence = counterFinished
+                    ? "contador " + missionBlock.CurrentCount.Value + "/" +
+                        missionBlock.TotalCount.Value
+                    : "Missão Concluída na missão ou submissão correta";
+                QuestMission completedMission = _currentMission;
                 MarkCurrentStageFromOcr(evidence);
                 advances.Add(missionName + " etapa " + stepNumber + " (" + evidence + ")");
-                if (!acceptStage) break;
-                if (_currentMission == null || _currentStep == null) break;
+                OcrMissionObservation completedObservation = GetMissionObservation(completedMission);
+                completedObservation.VisibleInLastConfirmedReading = true;
+                if (_currentMission != null && _currentStep != null &&
+                    string.Equals(_currentMission.id, completedMission.id,
+                        StringComparison.OrdinalIgnoreCase) &&
+                    IsTurnInStage(_currentMission, _currentStep))
+                    completedObservation.ReadyForTurnInSeen = true;
             }
 
             return advances.Count == 0
@@ -1824,13 +1873,22 @@ namespace PWQuestOverlay
             foreach (string line in lines)
             {
                 Match numberedTitle = Regex.Match(line, @"^\s*\d+\s+(?<title>.+?)\s*$");
-                if (numberedTitle.Success)
+                string observedTitle = numberedTitle.Success
+                    ? numberedTitle.Groups["title"].Value.Trim()
+                    : line.TrimStart(' ', '\t', '&', 'S', 'E', '-').Trim();
+                bool knownUnnumberedTitle = !numberedTitle.Success &&
+                    FindBestKnownAlias(observedTitle) != null;
+                if (numberedTitle.Success || knownUnnumberedTitle)
                 {
                     QuestMission mission;
                     knownMissions.TryGetValue(
-                        NormalizeOcrText(numberedTitle.Groups["title"].Value),
+                        NormalizeOcrText(observedTitle),
                         out mission);
-                    activeBlock = new OcrQuestBlock { Mission = mission };
+                    activeBlock = new OcrQuestBlock
+                    {
+                        Mission = mission,
+                        ObservedTitle = observedTitle
+                    };
                     blocks.Add(activeBlock);
                     continue;
                 }
@@ -1853,6 +1911,143 @@ namespace PWQuestOverlay
                 }
             }
             return blocks;
+        }
+
+        private List<string> GetOcrAliases(
+            QuestMission mission,
+            QuestStep step,
+            bool includeMission)
+        {
+            var aliases = new List<string>();
+            if (includeMission && mission != null && !string.IsNullOrWhiteSpace(mission.name))
+                aliases.Add(mission.name);
+            if (step != null && !string.IsNullOrWhiteSpace(step.title) &&
+                (mission == null || !string.Equals(step.title, mission.name,
+                    StringComparison.OrdinalIgnoreCase)))
+                aliases.Add(step.title);
+            if (step != null) aliases.AddRange(GetDerivedStepAliases(step.action));
+            return aliases
+                .Where(alias => !string.IsNullOrWhiteSpace(alias))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToList();
+        }
+
+        private static IEnumerable<string> GetDerivedStepAliases(string action)
+        {
+            string normalized = NormalizeOcrText(action);
+            if (normalized.Contains("ferreiro")) yield return "Visite o Ferreiro";
+            if (normalized.Contains("comerciante")) yield return "Visite o Negociante";
+            if (normalized.Contains("boticario")) yield return "Visite o Boticário";
+            if (normalized.Contains("artesa") || normalized.Contains("artesao"))
+                yield return "Visite o Artesão";
+            if (normalized.Contains("alfaiate")) yield return "Visite o Alfaiate";
+            if (normalized.Contains("ancia") || normalized.Contains("anciao"))
+            {
+                yield return "Visitando o Ancião";
+                yield return "Informar ao Ancião";
+            }
+        }
+
+        private OcrQuestBlock FindBestBlock(
+            IEnumerable<OcrQuestBlock> blocks,
+            IEnumerable<string> aliases)
+        {
+            OcrQuestBlock bestBlock = null;
+            double bestSimilarity = 0.0;
+            foreach (OcrQuestBlock block in blocks)
+            {
+                string observed = NormalizeOcrText(block.ObservedTitle);
+                foreach (string alias in aliases)
+                {
+                    double similarity = CalculateBestTitleSimilarity(
+                        observed,
+                        NormalizeOcrText(alias));
+                    if (similarity > bestSimilarity)
+                    {
+                        bestSimilarity = similarity;
+                        bestBlock = block;
+                    }
+                }
+            }
+            return bestSimilarity >= 0.72 ? bestBlock : null;
+        }
+
+        private string FindBestKnownAlias(string observedTitle)
+        {
+            string bestAlias = null;
+            double bestSimilarity = 0.0;
+            foreach (QuestMission mission in _currentRoute)
+            {
+                foreach (QuestStep step in mission.steps)
+                {
+                    foreach (string alias in GetOcrAliases(mission, step, true))
+                    {
+                        double similarity = CalculateBestTitleSimilarity(
+                            NormalizeOcrText(observedTitle),
+                            NormalizeOcrText(alias));
+                        if (similarity > bestSimilarity)
+                        {
+                            bestSimilarity = similarity;
+                            bestAlias = alias;
+                        }
+                    }
+                }
+            }
+            return bestSimilarity >= 0.72 ? bestAlias : null;
+        }
+
+        private bool HasAcceptedMissionEvidence(
+            QuestMission mission,
+            List<OcrQuestBlock> blocks)
+        {
+            if (FindBestBlock(blocks, new[] { mission.name }) != null) return true;
+            List<QuestStep> objectiveSteps = mission.steps
+                .Where(step => !IsAcceptStage(step.action) && !IsTurnInStage(mission, step))
+                .ToList();
+            int matched = objectiveSteps.Count(step =>
+                FindBestBlock(blocks, GetOcrAliases(mission, step, false)) != null);
+            int distinctAliasCount = objectiveSteps
+                .SelectMany(step => GetOcrAliases(mission, step, false))
+                .Select(NormalizeOcrText)
+                .Distinct()
+                .Count();
+            return matched >= (distinctAliasCount >= 3 ? 2 : 1);
+        }
+
+        private bool HasMissionEvidence(QuestMission mission, List<OcrQuestBlock> blocks)
+        {
+            if (FindBestBlock(blocks, new[] { mission.name }) != null) return true;
+            List<QuestStep> evidenceSteps = mission.steps
+                .Where(step => !IsAcceptStage(step.action))
+                .ToList();
+            int matched = evidenceSteps.Count(step =>
+                FindBestBlock(blocks, GetOcrAliases(mission, step, false)) != null);
+            int distinctAliasCount = evidenceSteps
+                .SelectMany(step => GetOcrAliases(mission, step, false))
+                .Select(NormalizeOcrText)
+                .Distinct()
+                .Count();
+            return matched >= (distinctAliasCount >= 3 ? 2 : 1);
+        }
+
+        private bool HasAnyKnownRouteEvidence(List<OcrQuestBlock> blocks)
+        {
+            return blocks.Any(block => FindBestKnownAlias(block.ObservedTitle) != null);
+        }
+
+        private OcrMissionObservation GetMissionObservation(QuestMission mission)
+        {
+            string profileKey = !string.IsNullOrWhiteSpace(_characterKey)
+                ? _characterKey
+                : "hwnd:" + _activeGame.ToInt64().ToString("X");
+            string key = profileKey + "|" + mission.id;
+            OcrMissionObservation observation;
+            if (!_ocrMissionObservations.TryGetValue(key, out observation))
+            {
+                observation = new OcrMissionObservation();
+                _ocrMissionObservations[key] = observation;
+            }
+            return observation;
         }
 
         private void MarkCurrentStageFromOcr(string evidence)
@@ -1878,12 +2073,25 @@ namespace PWQuestOverlay
                 RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
         }
 
-        private static bool IsTurnInStage(string action)
+        private static bool IsTalkStage(string action)
         {
             return Regex.IsMatch(
                 action ?? string.Empty,
-                @"\b(?:entregue|reporte|retorne|volte|fale\s+com)\b",
+                @"\bfale\s+com\b",
                 RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        }
+
+        private static bool IsTurnInStage(QuestMission mission, QuestStep step)
+        {
+            string action = step == null ? string.Empty : step.action ?? string.Empty;
+            if (Regex.IsMatch(
+                action,
+                @"\b(?:entregue|reporte|retorne|volte)\b",
+                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+                return true;
+            return mission != null && step != null &&
+                mission.steps.IndexOf(step) == mission.steps.Count - 1 &&
+                IsTalkStage(action);
         }
 
         private void SetOcrAutoAdvance(bool enabled, bool notify)

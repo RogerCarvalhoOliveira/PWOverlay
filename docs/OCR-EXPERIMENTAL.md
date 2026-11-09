@@ -23,7 +23,9 @@ O avanço exige duas leituras interpretadas iguais. Nesta fase, são concluídas
 - uma etapa de objetivo quando o contador único chega ao total esperado;
 - uma etapa de objetivo quando `Missão Concluída` aparece dentro do bloco canônico correto.
 
-Etapas de entregar, reportar, voltar ou falar com NPC não avançam apenas porque o texto `Missão Concluída` apareceu: isso indica que a missão está pronta para entrega, não que ela já foi entregue. Objetivos com vários contadores também exigem `Missão Concluída`, evitando concluir a etapa quando somente um dos alvos terminou.
+Etapas de conversa usam também os nomes reais das submissões, como `Visite o Ferreiro`, `Visite o Negociante` e `Visite o Boticário`. Isso permite sincronizar cadeias cujo nome principal não aparece no tracker.
+
+Uma entrega somente avança por desaparecimento quando o OCR já havia visto a missão pronta para entregar. Depois disso, o bloco precisa desaparecer em duas leituras estáveis enquanto outra entrada conhecida comprova que o tracker continua legível. Ausência sem presença anterior nunca é tratada como missão feita. Objetivos com vários contadores também exigem `Missão Concluída`, evitando concluir a etapa quando somente um dos alvos terminou.
 
 O teste não conclui, pula nem volta etapas. A calibração é salva proporcionalmente à resolução do cliente e faz parte do backup do estado.
 
