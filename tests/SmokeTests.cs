@@ -36,10 +36,29 @@ internal static class SmokeTests
                     throw new InvalidDataException("Missão sem etapas: " + mission.name);
                 if (mission.expectedLevel < mission.minLevel)
                     throw new InvalidDataException("Nível previsto abaixo do mínimo: " + mission.name);
+                int previousRouteOrder = 0;
                 foreach (QuestStep step in mission.steps)
+                {
                     if (step.routeOrder <= 0)
                         throw new InvalidDataException("Etapa sem ordem global: " + mission.name + " / " + step.id);
+                    if (step.routeOrder <= previousRouteOrder)
+                        throw new InvalidDataException("Etapas fora de ordem dentro da missão: " + mission.name);
+                    previousRouteOrder = step.routeOrder;
+                }
             }
+
+            List<QuestMission> common = routes.AllMissions.Where(m => m.routeKey == "COMMON").ToList();
+            int lastLevelTwenty = common.Where(m => m.minLevel == 20)
+                .SelectMany(m => m.steps).Max(step => step.routeOrder);
+            int firstLaterLevel = common.Where(m => m.minLevel > 20)
+                .SelectMany(m => m.steps).Min(step => step.routeOrder);
+            if (firstLaterLevel >= lastLevelTwenty)
+                throw new InvalidDataException("A rota comum 20-60 não intercala missões entre regiões e retornos.");
+
+            QuestMission cultivo29 = common.Find(m => m.name == "Cultivo 29 — O Infante Primordial");
+            QuestMission moeda29 = common.Find(m => m.name == "DG29 — Moeda Sangrenta de Ferro 2 Peão");
+            if (cultivo29.steps[0].routeOrder >= moeda29.steps[moeda29.steps.Count - 1].routeOrder)
+                throw new InvalidDataException("Cultivo 29 e Moeda da DG29 não foram agrupados corretamente.");
 
             QuestMission forgeWr = wr.Find(m => m.name == "Aprenda sobre Habilidades de Forja");
             QuestMission hedgehogWr = wr.Find(m => m.name == "Espinho de Ouriço");

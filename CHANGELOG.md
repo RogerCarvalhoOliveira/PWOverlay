@@ -1,5 +1,14 @@
 # Histórico de alterações
 
+## 0.6.0 - Rota intercalada do nível 20 ao 60
+
+- Reorganizada a rota compartilhada `COMMON` como um único circuito global do nível 20 ao 60.
+- Cultivos, preparações, moedas e objetivos de DG foram agrupados para reduzir viagens e entradas repetidas.
+- A cadeia do Pilar Esquisito e as missões longas podem permanecer abertas enquanto a rota aproveita objetivos próximos.
+- Missões exclusivas de Humanos, Selvagens e Alados entram como desvios curtos e retornam à sequência compartilhada.
+- Planilha e testes agora validam a ordem global também após a chegada à Cidade do Dragão.
+- IDs de missão e etapa foram preservados para manter o progresso existente.
+
 ## 0.5.0 - Rotas intercaladas por região
 
 - Adicionada ordem global por etapa, permitindo alternar entre missões sem exigir a conclusão imediata de cada uma.

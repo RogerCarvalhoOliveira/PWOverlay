@@ -20,6 +20,9 @@ Confirme que `dist` contém os dois executáveis, as rotas, o manual e o ZIP.
 6. Em uma missão com várias etapas, confirme que a missão seguinte só aparece após a última.
 7. No início da rota WR, confirme a intercalação: pegar **Fazer Armas**, fazer **Teste de Salto**, falar com o Ancião sobre forja e somente depois sair para os objetivos externos.
 8. Confirme que **Voltar** retorna à ação global anterior mesmo quando ela pertence a outra missão.
+9. Salte para o nível 29 e confirme que cultivo, moeda e objetivos da DG29 aparecem intercalados na mesma preparação/entrada.
+10. Repita a conferência nas DGs 39, 49 e 59 e percorra a cadeia do Pilar Esquisito até o retorno à Cidade das Tormentas.
+11. Em WR, WB/WF e EA/EP, confirme que a missão racial do nível 50 aparece como desvio e que a ação seguinte retorna à rota comum.
 
 ## Marcador
 

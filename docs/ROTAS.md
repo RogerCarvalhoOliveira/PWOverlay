@@ -46,7 +46,7 @@ Cada item de `steps` possui:
 
 Crie um `id` que não será reutilizado. Use o mesmo `routeKey` e `classScope` das missões vizinhas e escolha um `order` que mantenha a sequência. Se duas classes compartilharem a missão, use o escopo compartilhado já adotado no grupo.
 
-As rotas vão até o nível 60. Depois da chegada à Cidade do Dragão, o repositório combina a rota racial com `COMMON`; apenas missões realmente exclusivas permanecem nas rotas de raça. A orientação automática do nível 5 para falar com o Ancião foi incluída, mas as missões específicas de Ferreiro, Alfaiate, Artesão e Boticário continuam excluídas. Missões de voo também foram removidas e substituídas por uma etapa explícita para abandonar o pop-up.
+As rotas vão até o nível 60. Depois da chegada à Cidade do Dragão, o repositório combina a rota racial com `COMMON`; apenas missões realmente exclusivas permanecem nas rotas de raça. A ordem global de `COMMON` foi otimizada como um único circuito 20–60, podendo intercalar níveis e deixar cadeias longas abertas até o próximo retorno conveniente. Os desvios raciais usam os intervalos entre ordens comuns e depois reencontram a sequência principal. A orientação automática do nível 5 para falar com o Ancião foi incluída, mas as missões específicas de Ferreiro, Alfaiate, Artesão e Boticário continuam excluídas. Missões de voo também foram removidas e substituídas por uma etapa explícita para abandonar o pop-up.
 
 ## Fontes das etapas
 

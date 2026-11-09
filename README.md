@@ -11,8 +11,8 @@ O programa identifica cada cliente pelo título criado pelo PW Helper, por exemp
 - Tela **Perfis** para associar manualmente qualquer título ou nome a uma classe.
 - Suporte a personagens com o mesmo nome em classes diferentes.
 - Rotas otimizadas do nível 1 ao 60, com 226 missões únicas e 836 etapas detalhadas.
-- Ordem global por ação: o overlay pode pegar várias missões de um polo, executar objetivos próximos e entregá-las somente no retorno planejado.
-- Após a Cidade do Dragão, as seis classes compartilham a mesma sequência e se separam somente nas missões exclusivas de raça.
+- Ordem global por ação do nível 1 ao 60: o overlay pode pegar várias missões de um polo, executar objetivos próximos e entregá-las somente no retorno planejado.
+- Após a Cidade do Dragão, as seis classes percorrem o mesmo circuito otimizado e se separam somente em desvios curtos para missões exclusivas de raça.
 - Cultivos, DGs 19/29/39/49/59, Moedas Sangrentas, Pilar Esquisito e cargos militares prioritários.
 - Missões de voo ficam fora da rota; o guia inclui a etapa para abandonar o pop-up no questlog.
 - Missão pop-up do nível 5 para falar com o Ancião sobre forja, sem incluir as missões específicas de ofício.
