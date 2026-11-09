@@ -45,9 +45,10 @@ Confirme que `dist` contém os dois executáveis, as rotas, o manual e o ZIP.
 2. Crie manualmente um marcador de teste no jogo.
 3. Clique em **Marcar** e não mova o mouse por cerca de um segundo.
 4. Abra o painel do jogo e confirme que há somente `PWOverlay` com a coordenada da etapa atual.
-5. Troque de cliente, clique em **Marcar** e confirme que o marcador foi criado apenas no cliente em foco.
-6. Use uma etapa sem coordenadas e confirme que o botão fica desativado.
-7. Teste o atalho informado no menu (`Ctrl + Alt + M` ou o alternativo), os dois modos de exclusão e o assistente **Calibrar marcador...**.
+5. Clique em **Marcar** novamente e confirme no log a exclusão anterior; a lista deve continuar com apenas um `PWOverlay`.
+6. Troque de cliente, clique em **Marcar** e confirme que o marcador foi criado apenas no cliente em foco.
+7. Use uma etapa sem coordenadas e confirme que o botão fica desativado.
+8. Teste o atalho informado no menu (`Ctrl + Alt + M` ou o alternativo), os dois modos de exclusão e o assistente **Calibrar marcador...**.
 
 ## Associação manual
 
@@ -82,7 +83,7 @@ Faça backup de `%LOCALAPPDATA%\PWQuestOverlay\state.json`, teste com uma cópia
 
 ## Instalador em outro computador
 
-1. Execute `PWQuestOverlay-Setup-v0.7.0.exe` como usuário comum e confirme que não pede elevação.
+1. Execute `PWQuestOverlay-Setup-v0.7.1.exe` como usuário comum e confirme que não pede elevação.
 2. Teste atalhos do menu Iniciar, opções de área de trabalho e inicialização automática.
 3. Confirme que o guia abre ao final e que overlay, rotas e planilha estão no diretório instalado.
 4. Importe um backup, associe um cliente sem sigla e refaça a calibração do marcador.

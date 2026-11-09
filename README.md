@@ -64,7 +64,7 @@ O resultado será criado em `dist\`:
 - `rota_leveling_pw_144.xlsx`
 - `LEIA-ME.txt`
 - `INSTALACAO.txt`;
-- `PWQuestOverlay-Portatil-v0.7.0.zip`, quando `-Package` for usado.
+- `PWQuestOverlay-Portatil-v0.7.1.zip`, quando `-Package` for usado.
 
 Para gerar também o instalador, instale o Inno Setup 6 e execute:
 
@@ -72,7 +72,7 @@ Para gerar também o instalador, instale o Inno Setup 6 e execute:
 powershell -ExecutionPolicy Bypass -File .\scripts\build.ps1 -Package -Installer
 ```
 
-O resultado adicional é `PWQuestOverlay-Setup-v0.7.0.exe`. Ele instala por usuário, sem exigir privilégios administrativos, e oferece atalhos e inicialização automática como opções desmarcadas.
+O resultado adicional é `PWQuestOverlay-Setup-v0.7.1.exe`. Ele instala por usuário, sem exigir privilégios administrativos, e oferece atalhos e inicialização automática como opções desmarcadas.
 
 Para compilar e iniciar:
 

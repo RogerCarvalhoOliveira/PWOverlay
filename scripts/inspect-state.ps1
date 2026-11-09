@@ -30,5 +30,6 @@ $state.Characters.PSObject.Properties | ForEach-Object {
         Classe = $profile.ClassCode
         Manual = $profile.ManualClass
         Marcadas = @($profile.MissionStates.PSObject.Properties).Count
+        MarcadoresOverlay = $profile.OverlayMarkerCount
     }
 } | Format-Table -AutoSize

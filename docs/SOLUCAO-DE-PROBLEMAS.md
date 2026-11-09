@@ -23,6 +23,23 @@ O botão só altera o perfil quando um cliente está ativo. Confirme também se 
 - O fluxo foi calibrado em 1920×1080 borderless. Escala personalizada da interface pode exigir ajuste dos pontos de referência em `OverlayForm.cs`.
 - Consulte `overlay.log` e procure por `Falha ao criar marcador`.
 
+## O botão Marcar está acumulando PWOverlay antigos
+
+A versão 0.7.1 corrige o ponto de seleção da lista e passa a substituir o marcador
+anterior na mesma ação. Instale ou execute essa versão com o painel **Marcadores**
+fechado.
+
+Se uma versão antiga já tiver acumulado mais de um item chamado `PWOverlay`, feche o
+overlay e informe a quantidade existente para o perfil com:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\repair-marker-count.ps1 -CharacterKey "NOMEDOPERSONAGEM|CLASSE" -Count 3
+```
+
+O script preserva os demais marcadores do jogo e cria antes o backup
+`state.json.before-marker-repair.bak`. No próximo clique em **Marcar**, somente essa
+quantidade de itens do overlay será removida e um marcador novo será criado.
+
 ## O PW Helper some atrás do jogo
 
 Mantenha o painel `TODOS` aberto. O overlay e o monitor borderless elevam essa janela sem transferir o foco. Se o problema persistir, confira se o processo se chama `PW Helper` e se o título do painel continua `TODOS`.

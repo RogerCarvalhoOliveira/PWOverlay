@@ -114,10 +114,15 @@ internal static class SmokeTests
             AppState state = new StateStore().Load();
             if (state.Characters == null || state.Positions == null || state.ClassAssociations == null)
                 throw new InvalidDataException("Estado carregado sem coleções obrigatórias.");
-            if (state.SchemaVersion < 4)
-                throw new InvalidDataException("Estado não foi migrado para suportar o modo compacto.");
+            if (state.SchemaVersion < 6)
+                throw new InvalidDataException("Estado não foi migrado para a versão atual.");
             if (state.Marker == null || state.Marker.MarkerList == null)
                 throw new InvalidDataException("Calibração do marcador incompleta.");
+            if (!state.Marker.Calibrated && state.Marker.MarkerList.Y != 70)
+                throw new InvalidDataException("Ponto padrão da lista de marcadores não foi migrado para uma linha selecionável.");
+            foreach (CharacterProgress progress in state.Characters.Values)
+                if (progress.HasOverlayMarker && progress.OverlayMarkerCount <= 0)
+                    throw new InvalidDataException("Contagem de marcadores não foi migrada para " + progress.CharacterName);
 
             Console.WriteLine("Smoke tests aprovados para rotas, etapas e estado local.");
             return 0;

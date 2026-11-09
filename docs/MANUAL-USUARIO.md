@@ -76,6 +76,8 @@ Ao clicar em **Marcar**, não mova o mouse nem troque de cliente por cerca de um
 
 O fluxo padrão foi calibrado com o cliente 1.4.4 em 1920×1080 borderless e o PW Helper aberto. Outras resoluções são escaladas proporcionalmente. Remoção, confirmação da exclusão por teclado e criação são feitas dentro do mesmo clique; o painel é normalizado entre as fases.
 
+Versões anteriores a 0.7.1 usavam uma área vazia como referência da lista e podiam acumular `PWOverlay`. A configuração padrão é migrada automaticamente. Marcadores duplicados já existentes devem ser removidos uma única vez; depois disso, cada clique mantém somente o marcador mais recente.
+
 Para ajustar uma escala diferente, abra o menu do ícone ao lado do relógio e escolha **Calibrar marcador...**. Selecione uma linha, deixe o painel de Marcadores aberto, posicione o mouse sobre o controle indicado e pressione `F8`. Repita os controles e salve. O menu **Ao criar marcador** alterna entre substituir somente `PWOverlay` (recomendado) ou apagar todos.
 
 ## Selecionar uma etapa

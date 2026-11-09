@@ -830,8 +830,9 @@ namespace PWQuestOverlay
                 NativeMethods.SetForegroundWindow(_activeGame);
                 System.Threading.Thread.Sleep(100);
 
-                // Abre Marcadores. No modo recomendado, o PWOverlay criado anteriormente
-                // é o último item da lista: seleciona-o com End e remove somente ele.
+                // Abre Marcadores. No modo recomendado, clica na primeira linha real da
+                // lista (não na área vazia), usa End para selecionar o último PWOverlay
+                // criado e remove somente ele.
                 NativeMethods.ClickClientPoint(_activeGame, _state.Marker.TrackerButton);
                 System.Threading.Thread.Sleep(180);
 
@@ -839,26 +840,36 @@ namespace PWQuestOverlay
                 bool shouldDelete = !selectedMode || (_progress != null && _progress.HasOverlayMarker);
                 if (shouldDelete)
                 {
-                    if (selectedMode)
+                    int deleteCount = selectedMode && _progress != null
+                        ? Math.Max(1, _progress.OverlayMarkerCount)
+                        : 1;
+                    for (int deletion = 0; deletion < deleteCount; deletion++)
                     {
-                        NativeMethods.ClickClientPoint(_activeGame, _state.Marker.MarkerList);
-                        NativeMethods.PressKey(NativeMethods.VK_END);
-                        System.Threading.Thread.Sleep(80);
-                        NativeMethods.ClickClientPoint(_activeGame, _state.Marker.DeleteSelected);
-                    }
-                    else
-                    {
-                        NativeMethods.ClickClientPoint(_activeGame, _state.Marker.DeleteAll);
-                    }
-                    System.Threading.Thread.Sleep(220);
+                        if (selectedMode)
+                        {
+                            NativeMethods.ClickClientPoint(_activeGame, _state.Marker.MarkerList);
+                            System.Threading.Thread.Sleep(60);
+                            NativeMethods.PressKey(NativeMethods.VK_END);
+                            System.Threading.Thread.Sleep(120);
+                            NativeMethods.ClickClientPoint(_activeGame, _state.Marker.DeleteSelected);
+                        }
+                        else
+                        {
+                            NativeMethods.ClickClientPoint(_activeGame, _state.Marker.DeleteAll);
+                        }
+                        System.Threading.Thread.Sleep(220);
 
-                    // O cliente 1.4.4 sempre pede confirmação antes de excluir waypoints.
-                    // A caixa muda alguns pixels conforme escala/resolução, portanto confirma
-                    // pelo teclado: Esquerda garante o botão afirmativo e Enter o aciona.
-                    NativeMethods.PressKey((byte)NativeMethods.VK_LEFT);
-                    System.Threading.Thread.Sleep(80);
-                    NativeMethods.PressKey(NativeMethods.VK_RETURN);
-                    System.Threading.Thread.Sleep(360);
+                        // O cliente 1.4.4 sempre pede confirmação antes de excluir waypoints.
+                        // A caixa muda alguns pixels conforme escala/resolução, portanto confirma
+                        // pelo teclado: Esquerda garante o botão afirmativo e Enter o aciona.
+                        NativeMethods.PressKey((byte)NativeMethods.VK_LEFT);
+                        System.Threading.Thread.Sleep(80);
+                        NativeMethods.PressKey(NativeMethods.VK_RETURN);
+                        System.Threading.Thread.Sleep(360);
+                        if (!selectedMode) break;
+                    }
+                    _store.Log(_characterName + " removeu marcador anterior no modo " +
+                        (selectedMode ? "PWOverlay" : "todos") + " (quantidade: " + deleteCount + ")");
 
                     // Excluir altera o estado do painel no cliente. Fechar e reabrir garante
                     // que a criação aconteça nesta mesma chamada, sem um segundo clique.
@@ -886,6 +897,7 @@ namespace PWQuestOverlay
                 if (_progress != null)
                 {
                     _progress.HasOverlayMarker = true;
+                    _progress.OverlayMarkerCount = 1;
                     _store.Save(_state);
                 }
 

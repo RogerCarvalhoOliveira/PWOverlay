@@ -1,5 +1,13 @@
 # Histórico de alterações
 
+## 0.7.1 - Correção da substituição de marcadores
+
+- Corrigido o ponto padrão da lista de marcadores de uma área vazia para a primeira linha selecionável.
+- A automação agora clica em uma linha real, seleciona o último `PWOverlay` com `End`, exclui, confirma e cria o novo na mesma ação.
+- Configurações antigas com o ponto padrão incorreto são migradas automaticamente sem alterar calibrações personalizadas.
+- Adicionado registro no log após a fase de exclusão para facilitar diagnóstico.
+- O estado agora registra a quantidade de `PWOverlay` por personagem, permitindo limpar duplicados acumulados sem apagar marcadores pessoais.
+
 ## 0.7.0 - Modo compacto e instalador
 
 - Adicionado botão `−/+` para alternar entre a interface completa redesenhada e uma interface compacta de 470×122.

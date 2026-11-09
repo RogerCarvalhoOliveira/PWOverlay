@@ -51,6 +51,7 @@ namespace PWQuestOverlay
         public string ClassCode { get; set; }
         public bool ManualClass { get; set; }
         public bool HasOverlayMarker { get; set; }
+        public int OverlayMarkerCount { get; set; }
         public Dictionary<string, string> MissionStates { get; set; }
 
         public CharacterProgress()
@@ -97,7 +98,7 @@ namespace PWQuestOverlay
                 TrackerButton = new MarkerPoint(1760, 158),
                 DeleteAll = new MarkerPoint(291, 382),
                 DeleteSelected = new MarkerPoint(260, 382),
-                MarkerList = new MarkerPoint(230, 200),
+                MarkerList = new MarkerPoint(230, 70),
                 DeleteConfirmYes = new MarkerPoint(970, 560),
                 CoordinateInput = new MarkerPoint(218, 41),
                 TrackCoordinates = new MarkerPoint(291, 41),
@@ -122,7 +123,7 @@ namespace PWQuestOverlay
 
         public AppState()
         {
-            SchemaVersion = 4;
+            SchemaVersion = 6;
             Opacity = 0.82;
             Characters = new Dictionary<string, CharacterProgress>(StringComparer.OrdinalIgnoreCase);
             Positions = new Dictionary<string, SavedPosition>(StringComparer.OrdinalIgnoreCase);
@@ -308,6 +309,19 @@ namespace PWQuestOverlay
                     state.CompactMode = false;
                     state.SchemaVersion = 4;
                 }
+                if (state.SchemaVersion < 5)
+                {
+                    if (state.Marker.MarkerList != null && state.Marker.MarkerList.X == 230 && state.Marker.MarkerList.Y == 200)
+                        state.Marker.MarkerList = new MarkerPoint(230, 70);
+                    state.SchemaVersion = 5;
+                }
+                if (state.SchemaVersion < 6)
+                {
+                    foreach (CharacterProgress progress in state.Characters.Values)
+                        if (progress.HasOverlayMarker && progress.OverlayMarkerCount <= 0)
+                            progress.OverlayMarkerCount = 1;
+                    state.SchemaVersion = 6;
+                }
                 NormalizeMarkerSettings(state.Marker);
                 foreach (CharacterProgress progress in state.Characters.Values)
                 {
@@ -315,6 +329,9 @@ namespace PWQuestOverlay
                         progress.MissionStates = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
                 }
                 RestoreLegacyMarkerFlags(state);
+                foreach (CharacterProgress progress in state.Characters.Values)
+                    if (progress.HasOverlayMarker && progress.OverlayMarkerCount <= 0)
+                        progress.OverlayMarkerCount = 1;
                 if (state.Opacity < 0.60 || state.Opacity > 1.0) state.Opacity = 0.82;
                 return state;
             }
@@ -350,6 +367,19 @@ namespace PWQuestOverlay
                 if (Math.Abs(state.Opacity - 0.92) < 0.001) state.Opacity = 0.82;
                 state.CompactMode = false;
                 state.SchemaVersion = 4;
+            }
+            if (state.SchemaVersion < 5)
+            {
+                if (state.Marker.MarkerList != null && state.Marker.MarkerList.X == 230 && state.Marker.MarkerList.Y == 200)
+                    state.Marker.MarkerList = new MarkerPoint(230, 70);
+                state.SchemaVersion = 5;
+            }
+            if (state.SchemaVersion < 6)
+            {
+                foreach (CharacterProgress progress in state.Characters.Values)
+                    if (progress.HasOverlayMarker && progress.OverlayMarkerCount <= 0)
+                        progress.OverlayMarkerCount = 1;
+                state.SchemaVersion = 6;
             }
             NormalizeMarkerSettings(state.Marker);
             foreach (CharacterProgress progress in state.Characters.Values)
