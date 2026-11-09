@@ -1,5 +1,15 @@
 # Histórico de alterações
 
+## 0.9.0 - Dez classes e arraste com botão pressionado
+
+- Arraste mantém a captura no controle que recebeu o clique. Segurar o esquerdo move o painel; soltar encerra e salva, inclusive em outro monitor. Perder a captura também encerra o arraste.
+- Mago (MG) compartilha o guia humano com WR; Espiritualista (ES) compartilha o abissal com MC. IDs e 836 etapas anteriores preservados.
+- Adicionados Arcano (SK) e Místico (MS), quinta aba dos Guardiões e suporte às novas siglas na detecção, associação manual e editor.
+- 54 novas entradas de guia e 184 etapas, com nomes, níveis máximos, NPCs, requisitos e recompensas extraídos do cliente. Total: 280 entradas e 1.020 etapas.
+- Percurso inicial dos Guardiões encurtado para XP ×3; aceite antecipado de A Reunião e Memórias evita perder limites de nível. Aviso de produção correto no nível mínimo 6.
+- Incluídos os quatro contratos de invocação e os seis aprendizados de plantas do Místico até o nível 59, com submissões e IDs próprios; após a capital, a sequência comum vai até 60.
+- Testes de rotas para dez classes, auditoria de todos os IDs novos e eventos sintéticos de arraste aprovados. Os novos percursos ainda precisam de validação completa em personagens SK/MS no jogo.
+
 ## 0.8.5 - Overlay em outro monitor
 
 - Arrastar o painel para outra tela agora salva o monitor escolhido e a posição, sem trazê-lo de volta ao monitor do jogo.

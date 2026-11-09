@@ -251,6 +251,7 @@ namespace PWQuestOverlay
             switch (classCode)
             {
                 case "WR":
+                case "MG":
                     race = _missions.Where(m => m.routeKey == "WR");
                     break;
                 case "WB":
@@ -265,7 +266,13 @@ namespace PWQuestOverlay
                     race = _missions.Where(m => m.routeKey == "EAEP");
                     break;
                 case "MC":
+                case "ES":
                     race = _missions.Where(m => m.routeKey == "MC");
+                    break;
+                case "SK":
+                case "MS":
+                    race = _missions.Where(m => m.routeKey == "SKMS" &&
+                        (m.classScope == "SK/MS" || m.classScope == classCode));
                     break;
                 default:
                     return new List<QuestMission>();

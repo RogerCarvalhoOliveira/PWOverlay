@@ -33,8 +33,11 @@ Os pacotes ficam em `dist\PWQuestOverlay-Portatil-vX.Y.Z.zip` e `dist\PWQuestOve
 - `PW Borderless.exe`;
 - `PW Overlay Central.exe`;
 - `quest_routes.json`;
+- `memory_offsets.json` e `task_catalog_144.tsv`;
+- `rota_leveling_pw_144.xlsx`, com cinco abas;
 - `LEIA-ME.txt`;
-- `INSTALACAO.txt`.
+- `INSTALACAO.txt` e `GUIAS-DEZ-CLASSES.txt`;
+- runtime OCR em `ocr/` e utilitário `PW Memory Probe.exe` no ZIP.
 
 O instalador exige Inno Setup 6 somente no computador de desenvolvimento. O computador de destino precisa apenas do .NET Framework 4.x; não precisa do Inno Setup.
 

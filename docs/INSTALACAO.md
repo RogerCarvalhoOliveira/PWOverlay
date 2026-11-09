@@ -9,7 +9,7 @@
 
 ## Instalação recomendada
 
-1. Baixe `PWQuestOverlay-Setup-v0.7.6.exe` na página **Releases** do GitHub e copie-o para o outro computador.
+1. Baixe `PWQuestOverlay-Setup-v0.9.0.exe` na página **Releases** do GitHub e copie-o para o outro computador.
 2. Execute o instalador. Não é necessário acesso de administrador: o programa é instalado somente para o usuário atual.
 3. Escolha, se desejar, atalhos e inicialização automática. Deixe a inicialização direta do Overlay/PW Borderless desmarcada se quiser decidir a cada sessão.
 4. Ao terminar, abra **PW Overlay Central**, selecione as ferramentas desejadas e use **Iniciar selecionados + PW**.
@@ -30,7 +30,7 @@ Na primeira utilização, a Central tenta localizar o launcher automaticamente. 
 ## Configuração inicial
 
 1. No PW Helper, dê a cada janela um título como `Personagem[EP]`. Se isso não for possível, abra **Perfis** no overlay e associe manualmente o título à classe.
-2. Desbloqueie **Mover**, arraste o painel para uma área que não cubra os painéis flutuantes do PW Helper e bloqueie novamente.
+2. Desbloqueie **Mover**, segure o botão esquerdo na barra superior, arraste e solte onde quiser, inclusive em outro monitor. Depois bloqueie novamente.
 3. Use o botão `−` para ativar a interface compacta; o botão `+` restaura a interface completa.
 4. Abra o menu do ícone do overlay ao lado do relógio e use **Calibrar marcador...**. Siga cada ponto com o painel de Marcadores do jogo aberto.
 5. Teste **Marcar** em uma etapa com coordenadas e confirme que somente o marcador `PWOverlay` foi substituído.

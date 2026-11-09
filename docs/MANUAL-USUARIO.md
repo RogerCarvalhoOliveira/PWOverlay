@@ -22,7 +22,7 @@ O formato recomendado é:
 Personagem[CLASSE]
 ```
 
-Siglas aceitas: `WR`, `WB`, `WF`, `EA`, `EP` e `MC`.
+Siglas aceitas: `WR` (Guerreiro), `MG` (Mago), `WB` (Bárbaro), `WF` (Feiticeira), `EA` (Arqueiro), `EP` (Sacerdote), `MC` (Mercenário), `ES` (Espiritualista), `SK` (Arcano) e `MS` (Místico).
 
 Exemplos:
 
@@ -50,7 +50,7 @@ O menu do ícone ao lado do relógio também possui **Gerenciar perfis...** e um
 - **Perfis:** abre a associação entre título/nome do cliente e classe.
 - **X:** oculta o painel sem encerrar o programa.
 
-Para deixar o overlay em outro monitor, clique em **Mover**, arraste pela barra superior até a tela desejada e solte. O monitor e a posição são salvos automaticamente. Clique em **Fixado** para impedir novos arrastes. Alternar entre os clientes do PW continua atualizando o personagem, sem mover o painel de tela.
+Para deixar o overlay em outro monitor, clique em **Mover**, mantenha o botão esquerdo pressionado na barra superior e arraste até a tela desejada. Solte o botão esquerdo para encerrar o arraste e salvar o monitor e a posição. Clique em **Fixado** para impedir novos arrastes. Alternar entre os clientes do PW continua atualizando o personagem, sem mover o painel de tela.
 
 Para voltar a acompanhar a tela do cliente em foco, marque **Acompanhar monitor do PW** no menu do ícone ao lado do relógio. Se o monitor escolhido for desconectado, o painel aparece temporariamente na tela do jogo e recupera a preferência quando o monitor voltar.
 
@@ -59,6 +59,10 @@ As etapas seguem uma ordem global otimizada. O overlay pode mandar pegar uma mis
 Do nível 1 ao 60, a sequência foi organizada por região e dependências. Até a Cidade do Dragão, cada raça segue seu circuito; depois, todas usam a rota compartilhada e fazem apenas desvios curtos para missões exclusivas. Pop-ups como **Aprenda sobre Habilidades de Forja** aguardam o retorno natural ao Ancião; não é necessário interromper o circuito apenas para entregá-los.
 
 Nas faixas de DG, aceite primeiro cultivo, preparação e moeda que possam compartilhar a mesma entrada. A rota pode deixar uma cadeia longa aberta e retomá-la mais tarde; siga a ação exibida, não apenas o nível mínimo da missão.
+
+Na planilha, as abas antigas **Humanos - WR** e **Abissais - MC** agora também atendem MG e ES. A quinta aba, **Guardiões - SK-MS**, deve ser filtrada por `SK/MS` e sua sigla; o overlay aplica esse filtro automaticamente. O guia inclui os cultivos próprios dos Guardiões; as moedas posteriores seguem a rota comum.
+
+Nos Guardiões, aceite **A Reunião** antes de receber a recompensa de **Visitando o Ancião**, e **Memórias** antes de entregar **O Guardião do Templo**. Essas antecipações evitam perder o nível máximo de aceite com a XP ×3. O nível previsto considera XP das quests; abates e bônus do servidor podem elevar o nível real. Se já passou de um limite de aceite, use **Pular etapa** ou **Etapas** para reposicionar o guia.
 
 ## Atalhos
 

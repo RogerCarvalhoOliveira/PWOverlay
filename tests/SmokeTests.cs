@@ -18,7 +18,8 @@ internal static class SmokeTests
             var expected = new Dictionary<string, int>
             {
                 { "WR", 116 }, { "WB", 116 }, { "WF", 121 },
-                { "EA", 117 }, { "EP", 117 }, { "MC", 115 }
+                { "EA", 117 }, { "EP", 117 }, { "MC", 115 },
+                { "MG", 116 }, { "ES", 115 }, { "SK", 106 }, { "MS", 126 }
             };
             foreach (KeyValuePair<string, int> pair in expected)
             {
@@ -29,6 +30,26 @@ internal static class SmokeTests
 
             List<QuestMission> wr = routes.GetForClass("WR");
             List<QuestMission> mc = routes.GetForClass("MC");
+            if (!wr.Select(m => m.id).SequenceEqual(routes.GetForClass("MG").Select(m => m.id)) ||
+                !mc.Select(m => m.id).SequenceEqual(routes.GetForClass("ES").Select(m => m.id)))
+                throw new InvalidDataException("MG/ES não compartilham a rota correta de sua raça.");
+            foreach (string guardian in new[] { "SK", "MS" })
+            {
+                List<QuestMission> guardianRoute = routes.GetForClass(guardian);
+                string other = guardian == "SK" ? "MS" : "SK";
+                if (guardianRoute.Any(m => m.classScope == other))
+                    throw new InvalidDataException("Etapa da outra classe na rota " + guardian);
+                if (!guardianRoute.Any(m => m.id == "SKMS|SK/MS|23757") ||
+                    !guardianRoute.Any(m => m.id == "SKMS|SK/MS|23215"))
+                    throw new InvalidDataException("Treinador ou chegada à Cidade do Dragão ausente em " + guardian);
+            }
+            foreach (string guardian in new[] { "SK", "MS" })
+                if (!routes.GetForClass(guardian).Any(m => m.steps.Any(s => s.memoryTaskId == 23760)) ||
+                    !routes.GetForClass(guardian).Any(m => m.steps.Any(s => s.memoryTaskId == 23761)))
+                    throw new InvalidDataException("Maestria de Habilidades deve incluir os dois filhos obrigatórios.");
+            foreach (uint summon in new uint[] { 23029, 23030, 23031, 23032, 23033, 23034, 23035, 23036, 23037, 23038 })
+                if (!routes.GetForClass("MS").Any(m => m.id == "SKMS|MS|" + summon))
+                    throw new InvalidDataException("Invocação/planta do Místico ausente: " + summon);
             if (wr[2].name != "Revitalizando a Pátria" || wr[2].steps.Count != 7)
                 throw new InvalidDataException("Etapas de Revitalizando a Pátria não foram carregadas.");
             if (mc[1].name != "Cidade das Tormentas" || mc[1].steps.Count != 10)
@@ -302,10 +323,12 @@ internal static class SmokeTests
             {
                 QuestMission forgePopup = routes.GetForClass(classCode).Find(m =>
                     m.name == "Habilidades Produção");
-                if (forgePopup == null || forgePopup.expectedLevel != 5 || forgePopup.steps.Count != 2)
+                bool guardian = classCode == "SK" || classCode == "MS";
+                if (forgePopup == null || forgePopup.minLevel != (guardian ? 6 : 5) ||
+                    (!guardian && forgePopup.expectedLevel != 5) || forgePopup.steps.Count != 2)
                     throw new InvalidDataException("Orientação de forja ausente ou inválida em " + classCode);
                 QuestMission firstLevelFive = routes.GetForClass(classCode).Find(m => m.expectedLevel >= 5);
-                if (firstLevelFive != forgePopup)
+                if (!guardian && firstLevelFive != forgePopup)
                     throw new InvalidDataException("Orientação de forja não é a primeira missão prevista do nível 5 em " + classCode);
 
                 List<QuestMission> route = routes.GetForClass(classCode);

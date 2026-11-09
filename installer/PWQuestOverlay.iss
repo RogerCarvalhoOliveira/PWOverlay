@@ -1,5 +1,5 @@
 #ifndef MyAppVersion
-  #define MyAppVersion "0.8.5"
+  #define MyAppVersion "0.9.0"
 #endif
 
 #define MyAppName "PW Quest Overlay"
@@ -48,6 +48,7 @@ Source: "..\dist\task_catalog_144.tsv"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\rota_leveling_pw_144.xlsx"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\LEIA-ME.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\INSTALACAO.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\dist\GUIAS-DEZ-CLASSES.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\ocr\*"; DestDir: "{app}\ocr"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]

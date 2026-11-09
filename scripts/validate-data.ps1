@@ -39,7 +39,7 @@ foreach ($mission in $missions) {
     }
 }
 
-foreach ($routeKey in @('WR','WBWF','EAEP','MC','COMMON')) {
+foreach ($routeKey in @('WR','WBWF','EAEP','MC','SKMS','COMMON')) {
     $routeSteps = @($missions | Where-Object routeKey -eq $routeKey | ForEach-Object { $_.steps })
     foreach ($duplicateOrder in ($routeSteps | Group-Object routeOrder | Where-Object Count -gt 1)) {
         $errors.Add("Ordem global duplicada na rota ${routeKey}: $($duplicateOrder.Name)")
@@ -51,7 +51,7 @@ foreach ($duplicate in $duplicateIds) {
     $errors.Add("ID duplicado: $($duplicate.Name) ($($duplicate.Count)x)")
 }
 
-$validClasses = @('WR', 'WB/WF', 'WF', 'EA/EP', 'MC', 'ALL')
+$validClasses = @('WR/MG', 'WB/WF', 'WF', 'EA/EP', 'MC/ES', 'SK/MS', 'SK', 'MS', 'ALL')
 foreach ($mission in $missions | Where-Object { $_.classScope -notin $validClasses }) {
     $errors.Add("classScope inválido: $($mission.classScope) em $($mission.id)")
 }
@@ -68,6 +68,10 @@ $counts = [ordered]@{
     EA = @($missions | Where-Object { $_.routeKey -in @('EAEP','COMMON') }).Count
     EP = @($missions | Where-Object { $_.routeKey -in @('EAEP','COMMON') }).Count
     MC = @($missions | Where-Object { $_.routeKey -in @('MC','COMMON') }).Count
+    MG = @($missions | Where-Object { $_.routeKey -in @('WR','COMMON') }).Count
+    ES = @($missions | Where-Object { $_.routeKey -in @('MC','COMMON') }).Count
+    SK = @($missions | Where-Object { $_.routeKey -eq 'COMMON' -or ($_.routeKey -eq 'SKMS' -and $_.classScope -in @('SK/MS','SK')) }).Count
+    MS = @($missions | Where-Object { $_.routeKey -eq 'COMMON' -or ($_.routeKey -eq 'SKMS' -and $_.classScope -in @('SK/MS','MS')) }).Count
 }
 
 Write-Host "Rotas válidas. Missões únicas: $($missions.Count)"

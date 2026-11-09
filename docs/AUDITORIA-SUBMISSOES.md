@@ -1,4 +1,10 @@
-# Auditoria das submissões 0.8.3
+# Auditoria das submissões
+
+## Cobertura atual — 0.9.0
+
+O auditor percorre 1.020 etapas de 280 entradas de guia. São 289 associações explícitas: 105 mantidas no manifesto das rotas anteriores e 184 geradas a partir dos fatos dos Guardiões. Há 13 etapas com seletores independentes de materiais. Nenhum objetivo resolvido aponta indevidamente para um pai; 37 diagnósticos continuam informativos para objetivos manuais/ambíguos ou múltiplos contadores. A nova rota também valida pré-requisitos, nível máximo de aceite, títulos, coordenadas e preservação das etapas legadas. Consulte `GUIAS-DEZ-CLASSES.md` para fontes e limites de validação em jogo.
+
+## Revisão original — 0.8.3
 
 Foram examinadas as 836 etapas das 226 missões do guia 1–60. O manifesto `data/quest_objective_bindings.json` registra 102 associações explícitas em 30 cadeias, nas quatro rotas raciais e em COMMON. IDs de progresso e ordens de rota foram preservados. Os IDs, requisitos e parentesco foram cruzados com o catálogo do `tasks.data` v124; descrições extraídas localmente ajudaram a distinguir objetivos homônimos.
 

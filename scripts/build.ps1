@@ -9,7 +9,7 @@ $projectRoot = Split-Path -Parent $PSScriptRoot
 $sourceDirectory = Join-Path $projectRoot 'src'
 $dataDirectory = Join-Path $projectRoot 'data'
 $distributionDirectory = Join-Path $projectRoot 'dist'
-$version = '0.8.5'
+$version = '0.9.0'
 
 $compilerCandidates = @(
     'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe',
@@ -31,6 +31,7 @@ $taskCatalogDestination = Join-Path $distributionDirectory 'task_catalog_144.tsv
 $workbookDestination = Join-Path $distributionDirectory 'rota_leveling_pw_144.xlsx'
 $readmeDestination = Join-Path $distributionDirectory 'LEIA-ME.txt'
 $installationGuideDestination = Join-Path $distributionDirectory 'INSTALACAO.txt'
+$classGuideDestination = Join-Path $distributionDirectory 'GUIAS-DEZ-CLASSES.txt'
 $ocrDestination = Join-Path $distributionDirectory 'ocr'
 
 $overlaySources = @(
@@ -100,6 +101,7 @@ Copy-Item -LiteralPath (Join-Path $dataDirectory 'task_catalog_144.tsv') -Destin
 Copy-Item -LiteralPath (Join-Path $dataDirectory 'rota_leveling_pw_144.xlsx') -Destination $workbookDestination -Force
 Copy-Item -LiteralPath (Join-Path $projectRoot 'docs\MANUAL-USUARIO.md') -Destination $readmeDestination -Force
 Copy-Item -LiteralPath (Join-Path $projectRoot 'docs\INSTALACAO.md') -Destination $installationGuideDestination -Force
+Copy-Item -LiteralPath (Join-Path $projectRoot 'docs\GUIAS-DEZ-CLASSES.md') -Destination $classGuideDestination -Force
 
 function Copy-OcrRuntime {
     $tesseractCandidates = @(
@@ -151,6 +153,7 @@ if ($Package) {
         $workbookDestination,
         $readmeDestination,
         $installationGuideDestination,
+        $classGuideDestination,
         $ocrDestination
     ) -DestinationPath $packagePath -CompressionLevel Optimal
     Write-Host "Pacote criado: $packagePath"

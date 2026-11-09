@@ -1,12 +1,12 @@
 {
   "schemaVersion": 7,
-  "generatedFrom": "rota_leveling_pw_144.xlsx — rota otimizada 1–60, XP x3",
+  "generatedFrom": "Rotas 1–60, XP ×3; cinco raças e dez classes; Guardiões conferidos nos dados do cliente",
   "missions": [
     {
       "id": "WR|WR|1|Primeiro Teste / Exposição de Talento",
       "routeKey": "WR",
       "order": 1,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 1,
       "maxLevel": "Sem limite",
       "name": "Recruta / Exposição de Talento",
@@ -15,7 +15,7 @@
       "baseXp": 75,
       "xp3": 225,
       "priority": "Essencial",
-      "benefit": "Espada inicial e poções",
+      "benefit": "Arma inicial adequada à classe e poções",
       "instruction": "Faça imediatamente e aceite também A Cidade das Espadas.",
       "steps": [
         {
@@ -47,7 +47,7 @@
       "id": "WR|WR|1|A Cidade das Espadas",
       "routeKey": "WR",
       "order": 2,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 1,
       "maxLevel": "Sem limite",
       "name": "A Cidade das Espadas",
@@ -88,7 +88,7 @@
       "id": "WR|WR|1|Revitalizando a Pátria",
       "routeKey": "WR",
       "order": 3,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 1,
       "maxLevel": "Sem limite",
       "name": "Revitalizando a Pátria",
@@ -170,7 +170,7 @@
       "id": "WR|WR|3|Duende Desertor / A Chama do Túmulo",
       "routeKey": "WR",
       "order": 4,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 3,
       "maxLevel": "Sem limite",
       "name": "Duende Desertor / a Chamas do Túmulo",
@@ -213,7 +213,7 @@
       "id": "WR|WR|4|Teste de Salto",
       "routeKey": "WR",
       "order": 5,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 4,
       "maxLevel": "Sem limite",
       "name": "Teste de Salto",
@@ -223,7 +223,7 @@
       "xp3": 450,
       "priority": "Essencial",
       "benefit": "Amuleto pequeno de HP ou MP",
-      "instruction": "Pegue o baú sobre o Portão Sul; priorize o amuleto de HP para WR.",
+      "instruction": "Pegue o baú sobre o Portão Sul. Escolha o amuleto de HP ou MP conforme a necessidade da classe (WR/MG).",
       "steps": [
         {
           "id": "e1",
@@ -256,7 +256,7 @@
       "id": "WR|WR|4|Fazer Armas",
       "routeKey": "WR",
       "order": 6,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 4,
       "maxLevel": "Sem limite",
       "name": "Fazer Armas",
@@ -320,7 +320,7 @@
       "id": "WR|WR|5|Aprenda sobre Habilidades de Forja",
       "routeKey": "WR",
       "order": 7,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 5,
       "expectedLevel": 5,
       "maxLevel": "Sem limite",
@@ -353,7 +353,7 @@
       "id": "WR|WR|5|Espinho de Ouriço",
       "routeKey": "WR",
       "order": 8,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 5,
       "maxLevel": "Sem limite",
       "name": "Espinho do Ouriço",
@@ -396,7 +396,7 @@
       "id": "WR|WR|6|Espírito do Fogo",
       "routeKey": "WR",
       "order": 9,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 6,
       "maxLevel": "Sem limite",
       "name": "Espírito do Fogo",
@@ -439,7 +439,7 @@
       "id": "WR|WR|6|Vila dos Eremitas",
       "routeKey": "WR",
       "order": 10,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 6,
       "maxLevel": "Automática",
       "name": "Vila dos Eremitas",
@@ -474,7 +474,7 @@
       "id": "WR|WR|7|Lágrimas do Dragão",
       "routeKey": "WR",
       "order": 11,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 7,
       "maxLevel": "Sem limite",
       "name": "Lágrima de Dragão",
@@ -517,7 +517,7 @@
       "id": "WR|WR|8|Castigo Local",
       "routeKey": "WR",
       "order": 12,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 8,
       "maxLevel": "Sem limite",
       "name": "Castigo Local",
@@ -560,7 +560,7 @@
       "id": "WR|WR|8|Poder Dobrado",
       "routeKey": "WR",
       "order": 13,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 8,
       "maxLevel": "Sem limite",
       "name": "Poder Dobrado",
@@ -603,7 +603,7 @@
       "id": "WR|WR|8|Ouriço Retalhador",
       "routeKey": "WR",
       "order": 14,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 8,
       "maxLevel": "Sem limite",
       "name": "Ouriço Retalhador",
@@ -644,7 +644,7 @@
       "id": "WR|WR|9|Cultivo – Orientação de Cultivo",
       "routeKey": "WR",
       "order": 15,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 9,
       "maxLevel": "Automática",
       "name": "Guia de Cultivo Espiritual",
@@ -679,7 +679,7 @@
       "id": "WR|WR|9|O Surgimento de Lingxu",
       "routeKey": "WR",
       "order": 16,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 9,
       "maxLevel": "Sem limite",
       "name": "Só um Pouco de Progresso",
@@ -730,7 +730,7 @@
       "id": "WR|WR|10|Mandado do Ferreiro",
       "routeKey": "WR",
       "order": 17,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 10,
       "maxLevel": "Sem limite",
       "name": "Mandado do Ferreiro",
@@ -771,7 +771,7 @@
       "id": "WR|WR|11|Vila Quadrada",
       "routeKey": "WR",
       "order": 18,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 11,
       "maxLevel": "Automática",
       "name": "Vila Quadrada",
@@ -806,7 +806,7 @@
       "id": "WR|WR|11|Trabalho em Conjunto",
       "routeKey": "WR",
       "order": 19,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 11,
       "maxLevel": "Sem limite",
       "name": "Trabalho em Conjunto",
@@ -849,7 +849,7 @@
       "id": "WR|WR|11|Esforços Concentrados",
       "routeKey": "WR",
       "order": 20,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 11,
       "maxLevel": "Sem limite",
       "name": "Esforços Concentrados",
@@ -892,7 +892,7 @@
       "id": "WR|WR|12|Intercomunicação",
       "routeKey": "WR",
       "order": 21,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 12,
       "maxLevel": "Sem limite",
       "name": "Trocar Informações",
@@ -943,7 +943,7 @@
       "id": "WR|WR|13|Armadura do Lobo",
       "routeKey": "WR",
       "order": 22,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 13,
       "maxLevel": "Sem limite",
       "name": "Armadura do Lobo",
@@ -986,7 +986,7 @@
       "id": "WR|WR|14|Emoção da Caça",
       "routeKey": "WR",
       "order": 23,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 14,
       "maxLevel": "Sem limite",
       "name": "Emoção da Caça",
@@ -1049,7 +1049,7 @@
       "id": "WR|WR|15|A Promessa",
       "routeKey": "WR",
       "order": 24,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 15,
       "maxLevel": "Sem limite",
       "name": "A Promessa",
@@ -1122,7 +1122,7 @@
       "id": "WR|WR|16|Fortaleza da Montanha",
       "routeKey": "WR",
       "order": 25,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 16,
       "maxLevel": "Automática",
       "name": "Fortaleza da Montanha",
@@ -1157,7 +1157,7 @@
       "id": "WR|WR|16|Vingança do Boticário",
       "routeKey": "WR",
       "order": 26,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 16,
       "maxLevel": "Sem limite",
       "name": "Vingança do Boticário",
@@ -1200,7 +1200,7 @@
       "id": "WR|WR|17|Flauta do Passado",
       "routeKey": "WR",
       "order": 27,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 17,
       "maxLevel": "Sem limite",
       "name": "Flauta do Passado",
@@ -1259,7 +1259,7 @@
       "id": "WR|WR|18|A Lista de Xin",
       "routeKey": "WR",
       "order": 28,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 18,
       "maxLevel": "Sem limite",
       "name": "A lista",
@@ -1326,7 +1326,7 @@
       "id": "WR|WR|19|Orientação de Cultivo – Aumentar Cultivo",
       "routeKey": "WR",
       "order": 29,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 19,
       "maxLevel": "Automática",
       "name": "Guia de Cultivo Espiritual",
@@ -1361,7 +1361,7 @@
       "id": "WR|WR|19|A Harmonia do Céu e a Terra",
       "routeKey": "WR",
       "order": 30,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 19,
       "maxLevel": "Sem limite",
       "name": "O Equilíbrio Celestial",
@@ -1414,7 +1414,7 @@
       "id": "WR|WR|19|Moeda Sangrenta de Ferro",
       "routeKey": "WR",
       "order": 31,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 19,
       "maxLevel": "30",
       "name": "Moeda Sangrenta de Fer",
@@ -1441,7 +1441,7 @@
       "id": "WR|WR|19|Missão Desafio – Portão de Devildom",
       "routeKey": "WR",
       "order": 32,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 19,
       "maxLevel": "Sem limite",
       "name": "Portão de Devildom",
@@ -1488,7 +1488,7 @@
       "id": "WR|WR|19|Aquecimento",
       "routeKey": "WR",
       "order": 33,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 19,
       "maxLevel": "Sem limite",
       "name": "Aquecimento",
@@ -4913,7 +4913,7 @@
       "id": "MC|MC|1|Primeira Missão",
       "routeKey": "MC",
       "order": 1,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 1,
       "maxLevel": "Sem limite",
       "name": "Primeira Missão",
@@ -4952,7 +4952,7 @@
       "id": "MC|MC|2|Cidade das Tormentas",
       "routeKey": "MC",
       "order": 2,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 2,
       "maxLevel": "Sem limite",
       "name": "Cidade das Tormentas",
@@ -5061,7 +5061,7 @@
       "id": "MC|MC|2|Problema de Crustáceo",
       "routeKey": "MC",
       "order": 3,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 2,
       "maxLevel": "Sem limite",
       "name": "Problema de Crustáceo",
@@ -5104,7 +5104,7 @@
       "id": "MC|MC|3|Item de Crédito",
       "routeKey": "MC",
       "order": 4,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 3,
       "maxLevel": "Sem limite",
       "name": "Item de Crédito",
@@ -5147,7 +5147,7 @@
       "id": "MC|MC|4|Campo da Fonte Negra",
       "routeKey": "MC",
       "order": 5,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 4,
       "maxLevel": "Sem limite",
       "name": "A Montanha Nebulosa",
@@ -5194,7 +5194,7 @@
       "id": "MC|MC|4|Pular em Telhado",
       "routeKey": "MC",
       "order": 6,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 4,
       "maxLevel": "Sem limite",
       "name": "Pular em Telhados",
@@ -5237,7 +5237,7 @@
       "id": "MC|MC|4|Ameaça Marinha",
       "routeKey": "MC",
       "order": 7,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 4,
       "maxLevel": "Sem limite",
       "name": "Ameaça Marinha",
@@ -5280,7 +5280,7 @@
       "id": "MC|MC|5|Aprenda sobre Habilidades de Forja",
       "routeKey": "MC",
       "order": 8,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 5,
       "expectedLevel": 5,
       "maxLevel": "Sem limite",
@@ -5313,7 +5313,7 @@
       "id": "MC|MC|6|Ouvir Ensinamento",
       "routeKey": "MC",
       "order": 9,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 6,
       "maxLevel": "Sem limite",
       "name": "Ouvir Ensinamento",
@@ -5360,7 +5360,7 @@
       "id": "MC|MC|7|Pérola de Lágrimas",
       "routeKey": "MC",
       "order": 10,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 7,
       "maxLevel": "Sem limite",
       "name": "Pérola de Lágrimas",
@@ -5447,7 +5447,7 @@
       "id": "MC|MC|8|Paz de Noite",
       "routeKey": "MC",
       "order": 11,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 8,
       "maxLevel": "Sem limite",
       "name": "Paz de Noite",
@@ -5490,7 +5490,7 @@
       "id": "MC|MC|9|Cultivo",
       "routeKey": "MC",
       "order": 12,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 9,
       "maxLevel": "Automática",
       "name": "Guia de Cultivo Espiritual",
@@ -5517,7 +5517,7 @@
       "id": "MC|MC|9|O Surgimento de Lingxu",
       "routeKey": "MC",
       "order": 13,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 9,
       "maxLevel": "Sem limite",
       "name": "Só um Pouco de Progresso",
@@ -5568,7 +5568,7 @@
       "id": "MC|MC|10|Limpar Monstros",
       "routeKey": "MC",
       "order": 14,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 10,
       "maxLevel": "Sem limite",
       "name": "Limpar Monstros",
@@ -5619,7 +5619,7 @@
       "id": "MC|MC|10|Espinho Venenoso",
       "routeKey": "MC",
       "order": 15,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 10,
       "maxLevel": "Sem limite",
       "name": "Espinho Venenoso",
@@ -5664,7 +5664,7 @@
       "id": "MC|MC|11|Veneno Contra Veneno",
       "routeKey": "MC",
       "order": 16,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 11,
       "maxLevel": "Sem limite",
       "name": "Veneno Contra Veneno",
@@ -5721,7 +5721,7 @@
       "id": "MC|MC|12|Vingança do Oficial",
       "routeKey": "MC",
       "order": 17,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 12,
       "maxLevel": "Sem limite",
       "name": "Vingança do Oficial",
@@ -5764,7 +5764,7 @@
       "id": "MC|MC|12|Perfect World",
       "routeKey": "MC",
       "order": 18,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 12,
       "maxLevel": "Sem limite",
       "name": "Perfect World",
@@ -5791,7 +5791,7 @@
       "id": "MC|MC|12|O Tesouro I",
       "routeKey": "MC",
       "order": 19,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 12,
       "maxLevel": "Sem limite",
       "name": "Tesouro 1",
@@ -5834,7 +5834,7 @@
       "id": "MC|MC|13|Uma Pedra Estranha",
       "routeKey": "MC",
       "order": 20,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 13,
       "maxLevel": "Sem limite",
       "name": "Uma Pedra Estranha",
@@ -5893,7 +5893,7 @@
       "id": "MC|MC|13|Notícia Ruim",
       "routeKey": "MC",
       "order": 21,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 13,
       "maxLevel": "Sem limite",
       "name": "Notícia Ruim",
@@ -5936,7 +5936,7 @@
       "id": "MC|MC|13|Minério Perdido",
       "routeKey": "MC",
       "order": 22,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 13,
       "maxLevel": "Sem limite",
       "name": "Minério Perdido",
@@ -5979,7 +5979,7 @@
       "id": "MC|MC|14|Pedido do Guarda",
       "routeKey": "MC",
       "order": 23,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 14,
       "maxLevel": "Sem limite",
       "name": "Pedido do Guarda",
@@ -6022,7 +6022,7 @@
       "id": "MC|MC|15|Alma do Espantalho",
       "routeKey": "MC",
       "order": 24,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 15,
       "maxLevel": "Sem limite",
       "name": "Alma do Espantalho",
@@ -6065,7 +6065,7 @@
       "id": "MC|MC|16|Nunca Mais Voltar",
       "routeKey": "MC",
       "order": 25,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 16,
       "maxLevel": "Sem limite",
       "name": "Sem Retorno",
@@ -6131,7 +6131,7 @@
       "id": "MC|MC|16|Traição",
       "routeKey": "MC",
       "order": 26,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 16,
       "maxLevel": "Sem limite",
       "name": "Conspiração",
@@ -6181,7 +6181,7 @@
       "id": "MC|MC|16|Planos do Inimigo",
       "routeKey": "MC",
       "order": 27,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 16,
       "maxLevel": "Sem limite",
       "name": "Informação do Inimigo",
@@ -6224,7 +6224,7 @@
       "id": "MC|MC|17|Chave – Monstro do Mar",
       "routeKey": "MC",
       "order": 28,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 17,
       "maxLevel": "Sem limite",
       "name": "Chave - Monstro do Mar",
@@ -6267,7 +6267,7 @@
       "id": "MC|MC|18|Família Heirloom",
       "routeKey": "MC",
       "order": 29,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 18,
       "maxLevel": "Sem limite",
       "name": "Herança de Família",
@@ -6310,7 +6310,7 @@
       "id": "MC|MC|18|Resgate Soldado",
       "routeKey": "MC",
       "order": 30,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 18,
       "maxLevel": "Sem limite",
       "name": "Atrição do Velho Sold.",
@@ -6372,7 +6372,7 @@
       "id": "MC|MC|19|Cultivo Espiritual",
       "routeKey": "MC",
       "order": 31,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 19,
       "maxLevel": "Automática",
       "name": "Guia de Cultivo Espiritual",
@@ -6399,7 +6399,7 @@
       "id": "MC|MC|19|A União Harmoniosa",
       "routeKey": "MC",
       "order": 32,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 19,
       "maxLevel": "Sem limite",
       "name": "O Equilíbrio Celestial",
@@ -6454,7 +6454,7 @@
       "id": "MC|MC|19|Matar o Monstro do Mar – DG19",
       "routeKey": "MC",
       "order": 33,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 19,
       "maxLevel": "Sem limite",
       "name": "Matar o Monstro do Mar",
@@ -6463,7 +6463,7 @@
       "baseXp": 6217,
       "xp3": 18651,
       "priority": "Essencial",
-      "benefit": "Adaga da Provação e 10 de fama",
+      "benefit": "Arma da Provação adequada à classe e 10 de fama",
       "instruction": "A DG19 abissal não usa a mesma moeda das três raças clássicas.",
       "steps": [
         {
@@ -6501,7 +6501,7 @@
       "id": "MC|MC|19|Bandeira da Expedição",
       "routeKey": "MC",
       "order": 34,
-      "classScope": "MC",
+      "classScope": "MC/ES",
       "minLevel": 19,
       "maxLevel": "Sem limite",
       "name": "Bandeira do Embaixador",
@@ -6626,7 +6626,7 @@
       "id": "WR|WR|23|O Segredo do Ancião",
       "routeKey": "WR",
       "order": 12360,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 23,
       "expectedLevel": 23,
       "maxLevel": "Sem limite",
@@ -6712,7 +6712,7 @@
       "id": "WR|WR|50|Os Melhores Amigos — Humanos",
       "routeKey": "WR",
       "order": 15050,
-      "classScope": "WR",
+      "classScope": "WR/MG",
       "minLevel": 50,
       "expectedLevel": 50,
       "maxLevel": "Sem limite",
@@ -10895,6 +10895,2606 @@
           "action": "Receba Cargo Militar Nível 4 e a Insígnia Nível 4",
           "routeOrder": 1232100,
           "title": "Insígnia Nível 4"
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK|22507",
+      "routeKey": "SKMS",
+      "order": 1,
+      "classScope": "SK",
+      "minLevel": 1,
+      "expectedLevel": 1,
+      "maxLevel": "5",
+      "name": "Despertar Violento",
+      "npc": "Instrutor Yeeg (143, 246)",
+      "location": "Instrutor Yeeg (143, 246)",
+      "baseXp": 78,
+      "xp3": 234,
+      "priority": "Alta",
+      "benefit": "Poção Pequena de Cura",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22507-1",
+          "title": "Despertar Violento",
+          "action": "Aceite a missão com Instrutor Yeeg (143, 246)",
+          "markerX": 143,
+          "markerY": 246,
+          "routeOrder": 20010,
+          "memoryTaskId": 22507
+        },
+        {
+          "id": "t22507-2",
+          "title": "Despertar Violento",
+          "action": "Fale com Sacerdotisa da Alma (153, 248).",
+          "markerX": 153,
+          "markerY": 248,
+          "routeOrder": 20020,
+          "memoryTaskId": 22507
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK|22508",
+      "routeKey": "SKMS",
+      "order": 2,
+      "classScope": "SK",
+      "minLevel": 1,
+      "expectedLevel": 2,
+      "maxLevel": "10",
+      "name": "Visitando Sacerdotisa",
+      "npc": "Sacerdotisa da Alma (153, 248)",
+      "location": "Sacerdotisa da Alma (153, 248)",
+      "baseXp": 96,
+      "xp3": 288,
+      "priority": "Alta",
+      "benefit": "XP ×3 e progresso da história",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22508-1",
+          "title": "Visitando Sacerdotisa",
+          "action": "Aceite a missão com Sacerdotisa da Alma (153, 248)",
+          "markerX": 153,
+          "markerY": 248,
+          "routeOrder": 20030,
+          "memoryTaskId": 22508
+        },
+        {
+          "id": "t22508-2",
+          "title": "Visitando Sacerdotisa",
+          "action": "Entregue 1 Identificação de Arcano para Sacerdotisa da Mente (150, 241).",
+          "markerX": 150,
+          "markerY": 241,
+          "routeOrder": 20040,
+          "memoryTaskId": 22508
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK|22509",
+      "routeKey": "SKMS",
+      "order": 3,
+      "classScope": "SK",
+      "minLevel": 2,
+      "expectedLevel": 3,
+      "maxLevel": "5",
+      "name": "Sacerdotisa da Mente",
+      "npc": "Sacerdotisa da Mente (150, 241)",
+      "location": "Sacerdotisa da Mente (150, 241)",
+      "baseXp": 306,
+      "xp3": 918,
+      "priority": "Alta",
+      "benefit": "Espada de Pensador Guardião",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22509-1",
+          "title": "Sacerdotisa da Mente",
+          "action": "Aceite a missão com Sacerdotisa da Mente (150, 241)",
+          "markerX": 150,
+          "markerY": 241,
+          "routeOrder": 20050,
+          "memoryTaskId": 22509
+        },
+        {
+          "id": "t22509-2",
+          "title": "Sacerdotisa da Mente",
+          "action": "De acordo com a Sacerdotisa da Mente, a Guarda da Terra foi criada para lutar contra as forças corruptas de Magann. É seu dever unir as outras raças e garantir a sobrevivência desse mundo.",
+          "routeOrder": 20060,
+          "memoryTaskId": 22509
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK|22510",
+      "routeKey": "SKMS",
+      "order": 4,
+      "classScope": "SK",
+      "minLevel": 2,
+      "expectedLevel": 4,
+      "maxLevel": "5",
+      "name": "O Primeiro Teste",
+      "npc": "Sacerdotisa da Mente (150, 241)",
+      "location": "Sacerdotisa da Mente (150, 241)",
+      "baseXp": 318,
+      "xp3": 954,
+      "priority": "Alta",
+      "benefit": "XP ×3 e progresso da história",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22510-1",
+          "title": "O Primeiro Teste",
+          "action": "Aceite a missão com Sacerdotisa da Mente (150, 241)",
+          "markerX": 150,
+          "markerY": 241,
+          "routeOrder": 20070,
+          "memoryTaskId": 22510
+        },
+        {
+          "id": "t22591-1",
+          "title": "Lêmure de Pata Azul",
+          "action": "Mate 8 Lêmure de Pata Azul na região de (154, 238).",
+          "markerX": 154,
+          "markerY": 238,
+          "routeOrder": 20080,
+          "memoryTaskId": 22591
+        },
+        {
+          "id": "t22592-1",
+          "title": "Relatar",
+          "action": "Fale com Sacerdotisa da Mente (150, 241).",
+          "markerX": 150,
+          "markerY": 241,
+          "routeOrder": 20090,
+          "memoryTaskId": 22592
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK|22511",
+      "routeKey": "SKMS",
+      "order": 5,
+      "classScope": "SK",
+      "minLevel": 3,
+      "expectedLevel": 5,
+      "maxLevel": "7",
+      "name": "Reforços",
+      "npc": "Sacerdotisa da Mente (150, 241)",
+      "location": "Sacerdotisa da Mente (150, 241)",
+      "baseXp": 702,
+      "xp3": 2106,
+      "priority": "Alta",
+      "benefit": "XP ×3 e progresso da história",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22511-1",
+          "title": "Reforços",
+          "action": "Aceite a missão com Sacerdotisa da Mente (150, 241)",
+          "markerX": 150,
+          "markerY": 241,
+          "routeOrder": 20100,
+          "memoryTaskId": 22511
+        },
+        {
+          "id": "t22511-2",
+          "title": "Reforços",
+          "action": "Fale com Espadachim Connor (126, 239).",
+          "markerX": 126,
+          "markerY": 239,
+          "routeOrder": 20110,
+          "memoryTaskId": 22511
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK|22512",
+      "routeKey": "SKMS",
+      "order": 6,
+      "classScope": "SK",
+      "minLevel": 3,
+      "expectedLevel": 6,
+      "maxLevel": "7",
+      "name": "Emblema Quebrado",
+      "npc": "Espadachim Connor (126, 239)",
+      "location": "Espadachim Connor (126, 239)",
+      "baseXp": 702,
+      "xp3": 2106,
+      "priority": "Alta",
+      "benefit": "Emblema Quebrado",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22512-1",
+          "title": "Emblema Quebrado",
+          "action": "Aceite a missão com Espadachim Connor (126, 239)",
+          "markerX": 126,
+          "markerY": 239,
+          "routeOrder": 20120,
+          "memoryTaskId": 22512
+        },
+        {
+          "id": "t22593-1",
+          "title": "Dríade Intrigada",
+          "action": "Colete 8 Emblema Quebrado de Dríade Intrigada (125, 238).",
+          "markerX": 125,
+          "markerY": 238,
+          "routeOrder": 20130,
+          "memoryTaskId": 22593
+        },
+        {
+          "id": "t22593-2",
+          "title": "Dríade Intrigada",
+          "action": "Entregue a missão para Espadachim Connor (126, 239).",
+          "markerX": 126,
+          "markerY": 239,
+          "routeOrder": 20140,
+          "memoryTaskId": 22593
+        },
+        {
+          "id": "t22594-1",
+          "title": "Relatar",
+          "action": "Fale com Espadachim Connor (126, 239).",
+          "markerX": 126,
+          "markerY": 239,
+          "routeOrder": 20150,
+          "memoryTaskId": 22594
+        },
+        {
+          "id": "t22595-1",
+          "title": "Restauradora Yua",
+          "action": "Entregue 1 Emblema Quebrado para Bibliotecário Yua (157, 250).",
+          "markerX": 157,
+          "markerY": 250,
+          "routeOrder": 20160,
+          "memoryTaskId": 22595
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK|22513",
+      "routeKey": "SKMS",
+      "order": 7,
+      "classScope": "SK",
+      "minLevel": 3,
+      "expectedLevel": 7,
+      "maxLevel": "8",
+      "name": "Emblema Altar da Idade",
+      "npc": "Bibliotecário Yua (157, 250)",
+      "location": "Bibliotecário Yua (157, 250)",
+      "baseXp": 1305,
+      "xp3": 3915,
+      "priority": "Alta",
+      "benefit": "XP ×3 e progresso da história",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22513-1",
+          "title": "Emblema Altar da Idade",
+          "action": "Aceite a missão com Bibliotecário Yua (157, 250)",
+          "markerX": 157,
+          "markerY": 250,
+          "routeOrder": 20170,
+          "memoryTaskId": 22513
+        },
+        {
+          "id": "t22908-1",
+          "title": "Quebrado e Roubado",
+          "action": "Aguarde a conversa e fale com Bibliotecário Yua (157, 250). Confirme o diálogo antes de prosseguir.",
+          "markerX": 157,
+          "markerY": 250,
+          "routeOrder": 20180,
+          "memoryTaskId": 22908
+        },
+        {
+          "id": "t22909-1",
+          "title": "Vidente do Vazio",
+          "action": "Fale com Vidente do Vazio (149, 245).",
+          "markerX": 149,
+          "markerY": 245,
+          "routeOrder": 20190,
+          "memoryTaskId": 22909
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|22520",
+      "routeKey": "SKMS",
+      "order": 8,
+      "classScope": "MS",
+      "minLevel": 1,
+      "expectedLevel": 1,
+      "maxLevel": "5",
+      "name": "Despertar Violento",
+      "npc": "Instrutor Sooh (156, 244)",
+      "location": "Instrutor Sooh (156, 244)",
+      "baseXp": 78,
+      "xp3": 234,
+      "priority": "Alta",
+      "benefit": "Poção Pequena do Espírito",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22520-1",
+          "title": "Despertar Violento",
+          "action": "Aceite a missão com Instrutor Sooh (156, 244)",
+          "markerX": 156,
+          "markerY": 244,
+          "routeOrder": 20200,
+          "memoryTaskId": 22520
+        },
+        {
+          "id": "t22520-2",
+          "title": "Despertar Violento",
+          "action": "Fale com Sacerdotisa da Mente (150, 241).",
+          "markerX": 150,
+          "markerY": 241,
+          "routeOrder": 20210,
+          "memoryTaskId": 22520
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|22521",
+      "routeKey": "SKMS",
+      "order": 9,
+      "classScope": "MS",
+      "minLevel": 1,
+      "expectedLevel": 2,
+      "maxLevel": "10",
+      "name": "Através do Vazio",
+      "npc": "Sacerdotisa da Mente (150, 241)",
+      "location": "Sacerdotisa da Mente (150, 241)",
+      "baseXp": 96,
+      "xp3": 288,
+      "priority": "Alta",
+      "benefit": "XP ×3 e progresso da história",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22521-1",
+          "title": "Através do Vazio",
+          "action": "Aceite a missão com Sacerdotisa da Mente (150, 241)",
+          "markerX": 150,
+          "markerY": 241,
+          "routeOrder": 20220,
+          "memoryTaskId": 22521
+        },
+        {
+          "id": "t22521-2",
+          "title": "Através do Vazio",
+          "action": "Fale com Sacerdotisa da Alma (153, 248).",
+          "markerX": 153,
+          "markerY": 248,
+          "routeOrder": 20230,
+          "memoryTaskId": 22521
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|22522",
+      "routeKey": "SKMS",
+      "order": 10,
+      "classScope": "MS",
+      "minLevel": 2,
+      "expectedLevel": 3,
+      "maxLevel": "5",
+      "name": "Dever e Sacrifício",
+      "npc": "Sacerdotisa da Alma (153, 248)",
+      "location": "Sacerdotisa da Alma (153, 248)",
+      "baseXp": 306,
+      "xp3": 918,
+      "priority": "Alta",
+      "benefit": "Cajado de Lutador Guardião",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22522-1",
+          "title": "Dever e Sacrifício",
+          "action": "Aceite a missão com Sacerdotisa da Alma (153, 248)",
+          "markerX": 153,
+          "markerY": 248,
+          "routeOrder": 20240,
+          "memoryTaskId": 22522
+        },
+        {
+          "id": "t22522-2",
+          "title": "Dever e Sacrifício",
+          "action": "De acordo com a Sacerdotisa da Mente, a Guarda da Terra foi criada para lutar contra as forças corruptas de Magann. É seu dever unir as outras raças e garantir a sobrevivência desse mundo.",
+          "routeOrder": 20250,
+          "memoryTaskId": 22522
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|22523",
+      "routeKey": "SKMS",
+      "order": 11,
+      "classScope": "MS",
+      "minLevel": 2,
+      "expectedLevel": 4,
+      "maxLevel": "5",
+      "name": "O Primeiro Teste",
+      "npc": "Sacerdotisa da Alma (153, 248)",
+      "location": "Sacerdotisa da Alma (153, 248)",
+      "baseXp": 318,
+      "xp3": 954,
+      "priority": "Alta",
+      "benefit": "XP ×3 e progresso da história",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22523-1",
+          "title": "O Primeiro Teste",
+          "action": "Aceite a missão com Sacerdotisa da Alma (153, 248)",
+          "markerX": 153,
+          "markerY": 248,
+          "routeOrder": 20260,
+          "memoryTaskId": 22523
+        },
+        {
+          "id": "t22609-1",
+          "title": "Interrompendo a Maré",
+          "action": "Mate 4 Nymphalid de Asa Vermelha e 4 Lêmure de Pata Azul na região de (152, 254). Vários contadores: confira todos no jogo; use Etapa feita se necessário.",
+          "markerX": 152,
+          "markerY": 254,
+          "routeOrder": 20270,
+          "memoryTaskId": 22609
+        },
+        {
+          "id": "t22610-1",
+          "title": "Retorno",
+          "action": "Fale com Sacerdotisa da Alma (153, 248).",
+          "markerX": 153,
+          "markerY": 248,
+          "routeOrder": 20280,
+          "memoryTaskId": 22610
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|22524",
+      "routeKey": "SKMS",
+      "order": 12,
+      "classScope": "MS",
+      "minLevel": 3,
+      "expectedLevel": 5,
+      "maxLevel": "7",
+      "name": "O Cristal Danificado",
+      "npc": "Sacerdotisa da Alma (153, 248)",
+      "location": "Sacerdotisa da Alma (153, 248)",
+      "baseXp": 702,
+      "xp3": 2106,
+      "priority": "Alta",
+      "benefit": "XP ×3 e progresso da história",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22524-1",
+          "title": "O Cristal Danificado",
+          "action": "Aceite a missão com Sacerdotisa da Alma (153, 248)",
+          "markerX": 153,
+          "markerY": 248,
+          "routeOrder": 20290,
+          "memoryTaskId": 22524
+        },
+        {
+          "id": "t22623-1",
+          "title": "A Caçada",
+          "action": "Fale com Guerreiro Mairead (163, 270).",
+          "markerX": 163,
+          "markerY": 270,
+          "routeOrder": 20300,
+          "memoryTaskId": 22623
+        },
+        {
+          "id": "t22624-1",
+          "title": "Material do Cristal",
+          "action": "Colete 4 Depósito de Cristal de Borboletas Púrpuras (166, 272).",
+          "markerX": 166,
+          "markerY": 272,
+          "routeOrder": 20310,
+          "memoryTaskId": 22624,
+          "memoryItemIds": [
+            29442
+          ]
+        },
+        {
+          "id": "t22624-2",
+          "title": "Material do Cristal",
+          "action": "Colete 4 Seiva de Árvore Demoníaca de Dríade Intrigada (168, 274).",
+          "markerX": 168,
+          "markerY": 274,
+          "routeOrder": 20320,
+          "memoryTaskId": 22624,
+          "memoryItemIds": [
+            29443
+          ]
+        },
+        {
+          "id": "t22625-1",
+          "title": "Colete Material",
+          "action": "Fale com Guerreiro Mairead (163, 270).",
+          "markerX": 163,
+          "markerY": 270,
+          "routeOrder": 20330,
+          "memoryTaskId": 22625
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|22525",
+      "routeKey": "SKMS",
+      "order": 13,
+      "classScope": "MS",
+      "minLevel": 3,
+      "expectedLevel": 6,
+      "maxLevel": "7",
+      "name": "Reparando o Cristal",
+      "npc": "Guerreiro Mairead (163, 270)",
+      "location": "Guerreiro Mairead (163, 270)",
+      "baseXp": 702,
+      "xp3": 2106,
+      "priority": "Alta",
+      "benefit": "XP ×3 e progresso da história",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22525-1",
+          "title": "Reparando o Cristal",
+          "action": "Aceite a missão com Guerreiro Mairead (163, 270)",
+          "markerX": 163,
+          "markerY": 270,
+          "routeOrder": 20340,
+          "memoryTaskId": 22525
+        },
+        {
+          "id": "t22525-2",
+          "title": "Reparando o Cristal",
+          "action": "Entregue 4 Depósito de Cristal e 4 Seiva de Árvore Demoníaca para Bibliotecário Yua (157, 250).",
+          "markerX": 157,
+          "markerY": 250,
+          "routeOrder": 20350,
+          "memoryTaskId": 22525
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|23202",
+      "routeKey": "SKMS",
+      "order": 14,
+      "classScope": "MS",
+      "minLevel": 7,
+      "expectedLevel": 7,
+      "maxLevel": "150",
+      "name": "Guia - Aliança·Demônio",
+      "npc": "Missão automática / pop-up",
+      "location": "Sacerdotisa da Alma (153, 248)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Libera invocação ou planta do Místico; ",
+      "instruction": "Desvio exclusivo do Místico. Complete a cadeia e retorne ao grupo no ponto da rota comum.",
+      "steps": [
+        {
+          "id": "t23202-1",
+          "title": "Guia - Aliança·Demônio",
+          "action": "Aceite a missão recebida automaticamente ao atingir o nível 7.",
+          "routeOrder": 20360,
+          "memoryTaskId": 23202
+        },
+        {
+          "id": "t23207-1",
+          "title": "Liderança",
+          "action": "Aguarde a conversa e fale com Sacerdotisa da Alma (153, 248). Confirme o diálogo antes de prosseguir.",
+          "markerX": 153,
+          "markerY": 248,
+          "routeOrder": 20370,
+          "memoryTaskId": 23207
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|23029",
+      "routeKey": "SKMS",
+      "order": 15,
+      "classScope": "MS",
+      "minLevel": 7,
+      "expectedLevel": 7,
+      "maxLevel": "150",
+      "name": "Treinamento Demoníaco",
+      "npc": "Sacerdotisa da Alma (153, 248)",
+      "location": "Sacerdotisa da Alma (153, 248)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Libera invocação ou planta do Místico; Demônio Chihyu",
+      "instruction": "Desvio exclusivo do Místico. Complete a cadeia e retorne ao grupo no ponto da rota comum.",
+      "steps": [
+        {
+          "id": "t23029-1",
+          "title": "Treinamento Demoníaco",
+          "action": "Aceite a missão com Sacerdotisa da Alma (153, 248)",
+          "markerX": 153,
+          "markerY": 248,
+          "routeOrder": 20380,
+          "memoryTaskId": 23029
+        },
+        {
+          "id": "t23029-2",
+          "title": "Treinamento Demoníaco",
+          "action": "Mate 1 Batedor Diabólico na região de (134, 273).",
+          "markerX": 134,
+          "markerY": 273,
+          "routeOrder": 20390,
+          "memoryTaskId": 23029
+        },
+        {
+          "id": "t23029-3",
+          "title": "Treinamento Demoníaco",
+          "action": "Entregue a missão para Sacerdotisa da Alma (153, 248).",
+          "markerX": 153,
+          "markerY": 248,
+          "routeOrder": 20400,
+          "memoryTaskId": 23029
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|22526",
+      "routeKey": "SKMS",
+      "order": 16,
+      "classScope": "MS",
+      "minLevel": 3,
+      "expectedLevel": 7,
+      "maxLevel": "8",
+      "name": "Vínculos de Fort.",
+      "npc": "Bibliotecário Yua (157, 250)",
+      "location": "Bibliotecário Yua (157, 250)",
+      "baseXp": 1305,
+      "xp3": 3915,
+      "priority": "Alta",
+      "benefit": "Cristal de Lothran",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22526-1",
+          "title": "Vínculos de Fort.",
+          "action": "Aceite a missão com Bibliotecário Yua (157, 250)",
+          "markerX": 157,
+          "markerY": 250,
+          "routeOrder": 20410,
+          "memoryTaskId": 22526
+        },
+        {
+          "id": "t22912-1",
+          "title": "Cristal Mágico",
+          "action": "Colete 1 Cristal de Corte Áspero em Pedra da Alma Descansada (155, 253).",
+          "markerX": 155,
+          "markerY": 253,
+          "routeOrder": 20420,
+          "memoryTaskId": 22912
+        },
+        {
+          "id": "t22912-2",
+          "title": "Cristal Mágico",
+          "action": "Entregue 1 Cristal de Corte Áspero para Bibliotecário Yua (157, 250).",
+          "markerX": 157,
+          "markerY": 250,
+          "routeOrder": 20430,
+          "memoryTaskId": 22912
+        },
+        {
+          "id": "t22913-1",
+          "title": "Planta Mágica",
+          "action": "Colete 1 Tinta Média em Planta de Procriação da Alma (157, 245).",
+          "markerX": 157,
+          "markerY": 245,
+          "routeOrder": 20440,
+          "memoryTaskId": 22913
+        },
+        {
+          "id": "t22913-2",
+          "title": "Planta Mágica",
+          "action": "Entregue 1 Tinta Média para Bibliotecário Yua (157, 250).",
+          "markerX": 157,
+          "markerY": 250,
+          "routeOrder": 20450,
+          "memoryTaskId": 22913
+        },
+        {
+          "id": "t22895-1",
+          "title": "Restauradora Yua",
+          "action": "Fale com Bibliotecário Yua (157, 250).",
+          "markerX": 157,
+          "markerY": 250,
+          "routeOrder": 20460,
+          "memoryTaskId": 22895
+        },
+        {
+          "id": "t22911-1",
+          "title": "Mestra do Torre do Despertar",
+          "action": "Entregue 1 Cristal de Lothran para Vidente do Vazio (149, 245).",
+          "markerX": 149,
+          "markerY": 245,
+          "routeOrder": 20470,
+          "memoryTaskId": 22911
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK/MS|23757",
+      "routeKey": "SKMS",
+      "order": 17,
+      "classScope": "SK/MS",
+      "minLevel": 3,
+      "expectedLevel": 8,
+      "maxLevel": "12",
+      "name": "Maestria de Habilidades",
+      "npc": "Missão automática / pop-up",
+      "location": "Mestre Arcano Qing Feng (145, 230)",
+      "baseXp": 300,
+      "xp3": 900,
+      "priority": "Essencial",
+      "benefit": "XP ×3 e progresso da história",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t23757-1",
+          "title": "Maestria de Habilidades",
+          "action": "Aceite a missão recebida automaticamente ao atingir o nível 3.",
+          "routeOrder": 20480,
+          "memoryTaskId": 23757
+        },
+        {
+          "id": "t23760-1",
+          "title": "Treinador de Arcanos",
+          "action": "Fale com Mestre Arcano Qing Feng (145, 230).",
+          "markerX": 145,
+          "markerY": 230,
+          "routeOrder": 20490,
+          "memoryTaskId": 23760
+        },
+        {
+          "id": "t23761-1",
+          "title": "Treinador de Místicos",
+          "action": "Fale com Mestre Mística Xue (146, 229).",
+          "markerX": 146,
+          "markerY": 229,
+          "routeOrder": 20500,
+          "memoryTaskId": 23761
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK|22514",
+      "routeKey": "SKMS",
+      "order": 18,
+      "classScope": "SK",
+      "minLevel": 4,
+      "expectedLevel": 8,
+      "maxLevel": "15",
+      "name": "Preparativos",
+      "npc": "Vidente do Vazio (149, 245)",
+      "location": "Vidente do Vazio (149, 245)",
+      "baseXp": 1308,
+      "xp3": 3924,
+      "priority": "Alta",
+      "benefit": "Apresentando os Místicos, Couraça de Pensador Guardião, Caneleiras do Pensador Guardião, Botas de Pensador Guardião, Mangas de Pensador Guardião, Fragmento de Pedra Imortal",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22514-1",
+          "title": "Preparativos",
+          "action": "Aceite a missão com Vidente do Vazio (149, 245)",
+          "markerX": 149,
+          "markerY": 245,
+          "routeOrder": 20510,
+          "memoryTaskId": 22514
+        },
+        {
+          "id": "t22557-1",
+          "title": "Visite o Ferreiro",
+          "action": "Fale com Ferreiro Gink (145, 247).",
+          "markerX": 145,
+          "markerY": 247,
+          "routeOrder": 20520,
+          "memoryTaskId": 22557
+        },
+        {
+          "id": "t22558-1",
+          "title": "Visite o Alfaiate",
+          "action": "Fale com Alfaiate Marin (150, 249).",
+          "markerX": 150,
+          "markerY": 249,
+          "routeOrder": 20530,
+          "memoryTaskId": 22558
+        },
+        {
+          "id": "t22559-1",
+          "title": "Visite o Artesão",
+          "action": "Fale com Artesã Yara (150, 249).",
+          "markerX": 150,
+          "markerY": 249,
+          "routeOrder": 20540,
+          "memoryTaskId": 22559
+        },
+        {
+          "id": "t22560-1",
+          "title": "Visite o Boticário",
+          "action": "Fale com Boticário Theo (149, 249).",
+          "markerX": 149,
+          "markerY": 249,
+          "routeOrder": 20550,
+          "memoryTaskId": 22560
+        },
+        {
+          "id": "t22561-1",
+          "title": "Visite o Negociante",
+          "action": "Fale com Comerciante Qing Tian (147, 247).",
+          "markerX": 147,
+          "markerY": 247,
+          "routeOrder": 20560,
+          "memoryTaskId": 22561
+        },
+        {
+          "id": "t22596-1",
+          "title": "Fale com o Vidente do Vazio",
+          "action": "Fale com Vidente do Vazio (149, 245).",
+          "markerX": 149,
+          "markerY": 245,
+          "routeOrder": 20570,
+          "memoryTaskId": 22596
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK|22515",
+      "routeKey": "SKMS",
+      "order": 19,
+      "classScope": "SK",
+      "minLevel": 4,
+      "expectedLevel": 9,
+      "maxLevel": "10",
+      "name": "do Altar a Cidade",
+      "npc": "Vidente do Vazio (149, 245)",
+      "location": "Vidente do Vazio (149, 245)",
+      "baseXp": 2649,
+      "xp3": 7947,
+      "priority": "Alta",
+      "benefit": "Emblema do Altar da Idade",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22515-1",
+          "title": "do Altar a Cidade",
+          "action": "Aceite a missão com Vidente do Vazio (149, 245)",
+          "markerX": 149,
+          "markerY": 245,
+          "routeOrder": 20580,
+          "memoryTaskId": 22515
+        },
+        {
+          "id": "t22910-1",
+          "title": "G. Arcano Connor",
+          "action": "Fale com Espadachim Connor (126, 239).",
+          "markerX": 126,
+          "markerY": 239,
+          "routeOrder": 20590,
+          "memoryTaskId": 22910
+        },
+        {
+          "id": "t22601-1",
+          "title": "Conseguindo Ajuda",
+          "action": "Colete 1 Estandarte da Sabedoria de Borboletas Púrpuras (120, 232).",
+          "markerX": 120,
+          "markerY": 232,
+          "routeOrder": 20600,
+          "memoryTaskId": 22601,
+          "memoryItemIds": [
+            29439
+          ]
+        },
+        {
+          "id": "t22601-2",
+          "title": "Conseguindo Ajuda",
+          "action": "Colete 1 Etiqueta da Sabedoria de Lêmure da Cauda Verde (116, 233).",
+          "markerX": 116,
+          "markerY": 233,
+          "routeOrder": 20610,
+          "memoryTaskId": 22601,
+          "memoryItemIds": [
+            29440
+          ]
+        },
+        {
+          "id": "t22601-3",
+          "title": "Conseguindo Ajuda",
+          "action": "Entregue a missão para Espadachim Connor (126, 239).",
+          "markerX": 126,
+          "markerY": 239,
+          "routeOrder": 20620,
+          "memoryTaskId": 22601
+        },
+        {
+          "id": "t22600-1",
+          "title": "Altar da Idade",
+          "action": "Vá até o Altar da Pedra da Lua e use a ferramenta para ativar a função de teletransporte.",
+          "routeOrder": 20630,
+          "memoryTaskId": 22600
+        },
+        {
+          "id": "t22518-1",
+          "title": "Correndo Perigo",
+          "action": "Fale com Ancião Star (393, 230).",
+          "markerX": 393,
+          "markerY": 230,
+          "routeOrder": 20640,
+          "memoryTaskId": 22518
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|22527",
+      "routeKey": "SKMS",
+      "order": 20,
+      "classScope": "MS",
+      "minLevel": 4,
+      "expectedLevel": 8,
+      "maxLevel": "15",
+      "name": "Elogios",
+      "npc": "Vidente do Vazio (149, 245)",
+      "location": "Vidente do Vazio (149, 245)",
+      "baseXp": 1308,
+      "xp3": 3924,
+      "priority": "Alta",
+      "benefit": "Apresentando, Túnica de Lutador Guardião, Apresentando os Caçadores, Sapatos de Lutador Guardião, Braçadeiras de Lutador Guardião, Fragmento de Pedra Imortal",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22527-1",
+          "title": "Elogios",
+          "action": "Aceite a missão com Vidente do Vazio (149, 245)",
+          "markerX": 149,
+          "markerY": 245,
+          "routeOrder": 20650,
+          "memoryTaskId": 22527
+        },
+        {
+          "id": "t22897-1",
+          "title": "Visite o Ferreiro",
+          "action": "Fale com Ferreiro Gink (145, 247).",
+          "markerX": 145,
+          "markerY": 247,
+          "routeOrder": 20660,
+          "memoryTaskId": 22897
+        },
+        {
+          "id": "t22898-1",
+          "title": "Visite o Alfaiate",
+          "action": "Fale com Alfaiate Marin (150, 249).",
+          "markerX": 150,
+          "markerY": 249,
+          "routeOrder": 20670,
+          "memoryTaskId": 22898
+        },
+        {
+          "id": "t22899-1",
+          "title": "Visite o Artesão",
+          "action": "Fale com Artesã Yara (150, 249).",
+          "markerX": 150,
+          "markerY": 249,
+          "routeOrder": 20680,
+          "memoryTaskId": 22899
+        },
+        {
+          "id": "t22900-1",
+          "title": "Visite o Boticário",
+          "action": "Fale com Boticário Theo (149, 249).",
+          "markerX": 149,
+          "markerY": 249,
+          "routeOrder": 20690,
+          "memoryTaskId": 22900
+        },
+        {
+          "id": "t22901-1",
+          "title": "Visite o Negociante",
+          "action": "Fale com Comerciante Qing Tian (147, 247).",
+          "markerX": 147,
+          "markerY": 247,
+          "routeOrder": 20700,
+          "memoryTaskId": 22901
+        },
+        {
+          "id": "t22902-1",
+          "title": "Fale com o Vidente do Vazio",
+          "action": "Fale com Vidente do Vazio (149, 245).",
+          "markerX": 149,
+          "markerY": 245,
+          "routeOrder": 20710,
+          "memoryTaskId": 22902
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|22528",
+      "routeKey": "SKMS",
+      "order": 21,
+      "classScope": "MS",
+      "minLevel": 4,
+      "expectedLevel": 9,
+      "maxLevel": "150",
+      "name": "O Altar Negro",
+      "npc": "Vidente do Vazio (149, 245)",
+      "location": "Vidente do Vazio (149, 245)",
+      "baseXp": 2649,
+      "xp3": 7947,
+      "priority": "Alta",
+      "benefit": "Cristal de Lothran",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22528-1",
+          "title": "O Altar Negro",
+          "action": "Aceite a missão com Vidente do Vazio (149, 245)",
+          "markerX": 149,
+          "markerY": 245,
+          "routeOrder": 20720,
+          "memoryTaskId": 22528
+        },
+        {
+          "id": "t22903-1",
+          "title": "De Partida",
+          "action": "Entregue 1 Cristal de Lothran para Guerreiro Mairead (163, 270).",
+          "markerX": 163,
+          "markerY": 270,
+          "routeOrder": 20730,
+          "memoryTaskId": 22903
+        },
+        {
+          "id": "t22905-1",
+          "title": "Causando Boa Impressão",
+          "action": "Mate 4 Marionete de Pedra e 4 Lêmure do Vale na região de (149, 274). Vários contadores: confira todos no jogo; use Etapa feita se necessário.",
+          "markerX": 149,
+          "markerY": 274,
+          "routeOrder": 20740,
+          "memoryTaskId": 22905
+        },
+        {
+          "id": "t22907-1",
+          "title": "O Altar Negro",
+          "action": "Fique sobre o Altar do Sol com o Cristal de Lothran em sua mão. Seu poder vai levar você à Cidade de Tellus. Boa sorte.",
+          "routeOrder": 20750,
+          "memoryTaskId": 22907
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK/MS|22530",
+      "routeKey": "SKMS",
+      "order": 22,
+      "classScope": "SK/MS",
+      "minLevel": 5,
+      "expectedLevel": 11,
+      "maxLevel": "11",
+      "name": "A Reunião",
+      "npc": "Ancião Star (393, 230)",
+      "location": "Ancião Star (393, 230)",
+      "baseXp": 2910,
+      "xp3": 8730,
+      "priority": "Alta",
+      "benefit": "XP ×3 e progresso da história",
+      "instruction": "Pegue A Reunião antes de entregar Visitando o Ancião: o aceite termina no nível 11. O multiplicador ×3 torna essa ordem importante.",
+      "steps": [
+        {
+          "id": "t22530-1",
+          "title": "A Reunião",
+          "action": "Aceite a missão com Ancião Star (393, 230)",
+          "markerX": 393,
+          "markerY": 230,
+          "routeOrder": 20760,
+          "memoryTaskId": 22530
+        },
+        {
+          "id": "t23043-1",
+          "title": "Beckenast, o Primeiro Mago",
+          "action": "Fale com Beckenast, o Primeiro Mago (357, 241).",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 20790,
+          "memoryTaskId": 23043
+        },
+        {
+          "id": "t23044-1",
+          "title": "Ritualista Septus",
+          "action": "Fale com Ritualista Septus (379, 243).",
+          "markerX": 379,
+          "markerY": 243,
+          "routeOrder": 20800,
+          "memoryTaskId": 23044
+        },
+        {
+          "id": "t23042-1",
+          "title": "Volte a Falar com Ancião Star",
+          "action": "Fale com Ancião Star (393, 230).",
+          "markerX": 393,
+          "markerY": 230,
+          "routeOrder": 20810,
+          "memoryTaskId": 23042
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK/MS|22988",
+      "routeKey": "SKMS",
+      "order": 23,
+      "classScope": "SK/MS",
+      "minLevel": 4,
+      "expectedLevel": 11,
+      "maxLevel": "Sem limite",
+      "name": "Visitando o Ancião",
+      "npc": "Missão automática / pop-up",
+      "location": "Ancião Star (393, 230)",
+      "baseXp": 2796,
+      "xp3": 8388,
+      "priority": "Alta",
+      "benefit": "XP ×3 e progresso da história",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22988-1",
+          "title": "Visitando o Ancião",
+          "action": "Aceite a missão recebida automaticamente ao atingir o nível 4.",
+          "routeOrder": 20770,
+          "memoryTaskId": 22988
+        },
+        {
+          "id": "t22988-2",
+          "title": "Visitando o Ancião",
+          "action": "Fale com Ancião Star (393, 230).",
+          "markerX": 393,
+          "markerY": 230,
+          "routeOrder": 20780,
+          "memoryTaskId": 22988
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK/MS|22450",
+      "routeKey": "SKMS",
+      "order": 24,
+      "classScope": "SK/MS",
+      "minLevel": 6,
+      "expectedLevel": 13,
+      "maxLevel": "150",
+      "name": "Habilidades Produção",
+      "npc": "Missão automática / pop-up",
+      "location": "Ancião Star (393, 230)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "XP ×3 e progresso da história",
+      "instruction": "No nível 6, aceite o aviso de produção e fale com o Ancião Star antes de sair de Tellus. Não aceite as missões específicas de ofício.",
+      "steps": [
+        {
+          "id": "t22450-1",
+          "title": "Habilidades Produção",
+          "action": "Aceite a missão recebida automaticamente ao atingir o nível 6.",
+          "routeOrder": 20820,
+          "memoryTaskId": 22450
+        },
+        {
+          "id": "t22464-1",
+          "title": "Visitando o Ancião",
+          "action": "Fale com Ancião Star (393, 230).",
+          "markerX": 393,
+          "markerY": 230,
+          "routeOrder": 20830,
+          "memoryTaskId": 22464
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK/MS|22486",
+      "routeKey": "SKMS",
+      "order": 25,
+      "classScope": "SK/MS",
+      "minLevel": 9,
+      "expectedLevel": 13,
+      "maxLevel": "150",
+      "name": "Guia de Cultivo Espiritual",
+      "npc": "Missão automática / pop-up",
+      "location": "Beckenast, o Primeiro Mago (357, 241)",
+      "baseXp": 120,
+      "xp3": 360,
+      "priority": "Alta",
+      "benefit": "XP ×3 e progresso da história",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22486-1",
+          "title": "Guia de Cultivo Espiritual",
+          "action": "Aceite a missão recebida automaticamente ao atingir o nível 9.",
+          "routeOrder": 20840,
+          "memoryTaskId": 22486
+        },
+        {
+          "id": "t22489-1",
+          "title": "Visite Beckenast",
+          "action": "Fale com Beckenast, o Primeiro Mago (357, 241).",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 20850,
+          "memoryTaskId": 22489
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK/MS|22487",
+      "routeKey": "SKMS",
+      "order": 26,
+      "classScope": "SK/MS",
+      "minLevel": 9,
+      "expectedLevel": 13,
+      "maxLevel": "150",
+      "name": "Só um Pouco de Progresso",
+      "npc": "Beckenast, o Primeiro Mago (357, 241)",
+      "location": "Beckenast, o Primeiro Mago (357, 241)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Pedra do Céu Celestial, Pedra da Terra Celestial, Pedra Celestial Comum",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22487-1",
+          "title": "Só um Pouco de Progresso",
+          "action": "Aceite a missão com Beckenast, o Primeiro Mago (357, 241)",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 20860,
+          "memoryTaskId": 22487
+        },
+        {
+          "id": "t22490-1",
+          "title": "O Recluso da Guarda da Terra",
+          "action": "Entregue 1 Breve para cultivo para Anchoret Alexandria (214, 227).",
+          "markerX": 214,
+          "markerY": 227,
+          "routeOrder": 20870,
+          "memoryTaskId": 22490
+        },
+        {
+          "id": "t22491-1",
+          "title": "Começar a Circular",
+          "action": "Colete 7 Espírito de Rocha de Marionete de Gelo (213, 222).",
+          "markerX": 213,
+          "markerY": 222,
+          "routeOrder": 20880,
+          "memoryTaskId": 22491
+        },
+        {
+          "id": "t22492-1",
+          "title": "O Astuto",
+          "action": "Entregue 7 Espírito de Rocha para Anchoret Alexandria (214, 227).",
+          "markerX": 214,
+          "markerY": 227,
+          "routeOrder": 20890,
+          "memoryTaskId": 22492
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK/MS|22531",
+      "routeKey": "SKMS",
+      "order": 27,
+      "classScope": "SK/MS",
+      "minLevel": 5,
+      "expectedLevel": 13,
+      "maxLevel": "150",
+      "name": "Uma Solução Simples",
+      "npc": "Missão automática / pop-up",
+      "location": "Vidente do Vazio (149, 245)",
+      "baseXp": 1962,
+      "xp3": 5886,
+      "priority": "Alta",
+      "benefit": "XP ×3 e progresso da história",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22531-1",
+          "title": "Uma Solução Simples",
+          "action": "Aceite a missão recebida automaticamente ao atingir o nível 5.",
+          "routeOrder": 20900,
+          "memoryTaskId": 22531
+        },
+        {
+          "id": "t22531-2",
+          "title": "Uma Solução Simples",
+          "action": "Fale com Vidente do Vazio (149, 245).",
+          "markerX": 149,
+          "markerY": 245,
+          "routeOrder": 20910,
+          "memoryTaskId": 22531
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|23177",
+      "routeKey": "SKMS",
+      "order": 28,
+      "classScope": "MS",
+      "minLevel": 11,
+      "expectedLevel": 13,
+      "maxLevel": "150",
+      "name": "Aprenda a Ferroada",
+      "npc": "Missão automática / pop-up",
+      "location": "Sacerdotisa da Alma (153, 248)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Libera invocação ou planta do Místico; ",
+      "instruction": "Desvio exclusivo do Místico. Complete a cadeia e retorne ao grupo no ponto da rota comum.",
+      "steps": [
+        {
+          "id": "t23177-1",
+          "title": "Aprenda a Ferroada",
+          "action": "Aceite a missão recebida automaticamente ao atingir o nível 11.",
+          "routeOrder": 20920,
+          "memoryTaskId": 23177
+        },
+        {
+          "id": "t23190-1",
+          "title": "Reuniões",
+          "action": "Fale com Sacerdotisa da Alma (153, 248).",
+          "markerX": 153,
+          "markerY": 248,
+          "routeOrder": 20930,
+          "memoryTaskId": 23190
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|23033",
+      "routeKey": "SKMS",
+      "order": 29,
+      "classScope": "MS",
+      "minLevel": 11,
+      "expectedLevel": 13,
+      "maxLevel": "Sem limite",
+      "name": "Ferroada da Punição",
+      "npc": "Sacerdotisa da Alma (153, 248)",
+      "location": "Sacerdotisa da Alma (153, 248)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Libera invocação ou planta do Místico; Ferroada da Punição",
+      "instruction": "Desvio exclusivo do Místico. Complete a cadeia e retorne ao grupo no ponto da rota comum.",
+      "steps": [
+        {
+          "id": "t23033-1",
+          "title": "Ferroada da Punição",
+          "action": "Aceite a missão com Sacerdotisa da Alma (153, 248)",
+          "markerX": 153,
+          "markerY": 248,
+          "routeOrder": 20940,
+          "memoryTaskId": 23033
+        },
+        {
+          "id": "t23147-1",
+          "title": "Mais Instruções",
+          "action": "Fale com Beckenast, o Primeiro Mago (357, 241).",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 20950,
+          "memoryTaskId": 23147
+        },
+        {
+          "id": "t23045-1",
+          "title": "Rendição",
+          "action": "Colete 1 Urtiga de Urtiga (233, 265).",
+          "markerX": 233,
+          "markerY": 265,
+          "routeOrder": 20960,
+          "memoryTaskId": 23045
+        },
+        {
+          "id": "t23045-2",
+          "title": "Rendição",
+          "action": "Entregue a missão para Beckenast, o Primeiro Mago (357, 241).",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 20970,
+          "memoryTaskId": 23045
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK/MS|22532",
+      "routeKey": "SKMS",
+      "order": 30,
+      "classScope": "SK/MS",
+      "minLevel": 6,
+      "expectedLevel": 13,
+      "maxLevel": "15",
+      "name": "Olhos T. dos Despertos",
+      "npc": "Vidente do Vazio (149, 245)",
+      "location": "Vidente do Vazio (149, 245)",
+      "baseXp": 3159,
+      "xp3": 9477,
+      "priority": "Alta",
+      "benefit": "XP ×3 e progresso da história",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22532-1",
+          "title": "Olhos T. dos Despertos",
+          "action": "Aceite a missão com Vidente do Vazio (149, 245)",
+          "markerX": 149,
+          "markerY": 245,
+          "routeOrder": 20980,
+          "memoryTaskId": 22532
+        },
+        {
+          "id": "t23122-1",
+          "title": "Ataque Premeditado",
+          "action": "Mate 4 Estilete Possuído e 4 Dríade Corrupta na região de (177, 222). Vários contadores: confira todos no jogo; use Etapa feita se necessário.",
+          "markerX": 177,
+          "markerY": 222,
+          "routeOrder": 20990,
+          "memoryTaskId": 23122
+        },
+        {
+          "id": "t23123-1",
+          "title": "Contato",
+          "action": "Fale com Espadachim Jasmine (181, 218).",
+          "markerX": 181,
+          "markerY": 218,
+          "routeOrder": 21000,
+          "memoryTaskId": 23123
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK/MS|22534",
+      "routeKey": "SKMS",
+      "order": 31,
+      "classScope": "SK/MS",
+      "minLevel": 8,
+      "expectedLevel": 14,
+      "maxLevel": "150",
+      "name": "O Guardião do Templo",
+      "npc": "Espadachim Jasmine (181, 218)",
+      "location": "Espadachim Jasmine (181, 218)",
+      "baseXp": 5040,
+      "xp3": 15120,
+      "priority": "Alta",
+      "benefit": "XP ×3 e progresso da história",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22534-1",
+          "title": "O Guardião do Templo",
+          "action": "Aceite a missão com Espadachim Jasmine (181, 218)",
+          "markerX": 181,
+          "markerY": 218,
+          "routeOrder": 21010,
+          "memoryTaskId": 22534
+        },
+        {
+          "id": "t22534-2",
+          "title": "O Guardião do Templo",
+          "action": "Fale com Guardião Ancestral Shawn (233, 231).",
+          "markerX": 233,
+          "markerY": 231,
+          "routeOrder": 21030,
+          "memoryTaskId": 22534
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK/MS|22535",
+      "routeKey": "SKMS",
+      "order": 32,
+      "classScope": "SK/MS",
+      "minLevel": 8,
+      "expectedLevel": 14,
+      "maxLevel": "16",
+      "name": "Memórias",
+      "npc": "Guardião Ancestral Shawn (233, 231)",
+      "location": "Guardião Ancestral Shawn (233, 231)",
+      "baseXp": 5346,
+      "xp3": 16038,
+      "priority": "Alta",
+      "benefit": "XP ×3 e progresso da história",
+      "instruction": "Pegue Memórias com o Oficial Qine antes de entregar O Guardião do Templo, no mesmo NPC. Limite de aceite: nível 16.",
+      "steps": [
+        {
+          "id": "t22535-1",
+          "title": "Memórias",
+          "action": "Aceite a missão com Guardião Ancestral Shawn (233, 231)",
+          "markerX": 233,
+          "markerY": 231,
+          "routeOrder": 21020,
+          "memoryTaskId": 22535
+        },
+        {
+          "id": "t22536-1",
+          "title": "Sinal Fogo Ancestral",
+          "action": "Colete 1 Sinal de Fogo do Ancestral de Marionete de Gelo (213, 222).",
+          "markerX": 213,
+          "markerY": 222,
+          "routeOrder": 21040,
+          "memoryTaskId": 22536
+        },
+        {
+          "id": "t22536-2",
+          "title": "Sinal Fogo Ancestral",
+          "action": "Entregue a missão para Guardião Ancestral Shawn (233, 231).",
+          "markerX": 233,
+          "markerY": 231,
+          "routeOrder": 21050,
+          "memoryTaskId": 22536
+        },
+        {
+          "id": "t22537-1",
+          "title": "Ordem do Ancestral",
+          "action": "Colete 1 Ordem do Ancestral de Macaco de Barba Azul (234, 223).",
+          "markerX": 234,
+          "markerY": 223,
+          "routeOrder": 21060,
+          "memoryTaskId": 22537
+        },
+        {
+          "id": "t22537-2",
+          "title": "Ordem do Ancestral",
+          "action": "Entregue a missão para Guardião Ancestral Shawn (233, 231).",
+          "markerX": 233,
+          "markerY": 231,
+          "routeOrder": 21070,
+          "memoryTaskId": 22537
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK/MS|23066",
+      "routeKey": "SKMS",
+      "order": 33,
+      "classScope": "SK/MS",
+      "minLevel": 13,
+      "expectedLevel": 16,
+      "maxLevel": "18",
+      "name": "Pisando em Ovos",
+      "npc": "Sábio de Wildwood (256, 238)",
+      "location": "Sábio de Wildwood (256, 238)",
+      "baseXp": 13800,
+      "xp3": 41400,
+      "priority": "Alta",
+      "benefit": "XP ×3 e progresso da história",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t23066-1",
+          "title": "Pisando em Ovos",
+          "action": "Aceite a missão com Sábio de Wildwood (256, 238)",
+          "markerX": 256,
+          "markerY": 238,
+          "routeOrder": 21080,
+          "memoryTaskId": 23066
+        },
+        {
+          "id": "t23140-1",
+          "title": "Amostra de Sangue",
+          "action": "Colete 10 Amostra de Sangue de Touro de Iaque com Cascos (257, 252).",
+          "markerX": 257,
+          "markerY": 252,
+          "routeOrder": 21100,
+          "memoryTaskId": 23140
+        },
+        {
+          "id": "t23140-2",
+          "title": "Amostra de Sangue",
+          "action": "Entregue a missão para Sábio de Wildwood (256, 238).",
+          "markerX": 256,
+          "markerY": 238,
+          "routeOrder": 21110,
+          "memoryTaskId": 23140
+        },
+        {
+          "id": "t23141-1",
+          "title": "Amostra de Grãos",
+          "action": "Entregue 5 Grão Maculado para Sábio de Wildwood (256, 238).",
+          "markerX": 256,
+          "markerY": 238,
+          "routeOrder": 21120,
+          "memoryTaskId": 23141
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK/MS|23067",
+      "routeKey": "SKMS",
+      "order": 34,
+      "classScope": "SK/MS",
+      "minLevel": 13,
+      "expectedLevel": 16,
+      "maxLevel": "18",
+      "name": "Ameaças Veladas",
+      "npc": "Campeão de Wildwood (256, 240)",
+      "location": "Campeão de Wildwood (256, 240)",
+      "baseXp": 12000,
+      "xp3": 36000,
+      "priority": "Alta",
+      "benefit": "☆Botas Corona Violetas, ☆Sapatos Corona Negros",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t23067-1",
+          "title": "Ameaças Veladas",
+          "action": "Aceite a missão com Campeão de Wildwood (256, 240)",
+          "markerX": 256,
+          "markerY": 240,
+          "routeOrder": 21090,
+          "memoryTaskId": 23067
+        },
+        {
+          "id": "t23067-2",
+          "title": "Ameaças Veladas",
+          "action": "Mate 15 Guerreiro da Floresta Chimei na região de (267, 262).",
+          "markerX": 267,
+          "markerY": 262,
+          "routeOrder": 21130,
+          "memoryTaskId": 23067
+        },
+        {
+          "id": "t23067-3",
+          "title": "Ameaças Veladas",
+          "action": "Entregue a missão para Campeão de Wildwood (256, 240).",
+          "markerX": 256,
+          "markerY": 240,
+          "routeOrder": 21140,
+          "memoryTaskId": 23067
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|23178",
+      "routeKey": "SKMS",
+      "order": 35,
+      "classScope": "MS",
+      "minLevel": 15,
+      "expectedLevel": 20,
+      "maxLevel": "150",
+      "name": "Trepadeira da Névoa",
+      "npc": "Missão automática / pop-up",
+      "location": "Beckenast, o Primeiro Mago (357, 241)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Libera invocação ou planta do Místico; ",
+      "instruction": "Desvio exclusivo do Místico. Complete a cadeia e retorne ao grupo no ponto da rota comum.",
+      "steps": [
+        {
+          "id": "t23178-1",
+          "title": "Trepadeira da Névoa",
+          "action": "Aceite a missão recebida automaticamente ao atingir o nível 15.",
+          "routeOrder": 21150,
+          "memoryTaskId": 23178
+        },
+        {
+          "id": "t23194-1",
+          "title": "A Última Prova",
+          "action": "Fale com Beckenast, o Primeiro Mago (357, 241).",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 21160,
+          "memoryTaskId": 23194
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|23034",
+      "routeKey": "SKMS",
+      "order": 36,
+      "classScope": "MS",
+      "minLevel": 15,
+      "expectedLevel": 20,
+      "maxLevel": "Sem limite",
+      "name": "Trepadeira da Névoa",
+      "npc": "Beckenast, o Primeiro Mago (357, 241)",
+      "location": "Beckenast, o Primeiro Mago (357, 241)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Libera invocação ou planta do Místico; Trepadeira da Névoa",
+      "instruction": "Desvio exclusivo do Místico. Complete a cadeia e retorne ao grupo no ponto da rota comum.",
+      "steps": [
+        {
+          "id": "t23034-1",
+          "title": "Trepadeira da Névoa",
+          "action": "Aceite a missão com Beckenast, o Primeiro Mago (357, 241)",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 21170,
+          "memoryTaskId": 23034
+        },
+        {
+          "id": "t23148-1",
+          "title": "Erva Vital",
+          "action": "Como o Mago da Torre do Ninho Negro lhe ensinou, encontre a Trepadeira da Névoa e faça surgir a Verdadeira Trepadeira da Névoa usando a habilidade União do Espírito. Então, você poderá usar a habilidade de Canalização para controlá-la. A Trepadeira da Névoa cresce perto da Tribo dos Caçadores de Dragão.",
+          "routeOrder": 21180,
+          "memoryTaskId": 23148
+        },
+        {
+          "id": "t23117-1",
+          "title": "Rendição",
+          "action": "Mate 1 Trepadeira da Névoa Verdadeira.",
+          "routeOrder": 21190,
+          "memoryTaskId": 23117
+        },
+        {
+          "id": "t23107-1",
+          "title": "A União do Espírito",
+          "action": "Lembre-se das palavras que o Mago da Torre do Ninho Negro lhe ensinou e una seu espírito ao da Verdadeira Trepadeira da Névoa.",
+          "routeOrder": 21200,
+          "memoryTaskId": 23107
+        },
+        {
+          "id": "t23047-1",
+          "title": "Vitória",
+          "action": "Fale com Beckenast, o Primeiro Mago (357, 241).",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 21210,
+          "memoryTaskId": 23047
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK/MS|22494",
+      "routeKey": "SKMS",
+      "order": 37,
+      "classScope": "SK/MS",
+      "minLevel": 19,
+      "expectedLevel": 20,
+      "maxLevel": "150",
+      "name": "Guia de Cultivo Espiritual",
+      "npc": "Missão automática / pop-up",
+      "location": "Beckenast, o Primeiro Mago (357, 241)",
+      "baseXp": 150,
+      "xp3": 450,
+      "priority": "Alta",
+      "benefit": "XP ×3 e progresso da história",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22494-1",
+          "title": "Guia de Cultivo Espiritual",
+          "action": "Aceite a missão recebida automaticamente ao atingir o nível 19.",
+          "routeOrder": 21220,
+          "memoryTaskId": 22494
+        },
+        {
+          "id": "t22500-1",
+          "title": "Aperfeiçoando a Habilidade",
+          "action": "Fale com Beckenast, o Primeiro Mago (357, 241).",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 21230,
+          "memoryTaskId": 22500
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK/MS|22493",
+      "routeKey": "SKMS",
+      "order": 38,
+      "classScope": "SK/MS",
+      "minLevel": 19,
+      "expectedLevel": 20,
+      "maxLevel": "150",
+      "name": "O Equilíbrio Celestial",
+      "npc": "Beckenast, o Primeiro Mago (357, 241)",
+      "location": "Beckenast, o Primeiro Mago (357, 241)",
+      "baseXp": 18000,
+      "xp3": 54000,
+      "priority": "Essencial",
+      "benefit": "Pergaminho da Ressurreição, Pedra do Céu Celestial, Pedra da Terra Celestial, Pedra Celestial Comum, Paz na Terra, Amuleto Bom da Lâmina Quebrada, Sutra Sutil, Amuleto Bom de Evocação",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t22493-1",
+          "title": "O Equilíbrio Celestial",
+          "action": "Aceite a missão com Beckenast, o Primeiro Mago (357, 241)",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 21240,
+          "memoryTaskId": 22493
+        },
+        {
+          "id": "t22502-1",
+          "title": "Olho Composto Gigante",
+          "action": "Colete 1 Olho Composto Gigante de Libélula de Olho Imenso (355, 213).",
+          "markerX": 355,
+          "markerY": 213,
+          "routeOrder": 21250,
+          "memoryTaskId": 22502
+        },
+        {
+          "id": "t22503-1",
+          "title": "Revelando o Disfarce",
+          "action": "Agora, você pode ver através do disfarce da Erva Encoberta.",
+          "routeOrder": 21260,
+          "memoryTaskId": 22503
+        },
+        {
+          "id": "t22504-1",
+          "title": "Iluminado",
+          "action": "Entregue 1 Olho Composto Gigante e 1 Erva Encoberta para Beckenast, o Primeiro Mago (357, 241).",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 21270,
+          "memoryTaskId": 22504
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK/MS|23214",
+      "routeKey": "SKMS",
+      "order": 39,
+      "classScope": "SK/MS",
+      "minLevel": 19,
+      "expectedLevel": 22,
+      "maxLevel": "150",
+      "name": "A Voz do Mundo",
+      "npc": "Missão automática / pop-up",
+      "location": "Ancião Star (393, 230)",
+      "baseXp": 18360,
+      "xp3": 55080,
+      "priority": "Alta",
+      "benefit": "☆☆☆Espada de Cometa, ☆☆☆Cajado de Meteoro",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t23214-1",
+          "title": "A Voz do Mundo",
+          "action": "Aceite a missão recebida automaticamente ao atingir o nível 19.",
+          "routeOrder": 21280,
+          "memoryTaskId": 23214
+        },
+        {
+          "id": "t23217-1",
+          "title": "Abominação",
+          "action": "Fale com Ancião Star (393, 230).",
+          "markerX": 393,
+          "markerY": 230,
+          "routeOrder": 21290,
+          "memoryTaskId": 23217
+        },
+        {
+          "id": "t23218-1",
+          "title": "Uma Tarefa Difícil",
+          "action": "Colete 1 Pedra Sussurrante de Bruto Corrupto (319, 201).",
+          "markerX": 319,
+          "markerY": 201,
+          "routeOrder": 21300,
+          "memoryTaskId": 23218
+        },
+        {
+          "id": "t23218-2",
+          "title": "Uma Tarefa Difícil",
+          "action": "Entregue a missão para Ancião Star (393, 230).",
+          "markerX": 393,
+          "markerY": 230,
+          "routeOrder": 21310,
+          "memoryTaskId": 23218
+        }
+      ]
+    },
+    {
+      "id": "SKMS|SK/MS|23215",
+      "routeKey": "SKMS",
+      "order": 40,
+      "classScope": "SK/MS",
+      "minLevel": 20,
+      "expectedLevel": 24,
+      "maxLevel": "150",
+      "name": "A Cidade do Dragão",
+      "npc": "Ancião Star (393, 230)",
+      "location": "Ancião Star (393, 230)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "XP ×3 e progresso da história",
+      "instruction": "Siga a ordem global das ações. Aceite e entregue missões próximas na mesma passagem; os nomes são os do cliente instalado.",
+      "steps": [
+        {
+          "id": "t23215-1",
+          "title": "A Cidade do Dragão",
+          "action": "Aceite a missão com Ancião Star (393, 230)",
+          "markerX": 393,
+          "markerY": 230,
+          "routeOrder": 21320,
+          "memoryTaskId": 23215
+        },
+        {
+          "id": "t23215-2",
+          "title": "A Cidade do Dragão",
+          "action": "Use o acesso aberto pelo Ancião Star para ir à Cidade do Dragão. Reúna o grupo e continue a rota comum do nível 20.",
+          "routeOrder": 21330,
+          "memoryTaskId": 23215
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|23179",
+      "routeKey": "SKMS",
+      "order": 12106,
+      "classScope": "MS",
+      "minLevel": 21,
+      "expectedLevel": 21,
+      "maxLevel": "150",
+      "name": "Aprenda a Vinha",
+      "npc": "Missão automática / pop-up",
+      "location": "Beckenast, o Primeiro Mago (357, 241)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Libera invocação ou planta do Místico; ",
+      "instruction": "Desvio exclusivo do Místico. Complete a cadeia e retorne ao grupo no ponto da rota comum.",
+      "steps": [
+        {
+          "id": "t23179-1",
+          "title": "Aprenda a Vinha",
+          "action": "Aceite a missão recebida automaticamente ao atingir o nível 21.",
+          "routeOrder": 1201701,
+          "memoryTaskId": 23179
+        },
+        {
+          "id": "t23195-1",
+          "title": "A Última Prova",
+          "action": "Fale com Beckenast, o Primeiro Mago (357, 241).",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 1201702,
+          "memoryTaskId": 23195
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|23035",
+      "routeKey": "SKMS",
+      "order": 12107,
+      "classScope": "MS",
+      "minLevel": 21,
+      "expectedLevel": 21,
+      "maxLevel": "Sem limite",
+      "name": "Vinha de Aranha",
+      "npc": "Beckenast, o Primeiro Mago (357, 241)",
+      "location": "Beckenast, o Primeiro Mago (357, 241)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Libera invocação ou planta do Místico; Vinha de Aranha",
+      "instruction": "Desvio exclusivo do Místico. Complete a cadeia e retorne ao grupo no ponto da rota comum.",
+      "steps": [
+        {
+          "id": "t23035-1",
+          "title": "Vinha de Aranha",
+          "action": "Aceite a missão com Beckenast, o Primeiro Mago (357, 241)",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 1201703,
+          "memoryTaskId": 23035
+        },
+        {
+          "id": "t23153-1",
+          "title": "Erva Vital",
+          "action": "Encontre a Vinha de Aranha e use sua habilidade de canalização para revelar a Verdadeira Vinha de Aranha. Depois que ela aparecer, use a União do Espírito e controle-a. As Vinhas de Aranha costumam crescer no Ruínas Remanescentes.",
+          "routeOrder": 1201704,
+          "memoryTaskId": 23153
+        },
+        {
+          "id": "t23118-1",
+          "title": "Rendição",
+          "action": "Mate 1 Vinha de Aranha Verdadeira.",
+          "routeOrder": 1201705,
+          "memoryTaskId": 23118
+        },
+        {
+          "id": "t23109-1",
+          "title": "A União do Espírito",
+          "action": "Lembre-se das palavras ritualísticas que Beckenast, o Primeiro Mago, lhe ensinou e use-as para unir sua alma à da Verdadeira Vinha de Aranha.",
+          "routeOrder": 1201706,
+          "memoryTaskId": 23109
+        },
+        {
+          "id": "t23049-1",
+          "title": "Vitória",
+          "action": "Fale com Beckenast, o Primeiro Mago (357, 241).",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 1201707,
+          "memoryTaskId": 23049
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|23203",
+      "routeKey": "SKMS",
+      "order": 12308,
+      "classScope": "MS",
+      "minLevel": 23,
+      "expectedLevel": 23,
+      "maxLevel": "150",
+      "name": "Guia da Aliança·Dardo",
+      "npc": "Missão automática / pop-up",
+      "location": "Ritualista Septus (379, 243)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Libera invocação ou planta do Místico; ",
+      "instruction": "Desvio exclusivo do Místico. Complete a cadeia e retorne ao grupo no ponto da rota comum.",
+      "steps": [
+        {
+          "id": "t23203-1",
+          "title": "Guia da Aliança·Dardo",
+          "action": "Aceite a missão recebida automaticamente ao atingir o nível 23.",
+          "routeOrder": 1203201,
+          "memoryTaskId": 23203
+        },
+        {
+          "id": "t23209-1",
+          "title": "Liderança",
+          "action": "Aguarde a conversa e fale com Ritualista Septus (379, 243). Confirme o diálogo antes de prosseguir.",
+          "markerX": 379,
+          "markerY": 243,
+          "routeOrder": 1203202,
+          "memoryTaskId": 23209
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|23030",
+      "routeKey": "SKMS",
+      "order": 12309,
+      "classScope": "MS",
+      "minLevel": 23,
+      "expectedLevel": 23,
+      "maxLevel": "150",
+      "name": "Raio e Trovão",
+      "npc": "Ritualista Septus (379, 243)",
+      "location": "Ritualista Septus (379, 243)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Libera invocação ou planta do Místico; Anel de Juramento, Dama da Tempestade",
+      "instruction": "Desvio exclusivo do Místico. Complete a cadeia e retorne ao grupo no ponto da rota comum.",
+      "steps": [
+        {
+          "id": "t23030-1",
+          "title": "Raio e Trovão",
+          "action": "Aceite a missão com Ritualista Septus (379, 243)",
+          "markerX": 379,
+          "markerY": 243,
+          "routeOrder": 1203203,
+          "memoryTaskId": 23030
+        },
+        {
+          "id": "t23126-1",
+          "title": "Uma Pedra Partida",
+          "action": "Entregue 5 Fragmento de Pedra do Trovão para Ritualista Septus (379, 243).",
+          "markerX": 379,
+          "markerY": 243,
+          "routeOrder": 1203204,
+          "memoryTaskId": 23126
+        },
+        {
+          "id": "t23127-1",
+          "title": "O Anel do Juramento",
+          "action": "Aguarde a conversa e fale com Ritualista Septus (379, 243). 1 minuto",
+          "markerX": 379,
+          "markerY": 243,
+          "routeOrder": 1203205,
+          "memoryTaskId": 23127
+        },
+        {
+          "id": "t23128-1",
+          "title": "A Linha Pontilhada",
+          "action": "Entregue 1 Anel de Juramento para Dama da Tempestade (343, 226).",
+          "markerX": 343,
+          "markerY": 226,
+          "routeOrder": 1203206,
+          "memoryTaskId": 23128
+        },
+        {
+          "id": "t23129-1",
+          "title": "Três vezes Três",
+          "action": "Mate 3 Raios.",
+          "routeOrder": 1203207,
+          "memoryTaskId": 23129
+        },
+        {
+          "id": "t23130-1",
+          "title": "Assinado com Sangue",
+          "action": "Fale com Dama da Tempestade (343, 226).",
+          "markerX": 343,
+          "markerY": 226,
+          "routeOrder": 1203208,
+          "memoryTaskId": 23130
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|23180",
+      "routeKey": "SKMS",
+      "order": 12900,
+      "classScope": "MS",
+      "minLevel": 29,
+      "expectedLevel": 29,
+      "maxLevel": "150",
+      "name": "Aprenda a Flor",
+      "npc": "Missão automática / pop-up",
+      "location": "Beckenast, o Primeiro Mago (357, 241)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Libera invocação ou planta do Místico; ",
+      "instruction": "Desvio exclusivo do Místico. Complete a cadeia e retorne ao grupo no ponto da rota comum.",
+      "steps": [
+        {
+          "id": "t23180-1",
+          "title": "Aprenda a Flor",
+          "action": "Aceite a missão recebida automaticamente ao atingir o nível 29.",
+          "routeOrder": 1208401,
+          "memoryTaskId": 23180
+        },
+        {
+          "id": "t23197-1",
+          "title": "A Última Prova",
+          "action": "Fale com Beckenast, o Primeiro Mago (357, 241).",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 1208402,
+          "memoryTaskId": 23197
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|23036",
+      "routeKey": "SKMS",
+      "order": 12901,
+      "classScope": "MS",
+      "minLevel": 29,
+      "expectedLevel": 29,
+      "maxLevel": "Sem limite",
+      "name": "Flor Indiferente",
+      "npc": "Beckenast, o Primeiro Mago (357, 241)",
+      "location": "Beckenast, o Primeiro Mago (357, 241)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Libera invocação ou planta do Místico; Flor Indiferente",
+      "instruction": "Desvio exclusivo do Místico. Complete a cadeia e retorne ao grupo no ponto da rota comum.",
+      "steps": [
+        {
+          "id": "t23036-1",
+          "title": "Flor Indiferente",
+          "action": "Aceite a missão com Beckenast, o Primeiro Mago (357, 241)",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 1208403,
+          "memoryTaskId": 23036
+        },
+        {
+          "id": "t23154-1",
+          "title": "Erva Vital",
+          "action": "Encontre a Flor Indiferente e use sua habilidade de canalização para revelar a Verdadeira Flor Indiferente. A Flor Indiferente pode ser encontrada no Montanha do Dragão de Gelo.",
+          "routeOrder": 1208404,
+          "memoryTaskId": 23154
+        },
+        {
+          "id": "t23119-1",
+          "title": "Rendição",
+          "action": "Mate 1 Flor Indiferente Verdadeira.",
+          "routeOrder": 1208405,
+          "memoryTaskId": 23119
+        },
+        {
+          "id": "t23111-1",
+          "title": "A União do Espírito",
+          "action": "Concentre-se na habilidade União do Espírito que Beckenast, o Primeiro Mago, lhe ensinou e assuma o controle da Verdadeira Flor Indiferente.",
+          "routeOrder": 1208406,
+          "memoryTaskId": 23111
+        },
+        {
+          "id": "t23051-1",
+          "title": "Vitória",
+          "action": "Fale com Beckenast, o Primeiro Mago (357, 241).",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 1208407,
+          "memoryTaskId": 23051
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|23204",
+      "routeKey": "SKMS",
+      "order": 13302,
+      "classScope": "MS",
+      "minLevel": 33,
+      "expectedLevel": 33,
+      "maxLevel": "150",
+      "name": "Guia da Aliança·Vidro",
+      "npc": "Missão automática / pop-up",
+      "location": "Beckenast, o Primeiro Mago (357, 241)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Libera invocação ou planta do Místico; ",
+      "instruction": "Desvio exclusivo do Místico. Complete a cadeia e retorne ao grupo no ponto da rota comum.",
+      "steps": [
+        {
+          "id": "t23204-1",
+          "title": "Guia da Aliança·Vidro",
+          "action": "Aceite a missão recebida automaticamente ao atingir o nível 33.",
+          "routeOrder": 1213001,
+          "memoryTaskId": 23204
+        },
+        {
+          "id": "t23211-1",
+          "title": "Liderança",
+          "action": "Aguarde a conversa e fale com Beckenast, o Primeiro Mago (357, 241). Confirme o diálogo antes de prosseguir.",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 1213002,
+          "memoryTaskId": 23211
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|23031",
+      "routeKey": "SKMS",
+      "order": 13303,
+      "classScope": "MS",
+      "minLevel": 33,
+      "expectedLevel": 33,
+      "maxLevel": "150",
+      "name": "Esperança Renascida",
+      "npc": "Beckenast, o Primeiro Mago (357, 241)",
+      "location": "Beckenast, o Primeiro Mago (357, 241)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Libera invocação ou planta do Místico; Água da Vida, Alma do Diamante, Salvação",
+      "instruction": "Desvio exclusivo do Místico. Complete a cadeia e retorne ao grupo no ponto da rota comum.",
+      "steps": [
+        {
+          "id": "t23031-1",
+          "title": "Esperança Renascida",
+          "action": "Aceite a missão com Beckenast, o Primeiro Mago (357, 241)",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 1213003,
+          "memoryTaskId": 23031
+        },
+        {
+          "id": "t23131-1",
+          "title": "Prisão de Pedra",
+          "action": "Vasculhe o Montanha do Dragão de Gelo em busca do Quadro de Pedras de Runa e retire seu coração, o Diamante da Alma.",
+          "routeOrder": 1213004,
+          "memoryTaskId": 23131
+        },
+        {
+          "id": "t23132-1",
+          "title": "Água da Vida",
+          "action": "Mergulhe no Lago da Árvore Oca para coletar a água da vida, Água Vital, do Bluefin Pomfret.",
+          "routeOrder": 1213005,
+          "memoryTaskId": 23132
+        },
+        {
+          "id": "t23133-1",
+          "title": "O Renascimento",
+          "action": "Entregue 1 Alma do Diamante e 1 Água da Vida para Beckenast, o Primeiro Mago (357, 241).",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 1213006,
+          "memoryTaskId": 23133
+        },
+        {
+          "id": "t23134-1",
+          "title": "A Longa História",
+          "action": "A Alma de Diamante começa a pulsar e brilhar com uma luz verde. Está, rapidamente, ficando mais forte.",
+          "routeOrder": 1213007,
+          "memoryTaskId": 23134
+        },
+        {
+          "id": "t23185-1",
+          "title": "Salvação Restaurada",
+          "action": "A Alma de Diamante agora queima com uma luz pura e branca. Da luz origina-se a forma de Azure.",
+          "routeOrder": 1213008,
+          "memoryTaskId": 23185
+        },
+        {
+          "id": "t23186-1",
+          "title": "O Juramento",
+          "action": "Você libertou Azure, a salvação de todos os seres vivos.",
+          "routeOrder": 1213009,
+          "memoryTaskId": 23186
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|23181",
+      "routeKey": "SKMS",
+      "order": 13904,
+      "classScope": "MS",
+      "minLevel": 39,
+      "expectedLevel": 39,
+      "maxLevel": "150",
+      "name": "Aprenda a Erva de Cura",
+      "npc": "Missão automática / pop-up",
+      "location": "Beckenast, o Primeiro Mago (357, 241)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Libera invocação ou planta do Místico; ",
+      "instruction": "Desvio exclusivo do Místico. Complete a cadeia e retorne ao grupo no ponto da rota comum.",
+      "steps": [
+        {
+          "id": "t23181-1",
+          "title": "Aprenda a Erva de Cura",
+          "action": "Aceite a missão recebida automaticamente ao atingir o nível 39.",
+          "routeOrder": 1216601,
+          "memoryTaskId": 23181
+        },
+        {
+          "id": "t23199-1",
+          "title": "A Última Prova",
+          "action": "Fale com Beckenast, o Primeiro Mago (357, 241).",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 1216602,
+          "memoryTaskId": 23199
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|23037",
+      "routeKey": "SKMS",
+      "order": 13905,
+      "classScope": "MS",
+      "minLevel": 39,
+      "expectedLevel": 39,
+      "maxLevel": "Sem limite",
+      "name": "Erva de Cura",
+      "npc": "Beckenast, o Primeiro Mago (357, 241)",
+      "location": "Beckenast, o Primeiro Mago (357, 241)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Libera invocação ou planta do Místico; Erva de Cura",
+      "instruction": "Desvio exclusivo do Místico. Complete a cadeia e retorne ao grupo no ponto da rota comum.",
+      "steps": [
+        {
+          "id": "t23037-1",
+          "title": "Erva de Cura",
+          "action": "Aceite a missão com Beckenast, o Primeiro Mago (357, 241)",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 1216603,
+          "memoryTaskId": 23037
+        },
+        {
+          "id": "t23155-1",
+          "title": "Erva Vital",
+          "action": "Encontre a Erva de Cura e use sua habilidade de canalização para revelar a Verdadeira Erva de Cura. A Erva de Cura costuma crescer próximo ao Santuário dos Ancestrais.",
+          "routeOrder": 1216604,
+          "memoryTaskId": 23155
+        },
+        {
+          "id": "t23120-1",
+          "title": "Rendição",
+          "action": "Mate 1 Erva de Cura Verdadeira.",
+          "routeOrder": 1216605,
+          "memoryTaskId": 23120
+        },
+        {
+          "id": "t23113-1",
+          "title": "A União do Espírito",
+          "action": "Lembre-se das habilidades que Beckenast, o Primeiro Mago, lhe ensinou e una sua alma à da Verdadeira Erva de Cura.",
+          "routeOrder": 1216606,
+          "memoryTaskId": 23113
+        },
+        {
+          "id": "t23053-1",
+          "title": "Vitória",
+          "action": "Fale com Beckenast, o Primeiro Mago (357, 241).",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 1216607,
+          "memoryTaskId": 23053
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|23182",
+      "routeKey": "SKMS",
+      "order": 14906,
+      "classScope": "MS",
+      "minLevel": 49,
+      "expectedLevel": 49,
+      "maxLevel": "150",
+      "name": "Aprenda a Erva Vital",
+      "npc": "Missão automática / pop-up",
+      "location": "Beckenast, o Primeiro Mago (357, 241)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Libera invocação ou planta do Místico; ",
+      "instruction": "Desvio exclusivo do Místico. Complete a cadeia e retorne ao grupo no ponto da rota comum.",
+      "steps": [
+        {
+          "id": "t23182-1",
+          "title": "Aprenda a Erva Vital",
+          "action": "Aceite a missão recebida automaticamente ao atingir o nível 49.",
+          "routeOrder": 1223201,
+          "memoryTaskId": 23182
+        },
+        {
+          "id": "t23201-1",
+          "title": "A Última Prova",
+          "action": "Fale com Beckenast, o Primeiro Mago (357, 241).",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 1223202,
+          "memoryTaskId": 23201
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|23038",
+      "routeKey": "SKMS",
+      "order": 14907,
+      "classScope": "MS",
+      "minLevel": 49,
+      "expectedLevel": 49,
+      "maxLevel": "Sem limite",
+      "name": "Erva Vital",
+      "npc": "Beckenast, o Primeiro Mago (357, 241)",
+      "location": "Beckenast, o Primeiro Mago (357, 241)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Libera invocação ou planta do Místico; Erva Vital",
+      "instruction": "Desvio exclusivo do Místico. Complete a cadeia e retorne ao grupo no ponto da rota comum.",
+      "steps": [
+        {
+          "id": "t23038-1",
+          "title": "Erva Vital",
+          "action": "Aceite a missão com Beckenast, o Primeiro Mago (357, 241)",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 1223203,
+          "memoryTaskId": 23038
+        },
+        {
+          "id": "t23156-1",
+          "title": "Erva Vital",
+          "action": "Encontre a Erva Vital e use sua habilidade de canalização para controlar a Verdadeira Erva Vital. A Erva Vital costuma crescer no Coluna de Gelo.",
+          "routeOrder": 1223204,
+          "memoryTaskId": 23156
+        },
+        {
+          "id": "t23121-1",
+          "title": "Rendição",
+          "action": "Mate 1 Erva Vital Verdadeira.",
+          "routeOrder": 1223205,
+          "memoryTaskId": 23121
+        },
+        {
+          "id": "t23115-1",
+          "title": "A União do Espírito",
+          "action": "Você precisa de todas as habilidades que aprendeu até agora para superar a Verdadeira Erva Vital.",
+          "routeOrder": 1223206,
+          "memoryTaskId": 23115
+        },
+        {
+          "id": "t23055-1",
+          "title": "Vitória",
+          "action": "Fale com Beckenast, o Primeiro Mago (357, 241).",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 1223207,
+          "memoryTaskId": 23055
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|23205",
+      "routeKey": "SKMS",
+      "order": 15908,
+      "classScope": "MS",
+      "minLevel": 59,
+      "expectedLevel": 59,
+      "maxLevel": "150",
+      "name": "Guia da Aliança·Chamas",
+      "npc": "Missão automática / pop-up",
+      "location": "Beckenast, o Primeiro Mago (357, 241)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Libera invocação ou planta do Místico; ",
+      "instruction": "Desvio exclusivo do Místico. Complete a cadeia e retorne ao grupo no ponto da rota comum.",
+      "steps": [
+        {
+          "id": "t23205-1",
+          "title": "Guia da Aliança·Chamas",
+          "action": "Aceite a missão recebida automaticamente ao atingir o nível 59.",
+          "routeOrder": 1230701,
+          "memoryTaskId": 23205
+        },
+        {
+          "id": "t23213-1",
+          "title": "Liderança",
+          "action": "Aguarde a conversa e fale com Beckenast, o Primeiro Mago (357, 241). Confirme o diálogo antes de prosseguir.",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 1230702,
+          "memoryTaskId": 23213
+        }
+      ]
+    },
+    {
+      "id": "SKMS|MS|23032",
+      "routeKey": "SKMS",
+      "order": 15909,
+      "classScope": "MS",
+      "minLevel": 59,
+      "expectedLevel": 59,
+      "maxLevel": "150",
+      "name": "O Desastre se Aproxima",
+      "npc": "Beckenast, o Primeiro Mago (357, 241)",
+      "location": "Beckenast, o Primeiro Mago (357, 241)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Libera invocação ou planta do Místico; Lorde Crag",
+      "instruction": "Desvio exclusivo do Místico. Complete a cadeia e retorne ao grupo no ponto da rota comum.",
+      "steps": [
+        {
+          "id": "t23032-1",
+          "title": "O Desastre se Aproxima",
+          "action": "Aceite a missão com Beckenast, o Primeiro Mago (357, 241)",
+          "markerX": 357,
+          "markerY": 241,
+          "routeOrder": 1230703,
+          "memoryTaskId": 23032
+        },
+        {
+          "id": "t23135-1",
+          "title": "A Chave",
+          "action": "Beckenast, o Primeiro Mago lhe disse para se aventurar no Ruínas Remanescentes, ao norte da Cidade de Tellus, para obter a espada chamada de Lótus Vermelha que pode libertar o Lorde Cragg.",
+          "routeOrder": 1230704,
+          "memoryTaskId": 23135
+        },
+        {
+          "id": "t23136-1",
+          "title": "Quebrando o Selo",
+          "action": "Mate 1 Senhor Cragg.",
+          "routeOrder": 1230705,
+          "memoryTaskId": 23136
+        },
+        {
+          "id": "t23137-1",
+          "title": "Preso no Fogo",
+          "action": "Fale com Senhor Cragg.",
+          "routeOrder": 1230706,
+          "memoryTaskId": 23137
         }
       ]
     }

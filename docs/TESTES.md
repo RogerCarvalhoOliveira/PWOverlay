@@ -70,14 +70,16 @@ Confirme que `dist` contém os dois executáveis, as rotas, o manual e o ZIP.
 
 ## Posição e monitores
 
-Desbloqueie, arraste e fixe o painel. Reinicie e confira a posição. Se houver outro monitor, mova o cliente e verifique que a posição é salva separadamente. Teste também **Restaurar posição**.
+Desbloqueie, segure o botão esquerdo na barra superior e mova o painel. Solte o esquerdo: o painel deve parar imediatamente, sem outro clique. Teste também sobre o nome do personagem, perda de captura e posição bloqueada. Reinicie e confira a posição. Se houver outro monitor, arraste para ele e alterne os clientes: o painel deve continuar na tela escolhida. Teste também **Restaurar posição** e **Acompanhar monitor do PW**.
+
+`scripts/test-overlay-interactions.ps1` executa eventos sintéticos nos controles reais, sem mover o cursor ou enviar entrada ao jogo, usando estado isolado em `work/ui-regression-state`. Verifica arraste mantido, soltura do esquerdo, perda de captura, bloqueio, persistência do monitor e reconhecimento das dez siglas. `node scripts/verify-guardian-routes.mjs` verifica pré-requisitos, limites de aceite, antecipação das entregas e coordenadas dos Guardiões.
 
 ## Seleção, backup e editor
 
 1. Em **Etapas**, salte para uma etapa intermediária, confirme e teste **Voltar**.
 2. Exporte o backup, avance uma etapa e restaure o arquivo; confirme o retorno do progresso.
 3. Em uma cópia de teste, altere texto e nível previsto no editor de rotas, salve e confirme o JSON, a planilha e os arquivos `.bak`.
-4. Confirme que a missão **Aprenda sobre Habilidades de Forja** aparece primeiro no nível previsto 5 para as seis classes.
+4. Confirme **Habilidades Produção**: nível mínimo 5 para WR/MG, WB/WF, EA/EP e MC/ES; nível mínimo 6 para SK/MS, entregue na passagem planejada pelo Ancião Star.
 
 ## Compatibilidade de estado
 
@@ -85,7 +87,7 @@ Faça backup de `%LOCALAPPDATA%\PWQuestOverlay\state.json`, teste com uma cópia
 
 ## Instalador em outro computador
 
-1. Execute `PWQuestOverlay-Setup-v0.7.6.exe` como usuário comum e confirme que não pede elevação.
+1. Execute `PWQuestOverlay-Setup-v0.9.0.exe` como usuário comum e confirme que não pede elevação.
 2. Teste atalhos do menu Iniciar, opções de área de trabalho e inicialização automática.
 3. Confirme que o guia abre ao final e que overlay, rotas e planilha estão no diretório instalado.
 4. Importe um backup, associe um cliente sem sigla e refaça a calibração do marcador.

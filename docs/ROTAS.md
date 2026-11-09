@@ -7,7 +7,7 @@ As rotas ficam em `data/quest_routes.json`. Normalmente o overlay somente lê e 
 | Campo | Uso |
 | --- | --- |
 | `id` | Identificador estável e único usado no progresso salvo. |
-| `routeKey` | Grupo da rota: `WR`, `WBWF`, `EAEP`, `MC` ou `COMMON` para o trecho compartilhado pós-Cidade do Dragão. |
+| `routeKey` | Grupo da rota: `WR` (WR/MG), `WBWF`, `EAEP`, `MC` (MC/ES), `SKMS` (Guardiões) ou `COMMON` para o trecho compartilhado pós-Cidade do Dragão. |
 | `order` | Ordem de exibição dentro da rota. |
 | `classScope` | Classe à qual a missão se aplica. |
 | `minLevel` | Nível mínimo para pegar a missão. |
@@ -51,6 +51,10 @@ As associações revisadas ficam também em `data/quest_objective_bindings.json`
 ## Adicionar uma missão
 
 Crie um `id` que não será reutilizado. Use o mesmo `routeKey` e `classScope` das missões vizinhas e escolha um `order` que mantenha a sequência. Se duas classes compartilharem a missão, use o escopo compartilhado já adotado no grupo.
+
+Escopos aceitos: `WR/MG`, `WB/WF`, `WF`, `EA/EP`, `MC/ES`, `SK/MS`, `SK`, `MS` e `ALL`. Os nomes legados das abas Humanas e Abissais permanecem para compatibilidade com o editor. A quinta aba é `Guardiões - SK-MS`.
+
+Para reconstruir a rota dos Guardiões a partir dos fatos versionados, execute `node scripts/build-guardian-routes.mjs --write`, seguido de `node scripts/verify-guardian-routes.mjs`. O gerador preserva todas as etapas legadas, associa cada submissão ao ID real e reserva intervalos entre ações comuns para os desvios do Místico. Depois sincronize a planilha com `node scripts/sync-route-workbook.mjs --expand-classes --write`. Consulte [guia dos novos roteiros](GUIAS-DEZ-CLASSES.md) para limites e decisões de percurso.
 
 As rotas vão até o nível 60. Depois da chegada à Cidade do Dragão, o repositório combina a rota racial com `COMMON`; apenas missões realmente exclusivas permanecem nas rotas de raça. A ordem global de `COMMON` foi otimizada como um único circuito 20–60, podendo intercalar níveis e deixar cadeias longas abertas até o próximo retorno conveniente. Os desvios raciais usam os intervalos entre ordens comuns e depois reencontram a sequência principal. A orientação automática do nível 5 para falar com o Ancião foi incluída, mas as missões específicas de Ferreiro, Alfaiate, Artesão e Boticário continuam excluídas. Missões de voo também foram removidas e substituídas por uma etapa explícita para abandonar o pop-up.
 

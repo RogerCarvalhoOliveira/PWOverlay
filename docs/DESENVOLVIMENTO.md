@@ -71,6 +71,7 @@ Edite `src/OverlayForm.cs`.
 - `RefreshMissionDisplay`: conteúdo mostrado;
 - `CompleteCurrent`, `SkipCurrent`, `GoBack`: progresso;
 - `FindDefaultPosition`: posição inicial e prevenção de colisão;
+- `AttachDragHandlers` / `FinishDrag`: arraste com captura no controle que recebeu o clique; soltura do esquerdo e perda de captura salvam a posição;
 - `RegisterHotkeys`: atalhos globais.
 
 O código deve continuar compatível com o compilador do .NET Framework. Evite recursos que exijam SDK moderno sem atualizar também o processo de build.
@@ -85,6 +86,8 @@ Os padrões ficam no início de `OverlayForm.cs`:
 Não procure a sigla como substring livre. Um nome como `Wrex` não deve ser identificado como `WR`.
 
 Sempre mantenha o fallback manual.
+
+As dez siglas devem permanecer alinhadas nos dois padrões, no menu rápido, em `IsValidClass`, na tabela de Perfis e em `RouteRepository.GetForClass`. O teste `scripts/test-overlay-interactions.ps1` verifica os padrões e a aceitação manual para todas elas, além dos eventos reais dos controles de arraste com estado isolado. O roteiro dos novos guias está em `GUIAS-DEZ-CLASSES.md`.
 
 O gerenciador `OpenProfileManager` lista títulos atuais e associações salvas. A preferência é persistida em `AppState.ClassAssociations`; a chave é o título completo após `NormalizeWindowTitle`.
 

@@ -1,0 +1,6966 @@
+{
+  "source": "Cliente local The Classic: tasks.data v124, elements.data v145 e configs/coord_data.txt. Somente fatos das tarefas selecionadas; nenhum binário do jogo.",
+  "coordinateSha256": "051784867482c9897bbe50280ae874513eb13794f9d55a635f68dfcc95caafa3",
+  "coordinateConversion": "X=round(worldX/10+400); Y=round(worldZ/10+550); somente mapa world. Marcador de monstro/recurso indica um ponto de ocorrência.",
+  "playerXpByLevel": {
+    "exp_1": 55,
+    "exp_2": 220,
+    "exp_3": 495,
+    "exp_4": 880,
+    "exp_5": 1400,
+    "exp_6": 2010,
+    "exp_7": 2765,
+    "exp_8": 3640,
+    "exp_9": 4635,
+    "exp_10": 5750,
+    "exp_11": 7040,
+    "exp_12": 8400,
+    "exp_13": 9945,
+    "exp_14": 11620,
+    "exp_15": 13500,
+    "exp_16": 15440,
+    "exp_17": 17595,
+    "exp_18": 19890,
+    "exp_19": 22325,
+    "exp_20": 25000,
+    "exp_21": 27825,
+    "exp_22": 30800,
+    "exp_23": 34040,
+    "exp_24": 37440,
+    "exp_25": 41125,
+    "exp_26": 44980,
+    "exp_27": 49140,
+    "exp_28": 53480,
+    "exp_29": 58000,
+    "exp_30": 63000,
+    "exp_31": 68045,
+    "exp_32": 73600,
+    "exp_33": 79365,
+    "exp_34": 85510,
+    "exp_35": 92050,
+    "exp_36": 99000,
+    "exp_37": 106190,
+    "exp_38": 113810,
+    "exp_39": 122070,
+    "exp_40": 130600,
+    "exp_41": 139810,
+    "exp_42": 149520,
+    "exp_43": 159745,
+    "exp_44": 170720,
+    "exp_45": 182250,
+    "exp_46": 194350,
+    "exp_47": 207270,
+    "exp_48": 221040,
+    "exp_49": 235445,
+    "exp_50": 250750,
+    "exp_51": 267240,
+    "exp_52": 284440,
+    "exp_53": 302895,
+    "exp_54": 322380,
+    "exp_55": 343200,
+    "exp_56": 365120,
+    "exp_57": 388455,
+    "exp_58": 413540,
+    "exp_59": 439845,
+    "exp_60": 468000,
+    "exp_61": 514186,
+    "exp_62": 564426,
+    "exp_63": 618633,
+    "exp_64": 677751,
+    "exp_65": 742105,
+    "exp_66": 811633,
+    "exp_67": 887040,
+    "exp_68": 968679,
+    "exp_69": 1057360,
+    "exp_70": 1153044,
+    "exp_71": 1257081,
+    "exp_72": 1437950,
+    "exp_73": 1640333,
+    "exp_74": 1866865,
+    "exp_75": 2119163,
+    "exp_76": 2400221,
+    "exp_77": 2712606,
+    "exp_78": 3060712,
+    "exp_79": 3446869,
+    "exp_80": 3875270,
+    "exp_81": 4350544,
+    "exp_82": 4876697,
+    "exp_83": 5457952,
+    "exp_84": 6102480,
+    "exp_85": 6813012,
+    "exp_86": 7598918,
+    "exp_87": 8464893,
+    "exp_88": 9418742,
+    "exp_89": 10470584,
+    "exp_90": 11688300,
+    "exp_91": 13394199,
+    "exp_92": 14933072,
+    "exp_93": 16613613,
+    "exp_94": 18447312,
+    "exp_95": 20448750,
+    "exp_96": 22631232,
+    "exp_97": 25006212,
+    "exp_98": 27596408,
+    "exp_99": 30412503,
+    "exp_100": 66954000,
+    "exp_101": 267816000,
+    "exp_102": 535632000,
+    "exp_103": 1339080000,
+    "exp_104": 1750000000,
+    "exp_105": 1750000000,
+    "exp_106": 1750000000,
+    "exp_107": 1750000000,
+    "exp_108": 1750000000,
+    "exp_109": 1750000000,
+    "exp_110": 1750000000,
+    "exp_111": 1750000000,
+    "exp_112": 1750000000,
+    "exp_113": 1750000000,
+    "exp_114": 1750000000,
+    "exp_115": 1750000000,
+    "exp_116": 1750000000,
+    "exp_117": 1750000000,
+    "exp_118": 1750000000,
+    "exp_119": 1750000000,
+    "exp_120": 1750000000,
+    "exp_121": 1750000000,
+    "exp_122": 1750000000,
+    "exp_123": 1750000000,
+    "exp_124": 1750000000,
+    "exp_125": 1750000000,
+    "exp_126": 1750000000,
+    "exp_127": 1750000000,
+    "exp_128": 1750000000,
+    "exp_129": 1750000000,
+    "exp_130": 1750000000,
+    "exp_131": 1750000000,
+    "exp_132": 1750000000,
+    "exp_133": 1750000000,
+    "exp_134": 1750000000,
+    "exp_135": 1750000000,
+    "exp_136": 1750000000,
+    "exp_137": 1750000000,
+    "exp_138": 1750000000,
+    "exp_139": 1750000000,
+    "exp_140": 1750000000,
+    "exp_141": 1750000000,
+    "exp_142": 1750000000,
+    "exp_143": 1750000000,
+    "exp_144": 1750000000,
+    "exp_145": 1750000000,
+    "exp_146": 1750000000,
+    "exp_147": 1750000000,
+    "exp_148": 1750000000,
+    "exp_149": 1750000000,
+    "exp_150": 1750000000
+  },
+  "tasks": [
+    {
+      "id": 22507,
+      "name": "Despertar Violento",
+      "description": "As palavras do instrutor deixam claro que ele conhece o propósito desse renascimento tanto quanto você. Por enquanto, há problemas mais urgentes a serem resolvidos. Encontre-se com a Sacerdotisa da Alma para saber o que pode fazer para ajudar a deixar a área mais segura.",
+      "minLevel": 1,
+      "maxLevel": 5,
+      "occupations": [
+        8
+      ],
+      "prerequisites": [],
+      "method": 3,
+      "finishType": 1,
+      "npc": 29074,
+      "awardNpc": 29083,
+      "automatic": false,
+      "ordered": false,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 78,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [
+        8617
+      ],
+      "monsters": [],
+      "items": [],
+      "children": []
+    },
+    {
+      "id": 22508,
+      "name": "Visitando Sacerdotisa",
+      "description": "Como parte da Guarda da Terra, você deve se preparar para defender esse mundo contra a ameaça que logo irá mostrar sua cara. Primeiro, entregue o cartão de identificação que comprova sua identidade para a Sacerdotisa da Mente. (A Sacerdotisa da Mente pode ser encontrada perto da lateral esquerda da Torre da Cachoeira.)",
+      "minLevel": 1,
+      "maxLevel": 10,
+      "occupations": [
+        8
+      ],
+      "prerequisites": [
+        22507
+      ],
+      "method": 2,
+      "finishType": 1,
+      "npc": 29083,
+      "awardNpc": 29086,
+      "automatic": false,
+      "ordered": false,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 96,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [
+        {
+          "id": 29436,
+          "count": 1
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": 22509,
+      "name": "Sacerdotisa da Mente",
+      "description": "De acordo com a Sacerdotisa da Mente, a Guarda da Terra foi criada para lutar contra as forças corruptas de Magann. É seu dever unir as outras raças e garantir a sobrevivência desse mundo.",
+      "minLevel": 2,
+      "maxLevel": 5,
+      "occupations": [
+        8
+      ],
+      "prerequisites": [],
+      "method": 5,
+      "finishType": 0,
+      "npc": 29086,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": false,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 306,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [
+        28843
+      ],
+      "monsters": [],
+      "items": [],
+      "children": []
+    },
+    {
+      "id": 22510,
+      "name": "O Primeiro Teste",
+      "description": "Precisamos limpar as áreas ao redor do Torre do Despertar. Mate 8 Lêmures de Pata Azul e depois fale com a Sacerdotisa da Mente.",
+      "minLevel": 2,
+      "maxLevel": 5,
+      "occupations": [
+        8
+      ],
+      "prerequisites": [
+        22509
+      ],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29086,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 318,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 22591,
+          "name": "Lêmure de Pata Azul",
+          "description": "Mate 8 Lêmures de Pata Azul ao sudoeste do Torre do Despertar.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 1,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [
+            {
+              "id": 28853,
+              "count": 8,
+              "item": 0,
+              "itemCount": 0,
+              "commonItem": false
+            }
+          ],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 22592,
+          "name": "Relatar",
+          "description": "Você matou Lêmures de Pata Azul suficientes. Volte a falar com a Sacerdotisa da Mente.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29086,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 22511,
+      "name": "Reforços",
+      "description": "Os monstros estão quase preparados para eliminar a Guarda da Terra no Torre do Despertar. Devemos fazer contato com a Cidade de Tellus, rapidamente, ou abandonar essa posição. Primeiro, encontre o mensageiro enviado para fazer contato com a Cidade de Tellus e descubra o que aconteceu com ele.",
+      "minLevel": 3,
+      "maxLevel": 7,
+      "occupations": [
+        8
+      ],
+      "prerequisites": [],
+      "method": 3,
+      "finishType": 1,
+      "npc": 29086,
+      "awardNpc": 29402,
+      "automatic": false,
+      "ordered": false,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 702,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": []
+    },
+    {
+      "id": 22512,
+      "name": "Emblema Quebrado",
+      "description": "O espadachim Connor precisa de alguém para recuperar os pedaços do Emblema Quebrado, para que possa consertar o Altar da Pedra da Lua. Ajude-o a eliminar as Dríades Intrigadas e recupere 8 pedaços do Emblema Quebrado .",
+      "minLevel": 3,
+      "maxLevel": 7,
+      "occupations": [
+        8
+      ],
+      "prerequisites": [],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29402,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 702,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 22593,
+          "name": "Dríade Intrigada",
+          "description": "Mate as Dríades Intrigadas das redondezas e recupere 8 Emblemas Quebrados. Leve os emblemas para o Espadachim Connor.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 1,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29402,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [
+            {
+              "id": 28871,
+              "count": 0,
+              "item": 29438,
+              "itemCount": 8,
+              "commonItem": false
+            }
+          ],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 22594,
+          "name": "Relatar",
+          "description": "Com todas as Partes do Emblema Quebrado já devolvidas, fale com o Espadachim Connor para ver o que mais você pode fazer para ajudar.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29402,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [
+            29438
+          ],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 22595,
+          "name": "Restauradora Yua",
+          "description": "Leve os Emblemas Quebrados para a Bibliotecária Yua no Torre do Despertar.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 2,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29089,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [
+            29438
+          ],
+          "monsters": [],
+          "items": [
+            {
+              "id": 29438,
+              "count": 1
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 22513,
+      "name": "Emblema Altar da Idade",
+      "description": "Aparentemente, o Altar da Idade sofreu mais danos do que imaginamos. Espere pela avaliação de Yua, a restauradora de peças antigas.",
+      "minLevel": 3,
+      "maxLevel": 8,
+      "occupations": [
+        8
+      ],
+      "prerequisites": [
+        22512
+      ],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29089,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": false,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 1305,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 22908,
+          "name": "Quebrado e Roubado",
+          "description": "Espere pela avaliação de Yua, a restauradora de peças antigas.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 5,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29089,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 22909,
+          "name": "Vidente do Vazio",
+          "description": "Enquanto espera pela avaliação da Bibliotecária Yua, visite o Vidente do Vazio na Torre da Cachoeira.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29403,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 22514,
+      "name": "Preparativos",
+      "description": "Fale com todos os artesãos ao redor da base do Torre do Despertar para ganhar seus presentes.",
+      "minLevel": 4,
+      "maxLevel": 15,
+      "occupations": [
+        8
+      ],
+      "prerequisites": [],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29403,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 1308,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 22555,
+          "name": "Elogios",
+          "description": "Fale com alguém para receber presentes.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 0,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": [
+            {
+              "id": 22557,
+              "name": "Visite o Ferreiro",
+              "description": "Fale com o Ferreiro Gink.",
+              "minLevel": 0,
+              "maxLevel": 0,
+              "occupations": [],
+              "prerequisites": [],
+              "method": 3,
+              "finishType": 1,
+              "npc": 0,
+              "awardNpc": 29092,
+              "automatic": false,
+              "ordered": false,
+              "chooseOne": false,
+              "parentSuccess": false,
+              "randomOne": false,
+              "xp": 0,
+              "reputation": 0,
+              "newTask": 0,
+              "skill": 0,
+              "rewardItems": [
+                28771
+              ],
+              "monsters": [],
+              "items": [],
+              "children": []
+            },
+            {
+              "id": 22558,
+              "name": "Visite o Alfaiate",
+              "description": "Fale com o Alfaiate Marin.",
+              "minLevel": 0,
+              "maxLevel": 0,
+              "occupations": [],
+              "prerequisites": [],
+              "method": 3,
+              "finishType": 1,
+              "npc": 0,
+              "awardNpc": 29095,
+              "automatic": false,
+              "ordered": false,
+              "chooseOne": false,
+              "parentSuccess": false,
+              "randomOne": false,
+              "xp": 0,
+              "reputation": 0,
+              "newTask": 0,
+              "skill": 0,
+              "rewardItems": [
+                28831
+              ],
+              "monsters": [],
+              "items": [],
+              "children": []
+            },
+            {
+              "id": 22559,
+              "name": "Visite o Artesão",
+              "description": "Fale com a Artesã Yara.",
+              "minLevel": 0,
+              "maxLevel": 0,
+              "occupations": [],
+              "prerequisites": [],
+              "method": 3,
+              "finishType": 1,
+              "npc": 0,
+              "awardNpc": 29098,
+              "automatic": false,
+              "ordered": false,
+              "chooseOne": false,
+              "parentSuccess": false,
+              "randomOne": false,
+              "xp": 0,
+              "reputation": 0,
+              "newTask": 0,
+              "skill": 0,
+              "rewardItems": [
+                28782
+              ],
+              "monsters": [],
+              "items": [],
+              "children": []
+            },
+            {
+              "id": 22560,
+              "name": "Visite o Boticário",
+              "description": "Fale com o Boticário Theo.",
+              "minLevel": 0,
+              "maxLevel": 0,
+              "occupations": [],
+              "prerequisites": [],
+              "method": 3,
+              "finishType": 1,
+              "npc": 0,
+              "awardNpc": 29104,
+              "automatic": false,
+              "ordered": false,
+              "chooseOne": false,
+              "parentSuccess": false,
+              "randomOne": false,
+              "xp": 0,
+              "reputation": 0,
+              "newTask": 0,
+              "skill": 0,
+              "rewardItems": [
+                28804
+              ],
+              "monsters": [],
+              "items": [],
+              "children": []
+            },
+            {
+              "id": 22561,
+              "name": "Visite o Negociante",
+              "description": "Fale com o Comerciante Qing TianComerciante Qing Tian.",
+              "minLevel": 0,
+              "maxLevel": 0,
+              "occupations": [],
+              "prerequisites": [],
+              "method": 3,
+              "finishType": 1,
+              "npc": 0,
+              "awardNpc": 29101,
+              "automatic": false,
+              "ordered": false,
+              "chooseOne": false,
+              "parentSuccess": false,
+              "randomOne": false,
+              "xp": 0,
+              "reputation": 0,
+              "newTask": 0,
+              "skill": 0,
+              "rewardItems": [
+                28795
+              ],
+              "monsters": [],
+              "items": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": 22596,
+          "name": "Fale com o Vidente do Vazio",
+          "description": "Volte a falar com o Vidente do Vazio.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29403,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [
+            3366
+          ],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 22515,
+      "name": "do Altar a Cidade",
+      "description": "Para ser teletransportado à Cidade de Tellus, encontre-se com o Espadachim Connor. Ele vai ajudar você a coletar as três ferramentas e ensinar a usar o Altar da Pedra da Lua.",
+      "minLevel": 4,
+      "maxLevel": 10,
+      "occupations": [
+        8
+      ],
+      "prerequisites": [
+        22514
+      ],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29403,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 2649,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 22910,
+          "name": "G. Arcano Connor",
+          "description": "Encontre o Espadachim Connor e prepare-se para teletransportar-se para a Cidade de Tellus.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29402,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [
+            29454
+          ],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 22601,
+          "name": "Conseguindo Ajuda",
+          "description": "Mate uma Borboleta Púrpura para obter um Estandarte da Sabedoria e mate um Lêmure de Cauda Verde para conseguir uma Etiqueta da Sabedoria.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 1,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29402,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [
+            {
+              "id": 28886,
+              "count": 0,
+              "item": 29439,
+              "itemCount": 1,
+              "commonItem": false
+            },
+            {
+              "id": 28892,
+              "count": 0,
+              "item": 29440,
+              "itemCount": 1,
+              "commonItem": false
+            }
+          ],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 22516,
+          "name": "Altar da Pedra da Lua",
+          "description": "Percorra o vale até o Altar da Pedra da Lua.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 0,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": [
+            {
+              "id": 22600,
+              "name": "Altar da Idade",
+              "description": "Vá até o Altar da Pedra da Lua e use a ferramenta para ativar a função de teletransporte.",
+              "minLevel": 0,
+              "maxLevel": 0,
+              "occupations": [],
+              "prerequisites": [],
+              "method": 4,
+              "finishType": 0,
+              "npc": 0,
+              "awardNpc": 0,
+              "automatic": false,
+              "ordered": false,
+              "chooseOne": false,
+              "parentSuccess": true,
+              "randomOne": false,
+              "xp": 0,
+              "reputation": 0,
+              "newTask": 0,
+              "skill": 0,
+              "rewardItems": [],
+              "monsters": [],
+              "items": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": 22518,
+          "name": "Correndo Perigo",
+          "description": "Fale com o ancião Star e conte o que aconteceu no Torre do Despertar.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29142,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 22520,
+      "name": "Despertar Violento",
+      "description": "Seu guia, que o trouxe do Vazio, tem muita sabedoria para compartilhar. Essa estrada não será fácil ou rápida, mas o mundo precisa de você, mais do que nunca. O Sacerdote de Mente, nos degraus da torre, poderá lhe dizer mais.",
+      "minLevel": 1,
+      "maxLevel": 5,
+      "occupations": [
+        9
+      ],
+      "prerequisites": [],
+      "method": 3,
+      "finishType": 1,
+      "npc": 29077,
+      "awardNpc": 29086,
+      "automatic": false,
+      "ordered": false,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 78,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [
+        8647
+      ],
+      "monsters": [],
+      "items": [],
+      "children": []
+    },
+    {
+      "id": 22521,
+      "name": "Através do Vazio",
+      "description": "Sua jornada através do Vazio foi tumultuada, mas você parece ter caído em terra firme. Mas se quer respostas às suas perguntas, leve a placa de identificação que prova sua identidade para o Espírito das Chamas. Ele poderá lhe dar mais instruções. (O Espírito das Chamas pode ser encontrado ao leste da Torre do Despertar.)",
+      "minLevel": 1,
+      "maxLevel": 10,
+      "occupations": [
+        9
+      ],
+      "prerequisites": [
+        22520
+      ],
+      "method": 3,
+      "finishType": 1,
+      "npc": 29086,
+      "awardNpc": 29083,
+      "automatic": false,
+      "ordered": false,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 96,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": []
+    },
+    {
+      "id": 22522,
+      "name": "Dever e Sacrifício",
+      "description": "De acordo com a Sacerdotisa da Mente, a Guarda da Terra foi criada para lutar contra as forças corruptas de Magann. É seu dever unir as outras raças e garantir a sobrevivência desse mundo.",
+      "minLevel": 2,
+      "maxLevel": 5,
+      "occupations": [
+        9
+      ],
+      "prerequisites": [],
+      "method": 5,
+      "finishType": 0,
+      "npc": 29083,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": false,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 306,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [
+        28839
+      ],
+      "monsters": [],
+      "items": [],
+      "children": []
+    },
+    {
+      "id": 22523,
+      "name": "O Primeiro Teste",
+      "description": "Milhares de monstros apareceram próximo ao Torre do Despertar. Eles estão saqueando a terra e tentando entrar na torre. A Sacerdotisa da Alma pediu para você matar 4 Nymphalids de Asa Vermelha e 4 Lêmures de Pata Azul. Quanto terminar, volte a falar com ela.",
+      "minLevel": 2,
+      "maxLevel": 5,
+      "occupations": [
+        9
+      ],
+      "prerequisites": [
+        22522
+      ],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29083,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 318,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 22609,
+          "name": "Interrompendo a Maré",
+          "description": "Mate 4 Nymphalids de Asa Vermelha e 4 Lêmures de Pata Azul.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 1,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [
+            {
+              "id": 28897,
+              "count": 4,
+              "item": 0,
+              "itemCount": 0,
+              "commonItem": false
+            },
+            {
+              "id": 28853,
+              "count": 4,
+              "item": 0,
+              "itemCount": 0,
+              "commonItem": false
+            }
+          ],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 22610,
+          "name": "Retorno",
+          "description": "Fale com a Sacerdotisa da Alma.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29083,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 22524,
+      "name": "O Cristal Danificado",
+      "description": "Há alguns dias, os monstros que cercavam o Torre do Despertar conseguiram entrar e danificar a relíquia da Cidade de Tellus: o Cristal de Lothran. Procure pela Guerreira Mairead ao norte do Torre do Despertar e descubra se ela pode restaurar o Cristal de Lothran.",
+      "minLevel": 3,
+      "maxLevel": 7,
+      "occupations": [
+        9
+      ],
+      "prerequisites": [],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29083,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 702,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 22623,
+          "name": "A Caçada",
+          "description": "Encontre a Guerreira Mairead na Fissura, ao norte do Pináculo do Despertar. Ela pode saber como reparar o Cristal de Lothran.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29456,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 22624,
+          "name": "Material do Cristal",
+          "description": "Colete 4 Seivas de Árvore Maligna das Dríades Intrigadas e 4 Depósitos de Cristal das Borboletas Púrpuras e volte a falar com a Guerreira Mairead.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 1,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [
+            {
+              "id": 28886,
+              "count": 0,
+              "item": 29442,
+              "itemCount": 4,
+              "commonItem": false
+            },
+            {
+              "id": 28871,
+              "count": 0,
+              "item": 29443,
+              "itemCount": 4,
+              "commonItem": false
+            }
+          ],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 22625,
+          "name": "Colete Material",
+          "description": "Leve os materiais para a Guerreira Mairead.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29456,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 22525,
+      "name": "Reparando o Cristal",
+      "description": "Leve os materiais de reparo para a Restauradora de Peças Antigas no Torre do Despertar. Peça a ela que o ajude a consertar o Cristal de Lothran.",
+      "minLevel": 3,
+      "maxLevel": 7,
+      "occupations": [
+        9
+      ],
+      "prerequisites": [
+        22524
+      ],
+      "method": 2,
+      "finishType": 1,
+      "npc": 29456,
+      "awardNpc": 29089,
+      "automatic": false,
+      "ordered": false,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 702,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [
+        {
+          "id": 29442,
+          "count": 4
+        },
+        {
+          "id": 29443,
+          "count": 4
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": 22526,
+      "name": "Vínculos de Fort.",
+      "description": "A mágica dos materiais deve ser fortalecida antes do Cristal de Lothran poder ser restaurado. Colete uma Pedra da Alma Descansada e uma Planta de Procriação da Alma na área que cerca o Torre do Despertar.",
+      "minLevel": 3,
+      "maxLevel": 8,
+      "occupations": [
+        9
+      ],
+      "prerequisites": [
+        22525
+      ],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29089,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 1305,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 22893,
+          "name": "Força Interna",
+          "description": "Use o poder que recebeu de Thrahn pra aumentar a mágica dos materiais.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 0,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": [
+            {
+              "id": 22912,
+              "name": "Cristal Mágico",
+              "description": "Colete uma Pedra de Alma Descansada perto do Torre do Despertar e adicione seu poder à magia dos Depósitos de Cristais. Quando tiver terminado, entregue-a para a Bibliotecária Yua.",
+              "minLevel": 0,
+              "maxLevel": 0,
+              "occupations": [],
+              "prerequisites": [],
+              "method": 2,
+              "finishType": 1,
+              "npc": 0,
+              "awardNpc": 29089,
+              "automatic": false,
+              "ordered": false,
+              "chooseOne": false,
+              "parentSuccess": false,
+              "randomOne": false,
+              "xp": 0,
+              "reputation": 0,
+              "newTask": 0,
+              "skill": 0,
+              "rewardItems": [],
+              "monsters": [],
+              "items": [
+                {
+                  "id": 29460,
+                  "count": 1
+                }
+              ],
+              "children": []
+            },
+            {
+              "id": 22913,
+              "name": "Planta Mágica",
+              "description": "Colete uma Pedra de Procriação da Alma perto do Torre do Despertar e adicione seu poder à magia da Seiva de Árvore Maligna. Quando tiver terminado, entregue-a para a Bibliotecária Yua.",
+              "minLevel": 0,
+              "maxLevel": 0,
+              "occupations": [],
+              "prerequisites": [],
+              "method": 2,
+              "finishType": 1,
+              "npc": 0,
+              "awardNpc": 29089,
+              "automatic": false,
+              "ordered": false,
+              "chooseOne": false,
+              "parentSuccess": false,
+              "randomOne": false,
+              "xp": 0,
+              "reputation": 0,
+              "newTask": 0,
+              "skill": 0,
+              "rewardItems": [],
+              "monsters": [],
+              "items": [
+                {
+                  "id": 29461,
+                  "count": 1
+                }
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": 22895,
+          "name": "Restauradora Yua",
+          "description": "",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29089,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [
+            29441
+          ],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 22911,
+          "name": "Mestra do Torre do Despertar",
+          "description": "Conheça a Vidente do Vazio. Ela está no topo das escadarias do lado oeste do Torre do Despertar.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 2,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29403,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [
+            {
+              "id": 29441,
+              "count": 1
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 22527,
+      "name": "Elogios",
+      "description": "Fale com todos os artesãos ao redor da base do Torre do Despertar para ganhar seus presentes.",
+      "minLevel": 4,
+      "maxLevel": 15,
+      "occupations": [
+        9
+      ],
+      "prerequisites": [],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29403,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 1308,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 22896,
+          "name": "Elogios",
+          "description": "Fale com alguém para receber presentes.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 0,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": [
+            {
+              "id": 22897,
+              "name": "Visite o Ferreiro",
+              "description": "Fale com o Ferreiro Gink.",
+              "minLevel": 0,
+              "maxLevel": 0,
+              "occupations": [],
+              "prerequisites": [],
+              "method": 3,
+              "finishType": 1,
+              "npc": 0,
+              "awardNpc": 29092,
+              "automatic": false,
+              "ordered": false,
+              "chooseOne": false,
+              "parentSuccess": false,
+              "randomOne": false,
+              "xp": 0,
+              "reputation": 0,
+              "newTask": 0,
+              "skill": 0,
+              "rewardItems": [
+                28768
+              ],
+              "monsters": [],
+              "items": [],
+              "children": []
+            },
+            {
+              "id": 22898,
+              "name": "Visite o Alfaiate",
+              "description": "Fale com o Alfaiate Marin.",
+              "minLevel": 0,
+              "maxLevel": 0,
+              "occupations": [],
+              "prerequisites": [],
+              "method": 3,
+              "finishType": 1,
+              "npc": 0,
+              "awardNpc": 29095,
+              "automatic": false,
+              "ordered": false,
+              "chooseOne": false,
+              "parentSuccess": false,
+              "randomOne": false,
+              "xp": 0,
+              "reputation": 0,
+              "newTask": 0,
+              "skill": 0,
+              "rewardItems": [
+                28822
+              ],
+              "monsters": [],
+              "items": [],
+              "children": []
+            },
+            {
+              "id": 22899,
+              "name": "Visite o Artesão",
+              "description": "Fale com a Artesã Yara.",
+              "minLevel": 0,
+              "maxLevel": 0,
+              "occupations": [],
+              "prerequisites": [],
+              "method": 3,
+              "finishType": 1,
+              "npc": 0,
+              "awardNpc": 29098,
+              "automatic": false,
+              "ordered": false,
+              "chooseOne": false,
+              "parentSuccess": false,
+              "randomOne": false,
+              "xp": 0,
+              "reputation": 0,
+              "newTask": 0,
+              "skill": 0,
+              "rewardItems": [
+                28774
+              ],
+              "monsters": [],
+              "items": [],
+              "children": []
+            },
+            {
+              "id": 22900,
+              "name": "Visite o Boticário",
+              "description": "Fale com o Boticário Theo.",
+              "minLevel": 0,
+              "maxLevel": 0,
+              "occupations": [],
+              "prerequisites": [],
+              "method": 3,
+              "finishType": 1,
+              "npc": 0,
+              "awardNpc": 29104,
+              "automatic": false,
+              "ordered": false,
+              "chooseOne": false,
+              "parentSuccess": false,
+              "randomOne": false,
+              "xp": 0,
+              "reputation": 0,
+              "newTask": 0,
+              "skill": 0,
+              "rewardItems": [
+                28800
+              ],
+              "monsters": [],
+              "items": [],
+              "children": []
+            },
+            {
+              "id": 22901,
+              "name": "Visite o Negociante",
+              "description": "Fale com o Comerciante Qing TianComerciante Qing Tian.",
+              "minLevel": 0,
+              "maxLevel": 0,
+              "occupations": [],
+              "prerequisites": [],
+              "method": 3,
+              "finishType": 1,
+              "npc": 0,
+              "awardNpc": 29101,
+              "automatic": false,
+              "ordered": false,
+              "chooseOne": false,
+              "parentSuccess": false,
+              "randomOne": false,
+              "xp": 0,
+              "reputation": 0,
+              "newTask": 0,
+              "skill": 0,
+              "rewardItems": [
+                28791
+              ],
+              "monsters": [],
+              "items": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": 22902,
+          "name": "Fale com o Vidente do Vazio",
+          "description": "Volte a falar com o Vidente do Vazio.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29403,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [
+            3366
+          ],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 22528,
+      "name": "O Altar Negro",
+      "description": "Fale com a Guerreira Mairead sobre o Altar do Sol.",
+      "minLevel": 4,
+      "maxLevel": 150,
+      "occupations": [
+        9
+      ],
+      "prerequisites": [
+        22527
+      ],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29403,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 2649,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 22903,
+          "name": "De Partida",
+          "description": "O Guerreiro Mooh tem os detalhes de sua próxima tarefa.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 2,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29456,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [
+            29441
+          ],
+          "monsters": [],
+          "items": [
+            {
+              "id": 29441,
+              "count": 1
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": 22905,
+          "name": "Causando Boa Impressão",
+          "description": "Mate 4 Marionetes de Pedra e 4 Lêmures do Vale para abrir caminho até o Altar Negro.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 1,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [
+            {
+              "id": 28894,
+              "count": 4,
+              "item": 0,
+              "itemCount": 0,
+              "commonItem": false
+            },
+            {
+              "id": 28865,
+              "count": 4,
+              "item": 0,
+              "itemCount": 0,
+              "commonItem": false
+            }
+          ],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 22906,
+          "name": "Dicas:",
+          "description": "",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 22907,
+          "name": "O Altar Negro",
+          "description": "Fique sobre o Altar do Sol com o Cristal de Lothran em sua mão. Seu poder vai levar você à Cidade de Tellus. Boa sorte.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 23757,
+      "name": "Maestria de Habilidades",
+      "description": "Agora, você pode aprender novas habilidades. Visite o Mestre de Habilidades, no Torre do Despertar, para aprender mais.",
+      "minLevel": 3,
+      "maxLevel": 12,
+      "occupations": [
+        8,
+        9
+      ],
+      "prerequisites": [],
+      "method": 0,
+      "finishType": 0,
+      "npc": 0,
+      "awardNpc": 0,
+      "automatic": true,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 300,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23758,
+          "name": "Aviso",
+          "description": "",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23759,
+          "name": "Torre do Despertar",
+          "description": "Encontre o Mestre de Habilidades ao sudeste do Torre do Despertar.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 0,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": [
+            {
+              "id": 23760,
+              "name": "Treinador de Arcanos",
+              "description": "Fale com o Treinador de Arcanos para aprender novas habilidades.",
+              "minLevel": 0,
+              "maxLevel": 0,
+              "occupations": [],
+              "prerequisites": [],
+              "method": 3,
+              "finishType": 1,
+              "npc": 0,
+              "awardNpc": 29398,
+              "automatic": false,
+              "ordered": false,
+              "chooseOne": false,
+              "parentSuccess": false,
+              "randomOne": false,
+              "xp": 0,
+              "reputation": 0,
+              "newTask": 0,
+              "skill": 0,
+              "rewardItems": [],
+              "monsters": [],
+              "items": [],
+              "children": []
+            },
+            {
+              "id": 23761,
+              "name": "Treinador de Místicos",
+              "description": "Fale com o Treinador de Místicos para aprender novas habilidades.",
+              "minLevel": 0,
+              "maxLevel": 0,
+              "occupations": [],
+              "prerequisites": [],
+              "method": 3,
+              "finishType": 1,
+              "npc": 0,
+              "awardNpc": 29399,
+              "automatic": false,
+              "ordered": false,
+              "chooseOne": false,
+              "parentSuccess": false,
+              "randomOne": false,
+              "xp": 0,
+              "reputation": 0,
+              "newTask": 0,
+              "skill": 0,
+              "rewardItems": [],
+              "monsters": [],
+              "items": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 22988,
+      "name": "Visitando o Ancião",
+      "description": "Vá até a Cidade de Tellus. Relate a situação do Torre do Despertar ao ancião Star. Ele está esperando você na sala de reuniões.",
+      "minLevel": 4,
+      "maxLevel": 0,
+      "occupations": [
+        8,
+        9
+      ],
+      "prerequisites": [],
+      "method": 3,
+      "finishType": 1,
+      "npc": 0,
+      "awardNpc": 29142,
+      "automatic": false,
+      "ordered": false,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 2796,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": []
+    },
+    {
+      "id": 22530,
+      "name": "A Reunião",
+      "description": "O ancião Star pediu que você relatasse a situação do Templo dos Despertos para o Ritualista Septus e Beckenast, o Primeiro Mago, também.",
+      "minLevel": 5,
+      "maxLevel": 11,
+      "occupations": [
+        8,
+        9
+      ],
+      "prerequisites": [],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29142,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 2910,
+      "reputation": 2,
+      "newTask": 22531,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23041,
+          "name": "Fale com os Patriarcas",
+          "description": "Relate a situação ao redor do Torre do Despertar para o Ritualista Septus e Beckenast, o Primeiro Mago.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 0,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": [
+            {
+              "id": 23043,
+              "name": "Beckenast, o Primeiro Mago",
+              "description": "Encontre Beckenast, o Primeiro Mago e pergunte-lhe o que fazer a seguir.",
+              "minLevel": 0,
+              "maxLevel": 0,
+              "occupations": [],
+              "prerequisites": [],
+              "method": 3,
+              "finishType": 1,
+              "npc": 0,
+              "awardNpc": 29139,
+              "automatic": false,
+              "ordered": false,
+              "chooseOne": false,
+              "parentSuccess": false,
+              "randomOne": false,
+              "xp": 0,
+              "reputation": 0,
+              "newTask": 0,
+              "skill": 0,
+              "rewardItems": [],
+              "monsters": [],
+              "items": [],
+              "children": []
+            },
+            {
+              "id": 23044,
+              "name": "Ritualista Septus",
+              "description": "Encontre o Ritualista Septus e pergunte a ele o que fazer a seguir.",
+              "minLevel": 0,
+              "maxLevel": 0,
+              "occupations": [],
+              "prerequisites": [],
+              "method": 3,
+              "finishType": 1,
+              "npc": 0,
+              "awardNpc": 29141,
+              "automatic": false,
+              "ordered": false,
+              "chooseOne": false,
+              "parentSuccess": false,
+              "randomOne": false,
+              "xp": 0,
+              "reputation": 0,
+              "newTask": 0,
+              "skill": 0,
+              "rewardItems": [],
+              "monsters": [],
+              "items": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": 23042,
+          "name": "Volte a Falar com Ancião Star",
+          "description": "Conte ao ancião Star o que você e os dois patriarcas descobriram.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29142,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 22542,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 22531,
+      "name": "Uma Solução Simples",
+      "description": "Depois que você tiver voltado para A Fenda, passe adiante o que aprendeu com o Vidente do Vazio.",
+      "minLevel": 5,
+      "maxLevel": 150,
+      "occupations": [
+        8,
+        9
+      ],
+      "prerequisites": [],
+      "method": 3,
+      "finishType": 1,
+      "npc": 0,
+      "awardNpc": 29403,
+      "automatic": false,
+      "ordered": false,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 1962,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": []
+    },
+    {
+      "id": 22450,
+      "name": "Habilidades Produção",
+      "description": "Aprenda as Habilidades de Produção com o Ancião Star",
+      "minLevel": 6,
+      "maxLevel": 150,
+      "occupations": [
+        8,
+        9
+      ],
+      "prerequisites": [],
+      "method": 0,
+      "finishType": 0,
+      "npc": 0,
+      "awardNpc": 0,
+      "automatic": true,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 22463,
+          "name": "Hab. de Produção",
+          "description": "",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 22464,
+          "name": "Visitando o Ancião",
+          "description": "Aprenda as Habilidades de Produção com o Ancião Star",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29142,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": true,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 22532,
+      "name": "Olhos T. dos Despertos",
+      "description": "Descubra o que aconteceu com a Espadachim Jasmine para o Vidente do Vazio. Você terá que matar os Estiletes Possuídos e as Dríades Corruptas para chegar até ela.",
+      "minLevel": 6,
+      "maxLevel": 15,
+      "occupations": [
+        8,
+        9
+      ],
+      "prerequisites": [],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29403,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 3159,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23122,
+          "name": "Ataque Premeditado",
+          "description": "Mate 4 Estiletes Possuídos e Dríades Corruptas. Você pode encontrá-los ao longo da estrada ao sudeste do Torre do Despertar.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 1,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [
+            {
+              "id": 28891,
+              "count": 4,
+              "item": 0,
+              "itemCount": 0,
+              "commonItem": false
+            },
+            {
+              "id": 28872,
+              "count": 4,
+              "item": 0,
+              "itemCount": 0,
+              "commonItem": false
+            }
+          ],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23123,
+          "name": "Contato",
+          "description": "Procure pela espadachim Jasmine no entrada dA Fenda.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29404,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 22534,
+      "name": "O Guardião do Templo",
+      "description": "Vá até o Santuário dos Ancestrais. Antigamente era necessária uma parada entre A Fenda e a Cidade de Tellus, mas ela tem sido cada vez menos usada desde que os ataques contra o Torre do Despertar começaram.",
+      "minLevel": 8,
+      "maxLevel": 150,
+      "occupations": [
+        8,
+        9
+      ],
+      "prerequisites": [],
+      "method": 3,
+      "finishType": 1,
+      "npc": 29404,
+      "awardNpc": 30033,
+      "automatic": false,
+      "ordered": false,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 5040,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": []
+    },
+    {
+      "id": 22535,
+      "name": "Memórias",
+      "description": "Recupere as memórias de Oficial Qine da Guarda da Montanha no Santuário dos Ancestrais. Elas foram roubadas pelos monstros em alto-mar.",
+      "minLevel": 8,
+      "maxLevel": 16,
+      "occupations": [
+        9,
+        8
+      ],
+      "prerequisites": [],
+      "method": 0,
+      "finishType": 0,
+      "npc": 30033,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": false,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 5346,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 22536,
+          "name": "Sinal Fogo Ancestral",
+          "description": "Recupere o Sinal de Fogo Ancestral que está em poder das Marionetes de Gelo que estão ao redor do Santuário dos Ancestrais.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 1,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 30033,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [
+            {
+              "id": 28895,
+              "count": 0,
+              "item": 29445,
+              "itemCount": 1,
+              "commonItem": false
+            }
+          ],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 22537,
+          "name": "Ordem do Ancestral",
+          "description": "Encontre o Macaco de Barba Azul que roubou a Ordem do Ancestral e traga-a de volta.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 1,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 30033,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [
+            {
+              "id": 28906,
+              "count": 0,
+              "item": 29446,
+              "itemCount": 1,
+              "commonItem": false
+            }
+          ],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 22486,
+      "name": "Guia de Cultivo Espiritual",
+      "description": "A fase de iniciação espiritual está concluída. Agora, é hora de mais cultivo espiritual.",
+      "minLevel": 9,
+      "maxLevel": 150,
+      "occupations": [
+        8,
+        9
+      ],
+      "prerequisites": [],
+      "method": 0,
+      "finishType": 0,
+      "npc": 0,
+      "awardNpc": 0,
+      "automatic": true,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 120,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 22488,
+          "name": "Mensagem do Sistema",
+          "description": "",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 22489,
+          "name": "Visite Beckenast",
+          "description": "Visite Beckenast, na Cidade de Tellus, para aumentar seu cultivo espiritual.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29139,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 22487,
+      "name": "Só um Pouco de Progresso",
+      "description": "O caminho do cultivo é longo e duro; você tem de focar bem para aprender alguns conceitos primários. Seu progresso é visível. Se conseguir passar por esses testes, poderá progredir ainda mais.",
+      "minLevel": 9,
+      "maxLevel": 150,
+      "occupations": [
+        8,
+        9
+      ],
+      "prerequisites": [],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29139,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 10,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [
+        3368,
+        3369,
+        3370
+      ],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 22490,
+          "name": "O Recluso da Guarda da Terra",
+          "description": "Visite Anchoret Alexandria. Ela o guiará em seu Cultivo Espiritual.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 2,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29392,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [
+            {
+              "id": 3268,
+              "count": 1
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": 22491,
+          "name": "Começar a Circular",
+          "description": "Derrote as Marionetes do Gelo até obter 7 Espíritos da Rocha.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 1,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [
+            {
+              "id": 28895,
+              "count": 0,
+              "item": 29211,
+              "itemCount": 7,
+              "commonItem": false
+            }
+          ],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 22492,
+          "name": "O Astuto",
+          "description": "Leve o Espírito da Rocha para Anchoret Alexandria.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 2,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29392,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [
+            {
+              "id": 29211,
+              "count": 7
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 23066,
+      "name": "Pisando em Ovos",
+      "description": "Tente descobrir o que fez com que os Iaques com Cascos enlouquecessem.",
+      "minLevel": 13,
+      "maxLevel": 18,
+      "occupations": [
+        8,
+        9
+      ],
+      "prerequisites": [],
+      "method": 0,
+      "finishType": 0,
+      "npc": 30029,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 13800,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23138,
+          "name": "Uma Pequena Amostra",
+          "description": "Colete Amostras de Sangue e Amostras de Grãos.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 0,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": [
+            {
+              "id": 23140,
+              "name": "Amostra de Sangue",
+              "description": "Siga para o norte do Lago da Árvore Oca e colete as Amostras de Sangue de Touro.",
+              "minLevel": 0,
+              "maxLevel": 0,
+              "occupations": [],
+              "prerequisites": [],
+              "method": 1,
+              "finishType": 1,
+              "npc": 0,
+              "awardNpc": 30029,
+              "automatic": false,
+              "ordered": false,
+              "chooseOne": false,
+              "parentSuccess": false,
+              "randomOne": false,
+              "xp": 0,
+              "reputation": 0,
+              "newTask": 0,
+              "skill": 0,
+              "rewardItems": [],
+              "monsters": [
+                {
+                  "id": 28864,
+                  "count": 0,
+                  "item": 29996,
+                  "itemCount": 10,
+                  "commonItem": false
+                }
+              ],
+              "items": [],
+              "children": []
+            },
+            {
+              "id": 23141,
+              "name": "Amostra de Grãos",
+              "description": "Explore as terras de pasto do Iaque com Cascos e colete 5 amostras de Grãos Maculados.",
+              "minLevel": 0,
+              "maxLevel": 0,
+              "occupations": [],
+              "prerequisites": [],
+              "method": 2,
+              "finishType": 1,
+              "npc": 0,
+              "awardNpc": 30029,
+              "automatic": false,
+              "ordered": false,
+              "chooseOne": false,
+              "parentSuccess": false,
+              "randomOne": false,
+              "xp": 0,
+              "reputation": 0,
+              "newTask": 0,
+              "skill": 0,
+              "rewardItems": [],
+              "monsters": [],
+              "items": [
+                {
+                  "id": 29997,
+                  "count": 5
+                }
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 23067,
+      "name": "Ameaças Veladas",
+      "description": "Mate 15 Guerreiros da Floresta Chimei na Tribo dos Matadores de Dragão, ao nordeste daqui.",
+      "minLevel": 13,
+      "maxLevel": 18,
+      "occupations": [
+        8,
+        9
+      ],
+      "prerequisites": [],
+      "method": 1,
+      "finishType": 1,
+      "npc": 30031,
+      "awardNpc": 30031,
+      "automatic": false,
+      "ordered": false,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 12000,
+      "reputation": 2,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [
+        28805,
+        28801
+      ],
+      "monsters": [
+        {
+          "id": 28880,
+          "count": 15,
+          "item": 0,
+          "itemCount": 0,
+          "commonItem": false
+        }
+      ],
+      "items": [],
+      "children": []
+    },
+    {
+      "id": 22494,
+      "name": "Guia de Cultivo Espiritual",
+      "description": "Parabéns! Você terminou sua fase de Astuto. Para melhorar seu cultivo espiritual visite Beckenast, na Cidade de Tellus.",
+      "minLevel": 19,
+      "maxLevel": 150,
+      "occupations": [
+        8,
+        9
+      ],
+      "prerequisites": [
+        22487
+      ],
+      "method": 0,
+      "finishType": 0,
+      "npc": 0,
+      "awardNpc": 0,
+      "automatic": true,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 150,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 22497,
+          "name": "Mensagem do Sistema",
+          "description": "",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 22500,
+          "name": "Aperfeiçoando a Habilidade",
+          "description": "Parabéns! Você terminou sua fase de Astuto. Para melhorar seu cultivo espiritual visite Beckenast, na Cidade de Tellus.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29139,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 22493,
+      "name": "O Equilíbrio Celestial",
+      "description": "O equilíbrio do Yin e Yang é o núcleo de nossa existência nesse mundo. A relação equilibrada entre essas duas forças conflitantes resulta em estabilidade e harmonia. Apesar de serem forças opostas, elas não são limitadas uma pela outra, de forma alguma. Assim como existe o mal onde há o bem, ou como a vida está associada à morte, as forças do Yin e Yang não podem existir uma sem a outra. Quando esse equilíbrio é perturbado, o caos prevalece.",
+      "minLevel": 19,
+      "maxLevel": 150,
+      "occupations": [
+        8,
+        9
+      ],
+      "prerequisites": [
+        22487
+      ],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29139,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 18000,
+      "reputation": 20,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [
+        3043,
+        3368,
+        3369,
+        3370,
+        35657
+      ],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 22502,
+          "name": "Olho Composto Gigante",
+          "description": "Consiga um Olho Composto Gigante de uma das Libélulas de Olho Imenso, que ficam ao sul das terras dos Floresta Decadente.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 1,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [
+            {
+              "id": 29401,
+              "count": 0,
+              "item": 29212,
+              "itemCount": 1,
+              "commonItem": false
+            }
+          ],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 22503,
+          "name": "Revelando o Disfarce",
+          "description": "Agora, você pode ver através do disfarce da Erva Encoberta.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 2,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [
+            {
+              "id": 29213,
+              "count": 1
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": 22504,
+          "name": "Iluminado",
+          "description": "Leve a Erva Encoberta para Beckenast.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 2,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29139,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": true,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [
+            1222,
+            30204,
+            1233
+          ],
+          "monsters": [],
+          "items": [
+            {
+              "id": 29212,
+              "count": 1
+            },
+            {
+              "id": 29213,
+              "count": 1
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 23214,
+      "name": "A Voz do Mundo",
+      "description": "Pergunte ao ancião Mooh sobre as vozes misteriosas em sua cabeça.",
+      "minLevel": 19,
+      "maxLevel": 150,
+      "occupations": [
+        8,
+        9
+      ],
+      "prerequisites": [
+        22493
+      ],
+      "method": 0,
+      "finishType": 0,
+      "npc": 0,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23216,
+          "name": "O Sutra do Coração",
+          "description": "",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23217,
+          "name": "Abominação",
+          "description": "Pergunte ao ancião Mooh sobre as vozes misteriosas em sua cabeça.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29142,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23218,
+          "name": "Uma Tarefa Difícil",
+          "description": "Encontre e mate o Bruto Corrupto.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 1,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29142,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 18360,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [
+            28845,
+            28841
+          ],
+          "monsters": [
+            {
+              "id": 30523,
+              "count": 0,
+              "item": 30205,
+              "itemCount": 1,
+              "commonItem": false
+            }
+          ],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 23215,
+      "name": "A Cidade do Dragão",
+      "description": "O Ancião Star na Cidade de Tellus, vai abrir o caminho para você chegar à Cidade do Dragão.",
+      "minLevel": 20,
+      "maxLevel": 150,
+      "occupations": [
+        8,
+        9
+      ],
+      "prerequisites": [],
+      "method": 5,
+      "finishType": 0,
+      "npc": 29142,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": false,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": []
+    },
+    {
+      "id": 23202,
+      "name": "Guia - Aliança·Demônio",
+      "description": "Visite aSacerdotisa da Alma para começar seu treinamento.",
+      "minLevel": 7,
+      "maxLevel": 150,
+      "occupations": [
+        9
+      ],
+      "prerequisites": [],
+      "method": 0,
+      "finishType": 0,
+      "npc": 0,
+      "awardNpc": 0,
+      "automatic": true,
+      "ordered": false,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23206,
+          "name": "Uma Pequena Dica",
+          "description": "",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23207,
+          "name": "Liderança",
+          "description": "Visite a Sacerdotisa da Alma na Fenda. Ela vai apresentar você ao primeiro Guia da Aliança, que poderá direcioná-lo para o caminho do poder total.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 5,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29083,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 23029,
+      "name": "Treinamento Demoníaco",
+      "description": "Siga as instruções da Sacerdotisa da Alma e procure um Demônio Chihyu nos arredores do Altar da Pedra da Lua para matá-lo.",
+      "minLevel": 7,
+      "maxLevel": 150,
+      "occupations": [
+        9
+      ],
+      "prerequisites": [
+        23202
+      ],
+      "method": 1,
+      "finishType": 1,
+      "npc": 29083,
+      "awardNpc": 29083,
+      "automatic": false,
+      "ordered": false,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [
+        30048
+      ],
+      "monsters": [
+        {
+          "id": 30524,
+          "count": 1,
+          "item": 0,
+          "itemCount": 0,
+          "commonItem": false
+        }
+      ],
+      "items": [],
+      "children": []
+    },
+    {
+      "id": 23177,
+      "name": "Aprenda a Ferroada",
+      "description": "Você progrediu muito. Visite a Sacerdotisa da Alma nA Fenda para aprender a controlar as plantas.",
+      "minLevel": 11,
+      "maxLevel": 150,
+      "occupations": [
+        9
+      ],
+      "prerequisites": [],
+      "method": 0,
+      "finishType": 0,
+      "npc": 0,
+      "awardNpc": 0,
+      "automatic": true,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23189,
+          "name": "Uma Pequena Dica",
+          "description": "",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23190,
+          "name": "Reuniões",
+          "description": "Volte à Fissura e fale com a Sacerdotisa da Alma para aprender a controlar as plantas.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29083,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 23033,
+      "name": "Ferroada da Punição",
+      "description": "A Sacerdotisa da Alma acredita que você tem a capacidade de aprender a habilidade mística Canalização. Beckenast, o Primeiro Mago será seu professor.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "occupations": [],
+      "prerequisites": [
+        23177
+      ],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29083,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23147,
+          "name": "Mais Instruções",
+          "description": "Visite Beckenast, o Primeiro Mago.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29139,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23045,
+          "name": "Rendição",
+          "description": "Passe no teste de Beckenast, o Primeiro Mago, fazendo umaUrtiga render-se a você. Traga o coração da flor de volta. As Urtigas costumam ser vistas no Selva Estrelada.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 1,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29139,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [
+            30052
+          ],
+          "monsters": [
+            {
+              "id": 30067,
+              "count": 0,
+              "item": 29984,
+              "itemCount": 1,
+              "commonItem": false
+            }
+          ],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 23178,
+      "name": "Trepadeira da Névoa",
+      "description": "Seu progresso continua incrível. O Mago da Torre do Ninho Negro tem outro teste para você. Como recompensa, receberá um Livro de Habilidades da Trepadeira da Névoa.",
+      "minLevel": 15,
+      "maxLevel": 150,
+      "occupations": [
+        9
+      ],
+      "prerequisites": [],
+      "method": 0,
+      "finishType": 0,
+      "npc": 0,
+      "awardNpc": 0,
+      "automatic": true,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23191,
+          "name": "Uma Pequena Dica",
+          "description": "",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23194,
+          "name": "A Última Prova",
+          "description": "Vá até a Cidade de Tellus e visite o Mago da Torre do Ninho Negro. Passe pelo teste e ganhe a Verdadeira Trepadeira da Névoa.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29139,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 23034,
+      "name": "Trepadeira da Névoa",
+      "description": "Descubra a verdade por trás da Trepadeira da Névoa para exibir seu desenvolvimento. Se passar no teste, receberá um livro de habilidades de Beckenast, o Primeiro Mago.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "occupations": [],
+      "prerequisites": [
+        23178
+      ],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29139,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23148,
+          "name": "Erva Vital",
+          "description": "Como o Mago da Torre do Ninho Negro lhe ensinou, encontre a Trepadeira da Névoa e faça surgir a Verdadeira Trepadeira da Névoa usando a habilidade União do Espírito. Então, você poderá usar a habilidade de Canalização para controlá-la. A Trepadeira da Névoa cresce perto da Tribo dos Caçadores de Dragão.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 2,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [
+            {
+              "id": 29985,
+              "count": 1
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": 23117,
+          "name": "Rendição",
+          "description": "Lá está ela, a Verdadeira Trepadeira da Névoa. Você tem 5 minutos para controlá-la antes que seu poder de Canalização se esgote.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 1,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [
+            {
+              "id": 30068,
+              "count": 1,
+              "item": 0,
+              "itemCount": 0,
+              "commonItem": false
+            }
+          ],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23107,
+          "name": "A União do Espírito",
+          "description": "Lembre-se das palavras que o Mago da Torre do Ninho Negro lhe ensinou e una seu espírito ao da Verdadeira Trepadeira da Névoa.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23047,
+          "name": "Vitória",
+          "description": "Volte a falar com Beckenast, o Primeiro Mago, e conte-lhe sobre seu sucesso.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29139,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [
+            30053
+          ],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 23179,
+      "name": "Aprenda a Vinha",
+      "description": "Beckenast, o Primeiro Mago, tem um Livro de Habilidades da Vinha da Aranha para você, se passar em sua próxima prova.",
+      "minLevel": 21,
+      "maxLevel": 150,
+      "occupations": [
+        9
+      ],
+      "prerequisites": [],
+      "method": 0,
+      "finishType": 0,
+      "npc": 0,
+      "awardNpc": 0,
+      "automatic": true,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23193,
+          "name": "Uma Pequena Dica",
+          "description": "",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23195,
+          "name": "A Última Prova",
+          "description": "Vá até a Cidade de Tellus e visite Beckenast, o Primeiro Mago. Complete sua prova para receber um livro de habilidades da Vinha de Aranha.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29139,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 23035,
+      "name": "Vinha de Aranha",
+      "description": "Revele a Verdadeira Vinha de Aranha e derrote-a para provar sua habilidade. Beckenast, o Primeiro Mago vai lhe dar o livro de habilidades da Vinha de Aranha.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "occupations": [],
+      "prerequisites": [
+        23179
+      ],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29139,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23153,
+          "name": "Erva Vital",
+          "description": "Encontre a Vinha de Aranha e use sua habilidade de canalização para revelar a Verdadeira Vinha de Aranha. Depois que ela aparecer, use a União do Espírito e controle-a. As Vinhas de Aranha costumam crescer no Ruínas Remanescentes.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 2,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [
+            {
+              "id": 29986,
+              "count": 1
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": 23118,
+          "name": "Rendição",
+          "description": "A Verdadeira Vinha de Aranha apareceu. Seu poder de Canalização vai expirar em 5 minutos. Você deve controlar o inimigo antes que seu poder se esgote.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 1,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [
+            {
+              "id": 30069,
+              "count": 1,
+              "item": 0,
+              "itemCount": 0,
+              "commonItem": false
+            }
+          ],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23109,
+          "name": "A União do Espírito",
+          "description": "Lembre-se das palavras ritualísticas que Beckenast, o Primeiro Mago, lhe ensinou e use-as para unir sua alma à da Verdadeira Vinha de Aranha.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23049,
+          "name": "Vitória",
+          "description": "Volte a falar com Beckenast, o Primeiro Mago, e conte-lhe sobre seu sucesso.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29139,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [
+            30054
+          ],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 23203,
+      "name": "Guia da Aliança·Dardo",
+      "description": "Visite o Ritualista Septus na Cidade de Tellus. Ele vai ajudar você a encontrar seu novo Guia da Aliança.",
+      "minLevel": 23,
+      "maxLevel": 150,
+      "occupations": [
+        9
+      ],
+      "prerequisites": [],
+      "method": 0,
+      "finishType": 0,
+      "npc": 0,
+      "awardNpc": 0,
+      "automatic": true,
+      "ordered": false,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23208,
+          "name": "Uma Pequena Dica",
+          "description": "",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23209,
+          "name": "Liderança",
+          "description": "O Ritualista Septus tem detalhes sobre seu próximo Guia da Aliança. Vá à Cidade de Tellus para encontrá-lo.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 5,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29141,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 23030,
+      "name": "Raio e Trovão",
+      "description": "O Ritualista Septus sabe um conto de promessas quebradas. Ajude-o a reescrever o passado, localizando os fragmentos do Anel da Pedra do Trovão e devolva-o para a Dama da Tempestade. Se conseguir passar nesse teste, ela será sua nova Guia da Aliança.",
+      "minLevel": 23,
+      "maxLevel": 150,
+      "occupations": [
+        9
+      ],
+      "prerequisites": [
+        23203
+      ],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29141,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23126,
+          "name": "Uma Pedra Partida",
+          "description": "Vasculhe os Floresta Decadente em busca dos 5 Fragmentos de Pedra do Trovão para o Ritualista Septus.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 2,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29141,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [
+            {
+              "id": 29957,
+              "count": 5
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": 23127,
+          "name": "O Anel do Juramento",
+          "description": "Espere até que o Ritualista Septus restaure o Anel do Juramento (1 minuto).",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 5,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29141,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [
+            29958
+          ],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23128,
+          "name": "A Linha Pontilhada",
+          "description": "Vá até os Floresta Decadente e encontre a Dama da Tempestade. Entregue o Anel do Juramento a ela e peça-lhe para ser nossa nova Guia da Aliança.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 2,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29966,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [
+            {
+              "id": 29958,
+              "count": 1
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": 23129,
+          "name": "Três vezes Três",
+          "description": "Derrote os 3 animais de relâmpagos da Dama da Tempestade em 3 minutos para vencer esse teste.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 1,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [
+            {
+              "id": 30066,
+              "count": 3,
+              "item": 0,
+              "itemCount": 0,
+              "commonItem": false
+            }
+          ],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23130,
+          "name": "Assinado com Sangue",
+          "description": "Você derrotou as marionetes da Dama da Tempestade para completar o seu teste. Pergunte se ela gostaria de ser sua Guia da Aliança.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29966,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [
+            30049
+          ],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 23180,
+      "name": "Aprenda a Flor",
+      "description": "Você progrediu bastante. Visite Beckenast, o Primeiro Mago, e passe no teste para obter um Livro de Habilidades da Flor Indiferente.",
+      "minLevel": 29,
+      "maxLevel": 150,
+      "occupations": [
+        9
+      ],
+      "prerequisites": [],
+      "method": 0,
+      "finishType": 0,
+      "npc": 0,
+      "awardNpc": 0,
+      "automatic": true,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23196,
+          "name": "Uma Pequena Dica",
+          "description": "",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23197,
+          "name": "A Última Prova",
+          "description": "Vá até a Cidade de Tellus e visite Beckenast, o Primeiro Mago. Após a próxima prova, receberá o livro de habilidades da Flor Indiferente.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29139,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 23036,
+      "name": "Flor Indiferente",
+      "description": "Prove seu valor derrotando a Verdadeira Flor Indiferente e fazendo-a se curvar à sua vontade.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "occupations": [],
+      "prerequisites": [
+        23180
+      ],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29139,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23154,
+          "name": "Erva Vital",
+          "description": "Encontre a Flor Indiferente e use sua habilidade de canalização para revelar a Verdadeira Flor Indiferente. A Flor Indiferente pode ser encontrada no Montanha do Dragão de Gelo.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 2,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [
+            {
+              "id": 29987,
+              "count": 1
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": 23119,
+          "name": "Rendição",
+          "description": "A Verdadeira Flor Indiferente apareceu. Derrote-a e faça-a se curvar à sua vontade. Seu poder de Canalização vai expirar em 5 minutos.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 1,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [
+            {
+              "id": 30070,
+              "count": 1,
+              "item": 0,
+              "itemCount": 0,
+              "commonItem": false
+            }
+          ],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23111,
+          "name": "A União do Espírito",
+          "description": "Concentre-se na habilidade União do Espírito que Beckenast, o Primeiro Mago, lhe ensinou e assuma o controle da Verdadeira Flor Indiferente.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23051,
+          "name": "Vitória",
+          "description": "Relate sua vitória sobre a Verdadeira Flor Indiferente para Beckenast, o Primeiro Mago.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29139,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [
+            30055
+          ],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 23204,
+      "name": "Guia da Aliança·Vidro",
+      "description": "Beckenast, o Primeiro Mago, tem detalhes sobre seu próximo Guia da Aliança. Procure-o na Cidade de Tellus.",
+      "minLevel": 33,
+      "maxLevel": 150,
+      "occupations": [
+        9
+      ],
+      "prerequisites": [],
+      "method": 0,
+      "finishType": 0,
+      "npc": 0,
+      "awardNpc": 0,
+      "automatic": true,
+      "ordered": false,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23210,
+          "name": "Uma Pequena Dica",
+          "description": "",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23211,
+          "name": "Liderança",
+          "description": "Beckenast, o Primeiro Mago, na Cidade de Tellus, tem uma tarefa urgente relacionada ao seu próximo Guia da Aliança.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 5,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29139,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 23031,
+      "name": "Esperança Renascida",
+      "description": "A destruição de Thrahn jogou o mundo em um abismo. Beckenast, o Primeiro Mago espera que você possa ressuscitar a Deusa Élfica, Azure para ajudá-lo em futuras batalhas. Se queremos que o mundo tenha uma chance contra os Espectros, você tem de obter sucesso em sua missão.",
+      "minLevel": 33,
+      "maxLevel": 150,
+      "occupations": [],
+      "prerequisites": [
+        23204
+      ],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29139,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23131,
+          "name": "Prisão de Pedra",
+          "description": "Vasculhe o Montanha do Dragão de Gelo em busca do Quadro de Pedras de Runa e retire seu coração, o Diamante da Alma.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 2,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [
+            {
+              "id": 29959,
+              "count": 1
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": 23132,
+          "name": "Água da Vida",
+          "description": "Mergulhe no Lago da Árvore Oca para coletar a água da vida, Água Vital, do Bluefin Pomfret.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [
+            29960
+          ],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23133,
+          "name": "O Renascimento",
+          "description": "Entregue a Alma do Diamante e a Água Vital para Beckenast, o Primeiro Mago, para que ele possa transferir a essência da Água Vital para a alma de Azure.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 2,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29139,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [
+            29959
+          ],
+          "monsters": [],
+          "items": [
+            {
+              "id": 29959,
+              "count": 1
+            },
+            {
+              "id": 29960,
+              "count": 1
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": 23134,
+          "name": "A Longa História",
+          "description": "A Alma de Diamante começa a pulsar e brilhar com uma luz verde. Está, rapidamente, ficando mais forte.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 5,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23142,
+          "name": "Vidas",
+          "description": "Você libertou Azure, a salvação de todos os seres vivos.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 0,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": true,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [
+            30050
+          ],
+          "monsters": [],
+          "items": [],
+          "children": [
+            {
+              "id": 23185,
+              "name": "Salvação Restaurada",
+              "description": "A Alma de Diamante agora queima com uma luz pura e branca. Da luz origina-se a forma de Azure.",
+              "minLevel": 0,
+              "maxLevel": 0,
+              "occupations": [],
+              "prerequisites": [],
+              "method": 2,
+              "finishType": 0,
+              "npc": 0,
+              "awardNpc": 0,
+              "automatic": false,
+              "ordered": false,
+              "chooseOne": false,
+              "parentSuccess": false,
+              "randomOne": false,
+              "xp": 0,
+              "reputation": 0,
+              "newTask": 0,
+              "skill": 0,
+              "rewardItems": [],
+              "monsters": [],
+              "items": [
+                {
+                  "id": 29959,
+                  "count": 1
+                }
+              ],
+              "children": []
+            },
+            {
+              "id": 23186,
+              "name": "O Juramento",
+              "description": "Você libertou Azure, a salvação de todos os seres vivos.",
+              "minLevel": 0,
+              "maxLevel": 0,
+              "occupations": [],
+              "prerequisites": [],
+              "method": 4,
+              "finishType": 0,
+              "npc": 0,
+              "awardNpc": 0,
+              "automatic": false,
+              "ordered": false,
+              "chooseOne": false,
+              "parentSuccess": false,
+              "randomOne": false,
+              "xp": 0,
+              "reputation": 0,
+              "newTask": 0,
+              "skill": 0,
+              "rewardItems": [],
+              "monsters": [],
+              "items": [],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 23181,
+      "name": "Aprenda a Erva de Cura",
+      "description": "Beckenast, o Primeiro Mago, tem um Livro de Habilidades da Erva de Cura para você, se passar na próxima prova.",
+      "minLevel": 39,
+      "maxLevel": 150,
+      "occupations": [
+        9
+      ],
+      "prerequisites": [],
+      "method": 0,
+      "finishType": 0,
+      "npc": 0,
+      "awardNpc": 0,
+      "automatic": true,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23198,
+          "name": "Uma Pequena Dica",
+          "description": "",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23199,
+          "name": "A Última Prova",
+          "description": "Visite Beckenast, o Primeiro Mago, na Cidade de Tellus e inicie sua última prova para receber um livro de habilidade daErva de Cura.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29139,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 23037,
+      "name": "Erva de Cura",
+      "description": "Encontre e derrote a Verdadeira Erva de Cura para provar seu valor. Beckenast, o Primeiro Mago vai lhe dar um livro de habilidades após você obter sucesso.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "occupations": [],
+      "prerequisites": [
+        23181
+      ],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29139,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23155,
+          "name": "Erva Vital",
+          "description": "Encontre a Erva de Cura e use sua habilidade de canalização para revelar a Verdadeira Erva de Cura. A Erva de Cura costuma crescer próximo ao Santuário dos Ancestrais.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 2,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [
+            {
+              "id": 29988,
+              "count": 1
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": 23120,
+          "name": "Rendição",
+          "description": "Você fez surgir a Verdadeira Erva de Cura. Você tem 5 minutos para controlá-la antes que seu poder de Canalização se esgote. Agora, é a hora de atacar.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 1,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [
+            {
+              "id": 30071,
+              "count": 1,
+              "item": 0,
+              "itemCount": 0,
+              "commonItem": false
+            }
+          ],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23113,
+          "name": "A União do Espírito",
+          "description": "Lembre-se das habilidades que Beckenast, o Primeiro Mago, lhe ensinou e una sua alma à da Verdadeira Erva de Cura.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23053,
+          "name": "Vitória",
+          "description": "Relate sua vitória sobre a Verdadeira Erva de Cura para Beckenast, o Primeiro Mago.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29139,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [
+            30056
+          ],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 23182,
+      "name": "Aprenda a Erva Vital",
+      "description": "Beckenast, o Primeiro Mago, tem um Livro de Habilidades da Erva Vital para você, se passar na prova final.",
+      "minLevel": 49,
+      "maxLevel": 150,
+      "occupations": [
+        9
+      ],
+      "prerequisites": [],
+      "method": 0,
+      "finishType": 0,
+      "npc": 0,
+      "awardNpc": 0,
+      "automatic": true,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23200,
+          "name": "Uma Pequena Dica",
+          "description": "",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23201,
+          "name": "A Última Prova",
+          "description": "Visite Beckenast, o Primeiro Mago, na Cidade de Tellus e inicie sua última prova para receber um livro de habilidade daErva Vital.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29139,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 23038,
+      "name": "Erva Vital",
+      "description": "Revele a Verdadeira Erva da Recuperação e faça-a se curvar à sua vontade. Beckenast, o Primeiro Mago vai lhe dar o livro de habilidades da Erva Vital.",
+      "minLevel": 0,
+      "maxLevel": 0,
+      "occupations": [],
+      "prerequisites": [
+        23182
+      ],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29139,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23156,
+          "name": "Erva Vital",
+          "description": "Encontre a Erva Vital e use sua habilidade de canalização para controlar a Verdadeira Erva Vital. A Erva Vital costuma crescer no Coluna de Gelo.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 2,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [
+            {
+              "id": 29989,
+              "count": 1
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": 23121,
+          "name": "Rendição",
+          "description": "A Verdadeira Erva Vital surgiu forçada pela sua habilidade de Canalização. Você tem 5 minutos para controlá-la antes que seu poder de Canalização se esgote.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 1,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [
+            {
+              "id": 30072,
+              "count": 1,
+              "item": 0,
+              "itemCount": 0,
+              "commonItem": false
+            }
+          ],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23115,
+          "name": "A União do Espírito",
+          "description": "Você precisa de todas as habilidades que aprendeu até agora para superar a Verdadeira Erva Vital.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23055,
+          "name": "Vitória",
+          "description": "Relate sua vitória sobre a Verdadeira Erva Vital para Beckenast, o Primeiro Mago.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29139,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [
+            30057
+          ],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 23205,
+      "name": "Guia da Aliança·Chamas",
+      "description": "Fale com Beckenast, o Primeiro Mago, na Cidade de Tellus, para mais detalhes sobre seu próximo Guia da Aliança.",
+      "minLevel": 59,
+      "maxLevel": 150,
+      "occupations": [
+        9
+      ],
+      "prerequisites": [],
+      "method": 0,
+      "finishType": 0,
+      "npc": 0,
+      "awardNpc": 0,
+      "automatic": true,
+      "ordered": false,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23212,
+          "name": "Uma Pequena Dica",
+          "description": "",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 4,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23213,
+          "name": "Liderança",
+          "description": "Beckenast, o Primeiro Mago na Cidade de Tellus, poderá lhe falar mais sobre seu novo Guia da Aliança.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 5,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29139,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 23032,
+      "name": "O Desastre se Aproxima",
+      "description": "Muitos guerreiros caíram tentando controlar Lorde Cragg. Agora, o trabalho cabe a você.",
+      "minLevel": 59,
+      "maxLevel": 150,
+      "occupations": [],
+      "prerequisites": [
+        23205
+      ],
+      "method": 0,
+      "finishType": 0,
+      "npc": 29139,
+      "awardNpc": 0,
+      "automatic": false,
+      "ordered": true,
+      "chooseOne": false,
+      "parentSuccess": false,
+      "randomOne": false,
+      "xp": 0,
+      "reputation": 0,
+      "newTask": 0,
+      "skill": 0,
+      "rewardItems": [],
+      "monsters": [],
+      "items": [],
+      "children": [
+        {
+          "id": 23135,
+          "name": "A Chave",
+          "description": "Beckenast, o Primeiro Mago lhe disse para se aventurar no Ruínas Remanescentes, ao norte da Cidade de Tellus, para obter a espada chamada de Lótus Vermelha que pode libertar o Lorde Cragg.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 2,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [],
+          "items": [
+            {
+              "id": 30139,
+              "count": 1
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": 23136,
+          "name": "Quebrando o Selo",
+          "description": "Use a Lótus Vermelha para quebrar o selo do Monumento do Fogo, próximo à entrada do Vale do Fogo, no território do Vale do Desastre. Você terá 5 minutos para derrotar o Lorde Cragg.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 1,
+          "finishType": 0,
+          "npc": 0,
+          "awardNpc": 0,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [],
+          "monsters": [
+            {
+              "id": 30525,
+              "count": 1,
+              "item": 0,
+              "itemCount": 0,
+              "commonItem": false
+            }
+          ],
+          "items": [],
+          "children": []
+        },
+        {
+          "id": 23137,
+          "name": "Preso no Fogo",
+          "description": "Fale com Lorde Cragg e obrigue-o a ser seu novo Guia da Aliança.",
+          "minLevel": 0,
+          "maxLevel": 0,
+          "occupations": [],
+          "prerequisites": [],
+          "method": 3,
+          "finishType": 1,
+          "npc": 0,
+          "awardNpc": 29967,
+          "automatic": false,
+          "ordered": false,
+          "chooseOne": false,
+          "parentSuccess": false,
+          "randomOne": false,
+          "xp": 0,
+          "reputation": 0,
+          "newTask": 0,
+          "skill": 0,
+          "rewardItems": [
+            30051
+          ],
+          "monsters": [],
+          "items": [],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "npcs": {
+    "29074": {
+      "name": "Instrutor Yeeg",
+      "points": [
+        [
+          143,
+          246
+        ]
+      ]
+    },
+    "29077": {
+      "name": "Instrutor Sooh",
+      "points": [
+        [
+          156,
+          244
+        ]
+      ]
+    },
+    "29083": {
+      "name": "Sacerdotisa da Alma",
+      "points": [
+        [
+          153,
+          248
+        ]
+      ]
+    },
+    "29086": {
+      "name": "Sacerdotisa da Mente",
+      "points": [
+        [
+          150,
+          241
+        ]
+      ]
+    },
+    "29089": {
+      "name": "Bibliotecário Yua",
+      "points": [
+        [
+          157,
+          250
+        ]
+      ]
+    },
+    "29092": {
+      "name": "Ferreiro Gink",
+      "points": [
+        [
+          145,
+          247
+        ]
+      ]
+    },
+    "29095": {
+      "name": "Alfaiate Marin",
+      "points": [
+        [
+          150,
+          249
+        ]
+      ]
+    },
+    "29098": {
+      "name": "Artesã Yara",
+      "points": [
+        [
+          150,
+          249
+        ]
+      ]
+    },
+    "29101": {
+      "name": "Comerciante Qing Tian",
+      "points": [
+        [
+          147,
+          247
+        ]
+      ]
+    },
+    "29104": {
+      "name": "Boticário Theo",
+      "points": [
+        [
+          149,
+          249
+        ]
+      ]
+    },
+    "29139": {
+      "name": "Beckenast, o Primeiro Mago",
+      "points": [
+        [
+          357,
+          241
+        ]
+      ]
+    },
+    "29141": {
+      "name": "Ritualista Septus",
+      "points": [
+        [
+          379,
+          243
+        ]
+      ]
+    },
+    "29142": {
+      "name": "Ancião Star",
+      "points": [
+        [
+          393,
+          230
+        ]
+      ]
+    },
+    "29392": {
+      "name": "Anchoret Alexandria",
+      "points": [
+        [
+          214,
+          227
+        ]
+      ]
+    },
+    "29398": {
+      "name": "Mestre Arcano Qing Feng",
+      "points": [
+        [
+          145,
+          230
+        ]
+      ]
+    },
+    "29399": {
+      "name": "Mestre Mística Xue",
+      "points": [
+        [
+          146,
+          229
+        ]
+      ]
+    },
+    "29402": {
+      "name": "Espadachim Connor",
+      "points": [
+        [
+          126,
+          239
+        ]
+      ]
+    },
+    "29403": {
+      "name": "Vidente do Vazio",
+      "points": [
+        [
+          149,
+          245
+        ]
+      ]
+    },
+    "29404": {
+      "name": "Espadachim Jasmine",
+      "points": [
+        [
+          181,
+          218
+        ]
+      ]
+    },
+    "29456": {
+      "name": "Guerreiro Mairead",
+      "points": [
+        [
+          163,
+          270
+        ]
+      ]
+    },
+    "29966": {
+      "name": "Dama da Tempestade",
+      "points": [
+        [
+          343,
+          226
+        ]
+      ]
+    },
+    "29967": {
+      "name": "Senhor Cragg",
+      "points": []
+    },
+    "30029": {
+      "name": "Sábio de Wildwood",
+      "points": [
+        [
+          256,
+          238
+        ]
+      ]
+    },
+    "30031": {
+      "name": "Campeão de Wildwood",
+      "points": [
+        [
+          256,
+          240
+        ]
+      ]
+    },
+    "30033": {
+      "name": "Guardião Ancestral Shawn",
+      "points": [
+        [
+          233,
+          231
+        ]
+      ]
+    }
+  },
+  "monsters": {
+    "28853": {
+      "name": "Lêmure de Pata Azul",
+      "points": [
+        [
+          140,
+          236
+        ],
+        [
+          138,
+          237
+        ],
+        [
+          149,
+          255
+        ],
+        [
+          148,
+          253
+        ],
+        [
+          152,
+          254
+        ],
+        [
+          154,
+          238
+        ],
+        [
+          156,
+          235
+        ],
+        [
+          151,
+          233
+        ],
+        [
+          151,
+          230
+        ],
+        [
+          140,
+          238
+        ],
+        [
+          155,
+          264
+        ],
+        [
+          158,
+          264
+        ],
+        [
+          155,
+          270
+        ],
+        [
+          157,
+          266
+        ],
+        [
+          156,
+          260
+        ],
+        [
+          139,
+          235
+        ],
+        [
+          139,
+          239
+        ]
+      ]
+    },
+    "28864": {
+      "name": "Iaque com Cascos",
+      "points": [
+        [
+          263,
+          253
+        ],
+        [
+          260,
+          254
+        ],
+        [
+          258,
+          254
+        ],
+        [
+          255,
+          254
+        ],
+        [
+          253,
+          255
+        ],
+        [
+          257,
+          252
+        ],
+        [
+          259,
+          252
+        ],
+        [
+          262,
+          251
+        ],
+        [
+          264,
+          250
+        ],
+        [
+          266,
+          249
+        ],
+        [
+          267,
+          260
+        ],
+        [
+          266,
+          259
+        ],
+        [
+          263,
+          259
+        ],
+        [
+          260,
+          258
+        ],
+        [
+          256,
+          262
+        ],
+        [
+          256,
+          258
+        ],
+        [
+          257,
+          262
+        ],
+        [
+          274,
+          268
+        ],
+        [
+          272,
+          285
+        ],
+        [
+          272,
+          280
+        ],
+        [
+          264,
+          274
+        ],
+        [
+          263,
+          272
+        ],
+        [
+          263,
+          269
+        ],
+        [
+          263,
+          267
+        ],
+        [
+          262,
+          264
+        ],
+        [
+          259,
+          264
+        ],
+        [
+          261,
+          262
+        ],
+        [
+          272,
+          254
+        ],
+        [
+          266,
+          266
+        ],
+        [
+          261,
+          260
+        ],
+        [
+          254,
+          260
+        ],
+        [
+          263,
+          257
+        ],
+        [
+          258,
+          259
+        ],
+        [
+          272,
+          255
+        ],
+        [
+          277,
+          262
+        ],
+        [
+          268,
+          269
+        ]
+      ]
+    },
+    "28865": {
+      "name": "Lêmure do Vale",
+      "points": [
+        [
+          168,
+          219
+        ],
+        [
+          168,
+          223
+        ],
+        [
+          167,
+          219
+        ],
+        [
+          166,
+          221
+        ],
+        [
+          166,
+          224
+        ],
+        [
+          164,
+          221
+        ],
+        [
+          115,
+          217
+        ],
+        [
+          113,
+          214
+        ],
+        [
+          126,
+          272
+        ],
+        [
+          129,
+          269
+        ],
+        [
+          127,
+          270
+        ],
+        [
+          138,
+          278
+        ],
+        [
+          135,
+          276
+        ],
+        [
+          135,
+          274
+        ],
+        [
+          135,
+          277
+        ]
+      ]
+    },
+    "28871": {
+      "name": "Dríade Intrigada",
+      "points": [
+        [
+          170,
+          276
+        ],
+        [
+          168,
+          279
+        ],
+        [
+          166,
+          278
+        ],
+        [
+          164,
+          276
+        ],
+        [
+          168,
+          274
+        ],
+        [
+          129,
+          239
+        ],
+        [
+          128,
+          239
+        ],
+        [
+          127,
+          236
+        ],
+        [
+          125,
+          238
+        ],
+        [
+          122,
+          238
+        ],
+        [
+          120,
+          235
+        ],
+        [
+          120,
+          232
+        ]
+      ]
+    },
+    "28872": {
+      "name": "Dríade Corrupta",
+      "points": [
+        [
+          177,
+          217
+        ],
+        [
+          173,
+          218
+        ],
+        [
+          177,
+          222
+        ],
+        [
+          175,
+          218
+        ],
+        [
+          175,
+          222
+        ],
+        [
+          173,
+          222
+        ]
+      ]
+    },
+    "28880": {
+      "name": "Guerreiro da Floresta Chimei",
+      "points": [
+        [
+          253,
+          277
+        ],
+        [
+          251,
+          270
+        ],
+        [
+          247,
+          269
+        ],
+        [
+          247,
+          270
+        ],
+        [
+          249,
+          274
+        ],
+        [
+          252,
+          270
+        ],
+        [
+          254,
+          271
+        ],
+        [
+          255,
+          274
+        ],
+        [
+          255,
+          279
+        ],
+        [
+          252,
+          278
+        ],
+        [
+          252,
+          284
+        ],
+        [
+          250,
+          284
+        ],
+        [
+          250,
+          285
+        ],
+        [
+          247,
+          283
+        ],
+        [
+          243,
+          282
+        ],
+        [
+          240,
+          279
+        ],
+        [
+          243,
+          274
+        ],
+        [
+          240,
+          277
+        ],
+        [
+          267,
+          262
+        ],
+        [
+          275,
+          256
+        ],
+        [
+          280,
+          262
+        ],
+        [
+          281,
+          267
+        ],
+        [
+          287,
+          269
+        ],
+        [
+          293,
+          273
+        ],
+        [
+          288,
+          287
+        ],
+        [
+          268,
+          279
+        ],
+        [
+          272,
+          276
+        ],
+        [
+          246,
+          270
+        ],
+        [
+          242,
+          277
+        ],
+        [
+          248,
+          283
+        ],
+        [
+          253,
+          280
+        ],
+        [
+          253,
+          272
+        ],
+        [
+          295,
+          282
+        ],
+        [
+          276,
+          290
+        ],
+        [
+          268,
+          269
+        ],
+        [
+          274,
+          272
+        ],
+        [
+          284,
+          268
+        ],
+        [
+          268,
+          274
+        ],
+        [
+          281,
+          290
+        ],
+        [
+          288,
+          272
+        ],
+        [
+          286,
+          270
+        ],
+        [
+          283,
+          270
+        ],
+        [
+          281,
+          270
+        ],
+        [
+          276,
+          273
+        ],
+        [
+          274,
+          274
+        ],
+        [
+          273,
+          276
+        ],
+        [
+          273,
+          278
+        ],
+        [
+          274,
+          281
+        ],
+        [
+          277,
+          285
+        ],
+        [
+          279,
+          285
+        ],
+        [
+          283,
+          284
+        ],
+        [
+          285,
+          283
+        ],
+        [
+          287,
+          282
+        ],
+        [
+          289,
+          281
+        ],
+        [
+          289,
+          280
+        ],
+        [
+          289,
+          277
+        ]
+      ]
+    },
+    "28886": {
+      "name": "Borboletas Púrpuras",
+      "points": [
+        [
+          172,
+          282
+        ],
+        [
+          168,
+          274
+        ],
+        [
+          166,
+          272
+        ],
+        [
+          162,
+          274
+        ],
+        [
+          117,
+          230
+        ],
+        [
+          118,
+          231
+        ],
+        [
+          120,
+          232
+        ],
+        [
+          116,
+          234
+        ],
+        [
+          116,
+          233
+        ]
+      ]
+    },
+    "28891": {
+      "name": "Estilete Possuído",
+      "points": [
+        [
+          180,
+          218
+        ],
+        [
+          178,
+          218
+        ],
+        [
+          177,
+          217
+        ],
+        [
+          180,
+          221
+        ],
+        [
+          178,
+          222
+        ],
+        [
+          177,
+          222
+        ]
+      ]
+    },
+    "28892": {
+      "name": "Lêmure da Cauda Verde",
+      "points": [
+        [
+          150,
+          274
+        ],
+        [
+          152,
+          274
+        ],
+        [
+          155,
+          274
+        ],
+        [
+          154,
+          275
+        ],
+        [
+          155,
+          272
+        ],
+        [
+          116,
+          233
+        ],
+        [
+          115,
+          226
+        ],
+        [
+          115,
+          229
+        ],
+        [
+          114,
+          228
+        ]
+      ]
+    },
+    "28894": {
+      "name": "Marionete de Pedra",
+      "points": [
+        [
+          149,
+          274
+        ],
+        [
+          148,
+          275
+        ],
+        [
+          149,
+          276
+        ],
+        [
+          164,
+          221
+        ],
+        [
+          161,
+          224
+        ],
+        [
+          159,
+          226
+        ],
+        [
+          162,
+          227
+        ],
+        [
+          159,
+          229
+        ],
+        [
+          154,
+          229
+        ],
+        [
+          116,
+          222
+        ],
+        [
+          111,
+          224
+        ],
+        [
+          111,
+          222
+        ],
+        [
+          114,
+          221
+        ],
+        [
+          111,
+          219
+        ],
+        [
+          149,
+          278
+        ],
+        [
+          149,
+          279
+        ],
+        [
+          146,
+          275
+        ],
+        [
+          147,
+          280
+        ],
+        [
+          143,
+          280
+        ],
+        [
+          141,
+          279
+        ]
+      ]
+    },
+    "28895": {
+      "name": "Marionete de Gelo",
+      "points": [
+        [
+          187,
+          218
+        ],
+        [
+          185,
+          218
+        ],
+        [
+          187,
+          220
+        ],
+        [
+          185,
+          220
+        ],
+        [
+          203,
+          220
+        ],
+        [
+          203,
+          223
+        ],
+        [
+          208,
+          222
+        ],
+        [
+          213,
+          222
+        ],
+        [
+          211,
+          219
+        ],
+        [
+          198,
+          220
+        ],
+        [
+          203,
+          207
+        ],
+        [
+          213,
+          213
+        ],
+        [
+          205,
+          217
+        ],
+        [
+          206,
+          211
+        ],
+        [
+          200,
+          205
+        ]
+      ]
+    },
+    "28897": {
+      "name": "Nymphalid de Asa Vermelha",
+      "points": [
+        [
+          152,
+          254
+        ],
+        [
+          149,
+          255
+        ],
+        [
+          148,
+          253
+        ],
+        [
+          156,
+          259
+        ],
+        [
+          133,
+          239
+        ]
+      ]
+    },
+    "28906": {
+      "name": "Macaco de Barba Azul",
+      "points": [
+        [
+          235,
+          219
+        ],
+        [
+          233,
+          220
+        ],
+        [
+          231,
+          218
+        ],
+        [
+          237,
+          219
+        ],
+        [
+          238,
+          220
+        ],
+        [
+          238,
+          222
+        ],
+        [
+          239,
+          214
+        ],
+        [
+          214,
+          235
+        ],
+        [
+          229,
+          211
+        ],
+        [
+          226,
+          215
+        ],
+        [
+          234,
+          223
+        ],
+        [
+          240,
+          215
+        ],
+        [
+          235,
+          214
+        ],
+        [
+          227,
+          214
+        ],
+        [
+          220,
+          223
+        ],
+        [
+          222,
+          216
+        ],
+        [
+          217,
+          215
+        ]
+      ]
+    },
+    "29401": {
+      "name": "Libélula de Olho Imenso",
+      "points": [
+        [
+          338,
+          206
+        ],
+        [
+          347,
+          208
+        ],
+        [
+          348,
+          211
+        ],
+        [
+          355,
+          213
+        ],
+        [
+          353,
+          211
+        ],
+        [
+          350,
+          205
+        ],
+        [
+          352,
+          202
+        ],
+        [
+          351,
+          202
+        ],
+        [
+          354,
+          204
+        ]
+      ]
+    },
+    "30066": {
+      "name": "Raios",
+      "points": []
+    },
+    "30067": {
+      "name": "Urtiga",
+      "points": [
+        [
+          233,
+          265
+        ],
+        [
+          229,
+          270
+        ]
+      ]
+    },
+    "30068": {
+      "name": "Trepadeira da Névoa Verdadeira",
+      "points": []
+    },
+    "30069": {
+      "name": "Vinha de Aranha Verdadeira",
+      "points": []
+    },
+    "30070": {
+      "name": "Flor Indiferente Verdadeira",
+      "points": []
+    },
+    "30071": {
+      "name": "Erva de Cura Verdadeira",
+      "points": []
+    },
+    "30072": {
+      "name": "Erva Vital Verdadeira",
+      "points": []
+    },
+    "30523": {
+      "name": "Bruto Corrupto",
+      "points": [
+        [
+          319,
+          201
+        ]
+      ]
+    },
+    "30524": {
+      "name": "Batedor Diabólico",
+      "points": [
+        [
+          135,
+          276
+        ],
+        [
+          134,
+          273
+        ],
+        [
+          131,
+          278
+        ],
+        [
+          133,
+          276
+        ]
+      ]
+    },
+    "30525": {
+      "name": "Senhor Cragg",
+      "points": []
+    }
+  },
+  "items": {
+    "3268": "Breve para cultivo",
+    "29211": "Espírito de Rocha",
+    "29212": "Olho Composto Gigante",
+    "29213": "Erva Encoberta",
+    "29436": "Identificação de Arcano",
+    "29438": "Emblema Quebrado",
+    "29439": "Estandarte da Sabedoria",
+    "29440": "Etiqueta da Sabedoria",
+    "29441": "Cristal de Lothran",
+    "29442": "Depósito de Cristal",
+    "29443": "Seiva de Árvore Demoníaca",
+    "29445": "Sinal de Fogo do Ancestral",
+    "29446": "Ordem do Ancestral",
+    "29460": "Cristal de Corte Áspero",
+    "29461": "Tinta Média",
+    "29957": "Fragmento de Pedra do Trovão",
+    "29958": "Anel de Juramento",
+    "29959": "Alma do Diamante",
+    "29960": "Água da Vida",
+    "29984": "Urtiga",
+    "29985": "Trepadeira da Névoa",
+    "29986": "Vinha de Aranha",
+    "29987": "Flor Indiferente",
+    "29988": "Erva de Cura",
+    "29989": "Erva Vital",
+    "29996": "Amostra de Sangue de Touro",
+    "29997": "Grão Maculado",
+    "30139": "Lótus Vermelho",
+    "30205": "Pedra Sussurrante"
+  },
+  "rewards": {
+    "1222": "Amuleto Bom da Lâmina Quebrada",
+    "1233": "Amuleto Bom de Evocação",
+    "3043": "Pergaminho da Ressurreição",
+    "3366": "Fragmento de Pedra Imortal",
+    "3368": "Pedra do Céu Celestial",
+    "3369": "Pedra da Terra Celestial",
+    "3370": "Pedra Celestial Comum",
+    "8617": "Poção Pequena de Cura",
+    "8647": "Poção Pequena do Espírito",
+    "28768": "Apresentando",
+    "28771": "Apresentando os Místicos",
+    "28774": "Apresentando os Caçadores",
+    "28782": "Caneleiras do Pensador Guardião",
+    "28791": "Braçadeiras de Lutador Guardião",
+    "28795": "Mangas de Pensador Guardião",
+    "28800": "Sapatos de Lutador Guardião",
+    "28801": "☆Sapatos Corona Negros",
+    "28804": "Botas de Pensador Guardião",
+    "28805": "☆Botas Corona Violetas",
+    "28822": "Túnica de Lutador Guardião",
+    "28831": "Couraça de Pensador Guardião",
+    "28839": "Cajado de Lutador Guardião",
+    "28841": "☆☆☆Cajado de Meteoro",
+    "28843": "Espada de Pensador Guardião",
+    "28845": "☆☆☆Espada de Cometa",
+    "29438": "Emblema Quebrado",
+    "29441": "Cristal de Lothran",
+    "29454": "Emblema do Altar da Idade",
+    "29958": "Anel de Juramento",
+    "29959": "Alma do Diamante",
+    "29960": "Água da Vida",
+    "30048": "Demônio Chihyu",
+    "30049": "Dama da Tempestade",
+    "30050": "Salvação",
+    "30051": "Lorde Crag",
+    "30052": "Ferroada da Punição",
+    "30053": "Trepadeira da Névoa",
+    "30054": "Vinha de Aranha",
+    "30055": "Flor Indiferente",
+    "30056": "Erva de Cura",
+    "30057": "Erva Vital",
+    "30204": "Sutra Sutil",
+    "35657": "Paz na Terra"
+  },
+  "resourceItems": {
+    "29460": [
+      {
+        "id": 29455,
+        "name": "Pedra da Alma Descansada",
+        "points": [
+          [
+            155,
+            253
+          ],
+          [
+            155,
+            240
+          ],
+          [
+            149,
+            237
+          ],
+          [
+            142,
+            244
+          ],
+          [
+            145,
+            249
+          ],
+          [
+            152,
+            244
+          ],
+          [
+            152,
+            249
+          ],
+          [
+            153,
+            245
+          ],
+          [
+            150,
+            249
+          ],
+          [
+            148,
+            249
+          ]
+        ]
+      }
+    ],
+    "29461": [
+      {
+        "id": 29532,
+        "name": "Planta de Procriação da Alma",
+        "points": [
+          [
+            157,
+            245
+          ],
+          [
+            156,
+            242
+          ],
+          [
+            145,
+            250
+          ],
+          [
+            151,
+            252
+          ],
+          [
+            150,
+            243
+          ],
+          [
+            153,
+            243
+          ],
+          [
+            147,
+            247
+          ],
+          [
+            148,
+            249
+          ],
+          [
+            147,
+            246
+          ],
+          [
+            147,
+            248
+          ]
+        ]
+      }
+    ]
+  }
+}

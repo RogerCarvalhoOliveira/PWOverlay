@@ -119,11 +119,11 @@ namespace PWQuestOverlay
         }
 
         private static readonly Regex PrimaryTitlePattern = new Regex(
-            @"^\s*(?<name>.+?)\s*[\[\(\{]\s*(?<class>WB|WF|EA|EP|WR|MC)\s*[\]\)\}]\s*$",
+            @"^\s*(?<name>.+?)\s*[\[\(\{]\s*(?<class>WB|WF|EA|EP|WR|MG|MC|ES|SK|MS)\s*[\]\)\}]\s*$",
             RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
 
         private static readonly Regex TokenClassPattern = new Regex(
-            @"(?:^|[\s\[\](){}_\-])(?<class>WB|WF|EA|EP|WR|MC)(?=$|[\s\[\](){}_\-])",
+            @"(?:^|[\s\[\](){}_\-])(?<class>WB|WF|EA|EP|WR|MG|MC|ES|SK|MS)(?=$|[\s\[\](){}_\-])",
             RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
 
         internal OverlayForm(RouteRepository routes, StateStore store, AppState state,
@@ -354,7 +354,7 @@ namespace PWQuestOverlay
             _trayMenu.Items.Add(cleanupMenu);
 
             _classMenuItem = new ToolStripMenuItem("Definir classe manualmente");
-            foreach (string code in new[] { "WR", "WB", "WF", "EA", "EP", "MC" })
+            foreach (string code in new[] { "WR", "MG", "WB", "WF", "EA", "EP", "MC", "ES", "SK", "MS" })
             {
                 string captured = code;
                 _classMenuItem.DropDownItems.Add(code, null, delegate { SetManualClass(captured); });
@@ -516,11 +516,18 @@ namespace PWQuestOverlay
                 _dragging = true;
                 _dragCursorStart = Cursor.Position;
                 _dragFormStart = Location;
-                Capture = true;
+                // The same control must receive both the press and release.
+                // Capturing on the form redirects MouseUp away from this handler.
+                control.Capture = true;
             };
             control.MouseMove += delegate(object sender, MouseEventArgs e)
             {
                 if (!_dragging || _state.PositionLocked) return;
+                if ((e.Button & MouseButtons.Left) == 0)
+                {
+                    FinishDrag(control);
+                    return;
+                }
                 Point cursor = Cursor.Position;
                 Location = new Point(
                     _dragFormStart.X + cursor.X - _dragCursorStart.X,
@@ -528,17 +535,26 @@ namespace PWQuestOverlay
             };
             control.MouseUp += delegate(object sender, MouseEventArgs e)
             {
-                if (!_dragging) return;
-                _dragging = false;
-                Capture = false;
-                // Use the screen the user dragged onto before clamping the position.
-                _currentScreen = Screen.FromRectangle(Bounds);
-                _currentMonitorKey = GetMonitorKey(_currentScreen);
-                _state.OverlayMonitorDeviceName = _currentScreen.DeviceName;
-                _followGameMonitorItem.Checked = false;
-                ClampToCurrentScreen();
-                SaveCurrentPosition();
+                if (e.Button == MouseButtons.Left) FinishDrag(control);
             };
+            control.MouseCaptureChanged += delegate
+            {
+                if (!control.Capture) FinishDrag(control);
+            };
+        }
+
+        private void FinishDrag(Control control)
+        {
+            if (!_dragging) return;
+            _dragging = false;
+            control.Capture = false;
+            // Retain the monitor selected by the user, including secondary screens.
+            _currentScreen = Screen.FromRectangle(Bounds);
+            _currentMonitorKey = GetMonitorKey(_currentScreen);
+            _state.OverlayMonitorDeviceName = _currentScreen.DeviceName;
+            _followGameMonitorItem.Checked = false;
+            ClampToCurrentScreen();
+            SaveCurrentPosition();
         }
 
         private void MonitorTick()
@@ -775,7 +791,8 @@ namespace PWQuestOverlay
             if (string.IsNullOrWhiteSpace(code)) return false;
             string normalized = code.Trim().ToUpperInvariant();
             return normalized == "WR" || normalized == "WB" || normalized == "WF" ||
-                normalized == "EA" || normalized == "EP" || normalized == "MC";
+                normalized == "EA" || normalized == "EP" || normalized == "MC" ||
+                normalized == "MG" || normalized == "ES" || normalized == "SK" || normalized == "MS";
         }
 
         private static string BuildCharacterKey(string name, string classCode)
@@ -827,7 +844,7 @@ namespace PWQuestOverlay
             if (_currentRoute.Count == 0)
             {
                 _questLabel.Text = "Classe não identificada";
-                _npcLabel.Text = "Use o ícone ao lado do relógio para selecionar WR, WB, WF, EA, EP ou MC.";
+                _npcLabel.Text = "Abra Perfis para associar WR, MG, WB, WF, EA, EP, MC, ES, SK ou MS.";
                 _locationLabel.Text = "A detecção automática usa o título Personagem[CLASSE].";
                 _statusLabel.Text = "Seleção manual disponível";
                 _currentMission = null;
@@ -1177,7 +1194,7 @@ namespace PWQuestOverlay
                     Width = 175,
                     FlatStyle = FlatStyle.Flat
                 };
-                classColumn.Items.AddRange("Automático", "WR", "WB", "WF", "EA", "EP", "MC");
+                classColumn.Items.AddRange("Automático", "WR", "MG", "WB", "WF", "EA", "EP", "MC", "ES", "SK", "MS");
                 grid.Columns.Add(titleColumn);
                 grid.Columns.Add(detectedColumn);
                 grid.Columns.Add(classColumn);
