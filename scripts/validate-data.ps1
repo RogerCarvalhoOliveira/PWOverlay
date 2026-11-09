@@ -22,8 +22,8 @@ foreach ($mission in $missions) {
         continue
     }
     foreach ($step in $steps) {
-        if ([string]::IsNullOrWhiteSpace($step.id) -or [string]::IsNullOrWhiteSpace($step.action)) {
-            $errors.Add("Etapa sem id/action em $($mission.id)")
+        if ([string]::IsNullOrWhiteSpace($step.id) -or [string]::IsNullOrWhiteSpace($step.title) -or [string]::IsNullOrWhiteSpace($step.action)) {
+            $errors.Add("Etapa sem id/title/action em $($mission.id)")
         }
         if ($null -eq $step.routeOrder -or [int]$step.routeOrder -le 0) {
             $errors.Add("Etapa sem ordem global em $($mission.id): $($step.id)")

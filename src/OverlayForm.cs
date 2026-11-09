@@ -14,6 +14,8 @@ namespace PWQuestOverlay
         private const int HotkeyPrevious = 1002;
         private const int HotkeySkip = 1003;
         private const int HotkeyMarker = 1004;
+        private static readonly Size FullClientSize = new Size(570, 180);
+        private static readonly Size CompactClientSize = new Size(470, 122);
 
         private readonly RouteRepository _routes;
         private readonly StateStore _store;
@@ -35,11 +37,13 @@ namespace PWQuestOverlay
         private readonly Button _profilesButton;
         private readonly Button _stagesButton;
         private readonly Button _lockButton;
+        private readonly Button _compactButton;
         private readonly Button _hideButton;
         private readonly NotifyIcon _trayIcon;
         private readonly ContextMenuStrip _trayMenu;
         private readonly ToolStripMenuItem _showMenuItem;
         private readonly ToolStripMenuItem _lockMenuItem;
+        private readonly ToolStripMenuItem _compactMenuItem;
         private readonly ToolStripMenuItem _classMenuItem;
         private readonly ToolStripMenuItem _markerHotkeyItem;
         private readonly Dictionary<IntPtr, DateTime> _titleRefresh;
@@ -98,10 +102,10 @@ namespace PWQuestOverlay
             FormBorderStyle = FormBorderStyle.None;
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.Manual;
-            ClientSize = new Size(620, 210);
+            ClientSize = FullClientSize;
             MinimumSize = ClientSize;
             MaximumSize = ClientSize;
-            BackColor = Color.FromArgb(17, 24, 39);
+            BackColor = Color.FromArgb(10, 18, 31);
             ForeColor = Color.White;
             Font = new Font("Segoe UI", 9.0f, FontStyle.Regular, GraphicsUnit.Point);
             TopMost = true;
@@ -113,49 +117,51 @@ namespace PWQuestOverlay
             {
                 Location = new Point(0, 0),
                 Size = new Size(ClientSize.Width, 30),
-                BackColor = Color.FromArgb(32, 74, 112),
+                BackColor = Color.FromArgb(24, 59, 91),
                 Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right
             };
 
             _profileLabel = new Label
             {
                 Location = new Point(10, 6),
-                Size = new Size(285, 19),
+                Size = new Size(245, 19),
                 ForeColor = Color.White,
                 Font = new Font("Segoe UI", 9.0f, FontStyle.Bold),
                 Text = "PW Quest Overlay — aguardando cliente",
                 AutoEllipsis = true
             };
 
-            _profilesButton = MakeTopButton("Perfis", 294, 65);
-            _stagesButton = MakeTopButton("Etapas", 363, 72);
-            _lockButton = MakeTopButton("Mover", 439, 96);
-            _hideButton = MakeTopButton("×", 580, 30);
+            _profilesButton = MakeTopButton("Perfis", 258, 56);
+            _stagesButton = MakeTopButton("Etapas", 318, 62);
+            _lockButton = MakeTopButton("Mover", 384, 78);
+            _compactButton = MakeTopButton("−", 498, 30);
+            _compactButton.Font = new Font("Segoe UI", 11.0f, FontStyle.Bold);
+            _hideButton = MakeTopButton("×", 532, 30);
             _hideButton.Font = new Font("Segoe UI", 11.0f, FontStyle.Bold);
 
             _questLabel = new Label
             {
-                Location = new Point(12, 38),
-                Size = new Size(596, 34),
+                Location = new Point(12, 36),
+                Size = new Size(546, 28),
                 ForeColor = Color.White,
-                Font = new Font("Segoe UI", 13.0f, FontStyle.Bold),
+                Font = new Font("Segoe UI", 12.0f, FontStyle.Bold),
                 Text = "Abra ou selecione um cliente do Perfect World.",
                 AutoEllipsis = true
             };
 
             _npcLabel = new Label
             {
-                Location = new Point(94, 75),
-                Size = new Size(514, 45),
+                Location = new Point(88, 67),
+                Size = new Size(470, 38),
                 ForeColor = Color.FromArgb(226, 232, 240),
-                Font = new Font("Segoe UI", 10.0f, FontStyle.Regular),
+                Font = new Font("Segoe UI", 9.5f, FontStyle.Regular),
                 AutoEllipsis = true
             };
 
             _stepTypeLabel = new Label
             {
-                Location = new Point(12, 78),
-                Size = new Size(74, 24),
+                Location = new Point(12, 69),
+                Size = new Size(68, 22),
                 TextAlign = ContentAlignment.MiddleCenter,
                 Font = new Font("Segoe UI", 8.0f, FontStyle.Bold),
                 ForeColor = Color.White,
@@ -164,21 +170,21 @@ namespace PWQuestOverlay
 
             _locationLabel = new Label
             {
-                Location = new Point(12, 122),
-                Size = new Size(596, 18),
+                Location = new Point(12, 108),
+                Size = new Size(546, 16),
                 ForeColor = Color.FromArgb(148, 163, 184),
                 AutoEllipsis = true
             };
 
-            _previousButton = MakeActionButton("Voltar", 12, 151, 82, Color.FromArgb(71, 85, 105));
-            _doneButton = MakeActionButton("Etapa feita", 101, 151, 112, Color.FromArgb(22, 163, 74));
-            _skipButton = MakeActionButton("Pular etapa", 220, 151, 100, Color.FromArgb(180, 83, 9));
-            _markerButton = MakeActionButton("Marcar", 327, 151, 92, Color.FromArgb(37, 99, 235));
+            _previousButton = MakeActionButton("Voltar", 12, 137, 72, Color.FromArgb(51, 65, 85));
+            _doneButton = MakeActionButton("Etapa feita", 90, 137, 102, Color.FromArgb(21, 128, 61));
+            _skipButton = MakeActionButton("Pular etapa", 198, 137, 92, Color.FromArgb(154, 52, 18));
+            _markerButton = MakeActionButton("Marcar", 296, 137, 82, Color.FromArgb(29, 78, 216));
 
             _statusLabel = new Label
             {
-                Location = new Point(426, 157),
-                Size = new Size(182, 22),
+                Location = new Point(384, 142),
+                Size = new Size(174, 22),
                 ForeColor = Color.FromArgb(203, 213, 225),
                 TextAlign = ContentAlignment.MiddleRight,
                 AutoEllipsis = true
@@ -188,6 +194,7 @@ namespace PWQuestOverlay
             _topBar.Controls.Add(_profilesButton);
             _topBar.Controls.Add(_stagesButton);
             _topBar.Controls.Add(_lockButton);
+            _topBar.Controls.Add(_compactButton);
             _topBar.Controls.Add(_hideButton);
             Controls.Add(_topBar);
             Controls.Add(_questLabel);
@@ -205,6 +212,7 @@ namespace PWQuestOverlay
             _profilesButton.Click += delegate { OpenProfileManager(); };
             _stagesButton.Click += delegate { OpenStageSelector(); };
             _lockButton.Click += delegate { ToggleLock(); };
+            _compactButton.Click += delegate { SetCompactMode(!_state.CompactMode, true); };
             _hideButton.Click += delegate { SetUserHidden(true); };
             _doneButton.Click += delegate { CompleteCurrent(); };
             _previousButton.Click += delegate { GoBack(); };
@@ -229,6 +237,7 @@ namespace PWQuestOverlay
             _trayMenu.Items.Add("Restaurar backup de perfis...", null, delegate { RestoreBackup(); });
             _trayMenu.Items.Add(new ToolStripSeparator());
             _trayMenu.Items.Add("Calibrar marcador...", null, delegate { OpenMarkerCalibration(); });
+            _trayMenu.Items.Add("Abrir guia de configuração...", null, delegate { OpenConfigurationGuide(); });
             _markerHotkeyItem = new ToolStripMenuItem("Atalho do marcador: verificando...") { Enabled = false };
             _trayMenu.Items.Add(_markerHotkeyItem);
 
@@ -266,12 +275,16 @@ namespace PWQuestOverlay
                 _store.Save(_state);
             };
             _trayMenu.Items.Add(_lockMenuItem);
+            _compactMenuItem = new ToolStripMenuItem("Modo compacto");
+            _compactMenuItem.Click += delegate { SetCompactMode(!_state.CompactMode, true); };
+            _trayMenu.Items.Add(_compactMenuItem);
             _trayMenu.Items.Add("Restaurar posição", null, delegate { ResetPosition(); });
 
             ToolStripMenuItem opacityMenu = new ToolStripMenuItem("Transparência");
+            AddOpacityItem(opacityMenu, "65%", 0.65);
             AddOpacityItem(opacityMenu, "75%", 0.75);
-            AddOpacityItem(opacityMenu, "85%", 0.85);
-            AddOpacityItem(opacityMenu, "92%", 0.92);
+            AddOpacityItem(opacityMenu, "82% (recomendado)", 0.82);
+            AddOpacityItem(opacityMenu, "90%", 0.90);
             AddOpacityItem(opacityMenu, "100%", 1.0);
             _trayMenu.Items.Add(opacityMenu);
             _trayMenu.Items.Add("Reiniciar progresso deste personagem", null, delegate { ResetProgress(); });
@@ -287,6 +300,7 @@ namespace PWQuestOverlay
             };
             _trayIcon.DoubleClick += delegate { SetUserHidden(false); };
 
+            SetCompactMode(_state.CompactMode, false);
             UpdateLockUi();
             UpdateActionAvailability();
 
@@ -358,7 +372,7 @@ namespace PWQuestOverlay
                 Location = new Point(x, 3),
                 Size = new Size(width, 24),
                 FlatStyle = FlatStyle.Flat,
-                BackColor = Color.FromArgb(45, 94, 135),
+                BackColor = Color.FromArgb(31, 76, 113),
                 ForeColor = Color.White,
                 TabStop = false,
                 Font = new Font("Segoe UI", 8.0f, FontStyle.Bold),
@@ -699,12 +713,13 @@ namespace PWQuestOverlay
             _currentRouteStageIndex = _orderedStages.IndexOf(activeStage);
             ApplyStepType(_currentStep.action);
 
-            _questLabel.Text = _currentMission.name + "  ·  Etapa " + (_currentStepIndex + 1) + "/" + _currentMission.steps.Count;
+            _questLabel.Text = _currentMission.name + "  ›  " + _currentStep.title;
             _npcLabel.Text = _currentStep.action;
             _locationLabel.Text = _currentStep.markerX.HasValue && _currentStep.markerY.HasValue
                 ? "Marcador: " + _currentStep.markerX.Value + ", " + _currentStep.markerY.Value
                 : "Sem coordenada para esta etapa";
-            _statusLabel.Text = _currentMission.priority + " · Prev. Nv. " + _currentMission.expectedLevel +
+            _statusLabel.Text = _currentMission.priority + " · Nv. " + _currentMission.expectedLevel +
+                " · Etapa " + (_currentStepIndex + 1) + "/" + _currentMission.steps.Count +
                 " · Ação " + (_currentRouteStageIndex + 1) + "/" + _orderedStages.Count;
             _statusLabel.ForeColor = string.Equals(_currentMission.priority, "Opcional", StringComparison.OrdinalIgnoreCase)
                 ? Color.FromArgb(251, 191, 36)
@@ -1200,9 +1215,13 @@ namespace PWQuestOverlay
                 _state.ClassAssociations = imported.ClassAssociations;
                 _state.Marker = imported.Marker;
                 _state.PositionLocked = imported.PositionLocked;
+                _state.CompactMode = imported.CompactMode;
                 _state.Opacity = imported.Opacity;
                 _store.Save(_state);
                 Opacity = _state.Opacity;
+                SetCompactMode(_state.CompactMode, false);
+                _lockMenuItem.Checked = _state.PositionLocked;
+                UpdateLockUi();
                 _characterKey = null;
                 if (_activeGame != IntPtr.Zero) RefreshActiveProfile(true);
                 MessageBox.Show("Backup restaurado.", "PW Quest Overlay");
@@ -1252,6 +1271,79 @@ namespace PWQuestOverlay
             _store.Save(_state);
         }
 
+        private void SetCompactMode(bool compact, bool persist)
+        {
+            _state.CompactMode = compact;
+            _compactButton.Text = compact ? "+" : "−";
+            _compactMenuItem.Checked = compact;
+
+            _profilesButton.Visible = !compact;
+            _stagesButton.Visible = !compact;
+            _lockButton.Visible = !compact;
+            _locationLabel.Visible = !compact;
+            _skipButton.Visible = !compact;
+
+            MinimumSize = Size.Empty;
+            MaximumSize = Size.Empty;
+            ClientSize = compact ? CompactClientSize : FullClientSize;
+            MinimumSize = Size;
+            MaximumSize = Size;
+            _topBar.Size = new Size(ClientSize.Width, 30);
+
+            if (compact)
+            {
+                _profileLabel.Size = new Size(385, 19);
+                _compactButton.Location = new Point(404, 3);
+                _hideButton.Location = new Point(438, 3);
+                _questLabel.Location = new Point(10, 34);
+                _questLabel.Size = new Size(450, 22);
+                _questLabel.Font = new Font("Segoe UI", 10.5f, FontStyle.Bold);
+                _stepTypeLabel.Location = new Point(10, 59);
+                _stepTypeLabel.Size = new Size(62, 20);
+                _npcLabel.Location = new Point(79, 57);
+                _npcLabel.Size = new Size(381, 35);
+                _npcLabel.Font = new Font("Segoe UI", 8.75f, FontStyle.Regular);
+                _previousButton.Location = new Point(10, 94);
+                _previousButton.Size = new Size(60, 24);
+                _doneButton.Location = new Point(76, 94);
+                _doneButton.Size = new Size(84, 24);
+                _markerButton.Location = new Point(166, 94);
+                _markerButton.Size = new Size(68, 24);
+                _statusLabel.Location = new Point(240, 95);
+                _statusLabel.Size = new Size(220, 22);
+            }
+            else
+            {
+                _profileLabel.Size = new Size(245, 19);
+                _compactButton.Location = new Point(498, 3);
+                _hideButton.Location = new Point(532, 3);
+                _questLabel.Location = new Point(12, 36);
+                _questLabel.Size = new Size(546, 28);
+                _questLabel.Font = new Font("Segoe UI", 12.0f, FontStyle.Bold);
+                _stepTypeLabel.Location = new Point(12, 69);
+                _stepTypeLabel.Size = new Size(68, 22);
+                _npcLabel.Location = new Point(88, 67);
+                _npcLabel.Size = new Size(470, 38);
+                _npcLabel.Font = new Font("Segoe UI", 9.5f, FontStyle.Regular);
+                _previousButton.Location = new Point(12, 137);
+                _previousButton.Size = new Size(72, 32);
+                _doneButton.Location = new Point(90, 137);
+                _doneButton.Size = new Size(102, 32);
+                _markerButton.Location = new Point(296, 137);
+                _markerButton.Size = new Size(82, 32);
+                _statusLabel.Location = new Point(384, 142);
+                _statusLabel.Size = new Size(174, 22);
+            }
+
+            ClampToCurrentScreen();
+            if (persist)
+            {
+                SaveCurrentPosition();
+                _store.Save(_state);
+            }
+            Invalidate();
+        }
+
         private void UpdateLockUi()
         {
             _lockButton.Text = _state.PositionLocked ? "Fixado" : "Mover";
@@ -1270,6 +1362,21 @@ namespace PWQuestOverlay
                 NativeMethods.ShowWindow(Handle, NativeMethods.SW_SHOWNOACTIVATE);
                 RaiseOverlayStack();
             }
+        }
+
+        private void OpenConfigurationGuide()
+        {
+            string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "INSTALACAO.txt");
+            if (System.IO.File.Exists(path))
+            {
+                Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
+                return;
+            }
+            MessageBox.Show(
+                "O guia INSTALACAO.txt não foi encontrado ao lado do executável.",
+                "PW Quest Overlay",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
 
         private void RaiseOverlayStack()

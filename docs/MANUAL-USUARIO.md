@@ -2,13 +2,15 @@
 
 ## Iniciar
 
-1. Abra o PW Borderless Monitor e o PW Helper normalmente.
-2. Abra um ou mais clientes do Perfect World.
-3. Se desejar detecção automática, nomeie cada janela no PW Helper com a classe no final, como `Nome[EP]` ou `Nome[WB]`.
-4. Execute `PW Quest Overlay.exe`.
-5. Coloque um cliente em foco. O painel aparecerá automaticamente.
+1. Abra `PW Overlay Central.exe`.
+2. Marque **Overlay** e/ou **Windowed Fullscreen** conforme desejar.
+3. Clique em **Iniciar selecionados + PW**. Também é possível abrir os clientes normalmente e usar **Aplicar ao PW já aberto**.
+4. Se desejar detecção automática, nomeie cada janela no PW Helper com a classe no final, como `Nome[EP]` ou `Nome[WB]`.
+5. Coloque um cliente em foco. O painel aparecerá automaticamente quando o Overlay estiver ativado.
 
 O overlay fica oculto quando outro aplicativo, como navegador ou Discord, está em foco.
+
+Para jogar sem nenhuma ferramenta, use **Abrir somente o PW** no PW Overlay Central. Esse botão encerra apenas `PW Quest Overlay` e `PW Borderless`; não fecha clientes, PW Helper nem altera o jogo. Você também pode abrir o launcher original do PW diretamente, desde que o instalador não tenha sido configurado para iniciar o overlay automaticamente.
 
 ## Identificação de personagem
 
@@ -42,6 +44,7 @@ O menu do ícone ao lado do relógio também possui **Gerenciar perfis...** e um
 - **Marcar:** substitui o `PWOverlay` anterior e cria o novo na coordenada da etapa atual em uma única ação, preservando os demais marcadores. Fica desativado quando a fonte não fornece coordenada.
 - **Etapas:** abre a lista completa da classe para escolher uma missão e uma etapa. A alteração pede confirmação e ajusta o progresso anterior.
 - **Mover/Fixado:** alterna entre permitir arraste e bloquear a posição.
+- **−/+**: reduz o painel para o modo compacto ou restaura a interface completa.
 - **Perfis:** abre a associação entre título/nome do cliente e classe.
 - **X:** oculta o painel sem encerrar o programa.
 
@@ -62,7 +65,7 @@ Os atalhos avançam, voltam ou pulam uma etapa. Eles só modificam o progresso q
 
 ## Etapas e marcador
 
-O título mostra `Etapa X/Y`. A etiqueta colorida informa o tipo da etapa e a linha principal descreve a ação corrente. O canto inferior mostra o **nível previsto** para aquela missão; o overlay não pede nem salva o nível real do personagem. Concluir uma etapa não pula o restante da mesma missão.
+O título mostra `Missão › Submissão`, por exemplo `Pérola de Lágrimas › Reportar ao Guarda Lufu`. A etiqueta colorida informa o tipo e a linha seguinte descreve exatamente a ação corrente. O canto inferior mostra **Etapa X/Y**, nível previsto e posição global; o overlay não pede nem salva o nível real do personagem. Concluir uma etapa não pula o restante da missão.
 
 Ao clicar em **Marcar**, não mova o mouse nem troque de cliente por cerca de um segundo. O overlay:
 
@@ -85,7 +88,7 @@ No menu do ícone ao lado do relógio:
 
 - **Exportar backup de perfis...** salva progresso, associações, posições e preferências em um JSON.
 - **Restaurar backup de perfis...** substitui o estado atual após confirmação.
-- **Editar rotas...** permite alterar missão, nível mínimo, nível previsto, textos, ordem das etapas e coordenadas. **Salvar JSON + Excel** cria cópias `.bak` e sincroniza os dois arquivos. A sincronização da planilha exige Microsoft Excel instalado.
+- **Editar rotas...** permite alterar missão, nível mínimo, nível previsto, título da submissão, ação, ordem e coordenadas. **Salvar JSON + Excel** cria cópias `.bak` e sincroniza os dois arquivos. A sincronização da planilha exige Microsoft Excel instalado.
 
 ## Orientação de forja do nível 5
 
@@ -98,6 +101,14 @@ Ao chegar ao nível 5, o jogo abre uma missão automática para falar com o Anci
 3. Clique em **Mover** para fixar novamente.
 
 A posição é salva separadamente para cada monitor e resolução. Use **Restaurar posição** no menu do ícone ao lado do relógio se o painel ficar fora da área desejada.
+
+## Modo compacto
+
+Clique em `−` na barra azul para reduzir o painel. A versão compacta mantém personagem/classe, próxima missão, ação ou NPC, nível previsto, progresso e os botões **Voltar**, **Etapa feita** e **Marcar**. Use `+` para restaurar o painel completo. A opção **Modo compacto** também fica disponível no menu do ícone ao lado do relógio e é preservada ao reiniciar ou restaurar um backup.
+
+O modo compacto usa a mesma posição do painel completo. Se a mudança de tamanho aproximar o overlay do PW Helper, desbloqueie **Mover** antes de reduzir ou use **Restaurar posição**.
+
+A transparência pode ser alterada no menu do ícone ao lado do relógio entre 65%, 75%, 82%, 90% e 100%. O padrão recomendado é 82%, cerca de 10 pontos mais transparente que o layout anterior.
 
 ## PW Helper
 
@@ -120,4 +131,4 @@ Use **Reiniciar progresso deste personagem** no menu do ícone. O programa pede 
 %LOCALAPPDATA%\PWQuestOverlay\state.json
 ```
 
-Faça uma cópia desse arquivo para transferir o progresso para outro computador.
+Prefira **Exportar backup de perfis...** e **Restaurar backup de perfis...** para transferir progresso e configuração. Consulte `INSTALACAO.txt`, incluído no pacote, para o procedimento completo.

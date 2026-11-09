@@ -1,5 +1,18 @@
 # Histórico de alterações
 
+## 0.7.0 - Modo compacto e instalador
+
+- Adicionado botão `−/+` para alternar entre a interface completa redesenhada e uma interface compacta de 470×122.
+- O modo compacto mantém missão, ação/NPC, progresso e os botões Voltar, Etapa feita e Marcar.
+- Reduzidos espaços e botões, refinadas as cores e alterada a opacidade recomendada de 92% para 82%.
+- A preferência de interface passa a fazer parte do estado e dos backups.
+- Criado instalador por usuário com atalhos opcionais e inicialização automática opcional do overlay e do PW Borderless.
+- Criado pacote portátil versionado e guia para instalação, migração de perfis e calibração em outro computador.
+- Adicionado acesso ao guia de configuração pelo menu do ícone ao lado do relógio.
+- Todas as 836 etapas agora possuem título de submissão e o overlay mostra `Missão › Submissão`.
+- Corrigida a cadeia Pérola de Lágrimas para incluir o Sapo, a Pérola do Homem Tubarão e **Reportar ao Guarda Lufu**.
+- Adicionado **PW Overlay Central** para abrir o jogo com ferramentas selecionadas, aplicar ferramentas a clientes abertos ou iniciar somente o PW.
+
 ## 0.6.0 - Rota intercalada do nível 20 ao 60
 
 - Reorganizada a rota compartilhada `COMMON` como um único circuito global do nível 20 ao 60.

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web.Script.Serialization;
 
 namespace PWQuestOverlay
@@ -37,6 +38,7 @@ namespace PWQuestOverlay
     public sealed class QuestStep
     {
         public string id { get; set; }
+        public string title { get; set; }
         public string action { get; set; }
         public int? markerX { get; set; }
         public int? markerY { get; set; }
@@ -111,6 +113,7 @@ namespace PWQuestOverlay
         public int SchemaVersion { get; set; }
         public bool PositionLocked { get; set; }
         public bool UserHidden { get; set; }
+        public bool CompactMode { get; set; }
         public double Opacity { get; set; }
         public Dictionary<string, CharacterProgress> Characters { get; set; }
         public Dictionary<string, SavedPosition> Positions { get; set; }
@@ -119,8 +122,8 @@ namespace PWQuestOverlay
 
         public AppState()
         {
-            SchemaVersion = 3;
-            Opacity = 0.92;
+            SchemaVersion = 4;
+            Opacity = 0.82;
             Characters = new Dictionary<string, CharacterProgress>(StringComparer.OrdinalIgnoreCase);
             Positions = new Dictionary<string, SavedPosition>(StringComparer.OrdinalIgnoreCase);
             ClassAssociations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
@@ -165,6 +168,7 @@ namespace PWQuestOverlay
                     QuestStep step = mission.steps[index];
                     if (string.IsNullOrWhiteSpace(step.id)) step.id = "e" + (index + 1);
                     if (string.IsNullOrWhiteSpace(step.action)) step.action = mission.instruction;
+                    if (string.IsNullOrWhiteSpace(step.title)) step.title = StepTitleFormatter.FromAction(step.action);
                     if (step.routeOrder <= 0) step.routeOrder = mission.order * 100 + index;
                 }
             }
@@ -173,7 +177,7 @@ namespace PWQuestOverlay
 
         public void Save(string path)
         {
-            _payload.schemaVersion = Math.Max(5, _payload.schemaVersion);
+            _payload.schemaVersion = Math.Max(7, _payload.schemaVersion);
             var serializer = new JavaScriptSerializer { MaxJsonLength = int.MaxValue };
             string temporary = path + ".tmp";
             File.WriteAllText(temporary, serializer.Serialize(_payload), new UTF8Encoding(false));
@@ -209,6 +213,45 @@ namespace PWQuestOverlay
             }
             IEnumerable<QuestMission> common = _missions.Where(m => m.routeKey == "COMMON" && m.classScope == "ALL");
             return race.Concat(common).OrderBy(m => m.order).ToList();
+        }
+    }
+
+    internal static class StepTitleFormatter
+    {
+        private static readonly Regex Coordinate = new Regex(
+            @"\s*\(\s*\d+\s*,\s*\d+(?:\s*,?\s*[A-Z]\d+|\s+\d+)?\s*\)",
+            RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
+
+        internal static string FromAction(string action)
+        {
+            string value = Coordinate.Replace((action ?? string.Empty).Trim(), string.Empty).Trim();
+            if (value.StartsWith("Relatório de ", StringComparison.OrdinalIgnoreCase))
+                value = "Reportar ao " + value.Substring("Relatório de ".Length);
+            else if (value.StartsWith("NPC Final: ", StringComparison.OrdinalIgnoreCase))
+                value = "Entregar a " + value.Substring("NPC Final: ".Length);
+            else if (value.StartsWith("Fale novamente com ", StringComparison.OrdinalIgnoreCase))
+                value = "Falar novamente com " + value.Substring("Fale novamente com ".Length);
+            else if (value.StartsWith("Fale com ", StringComparison.OrdinalIgnoreCase))
+                value = "Falar com " + value.Substring("Fale com ".Length);
+            else if (value.StartsWith("Aguarde ", StringComparison.OrdinalIgnoreCase))
+                value = "Aguardar " + value.Substring("Aguarde ".Length);
+            else if (value.StartsWith("Espere ", StringComparison.OrdinalIgnoreCase))
+                value = "Aguardar " + value.Substring("Espere ".Length);
+            else if (value.StartsWith("Pegar ", StringComparison.OrdinalIgnoreCase))
+                value = "Coletar " + value.Substring("Pegar ".Length);
+            else if (value.StartsWith("Mate ", StringComparison.OrdinalIgnoreCase))
+                value = "Matar " + value.Substring("Mate ".Length);
+            else if (value.StartsWith("Receba ", StringComparison.OrdinalIgnoreCase))
+                value = "Receber " + value.Substring("Receba ".Length);
+            else if (value.StartsWith("Confirme ", StringComparison.OrdinalIgnoreCase))
+                value = "Confirmar " + value.Substring("Confirme ".Length);
+            else if (value.StartsWith("Complete ", StringComparison.OrdinalIgnoreCase))
+                value = "Completar " + value.Substring("Complete ".Length);
+
+            if (string.IsNullOrWhiteSpace(value)) return "Próxima ação";
+            if (value.Length <= 72) return value;
+            int cut = value.LastIndexOf(' ', 72);
+            return value.Substring(0, cut > 40 ? cut : 72).TrimEnd() + "…";
         }
     }
 
@@ -259,6 +302,12 @@ namespace PWQuestOverlay
                     state.Marker.DeleteConfirmYes = defaults.DeleteConfirmYes;
                     state.SchemaVersion = 3;
                 }
+                if (state.SchemaVersion < 4)
+                {
+                    if (Math.Abs(state.Opacity - 0.92) < 0.001) state.Opacity = 0.82;
+                    state.CompactMode = false;
+                    state.SchemaVersion = 4;
+                }
                 NormalizeMarkerSettings(state.Marker);
                 foreach (CharacterProgress progress in state.Characters.Values)
                 {
@@ -266,7 +315,7 @@ namespace PWQuestOverlay
                         progress.MissionStates = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
                 }
                 RestoreLegacyMarkerFlags(state);
-                if (state.Opacity < 0.65 || state.Opacity > 1.0) state.Opacity = 0.92;
+                if (state.Opacity < 0.60 || state.Opacity > 1.0) state.Opacity = 0.82;
                 return state;
             }
             catch (Exception error)
@@ -295,6 +344,12 @@ namespace PWQuestOverlay
                 state.Marker.MarkerList = defaults.MarkerList;
                 state.Marker.DeleteConfirmYes = defaults.DeleteConfirmYes;
                 state.SchemaVersion = 3;
+            }
+            if (state.SchemaVersion < 4)
+            {
+                if (Math.Abs(state.Opacity - 0.92) < 0.001) state.Opacity = 0.82;
+                state.CompactMode = false;
+                state.SchemaVersion = 4;
             }
             NormalizeMarkerSettings(state.Marker);
             foreach (CharacterProgress progress in state.Characters.Values)

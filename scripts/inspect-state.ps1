@@ -10,7 +10,7 @@ if (-not (Test-Path -LiteralPath $statePath)) {
 
 $state = Get-Content -LiteralPath $statePath -Raw | ConvertFrom-Json
 Write-Host "Arquivo: $statePath"
-Write-Host "Bloqueado: $($state.PositionLocked) | Oculto: $($state.UserHidden) | Opacidade: $($state.Opacity)"
+Write-Host "Bloqueado: $($state.PositionLocked) | Compacto: $($state.CompactMode) | Oculto: $($state.UserHidden) | Opacidade: $($state.Opacity)"
 Write-Host ''
 Write-Host 'Associações manuais:'
 if ($state.ClassAssociations) {

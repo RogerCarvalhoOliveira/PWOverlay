@@ -39,6 +39,8 @@ internal static class SmokeTests
                 int previousRouteOrder = 0;
                 foreach (QuestStep step in mission.steps)
                 {
+                    if (string.IsNullOrWhiteSpace(step.title))
+                        throw new InvalidDataException("Etapa sem título de submissão: " + mission.name + " / " + step.id);
                     if (step.routeOrder <= 0)
                         throw new InvalidDataException("Etapa sem ordem global: " + mission.name + " / " + step.id);
                     if (step.routeOrder <= previousRouteOrder)
@@ -69,6 +71,13 @@ internal static class SmokeTests
             if (!(weaponsWr.steps[0].routeOrder < jumpWr.steps[0].routeOrder &&
                   jumpWr.steps[jumpWr.steps.Count - 1].routeOrder < weaponsWr.steps[1].routeOrder))
                 throw new InvalidDataException("Rota WR não intercala Teste de Salto e Fazer Armas.");
+
+            QuestMission pearl = mc.Find(m => m.name == "Pérola de Lágrimas");
+            QuestStep pearlReport = pearl.steps.Find(step => step.id == "e9");
+            if (pearlReport == null || pearlReport.title != "Reportar ao Guarda Lufu")
+                throw new InvalidDataException("Submissão final de Pérola de Lágrimas não está identificada.");
+            if (pearl.steps.Find(step => step.id == "e8").action.IndexOf("Sapo", StringComparison.OrdinalIgnoreCase) < 0)
+                throw new InvalidDataException("Objetivo do Sapo está ausente em Pérola de Lágrimas.");
 
             foreach (string classCode in expected.Keys)
             {
@@ -105,6 +114,8 @@ internal static class SmokeTests
             AppState state = new StateStore().Load();
             if (state.Characters == null || state.Positions == null || state.ClassAssociations == null)
                 throw new InvalidDataException("Estado carregado sem coleções obrigatórias.");
+            if (state.SchemaVersion < 4)
+                throw new InvalidDataException("Estado não foi migrado para suportar o modo compacto.");
             if (state.Marker == null || state.Marker.MarkerList == null)
                 throw new InvalidDataException("Calibração do marcador incompleta.");
 

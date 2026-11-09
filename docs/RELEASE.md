@@ -9,6 +9,7 @@ Atualize `CHANGELOG.md` e, se o formato das rotas ou do estado mudou, aumente a 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\validate-data.ps1
 powershell -ExecutionPolicy Bypass -File .\scripts\build.ps1 -Package
+powershell -ExecutionPolicy Bypass -File .\scripts\build.ps1 -Package -Installer
 git diff --check
 ```
 
@@ -26,12 +27,16 @@ git push origin vX.Y.Z
 
 ## 4. Artefatos
 
-O pacote fica em `dist\PW Quest Overlay Prototipo.zip`. Ele contém:
+Os pacotes ficam em `dist\PWQuestOverlay-Portatil-vX.Y.Z.zip` e `dist\PWQuestOverlay-Setup-vX.Y.Z.exe`. A versão portátil contém:
 
 - `PW Quest Overlay.exe`;
 - `PW Borderless.exe`;
+- `PW Overlay Central.exe`;
 - `quest_routes.json`;
-- `LEIA-ME.txt`.
+- `LEIA-ME.txt`;
+- `INSTALACAO.txt`.
+
+O instalador exige Inno Setup 6 somente no computador de desenvolvimento. O computador de destino precisa apenas do .NET Framework 4.x; não precisa do Inno Setup.
 
 Não inclua `state.json`, logs, nomes de personagens reais ou arquivos da instalação do jogo.
 

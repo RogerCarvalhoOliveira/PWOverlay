@@ -22,6 +22,7 @@ namespace PWQuestOverlay
         private readonly NumericUpDown _minLevel;
         private readonly NumericUpDown _expectedLevel;
         private readonly ListBox _stepsBox;
+        private readonly TextBox _titleBox;
         private readonly TextBox _actionBox;
         private readonly NumericUpDown _markerX;
         private readonly NumericUpDown _markerY;
@@ -74,24 +75,27 @@ namespace PWQuestOverlay
             Controls.Add(MakeLabel("Etapas", 12, 252));
             _stepsBox = new ListBox { Location = new Point(12, 274), Size = new Size(440, 300), Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Bottom };
             Controls.Add(_stepsBox);
-            Controls.Add(MakeLabel("Texto da etapa", 466, 252));
-            _actionBox = new TextBox { Location = new Point(466, 274), Size = new Size(502, 90), Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right, Multiline = true, ScrollBars = ScrollBars.Vertical };
+            Controls.Add(MakeLabel("Título da submissão", 466, 252));
+            _titleBox = new TextBox { Location = new Point(466, 274), Size = new Size(502, 26), Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right };
+            Controls.Add(_titleBox);
+            Controls.Add(MakeLabel("O que fazer", 466, 308));
+            _actionBox = new TextBox { Location = new Point(466, 330), Size = new Size(502, 70), Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right, Multiline = true, ScrollBars = ScrollBars.Vertical };
             Controls.Add(_actionBox);
-            Controls.Add(MakeLabel("Marcador X (0 = sem coordenada)", 466, 376));
-            _markerX = MakeCoordinateBox(466, 398);
+            Controls.Add(MakeLabel("Marcador X (0 = sem coordenada)", 466, 412));
+            _markerX = MakeCoordinateBox(466, 434);
             Controls.Add(_markerX);
-            Controls.Add(MakeLabel("Marcador Y", 632, 376));
-            _markerY = MakeCoordinateBox(632, 398);
+            Controls.Add(MakeLabel("Marcador Y", 632, 412));
+            _markerY = MakeCoordinateBox(632, 434);
             Controls.Add(_markerY);
-            Controls.Add(MakeLabel("Ordem global da ação", 798, 376));
-            _routeOrder = new NumericUpDown { Location = new Point(798, 398), Size = new Size(170, 26), Minimum = 1, Maximum = 9999999 };
+            Controls.Add(MakeLabel("Ordem global da ação", 798, 412));
+            _routeOrder = new NumericUpDown { Location = new Point(798, 434), Size = new Size(170, 26), Minimum = 1, Maximum = 9999999 };
             Controls.Add(_routeOrder);
 
-            var applyStep = new Button { Text = "Aplicar etapa", Location = new Point(466, 444), Size = new Size(112, 32) };
-            var addStep = new Button { Text = "Adicionar", Location = new Point(586, 444), Size = new Size(92, 32) };
-            var removeStep = new Button { Text = "Remover", Location = new Point(686, 444), Size = new Size(92, 32) };
-            var upStep = new Button { Text = "↑", Location = new Point(786, 444), Size = new Size(52, 32) };
-            var downStep = new Button { Text = "↓", Location = new Point(846, 444), Size = new Size(52, 32) };
+            var applyStep = new Button { Text = "Aplicar etapa", Location = new Point(466, 480), Size = new Size(112, 32) };
+            var addStep = new Button { Text = "Adicionar", Location = new Point(586, 480), Size = new Size(92, 32) };
+            var removeStep = new Button { Text = "Remover", Location = new Point(686, 480), Size = new Size(92, 32) };
+            var upStep = new Button { Text = "↑", Location = new Point(786, 480), Size = new Size(52, 32) };
+            var downStep = new Button { Text = "↓", Location = new Point(846, 480), Size = new Size(52, 32) };
             applyStep.Click += delegate { ApplyStepFields(); };
             addStep.Click += delegate { AddStep(); };
             removeStep.Click += delegate { RemoveStep(); };
@@ -158,7 +162,7 @@ namespace PWQuestOverlay
         private void ReloadSteps()
         {
             _stepsBox.Items.Clear();
-            foreach (QuestStep step in _mission.steps) _stepsBox.Items.Add(step.id + " — " + step.action);
+            foreach (QuestStep step in _mission.steps) _stepsBox.Items.Add(step.id + " — " + step.title);
             if (_stepsBox.Items.Count > 0) _stepsBox.SelectedIndex = 0;
         }
 
@@ -166,6 +170,7 @@ namespace PWQuestOverlay
         {
             if (_mission == null || _stepsBox.SelectedIndex < 0) return;
             QuestStep step = _mission.steps[_stepsBox.SelectedIndex];
+            _titleBox.Text = step.title;
             _actionBox.Text = step.action;
             _markerX.Value = step.markerX ?? 0;
             _markerY.Value = step.markerY ?? 0;
@@ -177,6 +182,9 @@ namespace PWQuestOverlay
             if (_mission == null || _stepsBox.SelectedIndex < 0) return;
             int index = _stepsBox.SelectedIndex;
             QuestStep step = _mission.steps[index];
+            step.title = string.IsNullOrWhiteSpace(_titleBox.Text)
+                ? StepTitleFormatter.FromAction(_actionBox.Text)
+                : _titleBox.Text.Trim();
             step.action = _actionBox.Text.Trim();
             step.markerX = _markerX.Value == 0 ? (int?)null : (int)_markerX.Value;
             step.markerY = _markerY.Value == 0 ? (int?)null : (int)_markerY.Value;
@@ -189,7 +197,7 @@ namespace PWQuestOverlay
         {
             if (_mission == null) return;
             int nextOrder = _mission.steps.Count == 0 ? _mission.order * 100 : _mission.steps.Max(step => step.routeOrder) + 1;
-            _mission.steps.Add(new QuestStep { id = "e" + (_mission.steps.Count + 1), action = "Nova etapa", routeOrder = nextOrder });
+            _mission.steps.Add(new QuestStep { id = "e" + (_mission.steps.Count + 1), title = "Nova etapa", action = "Descreva o que fazer", routeOrder = nextOrder });
             ReloadSteps();
             _stepsBox.SelectedIndex = _stepsBox.Items.Count - 1;
         }
@@ -312,7 +320,7 @@ namespace PWQuestOverlay
                     sheet.Cells[row, 13].Value2 = mission.instruction;
                     sheet.Cells[row, 14].Value2 = string.Join(Environment.NewLine,
                         mission.steps.Select((step, stepIndex) => "R" + step.routeOrder + " · " +
-                            (stepIndex + 1) + ". " + step.action));
+                            (stepIndex + 1) + ". " + step.title + " — " + step.action));
                     sheet.Cells[row, 15].Value2 = mission.expectedLevel <= 0 ? mission.minLevel : mission.expectedLevel;
                 }
                 table = sheet.ListObjects[1];

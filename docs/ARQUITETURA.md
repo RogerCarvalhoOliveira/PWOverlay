@@ -35,7 +35,7 @@ Overlay WinForms sem ativação
 ### `Models.cs`
 
 - Define o formato das missões.
-- Define etapas com ação, coordenada opcional e `routeOrder` global.
+- Define etapas com título de submissão, ação, coordenada opcional e `routeOrder` global.
 - Carrega `quest_routes.json`.
 - Filtra missões por classe.
 - Lê e grava `%LOCALAPPDATA%\PWQuestOverlay\state.json`.
@@ -56,6 +56,12 @@ Contém somente a integração Win32 necessária:
 
 Nenhuma função lê memória de outro processo.
 
+### `PWLauncher.cs`
+
+- Salva escolhas e caminho do launcher em `%LOCALAPPDATA%\PWQuestOverlay\launcher.json`.
+- Inicia ou encerra Overlay e PW Borderless sem interferir nos clientes do jogo.
+- Permite abrir o launcher configurado sem nenhuma ferramenta.
+
 ### `OverlayForm.cs`
 
 - Constrói a interface.
@@ -63,7 +69,7 @@ Nenhuma função lê memória de outro processo.
 - Atualiza a rota quando o cliente muda.
 - Processa botões e atalhos.
 - Achata as etapas de todas as missões e as ordena por `routeOrder`, permitindo intercalar missões.
-- Avança e desfaz progresso por ação global; a missão só fecha quando todas as próprias etapas forem resolvidas.
+- Exibe `Missão › Submissão` e avança/desfaz por ação global; a missão só fecha quando todas as próprias etapas forem resolvidas.
 - Cria o marcador único `PWOverlay` no cliente ativo.
 - Salva posição e progresso.
 - Reeleva o tracker e, em seguida, o painel `TODOS`.

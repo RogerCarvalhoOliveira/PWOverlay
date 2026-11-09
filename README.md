@@ -2,7 +2,7 @@
 
 Overlay portátil para acompanhar rotas de missões do Perfect World 1.4.4 em multiclient.
 
-O programa identifica cada cliente pelo título criado pelo PW Helper, por exemplo `Cauton[EP]`, seleciona a rota da classe e mostra a missão e a etapa atuais. Cada personagem e classe possui progresso independente.
+O programa identifica cada cliente pelo título criado pelo PW Helper, por exemplo `Cauton[EP]`, seleciona a rota da classe e mostra missão, submissão e ação atuais. Cada personagem e classe possui progresso independente.
 
 ## Funcionalidades
 
@@ -11,6 +11,7 @@ O programa identifica cada cliente pelo título criado pelo PW Helper, por exemp
 - Tela **Perfis** para associar manualmente qualquer título ou nome a uma classe.
 - Suporte a personagens com o mesmo nome em classes diferentes.
 - Rotas otimizadas do nível 1 ao 60, com 226 missões únicas e 836 etapas detalhadas.
+- Título explícito em todas as submissões para facilitar comparação com o questlog e diagnóstico de progresso.
 - Ordem global por ação do nível 1 ao 60: o overlay pode pegar várias missões de um polo, executar objetivos próximos e entregá-las somente no retorno planejado.
 - Após a Cidade do Dragão, as seis classes percorrem o mesmo circuito otimizado e se separam somente em desvios curtos para missões exclusivas de raça.
 - Cultivos, DGs 19/29/39/49/59, Moedas Sangrentas, Pilar Esquisito e cargos militares prioritários.
@@ -26,8 +27,11 @@ O programa identifica cada cliente pelo título criado pelo PW Helper, por exemp
 - Exportação e restauração de backup dos perfis e do progresso.
 - Atalhos globais configurados no código.
 - Painel arrastável, bloqueio de posição, transparência e restauração de posição.
+- Botão `−/+` e menu da bandeja para alternar para uma interface compacta sem perder as ações essenciais.
+- Transparência ajustável entre 65% e 100%, com 82% como novo padrão recomendado.
 - Posição salva por monitor e resolução.
 - Compatibilidade com o PW Borderless Monitor e o painel `TODOS` do PW Helper.
+- **PW Overlay Central** permite abrir o PW com Overlay/Windowed Fullscreen, aplicar as ferramentas depois ou abrir somente o jogo.
 - O painel `TODOS` é mantido acima do jogo enquanto estiver aberto.
 - Ocultação automática quando o usuário muda para outro aplicativo.
 - Estado salvo em `%LOCALAPPDATA%\PWQuestOverlay`.
@@ -55,10 +59,20 @@ O resultado será criado em `dist\`:
 
 - `PW Quest Overlay.exe`
 - `PW Borderless.exe`
+- `PW Overlay Central.exe`
 - `quest_routes.json`
 - `rota_leveling_pw_144.xlsx`
 - `LEIA-ME.txt`
-- `PW Quest Overlay Prototipo.zip`, quando `-Package` for usado.
+- `INSTALACAO.txt`;
+- `PWQuestOverlay-Portatil-v0.7.0.zip`, quando `-Package` for usado.
+
+Para gerar também o instalador, instale o Inno Setup 6 e execute:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\build.ps1 -Package -Installer
+```
+
+O resultado adicional é `PWQuestOverlay-Setup-v0.7.0.exe`. Ele instala por usuário, sem exigir privilégios administrativos, e oferece atalhos e inicialização automática como opções desmarcadas.
 
 Para compilar e iniciar:
 
@@ -71,13 +85,16 @@ powershell -ExecutionPolicy Bypass -File .\scripts\run-dev.ps1
 | Caminho | Conteúdo |
 | --- | --- |
 | `src/` | Código C# do aplicativo. |
+| `src/PWLauncher.cs` | Inicializador que permite escolher quais ferramentas usar em cada sessão. |
 | `data/quest_routes.json` | Rotas e missões usadas pelo overlay. |
 | `data/rota_leveling_pw_144.xlsx` | Planilha editável com as quatro abas e todas as etapas. |
 | `scripts/build.ps1` | Compila e empacota o projeto. |
+| `installer/PWQuestOverlay.iss` | Definição do instalador para Inno Setup 6. |
 | `scripts/validate-data.ps1` | Valida IDs, campos e contagens das rotas. |
 | `scripts/test.ps1` | Executa validação e smoke tests das rotas e do estado. |
 | `scripts/inspect-state.ps1` | Exibe o progresso local sem alterá-lo. |
 | `docs/MANUAL-USUARIO.md` | Manual de uso. |
+| `docs/INSTALACAO.md` | Instalação e configuração em outro computador. |
 | `docs/ARQUITETURA.md` | Componentes e fluxo do aplicativo. |
 | `docs/DESENVOLVIMENTO.md` | Tutorial de criação e manutenção. |
 | `docs/ROTAS.md` | Como editar ou adicionar missões. |
@@ -96,7 +113,7 @@ O aplicativo cria:
 %LOCALAPPDATA%\PWQuestOverlay\overlay.log
 ```
 
-Esses arquivos não pertencem ao Git. O primeiro guarda progresso, posição e preferências. O segundo registra inicialização, identificação de clientes e alterações de missão.
+Esses arquivos não pertencem ao Git. O primeiro guarda progresso, posição, modo compacto e preferências. O segundo registra inicialização, identificação de clientes e alterações de missão.
 
 ## Fluxo Git recomendado
 
