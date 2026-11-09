@@ -8,9 +8,9 @@ O programa identifica cada cliente pelo título criado pelo PW Helper, por exemp
 
 Para usar sem compilar, abra a [versão mais recente](https://github.com/RogerCarvalhoOliveira/PWOverlay/releases/latest) e baixe:
 
-- `PWQuestOverlay-Setup-v0.7.4.exe`: instalador recomendado para Windows;
-- `PWQuestOverlay-Portatil-v0.7.4.zip`: pacote portátil;
-- `SHA256SUMS-v0.7.4.txt`: hashes para conferir a integridade dos arquivos.
+- `PWQuestOverlay-Setup-v0.7.5.exe`: instalador recomendado para Windows;
+- `PWQuestOverlay-Portatil-v0.7.5.zip`: pacote portátil;
+- `SHA256SUMS-v0.7.5.txt`: hashes para conferir a integridade dos arquivos.
 
 Depois da instalação, execute **PW Overlay Central** para escolher se deseja ativar o Overlay e/ou o Windowed Fullscreen antes de abrir o jogo.
 
@@ -74,7 +74,7 @@ O resultado será criado em `dist\`:
 - `rota_leveling_pw_144.xlsx`
 - `LEIA-ME.txt`
 - `INSTALACAO.txt`;
-- `PWQuestOverlay-Portatil-v0.7.4.zip`, quando `-Package` for usado.
+- `PWQuestOverlay-Portatil-v0.7.5.zip`, quando `-Package` for usado.
 
 Para gerar também o instalador, instale o Inno Setup 6 e execute:
 
@@ -82,7 +82,7 @@ Para gerar também o instalador, instale o Inno Setup 6 e execute:
 powershell -ExecutionPolicy Bypass -File .\scripts\build.ps1 -Package -Installer
 ```
 
-O resultado adicional é `PWQuestOverlay-Setup-v0.7.4.exe`. Ele instala por usuário, sem exigir privilégios administrativos, e oferece atalhos e inicialização automática como opções desmarcadas.
+O resultado adicional é `PWQuestOverlay-Setup-v0.7.5.exe`. Ele instala por usuário, sem exigir privilégios administrativos, e oferece atalhos e inicialização automática como opções desmarcadas.
 
 Para compilar e iniciar:
 
@@ -108,7 +108,8 @@ powershell -ExecutionPolicy Bypass -File .\scripts\run-dev.ps1
 | `docs/ARQUITETURA.md` | Componentes e fluxo do aplicativo. |
 | `docs/DESENVOLVIMENTO.md` | Tutorial de criação e manutenção. |
 | `docs/ROTAS.md` | Como editar ou adicionar missões. |
-| `docs/DATAMINE-MISSOES-1-20.md` | Comparação dos nomes do guia com o `tasks.data` do cliente 1.4.4. |
+| `docs/DATAMINE-MISSOES-1-20.md` | Comparação dos nomes do guia com o `tasks.data` nos níveis 1 a 20. |
+| `docs/DATAMINE-MISSOES-21-60.md` | Comparação dos nomes do guia com o `tasks.data` nos níveis 21 a 60. |
 | `docs/TESTES.md` | Roteiro de testes, inclusive multiclient. |
 | `docs/SOLUCAO-DE-PROBLEMAS.md` | Diagnóstico de erros comuns. |
 | `docs/RELEASE.md` | Preparação de uma nova versão. |

@@ -1,5 +1,14 @@
 # Histórico de alterações
 
+## 0.7.5 - Datamine completo até o nível 60
+
+- Estendido o datamine do `tasks.data` para todas as missões restantes dos níveis 21 a 60.
+- Corrigidos 39 títulos de missão e 321 títulos de etapas, preservando grafias e truncamentos do cliente.
+- Identificada a antiga `Quest sem Tradução` como a cadeia `Segredo da Família` até `Salvação`.
+- Atualizadas as submissões de cultivos, DGs, Pilar Esquisito e cadeias longas.
+- Sincronizados JSON e planilha sem alterar IDs de progresso.
+- Mantida a instrução de remover a missão de voo como etapa operacional do overlay.
+
 ## 0.7.4 - Nomes oficiais do cliente 1.4.4
 
 - Dataminado o `tasks.data` versão 124 do cliente instalado, com 24.277 missões e submissões extraídas integralmente.

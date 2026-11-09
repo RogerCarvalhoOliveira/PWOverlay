@@ -57,8 +57,11 @@ internal static class SmokeTests
             if (firstLaterLevel >= lastLevelTwenty)
                 throw new InvalidDataException("A rota comum 20-60 não intercala missões entre regiões e retornos.");
 
-            QuestMission cultivo29 = common.Find(m => m.name == "Cultivo 29 — O Infante Primordial");
-            QuestMission moeda29 = common.Find(m => m.name == "DG29 — Moeda Sangrenta de Ferro 2 Peão");
+            QuestMission cultivo29 = common.Find(m => m.id == "COMMON|ALL|29|Cultivo 29 — O Infante Primordial");
+            QuestMission moeda29 = common.Find(m => m.id == "COMMON|ALL|29|DG29 — Moeda Sangrenta de Ferro 2 Peão");
+            if (cultivo29 == null || cultivo29.name != "Princípio Lúcido." ||
+                moeda29 == null || moeda29.name != "Moeda Sangrenta de Fer")
+                throw new InvalidDataException("Nomes dataminados de Cultivo 29 ou DG29 estão ausentes.");
             if (cultivo29.steps[0].routeOrder >= moeda29.steps[moeda29.steps.Count - 1].routeOrder)
                 throw new InvalidDataException("Cultivo 29 e Moeda da DG29 não foram agrupados corretamente.");
 
@@ -90,14 +93,23 @@ internal static class SmokeTests
                     throw new InvalidDataException("Orientação de forja não é a primeira missão prevista do nível 5 em " + classCode);
 
                 List<QuestMission> route = routes.GetForClass(classCode);
-                if (route[route.Count - 1].expectedLevel != 60 || route[route.Count - 1].name != "Cargo Militar Nível 4")
+                if (route[route.Count - 1].expectedLevel != 60 || route[route.Count - 1].name != "Insígnia Nível 4")
                     throw new InvalidDataException("Rota não termina corretamente no nível 60 em " + classCode);
-                string[] required = { "DG29 — Moeda Sangrenta de Ferro 2 Peão", "DG39 — Moeda Sangrenta de Ferro 3 Fantasma",
-                    "DG49 — Moeda Sangrenta de Ferro 4 Wanjun", "DG59 — Moeda Sangrenta de Ferro 5 Fera Sagrada",
-                    "Pilar Esquisito — cadeia completa", "Remover missão de voo do questlog" };
-                foreach (string missionName in required)
-                    if (route.Find(m => m.name == missionName) == null)
-                        throw new InvalidDataException(missionName + " ausente em " + classCode);
+                var required = new Dictionary<string, string>
+                {
+                    { "COMMON|ALL|29|DG29 — Moeda Sangrenta de Ferro 2 Peão", "Moeda Sangrenta de Fer" },
+                    { "COMMON|ALL|39|DG39 — Moeda Sangrenta de Ferro 3 Fantasma", "Moeda Sangrenta de Fer" },
+                    { "COMMON|ALL|51|DG49 — Moeda Sangrenta de Ferro 4 Wanjun", "Moeda Sangrenta de Fer" },
+                    { "COMMON|ALL|59|DG59 — Moeda Sangrenta de Ferro 5 Fera Sagrada", "Moeda Sangrenta de Fer" },
+                    { "COMMON|ALL|50|Pilar Esquisito — cadeia completa", "Pilar Esquisito" },
+                    { "COMMON|ALL|30|Remover missão de voo do questlog", "Remover missão de voo do questlog" }
+                };
+                foreach (KeyValuePair<string, string> item in required)
+                {
+                    QuestMission requiredMission = route.Find(m => m.id == item.Key);
+                    if (requiredMission == null || requiredMission.name != item.Value)
+                        throw new InvalidDataException(item.Value + " ausente ou com nome divergente em " + classCode);
+                }
 
                 var globalOrders = new HashSet<int>();
                 foreach (QuestMission mission in route)
@@ -125,7 +137,15 @@ internal static class SmokeTests
             if (ea.Find(m => m.name == "Mão e Coração de Ouro") == null ||
                 ea.Find(m => m.name == "Matar Cobras Nagas") == null)
                 throw new InvalidDataException("Correções dataminadas da rota EA/EP estão ausentes.");
-            foreach (QuestMission mission in routes.AllMissions.Where(m => m.minLevel <= 20))
+            QuestMission unknownChain = common.Find(m => m.id == "COMMON|ALL|55|Quest sem Tradução");
+            if (unknownChain == null || unknownChain.name != "Segredo da Família" ||
+                unknownChain.steps.Find(step => step.id == "e10").title != "Salvação")
+                throw new InvalidDataException("Cadeia Segredo da Família não recebeu os nomes dataminados.");
+            QuestMission pillar = common.Find(m => m.id == "COMMON|ALL|50|Pilar Esquisito — cadeia completa");
+            if (pillar == null || pillar.steps.Find(step => step.id == "e9").title != "Problema" ||
+                pillar.steps.Find(step => step.id == "e11").title.IndexOf("Conversão do Cristal", StringComparison.Ordinal) < 0)
+                throw new InvalidDataException("Submissões dataminadas de Pilar Esquisito estão ausentes.");
+            foreach (QuestMission mission in routes.AllMissions)
             {
                 if (mission.name.IndexOf('^') >= 0)
                     throw new InvalidDataException("Código de cor do cliente permaneceu no nome: " + mission.name);

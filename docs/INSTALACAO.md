@@ -9,7 +9,7 @@
 
 ## Instalação recomendada
 
-1. Baixe `PWQuestOverlay-Setup-v0.7.4.exe` na página **Releases** do GitHub e copie-o para o outro computador.
+1. Baixe `PWQuestOverlay-Setup-v0.7.5.exe` na página **Releases** do GitHub e copie-o para o outro computador.
 2. Execute o instalador. Não é necessário acesso de administrador: o programa é instalado somente para o usuário atual.
 3. Escolha, se desejar, atalhos e inicialização automática. Deixe a inicialização direta do Overlay/PW Borderless desmarcada se quiser decidir a cada sessão.
 4. Ao terminar, abra **PW Overlay Central**, selecione as ferramentas desejadas e use **Iniciar selecionados + PW**.
@@ -42,7 +42,7 @@ O backup inclui progresso, associações de classe, posições, transparência, 
 
 ## Versão portátil
 
-Baixe e extraia `PWQuestOverlay-Portatil-v0.7.4.zip` para uma pasta em que o usuário tenha permissão de escrita e execute `PW Overlay Central.exe`. Não mova apenas um EXE: as três ferramentas e `quest_routes.json` devem permanecer juntas.
+Baixe e extraia `PWQuestOverlay-Portatil-v0.7.5.zip` para uma pasta em que o usuário tenha permissão de escrita e execute `PW Overlay Central.exe`. Não mova apenas um EXE: as três ferramentas e `quest_routes.json` devem permanecer juntas.
 
 ## Dados locais e desinstalação
 

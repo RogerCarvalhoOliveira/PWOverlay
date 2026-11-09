@@ -59,7 +59,9 @@ As missões iniciais foram cruzadas com guias clássicos separados por raça:
 - Alados: <https://pweujogo.blogspot.com/p/missoes-alados-level-1-ao-19.html>
 - Abissais: <https://guiapw.forumbrasil.net/t77-guia-missoes-quests-para-lvl-1-19-dos-abissais>
 
-O trecho 20–59 usa o guia clássico de missões <https://pwmissoes1a59.blogspot.com/>. A cadeia do Pilar Esquisito foi conferida em <https://wikipw.com.br/index.php?title=Pilar_Esquisito> e no banco de dados <https://www.pwdatabase.com/br/npc/25808>. Os níveis e requisitos de Cargo Militar foram conferidos em <https://wikipw.com.br/index.php/Sistema_de_Rank_de_Fama>.
+O trecho 20–59 foi inicialmente estruturado com o guia clássico de missões <https://pwmissoes1a59.blogspot.com/>. A cadeia do Pilar Esquisito foi conferida em <https://wikipw.com.br/index.php?title=Pilar_Esquisito> e no banco de dados <https://www.pwdatabase.com/br/npc/25808>. Os níveis e requisitos de Cargo Militar foram conferidos em <https://wikipw.com.br/index.php/Sistema_de_Rank_de_Fama>.
+
+Os títulos exibidos pelo overlay não dependem mais das traduções desses sites: todas as missões e submissões dos níveis 1 a 60 foram cruzadas com o `tasks.data` versão 124 do cliente instalado. Consulte `DATAMINE-MISSOES-1-20.md` e `DATAMINE-MISSOES-21-60.md` para o relatório de divergências.
 
 O comportamento do painel de marcadores foi conferido na interface 1.4.4 e comparado com a documentação oficial da tela básica: <https://perfectworld.com.br/o-jogo/primeiros-passos/a-tela-e-os-comandos-basicos>.
 
