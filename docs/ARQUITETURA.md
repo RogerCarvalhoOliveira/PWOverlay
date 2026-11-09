@@ -80,13 +80,21 @@ Nenhuma função lê memória de outro processo.
 - Cria o marcador único `PWOverlay` no cliente ativo.
 - Salva posição e progresso.
 - Reeleva o tracker e, em seguida, todos os painéis flutuantes visíveis do PW Helper.
-- Na branch experimental de OCR, permite selecionar uma região proporcional do cliente, executa a leitura fora da thread da interface e apenas apresenta o diagnóstico, sem alterar progresso.
+- Exibe a escolha God/Evil na etapa correspondente, salva por personagem e filtra as cadeias seguintes.
 
-### `QuestOcrService.cs`
+### `QuestMemoryMonitor.cs` / `ProcessMemoryReader.cs`
 
-- Captura somente a região calibrada do cliente em foco e amplia a imagem antes da leitura.
-- Executa o Tesseract como processo externo com idioma português e limite de tempo.
-- Salva `ocr-last.png` para comparação visual e retorna texto e duração ao overlay.
+- Consultam o cliente x86 somente para leitura, com layout e catálogo versionados.
+- Confirmam duas leituras estáveis antes de atualizar evidências de missões, itens e abates.
+- Mantêm sessões independentes por PID; somente o perfil do cliente ativo avança no guia.
+
+### `CultivationChoiceForm.cs` / `CultivationRouting`
+
+- A janela apresenta God e Evil sem escolha inicial automática.
+- A preferência fica em `CharacterProgress.CultivationPath`, separada por personagem/classe.
+- Sem escolha, a rota pausa na decisão de 89; concluir/pular essa etapa abre a escolha.
+- Depois da escolha, missões compartilhadas e somente a cadeia escolhida ficam visíveis.
+- O menu permite corrigir a preferência; o jogo continua exigindo a escolha manual no NPC.
 
 ## Identidade do perfil
 
@@ -106,12 +114,16 @@ As associações manuais são guardadas em `ClassAssociations`, indexadas pelo t
 
 | Classe | `routeKey` | Filtro adicional |
 | --- | --- | --- |
-| WR | `WR` | Nenhum. |
+| WR / MG | `WR` | Nenhum. |
 | WB | `WBWF` | Somente `WB/WF`. |
 | WF | `WBWF` | `WB/WF` e `WF`. |
 | EA | `EAEP` | Nenhum. |
 | EP | `EAEP` | Nenhum. |
-| MC | `MC` | Nenhum. |
+| MC / ES | `MC` | Nenhum. |
+| SK | `SKMS` | `SK/MS` e `SK`. |
+| MS | `SKMS` | `SK/MS` e `MS`. |
+
+Cada rota recebe `COMMON`. `cultivationPath` define os ramos God/Evil e `cultivationChoice` identifica a decisão. As etapas continuam ordenadas por `routeOrder`; o filtro não altera os IDs nem as marcações salvas.
 
 ## Foco e ordem Z
 
@@ -135,6 +147,7 @@ Assim o Helper permanece visível sem receber foco de teclado.
 `state.json` contém:
 
 - classe manual ou automática;
+- caminho de cultivo por personagem (`GOD`, `EVIL` ou ainda não escolhido);
 - associações entre título da janela e classe;
 - missões e etapas `done` ou `skipped` (as etapas usam a chave `ID_DA_MISSAO|STEP|ID_DA_ETAPA`);
 - posição por monitor;

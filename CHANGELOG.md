@@ -1,5 +1,15 @@
 # Histórico de alterações
 
+## 0.10.0 - Guia até 105 e escolha de cultivo
+
+- Acrescentadas 281 entradas e 877 etapas dos níveis 61–105, com nomes e submissões dataminados. Total: 561 entradas e 1.897 etapas, incluindo os dois ramos alternativos.
+- Escolha explícita God/Evil no cultivo 89, salva por personagem e em backups. O guia aguarda a resposta e acompanha os cultivos específicos 89, 99 e 100.
+- Preparação conjunta de cultivo e moedas nas DG69, 79, 89 e 99; seleção de missões de XP, cargos militares condicionais e atividades repetíveis da faixa final.
+- Cinco abas atualizadas até 105, com coluna Cultivo e preservação das marcações. Todos os IDs e etapas anteriores foram mantidos.
+- Removidos os módulos, atalhos, configurações e dependências de OCR/Tesseract. A leitura de memória continua disponível. O instalador limpa a antiga pasta OCR na atualização.
+- Dusk permanece fora do escopo anterior; uma etapa explicita os acessos ao Passado exigidos pelo cultivo 100.
+- Verificados requisitos, níveis máximos, nomes, ramos e eventos de interface. O percurso 61–105 ainda precisa de validação integral no servidor.
+
 ## 0.9.0 - Dez classes e arraste com botão pressionado
 
 - Arraste mantém a captura no controle que recebeu o clique. Segurar o esquerdo move o painel; soltar encerra e salva, inclusive em outro monitor. Perder a captura também encerra o arraste.

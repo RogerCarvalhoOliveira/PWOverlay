@@ -21,6 +21,7 @@ namespace PWQuestOverlay
         private readonly TextBox _instructionBox;
         private readonly NumericUpDown _minLevel;
         private readonly NumericUpDown _expectedLevel;
+        private readonly ComboBox _cultivationPathBox;
         private readonly ListBox _stepsBox;
         private readonly TextBox _titleBox;
         private readonly TextBox _actionBox;
@@ -68,6 +69,10 @@ namespace PWQuestOverlay
             Controls.Add(MakeLabel("Nível previsto", 142, 188));
             _expectedLevel = MakeLevelBox(142, 210);
             Controls.Add(_expectedLevel);
+            Controls.Add(MakeLabel("Cultivo do guia", 272, 188));
+            _cultivationPathBox = new ComboBox { Location = new Point(272, 210), Size = new Size(195, 26), DropDownStyle = ComboBoxStyle.DropDownList };
+            _cultivationPathBox.Items.AddRange(new object[] { "Ambos", "God", "Evil" });
+            Controls.Add(_cultivationPathBox);
             var applyMission = new Button { Text = "Aplicar dados da missão", Location = new Point(484, 204), Size = new Size(170, 32) };
             applyMission.Click += delegate { ApplyMissionFields(); ReloadMissionCaption(); };
             Controls.Add(applyMission);
@@ -138,6 +143,8 @@ namespace PWQuestOverlay
             _npcBox.Text = _mission.npc;
             _locationBox.Text = _mission.location;
             _instructionBox.Text = _mission.instruction;
+            _cultivationPathBox.SelectedIndex = _mission.cultivationPath == "GOD" ? 1 : _mission.cultivationPath == "EVIL" ? 2 : 0;
+            _cultivationPathBox.Enabled = !_mission.cultivationChoice;
             _minLevel.Value = Math.Max(1, Math.Min(150, _mission.minLevel));
             _expectedLevel.Value = Math.Max(1, Math.Min(150, _mission.expectedLevel <= 0 ? _mission.minLevel : _mission.expectedLevel));
             ReloadSteps();
@@ -150,6 +157,7 @@ namespace PWQuestOverlay
             _mission.npc = _npcBox.Text.Trim();
             _mission.location = _locationBox.Text.Trim();
             _mission.instruction = _instructionBox.Text.Trim();
+            _mission.cultivationPath = _mission.cultivationChoice ? null : _cultivationPathBox.SelectedIndex == 1 ? "GOD" : _cultivationPathBox.SelectedIndex == 2 ? "EVIL" : null;
             _mission.minLevel = (int)_minLevel.Value;
             _mission.expectedLevel = (int)_expectedLevel.Value;
         }
@@ -302,6 +310,7 @@ namespace PWQuestOverlay
                     Marshal.FinalReleaseComObject(target);
                 }
                 sheet.Cells[7, 15].Value2 = "Nível previsto";
+                sheet.Cells[7, 16].Value2 = "Cultivo";
                 for (int index = 0; index < missions.Count; index++)
                 {
                     int row = 8 + index;
@@ -323,10 +332,11 @@ namespace PWQuestOverlay
                         mission.steps.Select((step, stepIndex) => "R" + step.routeOrder + " · " +
                             (stepIndex + 1) + ". " + step.title + " — " + step.action));
                     sheet.Cells[row, 15].Value2 = mission.expectedLevel <= 0 ? mission.minLevel : mission.expectedLevel;
+                    sheet.Cells[row, 16].Value2 = mission.cultivationPath == "GOD" ? "God" : mission.cultivationPath == "EVIL" ? "Evil" : "Ambos";
                 }
                 table = sheet.ListObjects[1];
-                table.Resize(sheet.Range["A7:O" + lastRow]);
-                sheet.Range["A8:O" + lastRow].Rows.AutoFit();
+                table.Resize(sheet.Range["A7:P" + lastRow]);
+                sheet.Range["A8:P" + lastRow].Rows.AutoFit();
                 sheet.Columns[15].ColumnWidth = 12;
             }
             finally

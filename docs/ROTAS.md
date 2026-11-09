@@ -19,6 +19,10 @@ As rotas ficam em `data/quest_routes.json`. Normalmente o overlay somente lê e 
 | `baseXp` | XP original, quando conhecida. |
 | `xp3` | XP calculada com multiplicador 3. |
 | `priority` | Motivo para priorizar a missão. |
+| `cultivationPath` | `GOD`, `EVIL` ou vazio para missão compartilhada. |
+| `cultivationChoice` | Etapa que exige a escolha explícita do cultivo. |
+| `repeatable` | Atividade que pode ser repetida quando o servidor permitir. |
+| `availabilityNote` | Restrições adicionais de disponibilidade ou nível inferido da cadeia. |
 | `steps` | Lista ordenada das etapas exibidas no overlay. |
 
 Cada item de `steps` possui:
@@ -56,7 +60,9 @@ Escopos aceitos: `WR/MG`, `WB/WF`, `WF`, `EA/EP`, `MC/ES`, `SK/MS`, `SK`, `MS` e
 
 Para reconstruir a rota dos Guardiões a partir dos fatos versionados, execute `node scripts/build-guardian-routes.mjs --write`, seguido de `node scripts/verify-guardian-routes.mjs`. O gerador preserva todas as etapas legadas, associa cada submissão ao ID real e reserva intervalos entre ações comuns para os desvios do Místico. Depois sincronize a planilha com `node scripts/sync-route-workbook.mjs --expand-classes --write`. Consulte [guia dos novos roteiros](GUIAS-DEZ-CLASSES.md) para limites e decisões de percurso.
 
-As rotas vão até o nível 60. Depois da chegada à Cidade do Dragão, o repositório combina a rota racial com `COMMON`; apenas missões realmente exclusivas permanecem nas rotas de raça. A ordem global de `COMMON` foi otimizada como um único circuito 20–60, podendo intercalar níveis e deixar cadeias longas abertas até o próximo retorno conveniente. Os desvios raciais usam os intervalos entre ordens comuns e depois reencontram a sequência principal. A orientação automática do nível 5 para falar com o Ancião foi incluída, mas as missões específicas de Ferreiro, Alfaiate, Artesão e Boticário continuam excluídas. Missões de voo também foram removidas e substituídas por uma etapa explícita para abandonar o pop-up.
+As rotas vão até o nível 105. Depois da chegada à Cidade do Dragão, o repositório combina a rota racial com `COMMON`; apenas missões realmente exclusivas permanecem nas rotas de raça. A ordem global pode intercalar missões e deixar cadeias abertas até o próximo retorno conveniente. Os desvios raciais reencontram a sequência principal. A orientação automática para falar com o Ancião sobre produção foi incluída, mas as missões específicas de Ferreiro, Alfaiate, Artesão e Boticário continuam excluídas. Missões de voo foram substituídas por uma etapa para abandonar o pop-up.
+
+Para reconstruir a extensão, execute `node scripts/build-endgame-routes.mjs --write`, `node scripts/verify-endgame-routes.mjs` e `node scripts/sync-route-workbook.mjs --extend-105 --write`. Preserve os IDs `ENDGAME|` e seus IDs de etapa. Consulte [guia 61–105](GUIA-61-105.md) para os ramos de cultivo, as atividades repetíveis e a dependência dos acessos ao Passado. O repositório filtra o ramo pela preferência salva do personagem; sem escolha, a rota aguarda no cultivo 89.
 
 ## Fontes das etapas
 

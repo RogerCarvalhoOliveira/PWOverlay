@@ -8,9 +8,9 @@ O programa identifica cada cliente pelo título criado pelo PW Helper, por exemp
 
 Para usar sem compilar, abra a [versão mais recente](https://github.com/RogerCarvalhoOliveira/PWOverlay/releases/latest) e baixe:
 
-- `PWQuestOverlay-Setup-v0.9.0.exe`: instalador recomendado para Windows;
-- `PWQuestOverlay-Portatil-v0.9.0.zip`: pacote portátil;
-- `SHA256SUMS-v0.9.0.txt`: hashes para conferir a integridade dos arquivos.
+- `PWQuestOverlay-Setup-v0.10.0.exe`: instalador recomendado para Windows;
+- `PWQuestOverlay-Portatil-v0.10.0.zip`: pacote portátil;
+- `SHA256SUMS-v0.10.0.txt`: hashes para conferir a integridade dos arquivos.
 
 Depois da instalação, execute **PW Overlay Central** para escolher se deseja ativar o Overlay e/ou o Windowed Fullscreen antes de abrir o jogo. O botão azul/cinza permite ligar ou desligar o Windowed Fullscreen imediatamente, inclusive com os clientes já abertos.
 
@@ -20,11 +20,13 @@ Depois da instalação, execute **PW Overlay Central** para escolher se deseja a
 - Detecção automática do padrão `Personagem[CLASSE]`.
 - Tela **Perfis** para associar manualmente qualquer título ou nome a uma classe.
 - Suporte a personagens com o mesmo nome em classes diferentes.
-- Rotas do nível 1 ao 60, com 280 entradas de guia e 1.020 etapas detalhadas.
+- Rotas do nível 1 ao 105 para as dez classes, preservando as etapas e o progresso anteriores.
 - Título explícito em todas as submissões para facilitar comparação com o questlog e diagnóstico de progresso.
-- Ordem global por ação do nível 1 ao 60: o overlay pode pegar várias missões de um polo, executar objetivos próximos e entregá-las somente no retorno planejado.
+- Ordem global por ação do nível 1 ao 105: o overlay pode pegar várias missões de um polo, executar objetivos próximos e entregá-las somente no retorno planejado.
 - Após a Cidade do Dragão, as dez classes percorrem o mesmo circuito e se separam nas missões exclusivas de raça/classe. A rota do Místico inclui as quatro invocações e seis plantas até o nível 59.
-- Cultivos, DGs 19/29/39/49/59, Moedas Sangrentas, Pilar Esquisito e cargos militares prioritários.
+- Escolha God/Evil ao chegar à decisão do cultivo 89, salva por personagem. As cadeias de 89, 99 e 100 seguem somente o caminho escolhido.
+- Cultivos, DGs 19/29/39/49/59/69/79/89/99, Moedas Sangrentas, Pilar Esquisito e cargos militares prioritários.
+- Acessos ao Passado sinalizados como pré-requisito do cultivo 100; Dusk/Crepúsculo continua reservado para outra etapa. Consulte [guia 61–105](docs/GUIA-61-105.md).
 - Missões de voo ficam fora da rota; o guia inclui a etapa para abandonar o pop-up no questlog.
 - Aviso de produção para falar com o Ancião: nível 5 nas quatro raças anteriores e 6 nos Guardiões, conforme o cliente. Missões específicas de ofício ficam fora.
 - Nível previsto da rota exibido em cada missão, sem exigir o nível real do personagem.
@@ -80,7 +82,7 @@ O resultado será criado em `dist\`:
 - `rota_leveling_pw_144.xlsx`
 - `LEIA-ME.txt`
 - `INSTALACAO.txt`;
-- `PWQuestOverlay-Portatil-v0.9.0.zip`, quando `-Package` for usado.
+- `PWQuestOverlay-Portatil-v0.10.0.zip`, quando `-Package` for usado.
 
 Para gerar também o instalador, instale o Inno Setup 6 e execute:
 
@@ -88,7 +90,7 @@ Para gerar também o instalador, instale o Inno Setup 6 e execute:
 powershell -ExecutionPolicy Bypass -File .\scripts\build.ps1 -Package -Installer
 ```
 
-O resultado adicional é `PWQuestOverlay-Setup-v0.9.0.exe`. Ele instala por usuário, sem exigir privilégios administrativos, e oferece atalhos e inicialização automática como opções desmarcadas.
+O resultado adicional é `PWQuestOverlay-Setup-v0.10.0.exe`. Ele instala por usuário, sem exigir privilégios administrativos, e oferece atalhos e inicialização automática como opções desmarcadas.
 
 Para compilar e iniciar:
 
@@ -111,6 +113,8 @@ powershell -ExecutionPolicy Bypass -File .\scripts\run-dev.ps1
 | `data/memory_offsets.json` | Perfil versionado de offsets do cliente x86. |
 | `data/rota_leveling_pw_144.xlsx` | Planilha editável com cinco abas, uma por raça. Humanos inclui WR/MG; Abissais inclui MC/ES. |
 | `data/guardian_quest_facts.json` | Fatos dataminados usados para gerar a rota SK/MS sem precisar instalar o jogo. |
+| `data/endgame_quest_facts.json` | Fatos das missões 61–105 e dos caminhos God/Evil. |
+| `docs/GUIA-61-105.md` | Escolha do cultivo, organização das DGs, pré-requisitos e manutenção das novas rotas. |
 | `scripts/build.ps1` | Compila e empacota o projeto. |
 | `installer/PWQuestOverlay.iss` | Definição do instalador para Inno Setup 6. |
 | `scripts/validate-data.ps1` | Valida IDs, campos e contagens das rotas. |

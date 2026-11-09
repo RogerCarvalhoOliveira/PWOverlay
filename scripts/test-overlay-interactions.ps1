@@ -7,8 +7,8 @@ New-Item -ItemType Directory -Path $testDirectory -Force | Out-Null
 $compiler = 'C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe'
 $library = Join-Path $testDirectory 'OverlayCandidate.dll'
 $executable = Join-Path $testDirectory 'OverlayInteractionTests.exe'
-$sources = @('Models','NativeMethods','OverlayForm','MarkerCalibrationForm','RouteEditorForm',
-    'QuestOcrService','OcrRegionSelectionForm','OcrResultForm','ProcessMemoryReader','MemoryLayout',
+$sources = @('Models','NativeMethods','OverlayForm','CultivationChoiceForm','MarkerCalibrationForm','RouteEditorForm',
+    'ProcessMemoryReader','MemoryLayout',
     'TaskCatalog','RttiResolver','QuestMemoryReader','QuestStateTracker','QuestMemoryMonitor') |
     ForEach-Object { Join-Path $projectRoot ('src\' + $_ + '.cs') }
 & $compiler /nologo /target:library /optimize+ /platform:x86 /out:$library `

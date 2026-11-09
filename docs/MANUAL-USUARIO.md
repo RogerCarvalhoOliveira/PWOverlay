@@ -56,7 +56,13 @@ Para voltar a acompanhar a tela do cliente em foco, marque **Acompanhar monitor 
 
 As etapas seguem uma ordem global otimizada. O overlay pode mandar pegar uma missão, depois outra missão próxima, realizar os dois objetivos e somente mais tarde voltar às entregas. O nome da missão muda conforme a ação atual, mas cada missão mantém seu progresso independente.
 
-Do nível 1 ao 60, a sequência foi organizada por região e dependências. Até a Cidade do Dragão, cada raça segue seu circuito; depois, todas usam a rota compartilhada e fazem apenas desvios curtos para missões exclusivas. Pop-ups como **Aprenda sobre Habilidades de Forja** aguardam o retorno natural ao Ancião; não é necessário interromper o circuito apenas para entregá-los.
+Do nível 1 ao 105, a sequência foi organizada por região e dependências. Até a Cidade do Dragão, cada raça segue seu circuito; depois, todas usam a rota compartilhada e fazem os desvios exclusivos indicados. Pop-ups como **Aprenda sobre Habilidades de Forja** aguardam o retorno natural ao Ancião.
+
+No ponto de escolha do cultivo 89, o overlay pergunta **God ou Evil** e salva a resposta somente para aquele personagem/classe. Sem resposta, o guia aguarda nessa etapa. Os botões Concluir/Pular abrem a escolha novamente. Após salvar, aparecem as missões compartilhadas e apenas as cadeias de 89, 99 e 100 do caminho escolhido. O menu **Escolher/alterar cultivo God ou Evil...** permite escolher antes ou corrigir a preferência. O jogo continua exigindo que você escolha o cultivo no NPC.
+
+Na planilha, a coluna **Cultivo** permite manter **Ambos + God** ou **Ambos + Evil**. No overlay, o filtro é automático. Entre 100 e 105, complemente a história com as atividades repetíveis elegíveis e XP de combate; use Etapas para reabrir um circuito quando necessário. O nível previsto organiza a rota e a etapa final é confirmada manualmente ao atingir 105.
+
+O cultivo 100 exige acesso às áreas do Passado. Como Dusk/Crepúsculo ficou reservado para outra etapa, o guia inclui uma conferência desse pré-requisito. Se os acessos estiverem pendentes, adie o cultivo pelo menu Etapas e continue a rota de XP. Veja `GUIA-61-105.txt`.
 
 Nas faixas de DG, aceite primeiro cultivo, preparação e moeda que possam compartilhar a mesma entrada. A rota pode deixar uma cadeia longa aberta e retomá-la mais tarde; siga a ação exibida, não apenas o nível mínimo da missão.
 

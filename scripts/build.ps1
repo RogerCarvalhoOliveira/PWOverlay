@@ -9,7 +9,7 @@ $projectRoot = Split-Path -Parent $PSScriptRoot
 $sourceDirectory = Join-Path $projectRoot 'src'
 $dataDirectory = Join-Path $projectRoot 'data'
 $distributionDirectory = Join-Path $projectRoot 'dist'
-$version = '0.9.0'
+$version = '0.10.0'
 
 $compilerCandidates = @(
     'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe',
@@ -32,18 +32,16 @@ $workbookDestination = Join-Path $distributionDirectory 'rota_leveling_pw_144.xl
 $readmeDestination = Join-Path $distributionDirectory 'LEIA-ME.txt'
 $installationGuideDestination = Join-Path $distributionDirectory 'INSTALACAO.txt'
 $classGuideDestination = Join-Path $distributionDirectory 'GUIAS-DEZ-CLASSES.txt'
-$ocrDestination = Join-Path $distributionDirectory 'ocr'
+$endgameGuideDestination = Join-Path $distributionDirectory 'GUIA-61-105.txt'
 
 $overlaySources = @(
     (Join-Path $sourceDirectory 'Program.cs'),
     (Join-Path $sourceDirectory 'Models.cs'),
     (Join-Path $sourceDirectory 'NativeMethods.cs'),
     (Join-Path $sourceDirectory 'OverlayForm.cs'),
+    (Join-Path $sourceDirectory 'CultivationChoiceForm.cs'),
     (Join-Path $sourceDirectory 'MarkerCalibrationForm.cs'),
     (Join-Path $sourceDirectory 'RouteEditorForm.cs'),
-    (Join-Path $sourceDirectory 'QuestOcrService.cs'),
-    (Join-Path $sourceDirectory 'OcrRegionSelectionForm.cs'),
-    (Join-Path $sourceDirectory 'OcrResultForm.cs'),
     (Join-Path $sourceDirectory 'ProcessMemoryReader.cs'),
     (Join-Path $sourceDirectory 'MemoryLayout.cs'),
     (Join-Path $sourceDirectory 'TaskCatalog.cs'),
@@ -102,36 +100,7 @@ Copy-Item -LiteralPath (Join-Path $dataDirectory 'rota_leveling_pw_144.xlsx') -D
 Copy-Item -LiteralPath (Join-Path $projectRoot 'docs\MANUAL-USUARIO.md') -Destination $readmeDestination -Force
 Copy-Item -LiteralPath (Join-Path $projectRoot 'docs\INSTALACAO.md') -Destination $installationGuideDestination -Force
 Copy-Item -LiteralPath (Join-Path $projectRoot 'docs\GUIAS-DEZ-CLASSES.md') -Destination $classGuideDestination -Force
-
-function Copy-OcrRuntime {
-    $tesseractCandidates = @(
-        (Join-Path $env:ProgramFiles 'Tesseract-OCR'),
-        (Join-Path ${env:ProgramFiles(x86)} 'Tesseract-OCR')
-    )
-    $tesseractSource = $tesseractCandidates |
-        Where-Object { $_ -and (Test-Path -LiteralPath (Join-Path $_ 'tesseract.exe')) } |
-        Select-Object -First 1
-    if (-not $tesseractSource) {
-        throw 'Tesseract OCR não encontrado. Instale a versão 5.x com o idioma por antes de empacotar.'
-    }
-
-    if (Test-Path -LiteralPath $ocrDestination) {
-        Remove-Item -LiteralPath $ocrDestination -Recurse -Force
-    }
-    New-Item -ItemType Directory -Path (Join-Path $ocrDestination 'tessdata') -Force | Out-Null
-    New-Item -ItemType Directory -Path (Join-Path $ocrDestination 'doc') -Force | Out-Null
-    Copy-Item -LiteralPath (Join-Path $tesseractSource 'tesseract.exe') -Destination $ocrDestination
-    Get-ChildItem -LiteralPath $tesseractSource -File -Filter '*.dll' |
-        Copy-Item -Destination $ocrDestination
-    Copy-Item -LiteralPath (Join-Path $tesseractSource 'tessdata\por.traineddata') `
-        -Destination (Join-Path $ocrDestination 'tessdata')
-    foreach ($notice in @('AUTHORS', 'LICENSE', 'README.md')) {
-        $noticePath = Join-Path $tesseractSource ('doc\' + $notice)
-        if (Test-Path -LiteralPath $noticePath) {
-            Copy-Item -LiteralPath $noticePath -Destination (Join-Path $ocrDestination 'doc')
-        }
-    }
-}
+Copy-Item -LiteralPath (Join-Path $projectRoot 'docs\GUIA-61-105.md') -Destination $endgameGuideDestination -Force
 
 Write-Host "Compilação concluída em: $distributionDirectory"
 Get-ChildItem -LiteralPath $distributionDirectory -File |
@@ -139,7 +108,6 @@ Get-ChildItem -LiteralPath $distributionDirectory -File |
     Select-Object Name, Length
 
 if ($Package) {
-    Copy-OcrRuntime
     $packagePath = Join-Path $distributionDirectory "PWQuestOverlay-Portatil-v$version.zip"
     if (Test-Path -LiteralPath $packagePath) { Remove-Item -LiteralPath $packagePath -Force }
     Compress-Archive -LiteralPath @(
@@ -154,15 +122,12 @@ if ($Package) {
         $readmeDestination,
         $installationGuideDestination,
         $classGuideDestination,
-        $ocrDestination
+        $endgameGuideDestination
     ) -DestinationPath $packagePath -CompressionLevel Optimal
     Write-Host "Pacote criado: $packagePath"
 }
 
 if ($Installer) {
-    if (-not (Test-Path -LiteralPath (Join-Path $ocrDestination 'tesseract.exe'))) {
-        Copy-OcrRuntime
-    }
     $compilerCandidates = @(
         'C:\Program Files (x86)\Inno Setup 6\ISCC.exe',
         'C:\Program Files\Inno Setup 6\ISCC.exe',

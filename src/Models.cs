@@ -33,6 +33,10 @@ namespace PWQuestOverlay
         public string priority { get; set; }
         public string benefit { get; set; }
         public string instruction { get; set; }
+        public string cultivationPath { get; set; }
+        public bool cultivationChoice { get; set; }
+        public bool repeatable { get; set; }
+        public string availabilityNote { get; set; }
         public List<QuestStep> steps { get; set; }
     }
 
@@ -52,6 +56,7 @@ namespace PWQuestOverlay
     {
         public string CharacterName { get; set; }
         public string ClassCode { get; set; }
+        public string CultivationPath { get; set; }
         public bool ManualClass { get; set; }
         public bool HasOverlayMarker { get; set; }
         public int OverlayMarkerCount { get; set; }
@@ -131,23 +136,6 @@ namespace PWQuestOverlay
         }
     }
 
-    public sealed class QuestOcrSettings
-    {
-        public bool Calibrated { get; set; }
-        public bool AutoAdvanceEnabled { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
-        public int Width { get; set; }
-        public int Height { get; set; }
-        public int ReferenceWidth { get; set; }
-        public int ReferenceHeight { get; set; }
-
-        public static QuestOcrSettings CreateDefault()
-        {
-            return new QuestOcrSettings();
-        }
-    }
-
     public sealed class QuestMemorySettings
     {
         public bool AutoAdvanceEnabled { get; set; }
@@ -174,18 +162,16 @@ namespace PWQuestOverlay
         public Dictionary<string, SavedPosition> Positions { get; set; }
         public Dictionary<string, string> ClassAssociations { get; set; }
         public MarkerSettings Marker { get; set; }
-        public QuestOcrSettings Ocr { get; set; }
         public QuestMemorySettings Memory { get; set; }
 
         public AppState()
         {
-            SchemaVersion = 10;
+            SchemaVersion = 11;
             Opacity = 0.82;
             Characters = new Dictionary<string, CharacterProgress>(StringComparer.OrdinalIgnoreCase);
             Positions = new Dictionary<string, SavedPosition>(StringComparer.OrdinalIgnoreCase);
             ClassAssociations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             Marker = MarkerSettings.CreateDefault();
-            Ocr = QuestOcrSettings.CreateDefault();
             Memory = QuestMemorySettings.CreateDefault();
         }
     }
@@ -236,7 +222,7 @@ namespace PWQuestOverlay
 
         public void Save(string path)
         {
-            _payload.schemaVersion = Math.Max(7, _payload.schemaVersion);
+            _payload.schemaVersion = Math.Max(8, _payload.schemaVersion);
             var serializer = new JavaScriptSerializer { MaxJsonLength = int.MaxValue };
             string temporary = path + ".tmp";
             File.WriteAllText(temporary, serializer.Serialize(_payload), new UTF8Encoding(false));
@@ -245,6 +231,11 @@ namespace PWQuestOverlay
         }
 
         public List<QuestMission> GetForClass(string classCode)
+        {
+            return GetForClass(classCode, null);
+        }
+
+        public List<QuestMission> GetForClass(string classCode, string cultivationPath)
         {
             classCode = (classCode ?? string.Empty).Trim().ToUpperInvariant();
             IEnumerable<QuestMission> race;
@@ -278,7 +269,27 @@ namespace PWQuestOverlay
                     return new List<QuestMission>();
             }
             IEnumerable<QuestMission> common = _missions.Where(m => m.routeKey == "COMMON" && m.classScope == "ALL");
-            return race.Concat(common).OrderBy(m => m.order).ToList();
+            return race.Concat(common).Where(m => CultivationRouting.IsVisible(m, cultivationPath))
+                .OrderBy(m => m.order).ToList();
+        }
+    }
+
+    public static class CultivationRouting
+    {
+        public static string Normalize(string value)
+        {
+            value = (value ?? string.Empty).Trim().ToUpperInvariant();
+            return value == "GOD" || value == "EVIL" ? value : null;
+        }
+
+        public static bool IsVisible(QuestMission mission, string selectedPath)
+        {
+            string path = Normalize(selectedPath);
+            if (path == null)
+                return mission.cultivationChoice || (mission.expectedLevel < 89 &&
+                    string.IsNullOrWhiteSpace(mission.cultivationPath));
+            return string.IsNullOrWhiteSpace(mission.cultivationPath) ||
+                string.Equals(mission.cultivationPath, path, StringComparison.OrdinalIgnoreCase);
         }
     }
 
@@ -356,7 +367,6 @@ namespace PWQuestOverlay
                 if (state.ClassAssociations == null)
                     state.ClassAssociations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
                 if (state.Marker == null) state.Marker = MarkerSettings.CreateDefault();
-                if (state.Ocr == null) state.Ocr = QuestOcrSettings.CreateDefault();
                 if (state.Memory == null) state.Memory = QuestMemorySettings.CreateDefault();
                 if (state.SchemaVersion < 2)
                 {
@@ -389,30 +399,15 @@ namespace PWQuestOverlay
                             progress.OverlayMarkerCount = 1;
                     state.SchemaVersion = 6;
                 }
-                if (state.SchemaVersion < 7)
-                {
-                    state.Ocr = QuestOcrSettings.CreateDefault();
-                    state.SchemaVersion = 7;
-                }
-                if (state.SchemaVersion < 8)
-                {
-                    state.Ocr.AutoAdvanceEnabled = false;
-                    state.SchemaVersion = 8;
-                }
-                if (state.SchemaVersion < 9)
-                {
-                    state.Ocr.AutoAdvanceEnabled = false;
-                    state.SchemaVersion = 9;
-                }
                 if (state.SchemaVersion < 10)
                 {
-                    state.Ocr.AutoAdvanceEnabled = false;
                     state.Memory = QuestMemorySettings.CreateDefault();
                     state.SchemaVersion = 10;
                 }
                 NormalizeMarkerSettings(state.Marker);
                 foreach (CharacterProgress progress in state.Characters.Values)
                 {
+                    progress.CultivationPath = CultivationRouting.Normalize(progress.CultivationPath);
                     if (progress.MissionStates == null)
                         progress.MissionStates = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
                 }
@@ -421,6 +416,7 @@ namespace PWQuestOverlay
                     if (progress.HasOverlayMarker && progress.OverlayMarkerCount <= 0)
                         progress.OverlayMarkerCount = 1;
                 if (state.Opacity < 0.60 || state.Opacity > 1.0) state.Opacity = 0.82;
+                state.SchemaVersion = Math.Max(11, state.SchemaVersion);
                 return state;
             }
             catch (Exception error)
@@ -438,7 +434,6 @@ namespace PWQuestOverlay
             if (state.Positions == null) state.Positions = new Dictionary<string, SavedPosition>();
             if (state.ClassAssociations == null) state.ClassAssociations = new Dictionary<string, string>();
             if (state.Marker == null) state.Marker = MarkerSettings.CreateDefault();
-            if (state.Ocr == null) state.Ocr = QuestOcrSettings.CreateDefault();
             if (state.Memory == null) state.Memory = QuestMemorySettings.CreateDefault();
             if (state.SchemaVersion < 2)
             {
@@ -471,30 +466,18 @@ namespace PWQuestOverlay
                         progress.OverlayMarkerCount = 1;
                 state.SchemaVersion = 6;
             }
-            if (state.SchemaVersion < 7)
-            {
-                state.Ocr = QuestOcrSettings.CreateDefault();
-                state.SchemaVersion = 7;
-            }
-            if (state.SchemaVersion < 8)
-            {
-                state.Ocr.AutoAdvanceEnabled = false;
-                state.SchemaVersion = 8;
-            }
-            if (state.SchemaVersion < 9)
-            {
-                state.Ocr.AutoAdvanceEnabled = false;
-                state.SchemaVersion = 9;
-            }
             if (state.SchemaVersion < 10)
             {
-                state.Ocr.AutoAdvanceEnabled = false;
                 state.Memory = QuestMemorySettings.CreateDefault();
                 state.SchemaVersion = 10;
             }
             NormalizeMarkerSettings(state.Marker);
             foreach (CharacterProgress progress in state.Characters.Values)
+            {
+                progress.CultivationPath = CultivationRouting.Normalize(progress.CultivationPath);
                 if (progress.MissionStates == null) progress.MissionStates = new Dictionary<string, string>();
+            }
+            state.SchemaVersion = Math.Max(11, state.SchemaVersion);
             return state;
         }
 

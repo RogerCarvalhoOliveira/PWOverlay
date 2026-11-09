@@ -8,7 +8,7 @@
 | Abissais | MC / Mercenário; ES / Espiritualista | MC | Abissais - MC |
 | Guardiões | SK / Arcano; MS / Místico | SKMS | Guardiões - SK-MS |
 
-Os nomes antigos das quatro abas foram mantidos para o editor continuar encontrando-as. Os títulos e a coluna Classe identificam as novas classes. No overlay, selecione a sigla em Perfis ou use `Personagem[MG]`, `[ES]`, `[SK]` ou `[MS]` no PW Helper. As missões comuns são acrescentadas à rota automaticamente, até o nível 60.
+Os nomes antigos das quatro abas foram mantidos para o editor continuar encontrando-as. Os títulos e a coluna Classe identificam as novas classes. No overlay, selecione a sigla em Perfis ou use `Personagem[MG]`, `[ES]`, `[SK]` ou `[MS]` no PW Helper. As missões comuns são acrescentadas à rota automaticamente, até o nível 105. O [guia 61–105](GUIA-61-105.md) descreve os ramos God/Evil, a coluna Cultivo e os pré-requisitos finais.
 
 ## Humanos e Abissais
 
@@ -56,10 +56,12 @@ Para editar os fatos e reconstruir:
 
 ```powershell
 node scripts/build-guardian-routes.mjs --write
+node scripts/build-endgame-routes.mjs --write
 node scripts/verify-guardian-routes.mjs
+node scripts/verify-endgame-routes.mjs
 node scripts/audit-nested-objectives.mjs --summary
 powershell -ExecutionPolicy Bypass -File scripts/test.ps1
-node scripts/sync-route-workbook.mjs --expand-classes --write
+node scripts/sync-route-workbook.mjs --extend-105 --write
 powershell -ExecutionPolicy Bypass -File scripts/test-overlay-interactions.ps1
 ```
 

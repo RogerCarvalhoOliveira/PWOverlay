@@ -23,7 +23,7 @@ internal static class SmokeTests
             };
             foreach (KeyValuePair<string, int> pair in expected)
             {
-                int actual = routes.GetForClass(pair.Key).Count;
+                int actual = routes.GetForClass(pair.Key).Count(m => !m.id.StartsWith("ENDGAME|", StringComparison.Ordinal));
                 if (actual != pair.Value)
                     throw new InvalidDataException(pair.Key + ": esperado " + pair.Value + ", obtido " + actual);
             }
@@ -332,8 +332,24 @@ internal static class SmokeTests
                     throw new InvalidDataException("Orientação de forja não é a primeira missão prevista do nível 5 em " + classCode);
 
                 List<QuestMission> route = routes.GetForClass(classCode);
-                if (route[route.Count - 1].expectedLevel != 60 || route[route.Count - 1].name != "Insígnia Nível 4")
-                    throw new InvalidDataException("Rota não termina corretamente no nível 60 em " + classCode);
+                if (!route[route.Count - 1].cultivationChoice || route[route.Count - 1].expectedLevel != 89 ||
+                    route.Any(m => m.expectedLevel >= 89 && !m.cultivationChoice))
+                    throw new InvalidDataException("A rota avançou além da escolha de cultivo pendente em " + classCode);
+                foreach (string path in new[] { "GOD", "EVIL" })
+                {
+                    List<QuestMission> selectedRoute = routes.GetForClass(classCode, path);
+                    if (selectedRoute[selectedRoute.Count - 1].expectedLevel != 105 ||
+                        selectedRoute[selectedRoute.Count - 1].id != "ENDGAME|ALL|LEVEL105")
+                        throw new InvalidDataException("Rota não termina em 105: " + classCode + "/" + path);
+                    if (selectedRoute.Any(m => !string.IsNullOrWhiteSpace(m.cultivationPath) && m.cultivationPath != path))
+                        throw new InvalidDataException("Cultivo oposto presente na rota: " + classCode + "/" + path);
+                    foreach (int cultivation in (path == "GOD" ? new[] { 2804, 3227, 14161, 14015 } : new[] { 2818, 3204, 14016 }))
+                        if (!selectedRoute.Any(m => m.id == "ENDGAME|" + path + "|" + cultivation))
+                            throw new InvalidDataException("Cadeia de cultivo ausente: " + cultivation);
+                    var pathOrders = new HashSet<int>();
+                    foreach (QuestStep stage in selectedRoute.SelectMany(m => m.steps))
+                        if (!pathOrders.Add(stage.routeOrder)) throw new InvalidDataException("Ordem duplicada no caminho " + path);
+                }
                 var required = new Dictionary<string, string>
                 {
                     { "COMMON|ALL|29|DG29 — Moeda Sangrenta de Ferro 2 Peão", "Moeda Sangrenta de Fer" },
@@ -408,6 +424,20 @@ internal static class SmokeTests
             var positionState = new AppState { OverlayMonitorDeviceName = "secondary", PositionLocked = true };
             positionState.Positions["secondary"] = new SavedPosition { X = -1700, Y = 70 };
             var stateSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            var paths = new AppState();
+            paths.Characters["TESTE|WR"] = new CharacterProgress { CharacterName = "Teste", ClassCode = "WR", CultivationPath = "GOD" };
+            paths.Characters["TESTE|EP"] = new CharacterProgress { CharacterName = "Teste", ClassCode = "EP", CultivationPath = "EVIL" };
+            AppState restoredPaths = stateSerializer.Deserialize<AppState>(stateSerializer.Serialize(paths));
+            if (restoredPaths.Characters["TESTE|WR"].CultivationPath != "GOD" ||
+                restoredPaths.Characters["TESTE|EP"].CultivationPath != "EVIL" ||
+                new CharacterProgress().CultivationPath != null ||
+                CultivationRouting.Normalize(" god ") != "GOD" || CultivationRouting.Normalize("inválido") != null)
+                throw new InvalidDataException("Escolha de cultivo misturada entre personagens ou sem persistência.");
+            string olderState = "{\"SchemaVersion\":10,\"RemovedFeature\":{\"Enabled\":true},\"Memory\":{\"AutoAdvanceEnabled\":true,\"ProfileId\":\"the_classic_144\"}}";
+            AppState compatible = stateSerializer.Deserialize<AppState>(olderState);
+            if (!compatible.Memory.AutoAdvanceEnabled || compatible.Characters == null ||
+                stateSerializer.Serialize(compatible).Contains("RemovedFeature"))
+                throw new InvalidDataException("Preferência atual ou compatibilidade de estado antigo foi perdida.");
             AppState restoredPosition = stateSerializer.Deserialize<AppState>(stateSerializer.Serialize(positionState));
             if (restoredPosition.OverlayMonitorDeviceName != "secondary" || !restoredPosition.PositionLocked ||
                 restoredPosition.Positions["secondary"].X != -1700 ||
@@ -417,12 +447,10 @@ internal static class SmokeTests
             AppState state = new StateStore().Load();
             if (state.Characters == null || state.Positions == null || state.ClassAssociations == null)
                 throw new InvalidDataException("Estado carregado sem coleções obrigatórias.");
-            if (state.SchemaVersion < 10)
+            if (state.SchemaVersion < 11)
                 throw new InvalidDataException("Estado não foi migrado para a versão atual.");
             if (state.Marker == null || state.Marker.MarkerList == null)
                 throw new InvalidDataException("Calibração do marcador incompleta.");
-            if (state.Ocr == null)
-                throw new InvalidDataException("Configuração do OCR não foi inicializada.");
             if (state.Memory == null || string.IsNullOrWhiteSpace(state.Memory.ProfileId))
                 throw new InvalidDataException("Configuração de memória não foi inicializada.");
             if (!state.Marker.Calibrated && state.Marker.MarkerList.Y != 70)

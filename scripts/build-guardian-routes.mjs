@@ -223,7 +223,7 @@ for(const m of data.missions){
   if(m.routeKey==='MC'&&/Adaga da Provação/.test(m.benefit))m.benefit='Arma da Provação adequada à classe e 10 de fama';
 }
 data.missions=data.missions.filter(m=>m.routeKey!=='SKMS').concat(generated.sort((a,b)=>a.order-b.order));
-data.generatedFrom='Rotas 1–60, XP ×3; cinco raças e dez classes; Guardiões conferidos nos dados do cliente';
+data.generatedFrom=`Rotas 1–${Math.max(...data.missions.map(m=>m.expectedLevel))}, XP ×3; cinco raças e dez classes; Guardiões conferidos nos dados do cliente`;
 console.log(JSON.stringify({guardianMissions:generated.length,guardianStages:generated.reduce((n,m)=>n+m.steps.length,0),
   SK:generated.filter(m=>m.classScope!=='MS').length,MS:generated.filter(m=>m.classScope!=='SK').length,
   totalMissions:data.missions.length,totalStages:data.missions.reduce((n,m)=>n+m.steps.length,0)},null,2));

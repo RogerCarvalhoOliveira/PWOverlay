@@ -71,6 +71,20 @@ internal static class OverlayInteractionTests
                     Check((string)title[1] == "Teste" && (string)title[2] == code, "Title recognition failed: " + code);
                     Check((bool)type.GetMethod("IsValidClass", BindingFlags.Static | BindingFlags.NonPublic).Invoke(null, new object[] { code }), "Manual association rejected " + code);
                 }
+                var choiceType = type.Assembly.GetType("PWQuestOverlay.CultivationChoiceForm");
+                using (var choice = (Form)Activator.CreateInstance(choiceType, Hidden, null, new object[] { "Teste", null }, null))
+                {
+                    var god = (RadioButton)Field(choice, "_god");
+                    var evil = (RadioButton)Field(choice, "_evil");
+                    var confirm = (Button)Field(choice, "_confirm");
+                    var selected = choiceType.GetProperty("SelectedPath", Hidden);
+                    Check(!god.Checked && !evil.Checked && !confirm.Enabled && selected.GetValue(choice, null) == null,
+                        "Cultivation choice must wait for an explicit selection.");
+                    god.Checked = true;
+                    Check(confirm.Enabled && (string)selected.GetValue(choice, null) == "GOD", "God selection failed.");
+                    evil.Checked = true;
+                    Check(!god.Checked && confirm.Enabled && (string)selected.GetValue(choice, null) == "EVIL", "Evil selection failed.");
+                }
             }
             finally
             {
@@ -79,7 +93,7 @@ internal static class OverlayInteractionTests
                 if (memory != null) memory.Dispose();
                 form.Dispose();
             }
-            Console.WriteLine("Overlay interaction tests passed: held drag, release, lost capture, lock, monitor persistence and ten class codes.");
+            Console.WriteLine("Overlay interaction tests passed: dragging, monitor persistence, ten class codes and explicit God/Evil selection.");
             return 0;
         }
         catch (Exception error) { Console.Error.WriteLine(error); return 1; }

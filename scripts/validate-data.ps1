@@ -55,6 +55,17 @@ $validClasses = @('WR/MG', 'WB/WF', 'WF', 'EA/EP', 'MC/ES', 'SK/MS', 'SK', 'MS',
 foreach ($mission in $missions | Where-Object { $_.classScope -notin $validClasses }) {
     $errors.Add("classScope inválido: $($mission.classScope) em $($mission.id)")
 }
+foreach ($mission in $missions) {
+    if ($mission.cultivationPath -and $mission.cultivationPath -notin @('GOD','EVIL')) {
+        $errors.Add("Cultivo inválido: $($mission.cultivationPath) em $($mission.id)")
+    }
+    if ($mission.cultivationChoice -and ($mission.expectedLevel -ne 89 -or $mission.cultivationPath)) {
+        $errors.Add("Escolha de cultivo inválida em $($mission.id)")
+    }
+    if ($mission.expectedLevel -gt 105 -or $mission.expectedLevel -lt $mission.minLevel) {
+        $errors.Add("Nível previsto inválido em $($mission.id)")
+    }
+}
 
 if ($errors.Count -gt 0) {
     $errors | ForEach-Object { Write-Error $_ }
@@ -77,3 +88,4 @@ $counts = [ordered]@{
 Write-Host "Rotas válidas. Missões únicas: $($missions.Count)"
 Write-Host "Etapas: $(@($missions | ForEach-Object { @($_.steps) }).Count)"
 $counts.GetEnumerator() | Format-Table Name, Value -AutoSize
+Write-Host 'Totais da fonte acima incluem as alternativas God e Evil; o overlay filtra pelo personagem.'

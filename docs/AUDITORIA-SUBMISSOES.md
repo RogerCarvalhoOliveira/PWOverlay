@@ -1,8 +1,8 @@
 # Auditoria das submissões
 
-## Cobertura atual — 0.9.0
+## Cobertura atual — 0.10.0
 
-O auditor percorre 1.020 etapas de 280 entradas de guia. São 289 associações explícitas: 105 mantidas no manifesto das rotas anteriores e 184 geradas a partir dos fatos dos Guardiões. Há 13 etapas com seletores independentes de materiais. Nenhum objetivo resolvido aponta indevidamente para um pai; 37 diagnósticos continuam informativos para objetivos manuais/ambíguos ou múltiplos contadores. A nova rota também valida pré-requisitos, nível máximo de aceite, títulos, coordenadas e preservação das etapas legadas. Consulte `GUIAS-DEZ-CLASSES.md` para fontes e limites de validação em jogo.
+O auditor percorre 1.897 etapas de 561 entradas de guia, incluindo ambos os ramos alternativos de cultivo. São 1.163 associações explícitas e 36 etapas com seletores independentes de materiais. Nenhum objetivo resolvido aponta indevidamente para um pai; 44 diagnósticos continuam informativos para objetivos manuais/ambíguos ou múltiplos contadores. Os verificadores das rotas também conferem pré-requisitos, níveis máximos de aceite, títulos, coordenadas, isolamento God/Evil e preservação das etapas legadas. Consulte `GUIAS-DEZ-CLASSES.md` e `GUIA-61-105.md` para fontes e limites de validação em jogo. A contagem de 31 cadeias refere-se ao manifesto anterior; a extensão usa associações diretas em cada etapa.
 
 ## Revisão original — 0.8.3
 
@@ -25,13 +25,13 @@ Objetivos filhos de abate que terminam automaticamente exigem desaparecimento ap
 
 ## Limitações que não são o mesmo defeito
 
-O auditor também informa 35 etapas de objetivo com ID ausente/ambíguo ou vários contadores de abate em uma única entrada. Elas não foram forçadas a usar um material ou contador incorreto. Exemplos: Limpar Monstros e Gelo e Fogo precisam do layout dos demais contadores; etapas compostas de DG e nomes genéricos de moeda exigem associações adicionais. Nessas etapas, o avanço manual continua disponível. Esta revisão não afirma automação integral de todos os tipos de missão.
+Os diagnósticos incluem objetivos com ID ausente/ambíguo ou vários contadores de abate em uma única entrada. Eles não foram forçados a usar um material ou contador incorreto. Exemplos: Limpar Monstros e Gelo e Fogo precisam do layout dos demais contadores. Nessas etapas, o avanço manual continua disponível. Esta revisão não afirma automação integral de todos os tipos de missão.
 
 ## Verificar e manter
 
 1. `node scripts/bind-nested-objectives.mjs --write` aplica os IDs e seletores conferidos.
 2. `node scripts/audit-nested-objectives.mjs --summary` verifica todas as etapas; sem `--summary`, lista os casos manuais para diagnóstico.
 3. `scripts/test.ps1` verifica materiais independentes, ancestralidade, limiares, histórico, reaceite e integridade das rotas.
-4. `node scripts/sync-route-workbook.mjs --write` sincroniza a planilha com o runtime de planilhas.
+4. `node scripts/verify-endgame-routes.mjs` verifica a extensão e suas dependências; `node scripts/sync-route-workbook.mjs --extend-105 --write` sincroniza a planilha com o runtime de planilhas.
 
 O auditor termina com erro se um objetivo de coleta/abate resolvido ainda apontar para um pai com filhos rastreáveis, ou se etapas de materiais compartilhados estiverem sem seletor. Sua verificação estática não substitui o teste das cadeias no cliente.
