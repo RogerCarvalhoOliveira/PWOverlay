@@ -106,7 +106,8 @@
           "markerX": 433,
           "markerY": 887,
           "routeOrder": 10060,
-          "title": "Conheça a Cidade"
+          "title": "Revitalizando a Pátria",
+          "memoryTaskId": 35
         },
         {
           "id": "e2",
@@ -114,7 +115,8 @@
           "markerX": 431,
           "markerY": 874,
           "routeOrder": 10070,
-          "title": "Revitalizando a Pátria"
+          "title": "Visite o Ferreiro",
+          "memoryTaskId": 455
         },
         {
           "id": "e3",
@@ -122,7 +124,8 @@
           "markerX": 427,
           "markerY": 878,
           "routeOrder": 10080,
-          "title": "Revitalizando a Pátria"
+          "title": "Visite o Alfaiate",
+          "memoryTaskId": 456
         },
         {
           "id": "e4",
@@ -130,7 +133,8 @@
           "markerX": 433,
           "markerY": 876,
           "routeOrder": 10090,
-          "title": "Revitalizando a Pátria"
+          "title": "Visite o Boticário",
+          "memoryTaskId": 457
         },
         {
           "id": "e5",
@@ -138,7 +142,8 @@
           "markerX": 426,
           "markerY": 877,
           "routeOrder": 10100,
-          "title": "Revitalizando a Pátria"
+          "title": "Visite o Artesão",
+          "memoryTaskId": 458
         },
         {
           "id": "e6",
@@ -146,7 +151,8 @@
           "markerX": 428,
           "markerY": 879,
           "routeOrder": 10110,
-          "title": "Revitalizando a Pátria"
+          "title": "Visite o Negociante",
+          "memoryTaskId": 459
         },
         {
           "id": "e7",
@@ -154,7 +160,8 @@
           "markerX": 433,
           "markerY": 887,
           "routeOrder": 10120,
-          "title": "Conheça a Cidade"
+          "title": "Informar ao Ancião",
+          "memoryTaskId": 454
         }
       ],
       "expectedLevel": 1
@@ -267,7 +274,8 @@
           "markerX": 431,
           "markerY": 874,
           "routeOrder": 10160,
-          "title": "Procurar Materiais"
+          "title": "Fazer Armas",
+          "memoryTaskId": 74
         },
         {
           "id": "e2",
@@ -275,7 +283,8 @@
           "markerX": 442,
           "markerY": 858,
           "routeOrder": 10230,
-          "title": "Procurar Materiais"
+          "title": "Duende Desertor",
+          "memoryTaskId": 434
         },
         {
           "id": "e3",
@@ -283,7 +292,8 @@
           "markerX": 442,
           "markerY": 858,
           "routeOrder": 10240,
-          "title": "Procurar Materiais"
+          "title": "Cacto",
+          "memoryTaskId": 435
         },
         {
           "id": "e4",
@@ -291,7 +301,8 @@
           "markerX": 427,
           "markerY": 878,
           "routeOrder": 10250,
-          "title": "Procurar Materiais"
+          "title": "Procurar Coque",
+          "memoryTaskId": 436
         },
         {
           "id": "e5",
@@ -299,7 +310,8 @@
           "markerX": 431,
           "markerY": 874,
           "routeOrder": 10260,
-          "title": "Procurar Materiais"
+          "title": "Devolver os Materiais",
+          "memoryTaskId": 437
         }
       ],
       "expectedLevel": 4
@@ -996,11 +1008,12 @@
         },
         {
           "id": "e2",
-          "action": "Matar (20) Espinho do Orgulho (Terra de Hades) (517, 968)",
+          "action": "Matar (6) Espinho do Orgulho (Terra de Hades) (517, 968)",
           "markerX": 517,
           "markerY": 968,
           "routeOrder": 10710,
-          "title": "Emoção da Caça"
+          "title": "Espinhos do Orgulho",
+          "memoryTaskId": 6440
         },
         {
           "id": "e3",
@@ -1008,15 +1021,17 @@
           "markerX": 498,
           "markerY": 970,
           "routeOrder": 10720,
-          "title": "Espinhos do Orgulho"
+          "title": "Espinhos do Orgulho",
+          "memoryTaskId": 6440
         },
         {
           "id": "e4",
-          "action": "Matar (20) Carniçal da Fronteira (Terra de Hades) (517, 968)",
+          "action": "Matar (6) Carniçal da Fronteira (Terra de Hades) (517, 968)",
           "markerX": 517,
           "markerY": 968,
           "routeOrder": 10730,
-          "title": "Carniçal da Fronteira"
+          "title": "Carniçal da Fronteira",
+          "memoryTaskId": 6441
         },
         {
           "id": "e5",
@@ -1024,7 +1039,8 @@
           "markerX": 498,
           "markerY": 970,
           "routeOrder": 10740,
-          "title": "Espinhos do Orgulho"
+          "title": "Carniçal da Fronteira",
+          "memoryTaskId": 6441
         }
       ],
       "expectedLevel": 14
@@ -1051,7 +1067,8 @@
           "markerX": 427,
           "markerY": 878,
           "routeOrder": 10750,
-          "title": "Contar a Notícia"
+          "title": "A Promessa",
+          "memoryTaskId": 2950
         },
         {
           "id": "e2",
@@ -1059,7 +1076,8 @@
           "markerX": 488,
           "markerY": 887,
           "routeOrder": 10760,
-          "title": "A Promessa"
+          "title": "Margem do Lago",
+          "memoryTaskId": 2951
         },
         {
           "id": "e3",
@@ -1067,7 +1085,8 @@
           "markerX": 577,
           "markerY": 894,
           "routeOrder": 10770,
-          "title": "Procurar o Cadáver"
+          "title": "Vila Quadrada",
+          "memoryTaskId": 2952
         },
         {
           "id": "e4",
@@ -1075,7 +1094,8 @@
           "markerX": 571,
           "markerY": 835,
           "routeOrder": 10780,
-          "title": "Procurar o Cadáver"
+          "title": "Procurar o Cadáver",
+          "memoryTaskId": 2953
         },
         {
           "id": "e5",
@@ -1083,7 +1103,8 @@
           "markerX": 488,
           "markerY": 887,
           "routeOrder": 10790,
-          "title": "A Promessa"
+          "title": "Envie os Restos",
+          "memoryTaskId": 2954
         },
         {
           "id": "e6",
@@ -1091,7 +1112,8 @@
           "markerX": 427,
           "markerY": 878,
           "routeOrder": 10800,
-          "title": "Contar a Notícia"
+          "title": "Contar a Notícia",
+          "memoryTaskId": 2955
         }
       ],
       "expectedLevel": 15
@@ -1357,13 +1379,15 @@
           "markerX": 429,
           "markerY": 890,
           "routeOrder": 11000,
-          "title": "O Equilíbrio Celestial"
+          "title": "O Equilíbrio Celestial",
+          "memoryTaskId": 921
         },
         {
           "id": "e2",
           "action": "Pegar (1) Humano Celestal matando Lobo das Neves (Montanha das Árvores)",
           "routeOrder": 11020,
-          "title": "Celestial em Perigo"
+          "title": "Celestial em Perigo",
+          "memoryTaskId": 1930
         },
         {
           "id": "e3",
@@ -1371,7 +1395,8 @@
           "markerX": 544,
           "markerY": 901,
           "routeOrder": 11130,
-          "title": "Celestial"
+          "title": "Celestial",
+          "memoryTaskId": 1936
         },
         {
           "id": "e4",
@@ -1379,7 +1404,8 @@
           "markerX": 244,
           "markerY": 647,
           "routeOrder": 11140,
-          "title": "Escoltando o Celestial"
+          "title": "Escoltando o Celestial",
+          "memoryTaskId": 1931
         }
       ],
       "expectedLevel": 19
@@ -1549,13 +1575,15 @@
           "markerX": 256,
           "markerY": 689,
           "routeOrder": 10000,
-          "title": "Primeira Viagem"
+          "title": "Primeira Viagem",
+          "memoryTaskId": 1177
         },
         {
           "id": "e2",
           "action": "Matar (10) Filhote de Mandrágora (Arredores da Vila Inicial)",
           "routeOrder": 10020,
-          "title": "Primeira Viagem"
+          "title": "Exposição de Talento",
+          "memoryTaskId": 1178
         },
         {
           "id": "e3",
@@ -1563,7 +1591,8 @@
           "markerX": 256,
           "markerY": 689,
           "routeOrder": 10030,
-          "title": "Primeira Viagem"
+          "title": "Triunfo",
+          "memoryTaskId": 1179
         }
       ],
       "expectedLevel": 1
@@ -1631,7 +1660,8 @@
           "markerX": 246,
           "markerY": 646,
           "routeOrder": 10060,
-          "title": "Informar ao Ancião"
+          "title": "Os Poderosos Selvagens",
+          "memoryTaskId": 13
         },
         {
           "id": "e2",
@@ -1639,7 +1669,8 @@
           "markerX": 252,
           "markerY": 642,
           "routeOrder": 10070,
-          "title": "Os Poderosos Selvagens"
+          "title": "Visite o Ferreiro",
+          "memoryTaskId": 57
         },
         {
           "id": "e3",
@@ -1647,7 +1678,8 @@
           "markerX": 256,
           "markerY": 640,
           "routeOrder": 10080,
-          "title": "Os Poderosos Selvagens"
+          "title": "Visite o Artesão",
+          "memoryTaskId": 63
         },
         {
           "id": "e4",
@@ -1655,7 +1687,8 @@
           "markerX": 259,
           "markerY": 639,
           "routeOrder": 10090,
-          "title": "Os Poderosos Selvagens"
+          "title": "Visite o Alfaiate",
+          "memoryTaskId": 60
         },
         {
           "id": "e5",
@@ -1663,7 +1696,8 @@
           "markerX": 262,
           "markerY": 638,
           "routeOrder": 10100,
-          "title": "Os Poderosos Selvagens"
+          "title": "Visite o Boticário",
+          "memoryTaskId": 61
         },
         {
           "id": "e6",
@@ -1671,7 +1705,8 @@
           "markerX": 261,
           "markerY": 636,
           "routeOrder": 10110,
-          "title": "Os Poderosos Selvagens"
+          "title": "Visite o Negociante",
+          "memoryTaskId": 65
         },
         {
           "id": "e7",
@@ -1679,7 +1714,8 @@
           "markerX": 246,
           "markerY": 646,
           "routeOrder": 10120,
-          "title": "Informar ao Ancião"
+          "title": "Informar ao Ancião",
+          "memoryTaskId": 68
         }
       ],
       "expectedLevel": 1
@@ -1998,7 +2034,8 @@
           "id": "e3",
           "action": "Matar (10) Esqueleto Artesão de Flechas",
           "routeOrder": 10580,
-          "title": "Informando o Ocorrido"
+          "title": "Resolvendo o Problema",
+          "memoryTaskId": 759
         },
         {
           "id": "e4",
@@ -2006,7 +2043,8 @@
           "markerX": 231,
           "markerY": 556,
           "routeOrder": 10650,
-          "title": "Informando o Ocorrido"
+          "title": "Contando ao Guarda",
+          "memoryTaskId": 761
         }
       ],
       "expectedLevel": 6
@@ -2377,13 +2415,15 @@
           "id": "e2",
           "action": "Pegar (10) Presa de Lince matando Lince da Montanha (Vale dos Lobos)",
           "routeOrder": 10510,
-          "title": "Ajude o Boticário"
+          "title": "Presas de Lince",
+          "memoryTaskId": 2164
         },
         {
           "id": "e3",
           "action": "Pegar (10) Garra Rústica matando Servo Vândalo (Vale dos Lobos)",
           "routeOrder": 10520,
-          "title": "Ajude o Boticário"
+          "title": "Garras Rústicas",
+          "memoryTaskId": 2163
         },
         {
           "id": "e4",
@@ -2459,7 +2499,8 @@
           "markerX": 387,
           "markerY": 521,
           "routeOrder": 10690,
-          "title": "Garganta dos Ventos An"
+          "title": "Encontre o Guarda",
+          "memoryTaskId": 2669
         },
         {
           "id": "e2",
@@ -2467,7 +2508,8 @@
           "markerX": 387,
           "markerY": 521,
           "routeOrder": 10700,
-          "title": "Garganta dos Ventos An"
+          "title": "Encontre o Guarda",
+          "memoryTaskId": 2669
         }
       ],
       "expectedLevel": 11
@@ -2659,19 +2701,22 @@
           "markerX": 387,
           "markerY": 521,
           "routeOrder": 10830,
-          "title": "Informe ao Sentinela"
+          "title": "Vantagens sem esforço",
+          "memoryTaskId": 736
         },
         {
           "id": "e2",
-          "action": "Matar (20) Gato-rei Sentinela (Norte da Garganta dos Ventos)",
+          "action": "Matar (5) Gato-rei Sentinela (Norte da Garganta dos Ventos)",
           "routeOrder": 10840,
-          "title": "Vantagens sem esforço"
+          "title": "Gato-Rei Sentinela",
+          "memoryTaskId": 804
         },
         {
           "id": "e3",
-          "action": "Matar (20) Lobo Arqueiro (Oeste da Garganta dos Ventos)",
+          "action": "Matar (5) Lobo Arqueiro (Oeste da Garganta dos Ventos)",
           "routeOrder": 10850,
-          "title": "Vantagens sem esforço"
+          "title": "Matar Lobo Arqueiro",
+          "memoryTaskId": 805
         },
         {
           "id": "e4",
@@ -2679,7 +2724,8 @@
           "markerX": 387,
           "markerY": 521,
           "routeOrder": 10860,
-          "title": "Informe ao Sentinela"
+          "title": "Informe ao Sentinela",
+          "memoryTaskId": 1084
         }
       ],
       "expectedLevel": 14
@@ -2796,15 +2842,17 @@
         },
         {
           "id": "e2",
-          "action": "Pegar (10) Enxofre matando Marta dos Ventos (Sudoeste da Cidade do Rio)",
+          "action": "Pegar (5) Enxofre matando Marta dos Ventos (Sudoeste da Cidade do Rio)",
           "routeOrder": 10920,
-          "title": "Colete Materiais"
+          "title": "Marta dos Ventos",
+          "memoryTaskId": 874
         },
         {
           "id": "e3",
-          "action": "Pegar (10) Salitre matando Ouriço Raivoso (Arredores da Cidade do Rio)",
+          "action": "Pegar (5) Salitre matando Ouriço Raivoso (Arredores da Cidade do Rio)",
           "routeOrder": 10930,
-          "title": "Colete Materiais"
+          "title": "Matar Ouriço Raivoso",
+          "memoryTaskId": 875
         },
         {
           "id": "e4",
@@ -2812,7 +2860,8 @@
           "markerX": 423,
           "markerY": 645,
           "routeOrder": 10940,
-          "title": "Entregar Materiais"
+          "title": "Entregar Materiais",
+          "memoryTaskId": 883
         }
       ],
       "expectedLevel": 16
@@ -3035,13 +3084,15 @@
           "markerX": 244,
           "markerY": 647,
           "routeOrder": 11210,
-          "title": "O Equilíbrio Celestial"
+          "title": "O Equilíbrio Celestial",
+          "memoryTaskId": 978
         },
         {
           "id": "e2",
           "action": "Pegar (1) Humano Celestal matando Leão Nômade (Sudoeste da Cidade do Rio)",
           "routeOrder": 11230,
-          "title": "Celestial em Perigo"
+          "title": "Celestial em Perigo",
+          "memoryTaskId": 1932
         },
         {
           "id": "e3",
@@ -3049,7 +3100,8 @@
           "markerX": 368,
           "markerY": 685,
           "routeOrder": 11280,
-          "title": "Celestial"
+          "title": "Celestial",
+          "memoryTaskId": 1937
         },
         {
           "id": "e4",
@@ -3057,7 +3109,8 @@
           "markerX": 244,
           "markerY": 647,
           "routeOrder": 11300,
-          "title": "Escoltando o Celestial"
+          "title": "Escoltando o Celestial",
+          "memoryTaskId": 1933
         }
       ],
       "expectedLevel": 19
@@ -3123,7 +3176,8 @@
           "id": "e3",
           "action": "Matar (1) Lobo Rei (Boss)",
           "routeOrder": 11250,
-          "title": "Despachos aos Alados"
+          "title": "Mate Fenris",
+          "memoryTaskId": 277
         },
         {
           "id": "e4",
@@ -3311,7 +3365,8 @@
           "markerX": 328,
           "markerY": 428,
           "routeOrder": 10050,
-          "title": "Informar ao Ancião"
+          "title": "O Renascer dos Alados",
+          "memoryTaskId": 1
         },
         {
           "id": "e2",
@@ -3319,7 +3374,8 @@
           "markerX": 339,
           "markerY": 406,
           "routeOrder": 10060,
-          "title": "O Renascer dos Alados"
+          "title": "Visite o Ferreiro",
+          "memoryTaskId": 38
         },
         {
           "id": "e3",
@@ -3327,7 +3383,8 @@
           "markerX": 343,
           "markerY": 407,
           "routeOrder": 10070,
-          "title": "O Renascer dos Alados"
+          "title": "Visite o Negociante",
+          "memoryTaskId": 39
         },
         {
           "id": "e4",
@@ -3335,7 +3392,8 @@
           "markerX": 344,
           "markerY": 413,
           "routeOrder": 10080,
-          "title": "O Renascer dos Alados"
+          "title": "Visite o Artesão",
+          "memoryTaskId": 41
         },
         {
           "id": "e5",
@@ -3343,7 +3401,8 @@
           "markerX": 342,
           "markerY": 414,
           "routeOrder": 10090,
-          "title": "O Renascer dos Alados"
+          "title": "Visite o Boticário",
+          "memoryTaskId": 40
         },
         {
           "id": "e6",
@@ -3351,7 +3410,8 @@
           "markerX": 320,
           "markerY": 432,
           "routeOrder": 10110,
-          "title": "O Renascer dos Alados"
+          "title": "Visite o Alfaiate",
+          "memoryTaskId": 42
         },
         {
           "id": "e7",
@@ -3359,7 +3419,8 @@
           "markerX": 328,
           "markerY": 428,
           "routeOrder": 10120,
-          "title": "Informar ao Ancião"
+          "title": "Informar ao Ancião",
+          "memoryTaskId": 48
         }
       ],
       "expectedLevel": 1
@@ -3547,7 +3608,8 @@
           "markerX": 364,
           "markerY": 426,
           "routeOrder": 10280,
-          "title": "Eliminando Pulador-Arp"
+          "title": "Eliminando Pulador-Arp",
+          "memoryTaskId": 85
         },
         {
           "id": "e4",
@@ -3555,7 +3617,8 @@
           "markerX": 360,
           "markerY": 422,
           "routeOrder": 10300,
-          "title": "Livrar-se dos Duendes"
+          "title": "Livrar-se dos Duendes",
+          "memoryTaskId": 86
         },
         {
           "id": "e5",
@@ -4609,7 +4672,8 @@
           "markerX": 322,
           "markerY": 421,
           "routeOrder": 11010,
-          "title": "O Equilíbrio Celestial"
+          "title": "O Equilíbrio Celestial",
+          "memoryTaskId": 977
         },
         {
           "id": "e2",
@@ -4617,7 +4681,8 @@
           "markerX": 274,
           "markerY": 490,
           "routeOrder": 11130,
-          "title": "Celestial em Perigo"
+          "title": "Celestial em Perigo",
+          "memoryTaskId": 1934
         },
         {
           "id": "e3",
@@ -4625,7 +4690,8 @@
           "markerX": 295,
           "markerY": 429,
           "routeOrder": 11140,
-          "title": "Celestial"
+          "title": "Celestial",
+          "memoryTaskId": 1938
         },
         {
           "id": "e4",
@@ -4633,7 +4699,8 @@
           "markerX": 322,
           "markerY": 421,
           "routeOrder": 11150,
-          "title": "Escoltando o Celestial"
+          "title": "Escoltando o Celestial",
+          "memoryTaskId": 1935
         }
       ],
       "expectedLevel": 19
@@ -4691,9 +4758,10 @@
         },
         {
           "id": "e2",
-          "action": "Matar (12) Cobra Naga das Rochas",
+          "action": "Matar (6) Cobra Naga das Rochas",
           "routeOrder": 11060,
-          "title": "Exibição de Talento"
+          "title": "Matar o Monstro Feroz",
+          "memoryTaskId": 214
         },
         {
           "id": "e3",
@@ -4895,11 +4963,12 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Fale com Guia dos novatos (656, 208)",
+          "action": "Aceite a missão com Guia dos novatos (656, 208)",
           "markerX": 656,
           "markerY": 208,
           "routeOrder": 10030,
-          "title": "Cidade das Tormentas"
+          "title": "Cidade das Tormentas",
+          "memoryTaskId": 20063
         },
         {
           "id": "e2",
@@ -4907,7 +4976,8 @@
           "markerX": 657,
           "markerY": 143,
           "routeOrder": 10200,
-          "title": "Visitar Ancião"
+          "title": "Visitar Ancião",
+          "memoryTaskId": 20178
         },
         {
           "id": "e3",
@@ -4915,7 +4985,8 @@
           "markerX": 660,
           "markerY": 122,
           "routeOrder": 10230,
-          "title": "Visitas"
+          "title": "Visitar Artesã",
+          "memoryTaskId": 20108
         },
         {
           "id": "e4",
@@ -4923,7 +4994,8 @@
           "markerX": 661,
           "markerY": 120,
           "routeOrder": 10240,
-          "title": "Visitas"
+          "title": "Visitar Ferreiro",
+          "memoryTaskId": 20105
         },
         {
           "id": "e5",
@@ -4931,7 +5003,8 @@
           "markerX": 662,
           "markerY": 121,
           "routeOrder": 10250,
-          "title": "Visitas"
+          "title": "Visitar Alfaiate",
+          "memoryTaskId": 20106
         },
         {
           "id": "e6",
@@ -4939,7 +5012,8 @@
           "markerX": 665,
           "markerY": 118,
           "routeOrder": 10260,
-          "title": "Visitas"
+          "title": "Visitar Comerciante",
+          "memoryTaskId": 20109
         },
         {
           "id": "e7",
@@ -4947,7 +5021,8 @@
           "markerX": 667,
           "markerY": 119,
           "routeOrder": 10270,
-          "title": "Visitas"
+          "title": "Visitar Boticário",
+          "memoryTaskId": 20107
         },
         {
           "id": "e8",
@@ -4955,7 +5030,8 @@
           "markerX": 657,
           "markerY": 143,
           "routeOrder": 10280,
-          "title": "Voltar Para Ancião"
+          "title": "Voltar Para Ancião",
+          "memoryTaskId": 20179
         },
         {
           "id": "e9",
@@ -4963,7 +5039,8 @@
           "markerX": 656,
           "markerY": 208,
           "routeOrder": 10290,
-          "title": "Volte para a Guia"
+          "title": "Volte para a Guia",
+          "memoryTaskId": 20111
         },
         {
           "id": "e10",
@@ -4971,7 +5048,8 @@
           "markerX": 658,
           "markerY": 203,
           "routeOrder": 10300,
-          "title": "Visitar Guarda"
+          "title": "Visitar Guarda",
+          "memoryTaskId": 20176
         }
       ],
       "expectedLevel": 2
@@ -5564,7 +5642,8 @@
           "markerX": 670,
           "markerY": 266,
           "routeOrder": 10560,
-          "title": "Espinho Venenoso"
+          "title": "Espinho de Escorpião",
+          "memoryTaskId": 20157
         },
         {
           "id": "e3",
@@ -5572,7 +5651,8 @@
           "markerX": 687,
           "markerY": 255,
           "routeOrder": 10590,
-          "title": "Espinho de Escorpião"
+          "title": "Reportar no Altar do Fogo N.",
+          "memoryTaskId": 20158
         }
       ],
       "expectedLevel": 10
@@ -6030,7 +6110,8 @@
           "markerX": 627,
           "markerY": 135,
           "routeOrder": 10990,
-          "title": "Leve de Volta a Promes"
+          "title": "Leve de Volta a Promes",
+          "memoryTaskId": 20510
         },
         {
           "id": "e6",
@@ -6071,7 +6152,8 @@
           "id": "e2",
           "action": "Mate um Summoned Guarda",
           "routeOrder": 10970,
-          "title": "Uma Pessoa Estranha"
+          "title": "Guarda",
+          "memoryTaskId": 20853
         },
         {
           "id": "e3",
@@ -6251,7 +6333,8 @@
           "markerX": 670,
           "markerY": 175,
           "routeOrder": 11180,
-          "title": "Pedido do Veterano"
+          "title": "Gelo e Fogo",
+          "memoryTaskId": 20666
         },
         {
           "id": "e3",
@@ -6259,7 +6342,8 @@
           "markerX": 670,
           "markerY": 175,
           "routeOrder": 11190,
-          "title": "Pedido do Veterano"
+          "title": "Gelo e Fogo",
+          "memoryTaskId": 20666
         },
         {
           "id": "e4",
@@ -6267,7 +6351,8 @@
           "markerX": 628,
           "markerY": 167,
           "routeOrder": 11210,
-          "title": "Pedido do Veterano"
+          "title": "Espada de Ferro",
+          "memoryTaskId": 20665
         },
         {
           "id": "e5",
@@ -6329,7 +6414,8 @@
           "markerX": 657,
           "markerY": 130,
           "routeOrder": 11100,
-          "title": "O Equilíbrio Celestial"
+          "title": "O Equilíbrio Celestial",
+          "memoryTaskId": 20102
         },
         {
           "id": "e2",
@@ -6337,7 +6423,8 @@
           "markerX": 656,
           "markerY": 179,
           "routeOrder": 11160,
-          "title": "Celestial em Perigo"
+          "title": "Celestial em Perigo",
+          "memoryTaskId": 20498
         },
         {
           "id": "e3",
@@ -6345,7 +6432,8 @@
           "markerX": 679,
           "markerY": 179,
           "routeOrder": 11200,
-          "title": "Celestial"
+          "title": "Celestial",
+          "memoryTaskId": 20499
         },
         {
           "id": "e4",
@@ -6353,7 +6441,8 @@
           "markerX": 657,
           "markerY": 130,
           "routeOrder": 11230,
-          "title": "Escoltando o Celestial"
+          "title": "Escoltando o Celestial",
+          "memoryTaskId": 20500
         }
       ],
       "expectedLevel": 19
@@ -6960,11 +7049,12 @@
         },
         {
           "id": "e5",
-          "action": "Mate 25 Rinocerontes Terrestres e entregue ao General (521, 629)",
+          "action": "Mate 8 Rinocerontes Terrestres e entregue ao General (521, 629)",
           "markerX": 521,
           "markerY": 629,
           "routeOrder": 1210800,
-          "title": "Rebelião do Arco Quebrado"
+          "title": "Informe ao General Lotor Akre",
+          "memoryTaskId": 1031
         }
       ]
     },
@@ -7700,19 +7790,27 @@
         },
         {
           "id": "e8",
-          "action": "Pegar (10) Osso de Esqueleto matando Esqueleto Espectral (Floresta Verdejante – Sul do Templo das Orquídeas) (570, 756)",
+          "action": "Pegar (5) Osso de Esqueleto matando Esqueleto Espectral (Floresta Verdejante – Sul do Templo das Orquídeas) (570, 756)",
           "markerX": 570,
           "markerY": 756,
           "routeOrder": 1207300,
-          "title": "Ossos e Chifres"
+          "title": "Ossos e Chifres",
+          "memoryTaskId": 1375,
+          "memoryItemIds": [
+            3846
+          ]
         },
         {
           "id": "e9",
-          "action": "Pegar (10) Chifre de Escudeiro Minotauro matando Escudeiro Minotauro (Arredores do Templo das Orquídeas – Floresta Verdejante) (596, 763)",
+          "action": "Pegar (5) Chifre de Escudeiro Minotauro matando Escudeiro Minotauro (Arredores do Templo das Orquídeas – Floresta Verdejante) (596, 763)",
           "markerX": 596,
           "markerY": 763,
           "routeOrder": 1207400,
-          "title": "Ossos e Chifres"
+          "title": "Ossos e Chifres",
+          "memoryTaskId": 1375,
+          "memoryItemIds": [
+            3847
+          ]
         },
         {
           "id": "e10",
@@ -7925,7 +8023,8 @@
           "markerX": 525,
           "markerY": 573,
           "routeOrder": 1208700,
-          "title": "Tirar os Obstáculos"
+          "title": "Mate os Arqueiros Lobo",
+          "memoryTaskId": 562
         },
         {
           "id": "e2",
@@ -7933,7 +8032,8 @@
           "markerX": 525,
           "markerY": 573,
           "routeOrder": 1208800,
-          "title": "Tirar os Obstáculos"
+          "title": "Raiz Maligna",
+          "memoryTaskId": 563
         },
         {
           "id": "e3",
@@ -7941,7 +8041,8 @@
           "markerX": 525,
           "markerY": 573,
           "routeOrder": 1208900,
-          "title": "Tirar os Obstáculos"
+          "title": "oGolem Guardião",
+          "memoryTaskId": 564
         },
         {
           "id": "e4",
@@ -8536,19 +8637,27 @@
         },
         {
           "id": "e2",
-          "action": "Pegar (10) Pó de Pérola Flamejante matando Escaravelho Ardente (Rampa dos Estandartes) (552, 719)",
+          "action": "Pegar (5) Pó de Pérola Flamejante matando Escaravelho Ardente (Rampa dos Estandartes) (552, 719)",
           "markerX": 552,
           "markerY": 719,
           "routeOrder": 1213900,
-          "title": "Pó e Antenas"
+          "title": "Pó e Antenas",
+          "memoryTaskId": 1918,
+          "memoryItemIds": [
+            6774
+          ]
         },
         {
           "id": "e3",
-          "action": "Pegar (15) Antena de Centopéia Letal matando Centopéia Letal (Rampa dos Estandartes) (552, 719)",
+          "action": "Pegar (5) Antena de Centopéia Letal matando Centopéia Letal (Rampa dos Estandartes) (552, 719)",
           "markerX": 552,
           "markerY": 719,
           "routeOrder": 1214000,
-          "title": "Pó e Antenas"
+          "title": "Pó e Antenas",
+          "memoryTaskId": 1918,
+          "memoryItemIds": [
+            6775
+          ]
         },
         {
           "id": "e4",
@@ -8871,19 +8980,31 @@
           "id": "e1",
           "action": "Pegar (1) Resumo do Demônio Secreto (1) matando Feiticeiro do Submundo (Dentro da Residência de Hades)",
           "routeOrder": 1216500,
-          "title": "Doutrina Secreta"
+          "title": "Doutrina Secreta",
+          "memoryTaskId": 2444,
+          "memoryItemIds": [
+            7619
+          ]
         },
         {
           "id": "e2",
           "action": "Pegar (1) Resumo do Demônio Secreto (2) matando Habitante do Submundo (Dentro da Residência de Hades)",
           "routeOrder": 1216900,
-          "title": "Doutrina Secreta"
+          "title": "Doutrina Secreta",
+          "memoryTaskId": 2444,
+          "memoryItemIds": [
+            7620
+          ]
         },
         {
           "id": "e3",
           "action": "Pegar (1) Resumo do Demônio Secreto (3) matando Escaravelho de Fogo do Submundo (Dentro da Residência de Hades)",
           "routeOrder": 1217000,
-          "title": "Doutrina Secreta"
+          "title": "Doutrina Secreta",
+          "memoryTaskId": 2444,
+          "memoryItemIds": [
+            7621
+          ]
         },
         {
           "id": "e4",
@@ -10004,19 +10125,27 @@
         },
         {
           "id": "e3",
-          "action": "Pegar (20) Presa de Serpente Voadora matando Tubarão Alucinado (Mar Wuji) (671, 936)",
+          "action": "Pegar (10) Presa de Serpente Voadora matando Tubarão Alucinado (Mar Wuji) (671, 936)",
           "markerX": 671,
           "markerY": 936,
           "routeOrder": 1228200,
-          "title": "Vingança dos Parentes"
+          "title": "Vingança dos Parentes",
+          "memoryTaskId": 1491,
+          "memoryItemIds": [
+            3921
+          ]
         },
         {
           "id": "e4",
-          "action": "Pegar (25) Presa de Tubarão Ornamentado matando Tubarão-rainha (Mar Wuji) (671, 936)",
+          "action": "Pegar (10) Presa de Tubarão Ornamentado matando Tubarão-rainha (Mar Wuji) (671, 936)",
           "markerX": 671,
           "markerY": 936,
           "routeOrder": 1228300,
-          "title": "Vingança dos Parentes"
+          "title": "Vingança dos Parentes",
+          "memoryTaskId": 1491,
+          "memoryItemIds": [
+            4077
+          ]
         },
         {
           "id": "e5",

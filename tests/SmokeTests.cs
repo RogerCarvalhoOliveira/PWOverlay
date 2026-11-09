@@ -85,6 +85,27 @@ internal static class SmokeTests
                 throw new InvalidDataException("Catálogo dataminado de missões está divergente.");
 
             var tracker = new QuestStateTracker();
+            var deliveredBamboo = new QuestMemorySnapshot();
+            if (taskCatalog.IsChainRecordedComplete(938, deliveredBamboo))
+                throw new InvalidDataException("Ausência sem histórico foi tratada como entrega.");
+            deliveredBamboo.FinishedTaskIds.Add(938);
+            if (!taskCatalog.IsChainRecordedComplete(938, deliveredBamboo))
+                throw new InvalidDataException("Histórico de Bambu dos Selvagens não foi reconhecido.");
+            deliveredBamboo.ActiveTasks.Add(new ActiveQuestMemoryEntry { TaskId = 938 });
+            if (taskCatalog.IsChainRecordedComplete(938, deliveredBamboo))
+                throw new InvalidDataException("Missão repetida ativa foi confundida com entrega anterior.");
+            var conversations = new QuestMemoryClientState();
+            conversations.Observe(deliveredBamboo);
+            conversations.Record(new[] {new QuestMemoryEvent {
+                TaskId = 938, Kind = QuestMemoryEventKind.DisappearedAfterObservation }});
+            if (!conversations.HasObservedDisappearance(938) ||
+                !conversations.HasObservedDisappearance(938) ||
+                conversations.HasObservedDisappearance(939))
+                throw new InvalidDataException("Conversa/entrega repetida perdeu a evidência ou usou outra missão.");
+            conversations.Record(new[] {new QuestMemoryEvent {
+                TaskId = 938, Kind = QuestMemoryEventKind.Activated }});
+            if (conversations.HasObservedDisappearance(938))
+                throw new InvalidDataException("Reaceite não limpou a evidência antiga.");
             var materials = new QuestMemorySnapshot();
             materials.ActiveTasks.Add(new ActiveQuestMemoryEntry { TaskId = 80 });
             materials.ActiveTasks.Add(new ActiveQuestMemoryEntry { TaskId = 82 });
@@ -115,6 +136,52 @@ internal static class SmokeTests
                 foundry.steps[3].title != taskCatalog.Find(86).Name)
                 throw new InvalidDataException("Rota de matérias-primas aponta para o pai em vez das submissões.");
             TaskCatalogEntry hedgehogs = taskCatalog.Find(2714);
+            int boundObjectives = 0;
+            foreach (QuestMission mission in routes.AllMissions)
+            foreach (QuestStep step in mission.steps)
+            {
+                if (step.memoryTaskId == 0) continue;
+                boundObjectives++;
+                TaskCatalogEntry boundTask = taskCatalog.Find(step.memoryTaskId);
+                if (boundTask == null || boundTask.Name != step.title)
+                    throw new InvalidDataException("Associação explícita divergente: " + mission.name + "/" + step.id);
+                if (step.memoryItemIds == null || step.memoryItemIds.Length == 0) continue;
+                var partial = new QuestMemorySnapshot();
+                partial.ActiveTasks.Add(new ActiveQuestMemoryEntry { TaskId = boundTask.TopId });
+                foreach (uint itemId in step.memoryItemIds)
+                {
+                    int requirement;
+                    if (!boundTask.RequiredTaskItems.TryGetValue(itemId, out requirement))
+                        throw new InvalidDataException("Item vinculado a outra missão.");
+                    partial.TaskItemCounts[itemId] = requirement;
+                }
+                if (!taskCatalog.AreTaskItemsComplete(boundTask.Id, partial, step.memoryItemIds) ||
+                    taskCatalog.AreTaskItemsComplete(boundTask.Id, partial) ||
+                    taskCatalog.AreTaskItemsComplete(boundTask.Id, partial, new uint[] { uint.MaxValue }))
+                    throw new InvalidDataException("Materiais independentes não foram separados: " + mission.name + "/" + step.id);
+                foreach (uint itemId in step.memoryItemIds) partial.TaskItemCounts[itemId]--;
+                if (taskCatalog.AreTaskItemsComplete(boundTask.Id, partial, step.memoryItemIds))
+                    throw new InvalidDataException("Material abaixo da quantidade avançou.");
+                partial.ActiveTasks.Clear();
+                foreach (uint itemId in step.memoryItemIds)
+                    partial.TaskItemCounts[itemId] = boundTask.RequiredTaskItems[itemId];
+                if (taskCatalog.AreTaskItemsComplete(boundTask.Id, partial, step.memoryItemIds))
+                    throw new InvalidDataException("Coleta avançou sem cadeia ativa.");
+            }
+            if (boundObjectives < 62)
+                throw new InvalidDataException("Associações das cadeias aninhadas incompletas.");
+            var automaticChild = new QuestMemorySnapshot();
+            automaticChild.ActiveTasks.Add(new ActiveQuestMemoryEntry { TaskId = 736 });
+            if (!taskCatalog.CanConfirmAutomaticKillCompletion(804, "Matar (5) Gato-Rei Sentinela", automaticChild) ||
+                taskCatalog.CanConfirmAutomaticKillCompletion(804, "Entregue ao guarda", automaticChild) ||
+                taskCatalog.CanConfirmAutomaticKillCompletion(6440, "Matar (6) Espinhos do Orgulho", automaticChild))
+                throw new InvalidDataException("Transição de objetivo automático confundiu entrega ou outra cadeia.");
+            automaticChild.ActiveTasks.Add(new ActiveQuestMemoryEntry { TaskId = 804 });
+            if (taskCatalog.CanConfirmAutomaticKillCompletion(804, "Matar (5) Gato-Rei Sentinela", automaticChild))
+                throw new InvalidDataException("Filho ainda ativo foi tratado como desaparecido.");
+            automaticChild.ActiveTasks.Clear();
+            if (taskCatalog.CanConfirmAutomaticKillCompletion(804, "Matar (5) Gato-Rei Sentinela", automaticChild))
+                throw new InvalidDataException("Abandono da cadeia foi tratado como objetivo concluído.");
             string killEvidence;
             var killEntry = new ActiveQuestMemoryEntry { TaskId = 2714 };
             if (hedgehogs == null || hedgehogs.RequiredMonsterId != 1037 ||

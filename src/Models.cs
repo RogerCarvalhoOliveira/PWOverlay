@@ -43,6 +43,8 @@ namespace PWQuestOverlay
         public int? markerX { get; set; }
         public int? markerY { get; set; }
         public int routeOrder { get; set; }
+        public uint memoryTaskId { get; set; }
+        public uint[] memoryItemIds { get; set; }
     }
 
     public sealed class CharacterProgress

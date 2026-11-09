@@ -40,6 +40,14 @@ namespace PWQuestOverlay.Memory
                 "/" + RequiredMonsterKills;
             return active.FirstMonsterKillCount >= RequiredMonsterKills;
         }
+
+        internal bool IsAutomaticKillStage(string action)
+        {
+            string ignored;
+            return ParentId != 0 && FinishType == 0 && TryGetKillProgress(
+                new ActiveQuestMemoryEntry { TaskId = Id,
+                    FirstMonsterKillCount = RequiredMonsterKills }, action, out ignored);
+        }
     }
 
     internal sealed class TaskCatalog
@@ -149,29 +157,69 @@ namespace PWQuestOverlay.Memory
 
         internal bool AreTaskItemsComplete(uint taskId, QuestMemorySnapshot snapshot)
         {
+            return AreTaskItemsComplete(taskId, snapshot, null);
+        }
+
+        internal bool HasActiveTaskContext(uint taskId, QuestMemorySnapshot snapshot)
+        {
             TaskCatalogEntry task = Find(taskId);
-            if (task == null || snapshot == null || task.RequiredTaskItems.Count == 0)
+            if (task == null || snapshot == null)
                 return false;
             // Completed automatic children may disappear before the parent is delivered.
             // Require the objective itself or a real ancestor of this chain to be active.
             var visited = new HashSet<uint>();
             TaskCatalogEntry context = task;
-            bool activeContext = false;
             while (context != null && visited.Add(context.Id))
             {
                 if (snapshot.ActiveTasks.Exists(entry => entry.TaskId == context.Id))
                 {
-                    activeContext = true;
-                    break;
+                    return true;
                 }
                 context = context.ParentId == 0 ? null : Find(context.ParentId);
             }
-            if (!activeContext) return false;
+            return false;
+        }
+
+        internal bool AreTaskItemsComplete(
+            uint taskId, QuestMemorySnapshot snapshot, uint[] selectedItems)
+        {
+            TaskCatalogEntry task = Find(taskId);
+            if (task == null || task.RequiredTaskItems.Count == 0 ||
+                !HasActiveTaskContext(taskId, snapshot)) return false;
+            var selected = selectedItems == null || selectedItems.Length == 0
+                ? null : new HashSet<uint>(selectedItems);
+            if (selected != null)
+                foreach (uint itemId in selected)
+                    if (!task.RequiredTaskItems.ContainsKey(itemId)) return false;
             foreach (var requirement in task.RequiredTaskItems)
             {
+                if (selected != null && !selected.Contains(requirement.Key)) continue;
                 int count;
                 if (!snapshot.TaskItemCounts.TryGetValue(requirement.Key, out count) ||
                     count < requirement.Value) return false;
+            }
+            return true;
+        }
+
+        internal bool CanConfirmAutomaticKillCompletion(
+            uint taskId, string action, QuestMemorySnapshot snapshot)
+        {
+            TaskCatalogEntry task = Find(taskId);
+            return task != null && snapshot != null &&
+                task.IsAutomaticKillStage(action) &&
+                !snapshot.ActiveTasks.Exists(entry => entry.TaskId == taskId) &&
+                HasActiveTaskContext(taskId, snapshot);
+        }
+
+        internal bool IsChainRecordedComplete(uint taskId, QuestMemorySnapshot snapshot)
+        {
+            TaskCatalogEntry task = Find(taskId);
+            if (task == null || snapshot == null ||
+                !snapshot.FinishedTaskIds.Contains(task.TopId)) return false;
+            foreach (var active in snapshot.ActiveTasks)
+            {
+                TaskCatalogEntry entry = Find(active.TaskId);
+                if (entry != null && entry.TopId == task.TopId) return false;
             }
             return true;
         }

@@ -1,5 +1,5 @@
 #ifndef MyAppVersion
-  #define MyAppVersion "0.8.2"
+  #define MyAppVersion "0.8.3"
 #endif
 
 #define MyAppName "PW Quest Overlay"

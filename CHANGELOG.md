@@ -1,5 +1,14 @@
 # Histórico de alterações
 
+## 0.8.3 - Revisão das cadeias e materiais independentes
+
+- Revisadas as 836 etapas: 102 associações explícitas em 30 cadeias, incluindo as visitas aos artesãos das quatro raças.
+- Materiais do mesmo ID agora podem ser verificados por etapa: Ossos e Chifres, Pó e Antenas, Doutrina Secreta e Vingança dos Parentes.
+- Corrigidos pais genéricos nas cadeias Fazer Armas, Remédio Útil, Cortar Montanhas, Conspiração, A Promessa e outras.
+- Recuperação por histórico de entregas, sem confundir ausência ou reaceite com missão concluída.
+- Uma transição observada pode concluir as etapas redundantes de conversar/entregar no mesmo NPC. Validado ao vivo em Bambu dos Selvagens.
+- Adicionados auditor e manifesto versionados para prevenir novas associações incorretas; quantidades das etapas revisadas ajustadas aos requisitos dataminados.
+
 ## 0.8.2 - Coletas em submissões aninhadas
 
 - Corrigida a associação de lenha e ferro em `Livro de Fundição`: as etapas agora apontam para as submissões filhas `Eliminando Pulador-Arp` (85) e `Livrar-se dos Duendes` (86).

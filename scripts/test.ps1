@@ -22,6 +22,7 @@ $testExecutable = Join-Path $testDirectory 'SmokeTests.exe'
     (Join-Path $projectRoot 'src\TaskCatalog.cs') `
     (Join-Path $projectRoot 'src\QuestMemoryReader.cs') `
     (Join-Path $projectRoot 'src\QuestStateTracker.cs') `
+    (Join-Path $projectRoot 'src\QuestMemoryMonitor.cs') `
     (Join-Path $projectRoot 'src\ProcessMemoryReader.cs') `
     (Join-Path $projectRoot 'src\RttiResolver.cs') `
     (Join-Path $projectRoot 'tests\SmokeTests.cs')

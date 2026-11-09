@@ -31,7 +31,10 @@ namespace PWQuestOverlay.Memory
             foreach (QuestMemoryEvent change in changes)
             {
                 if (change.Kind == QuestMemoryEventKind.Activated)
+                {
                     _observedActive.Add(change.TaskId);
+                    _disappeared.Remove(change.TaskId);
+                }
                 else if (change.Kind == QuestMemoryEventKind.DisappearedAfterObservation &&
                     _observedActive.Contains(change.TaskId))
                     _disappeared.Add(change.TaskId);
@@ -45,9 +48,11 @@ namespace PWQuestOverlay.Memory
                 : Snapshot.ActiveTasks.Find(entry => entry.TaskId == taskId);
         }
 
-        internal bool TryConsumeDisappearance(uint taskId)
+        internal bool HasObservedDisappearance(uint taskId)
         {
-            return _disappeared.Remove(taskId);
+            // One real transition may satisfy consecutive talk/turn-in guide steps.
+            // A new activation clears this evidence for a repeated quest.
+            return _disappeared.Contains(taskId);
         }
     }
 

@@ -2124,7 +2124,7 @@ namespace PWQuestOverlay
         {
             return Regex.IsMatch(
                 action ?? string.Empty,
-                @"\bfale\s+com\b",
+                @"\b(?:(?:fale|falar|converse)\s+com|visite\s+(?:o|a))\b",
                 RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
         }
 
@@ -2133,7 +2133,7 @@ namespace PWQuestOverlay
             string action = step == null ? string.Empty : step.action ?? string.Empty;
             if (Regex.IsMatch(
                 action,
-                @"\b(?:entregue|reporte|retorne|volte)\b",
+                @"\b(?:entregue|reporte|retorne|volte|relat[oó]rio)\b|\bNPC\s+Final\s*:",
                 RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
                 return true;
             return mission != null && step != null &&
@@ -2179,8 +2179,11 @@ namespace PWQuestOverlay
                 bool killsComplete = currentTask != null &&
                     currentTask.TryGetKillProgress(active, action, out killEvidence);
                 bool taskItemsComplete = IsCollectionStage(action) &&
-                    _taskCatalog.AreTaskItemsComplete(taskId, client.Snapshot);
-                bool nextUsesSameTask = false;
+                    _taskCatalog.AreTaskItemsComplete(
+                        taskId, client.Snapshot, _currentStep.memoryItemIds);
+                bool automaticChildComplete = _taskCatalog.CanConfirmAutomaticKillCompletion(
+                    taskId, action, client.Snapshot) &&
+                    client.HasObservedDisappearance(taskId);
                 bool nextTaskResolved = false;
                 uint nextTaskId = 0;
                 if (_currentStepIndex + 1 < _currentMission.steps.Count)
@@ -2189,14 +2192,14 @@ namespace PWQuestOverlay
                         _currentMission,
                         _currentMission.steps[_currentStepIndex + 1],
                         out nextTaskId);
-                    nextUsesSameTask = nextTaskResolved && nextTaskId == taskId;
                 }
 
                 bool waitsForDisappearance = IsTurnInStage(
                     _currentMission, _currentStep) ||
-                    (IsTalkStage(action) && !nextUsesSameTask);
+                    IsTalkStage(action);
                 bool disappeared = waitsForDisappearance &&
-                    client.TryConsumeDisappearance(taskId);
+                    client.HasObservedDisappearance(taskId);
+                bool recordedComplete = _taskCatalog.IsChainRecordedComplete(taskId, client.Snapshot);
                 TaskCatalogEntry nextTask = nextTaskResolved
                     ? _taskCatalog.Find(nextTaskId) : null;
                 bool successorActive = waitsForDisappearance && active == null &&
@@ -2204,7 +2207,7 @@ namespace PWQuestOverlay
                     client.FindActive(nextTaskId) != null &&
                     currentTask != null && nextTask != null &&
                     currentTask.TopId == nextTask.TopId;
-                if (!accepted && !taskItemsComplete && !killsComplete &&
+                if (!accepted && !taskItemsComplete && !killsComplete && !automaticChildComplete && !recordedComplete &&
                     !disappeared && !successorActive)
                 {
                     LogMemoryDiagnostic("aguardando: " + _currentMission.name +
@@ -2214,18 +2217,23 @@ namespace PWQuestOverlay
                         " próximo=" + (nextTaskResolved ? nextTaskId.ToString() : "-") +
                         " próximo-ativo=" + (nextTaskResolved &&
                             client.FindActive(nextTaskId) != null) +
-                        " itens=" + TaskItemEvidence(currentTask, client.Snapshot) +
+                        " itens=" + TaskItemEvidence(currentTask, client.Snapshot, _currentStep.memoryItemIds) +
                         " abates=" + killEvidence);
                     return;
                 }
 
-                string evidence = accepted
+                string evidence = recordedComplete
+                    ? "cadeia ID " + currentTask.TopId + " confirmada no histórico de entregas"
+                    : accepted
                     ? "ID " + taskId + " apareceu na lista ativa"
+                    : automaticChildComplete
+                        ? "objetivo filho automático ID " + taskId +
+                            " desapareceu após observação, com sua cadeia ainda ativa"
                     : killsComplete
                         ? "abates completos: " + killEvidence
                     : taskItemsComplete
                         ? "itens de missão completos: " +
-                            TaskItemEvidence(currentTask, client.Snapshot)
+                            TaskItemEvidence(currentTask, client.Snapshot, _currentStep.memoryItemIds)
                     : disappeared
                         ? "ID " + taskId + " foi observado e depois desapareceu"
                         : "a próxima submissão da mesma cadeia, ID " +
@@ -2236,12 +2244,15 @@ namespace PWQuestOverlay
 
         private static string TaskItemEvidence(
             TaskCatalogEntry task,
-            QuestMemorySnapshot snapshot)
+            QuestMemorySnapshot snapshot,
+            uint[] selectedItems)
         {
             if (task == null || task.RequiredTaskItems == null ||
                 task.RequiredTaskItems.Count == 0 || snapshot == null)
                 return "-";
-            return string.Join(", ", task.RequiredTaskItems.Select(requirement =>
+            return string.Join(", ", task.RequiredTaskItems
+                .Where(requirement => selectedItems == null || selectedItems.Length == 0 ||
+                    selectedItems.Contains(requirement.Key)).Select(requirement =>
             {
                 int current;
                 snapshot.TaskItemCounts.TryGetValue(requirement.Key, out current);
@@ -2264,6 +2275,14 @@ namespace PWQuestOverlay
         {
             taskId = 0;
             if (step == null || string.IsNullOrWhiteSpace(step.title)) return false;
+            if (step.memoryTaskId != 0)
+            {
+                TaskCatalogEntry bound = _taskCatalog.Find(step.memoryTaskId);
+                if (bound == null || !string.Equals(bound.Name, step.title,
+                    StringComparison.Ordinal)) return false;
+                taskId = bound.Id;
+                return true;
+            }
             List<TaskCatalogEntry> matches = _taskCatalog.FindByName(step.title);
             List<TaskCatalogEntry> missionMatches = mission == null
                 ? new List<TaskCatalogEntry>()

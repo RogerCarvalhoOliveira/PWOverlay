@@ -30,6 +30,10 @@ Cada item de `steps` possui:
 | `action` | Texto curto da ação atual. |
 | `markerX` / `markerY` | Coordenada usada pelo botão **Marcar**, quando conhecida. |
 | `routeOrder` | Ordem global da ação; permite intercalar etapas de missões diferentes sem alterar seus IDs. |
+| `memoryTaskId` | ID dataminado explícito da tarefa/submissão desta etapa; evita ambiguidades entre pais, filhos e raças. |
+| `memoryItemIds` | IDs de materiais exigidos somente nesta etapa, quando uma tarefa compartilha vários objetivos. Quantidades vêm do catálogo. |
+
+As associações revisadas ficam também em `data/quest_objective_bindings.json`. Depois de editar esse manifesto, aplique `node scripts/bind-nested-objectives.mjs --write` e execute `node scripts/audit-nested-objectives.mjs --summary`. Não invente IDs: confira tarefa, parentesco e materiais no catálogo. Consulte `AUDITORIA-SUBMISSOES.md` para a cobertura e limitações.
 
 ## Alterar uma missão
 
