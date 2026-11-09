@@ -80,6 +80,13 @@ Nenhuma função lê memória de outro processo.
 - Cria o marcador único `PWOverlay` no cliente ativo.
 - Salva posição e progresso.
 - Reeleva o tracker e, em seguida, todos os painéis flutuantes visíveis do PW Helper.
+- Na branch experimental de OCR, permite selecionar uma região proporcional do cliente, executa a leitura fora da thread da interface e apenas apresenta o diagnóstico, sem alterar progresso.
+
+### `QuestOcrService.cs`
+
+- Captura somente a região calibrada do cliente em foco e amplia a imagem antes da leitura.
+- Executa o Tesseract como processo externo com idioma português e limite de tempo.
+- Salva `ocr-last.png` para comparação visual e retorna texto e duração ao overlay.
 
 ## Identidade do perfil
 

@@ -2,8 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PWQuestOverlay
@@ -69,6 +73,7 @@ namespace PWQuestOverlay
         private Point _dragFormStart;
         private bool _allowExit;
         private bool _markerBusy;
+        private bool _ocrBusy;
 
         private sealed class RouteStage
         {
@@ -237,6 +242,16 @@ namespace PWQuestOverlay
             _trayMenu.Items.Add("Restaurar backup de perfis...", null, delegate { RestoreBackup(); });
             _trayMenu.Items.Add(new ToolStripSeparator());
             _trayMenu.Items.Add("Calibrar marcador...", null, delegate { OpenMarkerCalibration(); });
+            ToolStripMenuItem ocrMenu = new ToolStripMenuItem("OCR experimental");
+            ocrMenu.DropDownItems.Add(
+                "Selecionar área e testar...",
+                null,
+                delegate { SelectAndTestOcr(); });
+            ocrMenu.DropDownItems.Add(
+                "Testar área salva",
+                null,
+                delegate { TestSavedOcrRegion(); });
+            _trayMenu.Items.Add(ocrMenu);
             _trayMenu.Items.Add("Abrir guia de configuração...", null, delegate { OpenConfigurationGuide(); });
             _markerHotkeyItem = new ToolStripMenuItem("Atalho do marcador: verificando...") { Enabled = false };
             _trayMenu.Items.Add(_markerHotkeyItem);
@@ -482,7 +497,7 @@ namespace PWQuestOverlay
                     ApplySavedOrDefaultPosition();
                 }
 
-                if (!_state.UserHidden)
+                if (!_state.UserHidden && !_ocrBusy)
                 {
                     if (!Visible)
                     {
@@ -1226,6 +1241,7 @@ namespace PWQuestOverlay
                 _state.Positions = imported.Positions;
                 _state.ClassAssociations = imported.ClassAssociations;
                 _state.Marker = imported.Marker;
+                _state.Ocr = imported.Ocr;
                 _state.PositionLocked = imported.PositionLocked;
                 _state.CompactMode = imported.CompactMode;
                 _state.Opacity = imported.Opacity;
@@ -1389,6 +1405,184 @@ namespace PWQuestOverlay
                 "PW Quest Overlay",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
+        }
+
+        private async void SelectAndTestOcr()
+        {
+            if (!CanStartOcr()) return;
+            _ocrBusy = true;
+            Hide();
+            try
+            {
+                Rectangle initial = GetSavedOcrRegion();
+                using (var selector = new OcrRegionSelectionForm(_activeGame, initial))
+                {
+                    if (selector.ShowDialog() != DialogResult.OK) return;
+                    SaveOcrRegion(selector.SelectedClientRegion);
+                    await ScanOcrRegion(selector.SelectedClientRegion);
+                }
+            }
+            catch (Exception error)
+            {
+                _store.Log("Erro no OCR: " + error.GetType().Name + ": " + error.Message);
+                MessageBox.Show(error.Message, "OCR experimental", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                _ocrBusy = false;
+                RestoreOverlayAfterOcr();
+            }
+        }
+
+        private async void TestSavedOcrRegion()
+        {
+            if (!CanStartOcr()) return;
+            Rectangle region = GetSavedOcrRegion();
+            if (region.Width < 20 || region.Height < 20)
+            {
+                MessageBox.Show(
+                    "Use primeiro 'Selecionar área e testar...'.",
+                    "OCR experimental",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
+            }
+
+            _ocrBusy = true;
+            Hide();
+            try
+            {
+                await ScanOcrRegion(region);
+            }
+            catch (Exception error)
+            {
+                _store.Log("Erro no OCR: " + error.GetType().Name + ": " + error.Message);
+                MessageBox.Show(error.Message, "OCR experimental", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                _ocrBusy = false;
+                RestoreOverlayAfterOcr();
+            }
+        }
+
+        private bool CanStartOcr()
+        {
+            if (_ocrBusy) return false;
+            if (_activeGame == IntPtr.Zero || !NativeMethods.IsWindow(_activeGame))
+            {
+                MessageBox.Show(
+                    "Coloque um cliente do Perfect World em foco antes de iniciar o teste.",
+                    "OCR experimental",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return false;
+            }
+            string reason;
+            if (!QuestOcrService.IsAvailable(out reason))
+            {
+                MessageBox.Show(
+                    "O OCR do Windows não está disponível.\r\n\r\n" + reason,
+                    "OCR experimental",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+
+        private async Task ScanOcrRegion(Rectangle region)
+        {
+            IntPtr targetWindow = _activeGame;
+            NativeMethods.SetForegroundWindow(targetWindow);
+            await Task.Delay(180);
+            string directory = Path.GetDirectoryName(_store.LogPath);
+            QuestOcrResult result = await QuestOcrService.ScanAsync(targetWindow, region, directory);
+            string matchSummary = BuildOcrMatchSummary(result.Text);
+            _store.Log(string.Format(
+                "OCR concluído em {0} ms, caracteres={1}, região={2}",
+                result.ElapsedMilliseconds,
+                result.Text == null ? 0 : result.Text.Length,
+                region));
+            using (var resultForm = new OcrResultForm(result, matchSummary))
+                resultForm.ShowDialog();
+        }
+
+        private void SaveOcrRegion(Rectangle region)
+        {
+            NativeMethods.RECT client;
+            if (!NativeMethods.GetClientRect(_activeGame, out client)) return;
+            _state.Ocr.Calibrated = true;
+            _state.Ocr.X = region.X;
+            _state.Ocr.Y = region.Y;
+            _state.Ocr.Width = region.Width;
+            _state.Ocr.Height = region.Height;
+            _state.Ocr.ReferenceWidth = client.Width;
+            _state.Ocr.ReferenceHeight = client.Height;
+            _store.Save(_state);
+        }
+
+        private Rectangle GetSavedOcrRegion()
+        {
+            if (_state.Ocr == null || !_state.Ocr.Calibrated ||
+                _state.Ocr.ReferenceWidth <= 0 || _state.Ocr.ReferenceHeight <= 0)
+                return Rectangle.Empty;
+
+            NativeMethods.RECT client;
+            if (!NativeMethods.GetClientRect(_activeGame, out client))
+                return Rectangle.Empty;
+            double scaleX = (double)client.Width / _state.Ocr.ReferenceWidth;
+            double scaleY = (double)client.Height / _state.Ocr.ReferenceHeight;
+            return Rectangle.FromLTRB(
+                (int)Math.Round(_state.Ocr.X * scaleX),
+                (int)Math.Round(_state.Ocr.Y * scaleY),
+                (int)Math.Round((_state.Ocr.X + _state.Ocr.Width) * scaleX),
+                (int)Math.Round((_state.Ocr.Y + _state.Ocr.Height) * scaleY));
+        }
+
+        private string BuildOcrMatchSummary(string recognizedText)
+        {
+            if (_currentMission == null || _currentStep == null)
+                return "Sem etapa de rota ativa para comparar.";
+
+            string expected = _currentMission.name + " " + _currentStep.title;
+            string normalizedOcr = NormalizeOcrText(recognizedText);
+            string[] expectedWords = NormalizeOcrText(expected)
+                .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+                .Where(word => word.Length >= 3)
+                .Distinct()
+                .ToArray();
+            int found = expectedWords.Count(word => normalizedOcr.Contains(word));
+            int confidence = expectedWords.Length == 0
+                ? 0
+                : (int)Math.Round(100.0 * found / expectedWords.Length);
+            return string.Format(
+                "Comparação com a etapa atual: {0}% ({1}/{2} palavras). Nenhum progresso foi alterado.",
+                confidence,
+                found,
+                expectedWords.Length);
+        }
+
+        private static string NormalizeOcrText(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value)) return string.Empty;
+            string decomposed = value.Normalize(NormalizationForm.FormD);
+            var builder = new StringBuilder(decomposed.Length);
+            foreach (char character in decomposed)
+            {
+                UnicodeCategory category = CharUnicodeInfo.GetUnicodeCategory(character);
+                if (category == UnicodeCategory.NonSpacingMark) continue;
+                builder.Append(char.IsLetterOrDigit(character) ? char.ToLowerInvariant(character) : ' ');
+            }
+            return Regex.Replace(builder.ToString(), @"\s+", " ").Trim();
+        }
+
+        private void RestoreOverlayAfterOcr()
+        {
+            if (_state.UserHidden || _activeGame == IntPtr.Zero || !NativeMethods.IsWindow(_activeGame))
+                return;
+            NativeMethods.ShowWindow(Handle, NativeMethods.SW_SHOWNOACTIVATE);
+            RaiseOverlayStack();
         }
 
         private void RaiseOverlayStack()

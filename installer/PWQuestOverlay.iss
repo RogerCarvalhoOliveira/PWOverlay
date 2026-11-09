@@ -46,6 +46,7 @@ Source: "..\dist\quest_routes.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\rota_leveling_pw_144.xlsx"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\LEIA-ME.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\INSTALACAO.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\dist\ocr\*"; DestDir: "{app}\ocr"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{group}\PW Overlay Central"; Filename: "{app}\PW Overlay Central.exe"; WorkingDir: "{app}"

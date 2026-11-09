@@ -154,10 +154,12 @@ internal static class SmokeTests
             AppState state = new StateStore().Load();
             if (state.Characters == null || state.Positions == null || state.ClassAssociations == null)
                 throw new InvalidDataException("Estado carregado sem coleções obrigatórias.");
-            if (state.SchemaVersion < 6)
+            if (state.SchemaVersion < 7)
                 throw new InvalidDataException("Estado não foi migrado para a versão atual.");
             if (state.Marker == null || state.Marker.MarkerList == null)
                 throw new InvalidDataException("Calibração do marcador incompleta.");
+            if (state.Ocr == null)
+                throw new InvalidDataException("Configuração do OCR não foi inicializada.");
             if (!state.Marker.Calibrated && state.Marker.MarkerList.Y != 70)
                 throw new InvalidDataException("Ponto padrão da lista de marcadores não foi migrado para uma linha selecionável.");
             foreach (CharacterProgress progress in state.Characters.Values)

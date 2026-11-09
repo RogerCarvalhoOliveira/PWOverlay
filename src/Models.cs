@@ -109,6 +109,22 @@ namespace PWQuestOverlay
         }
     }
 
+    public sealed class QuestOcrSettings
+    {
+        public bool Calibrated { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public int ReferenceWidth { get; set; }
+        public int ReferenceHeight { get; set; }
+
+        public static QuestOcrSettings CreateDefault()
+        {
+            return new QuestOcrSettings();
+        }
+    }
+
     public sealed class AppState
     {
         public int SchemaVersion { get; set; }
@@ -120,15 +136,17 @@ namespace PWQuestOverlay
         public Dictionary<string, SavedPosition> Positions { get; set; }
         public Dictionary<string, string> ClassAssociations { get; set; }
         public MarkerSettings Marker { get; set; }
+        public QuestOcrSettings Ocr { get; set; }
 
         public AppState()
         {
-            SchemaVersion = 6;
+            SchemaVersion = 7;
             Opacity = 0.82;
             Characters = new Dictionary<string, CharacterProgress>(StringComparer.OrdinalIgnoreCase);
             Positions = new Dictionary<string, SavedPosition>(StringComparer.OrdinalIgnoreCase);
             ClassAssociations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             Marker = MarkerSettings.CreateDefault();
+            Ocr = QuestOcrSettings.CreateDefault();
         }
     }
 
@@ -291,6 +309,7 @@ namespace PWQuestOverlay
                 if (state.ClassAssociations == null)
                     state.ClassAssociations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
                 if (state.Marker == null) state.Marker = MarkerSettings.CreateDefault();
+                if (state.Ocr == null) state.Ocr = QuestOcrSettings.CreateDefault();
                 if (state.SchemaVersion < 2)
                 {
                     state.Marker.DeleteMode = "selected";
@@ -322,6 +341,11 @@ namespace PWQuestOverlay
                             progress.OverlayMarkerCount = 1;
                     state.SchemaVersion = 6;
                 }
+                if (state.SchemaVersion < 7)
+                {
+                    state.Ocr = QuestOcrSettings.CreateDefault();
+                    state.SchemaVersion = 7;
+                }
                 NormalizeMarkerSettings(state.Marker);
                 foreach (CharacterProgress progress in state.Characters.Values)
                 {
@@ -350,6 +374,7 @@ namespace PWQuestOverlay
             if (state.Positions == null) state.Positions = new Dictionary<string, SavedPosition>();
             if (state.ClassAssociations == null) state.ClassAssociations = new Dictionary<string, string>();
             if (state.Marker == null) state.Marker = MarkerSettings.CreateDefault();
+            if (state.Ocr == null) state.Ocr = QuestOcrSettings.CreateDefault();
             if (state.SchemaVersion < 2)
             {
                 state.Marker.DeleteMode = "selected";
@@ -380,6 +405,11 @@ namespace PWQuestOverlay
                     if (progress.HasOverlayMarker && progress.OverlayMarkerCount <= 0)
                         progress.OverlayMarkerCount = 1;
                 state.SchemaVersion = 6;
+            }
+            if (state.SchemaVersion < 7)
+            {
+                state.Ocr = QuestOcrSettings.CreateDefault();
+                state.SchemaVersion = 7;
             }
             NormalizeMarkerSettings(state.Marker);
             foreach (CharacterProgress progress in state.Characters.Values)
