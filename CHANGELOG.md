@@ -1,5 +1,11 @@
 # Histórico de alterações
 
+## 0.7.3 - Todos os painéis do PW Helper no topo
+
+- Todos os painéis flutuantes visíveis do processo `PW Helper` agora são mantidos acima do jogo, sem depender do título `TODOS`.
+- A janela principal intitulada exatamente `PW Helper` continua fora da regra para não ficar permanentemente presa no topo.
+- O posicionamento automático do overlay evita colisão com qualquer um dos painéis flutuantes detectados.
+
 ## 0.7.2 - Distribuição portátil
 
 - O log do PW Borderless agora usa `%LOCALAPPDATA%\PWQuestOverlay`, sem depender da pasta específica em que o jogo foi instalado.

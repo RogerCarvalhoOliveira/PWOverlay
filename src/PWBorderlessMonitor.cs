@@ -217,9 +217,9 @@ internal static class PWBorderless
             if (!helperProcessIds.Contains((int)processId) || !IsWindowVisible(window))
                 return true;
 
-            string title = GetWindowTitle(window);
-            if (string.Equals(title, "TODOS", StringComparison.OrdinalIgnoreCase))
-                windows.Add(window);
+            string title = GetWindowTitle(window).Trim();
+            if (title.Length > 0 && !string.Equals(title, "PW Helper", StringComparison.OrdinalIgnoreCase))
+                windows.Add(window); // todos os painéis flutuantes, independentemente do nome
             return true;
         }, IntPtr.Zero);
 

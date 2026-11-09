@@ -30,9 +30,9 @@ O programa identifica cada cliente pelo título criado pelo PW Helper, por exemp
 - Botão `−/+` e menu da bandeja para alternar para uma interface compacta sem perder as ações essenciais.
 - Transparência ajustável entre 65% e 100%, com 82% como novo padrão recomendado.
 - Posição salva por monitor e resolução.
-- Compatibilidade com o PW Borderless Monitor e o painel `TODOS` do PW Helper.
+- Compatibilidade com o PW Borderless Monitor e os painéis flutuantes do PW Helper.
 - **PW Overlay Central** permite abrir o PW com Overlay/Windowed Fullscreen, aplicar as ferramentas depois ou abrir somente o jogo.
-- O painel `TODOS` é mantido acima do jogo enquanto estiver aberto.
+- Todos os painéis flutuantes visíveis do PW Helper são mantidos acima do jogo, independentemente do título.
 - Ocultação automática quando o usuário muda para outro aplicativo.
 - Estado salvo em `%LOCALAPPDATA%\PWQuestOverlay`.
 
@@ -64,7 +64,7 @@ O resultado será criado em `dist\`:
 - `rota_leveling_pw_144.xlsx`
 - `LEIA-ME.txt`
 - `INSTALACAO.txt`;
-- `PWQuestOverlay-Portatil-v0.7.2.zip`, quando `-Package` for usado.
+- `PWQuestOverlay-Portatil-v0.7.3.zip`, quando `-Package` for usado.
 
 Para gerar também o instalador, instale o Inno Setup 6 e execute:
 
@@ -72,7 +72,7 @@ Para gerar também o instalador, instale o Inno Setup 6 e execute:
 powershell -ExecutionPolicy Bypass -File .\scripts\build.ps1 -Package -Installer
 ```
 
-O resultado adicional é `PWQuestOverlay-Setup-v0.7.2.exe`. Ele instala por usuário, sem exigir privilégios administrativos, e oferece atalhos e inicialização automática como opções desmarcadas.
+O resultado adicional é `PWQuestOverlay-Setup-v0.7.3.exe`. Ele instala por usuário, sem exigir privilégios administrativos, e oferece atalhos e inicialização automática como opções desmarcadas.
 
 Para compilar e iniciar:
 

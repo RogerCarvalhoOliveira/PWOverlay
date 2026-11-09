@@ -25,7 +25,7 @@ Cauton[WB]
 
 Isso revelou que o nome sozinho não era uma identidade suficiente. A chave persistente foi alterada para `PERSONAGEM|CLASSE`.
 
-O painel `TODOS` foi identificado como uma janela `Chrome_WidgetWin_1`, `TOPMOST` e capaz de receber foco. Para impedir que o jogo ou o tracker o escondam, o aplicativo o reeleva depois do próprio tracker.
+O painel `TODOS` foi o primeiro identificado como uma janela `Chrome_WidgetWin_1`, `TOPMOST` e capaz de receber foco. A detecção foi generalizada: qualquer janela visível do processo `PW Helper`, exceto a janela principal intitulada exatamente `PW Helper`, é tratada como painel flutuante e reelevada depois do próprio tracker.
 
 ## 2. Ambiente de compilação
 
@@ -93,7 +93,7 @@ O gerenciador `OpenProfileManager` lista títulos atuais e associações salvas.
 O método `RaiseOverlayStack` eleva:
 
 1. o tracker;
-2. a janela visível intitulada `TODOS` do processo `PW Helper`.
+2. todas as janelas flutuantes visíveis do processo `PW Helper`, independentemente do título.
 
 Não use `SetForegroundWindow` nesse fluxo. Isso transferiria teclado e mouse para o Helper durante o jogo.
 

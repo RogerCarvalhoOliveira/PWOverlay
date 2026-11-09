@@ -63,8 +63,8 @@ Confirme que `dist` contém os dois executáveis, as rotas, o manual e o ZIP.
 1. Abra dois clientes com títulos diferentes e classes diferentes.
 2. Marque uma etapa apenas no primeiro.
 3. Alterne o foco várias vezes e confirme que missão e progresso acompanham o cliente correto.
-4. Clique no overlay e no painel `TODOS`; confirme que o teclado continua direcionado ao jogo ao voltar.
-5. Confirme que o Helper permanece visível acima do cliente e que o overlay não o cobre indevidamente.
+4. Abra dois ou mais painéis flutuantes do PW Helper com títulos diferentes, clique neles e confirme que o teclado continua direcionado ao jogo ao voltar.
+5. Confirme que todos os painéis permanecem visíveis acima do cliente e que o overlay não os cobre indevidamente; a janela principal `PW Helper` não deve ficar presa no topo.
 
 ## Posição e monitores
 
@@ -83,7 +83,7 @@ Faça backup de `%LOCALAPPDATA%\PWQuestOverlay\state.json`, teste com uma cópia
 
 ## Instalador em outro computador
 
-1. Execute `PWQuestOverlay-Setup-v0.7.2.exe` como usuário comum e confirme que não pede elevação.
+1. Execute `PWQuestOverlay-Setup-v0.7.3.exe` como usuário comum e confirme que não pede elevação.
 2. Teste atalhos do menu Iniciar, opções de área de trabalho e inicialização automática.
 3. Confirme que o guia abre ao final e que overlay, rotas e planilha estão no diretório instalado.
 4. Importe um backup, associe um cliente sem sigla e refaça a calibração do marcador.

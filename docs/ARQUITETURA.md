@@ -72,7 +72,7 @@ Nenhuma função lê memória de outro processo.
 - Exibe `Missão › Submissão` e avança/desfaz por ação global; a missão só fecha quando todas as próprias etapas forem resolvidas.
 - Cria o marcador único `PWOverlay` no cliente ativo.
 - Salva posição e progresso.
-- Reeleva o tracker e, em seguida, o painel `TODOS`.
+- Reeleva o tracker e, em seguida, todos os painéis flutuantes visíveis do PW Helper.
 
 ## Identidade do perfil
 
@@ -112,7 +112,7 @@ O monitor considera três situações:
 A cada elevação:
 
 1. o tracker vai para `TOPMOST`;
-2. o painel `TODOS` vai para `TOPMOST` por último.
+2. todos os painéis flutuantes do PW Helper vão para `TOPMOST` por último; a janela principal é ignorada.
 
 Assim o Helper permanece visível sem receber foco de teclado.
 

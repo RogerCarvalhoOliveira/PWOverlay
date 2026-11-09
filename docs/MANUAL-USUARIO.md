@@ -114,7 +114,7 @@ A transparência pode ser alterada no menu do ícone ao lado do relógio entre 6
 
 ## PW Helper
 
-Enquanto o painel `TODOS` estiver aberto, o tracker o reeleva periodicamente para que permaneça acima do jogo. Isso não transfere o foco de teclado ao Helper; os comandos continuam indo para o cliente ativo.
+Enquanto estiverem abertos, todos os painéis flutuantes visíveis do PW Helper são reelevados periodicamente para permanecerem acima do jogo, qualquer que seja o título. A janela principal `PW Helper` não é fixada. Isso não transfere o foco de teclado ao Helper; os comandos continuam indo para o cliente ativo.
 
 ## Encerrar
 

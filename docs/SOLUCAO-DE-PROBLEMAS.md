@@ -42,7 +42,7 @@ quantidade de itens do overlay será removida e um marcador novo será criado.
 
 ## O PW Helper some atrás do jogo
 
-Mantenha o painel `TODOS` aberto. O overlay e o monitor borderless elevam essa janela sem transferir o foco. Se o problema persistir, confira se o processo se chama `PW Helper` e se o título do painel continua `TODOS`.
+Mantenha o painel desejado aberto. O overlay e o monitor borderless elevam todas as janelas flutuantes visíveis do processo `PW Helper`, sem depender do título e sem transferir o foco. A janela principal intitulada exatamente `PW Helper` é excluída de propósito.
 
 ## O jogo perdeu a janela sem bordas
 

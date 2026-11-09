@@ -450,7 +450,7 @@ namespace PWQuestOverlay
                 }
                 else if (foreground == IntPtr.Zero && now < _helperNeutralUntil)
                 {
-                    // Transição breve observada entre o painel TODOS e o jogo.
+                    // Transição breve observada entre um painel do PW Helper e o jogo.
                 }
                 else
                 {
@@ -1397,13 +1397,10 @@ namespace PWQuestOverlay
                 NativeMethods.SWP_NOACTIVATE | NativeMethods.SWP_NOOWNERZORDER |
                 NativeMethods.SWP_SHOWWINDOW;
 
-            // Primeiro o tracker; por último o painel TODOS, para que o Helper
-            // permaneça visível mesmo quando o jogo ativo volta ao topo.
+            // Primeiro o tracker; por último todos os painéis flutuantes do PW Helper,
+            // para que permaneçam visíveis mesmo quando o jogo ativo volta ao topo.
             NativeMethods.SetWindowPos(Handle, NativeMethods.HWND_TOPMOST, 0, 0, 0, 0, flags);
-            IntPtr helperWindow;
-            NativeMethods.RECT helperRect;
-            if (NativeMethods.TryFindPwHelperOverlay(out helperWindow, out helperRect) &&
-                helperWindow != IntPtr.Zero)
+            foreach (IntPtr helperWindow in NativeMethods.FindPwHelperOverlayWindows())
             {
                 NativeMethods.SetWindowPos(helperWindow, NativeMethods.HWND_TOPMOST,
                     0, 0, 0, 0, flags);
@@ -1446,13 +1443,19 @@ namespace PWQuestOverlay
                 new Point(bounds.Left + 20, bounds.Bottom - Height - 20),
                 new Point(bounds.Right - Width - 20, bounds.Bottom - Height - 20)
             };
-            NativeMethods.RECT helper;
-            bool hasHelper = NativeMethods.TryFindPwHelperOverlay(out helper);
+            var helperRects = new List<NativeMethods.RECT>();
+            foreach (IntPtr helperWindow in NativeMethods.FindPwHelperOverlayWindows())
+            {
+                NativeMethods.RECT helperRect;
+                if (NativeMethods.GetWindowRect(helperWindow, out helperRect))
+                    helperRects.Add(helperRect);
+            }
             foreach (Point point in candidates)
             {
                 Rectangle candidate = new Rectangle(point, Size);
-                if (!hasHelper || !candidate.IntersectsWith(new Rectangle(
-                    helper.Left, helper.Top, helper.Width, helper.Height)))
+                bool intersectsHelper = helperRects.Any(helper => candidate.IntersectsWith(
+                    new Rectangle(helper.Left, helper.Top, helper.Width, helper.Height)));
+                if (!intersectsHelper)
                     return point;
             }
             return candidates[0];

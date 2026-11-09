@@ -209,9 +209,21 @@ namespace PWQuestOverlay
         {
             overlayWindow = IntPtr.Zero;
             rect = new RECT();
-            RECT foundRect = new RECT();
-            IntPtr foundWindow = IntPtr.Zero;
-            bool found = false;
+            List<IntPtr> windows = FindPwHelperOverlayWindows();
+            foreach (IntPtr window in windows)
+            {
+                RECT candidate;
+                if (!GetWindowRect(window, out candidate)) continue;
+                overlayWindow = window;
+                rect = candidate;
+                return true;
+            }
+            return false;
+        }
+
+        internal static List<IntPtr> FindPwHelperOverlayWindows()
+        {
+            var windows = new List<IntPtr>();
             var helperIds = new HashSet<int>();
             foreach (Process helper in Process.GetProcessesByName("PW Helper"))
             {
@@ -219,27 +231,22 @@ namespace PWQuestOverlay
                 catch { }
                 finally { helper.Dispose(); }
             }
-            if (helperIds.Count == 0) return false;
+            if (helperIds.Count == 0) return windows;
 
             EnumWindows(delegate(IntPtr window, IntPtr parameter)
             {
                 uint processId;
                 GetWindowThreadProcessId(window, out processId);
                 if (!helperIds.Contains((int)processId) || !IsWindowVisible(window)) return true;
-                if (!string.Equals(GetWindowTitle(window), "TODOS", StringComparison.OrdinalIgnoreCase))
-                    return true;
+                string title = GetWindowTitle(window).Trim();
+                if (title.Length == 0 || string.Equals(title, "PW Helper", StringComparison.OrdinalIgnoreCase))
+                    return true; // ignora a janela principal; os demais títulos são painéis flutuantes
                 RECT candidate;
-                if (GetWindowRect(window, out candidate))
-                {
-                    foundRect = candidate;
-                    foundWindow = window;
-                    found = true;
-                }
-                return !found;
+                if (GetWindowRect(window, out candidate) && candidate.Width > 0 && candidate.Height > 0)
+                    windows.Add(window);
+                return true;
             }, IntPtr.Zero);
-            overlayWindow = foundWindow;
-            rect = foundRect;
-            return found;
+            return windows;
         }
 
         internal static bool IsTopmost(IntPtr window)
