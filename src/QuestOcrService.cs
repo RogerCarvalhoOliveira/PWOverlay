@@ -5,6 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -21,11 +22,17 @@ namespace PWQuestOverlay
         internal string DiagnosticImagePath { get; set; }
         internal int Width { get; set; }
         internal int Height { get; set; }
+        internal int CaptureFrameCount { get; set; }
+        internal int CaptureIntervalMilliseconds { get; set; }
+        internal bool StateConfirmed { get; set; }
+        internal int StabilityCount { get; set; }
     }
 
     internal static class QuestOcrService
     {
         private const int UpscaleFactor = 2;
+        private const int TemporalFrameCount = 3;
+        private const int TemporalFrameIntervalMilliseconds = 80;
 
         internal static bool IsAvailable(out string reason)
         {
@@ -79,45 +86,63 @@ namespace PWQuestOverlay
                 throw new InvalidOperationException("Não foi possível localizar a área do jogo na tela.");
 
             var stopwatch = Stopwatch.StartNew();
-            using (Bitmap captured = CaptureScreenRegion(
-                clientOrigin.X + validRegion.X,
-                clientOrigin.Y + validRegion.Y,
-                validRegion.Width,
-                validRegion.Height))
-            using (Bitmap prepared = PrepareForOcr(captured))
+            Bitmap[] frames = new Bitmap[TemporalFrameCount];
+            try
             {
-                Directory.CreateDirectory(diagnosticDirectory);
-                string sourceImagePath = Path.Combine(diagnosticDirectory, "ocr-last-source.png");
-                string imagePath = Path.Combine(diagnosticDirectory, "ocr-last.png");
-                captured.Save(sourceImagePath, ImageFormat.Png);
-                prepared.Save(imagePath, ImageFormat.Png);
-
-                Task<string> filteredTask = RecognizeAsync(imagePath, 6);
-                Task<string> sourceTask = RecognizeAsync(sourceImagePath, 11);
-                await Task.WhenAll(filteredTask, sourceTask);
-                string rawText = filteredTask.Result == null ? string.Empty : filteredTask.Result.Trim();
-                string sourceText = sourceTask.Result == null ? string.Empty : sourceTask.Result.Trim();
-                string text = MergeReliableCounters(rawText, sourceText);
-                text = MergeNumberedQuestTitles(text, sourceText);
-                File.WriteAllText(
-                    Path.Combine(diagnosticDirectory, "ocr-last-filtered.txt"),
-                    rawText,
-                    new UTF8Encoding(false));
-                File.WriteAllText(
-                    Path.Combine(diagnosticDirectory, "ocr-last-source.txt"),
-                    sourceText,
-                    new UTF8Encoding(false));
-                stopwatch.Stop();
-                return new QuestOcrResult
+                for (int index = 0; index < TemporalFrameCount; index++)
                 {
-                    Text = text,
-                    RawText = rawText,
-                    SourceText = sourceText,
-                    ElapsedMilliseconds = stopwatch.ElapsedMilliseconds,
-                    DiagnosticImagePath = imagePath,
-                    Width = prepared.Width,
-                    Height = prepared.Height
-                };
+                    frames[index] = CaptureScreenRegion(
+                        clientOrigin.X + validRegion.X,
+                        clientOrigin.Y + validRegion.Y,
+                        validRegion.Width,
+                        validRegion.Height);
+                    if (index + 1 < TemporalFrameCount)
+                        await Task.Delay(TemporalFrameIntervalMilliseconds);
+                }
+
+                using (Bitmap captured = CreateTemporalMedian(frames))
+                using (Bitmap prepared = PrepareForOcr(frames))
+                {
+                    Directory.CreateDirectory(diagnosticDirectory);
+                    string sourceImagePath = Path.Combine(diagnosticDirectory, "ocr-last-source.png");
+                    string imagePath = Path.Combine(diagnosticDirectory, "ocr-last.png");
+                    captured.Save(sourceImagePath, ImageFormat.Png);
+                    prepared.Save(imagePath, ImageFormat.Png);
+
+                    Task<string> filteredTask = RecognizeAsync(imagePath, 6);
+                    Task<string> sourceTask = RecognizeAsync(sourceImagePath, 11);
+                    await Task.WhenAll(filteredTask, sourceTask);
+                    string rawText = filteredTask.Result == null ? string.Empty : filteredTask.Result.Trim();
+                    string sourceText = sourceTask.Result == null ? string.Empty : sourceTask.Result.Trim();
+                    string text = MergeReliableCounters(rawText, sourceText);
+                    text = MergeNumberedQuestTitles(text, sourceText);
+                    File.WriteAllText(
+                        Path.Combine(diagnosticDirectory, "ocr-last-filtered.txt"),
+                        rawText,
+                        new UTF8Encoding(false));
+                    File.WriteAllText(
+                        Path.Combine(diagnosticDirectory, "ocr-last-source.txt"),
+                        sourceText,
+                        new UTF8Encoding(false));
+                    stopwatch.Stop();
+                    return new QuestOcrResult
+                    {
+                        Text = text,
+                        RawText = rawText,
+                        SourceText = sourceText,
+                        ElapsedMilliseconds = stopwatch.ElapsedMilliseconds,
+                        DiagnosticImagePath = imagePath,
+                        Width = prepared.Width,
+                        Height = prepared.Height,
+                        CaptureFrameCount = TemporalFrameCount,
+                        CaptureIntervalMilliseconds = TemporalFrameIntervalMilliseconds
+                    };
+                }
+            }
+            finally
+            {
+                foreach (Bitmap frame in frames)
+                    if (frame != null) frame.Dispose();
             }
         }
 
@@ -131,24 +156,125 @@ namespace PWQuestOverlay
             return bitmap;
         }
 
-        private static Bitmap PrepareForOcr(Bitmap source)
+        private static Bitmap PrepareForOcr(Bitmap[] frames)
         {
-            using (Bitmap mask = CreateQuestTextMask(source))
+            Bitmap[] masks = frames.Select(CreateQuestTextMask).ToArray();
+            try
             {
-                var prepared = new Bitmap(
-                    source.Width * UpscaleFactor,
-                    source.Height * UpscaleFactor,
-                    PixelFormat.Format32bppArgb);
-                prepared.SetResolution(96.0f * UpscaleFactor, 96.0f * UpscaleFactor);
-                using (Graphics graphics = Graphics.FromImage(prepared))
+                using (Bitmap stableMask = CreateStableTextMask(masks))
                 {
-                    graphics.Clear(Color.White);
-                    graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
-                    graphics.PixelOffsetMode = PixelOffsetMode.Half;
-                    graphics.DrawImage(mask, new Rectangle(0, 0, prepared.Width, prepared.Height));
+                    var prepared = new Bitmap(
+                        stableMask.Width * UpscaleFactor,
+                        stableMask.Height * UpscaleFactor,
+                        PixelFormat.Format32bppArgb);
+                    prepared.SetResolution(96.0f * UpscaleFactor, 96.0f * UpscaleFactor);
+                    using (Graphics graphics = Graphics.FromImage(prepared))
+                    {
+                        graphics.Clear(Color.White);
+                        graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
+                        graphics.PixelOffsetMode = PixelOffsetMode.Half;
+                        graphics.DrawImage(stableMask,
+                            new Rectangle(0, 0, prepared.Width, prepared.Height));
+                    }
+                    return prepared;
                 }
-                return prepared;
             }
+            finally
+            {
+                foreach (Bitmap mask in masks) mask.Dispose();
+            }
+        }
+
+        private static Bitmap CreateTemporalMedian(Bitmap[] frames)
+        {
+            if (frames == null || frames.Length != TemporalFrameCount)
+                throw new ArgumentException("São necessários três quadros para a composição temporal.");
+            int width = frames[0].Width;
+            int height = frames[0].Height;
+            var result = new Bitmap(width, height, PixelFormat.Format32bppArgb);
+            Rectangle bounds = new Rectangle(0, 0, width, height);
+            BitmapData[] inputs = frames.Select(frame => frame.LockBits(
+                bounds, ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb)).ToArray();
+            BitmapData output = result.LockBits(
+                bounds, ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
+            try
+            {
+                int rowBytes = width * 4;
+                byte[][] rows = { new byte[rowBytes], new byte[rowBytes], new byte[rowBytes] };
+                byte[] outputRow = new byte[rowBytes];
+                for (int y = 0; y < height; y++)
+                {
+                    for (int frame = 0; frame < TemporalFrameCount; frame++)
+                        Marshal.Copy(IntPtr.Add(inputs[frame].Scan0, y * inputs[frame].Stride),
+                            rows[frame], 0, rowBytes);
+                    for (int index = 0; index < rowBytes; index += 4)
+                    {
+                        outputRow[index] = Median(rows[0][index], rows[1][index], rows[2][index]);
+                        outputRow[index + 1] = Median(rows[0][index + 1], rows[1][index + 1], rows[2][index + 1]);
+                        outputRow[index + 2] = Median(rows[0][index + 2], rows[1][index + 2], rows[2][index + 2]);
+                        outputRow[index + 3] = 255;
+                    }
+                    Marshal.Copy(outputRow, 0, IntPtr.Add(output.Scan0, y * output.Stride), rowBytes);
+                }
+            }
+            finally
+            {
+                for (int index = 0; index < TemporalFrameCount; index++)
+                    frames[index].UnlockBits(inputs[index]);
+                result.UnlockBits(output);
+            }
+            return result;
+        }
+
+        private static Bitmap CreateStableTextMask(Bitmap[] masks)
+        {
+            int width = masks[0].Width;
+            int height = masks[0].Height;
+            var result = new Bitmap(width, height, PixelFormat.Format32bppArgb);
+            Rectangle bounds = new Rectangle(0, 0, width, height);
+            BitmapData[] inputs = masks.Select(mask => mask.LockBits(
+                bounds, ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb)).ToArray();
+            BitmapData output = result.LockBits(
+                bounds, ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
+            try
+            {
+                int rowBytes = width * 4;
+                byte[][] rows = { new byte[rowBytes], new byte[rowBytes], new byte[rowBytes] };
+                byte[] outputRow = new byte[rowBytes];
+                for (int y = 0; y < height; y++)
+                {
+                    for (int frame = 0; frame < TemporalFrameCount; frame++)
+                        Marshal.Copy(IntPtr.Add(inputs[frame].Scan0, y * inputs[frame].Stride),
+                            rows[frame], 0, rowBytes);
+                    for (int index = 0; index < rowBytes; index += 4)
+                    {
+                        int stableVotes = (rows[0][index] < 128 ? 1 : 0) +
+                            (rows[1][index] < 128 ? 1 : 0) +
+                            (rows[2][index] < 128 ? 1 : 0);
+                        byte value = stableVotes >= 2 ? (byte)0 : (byte)255;
+                        outputRow[index] = value;
+                        outputRow[index + 1] = value;
+                        outputRow[index + 2] = value;
+                        outputRow[index + 3] = 255;
+                    }
+                    Marshal.Copy(outputRow, 0, IntPtr.Add(output.Scan0, y * output.Stride), rowBytes);
+                }
+            }
+            finally
+            {
+                for (int index = 0; index < TemporalFrameCount; index++)
+                    masks[index].UnlockBits(inputs[index]);
+                result.UnlockBits(output);
+            }
+            return result;
+        }
+
+        private static byte Median(byte first, byte second, byte third)
+        {
+            if (first > second) { byte swap = first; first = second; second = swap; }
+            if (second > third) { byte swap = second; second = third; third = swap; }
+            if (first > second) second = first;
+            return second;
         }
 
         private static Bitmap CreateQuestTextMask(Bitmap source)

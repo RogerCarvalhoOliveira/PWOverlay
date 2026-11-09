@@ -21,6 +21,8 @@ A captura original fica em `%LOCALAPPDATA%\PWQuestOverlay\ocr-last-source.png`. 
 
 O protótipo faz duas leituras em paralelo: a imagem filtrada fornece os nomes sem ruído e a captura original recupera contadores como `(1/10)`. Títulos numerados com alta semelhança são normalizados contra os nomes da rota. Quando a ação indica um total, mas o valor atual permanece ambíguo, o resultado usa `?/total` em vez de adivinhar.
 
+Antes de cada OCR são capturados três quadros com intervalo de 80 ms. O filtro mantém pixels de texto presentes em pelo menos dois deles e usa a mediana para a leitura original, reduzindo mobs, jogadores e efeitos em movimento. Por personagem, um estado somente fica **confirmado** depois de duas leituras interpretadas idênticas em até 30 segundos; uma leitura isolada nunca deve avançar progresso automaticamente.
+
 Para uma leitura confiável:
 
 - selecione somente a área útil do quest log;

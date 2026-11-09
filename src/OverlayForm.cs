@@ -54,6 +54,7 @@ namespace PWQuestOverlay
         private readonly ToolStripMenuItem _markerHotkeyItem;
         private readonly ToolStripMenuItem _ocrHotkeyItem;
         private readonly Dictionary<IntPtr, DateTime> _titleRefresh;
+        private readonly Dictionary<string, OcrStabilityState> _ocrStability;
 
         private IntPtr _activeGame;
         private DateTime _helperNeutralUntil;
@@ -85,6 +86,13 @@ namespace PWQuestOverlay
             internal int StepIndex;
         }
 
+        private sealed class OcrStabilityState
+        {
+            internal string Signature;
+            internal int ConsecutiveReadings;
+            internal DateTime LastReadAt;
+        }
+
         private static readonly Regex PrimaryTitlePattern = new Regex(
             @"^\s*(?<name>.+?)\s*[\[\(\{]\s*(?<class>WB|WF|EA|EP|WR|MC)\s*[\]\)\}]\s*$",
             RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
@@ -104,6 +112,7 @@ namespace PWQuestOverlay
             _currentRoute = new List<QuestMission>();
             _orderedStages = new List<RouteStage>();
             _titleRefresh = new Dictionary<IntPtr, DateTime>();
+            _ocrStability = new Dictionary<string, OcrStabilityState>(StringComparer.OrdinalIgnoreCase);
 
             Text = "PW Quest Overlay";
             Name = "PWQuestOverlay";
@@ -1507,7 +1516,8 @@ namespace PWQuestOverlay
             string directory = Path.GetDirectoryName(_store.LogPath);
             QuestOcrResult result = await QuestOcrService.ScanAsync(targetWindow, region, directory);
             result.Text = InterpretOcrText(result.Text);
-            string matchSummary = BuildOcrMatchSummary(result.Text);
+            string stabilitySummary = UpdateOcrStability(result);
+            string matchSummary = BuildOcrMatchSummary(result.Text) + " " + stabilitySummary;
             _store.Log(string.Format(
                 "OCR concluído em {0} ms, caracteres={1}, região={2}",
                 result.ElapsedMilliseconds,
@@ -1582,6 +1592,82 @@ namespace PWQuestOverlay
                 counter.Groups["total"].Value + "; esperado: " + expectedTotal.Value + ".";
         }
 
+        private string UpdateOcrStability(QuestOcrResult result)
+        {
+            string profileKey = !string.IsNullOrWhiteSpace(_characterKey)
+                ? _characterKey
+                : "hwnd:" + _activeGame.ToInt64().ToString("X");
+            string signature = BuildRelevantOcrSignature(result.Text);
+            DateTime now = DateTime.UtcNow;
+            OcrStabilityState state;
+            if (!_ocrStability.TryGetValue(profileKey, out state))
+            {
+                state = new OcrStabilityState();
+                _ocrStability[profileKey] = state;
+            }
+
+            bool sameReading = !string.IsNullOrWhiteSpace(signature) &&
+                string.Equals(state.Signature, signature, StringComparison.Ordinal) &&
+                now - state.LastReadAt <= TimeSpan.FromSeconds(30);
+            state.ConsecutiveReadings = sameReading
+                ? Math.Min(2, state.ConsecutiveReadings + 1)
+                : 1;
+            state.Signature = signature;
+            state.LastReadAt = now;
+            result.StabilityCount = state.ConsecutiveReadings;
+            result.StateConfirmed = state.ConsecutiveReadings >= 2;
+
+            string temporal = result.CaptureFrameCount + " quadros × " +
+                result.CaptureIntervalMilliseconds + " ms";
+            return result.StateConfirmed
+                ? "Estado confirmado (2/2; " + temporal + ")."
+                : "Aguardando segunda leitura igual (1/2; " + temporal + ").";
+        }
+
+        private string BuildRelevantOcrSignature(string recognizedText)
+        {
+            var parts = new List<string>();
+            Dictionary<string, string> knownTitles = _currentRoute
+                .Select(mission => mission.name)
+                .Where(title => !string.IsNullOrWhiteSpace(title))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToDictionary(
+                    title => NormalizeOcrText(title),
+                    title => title,
+                    StringComparer.OrdinalIgnoreCase);
+            string activeQuest = null;
+            string[] lines = (recognizedText ?? string.Empty)
+                .Replace("\r\n", "\n")
+                .Split('\n');
+            foreach (string line in lines)
+            {
+                Match numberedTitle = Regex.Match(line, @"^\s*\d+\s+(?<title>.+?)\s*$");
+                if (numberedTitle.Success)
+                {
+                    string normalizedTitle = NormalizeOcrText(numberedTitle.Groups["title"].Value);
+                    activeQuest = knownTitles.ContainsKey(normalizedTitle)
+                        ? normalizedTitle
+                        : null;
+                    if (activeQuest != null) parts.Add("quest:" + activeQuest);
+                    continue;
+                }
+                if (activeQuest == null) continue;
+
+                string normalizedLine = NormalizeOcrText(line);
+                if (normalizedLine.Contains("missao concluida"))
+                    parts.Add("quest:" + activeQuest + ":status:concluida");
+                foreach (Match counter in Regex.Matches(
+                    line,
+                    @"\(\s*(?<current>\d{1,4}|\?)\s*/\s*(?<total>\d{1,4})\s*\)"))
+                {
+                    parts.Add("quest:" + activeQuest + ":counter:" +
+                        counter.Groups["current"].Value + "/" +
+                        counter.Groups["total"].Value);
+                }
+            }
+            return string.Join("|", parts.Distinct().OrderBy(part => part));
+        }
+
         private string InterpretOcrText(string recognizedText)
         {
             if (string.IsNullOrWhiteSpace(recognizedText)) return string.Empty;
@@ -1604,7 +1690,7 @@ namespace PWQuestOverlay
                 double bestSimilarity = 0.0;
                 foreach (string title in knownTitles)
                 {
-                    double similarity = CalculateSimilarity(
+                    double similarity = CalculateBestTitleSimilarity(
                         normalizedObserved,
                         NormalizeOcrText(title));
                     if (similarity > bestSimilarity)
@@ -1670,6 +1756,27 @@ namespace PWQuestOverlay
             }
             int maximumLength = Math.Max(left.Length, right.Length);
             return 1.0 - (double)previous[right.Length] / maximumLength;
+        }
+
+        private static double CalculateBestTitleSimilarity(string observed, string expected)
+        {
+            double best = CalculateSimilarity(observed, expected);
+            if (string.IsNullOrWhiteSpace(observed) || string.IsNullOrWhiteSpace(expected))
+                return best;
+            if (observed.Contains(expected)) return 1.0;
+
+            string[] observedWords = observed.Split(
+                new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] expectedWords = expected.Split(
+                new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            if (observedWords.Length <= expectedWords.Length) return best;
+            for (int start = 0; start + expectedWords.Length <= observedWords.Length; start++)
+            {
+                string window = string.Join(" ",
+                    observedWords.Skip(start).Take(expectedWords.Length));
+                best = Math.Max(best, CalculateSimilarity(window, expected));
+            }
+            return best;
         }
 
         private static string NormalizeOcrText(string value)
