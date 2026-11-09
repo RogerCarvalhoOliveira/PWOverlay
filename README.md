@@ -4,6 +4,16 @@ Overlay portátil para acompanhar rotas de missões do Perfect World 1.4.4 em mu
 
 O programa identifica cada cliente pelo título criado pelo PW Helper, por exemplo `Cauton[EP]`, seleciona a rota da classe e mostra missão, submissão e ação atuais. Cada personagem e classe possui progresso independente.
 
+## Download
+
+Para usar sem compilar, abra a [versão mais recente](https://github.com/RogerCarvalhoOliveira/PWOverlay/releases/latest) e baixe:
+
+- `PWQuestOverlay-Setup-v0.7.3.exe`: instalador recomendado para Windows;
+- `PWQuestOverlay-Portatil-v0.7.3.zip`: pacote portátil;
+- `SHA256SUMS-v0.7.3.txt`: hashes para conferir a integridade dos arquivos.
+
+Depois da instalação, execute **PW Overlay Central** para escolher se deseja ativar o Overlay e/ou o Windowed Fullscreen antes de abrir o jogo.
+
 ## Funcionalidades
 
 - Classes `WR`, `WB`, `WF`, `EA`, `EP` e `MC`.
