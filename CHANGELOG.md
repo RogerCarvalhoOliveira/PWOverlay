@@ -1,5 +1,10 @@
 # Histórico de alterações
 
+## 0.7.2 - Distribuição portátil
+
+- O log do PW Borderless agora usa `%LOCALAPPDATA%\PWQuestOverlay`, sem depender da pasta específica em que o jogo foi instalado.
+- Instalador e pacote portátil preparados para publicação direta na página Releases do GitHub.
+
 ## 0.7.1 - Correção da substituição de marcadores
 
 - Corrigido o ponto padrão da lista de marcadores de uma área vazia para a primeira linha selecionável.

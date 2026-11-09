@@ -42,8 +42,10 @@ internal static class PWBorderless
     private static readonly IntPtr HWND_TOP = IntPtr.Zero;
     private static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
     private static readonly IntPtr HWND_NOTOPMOST = new IntPtr(-2);
-    private static readonly string LogPath =
-        @"C:\The Classic Games\The Classic PW 1.4.4\userdata\PWBorderless.log";
+    private static readonly string LogDirectory = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+        "PWQuestOverlay");
+    private static readonly string LogPath = Path.Combine(LogDirectory, "PWBorderless.log");
 
     private delegate bool EnumWindowsProc(IntPtr window, IntPtr parameter);
 
@@ -151,6 +153,7 @@ internal static class PWBorderless
     {
         try
         {
+            Directory.CreateDirectory(LogDirectory);
             File.AppendAllText(LogPath,
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + " " + message + Environment.NewLine);
         }

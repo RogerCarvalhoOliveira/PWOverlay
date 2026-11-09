@@ -46,7 +46,7 @@ Mantenha o painel `TODOS` aberto. O overlay e o monitor borderless elevam essa j
 
 ## O jogo perdeu a janela sem bordas
 
-Reinicie apenas `PW Borderless.exe`. Ele espera o cliente estabilizar antes de ajustar tamanho e bordas. O log do monitor fica em `userdata\PWBorderless.log` dentro da pasta do jogo.
+Reinicie apenas `PW Borderless.exe`. Ele espera o cliente estabilizar antes de ajustar tamanho e bordas. O log do monitor fica em `%LOCALAPPDATA%\PWQuestOverlay\PWBorderless.log`.
 
 ## O programa não compila
 
