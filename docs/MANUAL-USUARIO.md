@@ -5,7 +5,7 @@
 1. Abra `PW Overlay Central.exe`.
 2. Abra os clientes manualmente ou pelo PW Helper e marque **Overlay** e/ou **Windowed Fullscreen** na Central.
 3. Clique em **Aplicar ao PW já aberto**. A Central apenas controla as ferramentas; não abre o jogo.
-4. Se desejar detecção automática, nomeie cada janela no PW Helper com a classe no final, como `Nome[EP]` ou `Nome[WB]`.
+4. Em **Perfis**, associe o nome e a classe de cada cliente, ou use um perfil salvo. Se já houver um título identificável como `Nome[EP]`, a detecção automática continua funcionando. O PW Helper é opcional.
 5. Coloque um cliente em foco. O painel aparecerá automaticamente quando o Overlay estiver ativado.
 
 O overlay fica oculto quando outro aplicativo, como navegador ou Discord, está em foco.
@@ -16,7 +16,9 @@ Para jogar sem nenhuma ferramenta, use **Parar Overlay e Borderless** se estiver
 
 ## Identificação de personagem
 
-O formato recomendado é:
+Sem PW Helper, use **Perfis**: selecione a linha do cliente pelo PID/título, digite o nome do personagem e escolha sua classe. Para retomar um personagem conhecido, selecione-o na lista de perfis salvos e clique em **Usar na linha selecionada**, depois **Salvar**. Duas janelas com o mesmo título padrão permanecem separadas.
+
+Quando a janela já possui um título identificável, o formato reconhecido é:
 
 ```text
 Personagem[CLASSE]
@@ -32,9 +34,11 @@ Exemplos:
 
 O identificador interno combina personagem e classe. Portanto, `Cauton[EP]` e `Cauton[WB]` mantêm progressos separados.
 
-Se o nome não tiver a sigla, clique em **Perfis** na barra superior. A tabela mostra os clientes abertos e a classe detectada. Selecione a classe correta na coluna **Associação manual** e clique em **Salvar**.
+Nome e classe do modo manual não são lidos automaticamente do jogo. Ao reiniciar o overlay ou reabrir o cliente, associe a janela novamente ao perfil salvo para retomar o progresso. Ao trocar de personagem na mesma janela, refaça a associação. Sem memória ativada, essa troca depende da sua confirmação; com memória, uma nova sessão detectada também remove a associação anterior. Falhas repetidas na leitura podem exigir selecionar novamente o perfil.
 
-Também é possível digitar manualmente um título ou nome na última linha. A associação fica salva e será reaplicada sempre que uma janela com o mesmo título for encontrada. Para voltar à detecção pelo nome, selecione **Automático**.
+Uma janela sem identificação, título genérico ou associação duplicada não pode concluir/pular etapas nem criar marcadores. Não associe duas janelas simultaneamente ao mesmo perfil. O nome/classe é a chave do progresso, independente de PID ou posição da janela.
+
+A opção **Automático** remove a associação manual da janela e usa um título identificável. As associações antigas continuam no menu **Associações por título (compatibilidade)...**; títulos genéricos ou repetidos são recusados nesse modo.
 
 O menu do ícone ao lado do relógio também possui **Gerenciar perfis...** e uma opção rápida para definir a classe do cliente atual.
 
@@ -47,7 +51,7 @@ O menu do ícone ao lado do relógio também possui **Gerenciar perfis...** e um
 - **Etapas:** abre a lista completa da classe para escolher uma missão e uma etapa. A alteração pede confirmação e ajusta o progresso anterior.
 - **Mover/Fixado:** alterna entre permitir arraste e bloquear a posição.
 - **−/+**: reduz o painel para o modo compacto ou restaura a interface completa.
-- **Perfis:** abre a associação entre título/nome do cliente e classe.
+- **Perfis:** associa cada cliente ao personagem/classe ou a um perfil salvo, com ou sem PW Helper.
 - **X:** oculta o painel sem encerrar o programa.
 
 Para deixar o overlay em outro monitor, clique em **Mover**, mantenha o botão esquerdo pressionado na barra superior e arraste até a tela desejada. Solte o botão esquerdo para encerrar o arraste e salvar o monitor e a posição. Clique em **Fixado** para impedir novos arrastes. Alternar entre os clientes do PW continua atualizando o personagem, sem mover o painel de tela.

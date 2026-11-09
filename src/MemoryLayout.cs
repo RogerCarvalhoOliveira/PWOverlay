@@ -68,7 +68,7 @@ namespace PWQuestOverlay.Memory
                 throw new InvalidDataException("Perfil de memória sem id ou módulo.");
             if (pointerSize != 4)
                 throw new InvalidDataException(
-                    "Esta fase experimental aceita somente clientes x86.");
+                    "A leitura de memória aceita somente clientes x86.");
             if (player == null || string.IsNullOrWhiteSpace(player.baseRva))
                 throw new InvalidDataException("Perfil sem raiz do personagem.");
             AttributeOffset("level");

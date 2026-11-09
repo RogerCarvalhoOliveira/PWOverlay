@@ -5,6 +5,7 @@
 - Instalador por usuário, desinstalador, ZIP portátil e hashes SHA-256.
 - Central para aplicar ou parar Overlay/Windowed Fullscreen; o PW é aberto manualmente ou pelo Helper.
 - Associação manual de classe, configuração de transparência, posição e calibração de marcador.
+- Uso independente do PW Helper, com associação por cliente e recuperação de perfis salvos. Helper, quando utilizado, mantém a integração de títulos/painéis.
 - Progresso e cultivo por personagem, exportação/restauração de backup e manutenção dos IDs nas atualizações.
 - Guias para dez classes até 105, ramos God/Evil e liberação dos acessos ao Passado com Dusk.
 - Ícone Órbita de progresso nos executáveis, bandeja, Central e instalador.
@@ -15,7 +16,7 @@
 
 | Prioridade | Trabalho | Critério para concluir |
 | --- | --- | --- |
-| Alta | Instalação em Windows sem o ambiente de desenvolvimento | Instalar como usuário comum, abrir o jogo manualmente/pelo Helper em outro caminho, aplicar as ferramentas a dois clientes, importar backup, atualizar e desinstalar preservando o progresso. |
+| Alta | Instalação em Windows sem o ambiente de desenvolvimento | Instalar como usuário comum em computador sem PW Helper, abrir dois clientes de títulos iguais, associar perfis, importar backup, atualizar e desinstalar preservando o progresso. Repetir com Helper opcional. |
 | Alta | Percursos 61–105 e Guardiões no servidor | Jogar os novos roteiros, especialmente Dusk/Passado e cultivos God/Evil 89/99/100; registrar missão, submissão e ID de qualquer divergência. |
 | Alta | Resoluções e escalas diferentes | Conferir marcador e interface em 100%, 125% e 150%, dois monitores e troca de cliente. Recalibrar o marcador na resolução alvo. |
 | Alta | Escopo de compatibilidade | Identificar publicamente o cliente/servidor testado. Outra instalação chamada 1.4.4 pode usar traduções, missões e offsets diferentes; não anunciar compatibilidade universal sem testar. |

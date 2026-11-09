@@ -1,5 +1,13 @@
 # Histórico de alterações
 
+## 0.11.0 - Uso independente do PW Helper
+
+- Perfis por sessão da janela: nome/classe manual ou seleção de perfil salvo, mesmo com vários clientes usando o título padrão. Nenhuma instalação ou processo PW Helper é exigido.
+- Preservada a detecção por título e as associações antigas no menu de compatibilidade. Títulos genéricos/repetidos e perfis duplicados em dois clientes são recusados para evitar mistura de progresso.
+- Progresso e God/Evil continuam por nome/classe; PID, início do processo e HWND servem apenas à associação da sessão atual. Reiniciar o overlay/cliente exige selecionar novamente o perfil salvo.
+- Alterar uma associação descarta a sessão anterior de leitura. Leituras inválidas limpam snapshot/transições, mudança do ponteiro do jogador reabre a sessão e troca de token invalida a associação anterior. Falhas ao abrir têm nova tentativa após dois segundos.
+- Atualizados manual, instalação, arquitetura e testes. Leitura automática de nome/classe não foi incluída; não havia clientes reais abertos para validar offsets adicionais ou a troca de conta no servidor.
+
 ## 0.10.2 - Ícone e preparação da distribuição
 
 - Central reduzida às seleções Overlay/Windowed Fullscreen e aos botões Aplicar ao PW já aberto e Parar Overlay e Borderless. Removidas procura de launcher e abertura do jogo; o usuário abre pelo Helper ou manualmente. As caixas passam a ser aplicadas pelo botão, sem iniciar ferramentas apenas ao mudar a seleção.

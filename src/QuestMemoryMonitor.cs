@@ -19,6 +19,12 @@ namespace PWQuestOverlay.Memory
 
         internal QuestMemorySnapshot Snapshot { get; set; }
         internal bool Ready { get; set; }
+        internal string SessionToken { get; set; }
+
+        internal void Invalidate()
+        {
+            Ready = false; Snapshot = null; _observedActive.Clear(); _disappeared.Clear();
+        }
 
         internal void Observe(QuestMemorySnapshot snapshot)
         {
@@ -61,6 +67,7 @@ namespace PWQuestOverlay.Memory
         private readonly MemoryLayoutProfile _profile;
         private readonly Dictionary<int, Session> _sessions;
         private readonly HashSet<int> _reportedOpenFailures;
+        private readonly Dictionary<int, DateTime> _openRetryAt = new Dictionary<int, DateTime>();
         private readonly Action<string> _log;
 
         internal QuestMemoryMonitor(
@@ -81,6 +88,8 @@ namespace PWQuestOverlay.Memory
         internal void Poll(IEnumerable<int> processIds)
         {
             var live = new HashSet<int>(processIds.Where(id => id > 0));
+            _reportedOpenFailures.RemoveWhere(id => !live.Contains(id));
+            foreach (int stale in _openRetryAt.Keys.Where(id => !live.Contains(id)).ToList()) _openRetryAt.Remove(stale);
             foreach (int stale in _sessions.Keys.Where(id => !live.Contains(id)).ToList())
             {
                 _sessions[stale].Dispose();
@@ -92,22 +101,26 @@ namespace PWQuestOverlay.Memory
                 Session session;
                 if (!_sessions.TryGetValue(processId, out session))
                 {
+                    DateTime retry;
+                    if (_openRetryAt.TryGetValue(processId, out retry) && DateTime.UtcNow < retry) continue;
                     try
                     {
                         session = Session.Open(processId, _profile, _log);
                         _sessions.Add(processId, session);
                         _reportedOpenFailures.Remove(processId);
+                        _openRetryAt.Remove(processId);
                         _log("Memória PID " + processId + ": sessão aberta.");
                     }
                     catch (Exception error)
                     {
+                        _openRetryAt[processId] = DateTime.UtcNow.AddSeconds(2);
                         if (_reportedOpenFailures.Add(processId))
                             _log("Memória PID " + processId +
                                 ": falha ao abrir sessão: " + error.Message);
                         continue;
                     }
                 }
-                session.Poll();
+                if (!session.Poll()) Forget(processId);
             }
         }
 
@@ -118,10 +131,19 @@ namespace PWQuestOverlay.Memory
                 ? session.State : null;
         }
 
+        internal void Forget(int processId)
+        {
+            Session session;
+            if (_sessions.TryGetValue(processId, out session)) { session.State.Invalidate(); session.Dispose(); _sessions.Remove(processId); }
+            _reportedOpenFailures.Remove(processId);
+            _openRetryAt.Remove(processId);
+        }
+
         public void Dispose()
         {
             foreach (Session session in _sessions.Values) session.Dispose();
             _sessions.Clear();
+            _openRetryAt.Clear();
         }
 
         private sealed class Session : IDisposable
@@ -131,6 +153,9 @@ namespace PWQuestOverlay.Memory
             private readonly QuestMemoryReader _reader;
             private readonly QuestStateTracker _tracker;
             private readonly long _player;
+            private readonly MemoryLayoutProfile _profile;
+            private readonly bool _configuredRoot;
+            private int _readFailures;
             private readonly Action<string> _log;
             private string _candidateSignature;
             private string _committedSignature;
@@ -141,15 +166,19 @@ namespace PWQuestOverlay.Memory
                 ProcessMemoryReader memory,
                 QuestMemoryReader reader,
                 long player,
+                MemoryLayoutProfile profile,
                 Action<string> log)
             {
                 _process = process;
                 _memory = memory;
                 _reader = reader;
                 _player = player;
+                _profile = profile;
+                try { _configuredRoot = _memory.ResolvePointerChain(profile.PlayerBaseRva, profile.PlayerChain) == player; }
+                catch { _configuredRoot = false; }
                 _log = log;
                 _tracker = new QuestStateTracker();
-                State = new QuestMemoryClientState();
+                State = new QuestMemoryClientState { SessionToken = Guid.NewGuid().ToString("N") };
             }
 
             internal QuestMemoryClientState State { get; private set; }
@@ -170,6 +199,7 @@ namespace PWQuestOverlay.Memory
                         memory,
                         new QuestMemoryReader(memory, profile.quests, profile.inventory),
                         player,
+                        profile,
                         log);
                 }
                 catch
@@ -180,12 +210,21 @@ namespace PWQuestOverlay.Memory
                 }
             }
 
-            internal void Poll()
+            internal bool Poll()
             {
-                if (_process.HasExited) return;
+                if (_process.HasExited) { State.Invalidate(); return false; }
                 try
                 {
+                    // Login/logout can replace the player object without replacing the process.
+                    // Never keep reading the previous character through a stale object pointer.
+                    if (_configuredRoot)
+                    {
+                        long current = _memory.ResolvePointerChain(_profile.PlayerBaseRva, _profile.PlayerChain);
+                        if (current != _player) { State.Invalidate(); return false; }
+                    }
+                    else if (!IsValidPlayer(_memory, _profile, _player)) { State.Invalidate(); return false; }
                     QuestMemorySnapshot snapshot = _reader.Read(_player);
+                    _readFailures = 0;
                     string signature = Signature(snapshot);
                     if (string.Equals(signature, _candidateSignature, StringComparison.Ordinal))
                         _candidateCount = Math.Min(2, _candidateCount + 1);
@@ -196,7 +235,7 @@ namespace PWQuestOverlay.Memory
                     }
                     if (_candidateCount < 2 ||
                         string.Equals(signature, _committedSignature, StringComparison.Ordinal))
-                        return;
+                        return true;
 
                     if (!State.Ready)
                     {
@@ -216,10 +255,13 @@ namespace PWQuestOverlay.Memory
                     State.Snapshot = snapshot;
                     State.Observe(snapshot);
                     _committedSignature = signature;
+                    return true;
                 }
                 catch
                 {
-                    // Uma leitura isolada nunca altera o estado confirmado.
+                    // Failed reads cannot leave old quest evidence available to the UI.
+                    State.Invalidate(); _candidateSignature = null; _committedSignature = null; _candidateCount = 0;
+                    return ++_readFailures < 3;
                 }
             }
 

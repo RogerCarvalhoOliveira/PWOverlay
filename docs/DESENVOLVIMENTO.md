@@ -78,10 +78,10 @@ O código deve continuar compatível com o compilador do .NET Framework. Evite r
 
 ## 6. Alterar detecção de título
 
-Os padrões ficam no início de `OverlayForm.cs`:
+Os padrões ficam em `ClientIdentity.cs`, com wrappers compatíveis em `OverlayForm.cs`:
 
-- `PrimaryTitlePattern`: formato preferencial `Nome[CLASSE]`;
-- `TokenClassPattern`: formato alternativo com sigla delimitada.
+- `Primary`: formato `Nome[CLASSE]`;
+- `Token`: formato alternativo com sigla delimitada.
 
 Não procure a sigla como substring livre. Um nome como `Wrex` não deve ser identificado como `WR`.
 
@@ -89,7 +89,7 @@ Sempre mantenha o fallback manual.
 
 As dez siglas devem permanecer alinhadas nos dois padrões, no menu rápido, em `IsValidClass`, na tabela de Perfis e em `RouteRepository.GetForClass`. O teste `scripts/test-overlay-interactions.ps1` verifica os padrões e a aceitação manual para todas elas, além dos eventos reais dos controles de arraste com estado isolado. O roteiro dos novos guias está em `GUIAS-DEZ-CLASSES.md`.
 
-O gerenciador `OpenProfileManager` lista títulos atuais e associações salvas. A preferência é persistida em `AppState.ClassAssociations`; a chave é o título completo após `NormalizeWindowTitle`.
+`OpenProfileManager` associa uma sessão de janela a nome/classe e permite usar um perfil salvo. `ClientBindings` não é serializado; nunca persista um PID para reaplicar automaticamente. `OpenTitleAssociations` mantém as antigas associações em `AppState.ClassAssociations`. Confira `docs/SEM-PW-HELPER.md` para os casos de multiclient e reinício.
 
 ## 7. Alterar comportamento do PW Helper
 

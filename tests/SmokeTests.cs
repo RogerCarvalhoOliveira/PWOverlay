@@ -8,6 +8,47 @@ using PWQuestOverlay.Memory;
 
 internal static class SmokeTests
 {
+    private static void TestStandaloneClients()
+    {
+        var aliases = new Dictionary<string, string> { { "THE CLASSIC PW 1.4.4", "EP" }, { "CAUTON", "EP" } };
+        var windows = new List<ClientWindowInfo> {
+            new ClientWindowInfo { Handle = new IntPtr(11), ProcessId = 11, SessionKey = "11:100:11", Title = "The Classic PW 1.4.4" },
+            new ClientWindowInfo { Handle = new IntPtr(12), ProcessId = 12, SessionKey = "12:100:12", Title = "The Classic PW 1.4.4" }
+        };
+        var bindings = new ClientBindings();
+        if (bindings.ObserveProfile("a", "FIRST|WB") || bindings.ObserveProfile("b", "SECOND|EP") ||
+            bindings.ObserveProfile("a", "FIRST|WB") || !bindings.ObserveProfile("a", "THIRD|MC"))
+            throw new Exception("Profile changes within one window must reset its memory evidence, while switching windows must not.");
+        if (ClientIdentities.Resolve(windows[0], windows, bindings, aliases) != null || ClientIdentities.FromTitle("The Classic PW 1.4.4", true, aliases) != null)
+            throw new Exception("Generic/duplicate titles must never create a shared profile.");
+        bindings.Set(windows[0].SessionKey, new ClientIdentity("Primeiro", "WB", true));
+        bindings.Set(windows[1].SessionKey, new ClientIdentity("Segundo", "EP", true));
+        if (ClientIdentities.Resolve(windows[0], windows, bindings, aliases).ProfileKey != "PRIMEIRO|WB" ||
+            ClientIdentities.Resolve(windows[1], windows, bindings, aliases).ProfileKey != "SEGUNDO|EP")
+            throw new Exception("Standalone clients must have independent persistent profile keys.");
+        windows.Reverse();
+        if (ClientIdentities.Resolve(windows[0], windows, bindings, aliases).Name != "Segundo") throw new Exception("Changing focus/order must not change the binding.");
+        bindings.Set(windows[0].SessionKey, new ClientIdentity("Primeiro", "WB", true));
+        if (ClientIdentities.Resolve(windows[0], windows, bindings, aliases) != null) throw new Exception("Two windows cannot silently share one character profile.");
+        bindings.Set(windows[0].SessionKey, new ClientIdentity("Segundo", "EP", true));
+        bindings.ObserveMemorySession(windows[0].SessionKey, "player-a");
+        bindings.ObserveMemorySession(windows[0].SessionKey, "player-b");
+        if (bindings.Find(windows[0].SessionKey) != null || bindings.Find(windows[1].SessionKey) == null) throw new Exception("A new player session must invalidate only its own binding.");
+        bindings.Prune(new[] { "11:200:11" });
+        if (bindings.Find("11:100:11") != null || bindings.Find("11:200:11") != null) throw new Exception("Recycled PID/HWND cannot inherit a session association.");
+        foreach (string code in new[] { "WR", "MG", "WB", "WF", "EA", "EP", "MC", "ES", "SK", "MS" })
+            if (ClientIdentities.FromTitle("Teste[" + code + "]", true, aliases).ClassCode != code) throw new Exception("Helper/title compatibility: " + code);
+        if (ClientIdentities.FromTitle("Cauton", true, aliases).ClassCode != "EP" || ClientIdentities.FromTitle("Wrex", true, aliases) != null)
+            throw new Exception("Manual title aliases and class token boundaries must remain compatible.");
+        bool invalid = false; try { new ClientIdentity("Wrong|Name", "WB", true); } catch (ArgumentException) { invalid = true; }
+        if (!invalid) throw new Exception("Invalid profile delimiter accepted.");
+        var state = new QuestMemoryClientState { Ready = true, Snapshot = new QuestMemorySnapshot() };
+        state.Record(new[] { new QuestMemoryEvent { Kind = QuestMemoryEventKind.Activated, TaskId = 42 } });
+        state.Record(new[] { new QuestMemoryEvent { Kind = QuestMemoryEventKind.DisappearedAfterObservation, TaskId = 42 } });
+        state.Invalidate();
+        if (state.Ready || state.Snapshot != null || state.HasObservedDisappearance(42)) throw new Exception("Failed reads must discard stale memory evidence.");
+    }
+
     private static int Main(string[] args)
     {
         try
@@ -15,6 +56,7 @@ internal static class SmokeTests
             if (args.Length != 3) throw new ArgumentException(
                 "Informe quest_routes.json, memory_offsets.json e task_catalog_144.tsv.");
             RouteRepository routes = RouteRepository.Load(args[0]);
+            TestStandaloneClients();
             var expected = new Dictionary<string, int>
             {
                 { "WR", 116 }, { "WB", 116 }, { "WF", 121 },
@@ -459,7 +501,7 @@ internal static class SmokeTests
                 if (progress.HasOverlayMarker && progress.OverlayMarkerCount <= 0)
                     throw new InvalidDataException("Contagem de marcadores não foi migrada para " + progress.CharacterName);
 
-            Console.WriteLine("Smoke tests aprovados para rotas, etapas e estado local.");
+            Console.WriteLine("Smoke tests aprovados para rotas, estado, clientes independentes e isolamento de evidências.");
             return 0;
         }
         catch (Exception error)

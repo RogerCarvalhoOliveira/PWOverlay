@@ -6,7 +6,7 @@ $dist = Join-Path $projectRoot 'dist'
 $version = [IO.File]::ReadAllText((Join-Path $projectRoot 'VERSION')).Trim()
 $executables = @('PW Quest Overlay.exe', 'PW Borderless.exe', 'PW Overlay Central.exe', 'PW Memory Probe.exe')
 $required = $executables + @('quest_routes.json', 'memory_offsets.json', 'task_catalog_144.tsv',
-    'rota_leveling_pw_144.xlsx', 'LEIA-ME.txt', 'INSTALACAO.txt', 'GUIAS-DEZ-CLASSES.txt', 'GUIA-61-105.txt')
+    'rota_leveling_pw_144.xlsx', 'LEIA-ME.txt', 'INSTALACAO.txt', 'GUIAS-DEZ-CLASSES.txt', 'GUIA-61-105.txt', 'SEM-PW-HELPER.txt')
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 Add-Type -AssemblyName System.Drawing
 $zipPath = Join-Path $dist "PWQuestOverlay-Portatil-v$version.zip"

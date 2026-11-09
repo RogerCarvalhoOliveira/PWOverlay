@@ -82,7 +82,7 @@ namespace PWOverlayCentral
             };
             _borderlessBox = new CheckBox
             {
-                Text = "Ativar Windowed Fullscreen e manter o PW Helper acima",
+                Text = "Ativar Windowed Fullscreen (janela sem bordas)",
                 Location = new Point(14, 40),
                 Size = new Size(490, 24),
                 Checked = _settings.UseBorderless,

@@ -80,6 +80,9 @@ namespace PWQuestOverlay
         private bool _markerBusy;
         private string _memoryDiagnosticSignature;
         private bool _cultivationDialogOpen;
+        private bool _profileDialogOpen;
+        private readonly ClientBindings _clientBindings = new ClientBindings();
+        private List<ClientWindowInfo> _clientWindows = new List<ClientWindowInfo>();
         private readonly HashSet<string> _cultivationPrompted = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
         private sealed class RouteStage
@@ -88,14 +91,6 @@ namespace PWQuestOverlay
             internal QuestStep Step;
             internal int StepIndex;
         }
-
-        private static readonly Regex PrimaryTitlePattern = new Regex(
-            @"^\s*(?<name>.+?)\s*[\[\(\{]\s*(?<class>WB|WF|EA|EP|WR|MG|MC|ES|SK|MS)\s*[\]\)\}]\s*$",
-            RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
-
-        private static readonly Regex TokenClassPattern = new Regex(
-            @"(?:^|[\s\[\](){}_\-])(?<class>WB|WF|EA|EP|WR|MG|MC|ES|SK|MS)(?=$|[\s\[\](){}_\-])",
-            RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
 
         internal OverlayForm(RouteRepository routes, StateStore store, AppState state,
             string routePath, string workbookPath)
@@ -257,6 +252,7 @@ namespace PWQuestOverlay
             _trayMenu.Items.Add(new ToolStripSeparator());
 
             _trayMenu.Items.Add("Gerenciar perfis...", null, delegate { OpenProfileManager(); });
+            _trayMenu.Items.Add("Associações por título (compatibilidade)...", null, delegate { OpenTitleAssociations(); });
             _trayMenu.Items.Add("Selecionar missão/etapa...", null, delegate { OpenStageSelector(); });
             _trayMenu.Items.Add("Escolher/alterar cultivo God ou Evil...", null, delegate { ChooseCultivation(); });
             _trayMenu.Items.Add("Editar rotas...", null, delegate { OpenRouteEditor(); });
@@ -507,10 +503,13 @@ namespace PWQuestOverlay
 
         private void MonitorTick()
         {
-            if (_cultivationDialogOpen) return;
+            if (_cultivationDialogOpen || _profileDialogOpen) return;
             try
             {
                 List<IntPtr> games = NativeMethods.FindGameWindows();
+                _clientWindows = games.Select(NativeMethods.DescribeGameWindow).Where(w => w != null).ToList();
+                _clientBindings.Prune(_clientWindows.Select(w => w.SessionKey));
+                foreach (IntPtr stale in _titleRefresh.Keys.Where(w => !games.Contains(w)).ToList()) _titleRefresh.Remove(stale);
                 IntPtr foreground = NativeMethods.GetAncestor(NativeMethods.GetForegroundWindow(), NativeMethods.GA_ROOT);
                 DateTime now = DateTime.UtcNow;
                 bool gameForeground = games.Contains(foreground);
@@ -525,6 +524,11 @@ namespace PWQuestOverlay
                         .Select(NativeMethods.GetProcessId)
                         .Where(id => id > 0)
                         .Distinct());
+                    foreach (ClientWindowInfo window in _clientWindows)
+                    {
+                        QuestMemoryClientState memory = _memoryMonitor.Find(window.ProcessId);
+                        if (memory != null) _clientBindings.ObserveMemorySession(window.SessionKey, memory.SessionToken);
+                    }
                 }
 
                 if (gameForeground)
@@ -611,18 +615,17 @@ namespace PWQuestOverlay
             if (_activeGame == IntPtr.Zero) return;
             string title = NativeMethods.GetWindowTitle(_activeGame).Trim();
             string titleKey = NormalizeWindowTitle(title);
-            string parsedName;
-            string parsedClass;
-            ParseTitle(title, out parsedName, out parsedClass);
-            string associatedClass;
-            bool hasAssociation = _state.ClassAssociations.TryGetValue(titleKey, out associatedClass) &&
-                IsValidClass(associatedClass);
-            if (hasAssociation) parsedClass = associatedClass.ToUpperInvariant();
-            if (string.IsNullOrWhiteSpace(parsedName))
+            ClientWindowInfo window = NativeMethods.DescribeGameWindow(_activeGame);
+            ClientIdentity identity = ClientIdentities.Resolve(window, _clientWindows, _clientBindings, _state.ClassAssociations);
+            if (identity == null)
             {
-                int processId = NativeMethods.GetProcessId(_activeGame);
-                parsedName = string.IsNullOrWhiteSpace(title) ? "Cliente " + processId : title;
+                _characterKey = null; _characterName = null; _classCode = null; _progress = null;
+                _windowTitleKey = titleKey; _currentRoute.Clear(); _orderedStages.Clear(); RefreshMissionDisplay(); return;
             }
+            string parsedName = identity.Name, parsedClass = identity.ClassCode;
+            bool hasAssociation = identity.Manual;
+            if (_clientBindings.ObserveProfile(window.SessionKey, identity.ProfileKey) && _memoryMonitor != null)
+                _memoryMonitor.Forget(window.ProcessId);
             string baseKey = NormalizeCharacterKey(parsedName);
             string key = BuildCharacterKey(parsedName, parsedClass);
             _windowTitleKey = titleKey;
@@ -703,21 +706,7 @@ namespace PWQuestOverlay
 
         private static void ParseTitle(string title, out string characterName, out string classCode)
         {
-            characterName = (title ?? string.Empty).Trim();
-            classCode = null;
-            Match primary = PrimaryTitlePattern.Match(characterName);
-            if (primary.Success)
-            {
-                characterName = primary.Groups["name"].Value.Trim();
-                classCode = primary.Groups["class"].Value.ToUpperInvariant();
-                return;
-            }
-
-            Match token = TokenClassPattern.Match(characterName);
-            if (!token.Success) return;
-            classCode = token.Groups["class"].Value.ToUpperInvariant();
-            characterName = (characterName.Substring(0, token.Index) + " " +
-                characterName.Substring(token.Index + token.Length)).Trim(' ', '-', '_', '[', ']', '(', ')', '{', '}');
+            ClientIdentities.ParseTitle(title, out characterName, out classCode);
         }
 
         private static string NormalizeCharacterKey(string name)
@@ -732,11 +721,7 @@ namespace PWQuestOverlay
 
         private static bool IsValidClass(string code)
         {
-            if (string.IsNullOrWhiteSpace(code)) return false;
-            string normalized = code.Trim().ToUpperInvariant();
-            return normalized == "WR" || normalized == "WB" || normalized == "WF" ||
-                normalized == "EA" || normalized == "EP" || normalized == "MC" ||
-                normalized == "MG" || normalized == "ES" || normalized == "SK" || normalized == "MS";
+            return ClientIdentities.IsValidClass(code);
         }
 
         private static string BuildCharacterKey(string name, string classCode)
@@ -769,10 +754,10 @@ namespace PWQuestOverlay
         {
             if (_progress == null)
             {
-                _profileLabel.Text = "PW Quest Overlay — aguardando cliente";
-                _questLabel.Text = "Abra ou selecione um cliente do Perfect World.";
-                _npcLabel.Text = string.Empty;
-                _locationLabel.Text = string.Empty;
+                _profileLabel.Text = _activeGame == IntPtr.Zero ? "PW Quest Overlay — aguardando cliente" : "Cliente PID " + NativeMethods.GetProcessId(_activeGame) + " — sem associação";
+                _questLabel.Text = _activeGame == IntPtr.Zero ? "Abra ou selecione um cliente do Perfect World." : "Defina o personagem e a classe em Perfis.";
+                _npcLabel.Text = _activeGame == IntPtr.Zero ? "" : "Use um perfil salvo para retomar seu progresso. PW Helper é opcional.";
+                _locationLabel.Text = _activeGame == IntPtr.Zero ? "" : "Uma janela sem associação não altera o progresso.";
                 _statusLabel.Text = string.Empty;
                 _currentMission = null;
                 _currentStep = null;
@@ -1039,7 +1024,14 @@ namespace PWQuestOverlay
 
         private bool CanChangeProgress()
         {
-            return _activeGame != IntPtr.Zero && _progress != null && !_state.UserHidden;
+            return HasCurrentIdentity() && !_state.UserHidden;
+        }
+
+        private bool HasCurrentIdentity()
+        {
+            if (_activeGame == IntPtr.Zero || _progress == null) return false;
+            ClientIdentity identity = ClientIdentities.Resolve(NativeMethods.DescribeGameWindow(_activeGame), _clientWindows, _clientBindings, _state.ClassAssociations);
+            return identity != null && identity.ProfileKey == _characterKey;
         }
 
         private void UpdateActionAvailability()
@@ -1055,7 +1047,14 @@ namespace PWQuestOverlay
 
         private void SetManualClass(string code)
         {
-            if (_progress == null) return;
+            ClientWindowInfo window = NativeMethods.DescribeGameWindow(_activeGame);
+            if (_progress == null || window == null) { OpenProfileManager(); return; }
+            if (_clientBindings.Find(window.SessionKey) != null)
+            {
+                _clientBindings.Set(window.SessionKey, new ClientIdentity(_characterName, code, true));
+                if (_memoryMonitor != null) _memoryMonitor.Forget(window.ProcessId);
+                RefreshActiveProfile(true); return;
+            }
             if (!string.IsNullOrWhiteSpace(_windowTitleKey))
                 _state.ClassAssociations[_windowTitleKey] = code;
             ReKeyCurrentProgress(code);
@@ -1069,20 +1068,55 @@ namespace PWQuestOverlay
 
         private void ClearManualClass()
         {
-            if (_progress == null) return;
+            ClientWindowInfo window = NativeMethods.DescribeGameWindow(_activeGame);
+            if (window == null) return;
+            _clientBindings.Set(window.SessionKey, null);
             if (!string.IsNullOrWhiteSpace(_windowTitleKey))
                 _state.ClassAssociations.Remove(_windowTitleKey);
-            _progress.ManualClass = false;
-            string parsedName;
-            string parsedClass;
-            ParseTitle(NativeMethods.GetWindowTitle(_activeGame), out parsedName, out parsedClass);
-            ReKeyCurrentProgress(parsedClass);
-            _progress.ClassCode = parsedClass;
+            if (_memoryMonitor != null) _memoryMonitor.Forget(window.ProcessId);
             _store.Save(_state);
-            LoadRouteAndRefresh();
+            RefreshActiveProfile(true);
         }
 
         private void OpenProfileManager()
+        {
+            if (_profileDialogOpen) return;
+            _profileDialogOpen = true;
+            try
+            {
+                var windows = NativeMethods.FindGameWindows().Select(NativeMethods.DescribeGameWindow).Where(w => w != null).ToList();
+                using (var dialog = new ClientProfilesForm(windows, _clientBindings, _state.ClassAssociations, _state.Characters.Values, _activeGame))
+                {
+                    if (dialog.ShowDialog(this) != DialogResult.OK) return;
+                    var live = NativeMethods.FindGameWindows().Select(NativeMethods.DescribeGameWindow).Where(w => w != null).ToList();
+                    foreach (ClientWindowInfo window in live)
+                    {
+                        ClientIdentity identity;
+                        if (!dialog.Selections.TryGetValue(window.SessionKey, out identity)) continue;
+                        ClientIdentity previous = _clientBindings.Find(window.SessionKey);
+                        if ((previous == null && identity == null) || (previous != null && identity != null && previous.ProfileKey == identity.ProfileKey)) continue;
+                        _clientBindings.Set(window.SessionKey, identity);
+                        _store.Log("Cliente PID " + window.ProcessId + ": associação " + (identity == null ? "automática" : identity.ProfileKey));
+                        if (_memoryMonitor != null) _memoryMonitor.Forget(window.ProcessId);
+                        if (identity != null && !_state.Characters.ContainsKey(identity.ProfileKey))
+                            _state.Characters[identity.ProfileKey] = new CharacterProgress { CharacterName = identity.Name, ClassCode = identity.ClassCode, ManualClass = true };
+                    }
+                    _store.Save(_state); _clientWindows = live; _characterKey = null;
+                    if (_activeGame != IntPtr.Zero) RefreshActiveProfile(true);
+                }
+            }
+            finally { _profileDialogOpen = false; }
+        }
+
+        private void OpenTitleAssociations()
+        {
+            if (_profileDialogOpen) return;
+            _profileDialogOpen = true;
+            try { ShowTitleAssociations(); }
+            finally { _profileDialogOpen = false; }
+        }
+
+        private void ShowTitleAssociations()
         {
             var titles = new SortedDictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             foreach (IntPtr game in NativeMethods.FindGameWindows())
@@ -1110,8 +1144,8 @@ namespace PWQuestOverlay
                 dialog.TopMost = true;
                 dialog.Font = new Font("Segoe UI", 9.0f);
 
-                description.Text = "Associe o título ou nome exibido pelo PW Helper a uma classe. " +
-                    "Você também pode digitar um novo título na última linha.";
+                description.Text = "Compatibilidade com títulos identificáveis de personagem. Títulos genéricos/repetidos não são usados. " +
+                    "Sem PW Helper, prefira a associação por cliente no botão Perfis.";
                 description.Location = new Point(12, 10);
                 description.Size = new Size(626, 36);
 
@@ -1180,6 +1214,7 @@ namespace PWQuestOverlay
 
                 if (dialog.ShowDialog() != DialogResult.OK) return;
 
+                _state.ClassAssociations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
                 foreach (DataGridViewRow row in grid.Rows)
                 {
                     if (row.IsNewRow) continue;
@@ -1324,6 +1359,14 @@ namespace PWQuestOverlay
 
         private void RestoreBackup()
         {
+            if (_profileDialogOpen) return;
+            _profileDialogOpen = true;
+            try { RestoreBackupCore(); }
+            finally { _profileDialogOpen = false; }
+        }
+
+        private void RestoreBackupCore()
+        {
             using (var dialog = new OpenFileDialog())
             {
                 dialog.Title = "Restaurar perfis e progresso";
@@ -1335,6 +1378,9 @@ namespace PWQuestOverlay
                 if (MessageBox.Show("Substituir os perfis e o progresso atuais pelo backup?", "PW Quest Overlay",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
                 _state.Characters = imported.Characters;
+                _clientBindings.Clear();
+                if (_memoryMonitor != null)
+                    foreach (ClientWindowInfo window in _clientWindows) _memoryMonitor.Forget(window.ProcessId);
                 _cultivationPrompted.Clear();
                 _state.Positions = imported.Positions;
                 _state.ClassAssociations = imported.ClassAssociations;
@@ -1551,6 +1597,8 @@ namespace PWQuestOverlay
                 _activeGame == IntPtr.Zero || _progress == null ||
                 _currentMission == null || _currentStep == null)
                 return;
+
+            if (!HasCurrentIdentity()) return;
 
             if (_currentMission.cultivationChoice) return;
 

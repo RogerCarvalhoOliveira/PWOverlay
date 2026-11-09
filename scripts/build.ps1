@@ -49,10 +49,13 @@ $readmeDestination = Join-Path $distributionDirectory 'LEIA-ME.txt'
 $installationGuideDestination = Join-Path $distributionDirectory 'INSTALACAO.txt'
 $classGuideDestination = Join-Path $distributionDirectory 'GUIAS-DEZ-CLASSES.txt'
 $endgameGuideDestination = Join-Path $distributionDirectory 'GUIA-61-105.txt'
+$standaloneGuideDestination = Join-Path $distributionDirectory 'SEM-PW-HELPER.txt'
 
 $overlaySources = @(
     (Join-Path $sourceDirectory 'Program.cs'),
     (Join-Path $sourceDirectory 'Models.cs'),
+    (Join-Path $sourceDirectory 'ClientIdentity.cs'),
+    (Join-Path $sourceDirectory 'ClientProfilesForm.cs'),
     (Join-Path $sourceDirectory 'NativeMethods.cs'),
     (Join-Path $sourceDirectory 'OverlayForm.cs'),
     (Join-Path $sourceDirectory 'CultivationChoiceForm.cs'),
@@ -121,6 +124,7 @@ Copy-Item -LiteralPath (Join-Path $projectRoot 'docs\MANUAL-USUARIO.md') -Destin
 Copy-Item -LiteralPath (Join-Path $projectRoot 'docs\INSTALACAO.md') -Destination $installationGuideDestination -Force
 Copy-Item -LiteralPath (Join-Path $projectRoot 'docs\GUIAS-DEZ-CLASSES.md') -Destination $classGuideDestination -Force
 Copy-Item -LiteralPath (Join-Path $projectRoot 'docs\GUIA-61-105.md') -Destination $endgameGuideDestination -Force
+Copy-Item -LiteralPath (Join-Path $projectRoot 'docs\SEM-PW-HELPER.md') -Destination $standaloneGuideDestination -Force
 
 Write-Host "Compilação concluída em: $distributionDirectory"
 Get-ChildItem -LiteralPath $distributionDirectory -File |
@@ -142,7 +146,8 @@ if ($Package) {
         $readmeDestination,
         $installationGuideDestination,
         $classGuideDestination,
-        $endgameGuideDestination
+        $endgameGuideDestination,
+        $standaloneGuideDestination
     ) -DestinationPath $packagePath -CompressionLevel Optimal
     Write-Host "Pacote criado: $packagePath"
 }

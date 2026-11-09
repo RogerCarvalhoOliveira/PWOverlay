@@ -41,6 +41,22 @@ namespace PWQuestOverlay
 
         internal delegate bool EnumWindowsProc(IntPtr window, IntPtr parameter);
 
+        [DllImport("kernel32.dll", SetLastError = true)]
+        private static extern IntPtr OpenProcess(uint access, bool inherit, int processId);
+        [DllImport("kernel32.dll", SetLastError = true)]
+        private static extern bool GetProcessTimes(IntPtr process, out long created, out long exited, out long kernel, out long user);
+        [DllImport("kernel32.dll")]
+        private static extern bool CloseHandle(IntPtr handle);
+
+        internal static long ProcessStartToken(int processId)
+        {
+            // Query process lifetime only; manual association does not require VM_READ.
+            IntPtr handle = OpenProcess(0x1000, false, processId);
+            if (handle == IntPtr.Zero) return 0;
+            try { long created, exited, kernel, user; return GetProcessTimes(handle, out created, out exited, out kernel, out user) ? created : 0; }
+            finally { CloseHandle(handle); }
+        }
+
         [StructLayout(LayoutKind.Sequential)]
         internal struct RECT
         {
@@ -149,6 +165,24 @@ namespace PWQuestOverlay
             uint id;
             GetWindowThreadProcessId(window, out id);
             return (int)id;
+        }
+
+        internal static ClientWindowInfo DescribeGameWindow(IntPtr window)
+        {
+            try
+            {
+                int id = GetProcessId(window);
+                using (Process process = Process.GetProcessById(id))
+                {
+                    if (!IsWindow(window) || !string.Equals(process.ProcessName, "elementclient", StringComparison.OrdinalIgnoreCase)) return null;
+                    // Process start time prevents a recycled PID/HWND from inheriting a binding.
+                    long started = ProcessStartToken(id);
+                    if (started == 0) return null;
+                    return new ClientWindowInfo { Handle = window, ProcessId = id, Title = GetWindowTitle(window).Trim(),
+                        SessionKey = id + ":" + started + ":" + window.ToInt64() };
+                }
+            }
+            catch { return null; }
         }
 
         internal static bool WindowBelongsToProcess(IntPtr window, string processName)

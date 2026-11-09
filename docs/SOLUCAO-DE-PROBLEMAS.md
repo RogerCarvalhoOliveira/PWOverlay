@@ -9,7 +9,11 @@
 
 ## A classe está errada ou vazia
 
-Abra **Perfis**, localize o título exato mostrado pelo PW Helper e escolha a classe. Títulos diferentes, inclusive espaços e sufixos diferentes, são associações diferentes após a normalização.
+Abra **Perfis**, selecione a linha pelo PID/título e informe nome e classe ou aplique um perfil salvo. PW Helper não é necessário. Se várias janelas tiverem o mesmo título padrão, associe cada linha separadamente. O modo Automático exige um título identificável e único.
+
+## O cliente aparece sem associação
+
+Ao reabrir o jogo ou reiniciar o overlay, escolha novamente o perfil salvo em **Perfis**. Progresso e cultivo são retomados pelo nome/classe. Trocar de personagem ou detectar uma nova sessão de leitura pode invalidar a associação anterior. Não use o mesmo perfil em duas janelas simultaneamente. Nenhuma etapa será avançada enquanto a identidade estiver indefinida.
 
 ## A missão não avança
 

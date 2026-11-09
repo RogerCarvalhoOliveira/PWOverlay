@@ -18,6 +18,7 @@ $testExecutable = Join-Path $testDirectory 'SmokeTests.exe'
 & $compiler /nologo /target:exe /optimize+ /out:$testExecutable `
     /reference:System.dll /reference:System.Core.dll /reference:System.Drawing.dll /reference:System.Web.Extensions.dll `
     (Join-Path $projectRoot 'src\Models.cs') `
+    (Join-Path $projectRoot 'src\ClientIdentity.cs') `
     (Join-Path $projectRoot 'src\MemoryLayout.cs') `
     (Join-Path $projectRoot 'src\TaskCatalog.cs') `
     (Join-Path $projectRoot 'src\QuestMemoryReader.cs') `

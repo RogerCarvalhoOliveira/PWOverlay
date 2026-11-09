@@ -38,6 +38,7 @@ Os pacotes ficam em `dist\PWQuestOverlay-Portatil-vX.Y.Z.zip` e `dist\PWQuestOve
 - `rota_leveling_pw_144.xlsx`, com cinco abas;
 - `LEIA-ME.txt`;
 - `INSTALACAO.txt`, `GUIAS-DEZ-CLASSES.txt` e `GUIA-61-105.txt`;
+- `SEM-PW-HELPER.txt`, com associação por cliente, reinício e troca de personagem;
 - utilitário `PW Memory Probe.exe` no ZIP.
 
 O instalador exige Inno Setup 6 somente no computador de desenvolvimento. O computador de destino precisa do .NET Framework 4.8 ou compatível; o instalador verifica esse requisito. Não precisa do Inno Setup.

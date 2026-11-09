@@ -22,8 +22,8 @@ Execute também `node scripts/verify-endgame-routes.mjs`, `node scripts/audit-ne
 
 ## Um cliente
 
-1. Abra o monitor borderless, o PW Helper e um cliente.
-2. Dê ao cliente um título como `Teste[EP]`.
+1. Abra o monitor borderless e um cliente, sem abrir PW Helper.
+2. Em Perfis, informe nome/classe ou selecione um perfil salvo. Depois repita o teste com um título reconhecível como `Teste[EP]`, se usar Helper.
 3. Inicie o overlay e coloque o cliente em foco.
 4. Confirme personagem, classe, missão, título da submissão, ação e contador da etapa.
 5. Avance uma etapa, volte e pule; reinicie o overlay e confirme a persistência.
@@ -64,19 +64,21 @@ Execute também `node scripts/verify-endgame-routes.mjs`, `node scripts/audit-ne
 
 ## Associação manual
 
-1. Use um título sem sigla, como `TesteClerigo`.
-2. Abra **Perfis**, associe a `EP` e salve.
+1. Use duas janelas com o mesmo título padrão, sem PW Helper. Nenhuma deve criar ou avançar um perfil compartilhado.
+2. Abra **Perfis**, associe cada linha/PID a nome e classe diferentes, e salve. Use também a lista de perfis salvos em uma das linhas.
 3. Troque o foco e confirme a rota de EP.
-4. Reinicie o overlay e confirme que a associação permaneceu.
-5. Volte a associação para **Automático** e confirme que o perfil fica sem classe até o título fornecer uma sigla.
+4. Reinicie o overlay: as janelas padrão devem pedir associação; selecione os perfis salvos e confirme a retomada do progresso/cultivo. Reabra um cliente e faça a mesma conferência. Um PID reutilizado não pode receber automaticamente o perfil anterior.
+5. Volte a associação para **Automático** e confirme que uma janela padrão fica sem associação. Tente usar o mesmo perfil em duas janelas e confirme a recusa.
+6. Troque de personagem na mesma janela e reassocie antes de continuar. Com leitura ativada, confirme que uma nova sessão detectada invalida a associação. Sem leitura, essa conferência é manual.
+7. Em um ambiente de teste, interrompa a leitura: snapshot/evidências antigos não devem avançar o guia. Ao trocar uma associação, as evidências do personagem anterior não podem ser reutilizadas.
 
 ## Multiclient
 
-1. Abra dois clientes com títulos diferentes e classes diferentes.
+1. Abra dois clientes de títulos iguais, sem Helper, e associe personagens/classes diferentes. Depois repita com títulos identificáveis e Helper opcional.
 2. Marque uma etapa apenas no primeiro.
 3. Alterne o foco várias vezes e confirme que missão e progresso acompanham o cliente correto.
-4. Abra dois ou mais painéis flutuantes do PW Helper com títulos diferentes, clique neles e confirme que o teclado continua direcionado ao jogo ao voltar.
-5. Confirme que todos os painéis permanecem visíveis acima do cliente e que o overlay não os cobre indevidamente; a janela principal `PW Helper` não deve ficar presa no topo.
+4. Se usar PW Helper, abra dois ou mais painéis flutuantes com títulos diferentes, clique neles e confirme que o teclado continua direcionado ao jogo ao voltar. Sem ele, essa etapa não se aplica.
+5. Com Helper presente, confirme que todos os painéis permanecem visíveis acima do cliente e que o overlay não os cobre indevidamente; a janela principal `PW Helper` não deve ficar presa no topo. Confirme também o funcionamento de marcador e Windowed Fullscreen com Helper fechado.
 
 ## Posição e monitores
 
@@ -97,7 +99,7 @@ Faça backup de `%LOCALAPPDATA%\PWQuestOverlay\state.json`, teste com uma cópia
 
 ## Instalador em outro computador
 
-1. Execute `PWQuestOverlay-Setup-v0.10.2.exe` como usuário comum e confirme que não pede elevação.
+1. Execute `PWQuestOverlay-Setup-v0.11.0.exe` como usuário comum e confirme que não pede elevação.
 2. Teste atalhos do menu Iniciar, opções de área de trabalho e inicialização automática.
 3. Confirme que o guia abre ao final e que overlay, rotas e planilha estão no diretório instalado.
 4. Importe um backup, associe um cliente sem sigla e refaça a calibração do marcador.

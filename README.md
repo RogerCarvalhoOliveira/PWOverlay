@@ -2,15 +2,15 @@
 
 Overlay portátil para acompanhar rotas de missões do Perfect World 1.4.4 em multiclient.
 
-O programa identifica cada cliente pelo título criado pelo PW Helper, por exemplo `Cauton[EP]`, seleciona a rota da classe e mostra missão, submissão e ação atuais. Cada personagem e classe possui progresso independente.
+O programa funciona com o PW aberto diretamente, sem precisar instalar ou executar o PW Helper. Em **Perfis**, associe cada cliente ao nome e à classe do personagem ou escolha um perfil salvo. Títulos identificáveis como `Cauton[EP]` continuam sendo reconhecidos automaticamente quando disponíveis. Cada personagem e classe possui progresso independente.
 
 ## Download
 
 Para usar sem compilar, abra a [versão mais recente](https://github.com/RogerCarvalhoOliveira/PWOverlay/releases/latest) e baixe:
 
-- `PWQuestOverlay-Setup-v0.10.2.exe`: instalador recomendado para Windows;
-- `PWQuestOverlay-Portatil-v0.10.2.zip`: pacote portátil;
-- `SHA256SUMS-v0.10.2.txt`: hashes para conferir a integridade dos arquivos.
+- `PWQuestOverlay-Setup-v0.11.0.exe`: instalador recomendado para Windows;
+- `PWQuestOverlay-Portatil-v0.11.0.zip`: pacote portátil;
+- `SHA256SUMS-v0.11.0.txt`: hashes para conferir a integridade dos arquivos.
 
 Abra o PW manualmente ou pelo PW Helper. Na **PW Overlay Central**, marque Overlay e/ou Windowed Fullscreen e clique em **Aplicar ao PW já aberto**. Para encerrar as ferramentas, use **Parar Overlay e Borderless**. A Central não abre o jogo nem exige configurar um launcher.
 
@@ -18,7 +18,9 @@ Abra o PW manualmente ou pelo PW Helper. Na **PW Overlay Central**, marque Overl
 
 - Dez classes: `WR`, `MG`, `WB`, `WF`, `EA`, `EP`, `MC`, `ES`, `SK` (Arcano) e `MS` (Místico).
 - Detecção automática do padrão `Personagem[CLASSE]`.
-- Tela **Perfis** para associar manualmente qualquer título ou nome a uma classe.
+- Tela **Perfis** para associar nome/classe a cada janela, mesmo quando vários clientes têm o mesmo título padrão, e retomar um perfil salvo.
+- PW Helper opcional: identificação manual por cliente, marcador, Windowed Fullscreen e leitura de missões funcionam sem ele.
+- Janelas sem identificação ou com perfil duplicado não avançam o guia. Associações de janela são refeitas após reiniciar o overlay/cliente; progresso e God/Evil permanecem salvos por personagem.
 - Suporte a personagens com o mesmo nome em classes diferentes.
 - Rotas do nível 1 ao 105 para as dez classes, preservando as etapas e o progresso anteriores.
 - Título explícito em todas as submissões para facilitar comparação com o questlog e diagnóstico de progresso.
@@ -60,7 +62,7 @@ A única automação da versão estável dentro do cliente é acionada manualmen
 Requisitos:
 
 - Windows.
-- .NET Framework 4.x.
+- .NET Framework 4.8.
 - Compilador `csc.exe` do .NET Framework.
 - PowerShell 5 ou superior.
 
@@ -82,7 +84,7 @@ O resultado será criado em `dist\`:
 - `rota_leveling_pw_144.xlsx`
 - `LEIA-ME.txt`
 - `INSTALACAO.txt`;
-- `PWQuestOverlay-Portatil-v0.10.2.zip`, quando `-Package` for usado.
+- `PWQuestOverlay-Portatil-v0.11.0.zip`, quando `-Package` for usado.
 
 Para gerar também o instalador, instale o Inno Setup 6 e execute:
 
@@ -90,7 +92,7 @@ Para gerar também o instalador, instale o Inno Setup 6 e execute:
 powershell -ExecutionPolicy Bypass -File .\scripts\build.ps1 -Package -Installer
 ```
 
-O resultado adicional é `PWQuestOverlay-Setup-v0.10.2.exe`. Ele instala por usuário, sem exigir privilégios administrativos, e oferece atalhos e inicialização automática como opções desmarcadas.
+O resultado adicional é `PWQuestOverlay-Setup-v0.11.0.exe`. Ele instala por usuário, sem exigir privilégios administrativos, e oferece atalhos e inicialização automática como opções desmarcadas.
 
 Para compilar e iniciar:
 
@@ -109,6 +111,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\run-dev.ps1
 | `src/QuestStateTracker.cs` | Detecta transições sem confundir ausência com missão nunca aceita. |
 | `src/QuestMemoryMonitor.cs` | Mantém sessões estáveis e independentes para cada cliente aberto. |
 | `src/TaskCatalog.cs` | Relaciona os IDs da memória aos nomes dataminados do cliente. |
+| `src/ClientIdentity.cs` / `src/ClientProfilesForm.cs` | Identificação por cliente sem Helper e seleção de perfis salvos. |
 | `data/quest_routes.json` | Rotas e missões usadas pelo overlay. |
 | `data/memory_offsets.json` | Perfil versionado de offsets do cliente x86. |
 | `data/rota_leveling_pw_144.xlsx` | Planilha editável com cinco abas, uma por raça. Humanos inclui WR/MG; Abissais inclui MC/ES. |
@@ -126,6 +129,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\run-dev.ps1
 | `scripts/inspect-state.ps1` | Exibe o progresso local sem alterá-lo. |
 | `docs/MANUAL-USUARIO.md` | Manual de uso. |
 | `docs/INSTALACAO.md` | Instalação e configuração em outro computador. |
+| `docs/SEM-PW-HELPER.md` | Associação por cliente, títulos iguais e uso independente do Helper. |
 | `docs/ARQUITETURA.md` | Componentes e fluxo do aplicativo. |
 | `docs/DESENVOLVIMENTO.md` | Tutorial de criação e manutenção. |
 | `docs/ROTAS.md` | Como editar ou adicionar missões. |

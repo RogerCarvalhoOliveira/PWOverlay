@@ -54,6 +54,7 @@ Source: "..\dist\LEIA-ME.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\INSTALACAO.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\GUIAS-DEZ-CLASSES.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\GUIA-61-105.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\dist\SEM-PW-HELPER.txt"; DestDir: "{app}"; Flags: ignoreversion
 
 [InstallDelete]
 Type: filesandordirs; Name: "{app}\ocr"
