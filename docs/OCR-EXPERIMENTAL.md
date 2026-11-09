@@ -21,13 +21,13 @@ O avanço exige duas leituras interpretadas iguais. Nesta fase, são concluídas
 
 - a etapa de aceitar quando a missão canônica aparece no quest log;
 - uma etapa de objetivo quando o contador único chega ao total esperado;
-- uma etapa de objetivo quando `Missão Concluída` aparece dentro do bloco canônico correto.
+- uma etapa de conversa ou entrega quando a submissão foi vista e depois desapareceu em duas leituras estáveis.
 
 Etapas de conversa usam também os nomes reais das submissões, como `Visite o Ferreiro`, `Visite o Negociante` e `Visite o Boticário`. Isso permite sincronizar cadeias cujo nome principal não aparece no tracker.
 
-Uma entrega somente avança por desaparecimento quando o OCR já havia visto a missão pronta para entregar. Depois disso, o bloco precisa desaparecer em duas leituras estáveis enquanto outra entrada conhecida comprova que o tracker continua legível. Ausência sem presença anterior nunca é tratada como missão feita. Objetivos com vários contadores também exigem `Missão Concluída`, evitando concluir a etapa quando somente um dos alvos terminou.
+No tracker do PW, `Missão Concluída: NPC` descreve o NPC/condição de conclusão; não confirma que o jogador já realizou a conversa. Por isso essa frase nunca avança progresso sozinha. Uma conversa ou entrega somente avança quando a submissão específica foi vista anteriormente e depois desaparece em duas leituras estáveis enquanto o tracker continua contendo outras entradas. Ausência sem presença anterior nunca é tratada como missão feita. Objetivos com vários contadores permanecem sem avanço automático até existir uma evidência específica confiável.
 
-O teste não conclui, pula nem volta etapas. A calibração é salva proporcionalmente à resolução do cliente e faz parte do backup do estado.
+O teste manual mostra o diagnóstico. Quando o modo automático está ativado, apenas as regras conservadoras acima podem alterar progresso. A calibração é salva proporcionalmente à resolução do cliente e faz parte do backup do estado.
 
 ## Diagnóstico
 

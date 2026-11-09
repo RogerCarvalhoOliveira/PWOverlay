@@ -154,7 +154,7 @@ internal static class SmokeTests
             AppState state = new StateStore().Load();
             if (state.Characters == null || state.Positions == null || state.ClassAssociations == null)
                 throw new InvalidDataException("Estado carregado sem coleções obrigatórias.");
-            if (state.SchemaVersion < 8)
+            if (state.SchemaVersion < 9)
                 throw new InvalidDataException("Estado não foi migrado para a versão atual.");
             if (state.Marker == null || state.Marker.MarkerList == null)
                 throw new InvalidDataException("Calibração do marcador incompleta.");

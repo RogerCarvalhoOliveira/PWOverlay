@@ -141,7 +141,7 @@ namespace PWQuestOverlay
 
         public AppState()
         {
-            SchemaVersion = 8;
+            SchemaVersion = 9;
             Opacity = 0.82;
             Characters = new Dictionary<string, CharacterProgress>(StringComparer.OrdinalIgnoreCase);
             Positions = new Dictionary<string, SavedPosition>(StringComparer.OrdinalIgnoreCase);
@@ -352,6 +352,11 @@ namespace PWQuestOverlay
                     state.Ocr.AutoAdvanceEnabled = false;
                     state.SchemaVersion = 8;
                 }
+                if (state.SchemaVersion < 9)
+                {
+                    state.Ocr.AutoAdvanceEnabled = false;
+                    state.SchemaVersion = 9;
+                }
                 NormalizeMarkerSettings(state.Marker);
                 foreach (CharacterProgress progress in state.Characters.Values)
                 {
@@ -421,6 +426,11 @@ namespace PWQuestOverlay
             {
                 state.Ocr.AutoAdvanceEnabled = false;
                 state.SchemaVersion = 8;
+            }
+            if (state.SchemaVersion < 9)
+            {
+                state.Ocr.AutoAdvanceEnabled = false;
+                state.SchemaVersion = 9;
             }
             NormalizeMarkerSettings(state.Marker);
             foreach (CharacterProgress progress in state.Characters.Values)

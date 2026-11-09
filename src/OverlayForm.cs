@@ -57,7 +57,7 @@ namespace PWQuestOverlay
         private readonly ToolStripMenuItem _ocrAutoAdvanceItem;
         private readonly Dictionary<IntPtr, DateTime> _titleRefresh;
         private readonly Dictionary<string, OcrStabilityState> _ocrStability;
-        private readonly Dictionary<string, OcrMissionObservation> _ocrMissionObservations;
+        private readonly Dictionary<string, OcrStepObservation> _ocrStepObservations;
 
         private IntPtr _activeGame;
         private DateTime _helperNeutralUntil;
@@ -106,9 +106,8 @@ namespace PWQuestOverlay
             internal int? TotalCount;
         }
 
-        private sealed class OcrMissionObservation
+        private sealed class OcrStepObservation
         {
-            internal bool ReadyForTurnInSeen;
             internal bool VisibleInLastConfirmedReading;
         }
 
@@ -132,7 +131,7 @@ namespace PWQuestOverlay
             _orderedStages = new List<RouteStage>();
             _titleRefresh = new Dictionary<IntPtr, DateTime>();
             _ocrStability = new Dictionary<string, OcrStabilityState>(StringComparer.OrdinalIgnoreCase);
-            _ocrMissionObservations = new Dictionary<string, OcrMissionObservation>(
+            _ocrStepObservations = new Dictionary<string, OcrStepObservation>(
                 StringComparer.OrdinalIgnoreCase);
 
             Text = "PW Quest Overlay";
@@ -1752,6 +1751,7 @@ namespace PWQuestOverlay
                 return "Sem etapa ativa para avançar.";
 
             List<OcrQuestBlock> blocks = ParseOcrQuestBlocks(result.Text);
+            RecordVisibleStepObservations(blocks);
             var advances = new List<string>();
             for (int attempt = 0; attempt < 8; attempt++)
             {
@@ -1766,56 +1766,48 @@ namespace PWQuestOverlay
                     blocks,
                     GetOcrAliases(_currentMission, _currentStep, false));
 
-                if (turnInStage)
+                if (turnInStage || talkStage)
                 {
-                    OcrMissionObservation observation = GetMissionObservation(_currentMission);
-                    if (!observation.ReadyForTurnInSeen && _currentStepIndex > 0)
+                    OcrStepObservation observation = GetStepObservation(
+                        _currentMission, _currentStep);
+                    if (!observation.VisibleInLastConfirmedReading &&
+                        turnInStage && _currentStepIndex > 0)
                     {
                         QuestStep previousStep = _currentMission.steps[_currentStepIndex - 1];
                         string previousState;
                         if (_progress.MissionStates.TryGetValue(
                             StageKey(_currentMission, previousStep), out previousState) &&
                             string.Equals(previousState, "done-ocr", StringComparison.OrdinalIgnoreCase))
-                        {
-                            observation.ReadyForTurnInSeen = true;
                             observation.VisibleInLastConfirmedReading = true;
-                        }
                     }
-                    bool missionStillVisible =
-                        FindBestBlock(blocks,
-                            GetOcrAliases(_currentMission, _currentStep, true)) != null ||
-                        HasMissionEvidence(_currentMission, blocks);
-                    if (missionStillVisible)
+                    bool stepStillVisible = stepBlock != null ||
+                        (turnInStage && missionBlock != null);
+                    if (stepStillVisible)
                     {
                         observation.VisibleInLastConfirmedReading = true;
                         break;
                     }
-                    if (!observation.ReadyForTurnInSeen ||
-                        !observation.VisibleInLastConfirmedReading ||
-                        !HasAnyKnownRouteEvidence(blocks))
+                    if (!observation.VisibleInLastConfirmedReading || blocks.Count == 0)
                         break;
 
-                    string deliveredMission = _currentMission.name;
-                    int deliveredStep = _currentStepIndex + 1;
+                    string completedMissionName = _currentMission.name;
+                    int completedStepNumber = _currentStepIndex + 1;
                     MarkCurrentStageFromOcr(
-                        "missão pronta foi vista e depois desapareceu do quest log");
-                    advances.Add(deliveredMission + " etapa " + deliveredStep +
-                        " (entrega confirmada pelo desaparecimento após presença)");
+                        "submissão foi vista e depois desapareceu do quest log");
+                    advances.Add(completedMissionName + " etapa " + completedStepNumber +
+                        " (conversa/entrega confirmada por presença e desaparecimento)");
                     observation.VisibleInLastConfirmedReading = false;
-                    observation.ReadyForTurnInSeen = false;
                     continue;
                 }
 
                 if (acceptStage)
                 {
                     if (!HasAcceptedMissionEvidence(_currentMission, blocks)) break;
-                    QuestMission acceptedMissionObject = _currentMission;
                     string acceptedMission = _currentMission.name;
                     int acceptedStep = _currentStepIndex + 1;
                     MarkCurrentStageFromOcr("missão ou submissão apareceu no quest log");
                     advances.Add(acceptedMission + " etapa " + acceptedStep +
                         " (missão/submissão visível)");
-                    GetMissionObservation(acceptedMissionObject).VisibleInLastConfirmedReading = true;
                     continue;
                 }
 
@@ -1829,11 +1821,7 @@ namespace PWQuestOverlay
                     missionBlock.TotalCount.HasValue &&
                     missionBlock.CurrentCount.Value >= expectedTotal.Value &&
                     missionBlock.TotalCount.Value == expectedTotal.Value;
-                bool objectiveFinished = talkStage
-                    ? stepBlock != null && stepBlock.Completed
-                    : counterFinished ||
-                        (missionBlock != null && missionBlock.Completed) ||
-                        (stepBlock != null && stepBlock.Completed);
+                bool objectiveFinished = counterFinished;
                 if (!objectiveFinished) break;
 
                 string missionName = _currentMission.name;
@@ -1841,17 +1829,9 @@ namespace PWQuestOverlay
                 string evidence = counterFinished
                     ? "contador " + missionBlock.CurrentCount.Value + "/" +
                         missionBlock.TotalCount.Value
-                    : "Missão Concluída na missão ou submissão correta";
-                QuestMission completedMission = _currentMission;
+                    : "objetivo numérico confirmado";
                 MarkCurrentStageFromOcr(evidence);
                 advances.Add(missionName + " etapa " + stepNumber + " (" + evidence + ")");
-                OcrMissionObservation completedObservation = GetMissionObservation(completedMission);
-                completedObservation.VisibleInLastConfirmedReading = true;
-                if (_currentMission != null && _currentStep != null &&
-                    string.Equals(_currentMission.id, completedMission.id,
-                        StringComparison.OrdinalIgnoreCase) &&
-                    IsTurnInStage(_currentMission, _currentStep))
-                    completedObservation.ReadyForTurnInSeen = true;
             }
 
             return advances.Count == 0
@@ -2035,19 +2015,37 @@ namespace PWQuestOverlay
             return blocks.Any(block => FindBestKnownAlias(block.ObservedTitle) != null);
         }
 
-        private OcrMissionObservation GetMissionObservation(QuestMission mission)
+        private OcrStepObservation GetStepObservation(QuestMission mission, QuestStep step)
         {
             string profileKey = !string.IsNullOrWhiteSpace(_characterKey)
                 ? _characterKey
                 : "hwnd:" + _activeGame.ToInt64().ToString("X");
-            string key = profileKey + "|" + mission.id;
-            OcrMissionObservation observation;
-            if (!_ocrMissionObservations.TryGetValue(key, out observation))
+            string key = profileKey + "|" + StageKey(mission, step);
+            OcrStepObservation observation;
+            if (!_ocrStepObservations.TryGetValue(key, out observation))
             {
-                observation = new OcrMissionObservation();
-                _ocrMissionObservations[key] = observation;
+                observation = new OcrStepObservation();
+                _ocrStepObservations[key] = observation;
             }
             return observation;
+        }
+
+        private void RecordVisibleStepObservations(List<OcrQuestBlock> blocks)
+        {
+            foreach (QuestMission mission in _currentRoute)
+            {
+                foreach (QuestStep step in mission.steps)
+                {
+                    bool turnIn = IsTurnInStage(mission, step);
+                    bool conversationOrTurnIn = IsTalkStage(step.action) || turnIn;
+                    if (!conversationOrTurnIn) continue;
+                    OcrQuestBlock block = FindBestBlock(
+                        blocks,
+                        GetOcrAliases(mission, step, turnIn));
+                    if (block != null)
+                        GetStepObservation(mission, step).VisibleInLastConfirmedReading = true;
+                }
+            }
         }
 
         private void MarkCurrentStageFromOcr(string evidence)
