@@ -129,6 +129,21 @@ internal static class SmokeTests
                 throw new InvalidDataException("Nomes dataminados de Cultivo 29 ou DG29 estão ausentes.");
             if (cultivo29.steps[0].routeOrder >= moeda29.steps[moeda29.steps.Count - 1].routeOrder)
                 throw new InvalidDataException("Cultivo 29 e Moeda da DG29 não foram agrupados corretamente.");
+            if (!(moeda29.steps[1].routeOrder < cultivo29.steps[2].routeOrder &&
+                  cultivo29.steps[2].routeOrder < moeda29.steps[2].routeOrder &&
+                  moeda29.steps[2].routeOrder < cultivo29.steps[3].routeOrder &&
+                  moeda29.steps[3].routeOrder < cultivo29.steps[4].routeOrder))
+                throw new InvalidDataException("DG29 separou objetivos de chefes ou retornos ao Imortal.");
+            QuestMission dg39 = common.Find(m => m.id.Contains("DG39"));
+            QuestMission dg59 = common.Find(m => m.id.Contains("DG59"));
+            QuestMission cultivo59 = common.Find(m => m.id.Contains("Cultivo 59"));
+            QuestMission flightCleanup = common.Find(m => m.id.Contains("Remover missão de voo"));
+            if (dg39.steps.Last().routeOrder >= common.Where(m => m.minLevel >= 40)
+                    .SelectMany(m => m.steps).Min(s => s.routeOrder) ||
+                dg59.steps[1].routeOrder >= cultivo59.steps[2].routeOrder ||
+                flightCleanup.steps.Last().routeOrder >= common.Where(m => m.minLevel == 31)
+                    .SelectMany(m => m.steps).Min(s => s.routeOrder))
+                throw new InvalidDataException("DG39, DG59 ou remoção do voo foram adiadas para fora da visita planejada.");
 
             QuestMission forgeWr = wr.Find(m => m.name == "Habilidades Produção");
             QuestMission hedgehogWr = wr.Find(m => m.name == "Espinho do Ouriço");

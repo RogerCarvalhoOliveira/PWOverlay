@@ -9,7 +9,7 @@ $projectRoot = Split-Path -Parent $PSScriptRoot
 $sourceDirectory = Join-Path $projectRoot 'src'
 $dataDirectory = Join-Path $projectRoot 'data'
 $distributionDirectory = Join-Path $projectRoot 'dist'
-$version = '0.7.6'
+$version = '0.8.0'
 
 $compilerCandidates = @(
     'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe',
@@ -172,4 +172,15 @@ if ($Installer) {
     & $innoCompiler "/DMyAppVersion=$version" (Join-Path $projectRoot 'installer\PWQuestOverlay.iss')
     if ($LASTEXITCODE -ne 0) { throw 'Falha ao gerar o instalador.' }
     Write-Host "Instalador criado: $(Join-Path $distributionDirectory "PWQuestOverlay-Setup-v$version.exe")"
+}
+
+if ($Package -or $Installer) {
+    $releaseFiles = @()
+    if ($Package) { $releaseFiles += Join-Path $distributionDirectory "PWQuestOverlay-Portatil-v$version.zip" }
+    if ($Installer) { $releaseFiles += Join-Path $distributionDirectory "PWQuestOverlay-Setup-v$version.exe" }
+    $hashes = $releaseFiles | ForEach-Object {
+        $hash = Get-FileHash -LiteralPath $_ -Algorithm SHA256
+        '{0}  {1}' -f $hash.Hash.ToLowerInvariant(), (Split-Path -Leaf $_)
+    }
+    $hashes | Set-Content -LiteralPath (Join-Path $distributionDirectory "SHA256SUMS-v$version.txt") -Encoding ASCII
 }

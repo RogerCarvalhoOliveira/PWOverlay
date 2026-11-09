@@ -1,6 +1,12 @@
 # Histórico de alterações
 
-## Em desenvolvimento - Estado de missão por memória
+## 0.8.0 - Rotas revisadas e estado por memória
+
+- Promovida a integração de memória à versão estável, com ativação opcional e avanço manual para objetivos ainda sem evidência suportada.
+- Reordenadas etapas locais com coordenadas conhecidas, preservando dependências, limites de desbloqueio e progresso salvo.
+- Agrupadas moeda e cultivo nas DG29 e DG59 para evitar repetir a entrada; DG39 agora é concluída na faixa do cultivo 39.
+- Antecipada a remoção do pop-up de voo para a primeira visita do nível 30 à cidade.
+- Incluídos catálogo de missões e offsets no instalador.
 
 - Criada a branch experimental `feature/memory-quest-state`, com leitura externa somente leitura do cliente x86.
 - Identificados `CECHostPlayer`, `CECTaskInterface`, lista ativa, relação pai/filho, histórico e inventário de missão.

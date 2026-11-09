@@ -8,9 +8,9 @@ O programa identifica cada cliente pelo título criado pelo PW Helper, por exemp
 
 Para usar sem compilar, abra a [versão mais recente](https://github.com/RogerCarvalhoOliveira/PWOverlay/releases/latest) e baixe:
 
-- `PWQuestOverlay-Setup-v0.7.6.exe`: instalador recomendado para Windows;
-- `PWQuestOverlay-Portatil-v0.7.6.zip`: pacote portátil;
-- `SHA256SUMS-v0.7.6.txt`: hashes para conferir a integridade dos arquivos.
+- `PWQuestOverlay-Setup-v0.8.0.exe`: instalador recomendado para Windows;
+- `PWQuestOverlay-Portatil-v0.8.0.zip`: pacote portátil;
+- `SHA256SUMS-v0.8.0.txt`: hashes para conferir a integridade dos arquivos.
 
 Depois da instalação, execute **PW Overlay Central** para escolher se deseja ativar o Overlay e/ou o Windowed Fullscreen antes de abrir o jogo. O botão azul/cinza permite ligar ou desligar o Windowed Fullscreen imediatamente, inclusive com os clientes já abertos.
 
@@ -48,7 +48,7 @@ Depois da instalação, execute **PW Overlay Central** para escolher se deseja a
 
 ## Limites de segurança
 
-A versão estável do overlay não lê memória do jogo, não injeta DLL e não captura pacotes. Nesta branch experimental, o overlay pode usar leitura externa somente leitura para sincronizar missões. O recurso fica desligado por padrão, não escreve no processo do jogo e só avança etapas com evidências estáveis. Consulte [MEMORIA-EXPERIMENTAL](docs/MEMORIA-EXPERIMENTAL.md).
+A partir da versão 0.8.0, o overlay oferece sincronização opcional por leitura de memória do cliente The Classic 1.4.4 x86. O recurso começa desligado, nunca escreve no processo do jogo e só avança etapas com evidências estáveis. Etapas sem evidência suportada continuam disponíveis para avanço manual. Consulte [documentação da leitura de memória](docs/MEMORIA-EXPERIMENTAL.md).
 
 A única automação da versão estável dentro do cliente é acionada manualmente pelo botão **Marcar** e reproduz cliques/teclas na janela pública de Marcadores; não movimenta o personagem, luta nem entrega missões.
 
@@ -72,14 +72,14 @@ O resultado será criado em `dist\`:
 - `PW Quest Overlay.exe`
 - `PW Borderless.exe`
 - `PW Overlay Central.exe`
-- `PW Memory Probe.exe` (somente nesta branch experimental)
+- `PW Memory Probe.exe` (diagnóstico opcional)
 - `quest_routes.json`
-- `memory_offsets.json` (somente nesta branch experimental)
-- `task_catalog_144.tsv` (somente nesta branch experimental)
+- `memory_offsets.json`
+- `task_catalog_144.tsv`
 - `rota_leveling_pw_144.xlsx`
 - `LEIA-ME.txt`
 - `INSTALACAO.txt`;
-- `PWQuestOverlay-Portatil-v0.7.6.zip`, quando `-Package` for usado.
+- `PWQuestOverlay-Portatil-v0.8.0.zip`, quando `-Package` for usado.
 
 Para gerar também o instalador, instale o Inno Setup 6 e execute:
 
@@ -87,7 +87,7 @@ Para gerar também o instalador, instale o Inno Setup 6 e execute:
 powershell -ExecutionPolicy Bypass -File .\scripts\build.ps1 -Package -Installer
 ```
 
-O resultado adicional é `PWQuestOverlay-Setup-v0.7.6.exe`. Ele instala por usuário, sem exigir privilégios administrativos, e oferece atalhos e inicialização automática como opções desmarcadas.
+O resultado adicional é `PWQuestOverlay-Setup-v0.8.0.exe`. Ele instala por usuário, sem exigir privilégios administrativos, e oferece atalhos e inicialização automática como opções desmarcadas.
 
 Para compilar e iniciar:
 

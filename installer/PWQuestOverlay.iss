@@ -1,5 +1,5 @@
 #ifndef MyAppVersion
-  #define MyAppVersion "0.7.6"
+  #define MyAppVersion "0.8.0"
 #endif
 
 #define MyAppName "PW Quest Overlay"
@@ -43,6 +43,8 @@ Source: "..\dist\PW Quest Overlay.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\PW Borderless.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\PW Overlay Central.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\quest_routes.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\dist\memory_offsets.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\dist\task_catalog_144.tsv"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\rota_leveling_pw_144.xlsx"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\LEIA-ME.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\INSTALACAO.txt"; DestDir: "{app}"; Flags: ignoreversion

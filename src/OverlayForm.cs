@@ -294,7 +294,7 @@ namespace PWQuestOverlay
             _trayMenu.Items.Add("Restaurar backup de perfis...", null, delegate { RestoreBackup(); });
             _trayMenu.Items.Add(new ToolStripSeparator());
             _trayMenu.Items.Add("Calibrar marcador...", null, delegate { OpenMarkerCalibration(); });
-            ToolStripMenuItem memoryMenu = new ToolStripMenuItem("Estado por memória (experimental)");
+            ToolStripMenuItem memoryMenu = new ToolStripMenuItem("Estado das missões por memória");
             _memoryAutoAdvanceItem = new ToolStripMenuItem(
                 "Sincronizar e avançar automaticamente")
             {

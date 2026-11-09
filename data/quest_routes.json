@@ -1713,7 +1713,7 @@
           "action": "Pegue um certificado: Filhote de Lobo Feroz (232, 639) ou Escorpião Venenoso ao sul da Cidade das Feras",
           "markerX": 232,
           "markerY": 639,
-          "routeOrder": 10150,
+          "routeOrder": 10160,
           "title": "Certif. do Lobo"
         },
         {
@@ -1756,7 +1756,7 @@
           "action": "Matar (10) Vela Fantasmagórica (Oeste da Cidade das Feras – Vale dos Dragões) (228, 637)",
           "markerX": 228,
           "markerY": 637,
-          "routeOrder": 10160,
+          "routeOrder": 10150,
           "title": "Matar Velas Fantasmagóricas"
         },
         {
@@ -2517,7 +2517,7 @@
           "action": "Fale com o Guarda Torong Gurds da Cidade das Espadas (433, 886)",
           "markerX": 433,
           "markerY": 886,
-          "routeOrder": 11290,
+          "routeOrder": 11270,
           "title": "Caverna das Feras"
         },
         {
@@ -2525,7 +2525,7 @@
           "action": "Fale com a Guarda Ewlen da Cidade das Plumas (321, 419)",
           "markerX": 321,
           "markerY": 419,
-          "routeOrder": 11300,
+          "routeOrder": 11290,
           "title": "Caverna das Feras"
         },
         {
@@ -3048,7 +3048,7 @@
           "action": "Coletar (1) Cavalo de Íris em alguma dessas coordenadas: (368, 685), (374, 648) ou (354 669)",
           "markerX": 368,
           "markerY": 685,
-          "routeOrder": 11270,
+          "routeOrder": 11280,
           "title": "Celestial"
         },
         {
@@ -3056,7 +3056,7 @@
           "action": "Entregue a missão para Taoísta Miao Miao (244, 647)",
           "markerX": 244,
           "markerY": 647,
-          "routeOrder": 11280,
+          "routeOrder": 11300,
           "title": "Escoltando o Celestial"
         }
       ],
@@ -3283,7 +3283,7 @@
           "action": "Entregue a missão para Guarda Ewlen da Cidade das Plumas (321, 419)",
           "markerX": 321,
           "markerY": 419,
-          "routeOrder": 10060,
+          "routeOrder": 10100,
           "title": "Presente para o Guarda"
         }
       ],
@@ -3318,7 +3318,7 @@
           "action": "Fale com Ferreiro Endrieth (339, 406)",
           "markerX": 339,
           "markerY": 406,
-          "routeOrder": 10070,
+          "routeOrder": 10060,
           "title": "O Renascer dos Alados"
         },
         {
@@ -3326,7 +3326,7 @@
           "action": "Fale com Comerciante Dawgorn (343, 407)",
           "markerX": 343,
           "markerY": 407,
-          "routeOrder": 10080,
+          "routeOrder": 10070,
           "title": "O Renascer dos Alados"
         },
         {
@@ -3334,7 +3334,7 @@
           "action": "Fale com Artesã Raven (344, 413)",
           "markerX": 344,
           "markerY": 413,
-          "routeOrder": 10090,
+          "routeOrder": 10080,
           "title": "O Renascer dos Alados"
         },
         {
@@ -3342,7 +3342,7 @@
           "action": "Fale com Boticário Muriel (342, 414)",
           "markerX": 342,
           "markerY": 414,
-          "routeOrder": 10100,
+          "routeOrder": 10090,
           "title": "O Renascer dos Alados"
         },
         {
@@ -3794,7 +3794,7 @@
           "action": "Pegar (10) Ovo de Bicho-Pau matando Serpente Verde (Arredores da Vila do Bambu) (371, 359)",
           "markerX": 371,
           "markerY": 359,
-          "routeOrder": 10490,
+          "routeOrder": 10530,
           "title": "Estar em Perigo"
         },
         {
@@ -3880,7 +3880,7 @@
           "action": "Matar (5) Cobra Naga Feroz (Arredores do Estaleiro - Lago das Plumas) (333, 365)",
           "markerX": 333,
           "markerY": 365,
-          "routeOrder": 10500,
+          "routeOrder": 10490,
           "title": "Matar Cobras Nagas"
         },
         {
@@ -3888,7 +3888,7 @@
           "action": "Entregue a missão para Lider da Vila do Bambu (369, 351)",
           "markerX": 369,
           "markerY": 351,
-          "routeOrder": 10510,
+          "routeOrder": 10520,
           "title": "Matar Cobras Nagas"
         }
       ],
@@ -3966,7 +3966,7 @@
           "action": "Matar (25) Besouro Estrela (Montanha Branca) (377, 309)",
           "markerX": 377,
           "markerY": 309,
-          "routeOrder": 10520,
+          "routeOrder": 10500,
           "title": "Matar Besouro Estrela"
         },
         {
@@ -3974,7 +3974,7 @@
           "action": "Entregue a missão para Nana Johnson (372, 351)",
           "markerX": 372,
           "markerY": 351,
-          "routeOrder": 10530,
+          "routeOrder": 10510,
           "title": "Nana Johnson"
         }
       ],
@@ -4616,7 +4616,7 @@
           "action": "Pegar (1) Humano Celestial matando Anta de Costas Ásperas (Vale do Escorpião-Serpente) (274, 490)",
           "markerX": 274,
           "markerY": 490,
-          "routeOrder": 11140,
+          "routeOrder": 11130,
           "title": "Celestial em Perigo"
         },
         {
@@ -4624,7 +4624,7 @@
           "action": "Coletar (1) Cavalo Celestial (Planta) em alguma dessas coordenadas: (295, 429), (281, 404), (292, 446)",
           "markerX": 295,
           "markerY": 429,
-          "routeOrder": 11150,
+          "routeOrder": 11140,
           "title": "Celestial"
         },
         {
@@ -4632,7 +4632,7 @@
           "action": "Entregue a missão para Taoísta Coranthir (322, 421)",
           "markerX": 322,
           "markerY": 421,
-          "routeOrder": 11160,
+          "routeOrder": 11150,
           "title": "Escoltando o Celestial"
         }
       ],
@@ -4741,7 +4741,7 @@
           "action": "Matar (30) Anta de Chifre Longo (Região do Rio da Alegria) (309, 493)",
           "markerX": 309,
           "markerY": 493,
-          "routeOrder": 11130,
+          "routeOrder": 11120,
           "title": "Anta de Chifre Longo"
         },
         {
@@ -4749,7 +4749,7 @@
           "action": "Reporte a Sacerdotisa (325, 424)",
           "markerX": 325,
           "markerY": 424,
-          "routeOrder": 11170,
+          "routeOrder": 11160,
           "title": "Teste de Capacidade"
         },
         {
@@ -4832,7 +4832,7 @@
           "action": "Entregue a missão para Anciã (327, 427)",
           "markerX": 327,
           "markerY": 427,
-          "routeOrder": 11120,
+          "routeOrder": 11170,
           "title": "As Contramedidas"
         }
       ],
@@ -5146,7 +5146,7 @@
           "action": "Retorne ao Guarda Rio da Fonte Negra (629, 242)",
           "markerX": 629,
           "markerY": 242,
-          "routeOrder": 10150,
+          "routeOrder": 10160,
           "title": "Pular em Telhados"
         }
       ],
@@ -5181,7 +5181,7 @@
           "action": "Colete 10 Casco de Tartaruga Roxa ( Dropa da Tartaruga de Boca de Leão (628, 238)",
           "markerX": 628,
           "markerY": 238,
-          "routeOrder": 10160,
+          "routeOrder": 10150,
           "title": "Carapaça Entalhada"
         },
         {
@@ -5725,7 +5725,7 @@
           "action": "Fale com Peixe Caçador de Tesouro Mu Ji (618, 243)",
           "markerX": 618,
           "markerY": 243,
-          "routeOrder": 10780,
+          "routeOrder": 10760,
           "title": "Tesouro 1"
         },
         {
@@ -5733,7 +5733,7 @@
           "action": "Pegue 3 Baú de Tesouro (608, 255) ( no fundo do mar)",
           "markerX": 608,
           "markerY": 255,
-          "routeOrder": 10790,
+          "routeOrder": 10770,
           "title": "Tesouro 1"
         },
         {
@@ -5741,7 +5741,7 @@
           "action": "Retorne a Peixe Caçador de Tesouro Mu Ji (618, 243)",
           "markerX": 618,
           "markerY": 243,
-          "routeOrder": 10800,
+          "routeOrder": 10780,
           "title": "Tesouro 1"
         }
       ],
@@ -5776,7 +5776,7 @@
           "action": "Fale com Ferreiro Xiaodao (630, 241)",
           "markerX": 630,
           "markerY": 241,
-          "routeOrder": 10770,
+          "routeOrder": 10790,
           "title": "Informar com Lu Dadao"
         },
         {
@@ -5843,7 +5843,7 @@
           "action": "Retorne ao Oficial de Transporte Changqin (687, 255)",
           "markerX": 687,
           "markerY": 255,
-          "routeOrder": 10760,
+          "routeOrder": 10800,
           "title": "Notícia Ruim"
         }
       ],
@@ -6242,7 +6242,7 @@
           "action": "Fale com Guarda Acampamento Quebra Onda (670, 175)",
           "markerX": 670,
           "markerY": 175,
-          "routeOrder": 11160,
+          "routeOrder": 11170,
           "title": "Pedido do Veterano"
         },
         {
@@ -6250,7 +6250,7 @@
           "action": "Matar 4 Restante de Pedra de Gelo (670, 175)",
           "markerX": 670,
           "markerY": 175,
-          "routeOrder": 11170,
+          "routeOrder": 11180,
           "title": "Pedido do Veterano"
         },
         {
@@ -6258,7 +6258,7 @@
           "action": "Matar 8 Restante de Pedra de Fogo (670, 175)",
           "markerX": 670,
           "markerY": 175,
-          "routeOrder": 11180,
+          "routeOrder": 11190,
           "title": "Pedido do Veterano"
         },
         {
@@ -6336,7 +6336,7 @@
           "action": "Pegar Humano Celestial (Dropa do Demônio Verdejante (656, 179))",
           "markerX": 656,
           "markerY": 179,
-          "routeOrder": 11190,
+          "routeOrder": 11160,
           "title": "Celestial em Perigo"
         },
         {
@@ -6595,7 +6595,7 @@
           "action": "Fale com o Ancião (570, 648)",
           "markerX": 570,
           "markerY": 648,
-          "routeOrder": 1203701,
+          "routeOrder": 1203704,
           "title": "Segredo do Ancião"
         },
         {
@@ -6603,7 +6603,7 @@
           "action": "Cave o documento (578, 767)",
           "markerX": 578,
           "markerY": 767,
-          "routeOrder": 1203702,
+          "routeOrder": 1203705,
           "title": "Busca pelo Tesouro"
         },
         {
@@ -6611,7 +6611,7 @@
           "action": "Volte ao Ancião (570, 648)",
           "markerX": 570,
           "markerY": 648,
-          "routeOrder": 1203703,
+          "routeOrder": 1203706,
           "title": "Busca pelo Tesouro"
         }
       ]
@@ -6679,13 +6679,13 @@
           "action": "Fale com Ferreiro Elnister Wozz (430, 460)",
           "markerX": 430,
           "markerY": 460,
-          "routeOrder": 1225001,
+          "routeOrder": 1225004,
           "title": "Os Melhores Amigos"
         },
         {
           "id": "e2",
           "action": "Visite Guarda Ansem (246, 644), Guia (255, 689) e Guarda Syrek (230, 554)",
-          "routeOrder": 1225002,
+          "routeOrder": 1225005,
           "title": "Pergunte sobre Hu Che / Caminho da Guia / Visitar Hu Chensha"
         },
         {
@@ -6693,7 +6693,7 @@
           "action": "Mate 30 Serpentes Centenárias e entregue ao Guarda Syrek (230, 554)",
           "markerX": 230,
           "markerY": 554,
-          "routeOrder": 1225003,
+          "routeOrder": 1225006,
           "title": "Matar a Serpente Cente"
         }
       ]
@@ -6720,13 +6720,13 @@
           "action": "Fale com Ferreiro Elnister Wozz (430, 460)",
           "markerX": 430,
           "markerY": 460,
-          "routeOrder": 1225001,
+          "routeOrder": 1225007,
           "title": "Os Melhores Amigos"
         },
         {
           "id": "e2",
           "action": "Visite Guarda (320, 415), Vila Luoying (368, 460) e Vila do Bambu (371, 350)",
-          "routeOrder": 1225002,
+          "routeOrder": 1225008,
           "title": "Pergunte sobre Michael / Caminho da Guia / Comerciante Junien"
         },
         {
@@ -6734,7 +6734,7 @@
           "action": "Mate 30 Serpentes Centenárias e entregue na Vila do Bambu (371, 350)",
           "markerX": 371,
           "markerY": 350,
-          "routeOrder": 1225003,
+          "routeOrder": 1225009,
           "title": "Matar a Serpente Cente"
         }
       ]
@@ -6906,7 +6906,7 @@
           "action": "NPC Final: Jamile Brown (227, 554)",
           "markerX": 227,
           "markerY": 554,
-          "routeOrder": 1209800,
+          "routeOrder": 1209900,
           "title": "Empréstimo"
         }
       ]
@@ -6955,7 +6955,7 @@
         {
           "id": "e4",
           "action": "Mate 15 Lobos das Cinzas e 15 Lobos Escarlates na Mina",
-          "routeOrder": 1210600,
+          "routeOrder": 1210700,
           "title": "Ameaça do Lobo"
         },
         {
@@ -6963,7 +6963,7 @@
           "action": "Mate 25 Rinocerontes Terrestres e entregue ao General (521, 629)",
           "markerX": 521,
           "markerY": 629,
-          "routeOrder": 1210700,
+          "routeOrder": 1210800,
           "title": "Rebelião do Arco Quebrado"
         }
       ]
@@ -7401,7 +7401,7 @@
         {
           "id": "e8",
           "action": "Pegar (5) Fragmento Elemental",
-          "routeOrder": 1209000,
+          "routeOrder": 1209100,
           "title": "Altar de Pedra"
         },
         {
@@ -7409,7 +7409,7 @@
           "action": "NPC Final: Velho Forjador de Espadas (536, 755)",
           "markerX": 536,
           "markerY": 755,
-          "routeOrder": 1209200,
+          "routeOrder": 1209300,
           "title": "Altar de Pedra"
         },
         {
@@ -7417,7 +7417,7 @@
           "action": "Fale com o Altar de Pedra (454, 686)",
           "markerX": 454,
           "markerY": 686,
-          "routeOrder": 1209400,
+          "routeOrder": 1209500,
           "title": "Altar de Pedra"
         }
       ]
@@ -7458,7 +7458,7 @@
         {
           "id": "e3",
           "action": "Complete Devastadores de Tumbas, Taça Perdida, Pedra Espiritual e Varinha Azul-Púrpura",
-          "routeOrder": 1210800,
+          "routeOrder": 1210900,
           "title": "Devastadores de Tumbas / A Taça Perdida de Jade / Pedra Espiritual Roubada / Cetro Azul-Púrpura Roubado"
         },
         {
@@ -7466,13 +7466,13 @@
           "action": "Volte ao Ancião da Cidade do Dragão (570, 648)",
           "markerX": 570,
           "markerY": 648,
-          "routeOrder": 1210900,
+          "routeOrder": 1211000,
           "title": "Acontecimentos estranhos"
         },
         {
           "id": "e5",
           "action": "Complete Fenômeno Astronômico, Descobertas e Ressentimento Agravado",
-          "routeOrder": 1211000,
+          "routeOrder": 1211100,
           "title": "Fenômeno Astronômico / As Descobertas de Tong Youke / Ressentimento Agravado"
         },
         {
@@ -7480,7 +7480,7 @@
           "action": "Mate Mei Yao (412, 538) e entregue ao Convidado Tranquilo (443, 563)",
           "markerX": 412,
           "markerY": 538,
-          "routeOrder": 1211100,
+          "routeOrder": 1211200,
           "title": "O Culpado"
         }
       ]
@@ -7515,7 +7515,7 @@
           "action": "Pegar (1) Diário de Caranin matando Arqueiro Lobisomen (Monte do Arco Quebrado) (444, 693)",
           "markerX": 444,
           "markerY": 693,
-          "routeOrder": 1209100,
+          "routeOrder": 1209200,
           "title": "Pistas"
         },
         {
@@ -7523,7 +7523,7 @@
           "action": "Fale com Lara Heldric (563, 687)",
           "markerX": 563,
           "markerY": 687,
-          "routeOrder": 1209300,
+          "routeOrder": 1209400,
           "title": "O Diário de Caranin"
         },
         {
@@ -7531,7 +7531,7 @@
           "action": "Fale com o Ancião da Cidade das Espadas (433, 887)",
           "markerX": 433,
           "markerY": 887,
-          "routeOrder": 1209900,
+          "routeOrder": 1210000,
           "title": "Encontrar Caranin"
         },
         {
@@ -7539,7 +7539,7 @@
           "action": "Fale com Caranin na Cidade das Espadas (439, 892)",
           "markerX": 439,
           "markerY": 892,
-          "routeOrder": 1210000,
+          "routeOrder": 1210100,
           "title": "Falar com Caranin"
         },
         {
@@ -7547,7 +7547,7 @@
           "action": "Fale com Lara Heldric (563, 687)",
           "markerX": 563,
           "markerY": 687,
-          "routeOrder": 1210200,
+          "routeOrder": 1210300,
           "title": "Relatar a Lara Heldric"
         },
         {
@@ -7555,7 +7555,7 @@
           "action": "Fale com Caranin na Cidade das Espadas (439, 892)",
           "markerX": 439,
           "markerY": 892,
-          "routeOrder": 1210300,
+          "routeOrder": 1210400,
           "title": "A Memória de Caranin"
         },
         {
@@ -7563,7 +7563,7 @@
           "action": "NPC Final: Lara Heldric (563, 687)",
           "markerX": 563,
           "markerY": 687,
-          "routeOrder": 1210400,
+          "routeOrder": 1210500,
           "title": "O Retorno de Caranin"
         }
       ]
@@ -7822,7 +7822,7 @@
           "action": "Fale com a Asceta Alada na Montanha Branca (319, 330)",
           "markerX": 319,
           "markerY": 330,
-          "routeOrder": 1209600,
+          "routeOrder": 1209700,
           "title": "Visitar Asceta"
         },
         {
@@ -7830,7 +7830,7 @@
           "action": "Fale com a Asceta Alada (319, 330)",
           "markerX": 319,
           "markerY": 330,
-          "routeOrder": 1209700,
+          "routeOrder": 1209800,
           "title": "Capturar Tigre Voador"
         },
         {
@@ -7838,7 +7838,7 @@
           "action": "Pegar (1) Restos de Tigre Alado no fundo do Lago das Espadas na coordenada (488, 901)",
           "markerX": 488,
           "markerY": 901,
-          "routeOrder": 1210100,
+          "routeOrder": 1210200,
           "title": "Lago das Espadas"
         },
         {
@@ -7846,7 +7846,7 @@
           "action": "NPC Final: Asceta Alada (319, 330)",
           "markerX": 319,
           "markerY": 330,
-          "routeOrder": 1210500,
+          "routeOrder": 1210600,
           "title": "Tigre Voador Sem Alma"
         }
       ]
@@ -7924,7 +7924,7 @@
           "action": "Matar (10) Arqueiro Lobo (Vale das Orquídeas) (525, 573)",
           "markerX": 525,
           "markerY": 573,
-          "routeOrder": 1208600,
+          "routeOrder": 1208700,
           "title": "Tirar os Obstáculos"
         },
         {
@@ -7932,7 +7932,7 @@
           "action": "Matar (10) Raiz Maligna (Valedas Orquídeas) (525, 573)",
           "markerX": 525,
           "markerY": 573,
-          "routeOrder": 1208700,
+          "routeOrder": 1208800,
           "title": "Tirar os Obstáculos"
         },
         {
@@ -7940,7 +7940,7 @@
           "action": "Matar (10) Golem Guardião (Vale das Orquídeas) (525, 573)",
           "markerX": 525,
           "markerY": 573,
-          "routeOrder": 1208800,
+          "routeOrder": 1208900,
           "title": "Tirar os Obstáculos"
         },
         {
@@ -7948,7 +7948,7 @@
           "action": "NPC Final: General Lotor Akre (521, 629)",
           "markerX": 521,
           "markerY": 629,
-          "routeOrder": 1208900,
+          "routeOrder": 1209000,
           "title": "informe ao General"
         }
       ]
@@ -7975,7 +7975,7 @@
           "action": "Fale com o Imortal Realizado (520, 628)",
           "markerX": 520,
           "markerY": 628,
-          "routeOrder": 1208500,
+          "routeOrder": 1208600,
           "title": "Princípio Lúcido."
         },
         {
@@ -7983,13 +7983,13 @@
           "action": "Obtenha 6 Espinhos de Aranha Venenosa em Predadores Venenosos (457, 513)",
           "markerX": 457,
           "markerY": 513,
-          "routeOrder": 1209500,
+          "routeOrder": 1209600,
           "title": "Inimigo do Infante Primordial"
         },
         {
           "id": "e3",
           "action": "Entre no Túmulo do Herói e mate Fang Qingzi",
-          "routeOrder": 1211200,
+          "routeOrder": 1211300,
           "title": "Livrando-se do Corpo"
         },
         {
@@ -7997,7 +7997,7 @@
           "action": "Reporte ao Imortal Realizado (520, 628)",
           "markerX": 520,
           "markerY": 628,
-          "routeOrder": 1211300,
+          "routeOrder": 1211500,
           "title": "O Imortal Realizado"
         },
         {
@@ -8005,7 +8005,7 @@
           "action": "Entregue ao Convidado Tranquilo (443, 563)",
           "markerX": 443,
           "markerY": 563,
-          "routeOrder": 1211400,
+          "routeOrder": 1211700,
           "title": "Tong Youke"
         }
       ]
@@ -8038,13 +8038,13 @@
         {
           "id": "e2",
           "action": "Confirme que recebeu Moeda Sangrenta de Ferro 2 Peão",
-          "routeOrder": 1211600,
+          "routeOrder": 1208500,
           "title": "Moeda Sangrenta de Fer"
         },
         {
           "id": "e3",
           "action": "Na DG29, mate Mestre das Sombras e Fang Qingzi",
-          "routeOrder": 1211700,
+          "routeOrder": 1211400,
           "title": "Moeda Sangrenta de Fer"
         },
         {
@@ -8052,7 +8052,7 @@
           "action": "Entregue ao Imortal Realizado (520, 628)",
           "markerX": 520,
           "markerY": 628,
-          "routeOrder": 1211800,
+          "routeOrder": 1211600,
           "title": "Moeda Sangrenta de Fer"
         }
       ]
@@ -8079,13 +8079,13 @@
           "action": "Fale com Oficial Graduado (521, 626)",
           "markerX": 521,
           "markerY": 626,
-          "routeOrder": 1211500,
+          "routeOrder": 1211800,
           "title": "Cargo Militar de Honra"
         },
         {
           "id": "e2",
           "action": "Receba o Rank 1 e a Insígnia Nível 1",
-          "routeOrder": 1211900,
+          "routeOrder": 1212200,
           "title": "Insígnia Nível 1"
         }
       ]
@@ -8110,19 +8110,19 @@
         {
           "id": "e1",
           "action": "Abra o questlog com Q",
-          "routeOrder": 1218100,
+          "routeOrder": 1211900,
           "title": "Abrir o questlog com Q"
         },
         {
           "id": "e2",
           "action": "Selecione a missão de voo recebida por pop-up",
-          "routeOrder": 1218200,
+          "routeOrder": 1212000,
           "title": "Selecionar a missão de voo recebida por pop-up"
         },
         {
           "id": "e3",
           "action": "Clique em Desistir/Abandonar e confirme a remoção",
-          "routeOrder": 1218300,
+          "routeOrder": 1212100,
           "title": "Clicar em Desistir/Abandonar e confirme a remoção"
         }
       ]
@@ -8149,7 +8149,7 @@
           "action": "Matar (50) Raiz Maligna (Vale das Orquídeas) (542, 548)",
           "markerX": 542,
           "markerY": 548,
-          "routeOrder": 1212000,
+          "routeOrder": 1212300,
           "title": "Árvore-monstro"
         },
         {
@@ -8157,7 +8157,7 @@
           "action": "NPC Final: Eremita (467, 567)",
           "markerX": 467,
           "markerY": 567,
-          "routeOrder": 1212200,
+          "routeOrder": 1212500,
           "title": "Árvore-monstro"
         }
       ]
@@ -8184,7 +8184,7 @@
           "action": "Matar (50) Membro do Conselho das Presas (Vale das Orquídeas) (542, 548)",
           "markerX": 542,
           "markerY": 548,
-          "routeOrder": 1212100,
+          "routeOrder": 1212400,
           "title": "Visita Indesejada"
         },
         {
@@ -8192,7 +8192,7 @@
           "action": "NPC Final: Convidado Tranquilo (443, 563)",
           "markerX": 443,
           "markerY": 563,
-          "routeOrder": 1212600,
+          "routeOrder": 1212900,
           "title": "Visita Indesejada"
         }
       ]
@@ -8219,7 +8219,7 @@
           "action": "Fale novamente com o Eremita (467, 567)",
           "markerX": 467,
           "markerY": 567,
-          "routeOrder": 1212300,
+          "routeOrder": 1212600,
           "title": "Cidade da Dor Celestial"
         },
         {
@@ -8227,7 +8227,7 @@
           "action": "Matar (40) Dragão Sanguinário (Arredores da Cidade da Dor Celestial) (467, 555 39)",
           "markerX": 467,
           "markerY": 555,
-          "routeOrder": 1212400,
+          "routeOrder": 1212700,
           "title": "Cidade da Dor Celestial"
         },
         {
@@ -8235,7 +8235,7 @@
           "action": "NPC Final: Eremita (467, 567)",
           "markerX": 467,
           "markerY": 567,
-          "routeOrder": 1212500,
+          "routeOrder": 1212800,
           "title": "Cidade da Dor Celestial"
         }
       ]
@@ -8262,7 +8262,7 @@
           "action": "Fale com o Velho Forjador de Espadas (536, 755) na Floresta Verdejante",
           "markerX": 536,
           "markerY": 755,
-          "routeOrder": 1213800,
+          "routeOrder": 1214100,
           "title": "Velho Ferreiro"
         },
         {
@@ -8270,7 +8270,7 @@
           "action": "Pegar (25) Osso Sangrento matando Esqueleto Arqueiro (Floresta Verdejante) (538, 756)",
           "markerX": 538,
           "markerY": 756,
-          "routeOrder": 1213900,
+          "routeOrder": 1214200,
           "title": "Ossos Sangrentos"
         },
         {
@@ -8278,7 +8278,7 @@
           "action": "Reporte ao Velho Forjador de Espadas (536, 755)",
           "markerX": 536,
           "markerY": 755,
-          "routeOrder": 1214000,
+          "routeOrder": 1214300,
           "title": "Ossos Sangrentos"
         },
         {
@@ -8286,7 +8286,7 @@
           "action": "Fale com o Guarda Dommer Jirek (619, 722) no Campo das Tropas Aliadas",
           "markerX": 619,
           "markerY": 722,
-          "routeOrder": 1214200,
+          "routeOrder": 1214500,
           "title": "Campo das Tropas Aliad"
         },
         {
@@ -8294,7 +8294,7 @@
           "action": "Matar (15) Chama Fantasma Guardiã (Dentro da Passagem Secreta para o Túmulo do Herói) (405, 527)",
           "markerX": 405,
           "markerY": 527,
-          "routeOrder": 1216800,
+          "routeOrder": 1217200,
           "title": "Eliminar a Chama Fanta"
         },
         {
@@ -8302,7 +8302,7 @@
           "action": "Reporte ao Guarda Dommer Jirek (619, 722)",
           "markerX": 619,
           "markerY": 722,
-          "routeOrder": 1217100,
+          "routeOrder": 1217600,
           "title": "Eliminar a Chama Fanta"
         },
         {
@@ -8310,7 +8310,7 @@
           "action": "Pegar (1) Cadáver do General Song matando o Boss Carniçal de Elite (Dentro da Passagem Secreta para o Túmulo do Herói) (432, 518)",
           "markerX": 432,
           "markerY": 518,
-          "routeOrder": 1217600,
+          "routeOrder": 1218000,
           "title": "Procurar o Cadáver"
         },
         {
@@ -8318,7 +8318,7 @@
           "action": "NPC Final: Guarda Dommer Jirek (619, 722)",
           "markerX": 619,
           "markerY": 722,
-          "routeOrder": 1217800,
+          "routeOrder": 1218200,
           "title": "Procurar o Cadáver"
         }
       ]
@@ -8345,7 +8345,7 @@
           "action": "Pegar (35) Ferrão Nocivo matando Ferrão Nocivo (Leste do Vale das Orquídeas) (570, 559)",
           "markerX": 570,
           "markerY": 559,
-          "routeOrder": 1212700,
+          "routeOrder": 1213000,
           "title": "Montanha Solitária"
         },
         {
@@ -8353,7 +8353,7 @@
           "action": "NPC Final: Excêntrico (470, 570)",
           "markerX": 470,
           "markerY": 570,
-          "routeOrder": 1212900,
+          "routeOrder": 1213200,
           "title": "Montanha Solitária"
         }
       ]
@@ -8380,7 +8380,7 @@
           "action": "Pegar (25) Veneno de Aranha matando Aranha Listrada (Leste do Vale das Orquídeas) (570, 559)",
           "markerX": 570,
           "markerY": 559,
-          "routeOrder": 1212800,
+          "routeOrder": 1213100,
           "title": "Ameaça das Aranhas"
         },
         {
@@ -8388,7 +8388,7 @@
           "action": "NPC Final: Eremita (467, 567)",
           "markerX": 467,
           "markerY": 567,
-          "routeOrder": 1213100,
+          "routeOrder": 1213400,
           "title": "Ameaça das Aranhas"
         }
       ]
@@ -8415,7 +8415,7 @@
           "action": "Pegar (30) Ovo de Centopéia Escarlate matando Centopéia Escarlate (Sul da Vila das Orquídeas) (586, 531)",
           "markerX": 586,
           "markerY": 531,
-          "routeOrder": 1213200,
+          "routeOrder": 1213500,
           "title": "Confiança em um Amigo"
         },
         {
@@ -8423,7 +8423,7 @@
           "action": "NPC Final: Seraos Distan (586, 567)",
           "markerX": 586,
           "markerY": 567,
-          "routeOrder": 1213300,
+          "routeOrder": 1213600,
           "title": "Confiança em um Amigo"
         }
       ]
@@ -8450,7 +8450,7 @@
           "action": "Fale com o Excêntrico (470, 570) da Cidade da Dor Celestial",
           "markerX": 470,
           "markerY": 570,
-          "routeOrder": 1213000,
+          "routeOrder": 1213300,
           "title": "Excêntrico da Cidade C"
         },
         {
@@ -8458,7 +8458,7 @@
           "action": "Fale com o Alaor Haaden (443, 891) na Cidade das Espadas",
           "markerX": 443,
           "markerY": 891,
-          "routeOrder": 1217200,
+          "routeOrder": 1217400,
           "title": "Conversa informal"
         },
         {
@@ -8466,7 +8466,7 @@
           "action": "Fale com o o Alaor Haaden (443, 891) novamente",
           "markerX": 443,
           "markerY": 891,
-          "routeOrder": 1217300,
+          "routeOrder": 1217500,
           "title": "Colher de Cachorro"
         },
         {
@@ -8474,7 +8474,7 @@
           "action": "Fale com o Mestre Pescador (571, 656) no Sul da Cidade do Dragão",
           "markerX": 571,
           "markerY": 656,
-          "routeOrder": 1217400,
+          "routeOrder": 1217700,
           "title": "Colher 18 Dragões"
         },
         {
@@ -8482,7 +8482,7 @@
           "action": "Fale com o Excêntrico (470, 570) da Cidade da Dor Celestial",
           "markerX": 470,
           "markerY": 570,
-          "routeOrder": 1217500,
+          "routeOrder": 1217900,
           "title": "Devolução das Relíquias"
         },
         {
@@ -8490,7 +8490,7 @@
           "action": "Fale com o Werir Nepay (532, 657)",
           "markerX": 532,
           "markerY": 657,
-          "routeOrder": 1217700,
+          "routeOrder": 1218100,
           "title": "Cheiro de Mulher"
         },
         {
@@ -8498,7 +8498,7 @@
           "action": "Fale com a Florzinha (246, 651) na Cidade das Feras",
           "markerX": 246,
           "markerY": 651,
-          "routeOrder": 1217900,
+          "routeOrder": 1218300,
           "title": "Florzinha"
         },
         {
@@ -8506,7 +8506,7 @@
           "action": "NPC Final: Werir Nepay (532, 657)",
           "markerX": 532,
           "markerY": 657,
-          "routeOrder": 1218000,
+          "routeOrder": 1218400,
           "title": "Por favor, coma!"
         }
       ]
@@ -8531,7 +8531,7 @@
         {
           "id": "e1",
           "action": "Pegar (5) Fruta Anciã",
-          "routeOrder": 1213500,
+          "routeOrder": 1213800,
           "title": "Colete as Frutas Anciã"
         },
         {
@@ -8539,7 +8539,7 @@
           "action": "Pegar (10) Pó de Pérola Flamejante matando Escaravelho Ardente (Rampa dos Estandartes) (552, 719)",
           "markerX": 552,
           "markerY": 719,
-          "routeOrder": 1213600,
+          "routeOrder": 1213900,
           "title": "Pó e Antenas"
         },
         {
@@ -8547,7 +8547,7 @@
           "action": "Pegar (15) Antena de Centopéia Letal matando Centopéia Letal (Rampa dos Estandartes) (552, 719)",
           "markerX": 552,
           "markerY": 719,
-          "routeOrder": 1213700,
+          "routeOrder": 1214000,
           "title": "Pó e Antenas"
         },
         {
@@ -8555,7 +8555,7 @@
           "action": "Fale com Olaf Trutz (581, 764) no Templo das Orquídeas",
           "markerX": 581,
           "markerY": 764,
-          "routeOrder": 1214100,
+          "routeOrder": 1214400,
           "title": "A Mistura"
         },
         {
@@ -8563,7 +8563,7 @@
           "action": "Fale com a Artesã Marta Barkley (521, 643)",
           "markerX": 521,
           "markerY": 643,
-          "routeOrder": 1214300,
+          "routeOrder": 1214600,
           "title": "Ódio Profundo"
         },
         {
@@ -8571,7 +8571,7 @@
           "action": "Fale com o Ferreiro Derel Wunit (531, 658) no Oeste da Cidade do Dragão",
           "markerX": 531,
           "markerY": 658,
-          "routeOrder": 1214400,
+          "routeOrder": 1214700,
           "title": "Árvore Escarlate"
         },
         {
@@ -8579,7 +8579,7 @@
           "action": "Pegar (1) Flauta de Bambu Sangrenta matando Esqueleto Encantado (Floresta Verdejante – Arredores da Passagem Secreta para o Túmulo do Herói) (570, 746)",
           "markerX": 570,
           "markerY": 746,
-          "routeOrder": 1214500,
+          "routeOrder": 1214800,
           "title": "Flauta de Sangue"
         },
         {
@@ -8587,7 +8587,7 @@
           "action": "Reporte ao Ferreiro Derel Wunit (531, 658)",
           "markerX": 531,
           "markerY": 658,
-          "routeOrder": 1214600,
+          "routeOrder": 1214900,
           "title": "Flauta de Sangue"
         },
         {
@@ -8595,7 +8595,7 @@
           "action": "NPC Final: Artesã Marta Barkley (521, 643)",
           "markerX": 521,
           "markerY": 643,
-          "routeOrder": 1214700,
+          "routeOrder": 1215000,
           "title": "Amor e Ódio"
         }
       ]
@@ -8622,7 +8622,7 @@
           "action": "Pegar (1) Pérola Brilhante matando Lâmina Rebelde Prateada (Leste do Vale das Orquídeas) (577, 564)",
           "markerX": 577,
           "markerY": 564,
-          "routeOrder": 1213400,
+          "routeOrder": 1213700,
           "title": "Lâmina Rebelde"
         },
         {
@@ -8630,7 +8630,7 @@
           "action": "Fale com a Guarda Ewlen (321, 419) na Cidade das Plumas",
           "markerX": 321,
           "markerY": 419,
-          "routeOrder": 1216900,
+          "routeOrder": 1217300,
           "title": "Lâmina Rebelde"
         },
         {
@@ -8638,7 +8638,7 @@
           "action": "NPC Final: Banqueiro Snider Tekesh (555, 635)",
           "markerX": 555,
           "markerY": 635,
-          "routeOrder": 1217000,
+          "routeOrder": 1217800,
           "title": "Pena Branca"
         }
       ]
@@ -8665,7 +8665,7 @@
           "action": "Fale com o Glodonir Huray (611, 715)",
           "markerX": 611,
           "markerY": 715,
-          "routeOrder": 1214800,
+          "routeOrder": 1215100,
           "title": "Músico Gonirer Klaber"
         },
         {
@@ -8673,7 +8673,7 @@
           "action": "NPC Final: Glodonir Huray (611, 715)",
           "markerX": 611,
           "markerY": 715,
-          "routeOrder": 1215100,
+          "routeOrder": 1215200,
           "title": "Músico Gonirer Klaber"
         },
         {
@@ -8681,7 +8681,7 @@
           "action": "Pegar (35) Vela matando Arqueiro Goblin-rei (Arredores do Campo das Tropas Aliadas – Costa da Saudade) (626, 715)",
           "markerX": 626,
           "markerY": 715,
-          "routeOrder": 1215200,
+          "routeOrder": 1215400,
           "title": "Músico Gonirer Klaber"
         },
         {
@@ -8689,7 +8689,7 @@
           "action": "NPC Final: Glodonir Huray (611, 715)",
           "markerX": 611,
           "markerY": 715,
-          "routeOrder": 1215300,
+          "routeOrder": 1215500,
           "title": "Músico Gonirer Klaber"
         },
         {
@@ -8697,7 +8697,7 @@
           "action": "Fale com o Gonirer Klaber (621, 724)",
           "markerX": 621,
           "markerY": 724,
-          "routeOrder": 1215400,
+          "routeOrder": 1215700,
           "title": "Músico Gonirer Klaber"
         },
         {
@@ -8705,7 +8705,7 @@
           "action": "NPC Final: Gonirer Klaber (621, 724)",
           "markerX": 621,
           "markerY": 724,
-          "routeOrder": 1215500,
+          "routeOrder": 1215800,
           "title": "Músico Gonirer Klaber"
         }
       ]
@@ -8732,7 +8732,7 @@
           "action": "Pegar (1) Esqueleto de Cavalo matando Lobo Alucinado (Arredores do Campo das Tropas Aliadas – Costa da Saudade) (626, 715)",
           "markerX": 626,
           "markerY": 715,
-          "routeOrder": 1214900,
+          "routeOrder": 1215300,
           "title": "O Cavalo Amedrontado"
         },
         {
@@ -8740,7 +8740,7 @@
           "action": "NPC Final: Aldeão Refugiado (618, 721)",
           "markerX": 618,
           "markerY": 721,
-          "routeOrder": 1215000,
+          "routeOrder": 1215600,
           "title": "O Cavalo Amedrontado"
         }
       ]
@@ -8767,7 +8767,7 @@
           "action": "Pegar (35) Barbatana de Tubarão matando Peixe Eclipse (Montanha do Farol – Dentro do Mar Wuji) (683, 767)",
           "markerX": 683,
           "markerY": 767,
-          "routeOrder": 1215600,
+          "routeOrder": 1215900,
           "title": "Oferenda"
         },
         {
@@ -8775,7 +8775,7 @@
           "action": "NPC Final: Glodonir Huray (611, 715)",
           "markerX": 611,
           "markerY": 715,
-          "routeOrder": 1216100,
+          "routeOrder": 1216400,
           "title": "Oferenda"
         }
       ]
@@ -8802,7 +8802,7 @@
           "action": "Pegar (25) Teia de Aranha matando Centurião Aranha (Pátio Verdejante – Oeste da Vila dos Pescadores) (616, 818)",
           "markerX": 616,
           "markerY": 818,
-          "routeOrder": 1215700,
+          "routeOrder": 1216000,
           "title": "Teias de Aranha"
         },
         {
@@ -8810,7 +8810,7 @@
           "action": "NPC Final: Pescador (639, 802)",
           "markerX": 639,
           "markerY": 802,
-          "routeOrder": 1215800,
+          "routeOrder": 1216100,
           "title": "Teias de Aranha"
         }
       ]
@@ -8837,7 +8837,7 @@
           "action": "Pegar (20) Barbatana de Peixe matando Piranha (Mar Wuji ao lado da Vila dos Pescadores) (677, 844)",
           "markerX": 677,
           "markerY": 844,
-          "routeOrder": 1215900,
+          "routeOrder": 1216200,
           "title": "Peixe Sanguinário"
         },
         {
@@ -8845,7 +8845,7 @@
           "action": "NPC Final: Pescador (639, 802)",
           "markerX": 639,
           "markerY": 802,
-          "routeOrder": 1216000,
+          "routeOrder": 1216300,
           "title": "Peixe Sanguinário"
         }
       ]
@@ -8870,19 +8870,19 @@
         {
           "id": "e1",
           "action": "Pegar (1) Resumo do Demônio Secreto (1) matando Feiticeiro do Submundo (Dentro da Residência de Hades)",
-          "routeOrder": 1216200,
+          "routeOrder": 1216500,
           "title": "Doutrina Secreta"
         },
         {
           "id": "e2",
           "action": "Pegar (1) Resumo do Demônio Secreto (2) matando Habitante do Submundo (Dentro da Residência de Hades)",
-          "routeOrder": 1216500,
+          "routeOrder": 1216900,
           "title": "Doutrina Secreta"
         },
         {
           "id": "e3",
           "action": "Pegar (1) Resumo do Demônio Secreto (3) matando Escaravelho de Fogo do Submundo (Dentro da Residência de Hades)",
-          "routeOrder": 1216600,
+          "routeOrder": 1217000,
           "title": "Doutrina Secreta"
         },
         {
@@ -8890,7 +8890,7 @@
           "action": "NPC Final: Ancião da Cidade Celestial (471, 567)",
           "markerX": 471,
           "markerY": 567,
-          "routeOrder": 1216700,
+          "routeOrder": 1217100,
           "title": "Doutrina Secreta"
         }
       ]
@@ -8917,13 +8917,13 @@
           "action": "Fale com Taoísta Dongming (469, 568)",
           "markerX": 469,
           "markerY": 568,
-          "routeOrder": 1216400,
+          "routeOrder": 1216800,
           "title": "Compreensão Enigmática."
         },
         {
           "id": "e2",
           "action": "Use o remédio e morra uma vez para a missão avançar",
-          "routeOrder": 1218400,
+          "routeOrder": 1218500,
           "title": "Demônio Imortal Jeffrey"
         },
         {
@@ -8931,7 +8931,7 @@
           "action": "Fale com Ying Luo (337, 903)",
           "markerX": 337,
           "markerY": 903,
-          "routeOrder": 1218500,
+          "routeOrder": 1218600,
           "title": "Demônio Imortal Jeffrey"
         },
         {
@@ -8939,7 +8939,7 @@
           "action": "Volte ao Taoísta Dongming (469, 568)",
           "markerX": 469,
           "markerY": 568,
-          "routeOrder": 1218600,
+          "routeOrder": 1218700,
           "title": "A Cidade da Dor Celestial"
         }
       ]
@@ -8966,19 +8966,19 @@
           "action": "Fale com Ancião da Cidade Celestial (471, 567)",
           "markerX": 471,
           "markerY": 567,
-          "routeOrder": 1216300,
+          "routeOrder": 1216600,
           "title": "Moeda Sangrenta de Fer"
         },
         {
           "id": "e2",
           "action": "Confirme 3 Moedas Sangrentas de Ferro 3 Fantasma",
-          "routeOrder": 1224100,
+          "routeOrder": 1216700,
           "title": "Moeda Sangrenta de Fer"
         },
         {
           "id": "e3",
           "action": "Na DG39, mate Lorde Diabrete, Bico de Fogo Selvagem e Canalisador de Almas",
-          "routeOrder": 1224200,
+          "routeOrder": 1218800,
           "title": "Moeda Sangrenta de Fer"
         },
         {
@@ -8986,7 +8986,7 @@
           "action": "Entregue ao Ancião da Cidade Celestial (471, 567)",
           "markerX": 471,
           "markerY": 567,
-          "routeOrder": 1224300,
+          "routeOrder": 1218900,
           "title": "Moeda Sangrenta de Fer"
         }
       ]
@@ -9013,7 +9013,7 @@
           "action": "Encontrar a Tumba das Espadas no Oeste do Templo das Orquídeas (596, 764)",
           "markerX": 596,
           "markerY": 764,
-          "routeOrder": 1218700,
+          "routeOrder": 1219000,
           "title": "A Tumba das Espadas"
         },
         {
@@ -9021,7 +9021,7 @@
           "action": "Reporte ao Ferreiro Chess Kright (563, 682)",
           "markerX": 563,
           "markerY": 682,
-          "routeOrder": 1219000,
+          "routeOrder": 1219300,
           "title": "Recompensar o Ferreiro"
         },
         {
@@ -9029,7 +9029,7 @@
           "action": "Fale com o Ferreiro Valmoren Albor (431, 874) na Cidade das Espadas",
           "markerX": 431,
           "markerY": 874,
-          "routeOrder": 1221000,
+          "routeOrder": 1221300,
           "title": "探访Cidade das Espadas"
         },
         {
@@ -9037,7 +9037,7 @@
           "action": "Ir até a Terra de Hades na Tumba das Espadas (522, 927)",
           "markerX": 522,
           "markerY": 927,
-          "routeOrder": 1221100,
+          "routeOrder": 1221400,
           "title": "A Tumba das Espadas"
         },
         {
@@ -9045,7 +9045,7 @@
           "action": "Fale com o Ferreiro Valmoren Albor (431, 874) na Cidade das Espadas",
           "markerX": 431,
           "markerY": 874,
-          "routeOrder": 1221200,
+          "routeOrder": 1221500,
           "title": "A Espada Divina"
         },
         {
@@ -9053,7 +9053,7 @@
           "action": "NPC Final: Ferreiro Valmoren Albor (431, 874)",
           "markerX": 431,
           "markerY": 874,
-          "routeOrder": 1221300,
+          "routeOrder": 1221600,
           "title": "A Espada Divina"
         }
       ]
@@ -9080,7 +9080,7 @@
           "action": "Matar (40) Dragão de Jade (Arredores da Vila dos Pescadores) (637, 831 A29)",
           "markerX": 637,
           "markerY": 831,
-          "routeOrder": 1218800,
+          "routeOrder": 1219100,
           "title": "Atacar o Dragão Voador"
         },
         {
@@ -9088,7 +9088,7 @@
           "action": "NPC Final: Kendler Selcon (637, 831)",
           "markerX": 637,
           "markerY": 831,
-          "routeOrder": 1218900,
+          "routeOrder": 1219200,
           "title": "Atacar o Dragão Voador"
         }
       ]
@@ -9115,7 +9115,7 @@
           "action": "Matar (45) Planta Carnívora (Floresta do Unicórnio) (415, 776)",
           "markerX": 415,
           "markerY": 776,
-          "routeOrder": 1219100,
+          "routeOrder": 1219400,
           "title": "O Retorno do Guerreiro"
         },
         {
@@ -9123,7 +9123,7 @@
           "action": "NPC Final: Chefe da Tribo dos Ventos (368, 764)",
           "markerX": 368,
           "markerY": 764,
-          "routeOrder": 1219200,
+          "routeOrder": 1219600,
           "title": "O Retorno do Guerreiro"
         }
       ]
@@ -9150,7 +9150,7 @@
           "action": "Pegar (20) Dente de Chacal matando Chacal (Arredores da Tribo dos Ventos) (361, 768)",
           "markerX": 361,
           "markerY": 768,
-          "routeOrder": 1219300,
+          "routeOrder": 1219500,
           "title": "O Legado do Chacal"
         },
         {
@@ -9158,7 +9158,7 @@
           "action": "NPC Final: Chefe da Tribo dos Ventos (368, 764)",
           "markerX": 368,
           "markerY": 764,
-          "routeOrder": 1219400,
+          "routeOrder": 1219700,
           "title": "O Legado do Chacal"
         }
       ]
@@ -9185,7 +9185,7 @@
           "action": "Matar (50) Ent Florido (Campos da Vitória) (310, 825)",
           "markerX": 310,
           "markerY": 825,
-          "routeOrder": 1219600,
+          "routeOrder": 1219900,
           "title": "Vingança"
         },
         {
@@ -9193,7 +9193,7 @@
           "action": "NPC Final: Sábio de Campo de Su Muer (334, 826)",
           "markerX": 334,
           "markerY": 826,
-          "routeOrder": 1219700,
+          "routeOrder": 1220000,
           "title": "Vingança"
         }
       ]
@@ -9220,7 +9220,7 @@
           "action": "Fale com o Sábio de Campo de Su Muer (334, 826)",
           "markerX": 334,
           "markerY": 826,
-          "routeOrder": 1219500,
+          "routeOrder": 1219800,
           "title": "S. O. S"
         },
         {
@@ -9228,7 +9228,7 @@
           "action": "NPC Final: Sábio de Campo de Su Muer (334, 826)",
           "markerX": 334,
           "markerY": 826,
-          "routeOrder": 1219800,
+          "routeOrder": 1220100,
           "title": "S. O. S"
         }
       ]
@@ -9255,7 +9255,7 @@
           "action": "Pegar (30) Pétala de Planta Carnívora matando Raiz Mutante (Campos da Vitória) (369, 847)",
           "markerX": 369,
           "markerY": 847,
-          "routeOrder": 1219900,
+          "routeOrder": 1220200,
           "title": "A Encomenda do Boticá"
         },
         {
@@ -9263,7 +9263,7 @@
           "action": "NPC Final: Boticário Dashel Hongstol (369, 763)",
           "markerX": 369,
           "markerY": 763,
-          "routeOrder": 1220100,
+          "routeOrder": 1220400,
           "title": "A Encomenda do Boticá"
         }
       ]
@@ -9290,7 +9290,7 @@
           "action": "Pegar (35) Casca vermelha? matando Cão Selvagem (Montanha de Burnham) (377, 782)",
           "markerX": 377,
           "markerY": 782,
-          "routeOrder": 1220000,
+          "routeOrder": 1220300,
           "title": "O Ataque do Cão Selvag"
         },
         {
@@ -9298,7 +9298,7 @@
           "action": "NPC Final: Comerciante Alexton Qin (369, 760)",
           "markerX": 369,
           "markerY": 760,
-          "routeOrder": 1220200,
+          "routeOrder": 1220500,
           "title": "O Ataque do Cão Selvag"
         }
       ]
@@ -9325,7 +9325,7 @@
           "action": "Fale com o Ferreiro Corg (117, 639) da Cidade de Fei Wei",
           "markerX": 117,
           "markerY": 639,
-          "routeOrder": 1221400,
+          "routeOrder": 1221700,
           "title": "Lacre da Lâmina Mágica"
         },
         {
@@ -9333,7 +9333,7 @@
           "action": "NPC Final: Ferreiro Corg (117, 639)",
           "markerX": 117,
           "markerY": 639,
-          "routeOrder": 1221500,
+          "routeOrder": 1221800,
           "title": "Lacre da Lâmina Mágica"
         },
         {
@@ -9341,7 +9341,7 @@
           "action": "Matar (30) Espadachim Minotauro (Terra dos Dragões) (144, 653)",
           "markerX": 144,
           "markerY": 653,
-          "routeOrder": 1221600,
+          "routeOrder": 1221900,
           "title": "Lacre da Lâmina Mágica"
         },
         {
@@ -9349,7 +9349,7 @@
           "action": "NPC Final: Ferreiro Corg (117, 639) da Cidade de Fei Wei",
           "markerX": 117,
           "markerY": 639,
-          "routeOrder": 1221700,
+          "routeOrder": 1222000,
           "title": "Lacre da Lâmina Mágica"
         },
         {
@@ -9357,7 +9357,7 @@
           "action": "Vá até o topo da Montanha dos Esqueletos na coordenada (171, 621)",
           "markerX": 171,
           "markerY": 621,
-          "routeOrder": 1221800,
+          "routeOrder": 1222100,
           "title": "Lacre da Lâmina Mágica"
         }
       ]
@@ -9384,7 +9384,7 @@
           "action": "Matar (45) Centopéia Vermelha (Campos da Vitória) (310, 825)",
           "markerX": 310,
           "markerY": 825,
-          "routeOrder": 1220300,
+          "routeOrder": 1220600,
           "title": "Perseguição ao Inimigo"
         },
         {
@@ -9392,7 +9392,7 @@
           "action": "NPC Final: Alfaiate Emirana (368, 760)",
           "markerX": 368,
           "markerY": 760,
-          "routeOrder": 1220400,
+          "routeOrder": 1220700,
           "title": "Perseguição ao Inimigo"
         }
       ]
@@ -9419,7 +9419,7 @@
           "action": "Pegar (45) Galho Estranho matando Revirador de Folhas Novas (Campos da Vitória) (354, 897)",
           "markerX": 354,
           "markerY": 897,
-          "routeOrder": 1220700,
+          "routeOrder": 1220900,
           "title": "Prova de Força"
         },
         {
@@ -9427,7 +9427,7 @@
           "action": "NPC Final: Guarda La Tu (331, 824) e Guarda Lu Tuni (332, 823)",
           "markerX": 331,
           "markerY": 824,
-          "routeOrder": 1220800,
+          "routeOrder": 1221100,
           "title": "Prova de Força"
         }
       ]
@@ -9454,7 +9454,7 @@
           "action": "Matar (45) Arqueiro Leão Infernal (Campo de Su Muer) (323, 843)",
           "markerX": 323,
           "markerY": 843,
-          "routeOrder": 1220500,
+          "routeOrder": 1220800,
           "title": "O Pedido do Líder"
         },
         {
@@ -9462,7 +9462,7 @@
           "action": "NPC Final: Sábio de Campo de Su Muer (334, 826)",
           "markerX": 334,
           "markerY": 826,
-          "routeOrder": 1220600,
+          "routeOrder": 1221000,
           "title": "O Pedido do Líder"
         }
       ]
@@ -9489,7 +9489,7 @@
           "action": "Pegar (30) Cabeça de Artilheiro Vândalo matando Artilheiro Vândalo (Planalto do Pôr-do-Sol) (118, 581)",
           "markerX": 118,
           "markerY": 581,
-          "routeOrder": 1221900,
+          "routeOrder": 1222200,
           "title": "Líder da Patrulha"
         },
         {
@@ -9497,7 +9497,7 @@
           "action": "NPC Final: Ancião da Cidade do Pôr-do-Sol (127, 589)",
           "markerX": 127,
           "markerY": 589,
-          "routeOrder": 1222000,
+          "routeOrder": 1222300,
           "title": "Líder da Patrulha"
         }
       ]
@@ -9524,7 +9524,7 @@
           "action": "Pegar (66) Flor matando Planta Carnívora (Floresta do Unicórnio) (415, 776)",
           "markerX": 415,
           "markerY": 776,
-          "routeOrder": 1220900,
+          "routeOrder": 1221200,
           "title": "Colher Ervas"
         },
         {
@@ -9532,7 +9532,7 @@
           "action": "Fale com a Guarda Ewlen (321, 419) na Cidade das Plumas",
           "markerX": 321,
           "markerY": 419,
-          "routeOrder": 1222800,
+          "routeOrder": 1223100,
           "title": "Entregar Elixir"
         },
         {
@@ -9540,7 +9540,7 @@
           "action": "NPC Final: Banqueiro Snider Tekesh (555, 635)",
           "markerX": 555,
           "markerY": 635,
-          "routeOrder": 1223000,
+          "routeOrder": 1223300,
           "title": "Entregar Elixir"
         }
       ]
@@ -9565,7 +9565,7 @@
         {
           "id": "e1",
           "action": "Pegar (10) Essência Elemental (Dropa dos monstros níveis 60+ Donzela Dourada e Princesa Dourada na Montanha Negra)",
-          "routeOrder": 1223200,
+          "routeOrder": 1223500,
           "title": "Auxiliar de Comerciant"
         },
         {
@@ -9573,7 +9573,7 @@
           "action": "NPC Final: Comerciante Alexton Qin (369, 760)",
           "markerX": 369,
           "markerY": 760,
-          "routeOrder": 1223300,
+          "routeOrder": 1223600,
           "title": "Auxiliar de Comerciant"
         }
       ]
@@ -9600,7 +9600,7 @@
           "action": "Pegar (40) Orelhas de Espadachin-bufálo Itens matando Espadachim Minotauro (Terra dos Dragões) (144, 653)",
           "markerX": 144,
           "markerY": 653,
-          "routeOrder": 1222100,
+          "routeOrder": 1222400,
           "title": "Orelhas dos Guerreiros"
         },
         {
@@ -9608,7 +9608,7 @@
           "action": "NPC Final: Guarda Xong Shili (142, 641)",
           "markerX": 142,
           "markerY": 641,
-          "routeOrder": 1222200,
+          "routeOrder": 1222500,
           "title": "Orelhas dos Guerreiros"
         }
       ]
@@ -9635,7 +9635,7 @@
           "action": "Matar (50) Arqueiro Sorridente (Terra dos Dragões) (170, 666)",
           "markerX": 170,
           "markerY": 666,
-          "routeOrder": 1222300,
+          "routeOrder": 1222600,
           "title": "A Morte dos Arqueiros"
         },
         {
@@ -9643,7 +9643,7 @@
           "action": "NPC Final: Xong Shili (142, 641)",
           "markerX": 142,
           "markerY": 641,
-          "routeOrder": 1222400,
+          "routeOrder": 1222700,
           "title": "A Morte dos Arqueiros"
         }
       ]
@@ -9668,7 +9668,7 @@
         {
           "id": "e1",
           "action": "Matar Lobos da Lâmina",
-          "routeOrder": 1222500,
+          "routeOrder": 1222800,
           "title": "Matar Lobos da Lâmina"
         },
         {
@@ -9676,7 +9676,7 @@
           "action": "Matar (50) Toupeira de Machado (Planalto do Pôr-do-Sol) (118, 581)",
           "markerX": 118,
           "markerY": 581,
-          "routeOrder": 1222600,
+          "routeOrder": 1222900,
           "title": "Matar Lobos da Lâmina"
         },
         {
@@ -9684,7 +9684,7 @@
           "action": "NPC Final: Ancião da Cidade do Pôr-do-Sol (127, 589)",
           "markerX": 127,
           "markerY": 589,
-          "routeOrder": 1222700,
+          "routeOrder": 1223000,
           "title": "Matar Lobos da Lâmina"
         }
       ]
@@ -9711,7 +9711,7 @@
           "action": "Fale com Taoísta Dongming (469, 568)",
           "markerX": 469,
           "markerY": 568,
-          "routeOrder": 1222900,
+          "routeOrder": 1223200,
           "title": "Cultivo"
         },
         {
@@ -9719,7 +9719,7 @@
           "action": "Obtenha Espírito de Tigre (314, 579), Olhos de Leão (340, 577) e Saliva de Dragão (336, 589)",
           "markerX": 314,
           "markerY": 579,
-          "routeOrder": 1223400,
+          "routeOrder": 1223700,
           "title": "Aperfeiçoando a Habilidade"
         },
         {
@@ -9727,7 +9727,7 @@
           "action": "Fale com July Brown (586, 564)",
           "markerX": 586,
           "markerY": 564,
-          "routeOrder": 1223600,
+          "routeOrder": 1223900,
           "title": "Aperfeiçoando a Habilidade"
         },
         {
@@ -9735,7 +9735,7 @@
           "action": "Entregue ao Taoísta Dongming (469, 568)",
           "markerX": 469,
           "markerY": 568,
-          "routeOrder": 1223700,
+          "routeOrder": 1224000,
           "title": "Aperfeiçoando a Habilidade"
         }
       ]
@@ -9762,7 +9762,7 @@
           "action": "Fale com Ancião Recluso (573, 664)",
           "markerX": 573,
           "markerY": 664,
-          "routeOrder": 1223100,
+          "routeOrder": 1223400,
           "title": "Lágrima do Gardião"
         },
         {
@@ -9770,7 +9770,7 @@
           "action": "Fale com Eremita das Pedras (242, 615)",
           "markerX": 242,
           "markerY": 615,
-          "routeOrder": 1223500,
+          "routeOrder": 1223800,
           "title": "Eremita das Pedras"
         },
         {
@@ -9809,7 +9809,7 @@
         {
           "id": "e1",
           "action": "Entregue o pop-up Pilar Esquisito ao Ancião da sua cidade",
-          "routeOrder": 1223800,
+          "routeOrder": 1224100,
           "title": "Pilar Esquisito"
         },
         {
@@ -9817,7 +9817,7 @@
           "action": "Use o pergaminho e fale com Pilar Esquisito (669, 354)",
           "markerX": 669,
           "markerY": 354,
-          "routeOrder": 1223900,
+          "routeOrder": 1224200,
           "title": "Pilar Esquisito"
         },
         {
@@ -9825,7 +9825,7 @@
           "action": "Fale com Ormin na Vila dos Pescadores (644, 838)",
           "markerX": 644,
           "markerY": 838,
-          "routeOrder": 1224000,
+          "routeOrder": 1224300,
           "title": "Procurando um Velho Amigo / Pergunte para o Barqueiro / Pergunte para o Pescador / Investigue V. dos Pescadores / Raça Misteriosa"
         },
         {
@@ -10155,7 +10155,7 @@
           "action": "Fale com a Anciã (327, 427) na Cidade das Plumas",
           "markerX": 327,
           "markerY": 427,
-          "routeOrder": 1227000,
+          "routeOrder": 1226900,
           "title": "Um velho amigo"
         },
         {
@@ -10163,7 +10163,7 @@
           "action": "Fale com o Gerente do Estaleiro (340, 371)",
           "markerX": 340,
           "markerY": 371,
-          "routeOrder": 1227100,
+          "routeOrder": 1227000,
           "title": "Gerente do Estaleiro"
         },
         {
@@ -10171,7 +10171,7 @@
           "action": "Pegar (25) Planta do Navio matando Conjurador Minotauro (Montanha Negra) (440, 356)",
           "markerX": 440,
           "markerY": 356,
-          "routeOrder": 1227200,
+          "routeOrder": 1227100,
           "title": "Navio fazendo ondas"
         },
         {
@@ -10179,7 +10179,7 @@
           "action": "Reporte ao Gerente do Estaleiro (340, 371)",
           "markerX": 340,
           "markerY": 371,
-          "routeOrder": 1227300,
+          "routeOrder": 1227200,
           "title": "Navio fazendo ondas"
         },
         {
@@ -10257,7 +10257,7 @@
           "action": "Fale com NPC SEM TRADUÇÃO (360, 360)",
           "markerX": 360,
           "markerY": 360,
-          "routeOrder": 1226900,
+          "routeOrder": 1227300,
           "title": "Segredo da Família"
         },
         {
@@ -10329,7 +10329,7 @@
           "action": "Fale com o Qin Yu (165, 523) na Nascente Fraca",
           "markerX": 165,
           "markerY": 523,
-          "routeOrder": 1231800,
+          "routeOrder": 1232000,
           "title": "Salvação"
         }
       ]
@@ -10463,7 +10463,7 @@
           "action": "NPC Final: Almisted Hurd (458, 342)",
           "markerX": 458,
           "markerY": 342,
-          "routeOrder": 1230100,
+          "routeOrder": 1230200,
           "title": "Raposas Voadoras Que Perturba"
         }
       ]
@@ -10603,7 +10603,7 @@
           "action": "NPC Final: Guarda Norev Galar (484, 355)",
           "markerX": 484,
           "markerY": 355,
-          "routeOrder": 1230200,
+          "routeOrder": 1230000,
           "title": "Sangue por Sangue"
         }
       ]
@@ -10638,7 +10638,7 @@
           "action": "NPC Final: Ferreiro Sylern Udine (468, 319)",
           "markerX": 468,
           "markerY": 319,
-          "routeOrder": 1230000,
+          "routeOrder": 1230100,
           "title": "Essência de Ouro"
         }
       ]
@@ -10679,7 +10679,7 @@
           "action": "Cave a Pedra do Desastre na estátua (406, 551)",
           "markerX": 406,
           "markerY": 551,
-          "routeOrder": 1231500,
+          "routeOrder": 1231600,
           "title": "Altar da Resistência"
         },
         {
@@ -10687,7 +10687,7 @@
           "action": "Entregue ao Taoísta Dongming (469, 568)",
           "markerX": 469,
           "markerY": 568,
-          "routeOrder": 1231600,
+          "routeOrder": 1231700,
           "title": "Altar da Resistência"
         }
       ]
@@ -10720,7 +10720,7 @@
         {
           "id": "e2",
           "action": "Conclua os cinco chefes da DG59 com o grupo",
-          "routeOrder": 1231900,
+          "routeOrder": 1231500,
           "title": "Moeda Sangrenta de Fer"
         },
         {
@@ -10728,7 +10728,7 @@
           "action": "Entregue as missões pendentes ao Taoísta Dongming (469, 568)",
           "markerX": 469,
           "markerY": 568,
-          "routeOrder": 1232000,
+          "routeOrder": 1231800,
           "title": "Moeda Sangrenta de Fer"
         }
       ]
@@ -10755,7 +10755,7 @@
           "action": "Fale com Oficial Graduado (521, 626)",
           "markerX": 521,
           "markerY": 626,
-          "routeOrder": 1231700,
+          "routeOrder": 1231900,
           "title": "Insígnia Nível 4"
         },
         {

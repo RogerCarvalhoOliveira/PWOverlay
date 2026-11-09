@@ -1,6 +1,6 @@
-# Leitura de memória experimental
+# Estado das missões por memória
 
-Esta branch implementa a sincronização experimental do estado de missões diretamente no cliente x86 do Perfect World 1.4.4. O leitor abre o `elementclient.exe` com permissão de consulta e leitura, resolve o personagem por ponteiro configurado ou RTTI (`CECHostPlayer`) e valida nível, HP e MP.
+A versão 0.8.0 incorpora a sincronização opcional do estado de missões no cliente x86 The Classic Perfect World 1.4.4. O leitor abre o `elementclient.exe` com permissão de consulta e leitura, resolve o personagem por ponteiro configurado ou RTTI (`CECHostPlayer`) e valida nível, HP e MP. O nome deste arquivo foi preservado para manter links antigos.
 
 O leitor localiza `CECTaskInterface`, a lista ativa, o histórico e o inventário de missão. Os IDs são cruzados com `task_catalog_144.tsv`, catálogo derivado do `tasks.data` desta instalação, com 24.277 missões e submissões. O catálogo inclui os itens e quantidades exigidos por cada objetivo de coleta.
 
@@ -40,7 +40,7 @@ O byte de estado é mantido em formato bruto. Valores diferentes foram observado
 - desaparecimento depois de presença confirmada para conversa ou entrega;
 - próxima submissão da mesma cadeia ativa para recuperar uma transição ocorrida antes de abrir o overlay.
 
-O toggle fica em `Estado por memória (experimental) > Sincronizar e avançar automaticamente`. O atalho `Ctrl + Shift + A` liga ou desliga essa função. O modo é separado por cliente e usa o PID associado à janela de jogo em foco.
+O toggle fica em `Estado das missões por memória > Sincronizar e avançar automaticamente`. O atalho `Ctrl + Shift + A` liga ou desliga essa função. O modo é separado por cliente e usa o PID associado à janela de jogo em foco.
 
 No teste validado de `Aldeões Feridos`, a submissão `Besouro de Chifres` (ID 936) avançou ao encontrar o item 3502 na quantidade 10. A entrega avançou quando o ID 936, previamente observado, desapareceu da lista ativa.
 

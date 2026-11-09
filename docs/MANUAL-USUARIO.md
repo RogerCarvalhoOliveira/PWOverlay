@@ -58,6 +58,10 @@ Nas faixas de DG, aceite primeiro cultivo, preparação e moeda que possam compa
 
 ## Atalhos
 
+O menu do ícone na bandeja contém **Estado das missões por memória > Sincronizar e avançar automaticamente**. O atalho `Ctrl + Shift + A` alterna essa opção. Ela começa desligada em uma instalação nova e mantém sua preferência nas próximas sessões.
+
+O avanço reconhece aceites, transições de submissões, coletas no inventário de missão e entregas previamente observadas, após duas leituras iguais. Cada cliente tem seu estado independente. Quando uma etapa não tiver um ID inequívoco ou contador suportado, use **Etapa feita**. Contadores de abates sem item de missão ainda precisam desse avanço manual. A leitura usa o perfil do cliente The Classic 1.4.4; outros executáveis podem exigir offsets próprios.
+
 - `Ctrl + Alt + Seta Direita`: concluir.
 - `Ctrl + Alt + Seta Esquerda`: voltar.
 - `Ctrl + Alt + Seta para Baixo`: pular.
