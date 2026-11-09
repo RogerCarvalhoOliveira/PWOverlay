@@ -1,5 +1,12 @@
 # Histórico de alterações
 
+## 0.7.6 - Toggle de Windowed Fullscreen
+
+- Transformado o controle de Windowed Fullscreen da Central em um toggle visual e imediato.
+- Ao ativar, o modo é aplicado aos clientes abertos e aos clientes iniciados depois.
+- Ao desativar, bordas, tamanho, posição e estado maximizado originais são restaurados antes de encerrar o monitor.
+- A preferência continua salva para a próxima execução.
+
 ## 0.7.5 - Datamine completo até o nível 60
 
 - Estendido o datamine do `tasks.data` para todas as missões restantes dos níveis 21 a 60.

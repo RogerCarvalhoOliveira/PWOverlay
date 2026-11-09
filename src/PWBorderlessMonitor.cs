@@ -38,6 +38,7 @@ internal static class PWBorderless
     private const uint SWP_FRAMECHANGED = 0x0020;
     private const uint SWP_SHOWWINDOW = 0x0040;
     private const int SW_RESTORE = 9;
+    private const int SW_MAXIMIZE = 3;
 
     private static readonly IntPtr HWND_TOP = IntPtr.Zero;
     private static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
@@ -68,6 +69,14 @@ internal static class PWBorderless
     {
         public int X;
         public int Y;
+    }
+
+    private sealed class OriginalWindowState
+    {
+        public long Style;
+        public long ExStyle;
+        public RECT Bounds;
+        public bool WasMaximized;
     }
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
@@ -449,6 +458,61 @@ internal static class PWBorderless
         return verified;
     }
 
+    private static void RememberOriginalState(
+        IntPtr window,
+        Dictionary<IntPtr, OriginalWindowState> originalStates)
+    {
+        if (window == IntPtr.Zero || originalStates.ContainsKey(window))
+            return;
+
+        RECT bounds;
+        if (!GetWindowRect(window, out bounds))
+            return;
+
+        originalStates[window] = new OriginalWindowState
+        {
+            Style = GetWindowLongPtr(window, GWL_STYLE).ToInt64(),
+            ExStyle = GetWindowLongPtr(window, GWL_EXSTYLE).ToInt64(),
+            Bounds = bounds,
+            WasMaximized = IsZoomed(window)
+        };
+        Log(string.Format(
+            "remember hwnd=0x{0:X} bounds={1} style=0x{2:X} ex=0x{3:X} maximized={4}",
+            window.ToInt64(), bounds, originalStates[window].Style,
+            originalStates[window].ExStyle, originalStates[window].WasMaximized));
+    }
+
+    private static void RestoreOriginalWindows(
+        Dictionary<IntPtr, OriginalWindowState> originalStates)
+    {
+        foreach (KeyValuePair<IntPtr, OriginalWindowState> item in originalStates)
+        {
+            IntPtr window = item.Key;
+            OriginalWindowState state = item.Value;
+            if (!IsWindow(window))
+                continue;
+
+            ShowWindow(window, SW_RESTORE);
+            SetWindowLongPtr(window, GWL_STYLE, new IntPtr(state.Style));
+            SetWindowLongPtr(window, GWL_EXSTYLE, new IntPtr(state.ExStyle));
+            int width = state.Bounds.Right - state.Bounds.Left;
+            int height = state.Bounds.Bottom - state.Bounds.Top;
+            bool restored = SetWindowPos(
+                window,
+                HWND_NOTOPMOST,
+                state.Bounds.Left,
+                state.Bounds.Top,
+                width,
+                height,
+                SWP_NOACTIVATE | SWP_NOOWNERZORDER | SWP_FRAMECHANGED | SWP_SHOWWINDOW);
+            if (state.WasMaximized)
+                ShowWindow(window, SW_MAXIMIZE);
+            Log(string.Format(
+                "restore hwnd=0x{0:X} bounds={1} result={2} maximized={3}",
+                window.ToInt64(), state.Bounds, restored, state.WasMaximized));
+        }
+    }
+
     private static void UpdateTaskbarOverlap(
         IntPtr window,
         IntPtr activeGame,
@@ -490,6 +554,12 @@ internal static class PWBorderless
             var firstSeenWindows = new Dictionary<IntPtr, DateTime>();
             var configuredWindows = new HashSet<IntPtr>();
             var topmostWindows = new HashSet<IntPtr>();
+            var originalStates = new Dictionary<IntPtr, OriginalWindowState>();
+            using (var disableEvent = new EventWaitHandle(
+                false,
+                EventResetMode.AutoReset,
+                @"Local\PWBorderlessDisableEvent"))
+            {
             IntPtr lastForegroundGame = IntPtr.Zero;
             IntPtr pendingFocusRepair = IntPtr.Zero;
             DateTime pendingFocusRepairAt = DateTime.MinValue;
@@ -501,6 +571,13 @@ internal static class PWBorderless
             {
                 try
                 {
+                    if (disableEvent.WaitOne(0))
+                    {
+                        RestoreOriginalWindows(originalStates);
+                        Log("monitor disabled; original windows restored");
+                        return;
+                    }
+
                     List<IntPtr> windows = FindGameWindows();
                     IntPtr foregroundRoot = GetAncestor(GetForegroundWindow(), GA_ROOT);
                     bool gameIsForeground = windows.Contains(foregroundRoot);
@@ -565,6 +642,7 @@ internal static class PWBorderless
                     {
                         if (!firstSeenWindows.ContainsKey(window))
                         {
+                            RememberOriginalState(window, originalStates);
                             firstSeenWindows[window] = DateTime.UtcNow;
                             Log(string.Format("detected hwnd=0x{0:X}; waiting for stability",
                                 window.ToInt64()));
@@ -613,7 +691,10 @@ internal static class PWBorderless
                         if (!IsWindow(window))
                             staleWindows.Add(window);
                     foreach (IntPtr window in staleWindows)
+                    {
                         firstSeenWindows.Remove(window);
+                        originalStates.Remove(window);
+                    }
                     configuredWindows.RemoveWhere(window => !IsWindow(window));
                     topmostWindows.RemoveWhere(window => !IsWindow(window));
                     Thread.Sleep(windows.Count == 0 ? 1000 : 50);
@@ -623,6 +704,7 @@ internal static class PWBorderless
                     Log("error " + error.GetType().Name + ": " + error.Message);
                     Thread.Sleep(1000);
                 }
+            }
             }
         }
     }

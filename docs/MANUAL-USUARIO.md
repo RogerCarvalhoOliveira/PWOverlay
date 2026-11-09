@@ -3,12 +3,14 @@
 ## Iniciar
 
 1. Abra `PW Overlay Central.exe`.
-2. Marque **Overlay** e/ou **Windowed Fullscreen** conforme desejar.
+2. Marque **Overlay** e use o botão **Windowed Fullscreen: ATIVADO/DESATIVADO** conforme desejar.
 3. Clique em **Iniciar selecionados + PW**. Também é possível abrir os clientes normalmente e usar **Aplicar ao PW já aberto**.
 4. Se desejar detecção automática, nomeie cada janela no PW Helper com a classe no final, como `Nome[EP]` ou `Nome[WB]`.
 5. Coloque um cliente em foco. O painel aparecerá automaticamente quando o Overlay estiver ativado.
 
 O overlay fica oculto quando outro aplicativo, como navegador ou Discord, está em foco.
+
+O toggle de Windowed Fullscreen é aplicado imediatamente, sem precisar clicar em outro botão. Quando ligado, alcança clientes atuais e futuros. Quando desligado, restaura bordas, tamanho e posição anteriores dos clientes que o monitor acompanhou.
 
 Para jogar sem nenhuma ferramenta, use **Abrir somente o PW** no PW Overlay Central. Esse botão encerra apenas `PW Quest Overlay` e `PW Borderless`; não fecha clientes, PW Helper nem altera o jogo. Você também pode abrir o launcher original do PW diretamente, desde que o instalador não tenha sido configurado para iniciar o overlay automaticamente.
 

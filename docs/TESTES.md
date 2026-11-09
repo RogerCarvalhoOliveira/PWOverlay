@@ -36,7 +36,9 @@ Confirme que `dist` contém os dois executáveis, as rotas, o manual e o ZIP.
 
 1. Configure o launcher do PW e deixe as duas caixas marcadas; use **Iniciar selecionados + PW**.
 2. Com clientes abertos, desmarque Overlay e use **Aplicar ao PW já aberto**; confirme que somente o overlay encerrou.
-3. Use **Abrir somente o PW** e confirme que Overlay/Borderless encerram sem fechar clientes ou PW Helper.
+3. Desative o toggle **Windowed Fullscreen** com um cliente aberto e confirme que bordas, tamanho e posição anteriores são restaurados sem fechar o cliente ou o PW Helper.
+4. Ative o toggle novamente e confirme que o cliente aberto retorna ao modo Windowed Fullscreen sem precisar usar **Aplicar ao PW já aberto**.
+5. Use **Abrir somente o PW** e confirme que Overlay/Borderless encerram sem fechar clientes ou PW Helper.
 4. Reabra as ferramentas pela Central e confirme que progresso e posição foram preservados.
 
 ## Marcador
@@ -83,7 +85,7 @@ Faça backup de `%LOCALAPPDATA%\PWQuestOverlay\state.json`, teste com uma cópia
 
 ## Instalador em outro computador
 
-1. Execute `PWQuestOverlay-Setup-v0.7.5.exe` como usuário comum e confirme que não pede elevação.
+1. Execute `PWQuestOverlay-Setup-v0.7.6.exe` como usuário comum e confirme que não pede elevação.
 2. Teste atalhos do menu Iniciar, opções de área de trabalho e inicialização automática.
 3. Confirme que o guia abre ao final e que overlay, rotas e planilha estão no diretório instalado.
 4. Importe um backup, associe um cliente sem sigla e refaça a calibração do marcador.

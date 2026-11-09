@@ -8,11 +8,11 @@ O programa identifica cada cliente pelo título criado pelo PW Helper, por exemp
 
 Para usar sem compilar, abra a [versão mais recente](https://github.com/RogerCarvalhoOliveira/PWOverlay/releases/latest) e baixe:
 
-- `PWQuestOverlay-Setup-v0.7.5.exe`: instalador recomendado para Windows;
-- `PWQuestOverlay-Portatil-v0.7.5.zip`: pacote portátil;
-- `SHA256SUMS-v0.7.5.txt`: hashes para conferir a integridade dos arquivos.
+- `PWQuestOverlay-Setup-v0.7.6.exe`: instalador recomendado para Windows;
+- `PWQuestOverlay-Portatil-v0.7.6.zip`: pacote portátil;
+- `SHA256SUMS-v0.7.6.txt`: hashes para conferir a integridade dos arquivos.
 
-Depois da instalação, execute **PW Overlay Central** para escolher se deseja ativar o Overlay e/ou o Windowed Fullscreen antes de abrir o jogo.
+Depois da instalação, execute **PW Overlay Central** para escolher se deseja ativar o Overlay e/ou o Windowed Fullscreen antes de abrir o jogo. O botão azul/cinza permite ligar ou desligar o Windowed Fullscreen imediatamente, inclusive com os clientes já abertos.
 
 ## Funcionalidades
 
@@ -74,7 +74,7 @@ O resultado será criado em `dist\`:
 - `rota_leveling_pw_144.xlsx`
 - `LEIA-ME.txt`
 - `INSTALACAO.txt`;
-- `PWQuestOverlay-Portatil-v0.7.5.zip`, quando `-Package` for usado.
+- `PWQuestOverlay-Portatil-v0.7.6.zip`, quando `-Package` for usado.
 
 Para gerar também o instalador, instale o Inno Setup 6 e execute:
 
@@ -82,7 +82,7 @@ Para gerar também o instalador, instale o Inno Setup 6 e execute:
 powershell -ExecutionPolicy Bypass -File .\scripts\build.ps1 -Package -Installer
 ```
 
-O resultado adicional é `PWQuestOverlay-Setup-v0.7.5.exe`. Ele instala por usuário, sem exigir privilégios administrativos, e oferece atalhos e inicialização automática como opções desmarcadas.
+O resultado adicional é `PWQuestOverlay-Setup-v0.7.6.exe`. Ele instala por usuário, sem exigir privilégios administrativos, e oferece atalhos e inicialização automática como opções desmarcadas.
 
 Para compilar e iniciar:
 

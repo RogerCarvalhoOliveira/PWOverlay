@@ -9,7 +9,7 @@
 
 ## Instalação recomendada
 
-1. Baixe `PWQuestOverlay-Setup-v0.7.5.exe` na página **Releases** do GitHub e copie-o para o outro computador.
+1. Baixe `PWQuestOverlay-Setup-v0.7.6.exe` na página **Releases** do GitHub e copie-o para o outro computador.
 2. Execute o instalador. Não é necessário acesso de administrador: o programa é instalado somente para o usuário atual.
 3. Escolha, se desejar, atalhos e inicialização automática. Deixe a inicialização direta do Overlay/PW Borderless desmarcada se quiser decidir a cada sessão.
 4. Ao terminar, abra **PW Overlay Central**, selecione as ferramentas desejadas e use **Iniciar selecionados + PW**.
@@ -22,6 +22,8 @@ O instalador cria atalhos no menu Iniciar e registra um desinstalador. Atualiza�
 - **Abrir somente o PW:** encerra nossas duas ferramentas e abre o jogo normalmente.
 - **Aplicar ao PW já aberto:** inicia ou encerra as ferramentas conforme as caixas, sem abrir outro cliente.
 - **Parar Overlay e Borderless:** encerra somente nossas ferramentas; os clientes e o PW Helper continuam abertos.
+
+O botão **Windowed Fullscreen: ATIVADO/DESATIVADO** também funciona como toggle imediato. Ao ativar, aplica o modo aos clientes atuais e aos que forem abertos depois. Ao desativar, devolve a cada cliente aberto o estilo, o tamanho e a posição de janela registrados antes da aplicação.
 
 Na primeira utilização, a Central tenta localizar o launcher automaticamente. Se não encontrar, clique em **Procurar...** e selecione o launcher original do servidor, não um atalho.
 
@@ -42,7 +44,7 @@ O backup inclui progresso, associações de classe, posições, transparência, 
 
 ## Versão portátil
 
-Baixe e extraia `PWQuestOverlay-Portatil-v0.7.5.zip` para uma pasta em que o usuário tenha permissão de escrita e execute `PW Overlay Central.exe`. Não mova apenas um EXE: as três ferramentas e `quest_routes.json` devem permanecer juntas.
+Baixe e extraia `PWQuestOverlay-Portatil-v0.7.6.zip` para uma pasta em que o usuário tenha permissão de escrita e execute `PW Overlay Central.exe`. Não mova apenas um EXE: as três ferramentas e `quest_routes.json` devem permanecer juntas.
 
 ## Dados locais e desinstalação
 
