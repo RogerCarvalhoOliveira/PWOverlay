@@ -75,6 +75,7 @@ O resultado será criado em `dist\`:
 - `PW Memory Probe.exe` (somente nesta branch experimental)
 - `quest_routes.json`
 - `memory_offsets.json` (somente nesta branch experimental)
+- `task_catalog_144.tsv` (somente nesta branch experimental)
 - `rota_leveling_pw_144.xlsx`
 - `LEIA-ME.txt`
 - `INSTALACAO.txt`;
@@ -101,6 +102,9 @@ powershell -ExecutionPolicy Bypass -File .\scripts\run-dev.ps1
 | `src/` | Código C# do aplicativo. |
 | `src/PWLauncher.cs` | Inicializador que permite escolher quais ferramentas usar em cada sessão. |
 | `src/ProcessMemoryReader.cs` | Leitor externo somente leitura usado pelo diagnóstico experimental. |
+| `src/QuestMemoryReader.cs` | Leitura validada das listas ativa e histórica do cliente. |
+| `src/QuestStateTracker.cs` | Detecta transições sem confundir ausência com missão nunca aceita. |
+| `src/TaskCatalog.cs` | Relaciona os IDs da memória aos nomes dataminados do cliente. |
 | `data/quest_routes.json` | Rotas e missões usadas pelo overlay. |
 | `data/memory_offsets.json` | Perfil versionado de offsets do cliente x86. |
 | `data/rota_leveling_pw_144.xlsx` | Planilha editável com as quatro abas e todas as etapas. |

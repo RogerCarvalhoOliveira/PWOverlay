@@ -11,8 +11,8 @@ internal static class SmokeTests
     {
         try
         {
-            if (args.Length != 2) throw new ArgumentException(
-                "Informe quest_routes.json e memory_offsets.json.");
+            if (args.Length != 3) throw new ArgumentException(
+                "Informe quest_routes.json, memory_offsets.json e task_catalog_144.tsv.");
             RouteRepository routes = RouteRepository.Load(args[0]);
             var expected = new Dictionary<string, int>
             {
@@ -59,8 +59,49 @@ internal static class SmokeTests
             if (memoryProfile.pointerSize != 4 ||
                 memoryProfile.player.className != "CECHostPlayer" ||
                 memoryProfile.quests.className != "CECTaskInterface" ||
-                memoryProfile.quests.ActiveEntryStride != 0x20)
+                memoryProfile.quests.ActiveEntryStride != 0x20 ||
+                memoryProfile.quests.ActiveParentIndexOffset != 0x2 ||
+                memoryProfile.quests.ActiveFlagsOffset != 0x7)
                 throw new InvalidDataException("Layout de memória 1.4.4 inesperado.");
+
+            TaskCatalog taskCatalog = TaskCatalog.Load(args[2]);
+            TaskCatalogEntry bamboo = taskCatalog.Find(2646);
+            TaskCatalogEntry bambooFlight = taskCatalog.Find(2655);
+            if (taskCatalog.Count != 24277 || bamboo == null ||
+                bamboo.Name != "Vila do Bambu" || bambooFlight == null ||
+                bambooFlight.Name != "Voe para a Vila do Bam" ||
+                bambooFlight.ParentId != bamboo.Id)
+                throw new InvalidDataException("Catálogo dataminado de missões está divergente.");
+
+            var tracker = new QuestStateTracker();
+            var baseline = new QuestMemorySnapshot();
+            baseline.ActiveTasks.Add(new ActiveQuestMemoryEntry
+                { TaskId = 10, Flags = 0xA1 });
+            baseline.FinishedTaskIds.Add(20);
+            tracker.SetBaseline(baseline);
+            var changed = new QuestMemorySnapshot();
+            changed.ActiveTasks.Add(new ActiveQuestMemoryEntry
+                { TaskId = 10, Flags = 0xA3 });
+            changed.ActiveTasks.Add(new ActiveQuestMemoryEntry
+                { TaskId = 11, Flags = 0xA1 });
+            changed.FinishedTaskIds.Add(20);
+            changed.FinishedTaskIds.Add(10);
+            List<QuestMemoryEvent> changes = tracker.Update(changed);
+            if (changes.Count != 3 ||
+                changes.Count(item => item.Kind == QuestMemoryEventKind.StateChanged) != 1 ||
+                changes.Count(item => item.Kind == QuestMemoryEventKind.Activated) != 1 ||
+                changes.Count(item => item.Kind == QuestMemoryEventKind.AddedToHistory) != 1)
+                throw new InvalidDataException("Rastreador não distinguiu as transições de missão.");
+            var disappeared = new QuestMemorySnapshot();
+            disappeared.ActiveTasks.Add(new ActiveQuestMemoryEntry
+                { TaskId = 11, Flags = 0xA1 });
+            disappeared.FinishedTaskIds.Add(20);
+            disappeared.FinishedTaskIds.Add(10);
+            List<QuestMemoryEvent> removals = tracker.Update(disappeared);
+            if (removals.Count != 1 ||
+                removals[0].Kind != QuestMemoryEventKind.DisappearedAfterObservation ||
+                removals[0].TaskId != 10)
+                throw new InvalidDataException("Rastreador confundiu ausência com missão nunca aceita.");
 
             List<QuestMission> common = routes.AllMissions.Where(m => m.routeKey == "COMMON").ToList();
             int lastLevelTwenty = common.Where(m => m.minLevel == 20)

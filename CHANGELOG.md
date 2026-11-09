@@ -1,5 +1,14 @@
 # Histórico de alterações
 
+## Em desenvolvimento - Estado de missão por memória
+
+- Criada a branch experimental `feature/memory-quest-state`, com leitura externa somente leitura do cliente x86.
+- Identificados `CECHostPlayer`, `CECTaskInterface`, lista ativa, relação pai/filho e histórico de missões.
+- Adicionado catálogo derivado do `tasks.data` com 24.277 missões e submissões, sem incorporar o parser de terceiros.
+- O diagnóstico agora exibe nomes, IDs, bits de sucesso/finalização e monitora transições em todos os clientes abertos.
+- Ausência só gera evento depois que a missão foi observada ativa, evitando confundir missão nunca aceita com missão entregue.
+- A sincronização do overlay permanece desligada até as transições serem validadas em uma missão completa.
+
 ## 0.7.6 - Toggle de Windowed Fullscreen
 
 - Transformado o controle de Windowed Fullscreen da Central em um toggle visual e imediato.

@@ -90,6 +90,8 @@ namespace PWQuestOverlay.Memory
         public string activeEntriesOffset { get; set; }
         public string activeEntryStride { get; set; }
         public string activeIdOffset { get; set; }
+        public string activeParentIndexOffset { get; set; }
+        public string activeFlagsOffset { get; set; }
         public int activeMaximum { get; set; }
         public string finishedListPointerOffset { get; set; }
         public string finishedCountOffset { get; set; }
@@ -103,6 +105,8 @@ namespace PWQuestOverlay.Memory
         internal int ActiveEntriesOffset { get { return ToInt(activeEntriesOffset); } }
         internal int ActiveEntryStride { get { return ToInt(activeEntryStride); } }
         internal int ActiveIdOffset { get { return ToInt(activeIdOffset); } }
+        internal int ActiveParentIndexOffset { get { return ToInt(activeParentIndexOffset); } }
+        internal int ActiveFlagsOffset { get { return ToInt(activeFlagsOffset); } }
         internal int ActiveMaximum { get { return activeMaximum; } }
         internal int FinishedListPointerOffset { get { return ToInt(finishedListPointerOffset); } }
         internal int FinishedCountOffset { get { return ToInt(finishedCountOffset); } }
@@ -116,6 +120,8 @@ namespace PWQuestOverlay.Memory
                 throw new InvalidDataException("Classe RTTI de missões vazia.");
             if (PlayerSearchSize <= 0 || ActiveEntryStride < 4 ||
                 ActiveIdOffset < 0 || ActiveIdOffset + 2 > ActiveEntryStride ||
+                ActiveParentIndexOffset < 0 || ActiveParentIndexOffset >= ActiveEntryStride ||
+                ActiveFlagsOffset < 0 || ActiveFlagsOffset >= ActiveEntryStride ||
                 ActiveMaximum <= 0 || FinishedEntryStride < 4 ||
                 FinishedMaximum <= 0)
                 throw new InvalidDataException("Layout de missões inválido.");

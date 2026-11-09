@@ -19,6 +19,11 @@ namespace PWQuestOverlay.Memory
     internal sealed class ActiveQuestMemoryEntry
     {
         internal uint TaskId { get; set; }
+        internal int ParentIndex { get; set; }
+        internal byte Flags { get; set; }
+        internal byte StateCode { get { return (byte)(Flags & 0x0F); } }
+        internal bool SuccessFlag { get { return (StateCode & 0x01) != 0; } }
+        internal bool FinishedFlag { get { return (StateCode & 0x02) != 0; } }
         internal long Address { get; set; }
         internal byte[] RawData { get; set; }
     }
@@ -78,6 +83,8 @@ namespace PWQuestOverlay.Memory
                 snapshot.ActiveTasks.Add(new ActiveQuestMemoryEntry
                 {
                     TaskId = taskId,
+                    ParentIndex = unchecked((sbyte)raw[_layout.ActiveParentIndexOffset]),
+                    Flags = raw[_layout.ActiveFlagsOffset],
                     Address = entryAddress,
                     RawData = raw
                 });

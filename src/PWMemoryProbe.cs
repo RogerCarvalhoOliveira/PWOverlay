@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 using PWQuestOverlay.Memory;
 
 namespace PWQuestOverlay.Tools
@@ -16,12 +17,23 @@ namespace PWQuestOverlay.Tools
                     AppDomain.CurrentDomain.BaseDirectory,
                     "memory_offsets.json");
                 string profileId = "the_classic_144";
+                bool watch = false;
+                int watchInterval = 500;
+                string catalogPath = Path.Combine(
+                    AppDomain.CurrentDomain.BaseDirectory,
+                    "task_catalog_144.tsv");
                 for (int index = 0; index < args.Length; index++)
                 {
                     if (args[index] == "--layout" && index + 1 < args.Length)
                         layoutPath = args[++index];
                     else if (args[index] == "--profile" && index + 1 < args.Length)
                         profileId = args[++index];
+                    else if (args[index] == "--catalog" && index + 1 < args.Length)
+                        catalogPath = args[++index];
+                    else if (args[index] == "--watch")
+                        watch = true;
+                    else if (args[index] == "--interval" && index + 1 < args.Length)
+                        watchInterval = ParseInterval(args[++index]);
                 }
 
                 MemoryLayoutFile layouts = MemoryLayoutFile.Load(layoutPath);
@@ -29,6 +41,7 @@ namespace PWQuestOverlay.Tools
                 if (profile == null)
                     throw new InvalidDataException("Perfil desconhecido: " + profileId);
                 profile.Validate();
+                TaskCatalog catalog = TaskCatalog.Load(catalogPath);
 
                 Process[] games = Process.GetProcessesByName("elementclient");
                 if (games.Length == 0)
@@ -37,12 +50,15 @@ namespace PWQuestOverlay.Tools
                     return 2;
                 }
 
+                if (watch)
+                    return Watch(games, profile, catalog, watchInterval);
+
                 int failures = 0;
                 foreach (Process game in games)
                 {
                     using (game)
                     {
-                        try { Probe(game, profile); }
+                        try { Probe(game, profile, catalog); }
                         catch (Exception error)
                         {
                             failures++;
@@ -60,7 +76,68 @@ namespace PWQuestOverlay.Tools
             }
         }
 
-        private static void Probe(Process game, MemoryLayoutProfile profile)
+        private static int ParseInterval(string value)
+        {
+            int parsed;
+            if (!int.TryParse(value, out parsed) || parsed < 100 || parsed > 10000)
+                throw new ArgumentOutOfRangeException(
+                    "value", "O intervalo deve ficar entre 100 e 10000 ms.");
+            return parsed;
+        }
+
+        private static int Watch(
+            Process[] games,
+            MemoryLayoutProfile profile,
+            TaskCatalog catalog,
+            int interval)
+        {
+            var sessions = new List<WatchSession>();
+            try
+            {
+                foreach (Process game in games)
+                {
+                    try
+                    {
+                        var session = new WatchSession(game, profile, catalog);
+                        sessions.Add(session);
+                        session.PrintBaseline();
+                    }
+                    catch (Exception error)
+                    {
+                        Console.Error.WriteLine(
+                            "PID {0}: FALHA: {1}", game.Id, error.Message);
+                        game.Dispose();
+                    }
+                }
+                if (sessions.Count == 0) return 1;
+
+                bool cancel = false;
+                Console.CancelKeyPress += delegate(object sender, ConsoleCancelEventArgs eventArgs)
+                {
+                    eventArgs.Cancel = true;
+                    cancel = true;
+                };
+                Console.WriteLine(
+                    "Monitorando alterações a cada {0} ms. Pressione Ctrl+C para sair.",
+                    interval);
+                while (!cancel)
+                {
+                    Thread.Sleep(interval);
+                    foreach (WatchSession session in sessions)
+                        session.Poll();
+                }
+                return 0;
+            }
+            finally
+            {
+                foreach (WatchSession session in sessions) session.Dispose();
+            }
+        }
+
+        private static void Probe(
+            Process game,
+            MemoryLayoutProfile profile,
+            TaskCatalog catalog)
         {
             using (ProcessMemoryReader memory = ProcessMemoryReader.Open(
                 game, profile.module))
@@ -89,33 +166,49 @@ namespace PWQuestOverlay.Tools
                     mp,
                     mpMax);
 
-                ProbeTasks(memory, profile, player);
+                ProbeTasks(memory, profile, player, catalog);
             }
         }
 
         private static void ProbeTasks(
             ProcessMemoryReader memory,
             MemoryLayoutProfile profile,
-            long player)
+            long player,
+            TaskCatalog catalog)
         {
             QuestMemorySnapshot snapshot = new QuestMemoryReader(
                 memory, profile.quests).Read(player);
             Console.WriteLine(
-                "  TaskInterface 0x{0:X8} | ativas: {1} | concluídas: {2}",
+                "  TaskInterface 0x{0:X8} | catálogo: {1} | ativas: {2} | histórico: {3}",
                 snapshot.TaskInterfaceAddress,
-                JoinActive(snapshot.ActiveTasks),
+                catalog.Count,
+                snapshot.ActiveTasks.Count,
                 snapshot.FinishedTaskIds.Count == 0
                     ? "nenhuma"
                     : string.Join(", ", snapshot.FinishedTaskIds));
+            foreach (ActiveQuestMemoryEntry entry in snapshot.ActiveTasks)
+                Console.WriteLine("    " + FormatActive(entry, catalog));
         }
 
-        private static string JoinActive(List<ActiveQuestMemoryEntry> entries)
+        private static string FormatActive(
+            ActiveQuestMemoryEntry entry,
+            TaskCatalog catalog)
         {
-            if (entries.Count == 0) return "nenhuma";
-            var ids = new List<string>();
-            foreach (ActiveQuestMemoryEntry entry in entries)
-                ids.Add(entry.TaskId.ToString());
-            return string.Join(", ", ids);
+            TaskCatalogEntry task = catalog.Find(entry.TaskId);
+            string name = task == null || string.IsNullOrWhiteSpace(task.Name)
+                ? "<sem nome>" : task.Name;
+            string parent = entry.ParentIndex < 0
+                ? "raiz" : "índice-pai " + entry.ParentIndex;
+            return string.Format(
+                "ID {0} | {1} | {2} | estado {3} (sucesso={4}, finalizada={5}) | flags 0x{6:X2} | catálogo-pai {7}",
+                entry.TaskId,
+                name,
+                parent,
+                entry.StateCode,
+                entry.SuccessFlag ? "sim" : "não",
+                entry.FinishedFlag ? "sim" : "não",
+                entry.Flags,
+                task == null || task.ParentId == 0 ? "-" : task.ParentId.ToString());
         }
 
         private static long ResolvePlayer(
@@ -174,6 +267,92 @@ namespace PWQuestOverlay.Tools
             if (current < 0 || maximum <= 0 || current > maximum)
                 throw new InvalidDataException(
                     name + " inválido: " + current + "/" + maximum);
+        }
+
+        private sealed class WatchSession : IDisposable
+        {
+            private readonly Process _game;
+            private readonly ProcessMemoryReader _memory;
+            private readonly QuestMemoryReader _reader;
+            private readonly QuestStateTracker _tracker;
+            private readonly TaskCatalog _catalog;
+            private readonly long _player;
+
+            internal WatchSession(
+                Process game,
+                MemoryLayoutProfile profile,
+                TaskCatalog catalog)
+            {
+                _game = game;
+                _catalog = catalog;
+                _memory = ProcessMemoryReader.Open(game, profile.module);
+                try
+                {
+                    _player = ResolvePlayer(_memory, profile);
+                    _reader = new QuestMemoryReader(_memory, profile.quests);
+                    _tracker = new QuestStateTracker();
+                }
+                catch
+                {
+                    _memory.Dispose();
+                    throw;
+                }
+            }
+
+            internal void PrintBaseline()
+            {
+                QuestMemorySnapshot snapshot = _reader.Read(_player);
+                _tracker.SetBaseline(snapshot);
+                Console.WriteLine(
+                    "PID {0} | {1} | baseline com {2} entradas ativas",
+                    _game.Id,
+                    string.IsNullOrWhiteSpace(_game.MainWindowTitle)
+                        ? "sem título" : _game.MainWindowTitle,
+                    snapshot.ActiveTasks.Count);
+                foreach (ActiveQuestMemoryEntry entry in snapshot.ActiveTasks)
+                    Console.WriteLine("    " + FormatActive(entry, _catalog));
+            }
+
+            internal void Poll()
+            {
+                try
+                {
+                    foreach (QuestMemoryEvent change in _tracker.Update(
+                        _reader.Read(_player)))
+                    {
+                        TaskCatalogEntry task = _catalog.Find(change.TaskId);
+                        string name = task == null || string.IsNullOrWhiteSpace(task.Name)
+                            ? "<sem nome>" : task.Name;
+                        string detail = change.Kind == QuestMemoryEventKind.StateChanged
+                            ? change.PreviousState + " -> " + change.CurrentState
+                            : change.Kind == QuestMemoryEventKind.Activated
+                                ? "estado " + change.CurrentState
+                                : change.Kind == QuestMemoryEventKind.DisappearedAfterObservation
+                                    ? "último estado " + change.PreviousState
+                                    : "registrada no histórico";
+                        Console.WriteLine(
+                            "{0:HH:mm:ss.fff} | PID {1} | {2} | ID {3} | {4} | {5}",
+                            DateTime.Now,
+                            _game.Id,
+                            change.Kind,
+                            change.TaskId,
+                            name,
+                            detail);
+                    }
+                }
+                catch (Exception error)
+                {
+                    Console.Error.WriteLine(
+                        "PID {0}: leitura temporariamente inválida: {1}",
+                        _game.Id, error.Message);
+                }
+            }
+
+            public void Dispose()
+            {
+                _memory.Dispose();
+                _game.Dispose();
+            }
         }
     }
 }
