@@ -37,6 +37,7 @@ O byte de estado é mantido em formato bruto. Valores diferentes foram observado
 
 - aparecimento do ID para aceite;
 - item e quantidade exigidos presentes no inventário de missão para coleta;
+- em coletas filhas aninhadas, item completo mais presença da própria missão ou de um ancestral real ativo; o filho pode já ter desaparecido automaticamente;
 - primeiro contador de abates para objetivos dataminados com um único monstro, sem drops, até 255 abates (a partir da versão 0.8.1);
 - desaparecimento depois de presença confirmada para conversa ou entrega;
 - próxima submissão da mesma cadeia ativa para recuperar uma transição ocorrida antes de abrir o overlay.
@@ -58,3 +59,5 @@ As próximas validações devem ampliar a cobertura sem inferências arriscadas:
 Ausência de um ID nunca será tratada sozinha como missão entregue: o leitor precisará distinguir “nunca aceita”, “ativa” e “já finalizada” por estruturas independentes do cliente.
 
 Na versão 0.8.1, `Confiança dos Guardas` (ID 2714) foi validada com 10 abates do monstro 1037. O primeiro contador ocupa dois bytes no offset `0x15` da entrada ativa de 32 bytes. A assinatura de estabilidade inclui essa contagem, de modo que uma mudança no contador seja confirmada mesmo sem alteração na lista de IDs. Somente uma ação exclusivamente de matar avança por essa evidência; entregar ao NPC exige sua própria transição.
+
+Na versão 0.8.2, a cadeia `Livro de Fundição` é resolvida como 80 → 82 → 85/86. A lenha usa item 2377 (10 unidades), e o ferro usa item 2375 (10 unidades). O título genérico do pai não identifica o objetivo de cada material; os títulos das etapas usam os filhos dataminados. A presença dos itens, sem a missão ou um ancestral correspondente ativo, nunca basta para concluir a coleta.

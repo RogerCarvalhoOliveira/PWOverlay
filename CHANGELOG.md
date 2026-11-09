@@ -1,5 +1,12 @@
 # Histórico de alterações
 
+## 0.8.2 - Coletas em submissões aninhadas
+
+- Corrigida a associação de lenha e ferro em `Livro de Fundição`: as etapas agora apontam para as submissões filhas `Eliminando Pulador-Arp` (85) e `Livrar-se dos Duendes` (86).
+- Coletas concluídas são reconhecidas pelos itens mesmo quando o filho já desapareceu automaticamente, desde que a missão ou um ancestral real da cadeia continue ativo.
+- Os contadores dos materiais são independentes: lenha 10/10 não conclui ferro 2/10.
+- Testados dois níveis de hierarquia, filho desaparecido, contagem insuficiente e itens sem uma cadeia ativa correspondente.
+
 ## 0.8.1 - Contador de abates
 
 - Integrado o primeiro contador de abates da lista de missões ativas ao avanço automático, com confirmação em duas leituras estáveis.

@@ -147,6 +147,35 @@ namespace PWQuestOverlay.Memory
             return new List<TaskCatalogEntry>(matches);
         }
 
+        internal bool AreTaskItemsComplete(uint taskId, QuestMemorySnapshot snapshot)
+        {
+            TaskCatalogEntry task = Find(taskId);
+            if (task == null || snapshot == null || task.RequiredTaskItems.Count == 0)
+                return false;
+            // Completed automatic children may disappear before the parent is delivered.
+            // Require the objective itself or a real ancestor of this chain to be active.
+            var visited = new HashSet<uint>();
+            TaskCatalogEntry context = task;
+            bool activeContext = false;
+            while (context != null && visited.Add(context.Id))
+            {
+                if (snapshot.ActiveTasks.Exists(entry => entry.TaskId == context.Id))
+                {
+                    activeContext = true;
+                    break;
+                }
+                context = context.ParentId == 0 ? null : Find(context.ParentId);
+            }
+            if (!activeContext) return false;
+            foreach (var requirement in task.RequiredTaskItems)
+            {
+                int count;
+                if (!snapshot.TaskItemCounts.TryGetValue(requirement.Key, out count) ||
+                    count < requirement.Value) return false;
+            }
+            return true;
+        }
+
         private static uint ParseUInt(string value, int lineNumber)
         {
             uint parsed;

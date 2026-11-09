@@ -85,6 +85,35 @@ internal static class SmokeTests
                 throw new InvalidDataException("Catálogo dataminado de missões está divergente.");
 
             var tracker = new QuestStateTracker();
+            var materials = new QuestMemorySnapshot();
+            materials.ActiveTasks.Add(new ActiveQuestMemoryEntry { TaskId = 80 });
+            materials.ActiveTasks.Add(new ActiveQuestMemoryEntry { TaskId = 82 });
+            materials.ActiveTasks.Add(new ActiveQuestMemoryEntry { TaskId = 86 });
+            materials.TaskItemCounts[2377] = 10;
+            materials.TaskItemCounts[2375] = 2;
+            if (taskCatalog.Find(85).ParentId != 82 || taskCatalog.Find(85).TopId != 80 ||
+                !taskCatalog.AreTaskItemsComplete(85, materials) ||
+                taskCatalog.AreTaskItemsComplete(86, materials) ||
+                taskCatalog.AreTaskItemsComplete(82, materials))
+                throw new InvalidDataException("Coletas filhas não distinguem lenha 10/10 de ferro 2/10.");
+            materials.TaskItemCounts[2377] = 9;
+            if (taskCatalog.AreTaskItemsComplete(85, materials))
+                throw new InvalidDataException("Lenha incompleta avançou.");
+            materials.TaskItemCounts[2377] = 10;
+            materials.TaskItemCounts[2375] = 10;
+            materials.ActiveTasks.RemoveAll(entry => entry.TaskId != 80);
+            if (!taskCatalog.AreTaskItemsComplete(85, materials) ||
+                !taskCatalog.AreTaskItemsComplete(86, materials))
+                throw new InvalidDataException("Coletas completas não sobreviveram ao desaparecimento dos filhos.");
+            materials.ActiveTasks.Clear();
+            materials.ActiveTasks.Add(new ActiveQuestMemoryEntry { TaskId = 934 });
+            if (taskCatalog.AreTaskItemsComplete(85, materials) ||
+                taskCatalog.AreTaskItemsComplete(86, materials))
+                throw new InvalidDataException("Itens sem cadeia ativa foram tratados como missão completa.");
+            QuestMission foundry = routes.GetForClass("EA").Find(m => m.name == "Livro de Fundição");
+            if (foundry.steps[2].title != taskCatalog.Find(85).Name ||
+                foundry.steps[3].title != taskCatalog.Find(86).Name)
+                throw new InvalidDataException("Rota de matérias-primas aponta para o pai em vez das submissões.");
             TaskCatalogEntry hedgehogs = taskCatalog.Find(2714);
             string killEvidence;
             var killEntry = new ActiveQuestMemoryEntry { TaskId = 2714 };

@@ -2178,16 +2178,8 @@ namespace PWQuestOverlay
                 string killEvidence = string.Empty;
                 bool killsComplete = currentTask != null &&
                     currentTask.TryGetKillProgress(active, action, out killEvidence);
-                bool taskItemsComplete = active != null &&
-                    IsCollectionStage(action) && currentTask != null &&
-                    currentTask.RequiredTaskItems.Count > 0 &&
-                    currentTask.RequiredTaskItems.All(requirement =>
-                    {
-                        int currentCount;
-                        client.Snapshot.TaskItemCounts.TryGetValue(
-                            requirement.Key, out currentCount);
-                        return currentCount >= requirement.Value;
-                    });
+                bool taskItemsComplete = IsCollectionStage(action) &&
+                    _taskCatalog.AreTaskItemsComplete(taskId, client.Snapshot);
                 bool nextUsesSameTask = false;
                 bool nextTaskResolved = false;
                 uint nextTaskId = 0;
