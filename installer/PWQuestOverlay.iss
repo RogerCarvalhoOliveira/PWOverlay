@@ -27,7 +27,6 @@ SolidCompression=yes
 WizardStyle=modern
 UninstallDisplayIcon={app}\{#MyAppExeName}
 SetupIconFile=..\assets\branding\PWOverlay.ico
-AppMutex=Local\PWQuestOverlay
 CloseApplications=yes
 RestartApplications=no
 SetupLogging=yes
@@ -46,6 +45,7 @@ Name: "startupborderless"; Description: "Iniciar o PW Borderless ao entrar no Wi
 Source: "..\dist\PW Quest Overlay.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\PW Borderless.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\PW Overlay Central.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\dist\PW Maintenance.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\quest_routes.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\memory_offsets.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\task_catalog_144.tsv"; DestDir: "{app}"; Flags: ignoreversion
@@ -76,6 +76,48 @@ Filename: "{app}\INSTALACAO.txt"; Description: "Abrir o guia de configuração";
 Filename: "{app}\PW Overlay Central.exe"; Description: "Abrir o PW Overlay Central"; Flags: postinstall nowait skipifsilent unchecked
 
 [Code]
+function StopInstalledTools(Installing: Boolean): Boolean;
+var
+  Helper, MaintenanceLog: String;
+  ExitCode: Integer;
+  Details: TArrayOfString;
+  I: Integer;
+begin
+  if Installing then begin
+    ExtractTemporaryFile('PW Maintenance.exe');
+    Helper := ExpandConstant('{tmp}\PW Maintenance.exe');
+  end else begin
+    Helper := ExpandConstant('{tmp}\PW Maintenance.exe');
+    if not FileCopy(ExpandConstant('{app}\PW Maintenance.exe'), Helper, False) then begin
+      Log('Não foi possível copiar o auxiliar de manutenção.');
+      Result := False;
+      Exit;
+    end;
+  end;
+  MaintenanceLog := ExpandConstant('{tmp}\PWOverlay-maintenance.log');
+  ExitCode := -1;
+  Result := Exec(Helper, '"' + ExpandConstant('{app}\.') + '" "' + MaintenanceLog + '"',
+    '', SW_HIDE, ewWaitUntilTerminated, ExitCode);
+  if Result then Result := ExitCode = 0;
+  Log(Format('Encerramento das ferramentas: resultado=%d; log=%s', [ExitCode, MaintenanceLog]));
+  if LoadStringsFromFile(MaintenanceLog, Details) then
+    for I := 0 to GetArrayLength(Details) - 1 do Log('Manutenção: ' + Details[I]);
+end;
+
+function PrepareToInstall(var NeedsRestart: Boolean): String;
+begin
+  Result := '';
+  if not StopInstalledTools(True) then
+    Result := 'Não foi possível liberar os arquivos do PW Overlay. Feche a Central, o overlay e o monitor sem bordas desta instalação e tente novamente. O jogo e o PW Helper não precisam ser fechados.';
+end;
+
+function InitializeUninstall: Boolean;
+begin
+  Result := StopInstalledTools(False);
+  if not Result then
+    MsgBox('Não foi possível encerrar as ferramentas desta instalação. Feche-as e execute a desinstalação novamente. Seus perfis foram preservados.', mbError, MB_OK);
+end;
+
 function InitializeSetup(): Boolean;
 begin
   Result := IsDotNetInstalled(net48, 0);

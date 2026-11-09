@@ -14,6 +14,8 @@ As caixas escolhem o que será ativado ao clicar em **Aplicar ao PW já aberto**
 
 Para jogar sem nenhuma ferramenta, use **Parar Overlay e Borderless** se estiverem ativas e abra o PW manualmente ou pelo Helper. Esse botão encerra apenas nossas ferramentas; não fecha clientes nem o PW Helper.
 
+Para remover a instalação, use **Desinstalar programa...** no rodapé da Central ou no menu da bandeja do overlay. O desinstalador preserva perfis e progresso. Na versão portátil, não há desinstalador: feche as ferramentas e remova a pasta extraída. Salve edições de rotas antes de atualizar ou desinstalar.
+
 ## Identificação de personagem
 
 Sem PW Helper, use **Perfis**: selecione a linha do cliente pelo PID/título, digite o nome do personagem e escolha sua classe. Para retomar um personagem conhecido, selecione-o na lista de perfis salvos e clique em **Usar na linha selecionada**, depois **Salvar**. Duas janelas com o mesmo título padrão permanecem separadas.

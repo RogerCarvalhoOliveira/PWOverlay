@@ -57,6 +57,14 @@ internal static class SmokeTests
                 "Informe quest_routes.json, memory_offsets.json e task_catalog_144.tsv.");
             RouteRepository routes = RouteRepository.Load(args[0]);
             TestStandaloneClients();
+            string maintenanceRoot = Path.Combine(Path.GetTempPath(), "PWOverlay-scope-test");
+            if (!PWOverlayShared.ToolMaintenance.BelongsToDirectory(Path.Combine(maintenanceRoot, "PW Quest Overlay.exe"), maintenanceRoot) ||
+                PWOverlayShared.ToolMaintenance.BelongsToDirectory(Path.Combine(maintenanceRoot + "-other", "PW Quest Overlay.exe"), maintenanceRoot) ||
+                PWOverlayShared.ToolMaintenance.BelongsToDirectory(Path.Combine(maintenanceRoot, "elementclient.exe"), maintenanceRoot) ||
+                PWOverlayShared.ToolMaintenance.BelongsToDirectory(Path.Combine(maintenanceRoot, "PW Helper.exe"), maintenanceRoot) ||
+                PWOverlayShared.AppShutdown.EventName("overlay", maintenanceRoot) != PWOverlayShared.AppShutdown.EventName("overlay", maintenanceRoot.ToUpperInvariant() + "\\") ||
+                PWOverlayShared.AppShutdown.EventName("overlay", maintenanceRoot) == PWOverlayShared.AppShutdown.EventName("overlay", maintenanceRoot + "-other"))
+                throw new Exception("Maintenance must be scoped to our executables in the exact installation directory.");
             var expected = new Dictionary<string, int>
             {
                 { "WR", 116 }, { "WB", 116 }, { "WF", 121 },

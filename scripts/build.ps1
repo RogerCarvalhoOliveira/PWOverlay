@@ -37,10 +37,13 @@ using System.Reflection;
 [assembly: AssemblyInformationalVersion("$version")]
 "@ | Set-Content -LiteralPath $assemblyInfo -Encoding UTF8
 $brandingSource = Join-Path $sourceDirectory 'AppBranding.cs'
+$shutdownSource = Join-Path $sourceDirectory 'AppShutdown.cs'
+$maintenanceSource = Join-Path $sourceDirectory 'ToolMaintenance.cs'
 $overlayExecutable = Join-Path $distributionDirectory 'PW Quest Overlay.exe'
 $borderlessExecutable = Join-Path $distributionDirectory 'PW Borderless.exe'
 $launcherExecutable = Join-Path $distributionDirectory 'PW Overlay Central.exe'
 $memoryProbeExecutable = Join-Path $distributionDirectory 'PW Memory Probe.exe'
+$maintenanceExecutable = Join-Path $distributionDirectory 'PW Maintenance.exe'
 $routeDestination = Join-Path $distributionDirectory 'quest_routes.json'
 $memoryOffsetsDestination = Join-Path $distributionDirectory 'memory_offsets.json'
 $taskCatalogDestination = Join-Path $distributionDirectory 'task_catalog_144.tsv'
@@ -79,7 +82,7 @@ $overlaySources = @(
     /reference:System.Windows.Forms.dll `
     /reference:System.Web.Extensions.dll `
     /reference:Microsoft.CSharp.dll `
-    $overlaySources $assemblyInfo $brandingSource
+    $overlaySources $assemblyInfo $brandingSource $shutdownSource
 if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar o PW Quest Overlay.' }
 
 & $compiler /nologo /target:winexe /optimize+ /platform:anycpu `
@@ -87,7 +90,7 @@ if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar o PW Quest Overlay.' }
     /out:$borderlessExecutable `
     /reference:System.dll `
     /reference:System.Core.dll `
-    (Join-Path $sourceDirectory 'PWBorderlessMonitor.cs') $assemblyInfo
+    (Join-Path $sourceDirectory 'PWBorderlessMonitor.cs') $assemblyInfo $shutdownSource
 if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar o PW Borderless Monitor.' }
 
 & $compiler /nologo /target:winexe /optimize+ /platform:anycpu `
@@ -98,7 +101,7 @@ if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar o PW Borderless Monitor.' }
     /reference:System.Drawing.dll `
     /reference:System.Windows.Forms.dll `
     /reference:System.Web.Extensions.dll `
-    (Join-Path $sourceDirectory 'PWLauncher.cs') $assemblyInfo $brandingSource
+    (Join-Path $sourceDirectory 'PWLauncher.cs') $assemblyInfo $brandingSource $shutdownSource $maintenanceSource
 if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar o PW Overlay Central.' }
 
 & $compiler /nologo /target:exe /optimize+ /platform:x86 `
@@ -115,6 +118,11 @@ if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar o PW Overlay Central.' }
     (Join-Path $sourceDirectory 'QuestStateTracker.cs') `
     (Join-Path $sourceDirectory 'PWMemoryProbe.cs') $assemblyInfo
 if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar o diagnóstico de memória.' }
+
+& $compiler /nologo /target:exe /optimize+ /platform:anycpu /win32icon:$iconPath `
+    /out:$maintenanceExecutable /reference:System.dll /reference:System.Core.dll `
+    (Join-Path $sourceDirectory 'MaintenanceProgram.cs') $shutdownSource $maintenanceSource $assemblyInfo
+if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar o auxiliar de manutenção.' }
 
 Copy-Item -LiteralPath (Join-Path $dataDirectory 'quest_routes.json') -Destination $routeDestination -Force
 Copy-Item -LiteralPath (Join-Path $dataDirectory 'memory_offsets.json') -Destination $memoryOffsetsDestination -Force
@@ -139,6 +147,7 @@ if ($Package) {
         $borderlessExecutable,
         $launcherExecutable,
         $memoryProbeExecutable,
+        $maintenanceExecutable,
         $routeDestination,
         $memoryOffsetsDestination,
         $taskCatalogDestination,

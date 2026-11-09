@@ -1,5 +1,13 @@
 # Histórico de alterações
 
+## 0.11.1 - Correção da atualização e desinstalação pelo aplicativo
+
+- Corrigido o erro do Restart Manager ao tentar fechar ferramentas em segundo plano. O instalador usa um auxiliar temporário para liberar os executáveis antes da substituição.
+- Saída cooperativa do overlay/Central por eventos específicos da instalação; o monitor sem bordas restaura as janelas ao encerrar. Compatibilidade com o evento do monitor antigo e encerramento limitado a executáveis conhecidos na pasta exata da instalação.
+- Removida a verificação antecipada de AppMutex no instalador, permitindo que a preparação encerre as ferramentas. Aplicações mantêm seus próprios mutexes.
+- Opção Desinstalar programa na Central e na bandeja do overlay. Abre o desinstalador da instalação; a versão portátil informa que não possui desinstalador. Perfis e progresso em LOCALAPPDATA são preservados.
+- Testadas atualização da instalação real, instalação isolada, atualização com versões antigas/novas abertas e desinstalação isolada com ferramentas abertas, todas com código de saída zero. state.json foi preservado.
+
 ## 0.11.0 - Uso independente do PW Helper
 
 - Perfis por sessão da janela: nome/classe manual ou seleção de perfil salvo, mesmo com vários clientes usando o título padrão. Nenhuma instalação ou processo PW Helper é exigido.

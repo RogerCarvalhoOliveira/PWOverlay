@@ -559,6 +559,8 @@ internal static class PWBorderless
                 false,
                 EventResetMode.AutoReset,
                 @"Local\PWBorderlessDisableEvent"))
+            using (var maintenanceStop = new EventWaitHandle(false, EventResetMode.AutoReset,
+                PWOverlayShared.AppShutdown.EventName("borderless", AppDomain.CurrentDomain.BaseDirectory)))
             {
             IntPtr lastForegroundGame = IntPtr.Zero;
             IntPtr pendingFocusRepair = IntPtr.Zero;
@@ -571,7 +573,7 @@ internal static class PWBorderless
             {
                 try
                 {
-                    if (disableEvent.WaitOne(0))
+                    if (disableEvent.WaitOne(0) || maintenanceStop.WaitOne(0))
                     {
                         RestoreOriginalWindows(originalStates);
                         Log("monitor disabled; original windows restored");

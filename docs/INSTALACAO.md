@@ -9,12 +9,12 @@
 
 ## Instalação recomendada
 
-1. Baixe `PWQuestOverlay-Setup-v0.11.0.exe` na página **Releases** do GitHub e copie-o para o outro computador.
+1. Baixe `PWQuestOverlay-Setup-v0.11.1.exe` na página **Releases** do GitHub e copie-o para o outro computador.
 2. Execute o instalador. Não é necessário acesso de administrador: o programa é instalado somente para o usuário atual.
 3. Escolha, se desejar, atalhos e inicialização automática. Deixe a inicialização direta do Overlay/PW Borderless desmarcada se quiser decidir a cada sessão.
 4. Abra o PW manualmente ou pelo PW Helper. Na **PW Overlay Central**, selecione as funções desejadas e use **Aplicar ao PW já aberto**.
 
-O instalador cria atalhos no menu Iniciar e registra um desinstalador. Atualizações podem ser instaladas por cima da versão anterior.
+O instalador cria atalhos no menu Iniciar e registra um desinstalador. Atualizações podem ser instaladas por cima da versão anterior. Salve edições de rotas antes de atualizar: o instalador encerra as ferramentas daquela pasta antes de substituir os arquivos. O monitor sem bordas restaura as janelas; jogo e PW Helper continuam abertos.
 
 ## Abrir com ou sem o overlay
 
@@ -48,11 +48,15 @@ O backup inclui os perfis, progresso, cultivo, associações antigas por título
 
 ## Versão portátil
 
-Baixe e extraia `PWQuestOverlay-Portatil-v0.11.0.zip` para uma pasta em que o usuário tenha permissão de escrita e execute `PW Overlay Central.exe`. Não mova apenas um EXE: mantenha juntos todos os arquivos do pacote, incluindo rotas, catálogo, offsets e planilha.
+Baixe e extraia `PWQuestOverlay-Portatil-v0.11.1.zip` para uma pasta em que o usuário tenha permissão de escrita e execute `PW Overlay Central.exe`. Não mova apenas um EXE: mantenha juntos todos os arquivos do pacote, incluindo rotas, catálogo, offsets e planilha.
 
 O símbolo do check dentro dos anéis identifica o projeto na bandeja do Windows, nos atalhos e no instalador. O menu da bandeja informa a versão. O ícone está incorporado: não é necessário copiar um ICO separado para a instalação.
 
 ## Dados locais e desinstalação
+
+Na Central, use **Desinstalar programa...**, no rodapé. A mesma opção está no menu do ícone do overlay ao lado do relógio. Ela fecha as ferramentas da instalação e abre o desinstalador padrão, com sua confirmação. Também é possível usar Aplicativos Instalados do Windows ou o atalho do menu Iniciar.
+
+Na versão portátil, o link fica desativado porque não há desinstalador. Feche as ferramentas e remova a pasta extraída quando quiser deixar de usá-las.
 
 O estado fica em `%LOCALAPPDATA%\PWQuestOverlay`. A desinstalação remove o programa, mas preserva esse estado para permitir reinstalação sem perder o progresso. Para remover tudo, desinstale o aplicativo e apague essa pasta manualmente somente depois de fazer um backup.
 

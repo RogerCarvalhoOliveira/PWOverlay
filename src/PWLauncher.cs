@@ -45,7 +45,7 @@ namespace PWOverlayCentral
             StartPosition = FormStartPosition.CenterScreen;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-            ClientSize = new Size(560, 266);
+            ClientSize = new Size(560, 294);
             BackColor = Color.FromArgb(15, 23, 42);
             ForeColor = Color.White;
             Font = new Font("Segoe UI", 9.0f);
@@ -106,6 +106,14 @@ namespace PWOverlayCentral
 
             Controls.AddRange(new Control[] { title, subtitle,
                 optionsPanel, applyButton, stopButton, _statusLabel });
+            var uninstall = new LinkLabel { Text = "Desinstalar programa...", Location = new Point(400, 266), Size = new Size(140, 20),
+                LinkColor = Color.FromArgb(125, 211, 252), Enabled = Program.HasUninstaller };
+            uninstall.LinkClicked += delegate {
+                try { Program.Uninstall(); Close(); }
+                catch (Exception error) { ShowError(error.Message); }
+            };
+            Controls.Add(uninstall);
+            if (!Program.HasUninstaller) Controls.Add(new Label { Text = "Versão portátil: não há desinstalador.", Location = new Point(20, 266), Size = new Size(365, 20), ForeColor = Color.FromArgb(148, 163, 184) });
             FormClosing += delegate { SaveSettings(); };
         }
 
@@ -229,12 +237,35 @@ namespace PWOverlayCentral
 
     internal static class Program
     {
+        internal static bool HasUninstaller { get { return File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "unins000.exe")); } }
+        internal static void Uninstall()
+        {
+            string root = AppDomain.CurrentDomain.BaseDirectory;
+            if (!HasUninstaller) throw new InvalidOperationException("Esta é a versão portátil. Feche as ferramentas e remova a pasta extraída; seus perfis ficam em %LOCALAPPDATA%\\PWQuestOverlay.");
+            if (!PWOverlayShared.ToolMaintenance.Stop(root, false, delegate { }))
+                throw new InvalidOperationException("Não foi possível fechar todas as ferramentas desta instalação. Feche-as e tente novamente.");
+            Process.Start(new ProcessStartInfo(Path.Combine(root, "unins000.exe")) { WorkingDirectory = root, UseShellExecute = true });
+        }
+
         [STAThread]
-        private static void Main()
+        private static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LauncherForm());
+            if (args.Length == 1 && args[0] == "--uninstall")
+            {
+                try { Uninstall(); }
+                catch (Exception error) { MessageBox.Show(error.Message, "Desinstalar PW Quest Overlay", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+                return;
+            }
+            using (var shutdown = new EventWaitHandle(false, EventResetMode.AutoReset,
+                PWOverlayShared.AppShutdown.EventName("central", AppDomain.CurrentDomain.BaseDirectory)))
+            using (var timer = new System.Windows.Forms.Timer { Interval = 100 })
+            using (var form = new LauncherForm())
+            {
+                timer.Tick += delegate { if (shutdown.WaitOne(0)) form.Close(); };
+                timer.Start(); Application.Run(form);
+            }
         }
     }
 }

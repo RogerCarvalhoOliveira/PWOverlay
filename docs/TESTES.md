@@ -99,8 +99,12 @@ Faça backup de `%LOCALAPPDATA%\PWQuestOverlay\state.json`, teste com uma cópia
 
 ## Instalador em outro computador
 
-1. Execute `PWQuestOverlay-Setup-v0.11.0.exe` como usuário comum e confirme que não pede elevação.
+1. Execute `PWQuestOverlay-Setup-v0.11.1.exe` como usuário comum e confirme que não pede elevação.
 2. Teste atalhos do menu Iniciar, opções de área de trabalho e inicialização automática.
 3. Confirme que o guia abre ao final e que overlay, rotas e planilha estão no diretório instalado.
 4. Importe um backup, associe um cliente sem sigla e refaça a calibração do marcador.
 5. Instale novamente por cima, confirme a atualização e depois teste a desinstalação; o estado em `%LOCALAPPDATA%\PWQuestOverlay` deve permanecer.
+6. Mantenha as três ferramentas abertas durante a atualização e confirme que o instalador as encerra, sem a mensagem de falha do Restart Manager. Repita com uma versão antiga.
+7. Confira **Desinstalar programa...** na Central e na bandeja. Na versão portátil, a opção deve ficar indisponível. Não desinstale uma instalação de uso diário para testar: utilize `scripts/test-installation.ps1` e seu AppId isolado.
+
+Na correção 0.11.1, o teste completo validou instalação limpa, atualização legada/atual com ferramentas abertas, desinstalação com ferramentas abertas e preservação de uma cópia externa à pasta alvo. Os hashes do progresso e os valores das seleções da Central foram conferidos. A instalação principal deste computador também foi atualizada com sucesso.

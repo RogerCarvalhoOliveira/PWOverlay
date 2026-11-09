@@ -55,6 +55,8 @@ namespace PWQuestOverlay
         private readonly Dictionary<IntPtr, DateTime> _titleRefresh;
         private readonly TaskCatalog _taskCatalog;
         private readonly QuestMemoryMonitor _memoryMonitor;
+        private readonly System.Threading.EventWaitHandle _shutdown = new System.Threading.EventWaitHandle(false,
+            System.Threading.EventResetMode.AutoReset, PWOverlayShared.AppShutdown.EventName("overlay", AppDomain.CurrentDomain.BaseDirectory));
 
         private IntPtr _activeGame;
         private DateTime _helperNeutralUntil;
@@ -341,6 +343,9 @@ namespace PWQuestOverlay
             _trayMenu.Items.Add("Reiniciar progresso deste personagem", null, delegate { ResetProgress(); });
             _trayMenu.Items.Add(new ToolStripSeparator());
             _trayMenu.Items.Add("Sair", null, delegate { ExitApplication(); });
+            _trayMenu.Items.Insert(_trayMenu.Items.Count - 1, new ToolStripMenuItem("Desinstalar programa...", null, delegate {
+                Process.Start(new ProcessStartInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "PW Overlay Central.exe"), "--uninstall") { UseShellExecute = true });
+            }) { Enabled = File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "unins000.exe")) });
             _trayMenu.Items.Insert(_trayMenu.Items.Count - 1, new ToolStripMenuItem(
                 "Versão " + Application.ProductVersion) { Enabled = false });
 
@@ -377,6 +382,7 @@ namespace PWQuestOverlay
                 UnregisterHotkeys();
                 _trayIcon.Visible = false;
                 _trayIcon.Dispose();
+                _shutdown.Dispose();
             };
         }
 
@@ -503,6 +509,7 @@ namespace PWQuestOverlay
 
         private void MonitorTick()
         {
+            if (_shutdown.WaitOne(0)) { ExitApplication(); return; }
             if (_cultivationDialogOpen || _profileDialogOpen) return;
             try
             {
@@ -1977,7 +1984,8 @@ namespace PWQuestOverlay
 
         private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
-            if (_allowExit) return;
+            if (_allowExit || e.CloseReason == CloseReason.WindowsShutDown ||
+                e.CloseReason == CloseReason.TaskManagerClosing || e.CloseReason == CloseReason.ApplicationExitCall) return;
             e.Cancel = true;
             SetUserHidden(true);
         }

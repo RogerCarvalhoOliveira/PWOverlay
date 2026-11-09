@@ -8,9 +8,9 @@ O programa funciona com o PW aberto diretamente, sem precisar instalar ou execut
 
 Para usar sem compilar, abra a [versão mais recente](https://github.com/RogerCarvalhoOliveira/PWOverlay/releases/latest) e baixe:
 
-- `PWQuestOverlay-Setup-v0.11.0.exe`: instalador recomendado para Windows;
-- `PWQuestOverlay-Portatil-v0.11.0.zip`: pacote portátil;
-- `SHA256SUMS-v0.11.0.txt`: hashes para conferir a integridade dos arquivos.
+- `PWQuestOverlay-Setup-v0.11.1.exe`: instalador recomendado para Windows;
+- `PWQuestOverlay-Portatil-v0.11.1.zip`: pacote portátil;
+- `SHA256SUMS-v0.11.1.txt`: hashes para conferir a integridade dos arquivos.
 
 Abra o PW manualmente ou pelo PW Helper. Na **PW Overlay Central**, marque Overlay e/ou Windowed Fullscreen e clique em **Aplicar ao PW já aberto**. Para encerrar as ferramentas, use **Parar Overlay e Borderless**. A Central não abre o jogo nem exige configurar um launcher.
 
@@ -47,6 +47,7 @@ Abra o PW manualmente ou pelo PW Helper. Na **PW Overlay Central**, marque Overl
 - Monitor escolhido ao arrastar é preservado, inclusive em uma segunda tela; a opção Acompanhar monitor do PW restaura o modo automático.
 - Compatibilidade com o PW Borderless Monitor e os painéis flutuantes do PW Helper.
 - **PW Overlay Central** aplica as funções escolhidas ou encerra Overlay/Borderless; o jogo é aberto manualmente ou pelo PW Helper.
+- **Desinstalar programa...** na Central e na bandeja abre o desinstalador da instalação e preserva os perfis. Atualizações encerram as ferramentas da pasta alvo antes de substituir arquivos.
 - Todos os painéis flutuantes visíveis do PW Helper são mantidos acima do jogo, independentemente do título.
 - Ocultação automática quando o usuário muda para outro aplicativo.
 - Estado salvo em `%LOCALAPPDATA%\PWQuestOverlay`.
@@ -84,7 +85,7 @@ O resultado será criado em `dist\`:
 - `rota_leveling_pw_144.xlsx`
 - `LEIA-ME.txt`
 - `INSTALACAO.txt`;
-- `PWQuestOverlay-Portatil-v0.11.0.zip`, quando `-Package` for usado.
+- `PWQuestOverlay-Portatil-v0.11.1.zip`, quando `-Package` for usado.
 
 Para gerar também o instalador, instale o Inno Setup 6 e execute:
 
@@ -92,7 +93,7 @@ Para gerar também o instalador, instale o Inno Setup 6 e execute:
 powershell -ExecutionPolicy Bypass -File .\scripts\build.ps1 -Package -Installer
 ```
 
-O resultado adicional é `PWQuestOverlay-Setup-v0.11.0.exe`. Ele instala por usuário, sem exigir privilégios administrativos, e oferece atalhos e inicialização automática como opções desmarcadas.
+O resultado adicional é `PWQuestOverlay-Setup-v0.11.1.exe`. Ele instala por usuário, sem exigir privilégios administrativos, e oferece atalhos e inicialização automática como opções desmarcadas.
 
 Para compilar e iniciar:
 
@@ -122,6 +123,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\run-dev.ps1
 | `VERSION` | Versão usada nos executáveis e no instalador. |
 | `assets/branding/` | Arte aprovada e ICO incorporado ao programa. |
 | `scripts/test-package.ps1` | Confere conteúdo, versões, dados e hashes do pacote. |
+| `scripts/test-installation.ps1` | Teste explícito de instalação, atualização e desinstalação isoladas. |
 | `docs/PREPARACAO-1.0.md` | Testes de campo e decisões pendentes para a distribuição geral. |
 | `installer/PWQuestOverlay.iss` | Definição do instalador para Inno Setup 6. |
 | `scripts/validate-data.ps1` | Valida IDs, campos e contagens das rotas. |

@@ -63,6 +63,14 @@ Nenhuma função lê memória de outro processo.
 - Inicia ou encerra Overlay e PW Borderless sem interferir nos clientes do jogo.
 - Aplica as caixas selecionadas pelo botão Aplicar e solicita um encerramento cooperativo do monitor por evento nomeado para restaurar as janelas.
 - Não procura executáveis do jogo nem abre clientes: a abertura é manual ou pelo PW Helper.
+- Oferece desinstalação da instalação corrente, sem remover perfis, e saída cooperativa para o instalador.
+
+### `AppShutdown.cs` / `ToolMaintenance.cs` / `MaintenanceProgram.cs`
+
+- Eventos de saída derivados da pasta de instalação evitam sinalizar outra cópia da Central/overlay.
+- O auxiliar verifica o caminho completo dos processos antes de encerrar apenas executáveis conhecidos da pasta alvo. Não inclui elementclient nem PW Helper.
+- A atualização solicita a restauração do monitor sem bordas, aguarda saídas cooperativas e usa encerramento de compatibilidade para versões antigas/sem resposta. Só continua se os arquivos estiverem liberados.
+- Instalador e desinstalador usam uma cópia temporária do auxiliar; perfis em LOCALAPPDATA não pertencem à lista de arquivos removidos.
 
 ### `PWBorderlessMonitor.cs`
 

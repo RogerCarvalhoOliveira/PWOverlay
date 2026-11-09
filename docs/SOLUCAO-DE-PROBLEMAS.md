@@ -1,5 +1,11 @@
 # Solução de problemas
 
+## O instalador não consegue fechar os aplicativos
+
+A versão 0.11.1 corrige o encerramento do overlay e do monitor sem bordas durante a atualização. Versões anteriores dependiam do Restart Manager, mas o overlay tratava fechamento como ocultação e o monitor não tinha uma janela convencional para fechar. Use o instalador atualizado em vez de ignorar o erro e substituir arquivos ainda em uso.
+
+O auxiliar encerra somente executáveis conhecidos na pasta exata da instalação. Se ainda houver bloqueio, o instalador para antes da cópia e pede para fechar essas ferramentas manualmente; não encerra jogo, Helper ou programas externos. O log do instalador registra o resultado e o caminho temporário do diagnóstico de manutenção. Salve edições abertas de rotas antes de tentar novamente.
+
 ## O overlay não aparece
 
 - Coloque um cliente `elementclient` em foco.

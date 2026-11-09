@@ -3,6 +3,7 @@
 ## O que já está disponível
 
 - Instalador por usuário, desinstalador, ZIP portátil e hashes SHA-256.
+- Atualização da instalação existente e ciclo de instalar/atualizar/desinstalar com ferramentas abertas validados no PC atual, com teste isolado de AppId próprio. Link de desinstalação disponível na Central e na bandeja.
 - Central para aplicar ou parar Overlay/Windowed Fullscreen; o PW é aberto manualmente ou pelo Helper.
 - Associação manual de classe, configuração de transparência, posição e calibração de marcador.
 - Uso independente do PW Helper, com associação por cliente e recuperação de perfis salvos. Helper, quando utilizado, mantém a integração de títulos/painéis.

@@ -4,7 +4,7 @@ $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $dist = Join-Path $projectRoot 'dist'
 $version = [IO.File]::ReadAllText((Join-Path $projectRoot 'VERSION')).Trim()
-$executables = @('PW Quest Overlay.exe', 'PW Borderless.exe', 'PW Overlay Central.exe', 'PW Memory Probe.exe')
+$executables = @('PW Quest Overlay.exe', 'PW Borderless.exe', 'PW Overlay Central.exe', 'PW Memory Probe.exe', 'PW Maintenance.exe')
 $required = $executables + @('quest_routes.json', 'memory_offsets.json', 'task_catalog_144.tsv',
     'rota_leveling_pw_144.xlsx', 'LEIA-ME.txt', 'INSTALACAO.txt', 'GUIAS-DEZ-CLASSES.txt', 'GUIA-61-105.txt', 'SEM-PW-HELPER.txt')
 Add-Type -AssemblyName System.IO.Compression.FileSystem
