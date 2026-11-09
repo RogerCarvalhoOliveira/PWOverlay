@@ -10,6 +10,14 @@ const periodLevel=p=>p>=20&&p<=32?89:p===8?79:p===7?69:p===6?59:0;
 const cultivations=[2113,2117,2118,2122,2642,2136,2138,2140,2148,2153,2169,2804,2818,3204,3227,14015,14016,14161];
 const coins=[8746,8762,8778,8779,8780,8781,7969,7971,7973,8437,8439,8441,7977,
   7979,7981,7983,7985,7987,7989,7991,7993,7995,7997,7999,8001,8003,8005];
+// Use the level-90 introduction so existing high-level characters cannot lose
+// the earlier 70–79/80–89 variants. All access work is shared by God and Evil.
+const pastAccess=[13781,13760,13765,13768,13778,13823,14545,13824,13825,
+  13856,13840,13842,14340,14341,13843,13844,13868,13872,13873,13874,
+  13875,14310,13892,13846];
+const prerequisiteSelections=new Map([[13760,[13781]]]);
+const continuationSelections=new Map([[14340,[13842]],[13875,[13874]]]);
+const branchSelections={11664:18810,1286:1304,13856:13857};
 const explicitPath=new Map([
   ...[2804,8778,7985,7987,7989,3222,3223,3224,3227,8780,7991,7993,7995,7997,14161,14015].map(id=>[id,'GOD']),
   ...[2818,8779,7979,7981,7983,3198,3199,3200,3204,8781,7999,8001,8003,8005,14016].map(id=>[id,'EVIL'])
@@ -21,8 +29,11 @@ if(process.argv.includes('--import-local')){
   const all=JSON.parse(fs.readFileSync('work/endgame-tasks.json','utf8'));
   const roots=new Map(all.map(q=>[q.id,q]));
   const owner=new Map(all.flatMap(q=>flat(q).map(t=>[t.id,q.id])));
-  const previous=new Map(all.map(q=>[q.id,new Set(q.prerequisites.map(id=>owner.get(id)).filter(id=>id&&id!==q.id))]));
-  for(const q of all)for(const task of flat(q))if(roots.has(task.newTask))previous.get(task.newTask).add(q.id);
+  const prerequisites=q=>prerequisiteSelections.get(q.id)||q.prerequisites;
+  const previous=new Map(all.map(q=>[q.id,new Set(prerequisites(q).map(id=>owner.get(id)).filter(id=>id&&id!==q.id))]));
+  for(const q of all)for(const task of flat(q))if(roots.has(task.newTask)&&
+    (!continuationSelections.has(task.newTask)||continuationSelections.get(task.newTask).includes(q.id)))
+    previous.get(task.newTask).add(q.id);
   const pathMemo=new Map();
   function pathOf(q,seen=new Set()){
     if(explicitPath.has(q.id))return explicitPath.get(q.id);
@@ -50,6 +61,7 @@ if(process.argv.includes('--import-local')){
       if(!selected.has(id)){add(id,'cultivation');changed=true;}
     }
   }}
+  for(const id of pastAccess)add(id,'past-access',90);
   for(const id of coins)add(id,'coin',Math.max(roots.get(id).minLevel,dungeonLevel(id)));
   for(const id of [6525,6526,6527,6528,6529,6530,6531,6532])add(id,'rank');
   // Classic, repeatable activities that remain eligible through 105. No Dusk
@@ -79,7 +91,7 @@ if(process.argv.includes('--import-local')){
   changed=true;
   while(changed){changed=false;for(const entry of [...selected.values()]){
     const q=roots.get(entry.id);
-    for(const id of q.prerequisites.map(id=>owner.get(id)).filter(Boolean)){
+    for(const id of prerequisites(q).map(id=>owner.get(id)).filter(Boolean)){
       if(id===q.id||selected.has(id)||existingTasks.has(id))continue;
       const task=roots.get(id);if(!task||task.minLevel>105)continue;
       if(flat(task).some(t=>/crepúsculo|dusk/i.test(t.description+' '+t.name)))continue;
@@ -122,7 +134,11 @@ if(process.argv.includes('--import-local')){
   const source={source:'Cliente The Classic local: tasks.data v124; elements.data v145; configs/coord_data.txt. Seleção clássica de XP, cultivos e moedas até 105.',
     coordinateSha256:crypto.createHash('sha256').update(coordBytes).digest('hex'),
     coordinatePolicy:'Marcadores automáticos somente para pontos do mapa world. Mapas internos e planos de cultivo usam nome do mapa/NPC e instrução textual.',
-    branchSelections:{11664:18810,1286:1304},mapNames,
+    branchSelections,pastAccessPlan:{level:90,rootIds:pastAccess,
+      prerequisiteSelections:Object.fromEntries(prerequisiteSelections),continuationSelections:Object.fromEntries(continuationSelections),
+      additionalDependencies:{13868:[13844],13846:[13892],14015:[13846],14016:[13846],14161:[13846]},
+      mapLabels:{a15:'Caverna do Tesouro (DG79)',a33:'Roda do Tempo (Passado)'},
+      dungeonModes:{14570:'1-1',14571:'1-2',14549:'2-3',14553:'2-1',14554:'2-2',14555:'2-3'}},mapNames,
     facts,npcs:Object.fromEntries([...npcs].map(id=>[id,entity(id,'NPCs')])),
     monsters:Object.fromEntries([...monsters].map(id=>[id,entity(id,'Monsters')])),
     items:Object.fromEntries([...items].map(id=>[id,itemName(id)])),rewards:Object.fromEntries([...rewards].map(id=>[id,itemName(id)])),resourceItems};
@@ -131,6 +147,10 @@ if(process.argv.includes('--import-local')){
 
 const source=JSON.parse(fs.readFileSync(factsPath,'utf8'));
 const entries=new Map(source.facts.map(e=>[e.id,e]));
+for(const [id,dependencies] of Object.entries(source.pastAccessPlan?.additionalDependencies||{})){
+  const entry=entries.get(+id);assert(entry,`Acesso ausente: ${id}`);
+  entry.previous=[...new Set([...entry.previous,...dependencies])];
+}
 const catalog=new Map(fs.readFileSync('data/task_catalog_144.tsv','utf8').trim().split(/\r?\n/).slice(1).map(line=>{
   const p=line.split('\t');return[+p[0],{title:p[4],items:(p[17]||'').split(';').filter(i=>i.includes(':')).map(i=>+i.split(':')[0])}];
 }));
@@ -154,13 +174,14 @@ function closest(entity,near,currentMap='world'){
   ps.sort((a,b)=>near?Math.hypot(a.x-near.x,a.y-near.y)-Math.hypot(b.x-near.x,b.y-near.y):0);
   return ps[0];
 }
-function describe(entity,near,currentMap){
+function describeEntity(entity,near,currentMap,labels=null){
   const p=closest(entity,near,currentMap)||entity?.points?.[0];
-  return {text:`${entity?.name||'NPC indicado no questlog'}${p?` — ${mapName(p.map)}${p.map==='world'?` (${p.x}, ${p.y})`:''}`:''}`,point:p};
+  return {text:`${entity?.name||'NPC indicado no questlog'}${p?` — ${labels?.[p.map]||mapName(p.map)}${p.map==='world'||labels?` (${p.x}, ${p.y})`:''}`:''}`,point:p};
 }
 const missions=[];
 for(const e of source.facts){
   const q=e.task,level=scheduled(e),steps=[];
+  const describe=(...args)=>describeEntity(...args,e.category==='past-access'?source.pastAccessPlan.mapLabels:null);
   let currentMap='world',near=null;
   const add=(t,action,entity,itemId)=>{
     const p=closest(entity,near,currentMap)||entity?.points?.[0];
@@ -173,13 +194,27 @@ for(const e of source.facts){
   const giver=source.npcs[q.npc];
   add(q,giver?`Aceite a missão com ${describe(giver,near,currentMap).text}.`:
     'Receba a missão de continuação da cadeia atual; confira o nome no questlog.',giver);
-  function visit(t){
+  function visit(t,parentContext=''){
     if(t.children.length){
       const branch=source.branchSelections[t.id];
       if(t.chooseOne){assert(branch,`Escolha de filhos não revisada: ${t.id}/${t.name}`);visit(t.children.find(c=>c.id===branch));}
-      else t.children.forEach(visit);
+      else t.children.forEach(child=>visit(child,/crepúsculo/i.test(t.name+' '+t.description)?t.description:parentContext));
+      if(e.category==='past-access'&&t.awardNpc&&t.finishType===1)
+        add(t,`Entregue a submissão para ${describe(source.npcs[t.awardNpc],near,currentMap).text}.`,source.npcs[t.awardNpc]);
       return;
     }
+    if(e.category==='past-access'&&t.id===13871){
+      add(t,'Após entrar na Floresta Kylin, continue Os Comerciantes. O limite de 2 horas é da permanência no mapa; não espere o prazo terminar. Marque esta orientação ao entrar.');return;
+    }
+    if(e.category==='past-access'&&t.id===13857){
+      add(t,'Escolha “Matar Bandido” no diálogo de Origem do Problema e receba Parar os bandidos. Este desvio da história não altera God/Evil.');return;
+    }
+    const accessInstructions={13778:'Use o Emissário do Tempo para entrar na Cidade da Dor Celestial do Passado. Confirme ao chegar e continue Perigo na Dor Celestial.',
+      13843:'Receba a liberação da Floresta Kylin com o Ancião Celestial. Depois procure o Emissário do Tempo do Passado para a entrada na floresta.',
+      13892:'Receba a liberação do Portal Cicatriz com o Ancião Celestial e procure o Emissário do Tempo do Passado.',
+      13846:'Use a opção Vale da Cicatriz do Emissário do Tempo do Passado. Confirme quando o acesso estiver disponível; este mapa será usado no cultivo 100.',
+      14340:'Receba a continuação automática após Pedra Controladora de Energia. Confira Lágrima do Deus de Neve no questlog e prossiga.'};
+    if(e.category==='past-access'&&accessInstructions[t.id]){add(t,accessInstructions[t.id]);return;}
     if(t.method===4&&!t.description&&!t.rewardItems.length)return;
     const target=source.npcs[t.awardNpc];
     if(t.monsters.length){
@@ -188,21 +223,26 @@ for(const e of source.facts){
         const mob=source.monsters[m.id];add(t,`Colete ${m.itemCount} ${source.items[m.item]} de ${describe(mob,near,currentMap).text}.`,mob,
           t.monsters.filter(m=>m.item&&m.itemCount).length>1?m.item:undefined);
       }
-      const kills=t.monsters.filter(m=>m.count>0);
+      const kills=t.monsters.filter(m=>m.count>0&&!(e.category==='past-access'&&m.item&&m.itemCount));
       if(kills.length){
         const mob=source.monsters[kills[0].id];
-        add(t,`Mate ${kills.map(m=>`${m.count} ${source.monsters[m.id]?.name||`monstro ${m.id}`}`).join(' e ')}.${kills.length>1?' Confira todos os contadores no jogo.':''}`,mob);
+        const contextText=/crepúsculo|\(\d-\d\)|purgatório|arcádia|primordial/i.test(t.description)?t.description:parentContext;
+        const mode=source.pastAccessPlan?.dungeonModes?.[t.id];
+        const context=e.category==='past-access'?(mode?` Dusk/Palácio do Crepúsculo ${mode}.`:contextText?` ${clean(contextText)}`:''):'';
+        add(t,`Mate ${kills.map(m=>`${m.count} ${e.category==='past-access'?describe(source.monsters[m.id],near,currentMap).text:source.monsters[m.id]?.name||`monstro ${m.id}`}`).join(' e ')}.${kills.length>1?' Confira todos os contadores no jogo.':''}${context}`,mob);
       }
       if(target)add(t,`Entregue a missão para ${describe(target,near,currentMap).text}.`,target);
       if(steps.length===beforeObjective)add(t,clean(t.description)||`Confira os objetivos de “${t.name}” no questlog e confirme após concluir no jogo.`);
     }else if(t.items.length){
       let gathered=false;
       for(const item of t.items){
-        const resource=(source.resourceItems[item.id]||[]).find(r=>closest(r,near,currentMap));
+        const resources=source.resourceItems[item.id]||[];
+        const resource=resources.find(r=>closest(r,near,currentMap))||
+          (e.category==='past-access'?resources.find(r=>r.points.length):undefined);
         if(!resource)continue;
         add(t,`Colete ${item.count} ${source.items[item.id]} em ${describe(resource,near,currentMap).text}.`,resource,t.items.length>1?item.id:undefined);gathered=true;
       }
-      if(target)add(t,`Entregue ${t.items.map(i=>`${i.count} ${source.items[i.id]}`).join(', ')} para ${describe(target,near,currentMap).text}.`,target);
+      if(target)add(t,`Entregue ${t.items.map(i=>`${i.count} ${source.items[i.id]}`).join(', ')} para ${describe(target,near,currentMap).text}.${e.category==='past-access'&&!gathered&&t.description?' '+clean(t.description):''}`,target);
       else if(!gathered)add(t,clean(t.description)||`Obtenha ${t.items.map(i=>`${i.count} ${source.items[i.id]}`).join(', ')} conforme o questlog.`);
     }else if(target){
       add(t,`${t.method===5?'Aguarde o prazo/diálogo e fale':'Fale'} com ${describe(target,near,currentMap).text}.`,target);
@@ -216,7 +256,8 @@ for(const e of source.facts){
   const activeNodes=t=>[t,...(t.chooseOne?t.children.filter(c=>c.id===source.branchSelections[t.id]):t.children).flatMap(activeNodes)];
   const nodes=activeNodes(q),xp=nodes.reduce((n,t)=>n+t.xp,0);
   const rewardIds=[...new Set(nodes.flatMap(t=>t.rewardItems))];
-  const instruction=e.category==='cultivation'?'Cultivo prioritário. Siga todas as submissões e combine os objetivos de DG com as moedas indicadas na própria rota.':
+  const instruction=e.category==='past-access'?'Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk.':
+    e.category==='cultivation'?'Cultivo prioritário. Siga todas as submissões e combine os objetivos de DG com as moedas indicadas na própria rota.':
     e.category==='coin'?'Retire a moeda e ative o pilar com o grupo pronto. Combine os chefes com o cultivo da mesma DG; não troque o líder durante a missão.':
     e.category==='daily'?'Atividade diária/repetível para complementar a XP até 105. Faça quando disponível e reabra pelo menu Etapas nas próximas repetições.':
     e.category==='rank'?`Opcional: exige ${q.minimumReputation||'a reputação do rank anterior'} de fama e os ranks anteriores. Pule se não cumprir o requisito.`:
@@ -225,9 +266,9 @@ for(const e of source.facts){
     minLevel:minimum(e),expectedLevel:level,maxLevel:q.maxLevel?String(q.maxLevel):'Sem limite',name:q.name,
     npc:giver?describe(giver,null,'world').text:'Continuação / missão automática',
     location:giver?describe(giver,null,'world').text:clean(q.description).slice(0,180)||'Consulte a submissão atual',
-    baseXp:xp,xp3:xp*3,priority:e.category==='cultivation'||e.category==='coin'?'Essencial':e.category==='rank'?'Opcional':'Alta',
-    benefit:e.category==='cultivation'?'Progressão de cultivo e liberação de habilidades':rewardIds.length?rewardIds.map(id=>source.rewards[id]).join(', '):'XP de missão ×3',
-    instruction:instruction+(q.description?' '+clean(q.description):'')+
+    baseXp:xp,xp3:xp*3,priority:['past-access','cultivation','coin'].includes(e.category)?'Essencial':e.category==='rank'?'Opcional':'Alta',
+    benefit:e.category==='past-access'?'Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz':e.category==='cultivation'?'Progressão de cultivo e liberação de habilidades':rewardIds.length?rewardIds.map(id=>source.rewards[id]).join(', '):'XP de missão ×3',
+    instruction:instruction+(q.id===13781?' A abertura foi agrupada no nível previsto 90 usando a variante sem limite 79/89. Se já fez Plano dos Monstros no 70–79 ou 80–89, pule somente esta introdução e retome sua submissão atual.':'')+(q.description?' '+clean(q.description):'')+
       (q.minLevel>0&&q.minLevel<=60?' Revisão de pré-requisito anterior: se já concluiu no jogo, confirme pelo histórico/sincronização ou pule esta revisão.':''),
     ...(e.path?{cultivationPath:e.path}:{}),
     ...(q.frequency?{repeatable:true}:{}),
@@ -244,8 +285,8 @@ missions.push(choice);
 missions.push({id:'ENDGAME|ALL|PAST-ACCESS',routeKey:'COMMON',classScope:'ALL',order:0,minLevel:100,expectedLevel:100,maxLevel:'Sem limite',
   name:'Acessos do Passado para o cultivo 100',npc:'Conferência dos acessos ao Passado',location:'Floresta Kylin / Dor Celestial / Vale da Cicatriz',baseXp:null,xp3:null,priority:'Pré-requisito',
   benefit:'Confere acesso às áreas usadas pelos cultivos God/Evil 100',
-  instruction:'O cultivo 100 exige áreas do Passado. A liberação inclui conteúdo de Dusk/Crepúsculo, mantido fora deste guia por solicitação. Se os acessos ainda estiverem pendentes, adie o cultivo 100 pelo menu Etapas e continue o circuito de XP elegível.',
-  steps:[{id:'past-access',title:'Conferir acessos do Passado',action:'Antes do cultivo 100, confira acesso à Floresta Kylin, Dor Celestial e Vale da Cicatriz. Se estiver pendente, adie o cultivo pelo menu Etapas.',routeOrder:0}]});
+  instruction:'O roteiro de liberação do Passado, incluindo as etapas de Dusk, está na faixa prevista 90. Antes do cultivo 100, confira os três acessos. Se faltar algum, retome a cadeia no menu Etapas.',
+  steps:[{id:'past-access',title:'Conferir acessos do Passado',action:'Confira os acessos à Dor Celestial, Floresta Kylin e Vale da Cicatriz liberados pela cadeia do nível previsto 90. Se faltar algum, retome a submissão pendente antes do cultivo 100.',routeOrder:0}]});
 missions.push({id:'ENDGAME|ALL|LEVEL105',routeKey:'COMMON',classScope:'ALL',order:0,minLevel:105,expectedLevel:105,maxLevel:'Sem limite',
   name:'Chegada ao nível 105',npc:'Conferência manual',location:'Personagem no nível 105',baseXp:null,xp3:null,priority:'Marco',
   benefit:'Encerra o guia 1–105',instruction:'Confirme somente depois de atingir 105 no jogo. Se faltar XP, repita as atividades elegíveis da faixa 100–105 e retome o guia. Não há leitura/exibição do nível real no painel.',

@@ -17,7 +17,7 @@ Execute também `node scripts/verify-endgame-routes.mjs`, `node scripts/audit-ne
 3. Escolha God e confira as cadeias 89/99/100; troque para Evil e confira que somente o ramo escolhido aparece, além das missões compartilhadas.
 4. Use dois personagens, um de cada caminho. Alterne clientes, reinicie e restaure um backup: cada escolha deve permanecer independente.
 5. Confira a coluna Cultivo das cinco abas e os aceites das moedas antes dos objetivos das DG69/79/89/99.
-6. Verifique os acessos ao Passado antes do cultivo 100. O guia não inclui a liberação por Dusk, ainda fora do escopo.
+6. Percorra a liberação do Passado do nível previsto 90: confira os modos Dusk 1-1/1-2, 2-3 e 2-1/2-2/2-3, os retornos aos NPCs e a abertura dos três mapas antes do cultivo 100. As alternativas de introdução e história não devem virar requisitos cumulativos. O prazo de duas horas na Floresta Kylin não deve interromper o guia para esperar expirar.
 7. Confirme no jogo as condições das repetíveis e a chegada real ao 105. A rota não garante essa experiência apenas com as missões únicas.
 
 ## Um cliente
@@ -97,7 +97,7 @@ Faça backup de `%LOCALAPPDATA%\PWQuestOverlay\state.json`, teste com uma cópia
 
 ## Instalador em outro computador
 
-1. Execute `PWQuestOverlay-Setup-v0.10.0.exe` como usuário comum e confirme que não pede elevação.
+1. Execute `PWQuestOverlay-Setup-v0.10.1.exe` como usuário comum e confirme que não pede elevação.
 2. Teste atalhos do menu Iniciar, opções de área de trabalho e inicialização automática.
 3. Confirme que o guia abre ao final e que overlay, rotas e planilha estão no diretório instalado.
 4. Importe um backup, associe um cliente sem sigla e refaça a calibração do marcador.

@@ -1,5 +1,13 @@
 # Histórico de alterações
 
+## 0.10.1 - Liberação do Passado e Dusk necessária
+
+- Incluídas 24 entradas e 129 etapas de acesso à Dor Celestial, Floresta Kylin e Vale da Cicatriz, comuns a God/Evil e anteriores ao cultivo 100. Total: 585 entradas e 2.026 etapas.
+- Acrescentados os chefes e modos de Dusk exigidos pela cadeia, suas submissões, retornos e referências de NPCs. Dusk opcional de farm continua fora desta alteração.
+- Introdução pela variante 90+ de Plano dos Monstros, sem exigir também as variantes 70–79/80–89. Desvios alternativos da história foram selecionados explicitamente, sem confundir essas decisões com God/Evil.
+- Mantidos os IDs de progresso anteriores; reordenada a extensão para respeitar os acessos. O prazo de permanência na Floresta Kylin é explicado sem mandar esperar duas horas.
+- Atualizados planilha, manual, fatos dataminados e verificador de dependências. A nova cadeia ainda precisa de validação integral no servidor.
+
 ## 0.10.0 - Guia até 105 e escolha de cultivo
 
 - Acrescentadas 281 entradas e 877 etapas dos níveis 61–105, com nomes e submissões dataminados. Total: 561 entradas e 1.897 etapas, incluindo os dois ramos alternativos.

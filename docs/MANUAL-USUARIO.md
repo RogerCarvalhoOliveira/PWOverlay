@@ -62,7 +62,7 @@ No ponto de escolha do cultivo 89, o overlay pergunta **God ou Evil** e salva a 
 
 Na planilha, a coluna **Cultivo** permite manter **Ambos + God** ou **Ambos + Evil**. No overlay, o filtro é automático. Entre 100 e 105, complemente a história com as atividades repetíveis elegíveis e XP de combate; use Etapas para reabrir um circuito quando necessário. O nível previsto organiza a rota e a etapa final é confirmada manualmente ao atingir 105.
 
-O cultivo 100 exige acesso às áreas do Passado. Como Dusk/Crepúsculo ficou reservado para outra etapa, o guia inclui uma conferência desse pré-requisito. Se os acessos estiverem pendentes, adie o cultivo pelo menu Etapas e continue a rota de XP. Veja `GUIA-61-105.txt`.
+O cultivo 100 exige acesso às áreas do Passado. A cadeia de liberação, incluindo as etapas necessárias de Dusk/Crepúsculo, está no nível previsto 90 e é comum a God/Evil. Se já começou essa cadeia, retome sua submissão pelo menu Etapas. A introdução do guia usa Plano dos Monstros da faixa 90+; não repita a introdução se já concluiu uma das versões anteriores. Veja `GUIA-61-105.txt`.
 
 Nas faixas de DG, aceite primeiro cultivo, preparação e moeda que possam compartilhar a mesma entrada. A rota pode deixar uma cadeia longa aberta e retomá-la mais tarde; siga a ação exibida, não apenas o nível mínimo da missão.
 

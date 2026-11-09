@@ -8,9 +8,9 @@ O programa identifica cada cliente pelo título criado pelo PW Helper, por exemp
 
 Para usar sem compilar, abra a [versão mais recente](https://github.com/RogerCarvalhoOliveira/PWOverlay/releases/latest) e baixe:
 
-- `PWQuestOverlay-Setup-v0.10.0.exe`: instalador recomendado para Windows;
-- `PWQuestOverlay-Portatil-v0.10.0.zip`: pacote portátil;
-- `SHA256SUMS-v0.10.0.txt`: hashes para conferir a integridade dos arquivos.
+- `PWQuestOverlay-Setup-v0.10.1.exe`: instalador recomendado para Windows;
+- `PWQuestOverlay-Portatil-v0.10.1.zip`: pacote portátil;
+- `SHA256SUMS-v0.10.1.txt`: hashes para conferir a integridade dos arquivos.
 
 Depois da instalação, execute **PW Overlay Central** para escolher se deseja ativar o Overlay e/ou o Windowed Fullscreen antes de abrir o jogo. O botão azul/cinza permite ligar ou desligar o Windowed Fullscreen imediatamente, inclusive com os clientes já abertos.
 
@@ -26,7 +26,7 @@ Depois da instalação, execute **PW Overlay Central** para escolher se deseja a
 - Após a Cidade do Dragão, as dez classes percorrem o mesmo circuito e se separam nas missões exclusivas de raça/classe. A rota do Místico inclui as quatro invocações e seis plantas até o nível 59.
 - Escolha God/Evil ao chegar à decisão do cultivo 89, salva por personagem. As cadeias de 89, 99 e 100 seguem somente o caminho escolhido.
 - Cultivos, DGs 19/29/39/49/59/69/79/89/99, Moedas Sangrentas, Pilar Esquisito e cargos militares prioritários.
-- Acessos ao Passado sinalizados como pré-requisito do cultivo 100; Dusk/Crepúsculo continua reservado para outra etapa. Consulte [guia 61–105](docs/GUIA-61-105.md).
+- Cadeia de acesso ao Passado incluída, com Dusk/Crepúsculo, Dor Celestial, Floresta Kylin e Vale da Cicatriz antes do cultivo 100. Consulte [guia 61–105](docs/GUIA-61-105.md).
 - Missões de voo ficam fora da rota; o guia inclui a etapa para abandonar o pop-up no questlog.
 - Aviso de produção para falar com o Ancião: nível 5 nas quatro raças anteriores e 6 nos Guardiões, conforme o cliente. Missões específicas de ofício ficam fora.
 - Nível previsto da rota exibido em cada missão, sem exigir o nível real do personagem.
@@ -82,7 +82,7 @@ O resultado será criado em `dist\`:
 - `rota_leveling_pw_144.xlsx`
 - `LEIA-ME.txt`
 - `INSTALACAO.txt`;
-- `PWQuestOverlay-Portatil-v0.10.0.zip`, quando `-Package` for usado.
+- `PWQuestOverlay-Portatil-v0.10.1.zip`, quando `-Package` for usado.
 
 Para gerar também o instalador, instale o Inno Setup 6 e execute:
 
@@ -90,7 +90,7 @@ Para gerar também o instalador, instale o Inno Setup 6 e execute:
 powershell -ExecutionPolicy Bypass -File .\scripts\build.ps1 -Package -Installer
 ```
 
-O resultado adicional é `PWQuestOverlay-Setup-v0.10.0.exe`. Ele instala por usuário, sem exigir privilégios administrativos, e oferece atalhos e inicialização automática como opções desmarcadas.
+O resultado adicional é `PWQuestOverlay-Setup-v0.10.1.exe`. Ele instala por usuário, sem exigir privilégios administrativos, e oferece atalhos e inicialização automática como opções desmarcadas.
 
 Para compilar e iniciar:
 

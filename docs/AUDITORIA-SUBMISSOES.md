@@ -1,8 +1,8 @@
 # Auditoria das submissões
 
-## Cobertura atual — 0.10.0
+## Cobertura atual — 0.10.1
 
-O auditor percorre 1.897 etapas de 561 entradas de guia, incluindo ambos os ramos alternativos de cultivo. São 1.163 associações explícitas e 36 etapas com seletores independentes de materiais. Nenhum objetivo resolvido aponta indevidamente para um pai; 44 diagnósticos continuam informativos para objetivos manuais/ambíguos ou múltiplos contadores. Os verificadores das rotas também conferem pré-requisitos, níveis máximos de aceite, títulos, coordenadas, isolamento God/Evil e preservação das etapas legadas. Consulte `GUIAS-DEZ-CLASSES.md` e `GUIA-61-105.md` para fontes e limites de validação em jogo. A contagem de 31 cadeias refere-se ao manifesto anterior; a extensão usa associações diretas em cada etapa.
+O auditor percorre 2.026 etapas de 585 entradas de guia, incluindo ambos os ramos alternativos de cultivo. São 1.292 associações explícitas e 42 etapas com seletores independentes de materiais. Nenhum objetivo resolvido aponta indevidamente para um pai; 48 diagnósticos continuam informativos para objetivos manuais/ambíguos ou múltiplos contadores. Os verificadores das rotas também conferem pré-requisitos, níveis máximos de aceite, títulos, coordenadas, isolamento God/Evil e preservação das etapas legadas. Consulte `GUIAS-DEZ-CLASSES.md` e `GUIA-61-105.md` para fontes e limites de validação em jogo. A contagem de 31 cadeias refere-se ao manifesto anterior; a extensão usa associações diretas em cada etapa.
 
 ## Revisão original — 0.8.3
 

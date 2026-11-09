@@ -20271,6 +20271,1488 @@
       ]
     },
     {
+      "id": "ENDGAME|ALL|13781",
+      "routeKey": "COMMON",
+      "order": 49014,
+      "classScope": "ALL",
+      "minLevel": 90,
+      "expectedLevel": 90,
+      "maxLevel": "150",
+      "name": "Plano dos Monstros",
+      "npc": "General Lotor Akre — mundo principal (521, 630)",
+      "location": "General Lotor Akre — mundo principal (521, 630)",
+      "baseXp": 310920,
+      "xp3": 932760,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk. A abertura foi agrupada no nível previsto 90 usando a variante sem limite 79/89. Se já fez Plano dos Monstros no 70–79 ou 80–89, pule somente esta introdução e retome sua submissão atual. O General Lotor Akre está preocupado com as invasões de monstros Sem Alma, ajude-o a completar a missão de reconhecimento.",
+      "steps": [
+        {
+          "id": "t13781-1",
+          "title": "Plano dos Monstros",
+          "action": "Aceite a missão com General Lotor Akre — mundo principal (521, 630).",
+          "markerX": 521,
+          "markerY": 630,
+          "routeOrder": 1590140,
+          "memoryTaskId": 13781
+        },
+        {
+          "id": "t13794-1",
+          "title": "Verificar o Campo dos Ventos",
+          "action": "Faça um reconhecimento de terreno em Campo dos Ventos, vá ao redor do Sábio da Tribo dos Ventos e verifique todos os cantos, assim que terminar volte para reportar.",
+          "routeOrder": 1590150,
+          "memoryTaskId": 13794
+        },
+        {
+          "id": "t13795-1",
+          "title": "Caçador da Alma Esqueleto",
+          "action": "Colete 1 Fragmento de Plano dos Sem Alma de Caçador da Alma Esqueleto — mundo principal (237, 833).",
+          "markerX": 237,
+          "markerY": 833,
+          "routeOrder": 1590160,
+          "memoryTaskId": 13795
+        },
+        {
+          "id": "t13795-2",
+          "title": "Caçador da Alma Esqueleto",
+          "action": "Entregue a missão para Ajudante Li Yuan — mundo principal (522, 630).",
+          "markerX": 522,
+          "markerY": 630,
+          "routeOrder": 1590170,
+          "memoryTaskId": 13795
+        },
+        {
+          "id": "t13796-1",
+          "title": "Líder do Espírito Nervoso",
+          "action": "Colete 1 Fragmento de Plano dos Sem Alma de Líder do Espírito Nervoso — mundo principal (236, 756).",
+          "markerX": 236,
+          "markerY": 756,
+          "routeOrder": 1590180,
+          "memoryTaskId": 13796
+        },
+        {
+          "id": "t13796-2",
+          "title": "Líder do Espírito Nervoso",
+          "action": "Entregue a missão para Ajudante Li Yuan — mundo principal (522, 630).",
+          "markerX": 522,
+          "markerY": 630,
+          "routeOrder": 1590190,
+          "memoryTaskId": 13796
+        },
+        {
+          "id": "t13786-1",
+          "title": "Indício do Fato",
+          "action": "Entregue a submissão para Ajudante Li Yuan — mundo principal (522, 630).",
+          "markerX": 522,
+          "markerY": 630,
+          "routeOrder": 1590200,
+          "memoryTaskId": 13786
+        },
+        {
+          "id": "t13810-1",
+          "title": "Falar com Veterano Alado",
+          "action": "Fale com Veterano Alado — mundo principal (557, 669).",
+          "markerX": 557,
+          "markerY": 669,
+          "routeOrder": 1590210,
+          "memoryTaskId": 13810
+        },
+        {
+          "id": "t13811-1",
+          "title": "Informar com Guarda",
+          "action": "Fale com Guarda Rask Gould — mundo principal (554, 690).",
+          "markerX": 554,
+          "markerY": 690,
+          "routeOrder": 1590220,
+          "memoryTaskId": 13811
+        },
+        {
+          "id": "t13812-1",
+          "title": "Falar com o Ferreiro",
+          "action": "Fale com Ferreiro Derel Wunit — mundo principal (532, 659).",
+          "markerX": 532,
+          "markerY": 659,
+          "routeOrder": 1590230,
+          "memoryTaskId": 13812
+        },
+        {
+          "id": "t13813-1",
+          "title": "Perguntar do Jovem",
+          "action": "Fale com Guarda Rask Gould — mundo principal (554, 690).",
+          "markerX": 554,
+          "markerY": 690,
+          "routeOrder": 1590240,
+          "memoryTaskId": 13813
+        },
+        {
+          "id": "t13814-1",
+          "title": "Pergunte para o Barqueiro",
+          "action": "Fale com Barqueiro — mundo principal (581, 660).",
+          "markerX": 581,
+          "markerY": 660,
+          "routeOrder": 1590250,
+          "memoryTaskId": 13814
+        },
+        {
+          "id": "t13804-1",
+          "title": "Procurar o Traidor",
+          "action": "Colete 1 Plano de ataque dos Sem Alma de Traidor Yanxu — mundo principal (569, 557).",
+          "markerX": 569,
+          "markerY": 557,
+          "routeOrder": 1590260,
+          "memoryTaskId": 13804
+        },
+        {
+          "id": "t13804-2",
+          "title": "Procurar o Traidor",
+          "action": "Entregue a missão para Ajudante Li Yuan — mundo principal (522, 630).",
+          "markerX": 522,
+          "markerY": 630,
+          "routeOrder": 1590270,
+          "memoryTaskId": 13804
+        },
+        {
+          "id": "t13822-1",
+          "title": "Reportar ao Ajudante",
+          "action": "Entregue 1 Plano de ataque dos Sem Alma para Ajudante Li Yuan — mundo principal (522, 630). Você completou a missão, volte ao Ajudante Li Yuan.",
+          "markerX": 522,
+          "markerY": 630,
+          "routeOrder": 1590280,
+          "memoryTaskId": 13822
+        },
+        {
+          "id": "t14388-1",
+          "title": "Lubing",
+          "action": "Entregue 1 Plano de ataque dos Sem Alma para Sábio da Luz Espiritual Lubing — mundo principal (568, 673). Converse com o Sábio da Luz Espiritual Lubing, ele está na plataforma à nordeste da Cidade do Dragão.",
+          "markerX": 568,
+          "markerY": 673,
+          "routeOrder": 1590290,
+          "memoryTaskId": 14388
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|13760",
+      "routeKey": "COMMON",
+      "order": 49031,
+      "classScope": "ALL",
+      "minLevel": 70,
+      "expectedLevel": 90,
+      "maxLevel": "150",
+      "name": "Esclarecer a Verdade",
+      "npc": "Sábio da Luz Espiritual Lubing — mundo principal (568, 673)",
+      "location": "Sábio da Luz Espiritual Lubing — mundo principal (568, 673)",
+      "baseXp": 170343,
+      "xp3": 511029,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk. Converse com o Sábio da Luz Espiritual Lubing e pergunte sobre o próximo passo.",
+      "steps": [
+        {
+          "id": "t13760-1",
+          "title": "Esclarecer a Verdade",
+          "action": "Aceite a missão com Sábio da Luz Espiritual Lubing — mundo principal (568, 673).",
+          "markerX": 568,
+          "markerY": 673,
+          "routeOrder": 1590310,
+          "memoryTaskId": 13760
+        },
+        {
+          "id": "t14392-1",
+          "title": "Baía do Dragão",
+          "action": "Fale com Sábio da Luz Espiritual Lubing — mundo principal (568, 673).",
+          "markerX": 568,
+          "markerY": 673,
+          "routeOrder": 1590320,
+          "memoryTaskId": 14392
+        },
+        {
+          "id": "t13761-1",
+          "title": "Eliminar Geada Platina",
+          "action": "Mate 1 Geada Platina — Passagem Secreta (409, 555).",
+          "routeOrder": 1590330,
+          "memoryTaskId": 13761
+        },
+        {
+          "id": "t13763-1",
+          "title": "Identificar o Cristal",
+          "action": "Procurar Lubing para identificar o Cristal Quebrado",
+          "routeOrder": 1590340,
+          "memoryTaskId": 13763
+        },
+        {
+          "id": "t13764-1",
+          "title": "Identificar o Espelho",
+          "action": "Entregue 1 Espelho de Bronze Lunar para Sábio da Luz Espiritual Lubing — mundo principal (568, 673). Procurar o Lubing para identificar o Espelho de Bronze Lunar",
+          "markerX": 568,
+          "markerY": 673,
+          "routeOrder": 1590350,
+          "memoryTaskId": 13764
+        },
+        {
+          "id": "t14391-1",
+          "title": "Cidade da Dor Celestial",
+          "action": "Fale com Ancião da Luz de Cidade Santa — mundo principal (568, 634).",
+          "markerX": 568,
+          "markerY": 634,
+          "routeOrder": 1590360,
+          "memoryTaskId": 14391
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|13765",
+      "routeKey": "COMMON",
+      "order": 49038,
+      "classScope": "ALL",
+      "minLevel": 70,
+      "expectedLevel": 90,
+      "maxLevel": "150",
+      "name": "Última Esperança",
+      "npc": "Ancião da Luz de Cidade Santa — mundo principal (568, 634)",
+      "location": "Ancião da Luz de Cidade Santa — mundo principal (568, 634)",
+      "baseXp": 437070,
+      "xp3": 1311210,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk. Converse com o Ancião da Luz da Cidade Santa, ele iluminará o seu caminho.",
+      "steps": [
+        {
+          "id": "t13765-1",
+          "title": "Última Esperança",
+          "action": "Aceite a missão com Ancião da Luz de Cidade Santa — mundo principal (568, 634).",
+          "markerX": 568,
+          "markerY": 634,
+          "routeOrder": 1590380,
+          "memoryTaskId": 13765
+        },
+        {
+          "id": "t13766-1",
+          "title": "A Roda do Tempo",
+          "action": "Fale com Ancião da Luz de Cidade Santa — mundo principal (568, 634).",
+          "markerX": 568,
+          "markerY": 634,
+          "routeOrder": 1590390,
+          "memoryTaskId": 13766
+        },
+        {
+          "id": "t13767-1",
+          "title": "Campo de Magia",
+          "action": "Colete 50 Essência Celestial de Alma das Luzes Celestiais — mundo principal (635, 552).",
+          "markerX": 635,
+          "markerY": 552,
+          "routeOrder": 1590400,
+          "memoryTaskId": 13767
+        },
+        {
+          "id": "t13767-2",
+          "title": "Campo de Magia",
+          "action": "Entregue a missão para Ancião da Luz de Cidade Santa — mundo principal (568, 634).",
+          "markerX": 568,
+          "markerY": 634,
+          "routeOrder": 1590410,
+          "memoryTaskId": 13767
+        },
+        {
+          "id": "t14540-1",
+          "title": "Informar ao Lubing",
+          "action": "Fale com Sábio da Luz Espiritual Lubing — mundo principal (568, 673).",
+          "markerX": 568,
+          "markerY": 673,
+          "routeOrder": 1590420,
+          "memoryTaskId": 14540
+        },
+        {
+          "id": "t14541-1",
+          "title": "Pedra para Acalmar o Mar",
+          "action": "Colete 1 Pedra para Acalmar o Mar de O Miserável Lin Yun — Caverna do Tesouro (DG79) (434, 533).",
+          "routeOrder": 1590430,
+          "memoryTaskId": 14541
+        },
+        {
+          "id": "t14544-1",
+          "title": "Voltar para Lubing",
+          "action": "Entregue 1 Pedra para Acalmar o Mar para Sábio da Luz Espiritual Lubing — mundo principal (568, 673). Entregar a Pedra para Acalmar o Mar para Lubing.",
+          "markerX": 568,
+          "markerY": 673,
+          "routeOrder": 1590440,
+          "memoryTaskId": 14544
+        },
+        {
+          "id": "t14570-1",
+          "title": "Serpente Ancestral",
+          "action": "Mate 1 Serpente Ancestral — Palácio do Crepusculo (375, 540). Dusk/Palácio do Crepúsculo 1-1.",
+          "routeOrder": 1590450,
+          "memoryTaskId": 14570
+        },
+        {
+          "id": "t14571-1",
+          "title": "Deus Tambor",
+          "action": "Mate 1 Deus Tambor — Palácio do Crepusculo (375, 539). Dusk/Palácio do Crepúsculo 1-2.",
+          "routeOrder": 1590460,
+          "memoryTaskId": 14571
+        },
+        {
+          "id": "t14572-1",
+          "title": "Completar",
+          "action": "Entregue 1 Espírito de Serpente Ancestral, 1 Ordem do Deus Trovão para Sábio da Luz Espiritual Lubing — mundo principal (568, 673). Entregue os dois itens que o Sábio da Luz precisa, ele saberá o que fazer.",
+          "markerX": 568,
+          "markerY": 673,
+          "routeOrder": 1590470,
+          "memoryTaskId": 14572
+        },
+        {
+          "id": "t14573-1",
+          "title": "Ancião da Luz",
+          "action": "Fale com Ancião da Luz de Cidade Santa — mundo principal (568, 634).",
+          "markerX": 568,
+          "markerY": 634,
+          "routeOrder": 1590480,
+          "memoryTaskId": 14573
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|13768",
+      "routeKey": "COMMON",
+      "order": 49050,
+      "classScope": "ALL",
+      "minLevel": 70,
+      "expectedLevel": 90,
+      "maxLevel": "150",
+      "name": "A Roda do Tempo",
+      "npc": "Ancião da Luz de Cidade Santa — mundo principal (568, 634)",
+      "location": "Ancião da Luz de Cidade Santa — mundo principal (568, 634)",
+      "baseXp": 382500,
+      "xp3": 1147500,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk. Antes de viajar pelo tempo você precisa se preparar, o Ancião da Luz poderá ajudá-lo a passar pela Roda do Tempo.",
+      "steps": [
+        {
+          "id": "t13768-1",
+          "title": "A Roda do Tempo",
+          "action": "Aceite a missão com Ancião da Luz de Cidade Santa — mundo principal (568, 634).",
+          "markerX": 568,
+          "markerY": 634,
+          "routeOrder": 1590500,
+          "memoryTaskId": 13768
+        },
+        {
+          "id": "t13769-1",
+          "title": "Pedras cristalizadas",
+          "action": "Colete 1 Pedra da Água de Hades de Olho Venenoso — mundo principal (547, 466).",
+          "markerX": 547,
+          "markerY": 466,
+          "routeOrder": 1590510,
+          "memoryTaskId": 13769,
+          "memoryItemIds": [
+            20489
+          ]
+        },
+        {
+          "id": "t13769-2",
+          "title": "Pedras cristalizadas",
+          "action": "Colete 1 Pedra da Noite de Hades de Garra Negra — mundo principal (563, 472).",
+          "markerX": 563,
+          "markerY": 472,
+          "routeOrder": 1590520,
+          "memoryTaskId": 13769,
+          "memoryItemIds": [
+            20488
+          ]
+        },
+        {
+          "id": "t13769-3",
+          "title": "Pedras cristalizadas",
+          "action": "Colete 1 Pedra do Céu de Hades de Vingador Venenoso — mundo principal (581, 482).",
+          "markerX": 581,
+          "markerY": 482,
+          "routeOrder": 1590530,
+          "memoryTaskId": 13769,
+          "memoryItemIds": [
+            20487
+          ]
+        },
+        {
+          "id": "t13769-4",
+          "title": "Pedras cristalizadas",
+          "action": "Entregue a missão para Ancião da Luz de Cidade Santa — mundo principal (568, 634).",
+          "markerX": 568,
+          "markerY": 634,
+          "routeOrder": 1590540,
+          "memoryTaskId": 13769
+        },
+        {
+          "id": "t14539-1",
+          "title": "Gaurnob com Arma de Haste",
+          "action": "Mate 1 Senhor dos Búfalos de Hades — Portão Desalmado (431, 526) e 1 Corcel Infernal — Portão Desalmado (414, 526). Confira todos os contadores no jogo.",
+          "routeOrder": 1590550,
+          "memoryTaskId": 14539
+        },
+        {
+          "id": "t14539-2",
+          "title": "Gaurnob com Arma de Haste",
+          "action": "Entregue a missão para Ancião da Luz de Cidade Santa — mundo principal (568, 634).",
+          "markerX": 568,
+          "markerY": 634,
+          "routeOrder": 1590560,
+          "memoryTaskId": 14539
+        },
+        {
+          "id": "t13770-1",
+          "title": "Chave do Tempo",
+          "action": "Fale com Ancião da Luz de Cidade Santa — mundo principal (568, 634).",
+          "markerX": 568,
+          "markerY": 634,
+          "routeOrder": 1590570,
+          "memoryTaskId": 13770
+        },
+        {
+          "id": "t14430-1",
+          "title": "Roda do Tempo",
+          "action": "Fale com Emissário do Tempo — mundo principal (553, 655).",
+          "markerX": 553,
+          "markerY": 655,
+          "routeOrder": 1590580,
+          "memoryTaskId": 14430
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|13778",
+      "routeKey": "COMMON",
+      "order": 49060,
+      "classScope": "ALL",
+      "minLevel": 70,
+      "expectedLevel": 90,
+      "maxLevel": "150",
+      "name": "Viagem de Volta",
+      "npc": "Emissário do Tempo — mundo principal (553, 655)",
+      "location": "Emissário do Tempo — mundo principal (553, 655)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk.",
+      "steps": [
+        {
+          "id": "t13778-1",
+          "title": "Viagem de Volta",
+          "action": "Aceite a missão com Emissário do Tempo — mundo principal (553, 655).",
+          "markerX": 553,
+          "markerY": 655,
+          "routeOrder": 1590600,
+          "memoryTaskId": 13778
+        },
+        {
+          "id": "t13778-2",
+          "title": "Viagem de Volta",
+          "action": "Use o Emissário do Tempo para entrar na Cidade da Dor Celestial do Passado. Confirme ao chegar e continue Perigo na Dor Celestial.",
+          "routeOrder": 1590610,
+          "memoryTaskId": 13778
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|13823",
+      "routeKey": "COMMON",
+      "order": 49063,
+      "classScope": "ALL",
+      "minLevel": 90,
+      "expectedLevel": 90,
+      "maxLevel": "150",
+      "name": "Perigo na Dor Celestial",
+      "npc": "Guarda Tian Xiao — Roda do Tempo (Passado) (367, 519)",
+      "location": "Guarda Tian Xiao — Roda do Tempo (Passado) (367, 519)",
+      "baseXp": 126000,
+      "xp3": 378000,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk. A Cidade da Dor Celestial de 1000 anos atrás é diferente de hoje, que comece a sua aventura!",
+      "steps": [
+        {
+          "id": "t13823-1",
+          "title": "Perigo na Dor Celestial",
+          "action": "Aceite a missão com Guarda Tian Xiao — Roda do Tempo (Passado) (367, 519).",
+          "routeOrder": 1590630,
+          "memoryTaskId": 13823
+        },
+        {
+          "id": "t13826-1",
+          "title": "Problema na Cidade",
+          "action": "Fale com Guarda Tian Xiao — Roda do Tempo (Passado) (367, 519).",
+          "routeOrder": 1590640,
+          "memoryTaskId": 13826
+        },
+        {
+          "id": "t13827-1",
+          "title": "Sábio Hai Yuan",
+          "action": "Fale com Sábio Hai Yuan — Roda do Tempo (Passado) (369, 518).",
+          "routeOrder": 1590650,
+          "memoryTaskId": 13827
+        },
+        {
+          "id": "t13829-1",
+          "title": "Coração da Luz",
+          "action": "Fale com Boticário Trevor Emirad — mundo principal (444, 898).",
+          "markerX": 444,
+          "markerY": 898,
+          "routeOrder": 1590660,
+          "memoryTaskId": 13829
+        },
+        {
+          "id": "t13830-1",
+          "title": "Olho Solar Flamejante",
+          "action": "Fale com Boticário Mahu — mundo principal (262, 638).",
+          "markerX": 262,
+          "markerY": 638,
+          "routeOrder": 1590670,
+          "memoryTaskId": 13830
+        },
+        {
+          "id": "t13851-1",
+          "title": "Boticário Tarin",
+          "action": "Fale com Boticário Tarin — mundo principal (313, 424).",
+          "markerX": 313,
+          "markerY": 424,
+          "routeOrder": 1590680,
+          "memoryTaskId": 13851
+        },
+        {
+          "id": "t13852-1",
+          "title": "Perguntar para Sacerdotisa",
+          "action": "Fale com Sacerdotisa — mundo principal (325, 424).",
+          "markerX": 325,
+          "markerY": 424,
+          "routeOrder": 1590690,
+          "memoryTaskId": 13852
+        },
+        {
+          "id": "t13853-1",
+          "title": "Emblema da Cidade Santa",
+          "action": "Fale com Ancião da Luz de Cidade Santa — mundo principal (568, 634).",
+          "markerX": 568,
+          "markerY": 634,
+          "routeOrder": 1590700,
+          "memoryTaskId": 13853
+        },
+        {
+          "id": "t13854-1",
+          "title": "Confiança da Sacerdotisa",
+          "action": "Entregue 1 Emblema da Cidade Santa para Sacerdotisa — mundo principal (325, 424). Você conseguiu a Marca da Cidade Santa, que é o emblema para ganhar a confiança e obter a Pena do Céu Azul.",
+          "markerX": 325,
+          "markerY": 424,
+          "routeOrder": 1590710,
+          "memoryTaskId": 13854
+        },
+        {
+          "id": "t13855-1",
+          "title": "Pegar a Pena do Céu Azul",
+          "action": "Fale com Boticário Tarin — mundo principal (313, 424).",
+          "markerX": 313,
+          "markerY": 424,
+          "routeOrder": 1590720,
+          "memoryTaskId": 13855
+        },
+        {
+          "id": "t13850-1",
+          "title": "Remédio Milagroso",
+          "action": "Entregue 1 Coração da Luz, 1 Olho Solar Flamejante, 1 Pena do Céu Azul para Sábio Hai Yuan — Roda do Tempo (Passado) (369, 518). Agora que você juntou os 3 itens, poderá voltar para o Sábio Hai Yuan e produzir a poção para acordar o grande sábio.",
+          "routeOrder": 1590730,
+          "memoryTaskId": 13850
+        },
+        {
+          "id": "t13837-1",
+          "title": "Acordar o Sábio",
+          "action": "Entregue 1 Essência de Jade para Ancião Celestial — Roda do Tempo (Passado) (368, 519). Use a Essência de Jade para salvar o sábio.",
+          "routeOrder": 1590740,
+          "memoryTaskId": 13837
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|14545",
+      "routeKey": "COMMON",
+      "order": 49076,
+      "classScope": "ALL",
+      "minLevel": 90,
+      "expectedLevel": 90,
+      "maxLevel": "150",
+      "name": "Monstros",
+      "npc": "Ancião Celestial — Roda do Tempo (Passado) (368, 519)",
+      "location": "Ancião Celestial — Roda do Tempo (Passado) (368, 519)",
+      "baseXp": 345000,
+      "xp3": 1035000,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk.",
+      "steps": [
+        {
+          "id": "t14545-1",
+          "title": "Monstros",
+          "action": "Aceite a missão com Ancião Celestial — Roda do Tempo (Passado) (368, 519).",
+          "routeOrder": 1590760,
+          "memoryTaskId": 14545
+        },
+        {
+          "id": "t14548-1",
+          "title": "Matar Brahma",
+          "action": "Mate 1 Brahma — mapa a16 (382, 592). Vá para a Terra dos Imortais e Palácio do Crepúsculo e complete as missões do Ancião Celestial.",
+          "routeOrder": 1590770,
+          "memoryTaskId": 14548
+        },
+        {
+          "id": "t14549-1",
+          "title": "Crepúsculo",
+          "action": "Mate 1 Marechal Shen Wuluo — Palácio do Crepusculo (420, 530) e 1 Marechal Feng Wuhen — Palácio do Crepusculo (401, 512). Confira todos os contadores no jogo. Dusk/Palácio do Crepúsculo 2-3.",
+          "routeOrder": 1590780,
+          "memoryTaskId": 14549
+        },
+        {
+          "id": "t14547-1",
+          "title": "Voltar para Cidade",
+          "action": "Fale com Ancião Celestial — Roda do Tempo (Passado) (368, 519).",
+          "routeOrder": 1590790,
+          "memoryTaskId": 14547
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|13824",
+      "routeKey": "COMMON",
+      "order": 49081,
+      "classScope": "ALL",
+      "minLevel": 90,
+      "expectedLevel": 90,
+      "maxLevel": "150",
+      "name": "Instrumento Perdido",
+      "npc": "Ancião Celestial — Roda do Tempo (Passado) (368, 519)",
+      "location": "Ancião Celestial — Roda do Tempo (Passado) (368, 519)",
+      "baseXp": 218955,
+      "xp3": 656865,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk.",
+      "steps": [
+        {
+          "id": "t13824-1",
+          "title": "Instrumento Perdido",
+          "action": "Aceite a missão com Ancião Celestial — Roda do Tempo (Passado) (368, 519).",
+          "routeOrder": 1590810,
+          "memoryTaskId": 13824
+        },
+        {
+          "id": "t13834-1",
+          "title": "Cajado do Explorador",
+          "action": "Colete 1 Cajado do Explorador de Saltador do Espaço — Roda do Tempo (Passado) (347, 480).",
+          "routeOrder": 1590820,
+          "memoryTaskId": 13834
+        },
+        {
+          "id": "t13835-1",
+          "title": "Cristal do Explorador",
+          "action": "Colete 1 Cristal do Explorador de Caçador do Além — Roda do Tempo (Passado) (359, 467).",
+          "routeOrder": 1590830,
+          "memoryTaskId": 13835
+        },
+        {
+          "id": "t13833-1",
+          "title": "Entregar o Cajado",
+          "action": "Entregue 1 Cajado do Explorador, 1 Cristal do Explorador para Ancião Celestial — Roda do Tempo (Passado) (368, 519). Entregar as 2 partes do cajado para o Ancião Celestial.",
+          "routeOrder": 1590840,
+          "memoryTaskId": 13833
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|13825",
+      "routeKey": "COMMON",
+      "order": 49086,
+      "classScope": "ALL",
+      "minLevel": 90,
+      "expectedLevel": 90,
+      "maxLevel": "150",
+      "name": "Problema na Roda",
+      "npc": "Ancião Celestial — Roda do Tempo (Passado) (368, 519)",
+      "location": "Ancião Celestial — Roda do Tempo (Passado) (368, 519)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk. O poder da Roda do Tempo está instável, deve ter alguém fazendo alguma coisa. Vá até um pequeno acampamento ao sul da Cidade da Dor Celestial e investigue quem é que está por trás disso, depois volte para cidade e reporte.",
+      "steps": [
+        {
+          "id": "t13825-1",
+          "title": "Problema na Roda",
+          "action": "Aceite a missão com Ancião Celestial — Roda do Tempo (Passado) (368, 519).",
+          "routeOrder": 1590860,
+          "memoryTaskId": 13825
+        },
+        {
+          "id": "t13825-2",
+          "title": "Problema na Roda",
+          "action": "Fale com Mestre do Tempo — Roda do Tempo (Passado) (316, 507).",
+          "routeOrder": 1590870,
+          "memoryTaskId": 13825
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|13856",
+      "routeKey": "COMMON",
+      "order": 49089,
+      "classScope": "ALL",
+      "minLevel": 90,
+      "expectedLevel": 90,
+      "maxLevel": "150",
+      "name": "Origem do Problema",
+      "npc": "Mestre do Tempo — Roda do Tempo (Passado) (316, 507)",
+      "location": "Mestre do Tempo — Roda do Tempo (Passado) (316, 507)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk.",
+      "steps": [
+        {
+          "id": "t13856-1",
+          "title": "Origem do Problema",
+          "action": "Aceite a missão com Mestre do Tempo — Roda do Tempo (Passado) (316, 507).",
+          "routeOrder": 1590890,
+          "memoryTaskId": 13856
+        },
+        {
+          "id": "t13857-1",
+          "title": "Matar Bandido",
+          "action": "Escolha “Matar Bandido” no diálogo de Origem do Problema e receba Parar os bandidos. Este desvio da história não altera God/Evil.",
+          "routeOrder": 1590900,
+          "memoryTaskId": 13857
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|13840",
+      "routeKey": "COMMON",
+      "order": 49092,
+      "classScope": "ALL",
+      "minLevel": 90,
+      "expectedLevel": 90,
+      "maxLevel": "Sem limite",
+      "name": "Parar os bandidos",
+      "npc": "Continuação / missão automática",
+      "location": "Os bandidos alados estão atrapalhando o funcionamento da Roda do Tempo, você escolheu impedi-los, agora volte ao Ancião Celestial para reportar a situação.",
+      "baseXp": 78000,
+      "xp3": 234000,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk. Os bandidos alados estão atrapalhando o funcionamento da Roda do Tempo, você escolheu impedi-los, agora volte ao Ancião Celestial para reportar a situação.",
+      "availabilityNote": "Mínimo derivado dos pré-requisitos/cultivo; a tarefa não tem mínimo próprio explícito no cliente.",
+      "steps": [
+        {
+          "id": "t13840-1",
+          "title": "Parar os bandidos",
+          "action": "Receba a missão de continuação da cadeia atual; confira o nome no questlog.",
+          "routeOrder": 1590920,
+          "memoryTaskId": 13840
+        },
+        {
+          "id": "t13840-2",
+          "title": "Parar os bandidos",
+          "action": "Entregue 1 Lágrima do Mestre do Tempo para Ancião Celestial — Roda do Tempo (Passado) (368, 519). Os bandidos alados estão atrapalhando o funcionamento da Roda do Tempo, você escolheu impedi-los, agora volte ao Ancião Celestial para reportar a situação.",
+          "routeOrder": 1590930,
+          "memoryTaskId": 13840
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|13842",
+      "routeKey": "COMMON",
+      "order": 49095,
+      "classScope": "ALL",
+      "minLevel": 90,
+      "expectedLevel": 90,
+      "maxLevel": "Sem limite",
+      "name": "Pedra Controladora de Energia",
+      "npc": "Continuação / missão automática",
+      "location": "Outro item importante para o controle da Roda do Tempo é a \"Pedra Controladora de Energia\" que está em poder do monstro \"Grande Besta do Espaço\", vá e mate-o para recuperar a pedra",
+      "baseXp": 81150,
+      "xp3": 243450,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk. Outro item importante para o controle da Roda do Tempo é a \"Pedra Controladora de Energia\" que está em poder do monstro \"Grande Besta do Espaço\", vá e mate-o para recuperar a pedra, depois reporte ao Ancião Celestial.",
+      "availabilityNote": "Mínimo derivado dos pré-requisitos/cultivo; a tarefa não tem mínimo próprio explícito no cliente.",
+      "steps": [
+        {
+          "id": "t13842-1",
+          "title": "Pedra Controladora de Energia",
+          "action": "Receba a missão de continuação da cadeia atual; confira o nome no questlog.",
+          "routeOrder": 1590950,
+          "memoryTaskId": 13842
+        },
+        {
+          "id": "t13842-2",
+          "title": "Pedra Controladora de Energia",
+          "action": "Colete 1 Pedra Controladora de Energia de Grande Besta do Espaço — Roda do Tempo (Passado) (362, 478).",
+          "routeOrder": 1590960,
+          "memoryTaskId": 13842
+        },
+        {
+          "id": "t13842-3",
+          "title": "Pedra Controladora de Energia",
+          "action": "Entregue a missão para Ancião Celestial — Roda do Tempo (Passado) (368, 519).",
+          "routeOrder": 1590970,
+          "memoryTaskId": 13842
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|14340",
+      "routeKey": "COMMON",
+      "order": 49099,
+      "classScope": "ALL",
+      "minLevel": 90,
+      "expectedLevel": 90,
+      "maxLevel": "Sem limite",
+      "name": "Completar.",
+      "npc": "Continuação / missão automática",
+      "location": "Consulte a submissão atual",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk.",
+      "availabilityNote": "Mínimo derivado dos pré-requisitos/cultivo; a tarefa não tem mínimo próprio explícito no cliente.",
+      "steps": [
+        {
+          "id": "t14340-1",
+          "title": "Completar.",
+          "action": "Receba a missão de continuação da cadeia atual; confira o nome no questlog.",
+          "routeOrder": 1590990,
+          "memoryTaskId": 14340
+        },
+        {
+          "id": "t14340-2",
+          "title": "Completar.",
+          "action": "Receba a continuação automática após Pedra Controladora de Energia. Confira Lágrima do Deus de Neve no questlog e prossiga.",
+          "routeOrder": 1591000,
+          "memoryTaskId": 14340
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|14341",
+      "routeKey": "COMMON",
+      "order": 49102,
+      "classScope": "ALL",
+      "minLevel": 90,
+      "expectedLevel": 90,
+      "maxLevel": "150",
+      "name": "Lágrima do Deus de Neve",
+      "npc": "Ancião Celestial — Roda do Tempo (Passado) (368, 519)",
+      "location": "Ancião Celestial — Roda do Tempo (Passado) (368, 519)",
+      "baseXp": 421500,
+      "xp3": 1264500,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk. Fale com o Emissário dos Deuses e consiga a Lágrima do Deus da Neve.",
+      "steps": [
+        {
+          "id": "t14341-1",
+          "title": "Lágrima do Deus de Neve",
+          "action": "Aceite a missão com Ancião Celestial — Roda do Tempo (Passado) (368, 519).",
+          "routeOrder": 1591020,
+          "memoryTaskId": 14341
+        },
+        {
+          "id": "t14550-1",
+          "title": "Emissário dos Deuses",
+          "action": "Fale com Emissário dos Deuses — mundo principal (131, 857).",
+          "markerX": 131,
+          "markerY": 857,
+          "routeOrder": 1591030,
+          "memoryTaskId": 14550
+        },
+        {
+          "id": "t14353-1",
+          "title": "Imortal Astuto",
+          "action": "Fale com Imortal Astuto — Sábio (481, 506).",
+          "routeOrder": 1591040,
+          "memoryTaskId": 14353
+        },
+        {
+          "id": "t14355-1",
+          "title": "Mestre Maligno",
+          "action": "Mate 1 Mestre Maligno — Purgatório Celeste (359, 575). Mate Mestre Maligno no Purgatório Celeste.",
+          "routeOrder": 1591050,
+          "memoryTaskId": 14355
+        },
+        {
+          "id": "t14356-1",
+          "title": "Mestre Espadachim Maligno",
+          "action": "Mate 1 Mestre Espadachim Maligno — Purgatório Celeste (368, 561). Mate Mestre Espadachim Maligno no Purgatório Celeste.",
+          "routeOrder": 1591060,
+          "memoryTaskId": 14356
+        },
+        {
+          "id": "t14357-1",
+          "title": "Senhora Maligna das Lâminas",
+          "action": "Mate 1 Senhora Maligna das Lâminas — Purgatório Celeste (360, 514). Mate Senhora Maligna das Lâminas no Purgatório Celeste.",
+          "routeOrder": 1591070,
+          "memoryTaskId": 14357
+        },
+        {
+          "id": "t14574-1",
+          "title": "Imortal Astuto",
+          "action": "Fale com Imortal Astuto — Sábio (481, 506).",
+          "routeOrder": 1591080,
+          "memoryTaskId": 14574
+        },
+        {
+          "id": "t14552-1",
+          "title": "Emissário dos Deuses",
+          "action": "Entregue 1 Jade Congelada Ancestral para Emissário dos Deuses — mundo principal (131, 857). Agora que conseguiu a Jade Congelada Ancestral, entregue-a para o Emissário dos Deuses, ele deve te dar a Lágrima do Deus da Neve.",
+          "markerX": 131,
+          "markerY": 857,
+          "routeOrder": 1591090,
+          "memoryTaskId": 14552
+        },
+        {
+          "id": "t14551-1",
+          "title": "Matar o Rato",
+          "action": "Colete 1 Lágrima do Deus de Neve de General Rato — Vale Primordial (422, 513).",
+          "routeOrder": 1591100,
+          "memoryTaskId": 14551
+        },
+        {
+          "id": "t14451-1",
+          "title": "Cidade da Dor Celestial",
+          "action": "Entregue 1 Lágrima do Deus de Neve para Ancião Celestial — Roda do Tempo (Passado) (368, 519). Você conseguiu a Lágrima do Deus da Neve com o General Rato! Agora volte para a Cidade da Dor Celestial antiga, reporte para o Ancião Celestial.",
+          "routeOrder": 1591110,
+          "memoryTaskId": 14451
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|13843",
+      "routeKey": "COMMON",
+      "order": 49113,
+      "classScope": "ALL",
+      "minLevel": 90,
+      "expectedLevel": 90,
+      "maxLevel": "150",
+      "name": "Viagem do Destino",
+      "npc": "Ancião Celestial — Roda do Tempo (Passado) (368, 519)",
+      "location": "Ancião Celestial — Roda do Tempo (Passado) (368, 519)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk.",
+      "steps": [
+        {
+          "id": "t13843-1",
+          "title": "Viagem do Destino",
+          "action": "Aceite a missão com Ancião Celestial — Roda do Tempo (Passado) (368, 519).",
+          "routeOrder": 1591130,
+          "memoryTaskId": 13843
+        },
+        {
+          "id": "t13843-2",
+          "title": "Viagem do Destino",
+          "action": "Receba a liberação da Floresta Kylin com o Ancião Celestial. Depois procure o Emissário do Tempo do Passado para a entrada na floresta.",
+          "routeOrder": 1591140,
+          "memoryTaskId": 13843
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|13844",
+      "routeKey": "COMMON",
+      "order": 49116,
+      "classScope": "ALL",
+      "minLevel": 90,
+      "expectedLevel": 90,
+      "maxLevel": "150",
+      "name": "Floresta Kylin",
+      "npc": "Emissário do Tempo — Roda do Tempo (Passado) (367, 517)",
+      "location": "Emissário do Tempo — Roda do Tempo (Passado) (367, 517)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk. Antes de viajar pelo tempo, você precisará coletar um pouco do Sangue dos Heróis durante a noite no fundo do Lago das Estrelas Cadentes, entregue-o para o Emissário do Tempo assim que conseguir. Caso você queira sair da Floresta Kylin antes do tempo limite, você terá de abandonar esta missão para poder entrar novamente.",
+      "steps": [
+        {
+          "id": "t13844-1",
+          "title": "Floresta Kylin",
+          "action": "Aceite a missão com Emissário do Tempo — Roda do Tempo (Passado) (367, 517).",
+          "routeOrder": 1591160,
+          "memoryTaskId": 13844
+        },
+        {
+          "id": "t13870-1",
+          "title": "Coletar Sangue",
+          "action": "Entregue 1 Sangue de Herói para Emissário do Tempo — Roda do Tempo (Passado) (367, 517). Colete Sangue dos Heróis durante a noite no fundo do Lago das Estrelas Cadentes e volte ao Emissário do Tempo, ele vai ajudar a passar pelo portal do tempo.",
+          "routeOrder": 1591170,
+          "memoryTaskId": 13870
+        },
+        {
+          "id": "t13871-1",
+          "title": "Limite de Tempo",
+          "action": "Após entrar na Floresta Kylin, continue Os Comerciantes. O limite de 2 horas é da permanência no mapa; não espere o prazo terminar. Marque esta orientação ao entrar.",
+          "routeOrder": 1591180,
+          "memoryTaskId": 13871
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|13868",
+      "routeKey": "COMMON",
+      "order": 49120,
+      "classScope": "ALL",
+      "minLevel": 90,
+      "expectedLevel": 90,
+      "maxLevel": "150",
+      "name": "Os Comerciantes",
+      "npc": "Líder Comerciante Lier — Roda do Tempo (Passado) (373, 591)",
+      "location": "Líder Comerciante Lier — Roda do Tempo (Passado) (373, 591)",
+      "baseXp": 104100,
+      "xp3": 312300,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk. Ao chegar na Floresta Kylin onde recentemente aconteceu a matança, você reparou que há bárbaros aqui. Esses comerciantes têm uma posição neutra entre humanos e alados, talvez sejam as melhores fontes de informação para você. Ajude-os nas missões e talvez eles ajudem a solucionar o mistério.",
+      "steps": [
+        {
+          "id": "t13868-1",
+          "title": "Os Comerciantes",
+          "action": "Aceite a missão com Líder Comerciante Lier — Roda do Tempo (Passado) (373, 591).",
+          "routeOrder": 1591200,
+          "memoryTaskId": 13868
+        },
+        {
+          "id": "t13877-1",
+          "title": "Esfera do Ódio",
+          "action": "Colete 15 Esfera do Ódio de Alma Vagante — Roda do Tempo (Passado) (339, 590).",
+          "routeOrder": 1591210,
+          "memoryTaskId": 13877
+        },
+        {
+          "id": "t14398-1",
+          "title": "Lier",
+          "action": "Entregue 15 Esfera do Ódio para Líder Comerciante Lier — Roda do Tempo (Passado) (373, 591). Entregar as 15 Esferas do Ódio para Lier.",
+          "routeOrder": 1591220,
+          "memoryTaskId": 14398
+        },
+        {
+          "id": "t13878-1",
+          "title": "Cristais de Ódio",
+          "action": "Entregue 2 Cristal do Ódio para Líder Comerciante Lier — Roda do Tempo (Passado) (373, 591). Encontre Pedra de Pensamento Odioso com os fantasmas, usando os cristais para prender os fantasmas dentro, depois procure o Líder Comerciante Lier.",
+          "routeOrder": 1591230,
+          "memoryTaskId": 13878
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|13872",
+      "routeKey": "COMMON",
+      "order": 49125,
+      "classScope": "ALL",
+      "minLevel": 90,
+      "expectedLevel": 90,
+      "maxLevel": "150",
+      "name": "Matar Bandidos",
+      "npc": "Líder Comerciante Lier — Roda do Tempo (Passado) (373, 591)",
+      "location": "Líder Comerciante Lier — Roda do Tempo (Passado) (373, 591)",
+      "baseXp": 72000,
+      "xp3": 216000,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk. O líder dos humanos do acampamento do norte mandou uma missão, você sabe que aqueles alados estranhos que falam, são os mesmos alados que tentaram viajar no tempo sem permissão. Agora, você precisa matar 30 Bandidos do Tempo e entregar a missão para o Líder, isso fará com que você ganhe a confiança dos humanos.",
+      "steps": [
+        {
+          "id": "t13872-1",
+          "title": "Matar Bandidos",
+          "action": "Aceite a missão com Líder Comerciante Lier — Roda do Tempo (Passado) (373, 591).",
+          "routeOrder": 1591250,
+          "memoryTaskId": 13872
+        },
+        {
+          "id": "t13872-2",
+          "title": "Matar Bandidos",
+          "action": "Mate 30 Mestre do Tempo — Roda do Tempo (Passado) (373, 578).",
+          "routeOrder": 1591260,
+          "memoryTaskId": 13872
+        },
+        {
+          "id": "t13872-3",
+          "title": "Matar Bandidos",
+          "action": "Entregue a missão para Líder Comerciante Lier — Roda do Tempo (Passado) (373, 591).",
+          "routeOrder": 1591270,
+          "memoryTaskId": 13872
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|13873",
+      "routeKey": "COMMON",
+      "order": 49129,
+      "classScope": "ALL",
+      "minLevel": 90,
+      "expectedLevel": 90,
+      "maxLevel": "150",
+      "name": "Filho de Deus",
+      "npc": "Capitão Sha Yi — Roda do Tempo (Passado) (362, 630)",
+      "location": "Capitão Sha Yi — Roda do Tempo (Passado) (362, 630)",
+      "baseXp": 36000,
+      "xp3": 108000,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk. Perguntar sobre os Sem Almas Kylin.",
+      "steps": [
+        {
+          "id": "t13873-1",
+          "title": "Filho de Deus",
+          "action": "Aceite a missão com Capitão Sha Yi — Roda do Tempo (Passado) (362, 630).",
+          "routeOrder": 1591290,
+          "memoryTaskId": 13873
+        },
+        {
+          "id": "t13902-1",
+          "title": "Identificar Cristal",
+          "action": "Entregue 1 Cristal do Ódio para Capitão Sha Yi — Roda do Tempo (Passado) (362, 630). Converse com o Capitão Sha Yi para identificar o Cristal de Ódio que conseguiu anteriormente.",
+          "routeOrder": 1591300,
+          "memoryTaskId": 13902
+        },
+        {
+          "id": "t13881-1",
+          "title": "A Lenda do Filho de Deus",
+          "action": "Fale com Capitão Sha Yi — Roda do Tempo (Passado) (362, 630).",
+          "routeOrder": 1591310,
+          "memoryTaskId": 13881
+        },
+        {
+          "id": "t13901-1",
+          "title": "Procurar Bai Sui",
+          "action": "Fale com Sábio Bai Sui — Roda do Tempo (Passado) (357, 568).",
+          "routeOrder": 1591320,
+          "memoryTaskId": 13901
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|13874",
+      "routeKey": "COMMON",
+      "order": 49134,
+      "classScope": "ALL",
+      "minLevel": 90,
+      "expectedLevel": 90,
+      "maxLevel": "150",
+      "name": "Decisão do Sábio",
+      "npc": "Sábio Bai Sui — Roda do Tempo (Passado) (357, 568)",
+      "location": "Sábio Bai Sui — Roda do Tempo (Passado) (357, 568)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk. Conversar com o Sábio Bai Sui, para obter mais informações.",
+      "steps": [
+        {
+          "id": "t13874-1",
+          "title": "Decisão do Sábio",
+          "action": "Aceite a missão com Sábio Bai Sui — Roda do Tempo (Passado) (357, 568).",
+          "routeOrder": 1591340,
+          "memoryTaskId": 13874
+        },
+        {
+          "id": "t13874-2",
+          "title": "Decisão do Sábio",
+          "action": "Fale com Sábio Bai Sui — Roda do Tempo (Passado) (357, 568).",
+          "routeOrder": 1591350,
+          "memoryTaskId": 13874
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|13875",
+      "routeKey": "COMMON",
+      "order": 49137,
+      "classScope": "ALL",
+      "minLevel": 90,
+      "expectedLevel": 90,
+      "maxLevel": "150",
+      "name": "Ruína",
+      "npc": "Continuação / missão automática",
+      "location": "Entre na Ruína da Cidade Kylin e na Floresta Kylin que fica ao norte da ruína, procure pelos dois objetos malignos e destrua-os.",
+      "baseXp": 144000,
+      "xp3": 432000,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk. Entre na Ruína da Cidade Kylin e na Floresta Kylin que fica ao norte da ruína, procure pelos dois objetos malignos e destrua-os.",
+      "steps": [
+        {
+          "id": "t13875-1",
+          "title": "Ruína",
+          "action": "Receba a missão de continuação da cadeia atual; confira o nome no questlog.",
+          "routeOrder": 1591370,
+          "memoryTaskId": 13875
+        },
+        {
+          "id": "t13896-1",
+          "title": "Fornalha de Forjar Alma",
+          "action": "Fale com Fornalha de Forjar Alma — Roda do Tempo (Passado) (316, 588).",
+          "routeOrder": 1591380,
+          "memoryTaskId": 13896
+        },
+        {
+          "id": "t13897-1",
+          "title": "Lâmpada de Atrair Alma",
+          "action": "Fale com Lâmpada de Atrair Alma — Roda do Tempo (Passado) (333, 613).",
+          "routeOrder": 1591390,
+          "memoryTaskId": 13897
+        },
+        {
+          "id": "t13890-1",
+          "title": "Visitar Ancião Celestial",
+          "action": "Entregue 2 Origem da Força Maligna para Ancião Celestial — Roda do Tempo (Passado) (368, 519). Você provavelmente descobriu como os monstros Sem Almas surgiram, agora volte para a Cidade da Dor Celestial dentro da Roda do Tempo e conte o que descobriu ao Ancião Celestial.",
+          "routeOrder": 1591400,
+          "memoryTaskId": 13890
+        },
+        {
+          "id": "t13891-1",
+          "title": "Falar com Hai Yuan",
+          "action": "Colete 15 Garra do Tigre Trovão de Tigre da Armadura de Trovão — Roda do Tempo (Passado) (327, 602).",
+          "routeOrder": 1591410,
+          "memoryTaskId": 13891,
+          "memoryItemIds": [
+            20583
+          ]
+        },
+        {
+          "id": "t13891-2",
+          "title": "Falar com Hai Yuan",
+          "action": "Colete 15 Essência da Alma Trovão de Espírito da Armadura de Trovão — Roda do Tempo (Passado) (332, 609).",
+          "routeOrder": 1591420,
+          "memoryTaskId": 13891,
+          "memoryItemIds": [
+            20584
+          ]
+        },
+        {
+          "id": "t13891-3",
+          "title": "Falar com Hai Yuan",
+          "action": "Colete 15 Placa de Armadura do Trovão de Escudo Trovão de Hades — Roda do Tempo (Passado) (332, 609).",
+          "routeOrder": 1591430,
+          "memoryTaskId": 13891,
+          "memoryItemIds": [
+            20585
+          ]
+        },
+        {
+          "id": "t13891-4",
+          "title": "Falar com Hai Yuan",
+          "action": "Entregue a missão para Sábio Hai Yuan — Roda do Tempo (Passado) (369, 518).",
+          "routeOrder": 1591440,
+          "memoryTaskId": 13891
+        },
+        {
+          "id": "t13903-1",
+          "title": "Reportar ao Ancião Celestial",
+          "action": "Fale com Ancião Celestial — Roda do Tempo (Passado) (368, 519).",
+          "routeOrder": 1591450,
+          "memoryTaskId": 13903
+        },
+        {
+          "id": "t14320-1",
+          "title": "Ancião Universal",
+          "action": "Fale com Ancião da Cidade Universal. — mundo principal (131, 858).",
+          "markerX": 131,
+          "markerY": 858,
+          "routeOrder": 1591460,
+          "memoryTaskId": 14320
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|14310",
+      "routeKey": "COMMON",
+      "order": 49148,
+      "classScope": "ALL",
+      "minLevel": 90,
+      "expectedLevel": 90,
+      "maxLevel": "150",
+      "name": "Prova do Ancião Universal",
+      "npc": "Ancião da Cidade Universal. — mundo principal (131, 858)",
+      "location": "Ancião da Cidade Universal. — mundo principal (131, 858)",
+      "baseXp": 960000,
+      "xp3": 2880000,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk. Receber a prova do Ancião da Cidade Universal.",
+      "steps": [
+        {
+          "id": "t14310-1",
+          "title": "Prova do Ancião Universal",
+          "action": "Aceite a missão com Ancião da Cidade Universal. — mundo principal (131, 858).",
+          "markerX": 131,
+          "markerY": 858,
+          "routeOrder": 1591480,
+          "memoryTaskId": 14310
+        },
+        {
+          "id": "t14323-1",
+          "title": "Beemonte",
+          "action": "Mate 1 Beemonte — Terra Demoníaca (418, 594).",
+          "routeOrder": 1591490,
+          "memoryTaskId": 14323
+        },
+        {
+          "id": "t14323-2",
+          "title": "Beemonte",
+          "action": "Entregue a missão para Ancião da Cidade Universal. — mundo principal (131, 858).",
+          "markerX": 131,
+          "markerY": 858,
+          "routeOrder": 1591500,
+          "memoryTaskId": 14323
+        },
+        {
+          "id": "t14553-1",
+          "title": "Grande Símio",
+          "action": "Mate 1 Grande Símio — Palácio do Crepusculo (443, 510). Dusk/Palácio do Crepúsculo 2-1.",
+          "routeOrder": 1591510,
+          "memoryTaskId": 14553
+        },
+        {
+          "id": "t14554-1",
+          "title": "Marechal S. Wuluo e F. Wuhen",
+          "action": "Mate 1 Marechal Shen Wuluo — Palácio do Crepusculo (420, 530) e 1 Marechal Feng Wuhen — Palácio do Crepusculo (401, 512). Confira todos os contadores no jogo. Dusk/Palácio do Crepúsculo 2-2.",
+          "routeOrder": 1591520,
+          "memoryTaskId": 14554
+        },
+        {
+          "id": "t14555-1",
+          "title": "Devorador Insano",
+          "action": "Mate 1 Devorador Insano — Palácio do Crepusculo (380, 510). Dusk/Palácio do Crepúsculo 2-3.",
+          "routeOrder": 1591530,
+          "memoryTaskId": 14555
+        },
+        {
+          "id": "t14556-1",
+          "title": "Ancião Universal",
+          "action": "Fale com Ancião da Cidade Universal. — mundo principal (131, 858).",
+          "markerX": 131,
+          "markerY": 858,
+          "routeOrder": 1591540,
+          "memoryTaskId": 14556
+        },
+        {
+          "id": "t14325-1",
+          "title": "Cidade do Dragão",
+          "action": "Mate 1 Demônio Misterioso — Arcadia Infernal (434, 561) e 1 Minotauro Exilado — Arcadia Infernal (444, 544) e 1 Demônio Solitário — Arcadia Infernal (383, 528). Confira todos os contadores no jogo. Vá para a Arcádia Infernal e mate o Demônio Misterioso, Minotauro Exilado e Demônio Solitário.",
+          "routeOrder": 1591550,
+          "memoryTaskId": 14325
+        },
+        {
+          "id": "t14325-2",
+          "title": "Cidade do Dragão",
+          "action": "Entregue a missão para Ancião da Cidade Universal. — mundo principal (131, 858).",
+          "markerX": 131,
+          "markerY": 858,
+          "routeOrder": 1591560,
+          "memoryTaskId": 14325
+        },
+        {
+          "id": "t14326-1",
+          "title": "General Lobo",
+          "action": "Colete 1 Cajado do Sábio de General Lobo — Vale Primordial (421, 510).",
+          "routeOrder": 1591570,
+          "memoryTaskId": 14326
+        },
+        {
+          "id": "t14403-1",
+          "title": "Ancião Universal",
+          "action": "Fale com Ancião da Cidade Universal. — mundo principal (131, 858).",
+          "markerX": 131,
+          "markerY": 858,
+          "routeOrder": 1591580,
+          "memoryTaskId": 14403
+        },
+        {
+          "id": "t14428-1",
+          "title": "Reportar ao Ancião Celestial",
+          "action": "Fale com Ancião Celestial — Roda do Tempo (Passado) (368, 519).",
+          "routeOrder": 1591590,
+          "memoryTaskId": 14428
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|13892",
+      "routeKey": "COMMON",
+      "order": 49161,
+      "classScope": "ALL",
+      "minLevel": 90,
+      "expectedLevel": 90,
+      "maxLevel": "150",
+      "name": "Portal Cicatriz",
+      "npc": "Ancião Celestial — Roda do Tempo (Passado) (368, 519)",
+      "location": "Ancião Celestial — Roda do Tempo (Passado) (368, 519)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk.",
+      "steps": [
+        {
+          "id": "t13892-1",
+          "title": "Portal Cicatriz",
+          "action": "Aceite a missão com Ancião Celestial — Roda do Tempo (Passado) (368, 519).",
+          "routeOrder": 1591610,
+          "memoryTaskId": 13892
+        },
+        {
+          "id": "t13892-2",
+          "title": "Portal Cicatriz",
+          "action": "Receba a liberação do Portal Cicatriz com o Ancião Celestial e procure o Emissário do Tempo do Passado.",
+          "routeOrder": 1591620,
+          "memoryTaskId": 13892
+        }
+      ]
+    },
+    {
+      "id": "ENDGAME|ALL|13846",
+      "routeKey": "COMMON",
+      "order": 49164,
+      "classScope": "ALL",
+      "minLevel": 90,
+      "expectedLevel": 90,
+      "maxLevel": "150",
+      "name": "Vale da Cicatriz",
+      "npc": "Emissário do Tempo — Roda do Tempo (Passado) (367, 517)",
+      "location": "Emissário do Tempo — Roda do Tempo (Passado) (367, 517)",
+      "baseXp": 0,
+      "xp3": 0,
+      "priority": "Essencial",
+      "benefit": "Liberação de Dor Celestial, Floresta Kylin e Vale da Cicatriz",
+      "instruction": "Acesso ao Passado necessário para o cultivo 100, compartilhado por God/Evil. Faça as submissões na ordem, incluindo os modos indicados da Dusk.",
+      "steps": [
+        {
+          "id": "t13846-1",
+          "title": "Vale da Cicatriz",
+          "action": "Aceite a missão com Emissário do Tempo — Roda do Tempo (Passado) (367, 517).",
+          "routeOrder": 1591640,
+          "memoryTaskId": 13846
+        },
+        {
+          "id": "t13846-2",
+          "title": "Vale da Cicatriz",
+          "action": "Use a opção Vale da Cicatriz do Emissário do Tempo do Passado. Confirme quando o acesso estiver disponível; este mapa será usado no cultivo 100.",
+          "routeOrder": 1591650,
+          "memoryTaskId": 13846
+        }
+      ]
+    },
+    {
       "id": "ENDGAME|EVIL|2844",
       "routeKey": "COMMON",
       "order": 50000,
@@ -24480,12 +25962,12 @@
       "xp3": null,
       "priority": "Pré-requisito",
       "benefit": "Confere acesso às áreas usadas pelos cultivos God/Evil 100",
-      "instruction": "O cultivo 100 exige áreas do Passado. A liberação inclui conteúdo de Dusk/Crepúsculo, mantido fora deste guia por solicitação. Se os acessos ainda estiverem pendentes, adie o cultivo 100 pelo menu Etapas e continue o circuito de XP elegível.",
+      "instruction": "O roteiro de liberação do Passado, incluindo as etapas de Dusk, está na faixa prevista 90. Antes do cultivo 100, confira os três acessos. Se faltar algum, retome a cadeia no menu Etapas.",
       "steps": [
         {
           "id": "past-access",
           "title": "Conferir acessos do Passado",
-          "action": "Antes do cultivo 100, confira acesso à Floresta Kylin, Dor Celestial e Vale da Cicatriz. Se estiver pendente, adie o cultivo pelo menu Etapas.",
+          "action": "Confira os acessos à Dor Celestial, Floresta Kylin e Vale da Cicatriz liberados pela cadeia do nível previsto 90. Se faltar algum, retome a submissão pendente antes do cultivo 100.",
           "routeOrder": 1690170
         }
       ]
