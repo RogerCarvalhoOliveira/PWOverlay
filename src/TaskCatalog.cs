@@ -24,6 +24,8 @@ namespace PWQuestOverlay.Memory
         internal Dictionary<uint, int> RequiredTaskItems { get; set; }
         internal uint RequiredMonsterId { get; set; }
         internal int RequiredMonsterKills { get; set; }
+        internal bool ChildrenInOrder { get; set; }
+        internal int CatalogOrder { get; set; }
 
         internal bool TryGetKillProgress(
             ActiveQuestMemoryEntry active, string action, out string evidence)
@@ -103,6 +105,8 @@ namespace PWQuestOverlay.Memory
                         ReadyToNotify = fields[15] == "1",
                         AutoDeliver = fields[16] == "1"
                     };
+                    entry.CatalogOrder = lineNumber;
+                    entry.ChildrenInOrder = fields.Length >= 20 && fields[19] == "1";
                     entry.RequiredTaskItems = fields.Length >= 18
                         ? ParseItemRequirements(fields[17], lineNumber)
                         : new Dictionary<uint, int>();
@@ -222,6 +226,20 @@ namespace PWQuestOverlay.Memory
                 if (entry != null && entry.TopId == task.TopId) return false;
             }
             return true;
+        }
+
+        internal bool HasActiveOrderedSuccessor(
+            uint taskId, uint nextTaskId, QuestMemorySnapshot snapshot)
+        {
+            TaskCatalogEntry task = Find(taskId), next = Find(nextTaskId);
+            if (task == null || next == null || snapshot == null ||
+                task.ParentId == 0 || task.ParentId != next.ParentId ||
+                task.Method != 1 || task.FinishType != 0 ||
+                next.CatalogOrder <= task.CatalogOrder ||
+                snapshot.ActiveTasks.Exists(entry => entry.TaskId == taskId) ||
+                !snapshot.ActiveTasks.Exists(entry => entry.TaskId == nextTaskId)) return false;
+            TaskCatalogEntry parent = Find(task.ParentId);
+            return parent != null && parent.ChildrenInOrder;
         }
 
         private static uint ParseUInt(string value, int lineNumber)

@@ -2200,6 +2200,9 @@ namespace PWQuestOverlay
                 bool disappeared = waitsForDisappearance &&
                     client.HasObservedDisappearance(taskId);
                 bool recordedComplete = _taskCatalog.IsChainRecordedComplete(taskId, client.Snapshot);
+                bool orderedSuccessor = nextTaskResolved &&
+                    (IsCollectionStage(action) || (currentTask != null && currentTask.IsAutomaticKillStage(action))) &&
+                    _taskCatalog.HasActiveOrderedSuccessor(taskId, nextTaskId, client.Snapshot);
                 TaskCatalogEntry nextTask = nextTaskResolved
                     ? _taskCatalog.Find(nextTaskId) : null;
                 bool successorActive = waitsForDisappearance && active == null &&
@@ -2207,7 +2210,7 @@ namespace PWQuestOverlay
                     client.FindActive(nextTaskId) != null &&
                     currentTask != null && nextTask != null &&
                     currentTask.TopId == nextTask.TopId;
-                if (!accepted && !taskItemsComplete && !killsComplete && !automaticChildComplete && !recordedComplete &&
+                if (!accepted && !taskItemsComplete && !killsComplete && !automaticChildComplete && !recordedComplete && !orderedSuccessor &&
                     !disappeared && !successorActive)
                 {
                     LogMemoryDiagnostic("aguardando: " + _currentMission.name +
@@ -2224,6 +2227,8 @@ namespace PWQuestOverlay
 
                 string evidence = recordedComplete
                     ? "cadeia ID " + currentTask.TopId + " confirmada no histórico de entregas"
+                    : orderedSuccessor
+                        ? "sucessor ID " + nextTaskId + " ativo em cadeia sequencial confirmada no catálogo"
                     : accepted
                     ? "ID " + taskId + " apareceu na lista ativa"
                     : automaticChildComplete

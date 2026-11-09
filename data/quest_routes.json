@@ -1619,13 +1619,15 @@
           "markerX": 256,
           "markerY": 689,
           "routeOrder": 10010,
-          "title": "A Cidade das Feras"
+          "title": "A Cidade das Feras",
+          "memoryTaskId": 1204
         },
         {
           "id": "e2",
           "action": "Matar (10) Inseto Esmeralda (Arredores da Vila Inicial)",
           "routeOrder": 10040,
-          "title": "A Cidade das Feras"
+          "title": "A Cidade das Feras",
+          "memoryTaskId": 1204
         },
         {
           "id": "e3",
@@ -1633,7 +1635,8 @@
           "markerX": 246,
           "markerY": 646,
           "routeOrder": 10050,
-          "title": "A Cidade das Feras"
+          "title": "A Cidade das Feras",
+          "memoryTaskId": 1204
         }
       ],
       "expectedLevel": 1

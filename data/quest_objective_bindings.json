@@ -1,6 +1,7 @@
 {
   "source": "tasks.data v124, IDs e requisitos conferidos no catálogo dataminado",
   "bindings": [
+    {"routeKey":"WBWF","mission":"A Cidade das Feras","steps":{"e1":{"taskId":1204},"e2":{"taskId":1204},"e3":{"taskId":1204}}},
     {"routeKey":"WR","mission":"A Promessa","steps":{"e1":{"taskId":2950},"e2":{"taskId":2951},"e3":{"taskId":2952},"e4":{"taskId":2953},"e5":{"taskId":2954},"e6":{"taskId":2955}}},
     {"routeKey":"WBWF","mission":"Garganta dos Ventos An","steps":{"e1":{"taskId":2669},"e2":{"taskId":2669}}},
     {"routeKey":"WR","mission":"Revitalizando a Pátria","steps":{"e1":{"taskId":35},"e2":{"taskId":455},"e3":{"taskId":456},"e4":{"taskId":457},"e5":{"taskId":458},"e6":{"taskId":459},"e7":{"taskId":454}}},

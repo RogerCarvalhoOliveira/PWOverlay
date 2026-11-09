@@ -1,5 +1,13 @@
 # Histórico de alterações
 
+## 0.8.4 - Recuperação ao conectar outro cliente
+
+- Adicionado ao catálogo o indicador real de execução sequencial dos filhos.
+- Objetivos automáticos podem ser reconhecidos após conexão/reinício quando um irmão posterior está ativo e o pai exige execução em ordem.
+- Filhos paralelos, objetivos ainda ativos e sucessores de outras cadeias não permitem essa recuperação.
+- Caso motivador: WB em Primeira Viagem, com Exposição de Talento (1178) já ausente e Triunfo (1179) ativo antes da leitura inicial.
+- Associação explícita de A Cidade das Feras ao ID 1204, evitando o homônimo de outra missão. Auditoria: 105 associações em 31 cadeias.
+
 ## 0.8.3 - Revisão das cadeias e materiais independentes
 
 - Revisadas as 836 etapas: 102 associações explícitas em 30 cadeias, incluindo as visitas aos artesãos das quatro raças.

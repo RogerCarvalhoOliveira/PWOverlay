@@ -85,6 +85,19 @@ internal static class SmokeTests
                 throw new InvalidDataException("Catálogo dataminado de missões está divergente.");
 
             var tracker = new QuestStateTracker();
+            var reconnectedWb = new QuestMemorySnapshot();
+            reconnectedWb.ActiveTasks.Add(new ActiveQuestMemoryEntry { TaskId = 1177 });
+            reconnectedWb.ActiveTasks.Add(new ActiveQuestMemoryEntry { TaskId = 1179 });
+            if (!taskCatalog.HasActiveOrderedSuccessor(1178, 1179, reconnectedWb))
+                throw new InvalidDataException("Sucessor de Primeira Viagem não recuperou abates concluídos antes da conexão.");
+            reconnectedWb.ActiveTasks.Add(new ActiveQuestMemoryEntry { TaskId = 1178 });
+            if (taskCatalog.HasActiveOrderedSuccessor(1178, 1179, reconnectedWb))
+                throw new InvalidDataException("Objetivo ainda ativo foi dado como concluído pelo sucessor.");
+            var parallelChildren = new QuestMemorySnapshot();
+            parallelChildren.ActiveTasks.Add(new ActiveQuestMemoryEntry { TaskId = 805 });
+            if (taskCatalog.HasActiveOrderedSuccessor(804, 805, parallelChildren) ||
+                taskCatalog.HasActiveOrderedSuccessor(1178, 805, parallelChildren))
+                throw new InvalidDataException("Filhos paralelos ou de outra cadeia provaram conclusão.");
             var deliveredBamboo = new QuestMemorySnapshot();
             if (taskCatalog.IsChainRecordedComplete(938, deliveredBamboo))
                 throw new InvalidDataException("Ausência sem histórico foi tratada como entrega.");

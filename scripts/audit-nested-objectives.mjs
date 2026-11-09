@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 const data=JSON.parse(fs.readFileSync('data/quest_routes.json','utf8'));
 const bindings=JSON.parse(fs.readFileSync('data/quest_objective_bindings.json','utf8')).bindings;
 const rows=fs.readFileSync('data/task_catalog_144.tsv','utf8').trim().split(/\r?\n/).slice(1).map(l=>l.split('\t'));
-const tasks=rows.map(r=>({id:Number(r[0]),parent:Number(r[1]),top:Number(r[2]),name:r[4],method:Number(r[5]),monsters:Number(r[9]),items:r[17],kills:r[18]}));
+const tasks=rows.map(r=>({id:Number(r[0]),parent:Number(r[1]),top:Number(r[2]),name:r[4],method:Number(r[5]),monsters:Number(r[9]),items:r[17],kills:r[18]?.includes(':')?r[18]:''}));
 const byId=new Map(tasks.map(t=>[t.id,t]));
 const issues=[],manual=[];let reviewed=0,explicit=0,selected=0;
 for(const m of data.missions)for(const s of m.steps){
