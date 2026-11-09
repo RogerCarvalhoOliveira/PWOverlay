@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using PWQuestOverlay;
+using PWQuestOverlay.Memory;
 
 internal static class SmokeTests
 {
@@ -10,7 +11,8 @@ internal static class SmokeTests
     {
         try
         {
-            if (args.Length != 1) throw new ArgumentException("Informe quest_routes.json.");
+            if (args.Length != 2) throw new ArgumentException(
+                "Informe quest_routes.json e memory_offsets.json.");
             RouteRepository routes = RouteRepository.Load(args[0]);
             var expected = new Dictionary<string, int>
             {
@@ -48,6 +50,17 @@ internal static class SmokeTests
                     previousRouteOrder = step.routeOrder;
                 }
             }
+
+            MemoryLayoutFile memoryLayouts = MemoryLayoutFile.Load(args[1]);
+            MemoryLayoutProfile memoryProfile = memoryLayouts.Find("the_classic_144");
+            if (memoryProfile == null)
+                throw new InvalidDataException("Perfil de memória 1.4.4 ausente.");
+            memoryProfile.Validate();
+            if (memoryProfile.pointerSize != 4 ||
+                memoryProfile.player.className != "CECHostPlayer" ||
+                memoryProfile.quests.className != "CECTaskInterface" ||
+                memoryProfile.quests.ActiveEntryStride != 0x20)
+                throw new InvalidDataException("Layout de memória 1.4.4 inesperado.");
 
             List<QuestMission> common = routes.AllMissions.Where(m => m.routeKey == "COMMON").ToList();
             int lastLevelTwenty = common.Where(m => m.minLevel == 20)

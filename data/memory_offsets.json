@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "profiles": [
+    {
+      "id": "the_classic_144",
+      "label": "The Classic 1.4.4 x86",
+      "module": "elementclient.exe",
+      "pointerSize": 4,
+      "player": {
+        "baseRva": "0xC8A67C",
+        "chain": ["0x1C", "0x28"],
+        "className": "CECHostPlayer"
+      },
+      "attributes": {
+        "level": "0x4C4",
+        "hp": "0x4CC",
+        "hpMax": "0x518",
+        "mp": "0x4D0",
+        "mpMax": "0x51C"
+      },
+      "quests": {
+        "className": "CECTaskInterface",
+        "playerSearchSize": "0x3000",
+        "activeListPointerOffset": "0x8",
+        "activeCountOffset": "0x0",
+        "activeEntriesOffset": "0x8",
+        "activeEntryStride": "0x20",
+        "activeIdOffset": "0x0",
+        "activeMaximum": 30,
+        "finishedListPointerOffset": "0xC",
+        "finishedCountOffset": "0x0",
+        "finishedEntriesOffset": "0x8",
+        "finishedEntryStride": "0x4",
+        "finishedMaximum": 10000
+      }
+    }
+  ]
+}

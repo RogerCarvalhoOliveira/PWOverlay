@@ -24,7 +24,9 @@ New-Item -ItemType Directory -Path $distributionDirectory -Force | Out-Null
 $overlayExecutable = Join-Path $distributionDirectory 'PW Quest Overlay.exe'
 $borderlessExecutable = Join-Path $distributionDirectory 'PW Borderless.exe'
 $launcherExecutable = Join-Path $distributionDirectory 'PW Overlay Central.exe'
+$memoryProbeExecutable = Join-Path $distributionDirectory 'PW Memory Probe.exe'
 $routeDestination = Join-Path $distributionDirectory 'quest_routes.json'
+$memoryOffsetsDestination = Join-Path $distributionDirectory 'memory_offsets.json'
 $workbookDestination = Join-Path $distributionDirectory 'rota_leveling_pw_144.xlsx'
 $readmeDestination = Join-Path $distributionDirectory 'LEIA-ME.txt'
 $installationGuideDestination = Join-Path $distributionDirectory 'INSTALACAO.txt'
@@ -66,7 +68,20 @@ if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar o PW Borderless Monitor.' }
     (Join-Path $sourceDirectory 'PWLauncher.cs')
 if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar o PW Overlay Central.' }
 
+& $compiler /nologo /target:exe /optimize+ /platform:x86 `
+    /out:$memoryProbeExecutable `
+    /reference:System.dll `
+    /reference:System.Core.dll `
+    /reference:System.Web.Extensions.dll `
+    (Join-Path $sourceDirectory 'ProcessMemoryReader.cs') `
+    (Join-Path $sourceDirectory 'MemoryLayout.cs') `
+    (Join-Path $sourceDirectory 'RttiResolver.cs') `
+    (Join-Path $sourceDirectory 'QuestMemoryReader.cs') `
+    (Join-Path $sourceDirectory 'PWMemoryProbe.cs')
+if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar o diagnóstico de memória.' }
+
 Copy-Item -LiteralPath (Join-Path $dataDirectory 'quest_routes.json') -Destination $routeDestination -Force
+Copy-Item -LiteralPath (Join-Path $dataDirectory 'memory_offsets.json') -Destination $memoryOffsetsDestination -Force
 Copy-Item -LiteralPath (Join-Path $dataDirectory 'rota_leveling_pw_144.xlsx') -Destination $workbookDestination -Force
 Copy-Item -LiteralPath (Join-Path $projectRoot 'docs\MANUAL-USUARIO.md') -Destination $readmeDestination -Force
 Copy-Item -LiteralPath (Join-Path $projectRoot 'docs\INSTALACAO.md') -Destination $installationGuideDestination -Force
@@ -83,7 +98,9 @@ if ($Package) {
         $overlayExecutable,
         $borderlessExecutable,
         $launcherExecutable,
+        $memoryProbeExecutable,
         $routeDestination,
+        $memoryOffsetsDestination,
         $workbookDestination,
         $readmeDestination,
         $installationGuideDestination

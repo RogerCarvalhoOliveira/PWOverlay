@@ -18,8 +18,11 @@ $testExecutable = Join-Path $testDirectory 'SmokeTests.exe'
 & $compiler /nologo /target:exe /optimize+ /out:$testExecutable `
     /reference:System.dll /reference:System.Core.dll /reference:System.Web.Extensions.dll `
     (Join-Path $projectRoot 'src\Models.cs') `
+    (Join-Path $projectRoot 'src\MemoryLayout.cs') `
     (Join-Path $projectRoot 'tests\SmokeTests.cs')
 if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar os smoke tests.' }
 
-& $testExecutable (Join-Path $projectRoot 'data\quest_routes.json')
+& $testExecutable `
+    (Join-Path $projectRoot 'data\quest_routes.json') `
+    (Join-Path $projectRoot 'data\memory_offsets.json')
 if ($LASTEXITCODE -ne 0) { throw 'Smoke tests falharam.' }
