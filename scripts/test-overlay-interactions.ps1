@@ -8,7 +8,7 @@ $compiler = 'C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe'
 $library = Join-Path $testDirectory 'OverlayCandidate.dll'
 $executable = Join-Path $testDirectory 'OverlayInteractionTests.exe'
 $sources = @('AppBranding','AppShutdown','Models','ClientIdentity','ClientProfilesForm','NativeMethods','OverlayForm','CultivationChoiceForm','MarkerCalibrationForm','RouteEditorForm',
-    'ProcessMemoryReader','MemoryLayout',
+    'ProcessMemoryReader','MemoryLayout','PlayerIdentityMemory',
     'TaskCatalog','RttiResolver','QuestMemoryReader','QuestStateTracker','QuestMemoryMonitor') |
     ForEach-Object { Join-Path $projectRoot ('src\' + $_ + '.cs') }
 & $compiler /nologo /target:library /optimize+ /platform:x86 /out:$library `

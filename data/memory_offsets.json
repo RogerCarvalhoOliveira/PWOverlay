@@ -11,6 +11,12 @@
         "chain": ["0x1C", "0x28"],
         "className": "CECHostPlayer"
       },
+      "identity": {
+        "roleIdOffset": "0x4B8",
+        "namePointerOffset": "0x6D8",
+        "classOffset": "0x6DC",
+        "maximumCharacters": 64
+      },
       "attributes": {
         "level": "0x4C4",
         "hp": "0x4CC",

@@ -143,6 +143,8 @@ namespace PWQuestOverlay.Tools
                 game, profile.module))
             {
                 long player = ResolvePlayer(memory, profile);
+                PlayerIdentityMemory identity = PlayerIdentityReader.Read(memory, player, profile.identity);
+                if (identity != null) Console.WriteLine("Identidade por memória: {0} [{1}] | ID {2}", identity.Name, identity.ClassCode, identity.RoleId);
                 int level = memory.ReadInt32(player + profile.AttributeOffset("level"));
                 int hp = memory.ReadInt32(player + profile.AttributeOffset("hp"));
                 int hpMax = memory.ReadInt32(player + profile.AttributeOffset("hpMax"));

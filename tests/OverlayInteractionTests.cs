@@ -51,6 +51,23 @@ internal static class OverlayInteractionTests
             var identity = assembly.GetType("PWQuestOverlay.ClientIdentity").GetProperty("ProfileKey", Hidden);
             Check((string)identity.GetValue(result["client1"], null) == "PRIMEIRO|WB" && (string)identity.GetValue(result["client2"], null) == "SEGUNDO|EP", "Saving must preserve independent per-client identities.");
         }
+        var identityType = assembly.GetType("PWQuestOverlay.ClientIdentity");
+        object automaticIdentity = Activator.CreateInstance(identityType, Hidden, null, new object[] { "Detectado", "MC", false, true }, null);
+        bindings.GetType().GetMethod("SetMemory", Hidden).Invoke(bindings, new object[] { "client1", automaticIdentity });
+        using (var form = (Form)Activator.CreateInstance(type, Hidden, null, new object[] {
+            windows, bindings, new System.Collections.Generic.Dictionary<string, string>(), profiles, new IntPtr(1) }, null))
+        {
+            var grid = (DataGridView)Field(form, "_grid");
+            Check(Convert.ToString(grid.Rows[0].Cells["Character"].Value) == "Detectado" &&
+                grid.Rows[0].Cells["Class"].ToolTipText.Contains("MC (memória)"), "Profiles must show the memory name and detected class with generic titles.");
+            grid.Rows[0].Cells["Class"].Value = "WB";
+            grid.Rows[0].Cells["Character"].Value = "Alias";
+            grid.Rows[0].Cells["Class"].Value = "Automático";
+            Check(Convert.ToString(grid.Rows[0].Cells["Character"].Value) == "Detectado", "Automatic must restore the name detected from memory.");
+            typeof(Button).GetMethod("OnClick", Hidden).Invoke(form.Controls.OfType<Button>().Single(b => b.Text == "Salvar"), new object[] { EventArgs.Empty });
+            var result = (IDictionary)type.GetProperty("Selections", Hidden).GetValue(form, null);
+            Check(result != null && result["client1"] == null, "Saving an automatic memory profile must not create a manual override.");
+        }
     }
 
     [STAThread]

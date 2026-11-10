@@ -15,11 +15,11 @@ O auxiliar encerra somente executáveis conhecidos na pasta exata da instalaçã
 
 ## A classe está errada ou vazia
 
-Abra **Perfis**, selecione a linha pelo PID/título e informe nome e classe ou aplique um perfil salvo. PW Helper não é necessário. Se várias janelas tiverem o mesmo título padrão, associe cada linha separadamente. O modo Automático exige um título identificável e único.
+Na 0.12.0, aguarde a confirmação de duas leituras de nome/classe pela memória. O modo Automático funciona com títulos padrão iguais; um título identificável é usado quando a memória está indisponível. Abra **Perfis** para corrigir manualmente nome/classe ou aplicar um perfil salvo. PW Helper não é necessário. Na release 0.11.1, a identificação ainda depende do título ou da associação manual.
 
 ## O cliente aparece sem associação
 
-Ao reabrir o jogo ou reiniciar o overlay, escolha novamente o perfil salvo em **Perfis**. Progresso e cultivo são retomados pelo nome/classe. Trocar de personagem ou detectar uma nova sessão de leitura pode invalidar a associação anterior. Não use o mesmo perfil em duas janelas simultaneamente. Nenhuma etapa será avançada enquanto a identidade estiver indefinida.
+Na 0.12.0, personagens detectados por memória retomam o progresso pelo nome/classe. Perfis personalizados manuais precisam ser escolhidos novamente em **Perfis** após reiniciar. Trocar de personagem ou detectar uma nova sessão de leitura invalida a associação anterior. Não use o mesmo perfil em duas janelas simultaneamente. Nenhuma etapa será avançada enquanto a identidade estiver indefinida.
 
 ## A missão não avança
 

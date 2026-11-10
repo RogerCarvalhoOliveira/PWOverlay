@@ -1,5 +1,11 @@
 # Roteiro de testes
 
+## Identidade por memória — 0.12.0
+
+`scripts/test.ps1` compila os testes como x86 e usa ReadProcessMemory no próprio processo de teste, com buffers controlados, sem ler dados pessoais. Cobre nome acentuado, dez classes, comprimento/capacidade/terminador inválidos, alteração durante a leitura e o monitor real com missões desativadas, mudança de ID no mesmo objeto e logout simulado. A resolução cobre títulos iguais, precedência manual/memória/título, perfis duplicados, tokens e migração do sufixo de classe.
+
+`scripts/test-overlay-interactions.ps1` verifica nome/classe detectados na tela Perfis, retorno a Automático e salvamento sem criar associação manual. Esses testes passaram; o teste de campo com personagens conectados ainda está pendente. O roteiro é abrir dois clientes sem Helper, alternar foco, reiniciar o overlay e trocar o personagem na mesma janela. Repetir com Helper e com avanço automático desativado. Consulte `IDENTIDADE-MEMORIA.md`.
+
 ## Teste automático mínimo
 
 ```powershell

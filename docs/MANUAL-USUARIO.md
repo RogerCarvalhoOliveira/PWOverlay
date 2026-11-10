@@ -5,7 +5,7 @@
 1. Abra `PW Overlay Central.exe`.
 2. Abra os clientes manualmente ou pelo PW Helper e marque **Overlay** e/ou **Windowed Fullscreen** na Central.
 3. Clique em **Aplicar ao PW já aberto**. A Central apenas controla as ferramentas; não abre o jogo.
-4. Em **Perfis**, associe o nome e a classe de cada cliente, ou use um perfil salvo. Se já houver um título identificável como `Nome[EP]`, a detecção automática continua funcionando. O PW Helper é opcional.
+4. Na 0.12.0, aguarde a identificação de nome/classe pela memória. Use **Perfis** para corrigir manualmente ou aplicar um perfil salvo. Títulos como `Nome[EP]` continuam sendo uma alternativa. O PW Helper é opcional.
 5. Coloque um cliente em foco. O painel aparecerá automaticamente quando o Overlay estiver ativado.
 
 O overlay fica oculto quando outro aplicativo, como navegador ou Discord, está em foco.
@@ -18,7 +18,9 @@ Para remover a instalação, use **Desinstalar programa...** no rodapé da Centr
 
 ## Identificação de personagem
 
-Sem PW Helper, use **Perfis**: selecione a linha do cliente pelo PID/título, digite o nome do personagem e escolha sua classe. Para retomar um personagem conhecido, selecione-o na lista de perfis salvos e clique em **Usar na linha selecionada**, depois **Salvar**. Duas janelas com o mesmo título padrão permanecem separadas.
+Nome e classe são lidos da memória na 0.12.0, sem depender do título ou do PW Helper, após duas leituras iguais. A identificação continua ligada ao desativar o avanço automático. Duas janelas com o mesmo título padrão permanecem separadas. Em **Perfis**, o nome detectado é preenchido e a dica da coluna Classe informa a classe e a origem da identificação. Essa versão ainda aguarda teste com personagens conectados.
+
+Para corrigir manualmente, selecione a linha pelo PID/título, digite nome e classe ou aplique um perfil salvo. Essa associação tem prioridade sobre a leitura automática. Nomes personalizados de perfil continuam úteis para distinguir servidores diferentes.
 
 Quando a janela já possui um título identificável, o formato reconhecido é:
 
@@ -36,11 +38,11 @@ Exemplos:
 
 O identificador interno combina personagem e classe. Portanto, `Cauton[EP]` e `Cauton[WB]` mantêm progressos separados.
 
-Nome e classe do modo manual não são lidos automaticamente do jogo. Ao reiniciar o overlay ou reabrir o cliente, associe a janela novamente ao perfil salvo para retomar o progresso. Ao trocar de personagem na mesma janela, refaça a associação. Sem memória ativada, essa troca depende da sua confirmação; com memória, uma nova sessão detectada também remove a associação anterior. Falhas repetidas na leitura podem exigir selecionar novamente o perfil.
+O modo automático retoma o progresso pelo nome real/classe. Se o nome real tiver um sufixo como `[EP]` que o título antigo removia, o perfil anterior da mesma classe é migrado quando não existe um perfil com o nome completo. Perfis manuais personalizados precisam ser reaplicados ao reiniciar; a troca de personagem ou de sessão de leitura remove a associação anterior.
 
 Uma janela sem identificação, título genérico ou associação duplicada não pode concluir/pular etapas nem criar marcadores. Não associe duas janelas simultaneamente ao mesmo perfil. O nome/classe é a chave do progresso, independente de PID ou posição da janela.
 
-A opção **Automático** remove a associação manual da janela e usa um título identificável. As associações antigas continuam no menu **Associações por título (compatibilidade)...**; títulos genéricos ou repetidos são recusados nesse modo.
+A opção **Automático** remove a associação manual e usa primeiro a identidade por memória; na ausência dela, tenta um título identificável. As associações antigas continuam no menu **Associações por título (compatibilidade)...**; títulos genéricos ou repetidos nunca são usados como identidade.
 
 O menu do ícone ao lado do relógio também possui **Gerenciar perfis...** e uma opção rápida para definir a classe do cliente atual.
 

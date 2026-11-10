@@ -65,6 +65,7 @@ $overlaySources = @(
     (Join-Path $sourceDirectory 'MarkerCalibrationForm.cs'),
     (Join-Path $sourceDirectory 'RouteEditorForm.cs'),
     (Join-Path $sourceDirectory 'ProcessMemoryReader.cs'),
+    (Join-Path $sourceDirectory 'PlayerIdentityMemory.cs'),
     (Join-Path $sourceDirectory 'MemoryLayout.cs'),
     (Join-Path $sourceDirectory 'TaskCatalog.cs'),
     (Join-Path $sourceDirectory 'RttiResolver.cs'),
@@ -111,6 +112,7 @@ if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar o PW Overlay Central.' }
     /reference:System.Core.dll `
     /reference:System.Web.Extensions.dll `
     (Join-Path $sourceDirectory 'ProcessMemoryReader.cs') `
+    (Join-Path $sourceDirectory 'PlayerIdentityMemory.cs') `
     (Join-Path $sourceDirectory 'MemoryLayout.cs') `
     (Join-Path $sourceDirectory 'TaskCatalog.cs') `
     (Join-Path $sourceDirectory 'RttiResolver.cs') `

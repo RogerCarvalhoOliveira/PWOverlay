@@ -523,18 +523,21 @@ namespace PWQuestOverlay
                 bool helperForeground = NativeMethods.WindowBelongsToProcess(foreground, "PW Helper");
                 bool ownForeground = NativeMethods.WindowBelongsToCurrentProcess(foreground);
 
-                if (_state.Memory.AutoAdvanceEnabled && _memoryMonitor != null &&
+                if (_memoryMonitor != null &&
                     now >= _nextMemoryPollAt)
                 {
                     _nextMemoryPollAt = now.AddMilliseconds(250);
                     _memoryMonitor.Poll(games
                         .Select(NativeMethods.GetProcessId)
                         .Where(id => id > 0)
-                        .Distinct());
+                        .Distinct(), _state.Memory.AutoAdvanceEnabled);
                     foreach (ClientWindowInfo window in _clientWindows)
                     {
                         QuestMemoryClientState memory = _memoryMonitor.Find(window.ProcessId);
                         if (memory != null) _clientBindings.ObserveMemorySession(window.SessionKey, memory.SessionToken);
+                        PlayerIdentityMemory player = memory == null ? null : memory.Identity;
+                        _clientBindings.SetMemory(window.SessionKey, player == null ? null :
+                            new ClientIdentity(player.Name, player.ClassCode, false, true));
                     }
                 }
 
@@ -631,7 +634,7 @@ namespace PWQuestOverlay
             }
             string parsedName = identity.Name, parsedClass = identity.ClassCode;
             bool hasAssociation = identity.Manual;
-            if (_clientBindings.ObserveProfile(window.SessionKey, identity.ProfileKey) && _memoryMonitor != null)
+            if (_clientBindings.ObserveProfile(window.SessionKey, identity.ProfileKey) && _memoryMonitor != null && !identity.FromMemory)
                 _memoryMonitor.Forget(window.ProcessId);
             string baseKey = NormalizeCharacterKey(parsedName);
             string key = BuildCharacterKey(parsedName, parsedClass);
@@ -656,6 +659,17 @@ namespace PWQuestOverlay
 
             CharacterProgress progress;
             bool foundProgress = _state.Characters.TryGetValue(key, out progress);
+            string memoryAlias = ClientIdentities.LegacyMemoryProfileKey(identity, _state.Characters);
+            if (!foundProgress && memoryAlias != null)
+            {
+                progress = _state.Characters[memoryAlias];
+                _state.Characters.Remove(memoryAlias);
+                _state.Characters[key] = progress;
+                progress.CharacterName = parsedName;
+                foundProgress = true;
+                _store.Log("Perfil do título preservado com o nome real: " + memoryAlias + " -> " + key);
+                _store.Save(_state);
+            }
             if (!foundProgress && !string.IsNullOrWhiteSpace(parsedClass))
             {
                 CharacterProgress legacy;
@@ -783,7 +797,7 @@ namespace PWQuestOverlay
             {
                 _questLabel.Text = "Classe não identificada";
                 _npcLabel.Text = "Abra Perfis para associar WR, MG, WB, WF, EA, EP, MC, ES, SK ou MS.";
-                _locationLabel.Text = "A detecção automática usa o título Personagem[CLASSE].";
+                _locationLabel.Text = "Nome/classe pela memória; use Perfis se a leitura estiver indisponível.";
                 _statusLabel.Text = "Seleção manual disponível";
                 _currentMission = null;
                 _currentStep = null;
@@ -1056,7 +1070,7 @@ namespace PWQuestOverlay
         {
             ClientWindowInfo window = NativeMethods.DescribeGameWindow(_activeGame);
             if (_progress == null || window == null) { OpenProfileManager(); return; }
-            if (_clientBindings.Find(window.SessionKey) != null)
+            if (_clientBindings.Find(window.SessionKey) != null || _clientBindings.FindMemory(window.SessionKey) != null)
             {
                 _clientBindings.Set(window.SessionKey, new ClientIdentity(_characterName, code, true));
                 if (_memoryMonitor != null) _memoryMonitor.Forget(window.ProcessId);
@@ -1152,7 +1166,7 @@ namespace PWQuestOverlay
                 dialog.Font = new Font("Segoe UI", 9.0f);
 
                 description.Text = "Compatibilidade com títulos identificáveis de personagem. Títulos genéricos/repetidos não são usados. " +
-                    "Sem PW Helper, prefira a associação por cliente no botão Perfis.";
+                    "Nome e classe são detectados pela memória; use Perfis para uma associação manual.";
                 description.Location = new Point(12, 10);
                 description.Size = new Size(626, 36);
 

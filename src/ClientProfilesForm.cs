@@ -21,7 +21,7 @@ namespace PWQuestOverlay
             ClientSize = new Size(790, 420); StartPosition = FormStartPosition.CenterScreen;
             FormBorderStyle = FormBorderStyle.FixedDialog; MaximizeBox = false; MinimizeBox = false;
             ShowInTaskbar = false; TopMost = true; Font = new Font("Segoe UI", 9);
-            var description = new Label { Text = "Cada linha é uma janela do jogo. Digite nome e classe ou use um perfil salvo. PW Helper é opcional.\nA linha selecionada é o último cliente em foco. Reassocie após reiniciar ou trocar de personagem.", Location = new Point(12, 10), Size = new Size(766, 44) };
+            var description = new Label { Text = "Nome e classe são detectados pela memória, sem PW Helper. Use um perfil salvo para corrigir manualmente.\nCada linha é um cliente; a linha selecionada é o último em foco. Automático usa memória ou título.", Location = new Point(12, 10), Size = new Size(766, 44) };
             _profiles = profiles.Where(p => !string.IsNullOrWhiteSpace(p.CharacterName) && ClientIdentities.IsValidClass(p.ClassCode))
                 .OrderBy(p => p.CharacterName).ThenBy(p => p.ClassCode).ToList();
             _saved = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList, Location = new Point(12, 62), Size = new Size(550, 26) };
@@ -37,12 +37,13 @@ namespace PWQuestOverlay
             classes.Items.AddRange("Automático", "WR", "MG", "WB", "WF", "EA", "EP", "MC", "ES", "SK", "MS"); _grid.Columns.Add(classes);
             foreach (ClientWindowInfo window in windows)
             {
-                bool unique = windows.Count(w => string.Equals(w.Title, window.Title, StringComparison.OrdinalIgnoreCase)) == 1;
                 ClientIdentity manual = bindings.Find(window.SessionKey);
-                ClientIdentity detected = manual ?? ClientIdentities.FromTitle(window.Title, unique, aliases);
+                ClientIdentity detected = manual ?? ClientIdentities.Automatic(window, windows, bindings, aliases);
                 int index = _grid.Rows.Add("PID " + window.ProcessId + " · " + window.Title, detected == null ? "" : detected.Name,
                     manual == null ? "Automático" : manual.ClassCode);
                 _grid.Rows[index].Tag = window.SessionKey;
+                if (detected != null) _grid.Rows[index].Cells["Class"].ToolTipText = "Classe: " + detected.ClassCode +
+                    (detected.FromMemory ? " (memória)" : detected.Manual ? " (manual)" : " (título)");
                 if (window.Handle == active) _grid.CurrentCell = _grid.Rows[index].Cells["Character"];
             }
             _grid.CurrentCellDirtyStateChanged += delegate {
@@ -54,8 +55,7 @@ namespace PWQuestOverlay
                 var row = _grid.Rows[args.RowIndex];
                 if (Convert.ToString(row.Cells["Class"].Value) != "Automático") return;
                 var window = windows.Find(w => w.SessionKey == (string)row.Tag);
-                ClientIdentity automatic = ClientIdentities.FromTitle(window.Title,
-                    windows.Count(w => string.Equals(w.Title, window.Title, StringComparison.OrdinalIgnoreCase)) == 1, aliases);
+                ClientIdentity automatic = ClientIdentities.Automatic(window, windows, bindings, aliases);
                 row.Cells["Character"].Value = automatic == null ? "" : automatic.Name;
             };
             use.Click += delegate {
@@ -71,14 +71,12 @@ namespace PWQuestOverlay
                         string code = Convert.ToString(row.Cells["Class"].Value);
                         var window = windows.Find(w => w.SessionKey == (string)row.Tag);
                         string name = Convert.ToString(row.Cells["Character"].Value).Trim();
-                        ClientIdentity auto = ClientIdentities.FromTitle(window.Title,
-                            windows.Count(other => string.Equals(other.Title, window.Title, StringComparison.OrdinalIgnoreCase)) == 1, aliases);
+                        ClientIdentity auto = ClientIdentities.Automatic(window, windows, bindings, aliases);
                         if (code == "Automático" && name.Length > 0 && (auto == null || !string.Equals(auto.Name, name, StringComparison.OrdinalIgnoreCase)))
                             throw new ArgumentException("Selecione também a classe do personagem digitado ou use um perfil salvo.");
                         result[(string)row.Tag] = code == "Automático" ? null : new ClientIdentity(Convert.ToString(row.Cells["Character"].Value), code, true);
                     }
-                    var resolved = windows.Select(w => result[w.SessionKey] ?? ClientIdentities.FromTitle(w.Title,
-                        windows.Count(other => string.Equals(other.Title, w.Title, StringComparison.OrdinalIgnoreCase)) == 1, aliases)).Where(i => i != null);
+                    var resolved = windows.Select(w => result[w.SessionKey] ?? ClientIdentities.Automatic(w, windows, bindings, aliases)).Where(i => i != null);
                     if (resolved.GroupBy(i => i.ProfileKey).Any(group => group.Count() > 1))
                         throw new ArgumentException("O mesmo perfil foi associado a dois clientes. Use nomes/identificadores diferentes para personagens distintos.");
                     Selections = result; DialogResult = DialogResult.OK;

@@ -2,11 +2,13 @@
 
 Overlay portátil para acompanhar rotas de missões do Perfect World 1.4.4 em multiclient.
 
-O programa funciona com o PW aberto diretamente, sem precisar instalar ou executar o PW Helper. Em **Perfis**, associe cada cliente ao nome e à classe do personagem ou escolha um perfil salvo. Títulos identificáveis como `Cauton[EP]` continuam sendo reconhecidos automaticamente quando disponíveis. Cada personagem e classe possui progresso independente.
+O programa funciona com o PW aberto diretamente, sem precisar instalar ou executar o PW Helper. A partir da 0.12.0, nome e classe são detectados pela memória do personagem; **Perfis** continua permitindo correção manual e seleção de perfis salvos. Títulos como `Cauton[EP]` são uma alternativa quando a leitura não está disponível. Cada personagem e classe possui progresso independente.
 
 ## Download
 
 Para usar sem compilar, abra a [versão mais recente](https://github.com/RogerCarvalhoOliveira/PWOverlay/releases/latest) e baixe:
+
+A identificação por memória da 0.12.0 está em validação no código-fonte e no instalador local. A release pública 0.11.1 ainda usa associação manual/título; o teste de campo da nova identificação está pendente.
 
 - `PWQuestOverlay-Setup-v0.11.1.exe`: instalador recomendado para Windows;
 - `PWQuestOverlay-Portatil-v0.11.1.zip`: pacote portátil;
@@ -17,10 +19,10 @@ Abra o PW manualmente ou pelo PW Helper. Na **PW Overlay Central**, marque Overl
 ## Funcionalidades
 
 - Dez classes: `WR`, `MG`, `WB`, `WF`, `EA`, `EP`, `MC`, `ES`, `SK` (Arcano) e `MS` (Místico).
-- Detecção automática do padrão `Personagem[CLASSE]`.
+- Detecção de nome e classe por memória, com confirmação de duas leituras, independente do toggle de avanço automático. O padrão `Personagem[CLASSE]` é mantido como alternativa.
 - Tela **Perfis** para associar nome/classe a cada janela, mesmo quando vários clientes têm o mesmo título padrão, e retomar um perfil salvo.
-- PW Helper opcional: identificação manual por cliente, marcador, Windowed Fullscreen e leitura de missões funcionam sem ele.
-- Janelas sem identificação ou com perfil duplicado não avançam o guia. Associações de janela são refeitas após reiniciar o overlay/cliente; progresso e God/Evil permanecem salvos por personagem.
+- PW Helper opcional: identificação por memória/manual, marcador, Windowed Fullscreen e leitura de missões funcionam sem ele.
+- Janelas sem identificação ou com perfil duplicado não avançam o guia. Personagens detectados por memória retomam o perfil automaticamente; associações manuais da janela são refeitas após reiniciar. Progresso e God/Evil permanecem salvos por personagem.
 - Suporte a personagens com o mesmo nome em classes diferentes.
 - Rotas do nível 1 ao 105 para as dez classes, preservando as etapas e o progresso anteriores.
 - Título explícito em todas as submissões para facilitar comparação com o questlog e diagnóstico de progresso.

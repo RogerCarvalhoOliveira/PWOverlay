@@ -8,7 +8,7 @@ elementclient em foco
         v
 Monitor de janelas Win32
         |
-        +--> associação por sessão da janela ou título Personagem[CLASSE]
+        +--> associação manual, identidade por memória ou título Personagem[CLASSE]
         +--> recusa títulos genéricos, repetidos e perfis duplicados
         +--> integra PW Helper somente quando estiver presente
         +--> controla visibilidade e ordem TOPMOST
@@ -95,6 +95,7 @@ Nenhuma função lê memória de outro processo.
 
 - Consultam o cliente x86 somente para leitura, com layout e catálogo versionados.
 - Confirmam duas leituras estáveis antes de atualizar evidências de missões, itens e abates.
+- `PlayerIdentityMemory.cs` lê ID, nome UTF-16 e classe no objeto do jogador e confirma duas amostras iguais antes de publicar a identidade. Essa identificação permanece ativa com o avanço de missões desativado.
 - Mantêm sessões independentes por PID; somente o perfil do cliente ativo avança no guia.
 - Falhas de leitura descartam o snapshot e as transições antigas. Mudança do ponteiro do jogador reabre a sessão; buscas que falham têm intervalo de dois segundos para não repetir a varredura a cada tick.
 - Um token identifica cada sessão de leitura. A troca desse token invalida apenas a associação manual da janela correspondente. Ao associar outro perfil, a sessão de leitura anterior é descartada.
@@ -105,7 +106,7 @@ Nenhuma função lê memória de outro processo.
 - A associação manual usa PID + início do processo + HWND somente em memória; o progresso usa NOME|CLASSE e continua persistido.
 - A interface lista individualmente clientes de títulos iguais, permite nome/classe e reutiliza perfis salvos. Não renomeia janelas nem grava memória do jogo.
 - O resolvedor recusa títulos genéricos/duplicados e dois clientes associados ao mesmo perfil. Ações manuais e avanço automático conferem a identidade do cliente antes de alterar o progresso.
-- Um personagem sem título reconhecível precisa ser identificado manualmente. Não foram acrescentados offsets não verificados para adivinhar nome/classe.
+- Um personagem sem título reconhecível é identificado pela memória. Quando a leitura está indisponível ou se deseja um nome de perfil personalizado, a associação manual continua disponível. A origem/classe detectada aparece na dica da coluna Classe.
 
 ### `CultivationChoiceForm.cs` / `CultivationRouting`
 
@@ -125,9 +126,9 @@ NOME_NORMALIZADO|CLASSE
 
 Essa escolha é necessária porque mais de um cliente pode usar o mesmo nome base, como `Cauton[EP]` e `Cauton[WB]`.
 
-O PID, início do processo e HWND identificam a janela apenas durante a execução. A associação é refeita ao reiniciar o overlay/cliente; não se restaura um PID salvo, que pode ter sido reutilizado. Nome/classe, progresso e cultivo são restaurados pelo perfil escolhido.
+O PID, início do processo e HWND identificam a janela apenas durante a execução; não se restaura um PID salvo. Nome/classe detectados por memória retomam o perfil automaticamente; associações manuais personalizadas são refeitas ao reiniciar. Progresso e cultivo são restaurados pelo perfil identificado.
 
-As associações por título anteriores continuam em `ClassAssociations` para compatibilidade e têm precedência sobre a sigla do título. A associação da sessão da janela tem prioridade sobre ambas. Títulos padrão ou repetidos não geram um perfil compartilhado. Sem leitura de memória, trocar de personagem na mesma janela exige reassociação manual; mesmo com memória, o usuário deve conferir o personagem selecionado.
+As associações por título anteriores continuam em `ClassAssociations` para compatibilidade e têm precedência sobre a sigla do título. A associação manual da sessão tem prioridade, seguida da identidade por memória e do título. Títulos padrão ou repetidos não geram um perfil compartilhado. A mudança de identidade por memória invalida as evidências anteriores e o token da sessão. Consulte `IDENTIDADE-MEMORIA.md` para offsets, migração de nomes e validação pendente.
 
 ## Classes e rotas
 

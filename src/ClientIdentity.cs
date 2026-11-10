@@ -10,15 +10,16 @@ namespace PWQuestOverlay
         internal string Name { get; private set; }
         internal string ClassCode { get; private set; }
         internal bool Manual { get; private set; }
+        internal bool FromMemory { get; private set; }
         internal string ProfileKey { get { return Name.ToUpperInvariant() + "|" + ClassCode; } }
 
-        internal ClientIdentity(string name, string code, bool manual)
+        internal ClientIdentity(string name, string code, bool manual, bool fromMemory = false)
         {
             name = (name ?? "").Trim();
             if (name.Length == 0 || name.Length > 64 || name.Contains("|") || name.Any(char.IsControl) ||
                 !ClientIdentities.IsValidClass(code))
                 throw new ArgumentException("Informe o nome do personagem (até 64 caracteres, sem |) e uma classe válida.");
-            Name = name; ClassCode = code.Trim().ToUpperInvariant(); Manual = manual;
+            Name = name; ClassCode = code.Trim().ToUpperInvariant(); Manual = manual; FromMemory = fromMemory;
         }
     }
 
@@ -35,8 +36,12 @@ namespace PWQuestOverlay
         private readonly Dictionary<string, ClientIdentity> _bindings = new Dictionary<string, ClientIdentity>();
         private readonly Dictionary<string, string> _memorySessions = new Dictionary<string, string>();
         private readonly Dictionary<string, string> _profiles = new Dictionary<string, string>();
-        internal void Clear() { _bindings.Clear(); _memorySessions.Clear(); _profiles.Clear(); }
+        private readonly Dictionary<string, ClientIdentity> _memoryIdentities = new Dictionary<string, ClientIdentity>();
+        internal void Clear() { _bindings.Clear(); _memorySessions.Clear(); _profiles.Clear(); _memoryIdentities.Clear(); }
         internal ClientIdentity Find(string key) { ClientIdentity value; return key != null && _bindings.TryGetValue(key, out value) ? value : null; }
+        internal ClientIdentity FindMemory(string key) { ClientIdentity value; return key != null && _memoryIdentities.TryGetValue(key, out value) ? value : null; }
+        internal void SetMemory(string key, ClientIdentity identity)
+        { if (identity == null) _memoryIdentities.Remove(key); else _memoryIdentities[key] = identity; }
         internal void Set(string key, ClientIdentity identity)
         { if (string.IsNullOrEmpty(key)) throw new ArgumentException("Cliente indisponível."); _memorySessions.Remove(key); if (identity == null) _bindings.Remove(key); else _bindings[key] = identity; }
         internal void Prune(IEnumerable<string> liveKeys)
@@ -45,6 +50,7 @@ namespace PWQuestOverlay
             foreach (string key in _bindings.Keys.Where(k => !live.Contains(k)).ToList()) _bindings.Remove(key);
             foreach (string key in _memorySessions.Keys.Where(k => !live.Contains(k)).ToList()) _memorySessions.Remove(key);
             foreach (string key in _profiles.Keys.Where(k => !live.Contains(k)).ToList()) _profiles.Remove(key);
+            foreach (string key in _memoryIdentities.Keys.Where(k => !live.Contains(k)).ToList()) _memoryIdentities.Remove(key);
         }
         internal bool ObserveProfile(string key, string profileKey)
         {
@@ -97,11 +103,27 @@ namespace PWQuestOverlay
             var identities = new Dictionary<string, ClientIdentity>();
             var currentWindows = windows.Select(w => w.SessionKey == window.SessionKey ? window : w).ToList();
             foreach (ClientWindowInfo w in currentWindows)
-                identities[w.SessionKey] = bindings.Find(w.SessionKey) ?? FromTitle(w.Title,
-                    currentWindows.Count(other => string.Equals(other.Title, w.Title, StringComparison.OrdinalIgnoreCase)) == 1, aliases);
+                identities[w.SessionKey] = bindings.Find(w.SessionKey) ?? Automatic(w, currentWindows, bindings, aliases);
             ClientIdentity result;
             if (!identities.TryGetValue(window.SessionKey, out result) || result == null) return null;
             return identities.Values.Count(i => i != null && i.ProfileKey == result.ProfileKey) == 1 ? result : null;
+        }
+
+        internal static ClientIdentity Automatic(ClientWindowInfo window, IList<ClientWindowInfo> windows,
+            ClientBindings bindings, IDictionary<string, string> aliases)
+        {
+            return bindings.FindMemory(window.SessionKey) ?? FromTitle(window.Title,
+                windows.Count(other => string.Equals(other.Title, window.Title, StringComparison.OrdinalIgnoreCase)) == 1, aliases);
+        }
+
+        internal static string LegacyMemoryProfileKey(ClientIdentity identity, IDictionary<string, CharacterProgress> profiles)
+        {
+            if (identity == null || !identity.FromMemory || profiles.ContainsKey(identity.ProfileKey)) return null;
+            Match match = Primary.Match(identity.Name);
+            if (!match.Success || !string.Equals(match.Groups["class"].Value, identity.ClassCode, StringComparison.OrdinalIgnoreCase)) return null;
+            string key = match.Groups["name"].Value.Trim().ToUpperInvariant() + "|" + identity.ClassCode;
+            CharacterProgress old;
+            return profiles.TryGetValue(key, out old) && string.Equals(old.ClassCode, identity.ClassCode, StringComparison.OrdinalIgnoreCase) ? key : null;
         }
     }
 }

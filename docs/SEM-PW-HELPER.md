@@ -2,32 +2,34 @@
 
 PW Helper é opcional. O overlay, o marcador, a leitura de missões e o Windowed Fullscreen usam diretamente os clientes `elementclient`, sem consultar arquivos ou APIs do Helper.
 
-## Uso
+## Identificação automática (0.12.0)
 
-1. Abra o jogo normalmente e entre nos personagens.
-2. Aplique as funções desejadas na Central e coloque um cliente em foco.
-3. Em **Perfis**, identifique a linha pelo PID/título. Informe nome e classe ou escolha um perfil salvo e use **Usar na linha selecionada**.
-4. Salve e repita para as demais janelas. Alternar o foco troca a rota e o progresso do personagem associado.
+1. Entre no personagem e aplique o overlay pela Central.
+2. Coloque o cliente em foco e aguarde duas leituras iguais do nome e da classe.
+3. Alterne entre clientes: mesmo com títulos padrão iguais, cada janela usa sua própria identidade e progresso.
 
-O nome é o identificador do perfil informado por você, não uma leitura automática do nome real no jogo. Use sempre o mesmo nome/classe para retomar o progresso. Se houver personagens de mesmo nome/classe em servidores diferentes, adicione um identificador diferente ao nome do perfil.
+A identificação funciona mesmo com o avanço automático de missões desligado. Lê nome real UTF-16, ID e classe do jogador; não altera o nome da janela nem grava na memória do jogo. O ID só identifica trocas na sessão; o progresso continua salvo por NOME|CLASSE.
 
-Após reiniciar o overlay ou reabrir o cliente, selecione novamente os perfis salvos. A janela é identificada por PID, início do processo e HWND apenas na sessão atual. Não restauramos um PID salvo porque ele pode pertencer a outro cliente. Progresso, cultivo, posição e preferências continuam salvos.
+Ao reiniciar, a identificação automática retoma o perfil com o mesmo nome/classe. Se um título antigo retirava um sufixo como `[EP]` do nome real, o perfil correspondente da mesma classe é migrado, preservando suas marcações, quando não existe um perfil com o nome completo.
 
-Ao trocar de personagem na mesma janela, refaça a associação antes de continuar. Com a leitura ativada, uma nova sessão detectada também invalida a associação anterior; não há offsets novos, ainda não verificados, para descobrir nome/classe. Falhas repetidas de leitura podem exigir selecionar o perfil novamente. Sem leitura, a reassociação depende do usuário.
+A inspeção do executável e os testes locais passaram. O teste com personagens conectados ainda está pendente; a release pública 0.11.1 mantém o comportamento anterior por título/associação manual.
 
-## Compatibilidade e proteção de progresso
+## Correção manual e perfis personalizados
 
-- Títulos reconhecíveis como `Nome[EP]` continuam funcionando automaticamente, inclusive quando criados pelo Helper.
-- Associações por título antigas continuam no menu de compatibilidade; títulos padrão e repetidos não são aceitos como identidade.
-- Duas janelas com título igual têm linhas e associações independentes.
-- Perfis duplicados em clientes simultâneos são recusados. Um cliente sem identidade não conclui/pula etapas, não cria marcadores e não avança por memória.
-- Trocar a associação ou o personagem identificado pelo título descarta as evidências de memória anteriores daquele cliente. Uma falha de leitura deixa a sessão indisponível até a próxima confirmação estável; dados antigos não são usados para avançar missões.
-- O jogo e suas janelas não são renomeados. O Helper não é instalado, iniciado ou exigido pelo programa.
+Em **Perfis**, identifique a linha pelo PID/título, informe nome e classe ou escolha um perfil salvo. A associação manual tem prioridade sobre memória e título. **Automático** remove essa escolha e volta a usar a memória, com título como alternativa. A dica da coluna Classe informa a classe e a origem detectadas.
 
-## Revisão e validação
+Para personagens de mesmo nome/classe em servidores diferentes, use nomes personalizados de perfil. A associação manual usa PID, início do processo e HWND apenas na sessão atual; selecione novamente o perfil personalizado após reiniciar. Esses identificadores não são gravados para reutilização, pois o Windows pode reciclá-los.
 
-O código de enumeração/foco, associação, marcador, persistência e leitura foi revisado para localizar dependências do Helper. As rotinas que elevam seus painéis já retornam uma lista vazia quando ele não está aberto e continuam opcionais.
+## Proteção de progresso
 
-`scripts/test.ps1` cobre títulos genéricos/iguais, perfis distintos, troca de ordem, PID/HWND reutilizados, títulos das dez classes, aliases antigos, duplicidade de perfil, troca de token e descarte de evidências antigas. `scripts/test-overlay-interactions.ps1` cobre a linha do cliente ativo, aplicação de perfil salvo somente na linha escolhida, liberação do modo manual, resultado independente por janela, token nativo de processo e regressões de arraste/cultivo. `scripts/test-package.ps1` confere a distribuição.
+- Memória tem prioridade sobre títulos antigos do Helper; títulos genéricos/duplicados não criam perfis.
+- A troca do ID/nome/classe ou do objeto do jogador invalida as evidências de missão e a associação da sessão anterior. Duas leituras confirmam a nova identidade antes de ler suas missões.
+- Leituras inválidas do nome não publicam identidade automática. Falhas de missão invalidam as evidências, preservando a identidade confirmada enquanto a sessão permanece válida.
+- Dois clientes resolvidos para o mesmo NOME|CLASSE são bloqueados. Use perfis personalizados para diferenciá-los.
+- Sem identidade, não é possível concluir/pular etapas nem criar marcadores. A leitura nunca renomeia janelas ou modifica a memória.
 
-Essa validação não substitui o teste de campo. Nesta revisão não havia clientes reais abertos: a troca de foco/conta e a leitura de memória com o jogo precisam ser confirmadas no servidor, com e sem Helper. As rotas e seus IDs de progresso não foram alterados.
+## Validação
+
+`scripts/test.ps1` testa ReadProcessMemory em um processo x86 de teste, nomes acentuados, dez classes, comprimento/terminador UTF-16 inválidos, troca durante a leitura, confirmação dupla, mudança de ID no mesmo objeto, logout e identificação com missões desativadas. Também cobre títulos iguais, precedência manual/memória/título, perfis duplicados e compatibilidade do progresso.
+
+`scripts/test-overlay-interactions.ps1` verifica preenchimento do nome e dica da classe em **Perfis**, retorno a **Automático**, salvamento sem criar associação manual e regressões de controles/arraste. `scripts/test-package.ps1` confere a distribuição. Consulte `docs/IDENTIDADE-MEMORIA.md` para os offsets e limites da validação.

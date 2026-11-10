@@ -1,5 +1,12 @@
 # Histórico de alterações
 
+## 0.12.0 - Identificação do personagem por memória
+
+- Nome real UTF-16, ID e classe lidos diretamente do personagem, sem renomear a janela e sem PW Helper. Duas amostras iguais confirmam a identidade; títulos iguais continuam separados por cliente.
+- A identificação continua ativa quando o avanço de missões está desativado. Perfis manuais têm prioridade; memória precede o título da janela. A troca de personagem descarta as evidências anteriores.
+- Perfis antigos que perderam um sufixo de classe no título são migrados para o nome real quando há correspondência exata de classe, preservando o progresso. Nomes de perfil personalizados continuam disponíveis em Perfis.
+- Testes com ReadProcessMemory em processo x86 de teste, troca de ID/logout, dez classes, nomes acentuados, dados inválidos e interface. Offsets inspecionados no executável local; validação com personagens conectados ainda pendente.
+
 ## 0.11.1 - Correção da atualização e desinstalação pelo aplicativo
 
 - Corrigido o erro do Restart Manager ao tentar fechar ferramentas em segundo plano. O instalador usa um auxiliar temporário para liberar os executáveis antes da substituição.

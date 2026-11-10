@@ -39,6 +39,7 @@ namespace PWQuestOverlay.Memory
         public Dictionary<string, string> attributes { get; set; }
         public QuestMemoryLayout quests { get; set; }
         public TaskInventoryMemoryLayout inventory { get; set; }
+        public PlayerIdentityLayout identity { get; set; }
 
         internal uint PlayerBaseRva
         {
@@ -82,6 +83,25 @@ namespace PWQuestOverlay.Memory
             if (inventory == null) throw new InvalidDataException(
                 "Perfil sem layout do inventário de missão.");
             inventory.Validate();
+            if (identity != null) identity.Validate();
+        }
+    }
+
+    internal sealed class PlayerIdentityLayout
+    {
+        public string roleIdOffset { get; set; }
+        public string namePointerOffset { get; set; }
+        public string classOffset { get; set; }
+        public int maximumCharacters { get; set; }
+        internal uint RoleIdOffset { get { return HexValue.Parse(roleIdOffset); } }
+        internal uint NamePointerOffset { get { return HexValue.Parse(namePointerOffset); } }
+        internal uint ClassOffset { get { return HexValue.Parse(classOffset); } }
+        internal int MaximumCharacters { get { return maximumCharacters; } }
+        internal void Validate()
+        {
+            if (RoleIdOffset > 0x10000 || NamePointerOffset > 0x10000 || ClassOffset > 0x10000 ||
+                maximumCharacters < 1 || maximumCharacters > 64)
+                throw new InvalidDataException("Layout da identidade inválido.");
         }
     }
 

@@ -20,11 +20,33 @@ namespace PWQuestOverlay.Memory
         internal QuestMemorySnapshot Snapshot { get; set; }
         internal bool Ready { get; set; }
         internal string SessionToken { get; set; }
+        internal PlayerIdentityMemory Identity { get; private set; }
+        private string _candidateIdentity, _lastIdentity;
+        private int _identityReads;
+
+        internal bool ObserveIdentity(PlayerIdentityMemory identity)
+        {
+            if (identity != null && Identity != null && identity.Key == Identity.Key) return true;
+            Identity = null;
+            InvalidateQuests();
+            string key = identity == null ? null : identity.Key;
+            _identityReads = key != null && key == _candidateIdentity ? _identityReads + 1 : 1;
+            _candidateIdentity = key;
+            if (key == null || _identityReads < 2) return false;
+            if (_lastIdentity != null && _lastIdentity != key) SessionToken = Guid.NewGuid().ToString("N");
+            _lastIdentity = key;
+            Identity = identity;
+            return true;
+        }
 
         internal void Invalidate()
         {
-            Ready = false; Snapshot = null; _observedActive.Clear(); _disappeared.Clear();
+            Identity = null; _candidateIdentity = null; _identityReads = 0;
+            InvalidateQuests();
         }
+
+        internal void InvalidateQuests()
+        { Ready = false; Snapshot = null; _observedActive.Clear(); _disappeared.Clear(); }
 
         internal void Observe(QuestMemorySnapshot snapshot)
         {
@@ -85,7 +107,7 @@ namespace PWQuestOverlay.Memory
             _log = log ?? delegate { };
         }
 
-        internal void Poll(IEnumerable<int> processIds)
+        internal void Poll(IEnumerable<int> processIds, bool readQuests = true)
         {
             var live = new HashSet<int>(processIds.Where(id => id > 0));
             _reportedOpenFailures.RemoveWhere(id => !live.Contains(id));
@@ -120,7 +142,7 @@ namespace PWQuestOverlay.Memory
                         continue;
                     }
                 }
-                if (!session.Poll()) Forget(processId);
+                if (!session.Poll(readQuests)) Forget(processId);
             }
         }
 
@@ -210,9 +232,10 @@ namespace PWQuestOverlay.Memory
                 }
             }
 
-            internal bool Poll()
+            internal bool Poll(bool readQuests)
             {
                 if (_process.HasExited) { State.Invalidate(); return false; }
+                bool identityValidated = false;
                 try
                 {
                     // Login/logout can replace the player object without replacing the process.
@@ -223,6 +246,16 @@ namespace PWQuestOverlay.Memory
                         if (current != _player) { State.Invalidate(); return false; }
                     }
                     else if (!IsValidPlayer(_memory, _profile, _player)) { State.Invalidate(); return false; }
+                    if (_profile.identity != null)
+                    {
+                        PlayerIdentityMemory identity;
+                        try { identity = PlayerIdentityReader.Read(_memory, _player, _profile.identity); }
+                        catch { State.ObserveIdentity(null); throw; }
+                        if (!State.ObserveIdentity(identity))
+                        { _candidateSignature = null; _committedSignature = null; _candidateCount = 0; return true; }
+                    }
+                    identityValidated = true;
+                    if (!readQuests) { State.InvalidateQuests(); _candidateSignature = null; _committedSignature = null; _candidateCount = 0; _readFailures = 0; return true; }
                     QuestMemorySnapshot snapshot = _reader.Read(_player);
                     _readFailures = 0;
                     string signature = Signature(snapshot);
@@ -260,7 +293,8 @@ namespace PWQuestOverlay.Memory
                 catch
                 {
                     // Failed reads cannot leave old quest evidence available to the UI.
-                    State.Invalidate(); _candidateSignature = null; _committedSignature = null; _candidateCount = 0;
+                    if (identityValidated) State.InvalidateQuests(); else State.Invalidate();
+                    _candidateSignature = null; _committedSignature = null; _candidateCount = 0;
                     return ++_readFailures < 3;
                 }
             }

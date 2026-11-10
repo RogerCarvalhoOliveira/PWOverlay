@@ -27,7 +27,7 @@ A Central não abre o PW e não tem configuração de caminho do jogo. Para joga
 
 ## Configuração inicial
 
-1. Entre no personagem e coloque o cliente em foco. Abra **Perfis** no overlay: cada linha mostra uma janela e seu PID. Digite nome e classe, ou selecione um perfil salvo e use **Usar na linha selecionada**. Clique em **Salvar**. Repita para os outros clientes. Se usar o PW Helper com títulos como `Personagem[EP]`, a identificação automática continua disponível.
+1. Entre no personagem e coloque o cliente em foco. Na 0.12.0, nome e classe são identificados automaticamente pela memória, mesmo com título padrão. Se necessário, abra **Perfis**: cada linha mostra uma janela/PID; informe nome/classe ou aplique um perfil salvo. O PW Helper é opcional. A release pública 0.11.1 ainda exige Perfis ou título identificável.
 2. Desbloqueie **Mover**, segure o botão esquerdo na barra superior, arraste e solte onde quiser, inclusive em outro monitor. Depois bloqueie novamente.
 3. Use o botão `−` para ativar a interface compacta; o botão `+` restaura a interface completa.
 4. Abra o menu do ícone do overlay ao lado do relógio e use **Calibrar marcador...**. Siga cada ponto com o painel de Marcadores do jogo aberto.
@@ -36,7 +36,7 @@ A Central não abre o PW e não tem configuração de caminho do jogo. Para joga
 
 No cultivo 89, escolha God ou Evil quando o overlay perguntar. Cada personagem guarda sua própria opção; o menu **Escolher/alterar cultivo God ou Evil...** permite corrigi-la. Essa opção configura o guia: escolha o mesmo cultivo no NPC do jogo. Consulte `GUIA-61-105.txt` para os acessos exigidos no cultivo 100 e as atividades repetíveis da faixa final.
 
-Sem título identificável, nome e classe são informados por você: esta versão não os deduz da memória. Ao reiniciar o overlay ou reabrir o cliente, selecione novamente o perfil salvo; o progresso anterior é retomado. Ao trocar de personagem dentro da mesma janela, refaça a associação antes de continuar. A leitura de missões invalida associações quando detecta uma nova sessão do personagem, mas não substitui essa conferência.
+A identificação por memória funciona mesmo com o avanço automático de missões desativado. Ao reiniciar, personagens detectados retomam o perfil pelo nome/classe. Uma troca de personagem descarta as evidências anteriores e exige duas leituras iguais. Associações manuais continuam sendo feitas por sessão; selecione novamente um nome personalizado ao reabrir o overlay. A validação da 0.12.0 com personagens conectados ainda está pendente.
 
 A associação de uma janela não é gravada por PID para a próxima execução: o Windows pode reutilizar esses identificadores. Isso evita atribuir o personagem errado a um cliente novo. Duas janelas não podem usar simultaneamente o mesmo perfil; para personagens distintos de mesmo nome/classe em servidores diferentes, informe um identificador diferente no nome do perfil.
 
