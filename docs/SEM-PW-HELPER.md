@@ -8,7 +8,7 @@ PW Helper é opcional. O overlay, o marcador, a leitura de missões e o Windowed
 2. Coloque o cliente em foco e aguarde duas leituras iguais do nome e da classe.
 3. Alterne entre clientes: mesmo com títulos padrão iguais, cada janela usa sua própria identidade e progresso.
 
-A identificação funciona mesmo com o avanço automático de missões desligado. Lê nome real UTF-16, ID e classe do jogador; não altera o nome da janela nem grava na memória do jogo. O ID só identifica trocas na sessão; o progresso continua salvo por NOME|CLASSE.
+A identificação por memória no The Classic 1.4.4 funciona mesmo com o avanço automático de missões desligado. Lê nome real UTF-16, ID e classe do jogador. O ID identifica trocas na sessão e o progresso é salvo por servidor, nome e classe.
 
 Ao reiniciar, a identificação automática retoma o perfil com o mesmo nome/classe. Se um título antigo retirava um sufixo como `[EP]` do nome real, o perfil correspondente da mesma classe é migrado, preservando suas marcações, quando não existe um perfil com o nome completo.
 
@@ -18,14 +18,16 @@ A versão 0.13.0 inclui a identificação por memória e a importação das miss
 
 Em **Perfis**, identifique a linha pelo PID/título, informe nome e classe ou escolha um perfil salvo. A associação manual tem prioridade sobre memória e título. **Automático** remove essa escolha e volta a usar a memória, com título como alternativa. A dica da coluna Classe informa a classe e a origem detectadas.
 
-Para personagens de mesmo nome/classe em servidores diferentes, use nomes personalizados de perfil. A associação manual usa PID, início do processo e HWND apenas na sessão atual; selecione novamente o perfil personalizado após reiniciar. Esses identificadores não são gravados para reutilização, pois o Windows pode reciclá-los.
+Quando o título da janela é o nome do personagem, o overlay pode recuperar sua classe de um perfil salvo no mesmo servidor. Se o título for genérico, digite o nome salvo em **Perfis** e deixe a classe como **Automático**. Se houver mais de uma classe salva com o mesmo nome, escolha a classe ou o perfil na lista.
+
+The Classic 1.2.6 e 1.4.4 usam perfis separados. A edição 1.2.6 pode identificar nome e classe por memória no executável inspecionado, quando o Windows permite a leitura. O título e a associação em **Perfis** continuam disponíveis. Para instalações que atendem vários mundos, selecione o mundo na coluna **Servidor** da janela. A associação manual vale para a sessão atual. Use **Sem servidor** na lista de perfis salvos para vincular as marcações antigas ao servidor da linha selecionada.
 
 ## Proteção de progresso
 
 - Memória tem prioridade sobre títulos antigos do Helper; títulos genéricos/duplicados não criam perfis.
 - A troca do ID/nome/classe ou do objeto do jogador invalida as evidências de missão e a associação da sessão anterior. Duas leituras confirmam a nova identidade antes de ler suas missões.
 - Leituras inválidas do nome não publicam identidade automática. Falhas de missão invalidam as evidências, preservando a identidade confirmada enquanto a sessão permanece válida.
-- Dois clientes resolvidos para o mesmo NOME|CLASSE são bloqueados. Use perfis personalizados para diferenciá-los.
+- Dois clientes resolvidos para o mesmo servidor, nome e classe são bloqueados.
 - Sem identidade, não é possível concluir/pular etapas nem criar marcadores. A leitura nunca renomeia janelas ou modifica a memória.
 
 ## Validação

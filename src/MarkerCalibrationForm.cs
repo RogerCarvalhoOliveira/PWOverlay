@@ -20,8 +20,15 @@ namespace PWQuestOverlay
         private readonly Timer _captureTimer;
         private readonly List<CalibrationItem> _items;
         private readonly Label _targetLabel;
+        private readonly Button _selectButton;
         private ClientWindowInfo _captureClient;
         private Size _captureSize;
+        private ClientWindowInfo _selectionClient;
+        private PointPicker _picker;
+        private DateTime _pickerReadyAt;
+        private DateTime _focusDeadline;
+        private int _selectionRow;
+        internal IntPtr PreferredGame { get; set; }
         private IntPtr _hotkeyWindow;
         private string _feedback;
         private bool _f8Down;
@@ -46,8 +53,8 @@ namespace PWQuestOverlay
                 Location = new Point(12, 10),
                 Size = new Size(626, 55),
                 Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right,
-                Text = "Coloque o PW em foco. Posicione o mouse sobre o controle indicado e pressione F8. " +
-                    "Abra Marcadores manualmente para capturar os controles internos. Depois, volte pelo Alt+Tab e clique em Salvar."
+                Text = "Selecione uma linha e clique em Selecionar ponto. Dê um clique duplo sobre o controle no PW e confirme. " +
+                    "Abra os painéis do jogo antes de selecionar seus controles. Você também pode capturar com F8."
             };
             _targetLabel = new Label
             {
@@ -80,12 +87,14 @@ namespace PWQuestOverlay
             if (_grid.Rows.Count > 0) _grid.Rows[0].Selected = true;
 
             var resetButton = new Button { Text = "Restaurar padrão", Size = new Size(120, 32), Location = new Point(12, 430), Anchor = AnchorStyles.Left | AnchorStyles.Bottom };
+            _selectButton = new Button { Text = "Selecionar ponto", Size = new Size(135, 32), Location = new Point(140, 430), Anchor = AnchorStyles.Left | AnchorStyles.Bottom };
             var saveButton = new Button { Text = "Salvar", Size = new Size(92, 32), Location = new Point(446, 430), Anchor = AnchorStyles.Right | AnchorStyles.Bottom };
             var cancelButton = new Button { Text = "Cancelar", Size = new Size(92, 32), Location = new Point(546, 430), Anchor = AnchorStyles.Right | AnchorStyles.Bottom, DialogResult = DialogResult.Cancel };
             resetButton.Click += delegate { ResetDefaults(); };
+            _selectButton.Click += delegate { StartPointSelection(); };
             saveButton.Click += delegate { if (SaveGrid()) DialogResult = DialogResult.OK; };
 
-            Controls.AddRange(new Control[] { instructions, _targetLabel, _grid, resetButton, saveButton, cancelButton });
+            Controls.AddRange(new Control[] { instructions, _targetLabel, _grid, resetButton, _selectButton, saveButton, cancelButton });
             AcceptButton = saveButton;
             CancelButton = cancelButton;
 
@@ -114,8 +123,18 @@ namespace PWQuestOverlay
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && _captureTimer != null) _captureTimer.Dispose();
+            if (disposing)
+            {
+                if (_captureTimer != null) _captureTimer.Dispose();
+                if (_picker != null) _picker.Dispose();
+            }
             base.Dispose(disposing);
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (_selectionClient != null) EndPointSelection();
+            base.OnFormClosing(e);
         }
 
         protected override void WndProc(ref Message message)
@@ -146,6 +165,11 @@ namespace PWQuestOverlay
 
         private void CaptureTimerTick(object sender, EventArgs e)
         {
+            if (_selectionClient != null)
+            {
+                UpdatePointSelection();
+                return;
+            }
             Size size;
             ClientWindowInfo client = ForegroundClient(out size);
             UpdateTargetStatus(client, size);
@@ -185,12 +209,16 @@ namespace PWQuestOverlay
         private void UpdateTargetStatus(ClientWindowInfo client, Size size)
         {
             string error = CaptureError(client, size);
-            _targetLabel.Text = error ?? ("Cliente PID " + client.ProcessId + " · " + size.Width + " × " + size.Height +
-                " · " + (_feedback ?? "Aponte para o controle selecionado e pressione F8."));
+            string status = error == null
+                ? "Cliente PID " + client.ProcessId + " · " + size.Width + " × " + size.Height
+                : error;
+            _targetLabel.Text = _feedback == null ? status :
+                (error == null ? status + Environment.NewLine + _feedback : _feedback);
         }
 
         private void CaptureAtCursor()
         {
+            if (_selectionClient != null) return;
             Size size;
             ClientWindowInfo client = ForegroundClient(out size);
             if (CaptureError(client, size) == null)
@@ -206,12 +234,209 @@ namespace PWQuestOverlay
             UpdateTargetStatus(client, size);
         }
 
+        private void StartPointSelection()
+        {
+            if (_selectionClient != null || _grid.SelectedRows.Count == 0) return;
+            ClientWindowInfo client;
+            if (_captureClient != null)
+            {
+                client = NativeMethods.DescribeGameWindow(_captureClient.Handle);
+                if (client == null || client.SessionKey != _captureClient.SessionKey)
+                {
+                    _feedback = "O cliente usado saiu. Restaure o padrão ou reabra a calibração.";
+                    return;
+                }
+            }
+            else
+            {
+                client = NativeMethods.DescribeGameWindow(PreferredGame);
+                if (client == null)
+                {
+                    foreach (IntPtr window in NativeMethods.FindGameWindows())
+                    {
+                        client = NativeMethods.DescribeGameWindow(window);
+                        if (client != null) break;
+                    }
+                }
+            }
+            if (client == null)
+            {
+                _feedback = "Abra um cliente do PW para selecionar o ponto.";
+                return;
+            }
+
+            _selectionRow = _grid.SelectedRows[0].Index;
+            _selectionClient = client;
+            _selectButton.Enabled = false;
+            _targetLabel.Text = "Dê um clique duplo no controle. Clique com o botão direito para cancelar.";
+            TopMost = false;
+            DateTime now = DateTime.UtcNow;
+            _pickerReadyAt = now.AddMilliseconds(180);
+            _focusDeadline = now.AddMilliseconds(1500);
+            if (NativeMethods.IsIconic(client.Handle))
+                NativeMethods.ShowWindowAsync(client.Handle, NativeMethods.SW_RESTORE);
+            NativeMethods.SetForegroundWindow(client.Handle);
+        }
+
+        private void UpdatePointSelection()
+        {
+            IntPtr target = _selectionClient.Handle;
+            IntPtr foreground = NativeMethods.GetAncestor(NativeMethods.GetForegroundWindow(), NativeMethods.GA_ROOT);
+            Rectangle bounds;
+            if (foreground != target || !TryGetClientBounds(target, out bounds))
+            {
+                if (_picker == null && DateTime.UtcNow < _focusDeadline)
+                {
+                    if (foreground == Handle && !NativeMethods.IsIconic(target))
+                        NativeMethods.SetForegroundWindow(target);
+                    return;
+                }
+                CancelPointSelection("O foco saiu do cliente do PW. Selecione o ponto novamente.");
+                return;
+            }
+            if (_picker != null)
+            {
+                if (bounds != _picker.Bounds)
+                    CancelPointSelection("A janela mudou de posição ou tamanho. Selecione o ponto novamente.");
+                return;
+            }
+            if (DateTime.UtcNow < _pickerReadyAt) return;
+
+            ClientWindowInfo client = NativeMethods.DescribeGameWindow(target);
+            string error = CaptureError(client, bounds.Size);
+            if (error != null || client.SessionKey != _selectionClient.SessionKey)
+            {
+                CancelPointSelection(error ?? "O cliente mudou. Selecione o ponto novamente.");
+                return;
+            }
+            _picker = new PointPicker(bounds, ConfirmPointSelection,
+                delegate { CancelPointSelection("Seleção cancelada."); });
+            _picker.Show();
+        }
+
+        private static bool TryGetClientBounds(IntPtr window, out Rectangle bounds)
+        {
+            NativeMethods.RECT rect;
+            var origin = new NativeMethods.POINT();
+            if (NativeMethods.GetClientRect(window, out rect) && rect.Width > 0 && rect.Height > 0 &&
+                NativeMethods.ClientToScreen(window, ref origin))
+            {
+                bounds = new Rectangle(origin.X, origin.Y, rect.Width, rect.Height);
+                return true;
+            }
+            bounds = Rectangle.Empty;
+            return false;
+        }
+
+        private void ConfirmPointSelection(Point point)
+        {
+            Rectangle bounds;
+            ClientWindowInfo client = NativeMethods.DescribeGameWindow(_selectionClient.Handle);
+            if (client == null || client.SessionKey != _selectionClient.SessionKey ||
+                NativeMethods.GetAncestor(NativeMethods.GetForegroundWindow(), NativeMethods.GA_ROOT) != client.Handle ||
+                !TryGetClientBounds(client.Handle, out bounds) || bounds != _picker.Bounds)
+            {
+                CancelPointSelection("O cliente ou a posição da janela mudou. Selecione o ponto novamente.");
+                return;
+            }
+            EndPointSelection();
+            Activate();
+            _grid.CurrentCell = _grid.Rows[_selectionRow].Cells[0];
+            if (MessageBox.Show(this, _items[_selectionRow].Name + "\nPonto no jogo (" + point.X + ", " + point.Y + ").",
+                "Confirmar posição", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
+            {
+                _feedback = "Seleção cancelada.";
+                return;
+            }
+            Rectangle currentBounds;
+            ClientWindowInfo current = NativeMethods.DescribeGameWindow(client.Handle);
+            if (current == null || current.SessionKey != client.SessionKey ||
+                !TryGetClientBounds(current.Handle, out currentBounds) || currentBounds != bounds)
+                _feedback = "A janela mudou durante a confirmação. Selecione o ponto novamente.";
+            else
+                TryCapture(current, bounds.Size, point);
+        }
+
+        private void CancelPointSelection(string message)
+        {
+            EndPointSelection();
+            _feedback = message;
+            Activate();
+        }
+
+        private void EndPointSelection()
+        {
+            if (_picker != null) _picker.Dispose();
+            _picker = null;
+            _selectionClient = null;
+            _selectButton.Enabled = true;
+            TopMost = true;
+        }
+
+        private sealed class PointPicker : Form
+        {
+            private readonly Action<Point> _confirm;
+            private readonly Action _cancel;
+
+            internal PointPicker(Rectangle bounds, Action<Point> confirm, Action cancel)
+            {
+                _confirm = confirm;
+                _cancel = cancel;
+                FormBorderStyle = FormBorderStyle.None;
+                StartPosition = FormStartPosition.Manual;
+                AutoScaleMode = AutoScaleMode.None;
+                ShowInTaskbar = false;
+                TopMost = true;
+                BackColor = Color.Black;
+                Opacity = 0.08;
+                Cursor = Cursors.Cross;
+                Bounds = bounds;
+                SetStyle(ControlStyles.StandardClick | ControlStyles.StandardDoubleClick, true);
+            }
+
+            protected override bool ShowWithoutActivation { get { return true; } }
+
+            protected override CreateParams CreateParams
+            {
+                get
+                {
+                    CreateParams parameters = base.CreateParams;
+                    parameters.ExStyle |= (int)(NativeMethods.WS_EX_NOACTIVATE | NativeMethods.WS_EX_TOOLWINDOW);
+                    return parameters;
+                }
+            }
+
+            protected override void WndProc(ref Message message)
+            {
+                if (message.Msg == NativeMethods.WM_MOUSEACTIVATE)
+                {
+                    message.Result = new IntPtr(NativeMethods.MA_NOACTIVATE);
+                    return;
+                }
+                base.WndProc(ref message);
+            }
+
+            protected override void OnMouseDoubleClick(MouseEventArgs e)
+            {
+                base.OnMouseDoubleClick(e);
+                if (e.Button == MouseButtons.Left)
+                    BeginInvoke(new Action(delegate { if (!IsDisposed) _confirm(e.Location); }));
+            }
+
+            protected override void OnMouseUp(MouseEventArgs e)
+            {
+                base.OnMouseUp(e);
+                if (e.Button == MouseButtons.Right)
+                    BeginInvoke(new Action(delegate { if (!IsDisposed) _cancel(); }));
+            }
+        }
+
         private bool TryCapture(ClientWindowInfo client, Size size, Point point)
         {
             if (CaptureError(client, size) != null || _grid.SelectedRows.Count == 0) return false;
             if (point.X < 0 || point.Y < 0 || point.X >= size.Width || point.Y >= size.Height)
             {
-                _feedback = "Posicione o mouse dentro da área do jogo e pressione F8.";
+                _feedback = "Aponte dentro da área do jogo.";
                 return false;
             }
             _captureClient = client;
@@ -222,7 +447,7 @@ namespace PWQuestOverlay
             if (row + 1 < _grid.Rows.Count)
             {
                 _grid.CurrentCell = _grid.Rows[row + 1].Cells[0];
-                _feedback = "Ponto capturado. Pressione F8 sobre o próximo controle.";
+                _feedback = "Ponto capturado. Selecione o próximo controle ou pressione F8.";
             }
             else
                 _feedback = "Último ponto capturado. Volte e clique em Salvar.";

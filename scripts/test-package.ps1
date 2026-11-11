@@ -4,8 +4,8 @@ $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $dist = Join-Path $projectRoot 'dist'
 $version = [IO.File]::ReadAllText((Join-Path $projectRoot 'VERSION')).Trim()
-$executables = @('PW Quest Overlay.exe', 'PW Borderless.exe', 'PW Overlay Central.exe', 'PW Memory Probe.exe', 'PW Maintenance.exe')
-$required = $executables + @('quest_routes.json', 'memory_offsets.json', 'task_catalog_144.tsv',
+$executables = @('PW Quest Overlay.exe', 'PW Borderless.exe', 'PW Overlay Central.exe', 'PW Memory Probe.exe', 'PW Maintenance.exe', 'PW Identity Reader.exe')
+$required = $executables + @('quest_routes.json', 'memory_offsets.json', 'task_catalog_144.tsv', 'task_history_126.tsv',
     'rota_leveling_pw_144.xlsx', 'LEIA-ME.txt', 'INSTALACAO.txt', 'GUIAS-DEZ-CLASSES.txt', 'GUIA-61-105.txt', 'SEM-PW-HELPER.txt')
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 Add-Type -AssemblyName System.Drawing
@@ -34,7 +34,7 @@ foreach ($name in $executables) {
     if ($null -eq $icon) { throw "Executável sem ícone: $name" }
     $icon.Dispose()
 }
-foreach ($name in @('quest_routes.json', 'memory_offsets.json', 'task_catalog_144.tsv', 'rota_leveling_pw_144.xlsx')) {
+foreach ($name in @('quest_routes.json', 'memory_offsets.json', 'task_catalog_144.tsv', 'task_history_126.tsv', 'rota_leveling_pw_144.xlsx')) {
     if ((Get-FileHash -LiteralPath (Join-Path $projectRoot "data\$name")).Hash -ne
         (Get-FileHash -LiteralPath (Join-Path $dist $name)).Hash) { throw "Dados desatualizados no build: $name" }
 }

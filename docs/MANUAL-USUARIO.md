@@ -66,7 +66,9 @@ As etapas seguem uma ordem global otimizada. O overlay pode mandar pegar uma mis
 
 A opção **Rota reduzida (XP ×3)** fica ligada por padrão no menu da bandeja. Missões independentes de XP podem ser dispensadas quando o personagem já pode seguir o próximo trecho protegido. Quando falta nível, o planejador escolhe a maior recompensa disponível entre as candidatas verificadas. Cultivos, DGs/moedas, desbloqueios, pré-requisitos, recompensas importantes e missões já iniciadas permanecem no roteiro. Desmarque a opção para percorrer a lista completa ou selecione uma missão específica em **Etapas**.
 
-O histórico confirmado é importado ao identificar o personagem, mesmo com o avanço de etapas desligado. A importação percorre a rota inteira. O controle **Avançar etapas em andamento automaticamente** governa o acompanhamento de aceites, objetivos e entregas enquanto você joga. Missões repetíveis e etapas sem evidência suficiente precisam acompanhar o ciclo atual ou receber confirmação manual.
+Para reconciliar o progresso de um personagem, selecione-o no jogo e clique em **Etapas → Importar missões concluídas**. O botão consulta o histórico uma vez e aplica as conclusões confirmadas à rota inteira. No 1.2.6 elevado, confirme o aviso do Windows uma vez por sessão. A opção **Avançar etapas em andamento automaticamente** acompanha aceites, objetivos e entregas no 1.4.4. No 1.2.6, confirma aceites e o avanço de cadeias sequenciais quando o questlog mostra uma submissão posterior da mesma cadeia.
+
+O guia prioriza missões que já estão ativas e usa os limites de nível, a fama e os pré-requisitos verificáveis da edição 1.2.6 para escolher a próxima etapa. Missões fora desses critérios continuam em **Etapas**. Use o botão novamente depois de mudar de nível ou liberar uma cadeia para atualizar a consulta.
 
 Do nível 1 ao 105, a sequência foi organizada por região e dependências. Até a Cidade do Dragão, cada raça segue seu circuito; depois, todas usam a rota compartilhada e fazem os desvios exclusivos indicados. Pop-ups como **Aprenda sobre Habilidades de Forja** aguardam o retorno natural ao Ancião.
 
@@ -110,7 +112,7 @@ O fluxo padrão foi calibrado com o cliente 1.4.4 em 1920×1080 borderless e o P
 
 Versões anteriores a 0.7.1 usavam uma área vazia como referência da lista e podiam acumular `PWOverlay`. A configuração padrão é migrada automaticamente. Marcadores duplicados já existentes devem ser removidos uma única vez; depois disso, cada clique mantém somente o marcador mais recente.
 
-Para ajustar a resolução ou escala de interface, escolha **Calibrar marcador...** no menu da bandeja. A janela aguarda o PW em foco. Selecione uma linha, coloque o PW em foco, posicione o mouse sobre o controle indicado e pressione `F8`. O calibrador mostra o PID e o tamanho da área do jogo e avança para a próxima linha a cada captura. Abra Marcadores manualmente para capturar os controles internos. Depois volte pelo Alt+Tab e clique em **Salvar**. Os pontos ficam vinculados ao mesmo cliente e tamanho durante a captura. Se mudar a resolução no meio, restaure o padrão ou reabra a calibração. O menu **Ao criar marcador** permite substituir somente `PWOverlay` ou apagar todos.
+Para ajustar a resolução ou escala de interface, escolha **Calibrar marcador...** no menu da bandeja. Selecione uma linha e clique em **Selecionar ponto** para focar o PW e abrir a mira. Dê um clique duplo no controle e confirme com **OK**. A próxima linha será selecionada. Um clique com o botão direito cancela a seleção. Abra Marcadores manualmente para capturar os controles internos. O atalho `F8` também captura o controle apontado quando o PW está em foco. Clique em **Salvar** ao terminar. Os pontos da sessão são capturados no mesmo cliente e tamanho. Se mudar a resolução, restaure o padrão ou reabra a calibração. O menu **Ao criar marcador** permite substituir somente `PWOverlay` ou apagar todos.
 
 ## Selecionar uma etapa
 

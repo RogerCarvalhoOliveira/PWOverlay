@@ -42,7 +42,7 @@ O byte de estado é mantido em formato bruto. Valores diferentes foram observado
 - desaparecimento depois de presença confirmada para conversa ou entrega;
 - próxima submissão da mesma cadeia ativa para recuperar uma transição ocorrida antes de abrir o overlay.
 
-Na 0.13.0, o histórico é cruzado com a rota inteira quando o personagem é identificado. O menu **Estado das missões por memória > Avançar etapas em andamento automaticamente** e o atalho `Ctrl + Shift + A` controlam o avanço durante o jogo. Cada janela usa sua própria sessão de leitura. A importação exige IDs registrados e considera a lista ativa para distinguir cadeias em andamento.
+Use **Etapas → Importar missões concluídas** para cruzar o histórico com a rota inteira do personagem ativo. O menu **Estado das missões por memória > Avançar etapas em andamento automaticamente** e o atalho `Ctrl + Shift + A` controlam o avanço durante o jogo no 1.4.4. Cada janela usa sua própria sessão de leitura. A importação exige IDs registrados e considera a lista ativa para distinguir cadeias em andamento.
 
 No teste validado de `Aldeões Feridos`, a submissão `Besouro de Chifres` (ID 936) avançou ao encontrar o item 3502 na quantidade 10. A entrega avançou quando o ID 936, previamente observado, desapareceu da lista ativa.
 

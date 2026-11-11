@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -240,6 +241,16 @@ namespace PWQuestOverlay.Memory
                 !snapshot.ActiveTasks.Exists(entry => entry.TaskId == nextTaskId)) return false;
             TaskCatalogEntry parent = Find(task.ParentId);
             return parent != null && parent.ChildrenInOrder;
+        }
+
+        internal bool HasActiveLaterOrderedChild(uint taskId, HashSet<uint> active)
+        {
+            TaskCatalogEntry task = Find(taskId);
+            if (task == null || task.ParentId == 0 || active.Contains(taskId)) return false;
+            TaskCatalogEntry parent = Find(task.ParentId);
+            if (parent == null || !parent.ChildrenInOrder) return false;
+            return active.Select(Find).Any(next => next != null && next.ParentId == task.ParentId &&
+                next.CatalogOrder > task.CatalogOrder);
         }
 
         private static uint ParseUInt(string value, int lineNumber)

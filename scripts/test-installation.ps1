@@ -13,7 +13,9 @@ if (Get-Process -Name elementclient -ErrorAction SilentlyContinue) { throw 'Fech
 $version = [IO.File]::ReadAllText((Join-Path $root 'VERSION')).Trim()
 $testId = '{26869ECF-12A3-4D1D-B237-9081C6CBDB31}'
 $definition = [IO.File]::ReadAllText((Join-Path $root 'installer\PWQuestOverlay.iss'))
-$definition = $definition.Replace('AppId={{8D6C663D-85AB-4AD1-A56D-3861323EAC73}', 'AppId={' + $testId)
+$guidDefinition = '#define MyAppGuid "8D6C663D-85AB-4AD1-A56D-3861323EAC73"'
+if (-not $definition.Contains($guidDefinition)) { throw 'Não foi possível isolar o AppId do instalador de teste.' }
+$definition = $definition.Replace($guidDefinition, '#define MyAppGuid "' + $testId.Trim('{}') + '"')
 $definition = $definition.Replace('DefaultDirName={localappdata}\Programs\PWQuestOverlay', 'DefaultDirName=' + $target)
 $definition = $definition.Replace('DefaultGroupName={#MyAppName}', 'DefaultGroupName=PW Quest Overlay Installer Test')
 $definition = $definition.Replace('OutputBaseFilename=PWQuestOverlay-Setup-v{#MyAppVersion}', 'OutputBaseFilename=PWOverlay-Installer-Test')

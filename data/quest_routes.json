@@ -114,7 +114,7 @@
       "order": 1,
       "classScope": "WR/MG",
       "minLevel": 1,
-      "maxLevel": "Sem limite",
+      "maxLevel": "3",
       "name": "Recruta / Exposição de Talento",
       "npc": "Guia (422, 835)",
       "location": "Estalagem Pengcheng (422, 835)",
@@ -171,7 +171,7 @@
           "action": "Aceite a missão com Guia (422, 835)",
           "markerX": 422,
           "markerY": 835,
-          "routeOrder": 10010,
+          "routeOrder": 10031,
           "title": "A Cidade das Espadas"
         },
         {
@@ -198,7 +198,7 @@
       "order": 3,
       "classScope": "WR/MG",
       "minLevel": 1,
-      "maxLevel": "Sem limite",
+      "maxLevel": "5",
       "name": "Revitalizando a Pátria",
       "npc": "Ancião (433, 887)",
       "location": "Cidade das Espadas (433, 887)",
@@ -281,7 +281,7 @@
       "order": 4,
       "classScope": "WR/MG",
       "minLevel": 3,
-      "maxLevel": "Sem limite",
+      "maxLevel": "6",
       "name": "Duende Desertor / a Chamas do Túmulo",
       "npc": "Alfaiate Ilsa Bagsley (427, 878)",
       "location": "Cidade das Espadas (427, 878)",
@@ -369,7 +369,7 @@
       "order": 6,
       "classScope": "WR/MG",
       "minLevel": 4,
-      "maxLevel": "Sem limite",
+      "maxLevel": "10",
       "name": "Fazer Armas",
       "npc": "Ferreiro Valmoren Albor (431, 874)",
       "location": "Cidade das Espadas (431, 874)",
@@ -468,7 +468,7 @@
       "order": 8,
       "classScope": "WR/MG",
       "minLevel": 5,
-      "maxLevel": "Sem limite",
+      "maxLevel": "12",
       "name": "Espinho do Ouriço",
       "npc": "Caçador Djer Sahuré (459, 838)",
       "location": "Subúrbio da Cidade das Espadas (459, 838)",
@@ -512,7 +512,7 @@
       "order": 9,
       "classScope": "WR/MG",
       "minLevel": 6,
-      "maxLevel": "Sem limite",
+      "maxLevel": "12",
       "name": "Espírito do Fogo",
       "npc": "Alfaiate Ilsa Bagsley (427, 878)",
       "location": "Cidade das Espadas (427, 878)",
@@ -557,7 +557,7 @@
       "order": 10,
       "classScope": "WR/MG",
       "minLevel": 6,
-      "maxLevel": "Automática",
+      "maxLevel": "10",
       "name": "Vila dos Eremitas",
       "npc": "Automática ao atingir o nível 6",
       "location": "Vila dos Eremitas (497, 867)",
@@ -593,7 +593,7 @@
       "order": 11,
       "classScope": "WR/MG",
       "minLevel": 7,
-      "maxLevel": "Sem limite",
+      "maxLevel": "16",
       "name": "Lágrima de Dragão",
       "npc": "Ferreiro Selder Treej (499, 868)",
       "location": "Vila dos Eremitas (499, 868)",
@@ -637,7 +637,7 @@
       "order": 12,
       "classScope": "WR/MG",
       "minLevel": 8,
-      "maxLevel": "Sem limite",
+      "maxLevel": "18",
       "name": "Castigo Local",
       "npc": "Sentinela (495, 870)",
       "location": "Vila dos Eremitas (495, 870)",
@@ -682,7 +682,7 @@
       "order": 13,
       "classScope": "WR/MG",
       "minLevel": 8,
-      "maxLevel": "Sem limite",
+      "maxLevel": "18",
       "name": "Poder Dobrado",
       "npc": "Sentinela (495, 870)",
       "location": "Vila dos Eremitas (495, 870)",
@@ -725,8 +725,8 @@
       "routeKey": "WR",
       "order": 14,
       "classScope": "WR/MG",
-      "minLevel": 8,
-      "maxLevel": "Sem limite",
+      "minLevel": 9,
+      "maxLevel": "20",
       "name": "Ouriço Retalhador",
       "npc": "Guarda Torong Gurds (433, 886)",
       "location": "Cidade das Espadas (433, 886)",
@@ -746,7 +746,7 @@
         },
         {
           "id": "e2",
-          "action": "Matar (15) Ouriço Retalhador",
+          "action": "Matar (10) Ouriço Retalhador",
           "routeOrder": 10470,
           "title": "Ouriço Retalhador"
         },
@@ -759,7 +759,7 @@
           "title": "Ouriço Retalhador"
         }
       ],
-      "expectedLevel": 8,
+      "expectedLevel": 9,
       "historyTaskGroups": [[708]]
     },
     {
@@ -832,11 +832,12 @@
         },
         {
           "id": "e3",
-          "action": "Matar (9) Traidor Fantasma (Montanha da Formiga) (533, 851)",
+          "action": "Matar (10) Traidor Fantasma (Montanha da Formiga) (533, 851)",
           "markerX": 533,
           "markerY": 851,
           "routeOrder": 10500,
-          "title": "Traidores Fantasmas"
+          "title": "Traidores Fantasmas",
+          "memoryTaskId": 918
         },
         {
           "id": "e4",
@@ -856,7 +857,7 @@
       "order": 17,
       "classScope": "WR/MG",
       "minLevel": 10,
-      "maxLevel": "Sem limite",
+      "maxLevel": "20",
       "name": "Mandado do Ferreiro",
       "npc": "Comerciante Sirier Varek (429, 880)",
       "location": "Cidade das Espadas (429, 880)",
@@ -899,7 +900,7 @@
       "order": 18,
       "classScope": "WR/MG",
       "minLevel": 11,
-      "maxLevel": "Automática",
+      "maxLevel": "11",
       "name": "Vila Quadrada",
       "npc": "Automática ao atingir o nível 11",
       "location": "Montanha da Formiga (577, 894)",
@@ -935,7 +936,7 @@
       "order": 19,
       "classScope": "WR/MG",
       "minLevel": 11,
-      "maxLevel": "Sem limite",
+      "maxLevel": "18",
       "name": "Trabalho em Conjunto",
       "npc": "Guarda (577, 894)",
       "location": "Montanha da Formiga (577, 894)",
@@ -955,7 +956,7 @@
         },
         {
           "id": "e2",
-          "action": "Matar (20) Lince da Montanha (Montanha Desolada) (551, 982)",
+          "action": "Matar (7) Lince da Montanha (Montanha Desolada) (551, 982)",
           "markerX": 551,
           "markerY": 982,
           "routeOrder": 10620,
@@ -979,8 +980,8 @@
       "routeKey": "WR",
       "order": 20,
       "classScope": "WR/MG",
-      "minLevel": 11,
-      "maxLevel": "Sem limite",
+      "minLevel": 12,
+      "maxLevel": "16",
       "name": "Esforços Concentrados",
       "npc": "Guarda (577, 894)",
       "location": "Montanha da Formiga (577, 894)",
@@ -1000,7 +1001,7 @@
         },
         {
           "id": "e2",
-          "action": "Matar (30) Víbora de Chifres (Montanha da Formiga)(546, 894)",
+          "action": "Matar (20) Víbora de Chifres (Montanha da Formiga)(546, 894)",
           "markerX": 546,
           "markerY": 894,
           "routeOrder": 10570,
@@ -1015,7 +1016,7 @@
           "title": "Esforços Concentrados"
         }
       ],
-      "expectedLevel": 11,
+      "expectedLevel": 12,
       "historyTaskGroups": [[762]],
       "xpOptional": true
     },
@@ -1025,7 +1026,7 @@
       "order": 21,
       "classScope": "WR/MG",
       "minLevel": 12,
-      "maxLevel": "Sem limite",
+      "maxLevel": "18",
       "name": "Trocar Informações",
       "npc": "Ancião (433, 887)",
       "location": "Cidade das Espadas (433, 887)",
@@ -1077,7 +1078,7 @@
       "order": 22,
       "classScope": "WR/MG",
       "minLevel": 13,
-      "maxLevel": "Sem limite",
+      "maxLevel": "21",
       "name": "Armadura do Lobo",
       "npc": "Alfaiate Lindie (567, 883)",
       "location": "Vila Quadrada (567, 883)",
@@ -1097,7 +1098,7 @@
         },
         {
           "id": "e2",
-          "action": "Pegar (15) Pelagem de Lobo Insano matando Lobo-Rei Insano (Terra de Hades) (562, 944)",
+          "action": "Pegar (5) Pelagem de Lobo Insano matando Lobo-Rei Insano (Terra de Hades) (562, 944)",
           "markerX": 562,
           "markerY": 944,
           "routeOrder": 10680,
@@ -1121,7 +1122,7 @@
       "order": 23,
       "classScope": "WR/MG",
       "minLevel": 14,
-      "maxLevel": "Sem limite",
+      "maxLevel": "40",
       "name": "Emoção da Caça",
       "npc": "Velho Caçador (498, 970)",
       "location": "Galpão dos Lenhadores (498, 970)",
@@ -1186,7 +1187,7 @@
       "order": 24,
       "classScope": "WR/MG",
       "minLevel": 15,
-      "maxLevel": "Sem limite",
+      "maxLevel": "40",
       "name": "A Promessa",
       "npc": "Alfaiate Ilsa Bagsley (427, 878)",
       "location": "Cidade das Espadas (427, 878)",
@@ -1198,7 +1199,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Aceite a missão com Alfaiate Lisa Bagsley (427, 878)",
+          "action": "Aceite a missão com Alfaiate Ilsa Bagsley (427, 878)",
           "markerX": 427,
           "markerY": 878,
           "routeOrder": 10750,
@@ -1243,7 +1244,7 @@
         },
         {
           "id": "e6",
-          "action": "Entregue a missão para Alfaiate Lisa Bagsley (427, 878)",
+          "action": "Entregue a missão para Alfaiate Ilsa Bagsley (427, 878)",
           "markerX": 427,
           "markerY": 878,
           "routeOrder": 10800,
@@ -1261,7 +1262,7 @@
       "order": 25,
       "classScope": "WR/MG",
       "minLevel": 16,
-      "maxLevel": "Automática",
+      "maxLevel": "16",
       "name": "Fortaleza da Montanha",
       "npc": "Automática ao atingir o nível 16",
       "location": "Galpão dos Lenhadores / região (498, 970)",
@@ -1297,7 +1298,7 @@
       "order": 26,
       "classScope": "WR/MG",
       "minLevel": 16,
-      "maxLevel": "Sem limite",
+      "maxLevel": "40",
       "name": "Vingança do Boticário",
       "npc": "Boticário Hitzerin Reut (498, 964)",
       "location": "Galpão dos Lenhadores (498, 964)",
@@ -1317,7 +1318,7 @@
         },
         {
           "id": "e2",
-          "action": "Matar (20) Tarântula (Terra de Hades) (476, 926)",
+          "action": "Matar (7) Tarântula (Terra de Hades) (476, 926)",
           "markerX": 476,
           "markerY": 926,
           "routeOrder": 10840,
@@ -1342,7 +1343,7 @@
       "order": 27,
       "classScope": "WR/MG",
       "minLevel": 17,
-      "maxLevel": "Sem limite",
+      "maxLevel": "26",
       "name": "Flauta do Passado",
       "npc": "Ancião (433, 887)",
       "location": "Cidade das Espadas (433, 887)",
@@ -1402,7 +1403,7 @@
       "order": 28,
       "classScope": "WR/MG",
       "minLevel": 18,
-      "maxLevel": "Sem limite",
+      "maxLevel": "149",
       "name": "A lista",
       "npc": "Ancião (433, 887)",
       "location": "Cidade das Espadas (433, 887)",
@@ -1544,9 +1545,9 @@
         },
         {
           "id": "e4",
-          "action": "Entregue a missão para Taoísta Miao Miao (244, 647)",
-          "markerX": 244,
-          "markerY": 647,
+          "action": "Entregue a missão para Taoísta Kalern Yoks (429, 890)",
+          "markerX": 429,
+          "markerY": 890,
           "routeOrder": 11140,
           "title": "Escoltando o Celestial",
           "memoryTaskId": 1931
@@ -1569,14 +1570,14 @@
       "xp3": 0,
       "priority": "Essencial",
       "benefit": "1 moeda da DG19",
-      "instruction": "Pegue depois do cultivo; esta missão deixa de estar disponível após o nível 30.",
+      "instruction": "Conclua O Equilíbrio Celestial e pegue a moeda na mesma visita em que aceita o desafio da DG19.",
       "steps": [
         {
           "id": "e1",
           "action": "Pegue a Moeda Sangrenta de Ferro com Ancião (433, 887)",
           "markerX": 433,
           "markerY": 887,
-          "routeOrder": 10970,
+          "routeOrder": 11141,
           "title": "Moeda Sangrenta de Fer"
         }
       ],
@@ -1604,19 +1605,19 @@
           "action": "Aceite a missão com Ancião (433, 886)",
           "markerX": 433,
           "markerY": 886,
-          "routeOrder": 10980,
+          "routeOrder": 11142,
           "title": "Portão de Devildom"
         },
         {
           "id": "e2",
           "action": "Matar (8) Escaravelho das Cavernas e (8) Centopéia de Fogo (Dentro da Caverna de Fogo)",
-          "routeOrder": 11030,
+          "routeOrder": 11143,
           "title": "Caverna do Reino Demon"
         },
         {
           "id": "e3",
           "action": "Matar (1) Pahana (Boss)",
-          "routeOrder": 11040,
+          "routeOrder": 11144,
           "title": "Matar Pahana"
         },
         {
@@ -1624,7 +1625,7 @@
           "action": "Entregue a missão para Ancião (433, 886)",
           "markerX": 433,
           "markerY": 886,
-          "routeOrder": 11050,
+          "routeOrder": 11145,
           "title": "Portão de Devildom"
         }
       ],
@@ -1637,7 +1638,7 @@
       "order": 33,
       "classScope": "WR/MG",
       "minLevel": 19,
-      "maxLevel": "Sem limite",
+      "maxLevel": "45",
       "name": "Aquecimento",
       "npc": "Velho Caçador (498, 970)",
       "location": "Galpão dos Lenhadores (498, 970)",
@@ -1657,9 +1658,10 @@
         },
         {
           "id": "e2",
-          "action": "Matar (30) Predador de Elite (Montanha das Árvores)",
+          "action": "Matar (5) Predador de Elite (Montanha das Árvores)",
           "routeOrder": 11070,
-          "title": "Predador de Elite"
+          "title": "Predador de Elite",
+          "memoryTaskId": 6442
         },
         {
           "id": "e3",
@@ -1671,9 +1673,10 @@
         },
         {
           "id": "e4",
-          "action": "Matar (30) Soldado Formiga Gigante (Montanha das Árvores)",
+          "action": "Matar (5) Soldado Formiga Gigante (Montanha das Árvores)",
           "routeOrder": 11090,
-          "title": "Soldado Formiga Gigant"
+          "title": "Soldado Formiga Gigant",
+          "memoryTaskId": 6443
         },
         {
           "id": "e5",
@@ -1685,9 +1688,10 @@
         },
         {
           "id": "e6",
-          "action": "Matar (30) Lobo-rei das Neves (Montanha das Árvores)",
+          "action": "Matar (5) Lobo-rei das Neves (Montanha das Árvores)",
           "routeOrder": 11110,
-          "title": "Lobo-Rei das Neves"
+          "title": "Lobo-Rei das Neves",
+          "memoryTaskId": 6444
         },
         {
           "id": "e7",
@@ -1708,7 +1712,7 @@
       "order": 1,
       "classScope": "WB/WF",
       "minLevel": 1,
-      "maxLevel": "Sem limite",
+      "maxLevel": "3",
       "name": "Primeira Viagem",
       "npc": "Guia (256, 689)",
       "location": "Campo da Passagem Norte (256, 689)",
@@ -1768,7 +1772,7 @@
           "action": "Aceite a missão com Guia (256, 689)",
           "markerX": 256,
           "markerY": 689,
-          "routeOrder": 10010,
+          "routeOrder": 10031,
           "title": "A Cidade das Feras",
           "memoryTaskId": 1204
         },
@@ -1798,7 +1802,7 @@
       "order": 3,
       "classScope": "WB/WF",
       "minLevel": 1,
-      "maxLevel": "Sem limite",
+      "maxLevel": "5",
       "name": "Os Poderosos Selvagens",
       "npc": "Ancião (246, 646)",
       "location": "Cidade das Feras (246, 646)",
@@ -1925,7 +1929,7 @@
       "order": 5,
       "classScope": "WB/WF",
       "minLevel": 3,
-      "maxLevel": "Sem limite",
+      "maxLevel": "6",
       "name": "Injustiças",
       "npc": "Selvagem Excêntrico (246, 648)",
       "location": "Cidade das Feras (246, 648)",
@@ -2013,7 +2017,7 @@
       "order": 7,
       "classScope": "WB/WF",
       "minLevel": 4,
-      "maxLevel": "Sem limite",
+      "maxLevel": "10",
       "name": "União Contra o Inimigo",
       "npc": "Ferreiro Bashan (252, 642)",
       "location": "Cidade das Feras (252, 642)",
@@ -2124,7 +2128,7 @@
       "order": 9,
       "classScope": "WB/WF",
       "minLevel": 5,
-      "maxLevel": "Sem limite",
+      "maxLevel": "12",
       "name": "Armadura de Casco",
       "npc": "Alfaiate Tina Parson (259, 639)",
       "location": "Cidade das Feras (259, 639)",
@@ -2166,7 +2170,7 @@
       "order": 10,
       "classScope": "WB/WF",
       "minLevel": 6,
-      "maxLevel": "Sem limite",
+      "maxLevel": "14",
       "name": "Mais Urgente",
       "npc": "Guarda Estec (249, 644)",
       "location": "Cidade das Feras (249, 644)",
@@ -2219,7 +2223,7 @@
       "order": 11,
       "classScope": "WB/WF",
       "minLevel": 6,
-      "maxLevel": "Automática",
+      "maxLevel": "6",
       "name": "Vila da Ponte Quebrada",
       "npc": "Automática ao atingir o nível 6",
       "location": "Vila da Ponte Quebrada (231, 556)",
@@ -2297,7 +2301,7 @@
       "order": 13,
       "classScope": "WB/WF",
       "minLevel": 7,
-      "maxLevel": "Sem limite",
+      "maxLevel": "15",
       "name": "Pescador Minotauro",
       "npc": "Comerciante Helga (228, 559)",
       "location": "Vila da Ponte Quebrada (228, 559)",
@@ -2340,7 +2344,7 @@
       "order": 14,
       "classScope": "WB/WF",
       "minLevel": 7,
-      "maxLevel": "Sem limite",
+      "maxLevel": "16",
       "name": "Óleo Negro Mágico",
       "npc": "Ferreiro Naruky (232, 559)",
       "location": "Vila da Ponte Quebrada (232, 559)",
@@ -2382,7 +2386,7 @@
       "order": 15,
       "classScope": "WB/WF",
       "minLevel": 8,
-      "maxLevel": "Sem limite",
+      "maxLevel": "17",
       "name": "Uma Boa Estratégia",
       "npc": "Comerciante Helga (228, 559)",
       "location": "Vila da Ponte Quebrada (228, 559)",
@@ -2439,7 +2443,7 @@
       "order": 16,
       "classScope": "WB/WF",
       "minLevel": 9,
-      "maxLevel": "Sem limite",
+      "maxLevel": "18",
       "name": "Jornada Tranqüila",
       "npc": "Comerciante Helga (228, 559)",
       "location": "Vila da Ponte Quebrada (228, 559)",
@@ -2546,9 +2550,10 @@
         },
         {
           "id": "e3",
-          "action": "Matar (9) Ouriço Peçonhento (Sul da Vila da Ponte Quebrada)",
+          "action": "Matar (10) Ouriço Peçonhento (Sul da Vila da Ponte Quebrada)",
           "routeOrder": 10670,
-          "title": "Ouriço-Rei Traído"
+          "title": "Ouriço-Rei Traído",
+          "memoryTaskId": 972
         },
         {
           "id": "e4",
@@ -2568,7 +2573,7 @@
       "order": 19,
       "classScope": "WB/WF",
       "minLevel": 10,
-      "maxLevel": "Sem limite",
+      "maxLevel": "20",
       "name": "Remédio Útil",
       "npc": "Boticário Lother Gaven (229, 560)",
       "location": "Vila da Ponte Quebrada (229, 560)",
@@ -2619,7 +2624,7 @@
       "order": 20,
       "classScope": "WB/WF",
       "minLevel": 11,
-      "maxLevel": "Sem limite",
+      "maxLevel": "20",
       "name": "Irmandade",
       "npc": "Guarda Syrek (231, 554)",
       "location": "Vila da Ponte Quebrada (231, 554)",
@@ -2662,7 +2667,7 @@
       "order": 21,
       "classScope": "WB/WF",
       "minLevel": 11,
-      "maxLevel": "Automática",
+      "maxLevel": "11",
       "name": "Garganta dos Ventos An",
       "npc": "Automática ao atingir o nível 11",
       "location": "Garganta dos Ventos (387, 521)",
@@ -2700,7 +2705,7 @@
       "order": 22,
       "classScope": "WB/WF",
       "minLevel": 12,
-      "maxLevel": "Sem limite",
+      "maxLevel": "20",
       "name": "O Rugido das Feras",
       "npc": "Ancião (246, 646)",
       "location": "Cidade das Feras (246, 646)",
@@ -2768,7 +2773,7 @@
       "order": 23,
       "classScope": "WB/WF",
       "minLevel": 12,
-      "maxLevel": "Sem limite",
+      "maxLevel": "20",
       "name": "Sangue de Lobo Feroz",
       "npc": "Alfaiate Tina Parson (259, 639)",
       "location": "Cidade das Feras (259, 639)",
@@ -2796,9 +2801,10 @@
         },
         {
           "id": "e3",
-          "action": "Pegar (10) Sangue de Lobo Feroz matando Lobo Feroz (Leste do Vale dos Lobos)",
+          "action": "Pegar (7) Sangue de Lobo Feroz matando Lobo Feroz (Leste do Vale dos Lobos)",
           "routeOrder": 10770,
-          "title": "Coletar Sangue de Lobo"
+          "title": "Coletar Sangue de Lobo",
+          "memoryTaskId": 785
         },
         {
           "id": "e4",
@@ -2818,7 +2824,7 @@
       "order": 24,
       "classScope": "WB/WF",
       "minLevel": 13,
-      "maxLevel": "Sem limite",
+      "maxLevel": "21",
       "name": "Pesadelo Perturbador",
       "npc": "Altram Sutzer (242, 642)",
       "location": "Cidade das Feras (242, 642)",
@@ -2846,9 +2852,10 @@
         },
         {
           "id": "e3",
-          "action": "Matar (20) Espinho Maligno (Oeste da Garganta dos Ventos)",
+          "action": "Matar (7) Espinho Maligno (Oeste da Garganta dos Ventos)",
           "routeOrder": 10810,
-          "title": "Espinho Maligno"
+          "title": "Espinho Maligno",
+          "memoryTaskId": 793
         },
         {
           "id": "e4",
@@ -2868,7 +2875,7 @@
       "order": 25,
       "classScope": "WB/WF",
       "minLevel": 14,
-      "maxLevel": "Sem limite",
+      "maxLevel": "22",
       "name": "Vantagens sem esforço",
       "npc": "Guarda Urek (387, 521)",
       "location": "Garganta dos Ventos (387, 521)",
@@ -2920,7 +2927,7 @@
       "order": 26,
       "classScope": "WB/WF",
       "minLevel": 15,
-      "maxLevel": "Sem limite",
+      "maxLevel": "40",
       "name": "Piggy",
       "npc": "Ferreiro Baros Hotem (387, 514)",
       "location": "Garganta dos Ventos (387, 514)",
@@ -2940,19 +2947,21 @@
         },
         {
           "id": "e2",
-          "action": "Matar (15) Retalhador Selvagem (386, 573)",
+          "action": "Matar (5) Retalhador Selvagem (386, 573)",
           "markerX": 386,
           "markerY": 573,
           "routeOrder": 10880,
-          "title": "Retalhador Selvagem"
+          "title": "Retalhador Selvagem",
+          "memoryTaskId": 6445
         },
         {
           "id": "e3",
-          "action": "Matar (20) Lobo Sangrento Demoníaco (386, 573)",
+          "action": "Matar (5) Lobo Sangrento Demoníaco (386, 573)",
           "markerX": 386,
           "markerY": 573,
           "routeOrder": 10890,
-          "title": "Lobo Sangrento Demonía"
+          "title": "Lobo Sangrento Demonía",
+          "memoryTaskId": 6446
         },
         {
           "id": "e4",
@@ -2973,7 +2982,7 @@
       "order": 27,
       "classScope": "WB/WF",
       "minLevel": 16,
-      "maxLevel": "Automática",
+      "maxLevel": "16",
       "name": "Fortaleza da Cidade do",
       "npc": "Automática ao atingir o nível 16",
       "location": "Cidade do Rio (425, 659)",
@@ -3009,7 +3018,7 @@
       "order": 28,
       "classScope": "WB/WF",
       "minLevel": 16,
-      "maxLevel": "Sem limite",
+      "maxLevel": "26",
       "name": "Cortar Montanhas",
       "npc": "Boticário Karana (389, 515)",
       "location": "Garganta dos Ventos (389, 515)",
@@ -3102,7 +3111,7 @@
       "order": 30,
       "classScope": "WB/WF",
       "minLevel": 17,
-      "maxLevel": "Sem limite",
+      "maxLevel": "40",
       "name": "A Sobrancelha de Zhang",
       "npc": "Mãe Divina (417, 645)",
       "location": "Cidade do Rio (417, 645)",
@@ -3122,9 +3131,10 @@
         },
         {
           "id": "e2",
-          "action": "Matar (20) Marta-rei dos Ventos (Arredores da Cidade do Rio)",
+          "action": "Matar (5) Marta-rei dos Ventos (Arredores da Cidade do Rio)",
           "routeOrder": 11020,
-          "title": "Marta-Rei dos Ventos"
+          "title": "Marta-Rei dos Ventos",
+          "memoryTaskId": 6447
         },
         {
           "id": "e3",
@@ -3136,9 +3146,10 @@
         },
         {
           "id": "e4",
-          "action": "Matar (20) Goblin Tigre (Arredores da Cidade do Rio)",
+          "action": "Matar (5) Goblin Tigre (Arredores da Cidade do Rio)",
           "routeOrder": 11040,
-          "title": "Goblin Tigre"
+          "title": "Goblin Tigre",
+          "memoryTaskId": 6448
         },
         {
           "id": "e5",
@@ -3159,7 +3170,7 @@
       "order": 31,
       "classScope": "WB/WF",
       "minLevel": 18,
-      "maxLevel": "Sem limite",
+      "maxLevel": "28",
       "name": "Beleza Divina",
       "npc": "Mãe Divina (417, 645)",
       "location": "Cidade do Rio (417, 645)",
@@ -3175,7 +3186,8 @@
           "markerX": 417,
           "markerY": 645,
           "routeOrder": 11010,
-          "title": "Pegar a Taça"
+          "title": "Beleza Divina",
+          "memoryTaskId": 237
         },
         {
           "id": "e2",
@@ -3183,7 +3195,8 @@
           "markerX": 246,
           "markerY": 646,
           "routeOrder": 11060,
-          "title": "Pegar a Taça"
+          "title": "Pegar a Taça",
+          "memoryTaskId": 240
         },
         {
           "id": "e3",
@@ -3191,7 +3204,8 @@
           "markerX": 417,
           "markerY": 645,
           "routeOrder": 11070,
-          "title": "Pegar a Taça"
+          "title": "Perguntar à Mãe",
+          "memoryTaskId": 243
         },
         {
           "id": "e4",
@@ -3199,13 +3213,15 @@
           "markerX": 246,
           "markerY": 646,
           "routeOrder": 11080,
-          "title": "Pegar a Taça"
+          "title": "Contar a Verdade",
+          "memoryTaskId": 250
         },
         {
           "id": "e5",
           "action": "Pegar (10) Taça de Sangue Verdejante matando Aranha do Gramado (Noroeste da Cidade do Rio)",
           "routeOrder": 11090,
-          "title": "Matar Aranhas"
+          "title": "Matar Aranhas",
+          "memoryTaskId": 252
         },
         {
           "id": "e6",
@@ -3213,7 +3229,8 @@
           "markerX": 417,
           "markerY": 645,
           "routeOrder": 11100,
-          "title": "Pegar a Taça"
+          "title": "O Divino Desejo",
+          "memoryTaskId": 256
         }
       ],
       "expectedLevel": 18,
@@ -3323,14 +3340,14 @@
       "xp3": 0,
       "priority": "Essencial",
       "benefit": "1 moeda da DG19",
-      "instruction": "Pegue depois do cultivo; deixa de estar disponível após o nível 30.",
+      "instruction": "Conclua O Equilíbrio Celestial e pegue a moeda na mesma visita em que aceita o desafio da DG19.",
       "steps": [
         {
           "id": "e1",
           "action": "Pegue a Moeda Sangrenta de Ferro com Ancião (246, 646)",
           "markerX": 246,
           "markerY": 646,
-          "routeOrder": 11180,
+          "routeOrder": 11301,
           "title": "Moeda Sangrenta de Fer"
         }
       ],
@@ -3358,19 +3375,19 @@
           "action": "Aceite a missão com Ancião (246, 646)",
           "markerX": 246,
           "markerY": 646,
-          "routeOrder": 11190,
+          "routeOrder": 11302,
           "title": "Despachos aos Alados"
         },
         {
           "id": "e2",
           "action": "Matar (8) Lobo-rei das Profundezas e (8) Arqueiro das Profundezas (Dentro da Toca dos Lobos)",
-          "routeOrder": 11240,
+          "routeOrder": 11303,
           "title": "Exterminando o Mal"
         },
         {
           "id": "e3",
           "action": "Matar (1) Lobo Rei (Boss)",
-          "routeOrder": 11250,
+          "routeOrder": 11304,
           "title": "Mate Fenris",
           "memoryTaskId": 277
         },
@@ -3379,7 +3396,7 @@
           "action": "Entregue a missão para Ancião (246, 646)",
           "markerX": 246,
           "markerY": 646,
-          "routeOrder": 11260,
+          "routeOrder": 11305,
           "title": "Despachos aos Alados"
         }
       ],
@@ -3392,7 +3409,7 @@
       "order": 36,
       "classScope": "WB/WF",
       "minLevel": 19,
-      "maxLevel": "Sem limite",
+      "maxLevel": "40",
       "name": "Teste do Curandeiro",
       "npc": "Curandeiro (422, 648)",
       "location": "Cidade do Rio (422, 648)",
@@ -3412,9 +3429,10 @@
         },
         {
           "id": "e2",
-          "action": "Matar (30) Leão Nômade (Sudoeste da Cidade do Rio)",
+          "action": "Matar (5) Leão Nômade (Sudoeste da Cidade do Rio)",
           "routeOrder": 11120,
-          "title": "Leão Nômade"
+          "title": "Leão Nômade",
+          "memoryTaskId": 6449
         },
         {
           "id": "e3",
@@ -3426,9 +3444,10 @@
         },
         {
           "id": "e4",
-          "action": "Matar (30) Lobo das Cavernas (Arredores da Toca dos Lobos)",
+          "action": "Matar (5) Lobo das Cavernas (Arredores da Toca dos Lobos)",
           "routeOrder": 11140,
-          "title": "Lobo das Cavernas"
+          "title": "Lobo das Cavernas",
+          "memoryTaskId": 6450
         },
         {
           "id": "e5",
@@ -3440,9 +3459,10 @@
         },
         {
           "id": "e6",
-          "action": "Matar (30) Feroz Lobo das Cavernas (Arredores da Toca dos Lobos)",
+          "action": "Matar (5) Feroz Lobo das Cavernas (Arredores da Toca dos Lobos)",
           "routeOrder": 11160,
-          "title": "Lobo das Cavernas"
+          "title": "Feroz Lobo das Caverna",
+          "memoryTaskId": 6451
         },
         {
           "id": "e7",
@@ -3463,7 +3483,7 @@
       "order": 1,
       "classScope": "EA/EP",
       "minLevel": 1,
-      "maxLevel": "Sem limite",
+      "maxLevel": "3",
       "name": "Nova Chegada",
       "npc": "Guia Jace Johnson (369, 461)",
       "location": "Vila Lou Ying (369, 461)",
@@ -3505,7 +3525,7 @@
       "order": 2,
       "classScope": "EA/EP",
       "minLevel": 1,
-      "maxLevel": "Sem limite",
+      "maxLevel": "6",
       "name": "Presente para o Guarda",
       "npc": "Guia Jace Johnson (369, 461)",
       "location": "Vila Lou Ying (369, 461)",
@@ -3520,7 +3540,7 @@
           "action": "Aceite a missão com Guia Jace Johnson (369, 461)",
           "markerX": 369,
           "markerY": 461,
-          "routeOrder": 10010,
+          "routeOrder": 10031,
           "title": "Presente para o Guarda"
         },
         {
@@ -3549,7 +3569,7 @@
       "order": 3,
       "classScope": "EA/EP",
       "minLevel": 1,
-      "maxLevel": "Sem limite",
+      "maxLevel": "5",
       "name": "O Renascer dos Alados",
       "npc": "Anciã (328, 428)",
       "location": "Cidade das Plumas (328, 428)",
@@ -3632,7 +3652,7 @@
       "order": 4,
       "classScope": "EA/EP",
       "minLevel": 3,
-      "maxLevel": "Sem limite",
+      "maxLevel": "8",
       "name": "Aldeões Feridos",
       "npc": "Guarda Ewlen (321, 419)",
       "location": "Cidade das Plumas (321, 419)",
@@ -3647,7 +3667,7 @@
           "action": "Aceite a missão com Guarda Ewlen (321, 419)",
           "markerX": 321,
           "markerY": 419,
-          "routeOrder": 10130,
+          "routeOrder": 10101,
           "title": "Aldeões Ansiosos"
         },
         {
@@ -3736,7 +3756,7 @@
       "order": 6,
       "classScope": "EA/EP",
       "minLevel": 4,
-      "maxLevel": "Sem limite",
+      "maxLevel": "10",
       "name": "O Cacto Espinhoso",
       "npc": "Sacerdotisa (325, 424)",
       "location": "Cidade das Plumas (325, 424)",
@@ -3756,7 +3776,7 @@
         },
         {
           "id": "e2",
-          "action": "Matar (12) Cacto Espinhoso (Leste da Cidade das Plumas - Floresta Yuja) (366, 431)",
+          "action": "Matar (10) Cacto Espinhoso (Leste da Cidade das Plumas - Floresta Yuja) (366, 431)",
           "markerX": 366,
           "markerY": 431,
           "routeOrder": 10290,
@@ -3781,10 +3801,10 @@
       "order": 7,
       "classScope": "EA/EP",
       "minLevel": 4,
-      "maxLevel": "Sem limite",
+      "maxLevel": "10",
       "name": "Livro de Fundição",
-      "npc": "Alfaiate Silen (334, 408)",
-      "location": "Cidade das Plumas (334, 408)",
+      "npc": "Alfaiate Hevin (321, 433)",
+      "location": "Cidade das Plumas (321, 433)",
       "baseXp": 580,
       "xp3": 1740,
       "priority": "Alta",
@@ -3793,11 +3813,12 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Aceite a missão com Alfaiate Silen (334, 408) ou Alfaiate Hevin (321, 433)",
-          "markerX": 334,
-          "markerY": 408,
+          "action": "Aceite a missão com Alfaiate Hevin (321, 433)",
+          "markerX": 321,
+          "markerY": 433,
           "routeOrder": 10180,
-          "title": "Livro de Fundição"
+          "title": "Livro de Fundição",
+          "memoryTaskId": 80
         },
         {
           "id": "e2",
@@ -3878,7 +3899,7 @@
       "order": 9,
       "classScope": "EA/EP",
       "minLevel": 5,
-      "maxLevel": "Sem limite",
+      "maxLevel": "12",
       "name": "Confiança dos Guardas",
       "npc": "Guarda Ewlen (321, 419)",
       "location": "Cidade das Plumas (321, 419)",
@@ -3922,7 +3943,7 @@
       "order": 10,
       "classScope": "EA/EP",
       "minLevel": 6,
-      "maxLevel": "Sem limite",
+      "maxLevel": "14",
       "name": "Bambu dos Selvagens",
       "npc": "Gerente do Estaleiro (340, 371)",
       "location": "Lago das Plumas (340, 371)",
@@ -3967,7 +3988,7 @@
       "order": 11,
       "classScope": "EA/EP",
       "minLevel": 6,
-      "maxLevel": "Automática",
+      "maxLevel": "6",
       "name": "Vila do Bambu",
       "npc": "Automática ao atingir o nível 6",
       "location": "Vila do Bambu (369, 351)",
@@ -4003,7 +4024,7 @@
       "order": 12,
       "classScope": "EA/EP",
       "minLevel": 7,
-      "maxLevel": "Sem limite",
+      "maxLevel": "16",
       "name": "Mão e Coração de Ouro",
       "npc": "Nana Johnson (372, 351)",
       "location": "Vila do Bambu (372, 351)",
@@ -4046,8 +4067,8 @@
       "routeKey": "EAEP",
       "order": 13,
       "classScope": "EA/EP",
-      "minLevel": 8,
-      "maxLevel": "Sem limite",
+      "minLevel": 7,
+      "maxLevel": "16",
       "name": "Estar em Perigo",
       "npc": "Líder da Vila do Bambu (369, 351)",
       "location": "Vila do Bambu (369, 351)",
@@ -4091,7 +4112,7 @@
       "order": 14,
       "classScope": "EA/EP",
       "minLevel": 8,
-      "maxLevel": "Sem limite",
+      "maxLevel": "18",
       "name": "As Fadas das Águas",
       "npc": "Líder da Vila do Bambu (369, 351)",
       "location": "Vila do Bambu (369, 351)",
@@ -4137,7 +4158,7 @@
       "minLevel": 8,
       "maxLevel": "Sem limite",
       "name": "Matar Cobras Nagas",
-      "npc": "Líder da Vila do Bambu (369, 351)",
+      "npc": "Comerciante Junien (371, 350), após As Fadas das Águas",
       "location": "Vila do Bambu (369, 351)",
       "baseXp": 300,
       "xp3": 900,
@@ -4147,11 +4168,12 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Aceite a missão com Lider da Vila do Bambu (369, 351)",
-          "markerX": 369,
-          "markerY": 351,
-          "routeOrder": 10450,
-          "title": "Matar Cobras Nagas"
+          "action": "Receba Matar Cobras Nagas ao entregar As Fadas das Águas a Comerciante Junien (371, 350). Se não aparecer, confira com Comerciante Dawgorn (342, 406).",
+          "markerX": 371,
+          "markerY": 350,
+          "routeOrder": 10471,
+          "title": "Matar Cobras Nagas",
+          "memoryTaskId": 407
         },
         {
           "id": "e2",
@@ -4179,7 +4201,7 @@
       "order": 16,
       "classScope": "EA/EP",
       "minLevel": 8,
-      "maxLevel": "Sem limite",
+      "maxLevel": "18",
       "name": "Benção de Aniversário",
       "npc": "Nana Johnson (372, 351)",
       "location": "Vila do Bambu (372, 351)",
@@ -4224,7 +4246,7 @@
       "order": 17,
       "classScope": "EA/EP",
       "minLevel": 9,
-      "maxLevel": "Sem limite",
+      "maxLevel": "20",
       "name": "Força da Floresta",
       "npc": "Nana Johnson (372, 351)",
       "location": "Vila do Bambu (372, 351)",
@@ -4244,11 +4266,12 @@
         },
         {
           "id": "e2",
-          "action": "Matar (25) Besouro Estrela (Montanha Branca) (377, 309)",
+          "action": "Matar (10) Besouro Estrela (Montanha Branca) (377, 309)",
           "markerX": 377,
           "markerY": 309,
           "routeOrder": 10500,
-          "title": "Matar Besouro Estrela"
+          "title": "Matar Besouro Estrela",
+          "memoryTaskId": 487
         },
         {
           "id": "e3",
@@ -4332,11 +4355,12 @@
         },
         {
           "id": "e3",
-          "action": "Matar (9) Fantasma Amotinado (Montanha Branca) (317,312)",
+          "action": "Matar (10) Fantasma Amotinado (Montanha Branca) (317,312)",
           "markerX": 317,
           "markerY": 312,
           "routeOrder": 10630,
-          "title": "Fantasmas Amotinados"
+          "title": "Fantasmas Amotinados",
+          "memoryTaskId": 968
         },
         {
           "id": "e4",
@@ -4356,7 +4380,7 @@
       "order": 20,
       "classScope": "EA/EP",
       "minLevel": 10,
-      "maxLevel": "Sem limite",
+      "maxLevel": "25",
       "name": "Emblema da Coragem",
       "npc": "Anciã (327, 427)",
       "location": "Cidade das Plumas (327, 427)",
@@ -4408,7 +4432,7 @@
       "order": 21,
       "classScope": "EA/EP",
       "minLevel": 10,
-      "maxLevel": "Sem limite",
+      "maxLevel": "20",
       "name": "Flor Sangrenta",
       "npc": "Sacerdotisa (326, 425)",
       "location": "Cidade das Plumas (326, 425)",
@@ -4453,7 +4477,7 @@
       "order": 22,
       "classScope": "EA/EP",
       "minLevel": 11,
-      "maxLevel": "Automática",
+      "maxLevel": "11",
       "name": "Vila Nanke",
       "npc": "Automática ao atingir o nível 11",
       "location": "Vila Nanke (209, 308)",
@@ -4489,7 +4513,7 @@
       "order": 23,
       "classScope": "EA/EP",
       "minLevel": 12,
-      "maxLevel": "Sem limite",
+      "maxLevel": "20",
       "name": "Troca de Técnicas",
       "npc": "Ferreiro Endrieth (337, 406)",
       "location": "Cidade das Plumas (337, 406)",
@@ -4541,7 +4565,7 @@
       "order": 24,
       "classScope": "EA/EP",
       "minLevel": 13,
-      "maxLevel": "Sem limite",
+      "maxLevel": "30",
       "name": "O Sonho de Nanke",
       "npc": "Boticário Elfin Kosh (210, 326)",
       "location": "Vila Nanke (210, 326)",
@@ -4556,12 +4580,12 @@
           "action": "Aceite a missão com Boticário Elfin Kosh (210, 326)",
           "markerX": 210,
           "markerY": 326,
-          "routeOrder": 10760,
+          "routeOrder": 10711,
           "title": "O Sonho de Nanke"
         },
         {
           "id": "e2",
-          "action": "Matar (30) Peste Escandalosa (Norte da Vila Nanke) (215, 330)",
+          "action": "Matar (10) Peste Escandalosa (Norte da Vila Nanke) (215, 330)",
           "markerX": 215,
           "markerY": 330,
           "routeOrder": 10770,
@@ -4585,7 +4609,7 @@
       "order": 25,
       "classScope": "EA/EP",
       "minLevel": 14,
-      "maxLevel": "Sem limite",
+      "maxLevel": "40",
       "name": "A Linha de Defesa",
       "npc": "Anciã (327, 427)",
       "location": "Cidade das Plumas (327, 427)",
@@ -4661,7 +4685,7 @@
       "order": 26,
       "classScope": "EA/EP",
       "minLevel": 15,
-      "maxLevel": "Sem limite",
+      "maxLevel": "40",
       "name": "Veneno da Água Corrente",
       "npc": "Comerciante Valmith (204, 324)",
       "location": "Vila Nanke (204, 324)",
@@ -4681,7 +4705,7 @@
         },
         {
           "id": "e2",
-          "action": "Matar (20) Espírito da Água Corrente (Sul da Vila Nanke) (221, 337)",
+          "action": "Matar (7) Espírito da Água Corrente (Sul da Vila Nanke) (221, 337)",
           "markerX": 221,
           "markerY": 337,
           "routeOrder": 10870,
@@ -4706,7 +4730,7 @@
       "order": 27,
       "classScope": "EA/EP",
       "minLevel": 16,
-      "maxLevel": "Sem limite",
+      "maxLevel": "26",
       "name": "Amostra de Veneno",
       "npc": "Boticário Elfin Kosh (210, 326)",
       "location": "Vila Nanke (210, 326)",
@@ -4750,7 +4774,7 @@
       "order": 28,
       "classScope": "EA/EP",
       "minLevel": 17,
-      "maxLevel": "Sem limite",
+      "maxLevel": "40",
       "name": "Força na Perna",
       "npc": "Ferreiro Lenon Osbarny (223, 413)",
       "location": "Vila dos Bárbaros (223, 413)",
@@ -4770,7 +4794,7 @@
         },
         {
           "id": "e2",
-          "action": "Matar (20) Marta-Rei Devorador de Cobras (Norte da Vila dos Bárbaros - Montanha dos Cisnes) (217, 456)",
+          "action": "Matar (7) Marta-Rei Devorador de Cobras (Norte da Vila dos Bárbaros - Montanha dos Cisnes) (217, 456)",
           "markerX": 217,
           "markerY": 456,
           "routeOrder": 10930,
@@ -4956,14 +4980,14 @@
       "xp3": 0,
       "priority": "Essencial",
       "benefit": "1 moeda da DG19",
-      "instruction": "Pegue depois do cultivo; deixa de estar disponível após o nível 30.",
+      "instruction": "Conclua O Equilíbrio Celestial e pegue a moeda na mesma visita em que aceita o desafio da DG19.",
       "steps": [
         {
           "id": "e1",
           "action": "Pegue a Moeda Sangrenta de Ferro com Anciã (327, 427)",
           "markerX": 327,
           "markerY": 427,
-          "routeOrder": 11030,
+          "routeOrder": 11151,
           "title": "Moeda Sangrenta de Fer"
         }
       ],
@@ -4991,20 +5015,20 @@
           "action": "Aceite a missão com Anciã (327, 427)",
           "markerX": 327,
           "markerY": 427,
-          "routeOrder": 11040,
+          "routeOrder": 11152,
           "title": "Exibição de Talento"
         },
         {
           "id": "e2",
           "action": "Matar (6) Cobra Naga das Rochas",
-          "routeOrder": 11060,
+          "routeOrder": 11153,
           "title": "Matar o Monstro Feroz",
           "memoryTaskId": 214
         },
         {
           "id": "e3",
           "action": "Matar (1) Escorpião das Sombras (Boss - Ataque Físico a Curta Distância)",
-          "routeOrder": 11070,
+          "routeOrder": 11154,
           "title": "Matar o Monstro Feroz"
         },
         {
@@ -5012,7 +5036,7 @@
           "action": "Entregue a missão para Anciã (327, 427)",
           "markerX": 327,
           "markerY": 427,
-          "routeOrder": 11080,
+          "routeOrder": 11155,
           "title": "Exibição de Talento"
         }
       ],
@@ -5025,7 +5049,7 @@
       "order": 34,
       "classScope": "EA/EP",
       "minLevel": 19,
-      "maxLevel": "Sem limite",
+      "maxLevel": "40",
       "name": "Teste de Capacidade",
       "npc": "Sacerdotisa (325, 424)",
       "location": "Cidade das Plumas (325, 424)",
@@ -5045,11 +5069,12 @@
         },
         {
           "id": "e2",
-          "action": "Matar (30) Anta de Chifre Longo (Região do Rio da Alegria) (309, 493)",
+          "action": "Matar (5) Anta de Chifre Longo (Região do Rio da Alegria) (309, 493)",
           "markerX": 309,
           "markerY": 493,
           "routeOrder": 11120,
-          "title": "Anta de Chifre Longo"
+          "title": "Anta de Chifre Longo",
+          "memoryTaskId": 6452
         },
         {
           "id": "e3",
@@ -5061,11 +5086,12 @@
         },
         {
           "id": "e4",
-          "action": "Matar (30) Besteiro Lupino (Região do Rio da Alegria) (310, 470)",
+          "action": "Matar (5) Besteiro Lupino (Região do Rio da Alegria) (310, 470)",
           "markerX": 310,
           "markerY": 470,
           "routeOrder": 11180,
-          "title": "Besteiro Lupino"
+          "title": "Besteiro Lupino",
+          "memoryTaskId": 6453
         },
         {
           "id": "e5",
@@ -5077,11 +5103,12 @@
         },
         {
           "id": "e6",
-          "action": "Matar (30) Escorpião-rei Letal (Região do Rio da Alegria) (310, 470)",
+          "action": "Matar (5) Escorpião-rei Letal (Região do Rio da Alegria) (310, 470)",
           "markerX": 310,
           "markerY": 470,
           "routeOrder": 11200,
-          "title": "Escorpião-Rei Letal"
+          "title": "Escorpião-Rei Letal",
+          "memoryTaskId": 6454
         },
         {
           "id": "e7",
@@ -5102,7 +5129,7 @@
       "order": 35,
       "classScope": "EA/EP",
       "minLevel": 19,
-      "maxLevel": "Sem limite",
+      "maxLevel": "30",
       "name": "As Contramedidas",
       "npc": "Anciã (327, 427)",
       "location": "Cidade das Plumas (327, 427)",
@@ -5154,7 +5181,7 @@
       "order": 1,
       "classScope": "MC/ES",
       "minLevel": 1,
-      "maxLevel": "Sem limite",
+      "maxLevel": "3",
       "name": "Primeira Missão",
       "npc": "Guia dos Novatos (656, 208)",
       "location": "Vila Dente do Dragão (656, 208)",
@@ -5194,7 +5221,7 @@
       "order": 2,
       "classScope": "MC/ES",
       "minLevel": 2,
-      "maxLevel": "Sem limite",
+      "maxLevel": "5",
       "name": "Cidade das Tormentas",
       "npc": "Guia dos Novatos (656, 208)",
       "location": "Vila Dente do Dragão (656, 208)",
@@ -5218,7 +5245,7 @@
           "action": "Visite o Ancião (657, 143) - para ir nele é necessário se transportá-lo No edifício para trás e para a direita da Guia dos novato é uma matriz Teleport (662, 210). Isto irá transportá-lo para Cidade da Tormentas",
           "markerX": 657,
           "markerY": 143,
-          "routeOrder": 10200,
+          "routeOrder": 10031,
           "title": "Visitar Ancião",
           "memoryTaskId": 20178
         },
@@ -5227,7 +5254,7 @@
           "action": "Fale com Artesã (660, 122)",
           "markerX": 660,
           "markerY": 122,
-          "routeOrder": 10230,
+          "routeOrder": 10032,
           "title": "Visitar Artesã",
           "memoryTaskId": 20108
         },
@@ -5236,7 +5263,7 @@
           "action": "Fale com Ferreiro (661, 120)",
           "markerX": 661,
           "markerY": 120,
-          "routeOrder": 10240,
+          "routeOrder": 10033,
           "title": "Visitar Ferreiro",
           "memoryTaskId": 20105
         },
@@ -5245,7 +5272,7 @@
           "action": "Fale com Alfaiate (662, 121)",
           "markerX": 662,
           "markerY": 121,
-          "routeOrder": 10250,
+          "routeOrder": 10034,
           "title": "Visitar Alfaiate",
           "memoryTaskId": 20106
         },
@@ -5254,7 +5281,7 @@
           "action": "Fale com Comerciante (665, 118)",
           "markerX": 665,
           "markerY": 118,
-          "routeOrder": 10260,
+          "routeOrder": 10035,
           "title": "Visitar Comerciante",
           "memoryTaskId": 20109
         },
@@ -5263,7 +5290,7 @@
           "action": "Converse com Boticário Ting Feng (667, 119)",
           "markerX": 667,
           "markerY": 119,
-          "routeOrder": 10270,
+          "routeOrder": 10036,
           "title": "Visitar Boticário",
           "memoryTaskId": 20107
         },
@@ -5272,7 +5299,7 @@
           "action": "Reporte ao Ancião (657, 143)",
           "markerX": 657,
           "markerY": 143,
-          "routeOrder": 10280,
+          "routeOrder": 10037,
           "title": "Voltar Para Ancião",
           "memoryTaskId": 20179
         },
@@ -5281,7 +5308,7 @@
           "action": "Retorne ao de Guia dos novatos (656, 208)",
           "markerX": 656,
           "markerY": 208,
-          "routeOrder": 10290,
+          "routeOrder": 10038,
           "title": "Volte para a Guia",
           "memoryTaskId": 20111
         },
@@ -5290,7 +5317,7 @@
           "action": "Fale com Guarda Vila Dente do Dragão (658, 203) (no interior do edifício)",
           "markerX": 658,
           "markerY": 203,
-          "routeOrder": 10300,
+          "routeOrder": 10039,
           "title": "Visitar Guarda",
           "memoryTaskId": 20176
         }
@@ -5304,7 +5331,7 @@
       "order": 3,
       "classScope": "MC/ES",
       "minLevel": 2,
-      "maxLevel": "Sem limite",
+      "maxLevel": "5",
       "name": "Problema de Crustáceo",
       "npc": "Guarda da Vila Dente do Dragão (658, 203)",
       "location": "Vila Dente do Dragão (658, 203)",
@@ -5348,7 +5375,7 @@
       "order": 4,
       "classScope": "MC/ES",
       "minLevel": 3,
-      "maxLevel": "Sem limite",
+      "maxLevel": "8",
       "name": "Item de Crédito",
       "npc": "Guarda da Vila Dente do Dragão (658, 203)",
       "location": "Vila Dente do Dragão (658, 203)",
@@ -5392,7 +5419,7 @@
       "order": 5,
       "classScope": "MC/ES",
       "minLevel": 4,
-      "maxLevel": "Sem limite",
+      "maxLevel": "12",
       "name": "A Montanha Nebulosa",
       "npc": "Guarda da Vila Dente do Dragão (658, 203)",
       "location": "Vila Dente do Dragão (658, 203)",
@@ -5440,7 +5467,7 @@
       "order": 6,
       "classScope": "MC/ES",
       "minLevel": 4,
-      "maxLevel": "Sem limite",
+      "maxLevel": "12",
       "name": "Pular em Telhados",
       "npc": "Guarda do Rio da Fonte Negra (629, 242)",
       "location": "Campo da Fonte Negra (629, 242)",
@@ -5484,7 +5511,7 @@
       "order": 7,
       "classScope": "MC/ES",
       "minLevel": 4,
-      "maxLevel": "Sem limite",
+      "maxLevel": "12",
       "name": "Ameaça Marinha",
       "npc": "Guarda do Rio da Fonte Negra (629, 242)",
       "location": "Campo da Fonte Negra (629, 242)",
@@ -5499,7 +5526,7 @@
           "action": "Fale com o Guarda Rio da Fonte Negra (629, 242)",
           "markerX": 629,
           "markerY": 242,
-          "routeOrder": 10130,
+          "routeOrder": 10191,
           "title": "Ameaça Marinha"
         },
         {
@@ -5507,7 +5534,7 @@
           "action": "Colete 10 Casco de Tartaruga Roxa ( Dropa da Tartaruga de Boca de Leão (628, 238)",
           "markerX": 628,
           "markerY": 238,
-          "routeOrder": 10150,
+          "routeOrder": 10192,
           "title": "Carapaça Entalhada"
         },
         {
@@ -5515,7 +5542,7 @@
           "action": "Retorne ao Guarda Rio da Fonte Negra (629, 242)",
           "markerX": 629,
           "markerY": 242,
-          "routeOrder": 10170,
+          "routeOrder": 10193,
           "title": "Ameaça Marinha"
         }
       ],
@@ -5562,7 +5589,7 @@
       "order": 9,
       "classScope": "MC/ES",
       "minLevel": 6,
-      "maxLevel": "Sem limite",
+      "maxLevel": "23",
       "name": "Ouvir Ensinamento",
       "npc": "Guarda do Rio da Fonte Negra (629, 241)",
       "location": "Campo da Fonte Negra (629, 241)",
@@ -5610,7 +5637,7 @@
       "order": 10,
       "classScope": "MC/ES",
       "minLevel": 7,
-      "maxLevel": "Sem limite",
+      "maxLevel": "19",
       "name": "Pérola de Lágrimas",
       "npc": "Guarda Lufu (630, 243)",
       "location": "Campo da Fonte Negra (630, 243)",
@@ -5698,7 +5725,7 @@
       "order": 11,
       "classScope": "MC/ES",
       "minLevel": 8,
-      "maxLevel": "Sem limite",
+      "maxLevel": "19",
       "name": "Paz de Noite",
       "npc": "Guarda Lu Buwei (645, 264)",
       "location": "Vila Ametista (645, 264)",
@@ -5823,7 +5850,7 @@
       "order": 14,
       "classScope": "MC/ES",
       "minLevel": 10,
-      "maxLevel": "Sem limite",
+      "maxLevel": "19",
       "name": "Limpar Monstros",
       "npc": "Oficial de Comunicação (687, 255)",
       "location": "Altar do Fogo Noturno (687, 255)",
@@ -5876,7 +5903,7 @@
       "order": 15,
       "classScope": "MC/ES",
       "minLevel": 10,
-      "maxLevel": "Sem limite",
+      "maxLevel": "23",
       "name": "Espinho Venenoso",
       "npc": "Guarda Lu Buwei (645, 264)",
       "location": "Vila Ametista (645, 264)",
@@ -5905,7 +5932,7 @@
         },
         {
           "id": "e3",
-          "action": "Retorne a Guarda Altar de Fogo Noturno (687, 255)",
+          "action": "Retorne a Guarda Altar do Fogo Noturno (687, 255)",
           "markerX": 687,
           "markerY": 255,
           "routeOrder": 10590,
@@ -5922,7 +5949,7 @@
       "order": 16,
       "classScope": "MC/ES",
       "minLevel": 11,
-      "maxLevel": "Sem limite",
+      "maxLevel": "23",
       "name": "Veneno Contra Veneno",
       "npc": "Guarda do Altar do Fogo Noturno (687, 255)",
       "location": "Altar do Fogo Noturno (687, 255)",
@@ -5934,10 +5961,10 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Fale com o Guarda Altar de Fogo Noturno (687, 255)",
+          "action": "Fale com o Guarda Altar do Fogo Noturno (687, 255)",
           "markerX": 687,
           "markerY": 255,
-          "routeOrder": 10580,
+          "routeOrder": 10591,
           "title": "Veneno Contra Veneno"
         },
         {
@@ -5964,7 +5991,7 @@
         },
         {
           "id": "e5",
-          "action": "Envio de Relatório para Oficial de Transporte Changqin (686, 256)",
+          "action": "Envio de Relatório para Oficial de Transporte Changqing (686, 256)",
           "markerX": 686,
           "markerY": 256,
           "routeOrder": 10630,
@@ -5980,9 +6007,9 @@
       "order": 17,
       "classScope": "MC/ES",
       "minLevel": 12,
-      "maxLevel": "Sem limite",
+      "maxLevel": "24",
       "name": "Vingança do Oficial",
-      "npc": "Oficial de Transporte Changqin (686, 255)",
+      "npc": "Oficial de Transporte Changqing (686, 255)",
       "location": "Altar do Fogo Noturno (686, 255)",
       "baseXp": 4000,
       "xp3": 12000,
@@ -5992,7 +6019,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Fale com o Oficial de Transporte Changqin (686, 255)",
+          "action": "Fale com o Oficial de Transporte Changqing (686, 255)",
           "markerX": 686,
           "markerY": 255,
           "routeOrder": 10640,
@@ -6008,7 +6035,7 @@
         },
         {
           "id": "e3",
-          "action": "Retorne a Oficial de Transporte Changqin (686, 255)",
+          "action": "Retorne a Oficial de Transporte Changqing (686, 255)",
           "markerX": 686,
           "markerY": 255,
           "routeOrder": 10660,
@@ -6024,7 +6051,7 @@
       "order": 18,
       "classScope": "MC/ES",
       "minLevel": 12,
-      "maxLevel": "Sem limite",
+      "maxLevel": "22",
       "name": "Perfect World",
       "npc": "Ancião (657, 143)",
       "location": "Cidade das Tormentas (657, 143)",
@@ -6096,7 +6123,7 @@
       "order": 20,
       "classScope": "MC/ES",
       "minLevel": 13,
-      "maxLevel": "Sem limite",
+      "maxLevel": "26",
       "name": "Uma Pedra Estranha",
       "npc": "Guarda Lumiao (686, 256)",
       "location": "Altar do Fogo Noturno (686, 256)",
@@ -6132,7 +6159,7 @@
         },
         {
           "id": "e4",
-          "action": "Fale com o Oficial de Transporte Changqin (686, 255)",
+          "action": "Fale com o Oficial de Transporte Changqing (686, 255)",
           "markerX": 686,
           "markerY": 255,
           "routeOrder": 10820,
@@ -6155,10 +6182,10 @@
       "routeKey": "MC",
       "order": 21,
       "classScope": "MC/ES",
-      "minLevel": 13,
-      "maxLevel": "Sem limite",
+      "minLevel": 14,
+      "maxLevel": "27",
       "name": "Notícia Ruim",
-      "npc": "Oficial de Transporte Changqin (687, 255)",
+      "npc": "Oficial de Transporte Changqing (687, 255)",
       "location": "Altar do Fogo Noturno (687, 255)",
       "baseXp": 3300,
       "xp3": 9900,
@@ -6168,10 +6195,10 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Fale com o Oficial de Transporte Changqin (687, 255)",
+          "action": "Fale com o Oficial de Transporte Changqing (687, 255)",
           "markerX": 687,
           "markerY": 255,
-          "routeOrder": 10680,
+          "routeOrder": 10834,
           "title": "Notícia Ruim"
         },
         {
@@ -6179,19 +6206,19 @@
           "action": "Mate Homem Monstro Violento (Torre de Osso de Tubarão 668, 220)",
           "markerX": 668,
           "markerY": 220,
-          "routeOrder": 10740,
+          "routeOrder": 10835,
           "title": "Notícia Ruim"
         },
         {
           "id": "e3",
-          "action": "Retorne ao Oficial de Transporte Changqin (687, 255)",
+          "action": "Retorne ao Oficial de Transporte Changqing (687, 255)",
           "markerX": 687,
           "markerY": 255,
-          "routeOrder": 10800,
+          "routeOrder": 10836,
           "title": "Notícia Ruim"
         }
       ],
-      "expectedLevel": 13,
+      "expectedLevel": 14,
       "historyTaskGroups": [[20148]]
     },
     {
@@ -6200,7 +6227,7 @@
       "order": 22,
       "classScope": "MC/ES",
       "minLevel": 13,
-      "maxLevel": "Sem limite",
+      "maxLevel": "26",
       "name": "Minério Perdido",
       "npc": "Guarda do Altar do Fogo Noturno (687, 255)",
       "location": "Altar do Fogo Noturno (687, 255)",
@@ -6212,7 +6239,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Fale com o Guarda Alter do Fogo Noturno (687, 255)",
+          "action": "Fale com o Guarda Altar do Fogo Noturno (687, 255)",
           "markerX": 687,
           "markerY": 255,
           "routeOrder": 10690,
@@ -6228,7 +6255,7 @@
         },
         {
           "id": "e3",
-          "action": "Retorne ao Guarda Alter do Fogo Noturno (687, 255)",
+          "action": "Retorne ao Guarda Altar do Fogo Noturno (687, 255)",
           "markerX": 687,
           "markerY": 255,
           "routeOrder": 10710,
@@ -6244,7 +6271,7 @@
       "order": 23,
       "classScope": "MC/ES",
       "minLevel": 14,
-      "maxLevel": "Sem limite",
+      "maxLevel": "27",
       "name": "Pedido do Guarda",
       "npc": "Oficial de Comunicação (686, 255)",
       "location": "Altar do Fogo Noturno (686, 255)",
@@ -6259,7 +6286,7 @@
           "action": "Fale com o Oficial de Comunicação (686, 255)",
           "markerX": 686,
           "markerY": 255,
-          "routeOrder": 10720,
+          "routeOrder": 10831,
           "title": "Pedido do Guarda"
         },
         {
@@ -6267,7 +6294,7 @@
           "action": "Colete 4 Não Traduzido ( é uma rocha vermelha (678, 234)679, 238 677, 241 672, 238 673, 224)",
           "markerX": 678,
           "markerY": 234,
-          "routeOrder": 10730,
+          "routeOrder": 10832,
           "title": "Pedido do Guarda"
         },
         {
@@ -6275,7 +6302,7 @@
           "action": "Retorne ao Oficial de Comunicação (686, 255)",
           "markerX": 686,
           "markerY": 255,
-          "routeOrder": 10750,
+          "routeOrder": 10833,
           "title": "Pedido do Guarda"
         }
       ],
@@ -6288,7 +6315,7 @@
       "order": 24,
       "classScope": "MC/ES",
       "minLevel": 15,
-      "maxLevel": "Sem limite",
+      "maxLevel": "32",
       "name": "Alma do Espantalho",
       "npc": "Ancião (657, 143)",
       "location": "Cidade das Tormentas (657, 143)",
@@ -6333,7 +6360,7 @@
       "order": 25,
       "classScope": "MC/ES",
       "minLevel": 16,
-      "maxLevel": "Sem limite",
+      "maxLevel": "23",
       "name": "Sem Retorno",
       "npc": "Ancião (657, 143)",
       "location": "Cidade das Tormentas (657, 143)",
@@ -6359,7 +6386,7 @@
         },
         {
           "id": "e3",
-          "action": "Fale com General Lu Guilhai (664, 133)",
+          "action": "Fale com General Lu Guihai (664, 133)",
           "markerX": 664,
           "markerY": 133,
           "routeOrder": 10910,
@@ -6384,7 +6411,7 @@
         },
         {
           "id": "e6",
-          "action": "Retorne ao General Lu Guilhai (664, 133)",
+          "action": "Retorne ao General Lu Guihai (664, 133)",
           "markerX": 664,
           "markerY": 133,
           "routeOrder": 11010,
@@ -6400,7 +6427,7 @@
       "order": 26,
       "classScope": "MC/ES",
       "minLevel": 16,
-      "maxLevel": "Sem limite",
+      "maxLevel": "50",
       "name": "Conspiração",
       "npc": "Tagarela (622, 138)",
       "location": "Templo das Nuvens (622, 138)",
@@ -6452,7 +6479,7 @@
       "order": 27,
       "classScope": "MC/ES",
       "minLevel": 16,
-      "maxLevel": "Sem limite",
+      "maxLevel": "23",
       "name": "Informação do Inimigo",
       "npc": "Ancião (657, 143)",
       "location": "Cidade das Tormentas (657, 143)",
@@ -6472,7 +6499,7 @@
         },
         {
           "id": "e2",
-          "action": "Reporte ao General Lu Guilhai (664, 133)",
+          "action": "Reporte ao General Lu Guihai (664, 133)",
           "markerX": 664,
           "markerY": 133,
           "routeOrder": 10920,
@@ -6496,7 +6523,7 @@
       "order": 28,
       "classScope": "MC/ES",
       "minLevel": 17,
-      "maxLevel": "Sem limite",
+      "maxLevel": "27",
       "name": "Chave - Monstro do Mar",
       "npc": "Sacerdote Yun Kongji (662, 133)",
       "location": "Cidade das Tormentas (662, 133)",
@@ -6524,7 +6551,7 @@
         },
         {
           "id": "e3",
-          "action": "Reporte ao Konchi Priest (662, 133)",
+          "action": "Reporte ao Sacerdote Yun Kongji (662, 133)",
           "markerX": 662,
           "markerY": 133,
           "routeOrder": 11030,
@@ -6540,7 +6567,7 @@
       "order": 29,
       "classScope": "MC/ES",
       "minLevel": 18,
-      "maxLevel": "Sem limite",
+      "maxLevel": "35",
       "name": "Herança de Família",
       "npc": "Guarda Lu Youzhou (671, 116)",
       "location": "Cidade das Tormentas (671, 116)",
@@ -6585,7 +6612,7 @@
       "order": 30,
       "classScope": "MC/ES",
       "minLevel": 18,
-      "maxLevel": "Sem limite",
+      "maxLevel": "35",
       "name": "Atrição do Velho Sold.",
       "npc": "Guarda do Acampamento Quebra-Onda (670, 175)",
       "location": "Acampamento Quebra-Onda (670, 175)",
@@ -6747,7 +6774,7 @@
           "action": "Fale com General Lu Guihai (664, 133)",
           "markerX": 664,
           "markerY": 133,
-          "routeOrder": 11080,
+          "routeOrder": 11031,
           "title": "Matar o Monstro do Mar"
         },
         {
@@ -6780,7 +6807,7 @@
       "order": 34,
       "classScope": "MC/ES",
       "minLevel": 19,
-      "maxLevel": "Sem limite",
+      "maxLevel": "27",
       "name": "Bandeira do Embaixador",
       "npc": "Ministro Lu Jiuxi (662, 132)",
       "location": "Cidade das Tormentas (662, 132)",
@@ -6910,7 +6937,7 @@
       "classScope": "WR/MG",
       "minLevel": 23,
       "expectedLevel": 23,
-      "maxLevel": "Sem limite",
+      "maxLevel": "28",
       "name": "Segredo do Ancião",
       "npc": "Ancião da Cidade do Dragão (570, 648)",
       "location": "Cidade do Dragão / Templo das Orquídeas",
@@ -6954,7 +6981,7 @@
       "classScope": "WB/WF",
       "minLevel": 23,
       "expectedLevel": 23,
-      "maxLevel": "Sem limite",
+      "maxLevel": "28",
       "name": "Segredo do Ancião",
       "npc": "Ancião da Cidade do Dragão (570, 648)",
       "location": "Cidade do Dragão / Templo das Orquídeas",
@@ -7129,88 +7156,162 @@
       "expectedLevel": 20,
       "maxLevel": "Sem limite",
       "name": "Encontre o Caçador de",
-      "npc": "Cidade das Plumas (Vila Lou Ying) – (423, 835)",
-      "location": "Cidade das Plumas (Vila Lou Ying) – (423, 835)",
+      "npc": "Dynamos Lenkir (543, 653) e Caçador de Dragões",
+      "location": "Cidade do Dragão, vilas iniciais e capitais raciais",
       "baseXp": 15000,
       "xp3": 45000,
       "priority": "Alta",
       "benefit": "XP ×3 e progresso concentrado",
-      "instruction": "Rota otimizada do nível 20: aceite nos mesmos clientes, compartilhe abates e faça a entrega em bloco.",
+      "instruction": "Esta cadeia libera a Caçada ao Dragão e exige visitas às capitais. Separe 5 Garras Cegas, 5 Mel, 5 Fragmentos Elementais e 5 Bolsas de Couro antes de sair.",
       "steps": [
         {
+          "id": "otaku-aceite",
+          "routeOrder": 1199997,
+          "memoryTaskId": 4848,
+          "title": "Dragão Otaku",
+          "action": "Aceite Dragão Otaku com Dynamos Lenkir (543, 653)",
+          "markerX": 543,
+          "markerY": 653
+        },
+        {
+          "id": "otaku-entrega",
+          "routeOrder": 1199998,
+          "memoryTaskId": 4848,
+          "title": "Dragão Otaku",
+          "action": "Entregue Dragão Otaku a um Caçador de Dragões de uma vila inicial"
+        },
+        {
+          "id": "caçador-aceite",
+          "routeOrder": 1199999,
+          "memoryTaskId": 6365,
+          "title": "Encontre o Caçador de",
+          "action": "Aceite Encontre o Caçador de Dragões com o mesmo Caçador"
+        },
+        {
           "id": "e1",
-          "action": "Fale com o Boloshy (581, 685) no norte da Cidade do Dragão",
-          "markerX": 581,
-          "markerY": 685,
+          "action": "Fale com Boloshy na Cidade do Dragão (582, 686)",
+          "markerX": 582,
+          "markerY": 686,
           "routeOrder": 1200000,
-          "title": "Boloshy No.1"
+          "title": "Boloshy No.1",
+          "memoryTaskId": 6366
         },
         {
           "id": "e2",
-          "action": "Pegar (5) Garra Cega",
+          "action": "Reúna 5 Garras Cegas",
           "routeOrder": 1200100,
-          "title": "Líder da Vila Antiga"
+          "title": "Líder da Vila Antiga",
+          "memoryTaskId": 6367
+        },
+        {
+          "id": "garras-entrega",
+          "routeOrder": 1200101,
+          "memoryTaskId": 6367,
+          "title": "Líder da Vila Antiga",
+          "action": "Entregue 5 Garras Cegas ao Antigo Chefe da Vila (497, 868)",
+          "markerX": 497,
+          "markerY": 868
         },
         {
           "id": "e3",
-          "action": "Pegar (5) Mel",
+          "action": "Reúna 5 Mel",
           "routeOrder": 1200200,
-          "title": "Tong Youke"
+          "title": "Tong Youke",
+          "memoryTaskId": 6368
         },
         {
           "id": "e4",
-          "action": "Fale com o Convidado Tranquilo (443, 563) na Residência do Lago Espelhado",
-          "markerX": 443,
-          "markerY": 563,
+          "action": "Entregue 5 Mel a Tong Youke (444, 564)",
+          "markerX": 444,
+          "markerY": 564,
           "routeOrder": 1200300,
-          "title": "Tong Youke"
+          "title": "Tong Youke",
+          "memoryTaskId": 6368
+        },
+        {
+          "id": "caçador-feras",
+          "routeOrder": 1200301,
+          "memoryTaskId": 6369,
+          "title": "O Ancião da Cidade das",
+          "action": "Fale com o Ancião da Cidade das Feras (246, 647). Escolha entre matar 40 Rinocerontes de Pedra ou pagar 13.000 moedas.",
+          "markerX": 246,
+          "markerY": 647
         },
         {
           "id": "e5",
-          "action": "Fale com o Ferreiro Derel Wunit (531, 658) no Oeste da Cidade do Dragão",
-          "markerX": 531,
-          "markerY": 658,
+          "action": "Fale com Ferreiro Derel Wunit na Cidade do Dragão (532, 659)",
+          "markerX": 532,
+          "markerY": 659,
           "routeOrder": 1200400,
-          "title": "Derel Wunit"
+          "title": "Derel Wunit",
+          "memoryTaskId": 6370
         },
         {
           "id": "e6",
-          "action": "Pegar (5) Fragmento Elemental",
+          "action": "Reúna 5 Fragmentos Elementais",
           "routeOrder": 1200500,
-          "title": "Johen Walkin"
+          "title": "Johen Walkin",
+          "memoryTaskId": 6371
         },
         {
           "id": "e7",
-          "action": "Fale com o Escriba Johen Walkin (429, 880) na Cidade das Espadas",
+          "action": "Entregue 5 Fragmentos Elementais a Escriba Johen Walkin (429, 880)",
           "markerX": 429,
           "markerY": 880,
           "routeOrder": 1200600,
-          "title": "Johen Walkin"
+          "title": "Johen Walkin",
+          "memoryTaskId": 6371
         },
         {
           "id": "e8",
-          "action": "Fale com a Anciã (327, 427) na Cidade das Plumas",
-          "markerX": 327,
-          "markerY": 427,
+          "action": "Fale com a Anciã da Cidade das Plumas (328, 428)",
+          "markerX": 328,
+          "markerY": 428,
           "routeOrder": 1201200,
-          "title": "Ancião da Cidade das P"
+          "title": "Ancião da Cidade das P",
+          "memoryTaskId": 6372
         },
         {
           "id": "e9",
-          "action": "Pegar (5) Bolsa de Couro",
+          "action": "Reúna 5 Bolsas de Couro",
           "routeOrder": 1201500,
-          "title": "Encontre Sirier Varek"
+          "title": "Encontre Sirier Varek",
+          "memoryTaskId": 6373
         },
         {
           "id": "e10",
-          "action": "Fale com o Comerciante Sirier Varek (428, 879) na Cidade das Espadas",
-          "markerX": 428,
-          "markerY": 879,
+          "action": "Entregue 5 Bolsas de Couro a Comerciante Sirier Varek (429, 880)",
+          "markerX": 429,
+          "markerY": 880,
           "routeOrder": 1201600,
-          "title": "Encontre Sirier Varek"
+          "title": "Encontre Sirier Varek",
+          "memoryTaskId": 6373
+        },
+        {
+          "id": "caçador-regen",
+          "routeOrder": 1201601,
+          "memoryTaskId": 6374,
+          "title": "Encontre Regen Kjord N",
+          "action": "Fale com Regen Kjord na Cidade do Dragão (527, 653)",
+          "markerX": 527,
+          "markerY": 653
+        },
+        {
+          "id": "caçador-duendes",
+          "routeOrder": 1201602,
+          "memoryTaskId": 6375,
+          "title": "Encontre o Caçador de",
+          "action": "Mate 10 Duendes da Terra"
+        },
+        {
+          "id": "caçador-entrega",
+          "routeOrder": 1201603,
+          "memoryTaskId": 6375,
+          "title": "Encontre o Caçador de",
+          "action": "Entregue a missão ao Caçador de Dragões de uma vila inicial"
         }
       ],
-      "historyTaskGroups": [[6365]]
+      "historyTaskGroups": [[4848], [6365]]
     },
     {
       "id": "COMMON|ALL|20|Jamile e Max",
@@ -7219,7 +7320,7 @@
       "classScope": "ALL",
       "minLevel": 20,
       "expectedLevel": 20,
-      "maxLevel": "Sem limite",
+      "maxLevel": "50",
       "name": "Jamile e Max",
       "npc": "Jamile Brown (227, 554)",
       "location": "Vila da Ponte Quebrada (227, 554)",
@@ -7339,7 +7440,7 @@
         {
           "id": "e4",
           "action": "Mate 15 Lobos das Cinzas e 15 Lobos Escarlates na Mina",
-          "routeOrder": 1210700,
+          "routeOrder": 1203798,
           "title": "Ameaça do Lobo"
         },
         {
@@ -7347,7 +7448,7 @@
           "action": "Mate 8 Rinocerontes Terrestres e entregue ao General (521, 629)",
           "markerX": 521,
           "markerY": 629,
-          "routeOrder": 1210800,
+          "routeOrder": 1203799,
           "title": "Informe ao General Lotor Akre",
           "memoryTaskId": 1031
         }
@@ -7363,26 +7464,26 @@
       "expectedLevel": 21,
       "maxLevel": "Sem limite",
       "name": "Amuleto de Aroma",
-      "npc": "Shaiana Amiir (547, 687)",
+      "npc": "Shaina Amiir (547, 687)",
       "location": "Norte da Cidade do Dragão (547. 687)",
       "baseXp": 6600,
       "xp3": 19800,
       "priority": "Alta",
       "benefit": "XP ×3 e progresso concentrado",
-      "instruction": "Rota otimizada do nível 21: aceite nos mesmos clientes, compartilhe abates e faça a entrega em bloco.",
+      "instruction": "Entregue Por Amor a Shaina Amiir e prossiga com o Amuleto de Aroma na mesma cadeia.",
       "steps": [
         {
           "id": "e1",
-          "action": "Pegar (20) Espírito da Terra matando Duende da Terra (Subúrbio Oeste da Cidade do Dragão) ()",
-          "routeOrder": 1201700,
+          "action": "Pegar (5) Espírito da Terra matando Duende da Terra (Subúrbio Oeste da Cidade do Dragão) ()",
+          "routeOrder": 1202001,
           "title": "Amuleto de Aroma"
         },
         {
           "id": "e2",
-          "action": "NPC Final: Shaiana Amiir (547, 687)",
+          "action": "NPC Final: Shaina Amiir (547, 687)",
           "markerX": 547,
           "markerY": 687,
-          "routeOrder": 1201900,
+          "routeOrder": 1202002,
           "title": "Amuleto de Aroma"
         }
       ],
@@ -7395,9 +7496,9 @@
       "classScope": "ALL",
       "minLevel": 21,
       "expectedLevel": 21,
-      "maxLevel": "Sem limite",
+      "maxLevel": "40",
       "name": "Por Amor",
-      "npc": "Shaiana Amiir (547, 687)",
+      "npc": "Shaina Amiir (547, 687)",
       "location": "Norte da Cidade do Dragão (547. 687)",
       "baseXp": 4700,
       "xp3": 14100,
@@ -7407,13 +7508,13 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Pegar (12) Pele de Lince matando Gato (Subúrbio Oeste da Cidade do Dragão) ()",
+          "action": "Pegar (7) Pele de Lince matando Gato (Subúrbio Oeste da Cidade do Dragão) ()",
           "routeOrder": 1201800,
           "title": "Por Amor"
         },
         {
           "id": "e2",
-          "action": "NPC Final: Shaiana Amiir (547, 687)",
+          "action": "NPC Final: Shaina Amiir (547, 687)",
           "markerX": 547,
           "markerY": 687,
           "routeOrder": 1202000,
@@ -7429,7 +7530,7 @@
       "classScope": "ALL",
       "minLevel": 22,
       "expectedLevel": 22,
-      "maxLevel": "Sem limite",
+      "maxLevel": "35",
       "name": "Mineração de Ouro",
       "npc": "Lestath Arakihin (464, 675)",
       "location": "Mina (464, 675)",
@@ -7441,7 +7542,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Pegar (15) Pedra Laranja matando Bruxo Ouriço (Monte do Arco Quebrado) ()",
+          "action": "Pegar (7) Pedra Laranja matando Bruxo Ouriço (Monte do Arco Quebrado) ()",
           "routeOrder": 1202600,
           "title": "Mineração de Ouro"
         },
@@ -7507,7 +7608,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Matar (35) Guerreiro Lupino (Monte do Arco Quebrado) ( , )",
+          "action": "Matar (10) Guerreiro Lupino (Monte do Arco Quebrado) ( , )",
           "routeOrder": 1202100,
           "title": "Lobisomens"
         },
@@ -7531,7 +7632,7 @@
       "expectedLevel": 23,
       "maxLevel": "Sem limite",
       "name": "Remédio Para Alma",
-      "npc": "Viúva de Luto (582, 659)",
+      "npc": "Viúva de Luto (582, 660)",
       "location": "Leste da Cidade do Dragão (582, 659)",
       "baseXp": 6000,
       "xp3": 18000,
@@ -7539,6 +7640,15 @@
       "benefit": "XP ×3 e progresso concentrado",
       "instruction": "Rota otimizada do nível 23: aceite nos mesmos clientes, compartilhe abates e faça a entrega em bloco.",
       "steps": [
+        {
+          "id": "aceite-confirmado",
+          "routeOrder": 1203399,
+          "memoryTaskId": 19,
+          "title": "Remédio Para Alma",
+          "action": "Aceite a missão com Viúva de Luto (582, 660)",
+          "markerX": 582,
+          "markerY": 660
+        },
         {
           "id": "e1",
           "action": "Fale com o Fantasma da Água (600, 654)",
@@ -7584,48 +7694,52 @@
       "expectedLevel": 23,
       "maxLevel": "Sem limite",
       "name": "Tarefa de Kalam Decom",
-      "npc": "Kalam Decom (570, 677)",
+      "npc": "Kalam Decom (571, 677)",
       "location": "Cidade do Dragão Norte (570, 677)",
       "baseXp": 5700,
       "xp3": 17100,
       "priority": "Alta",
       "benefit": "XP ×3 e progresso concentrado",
-      "instruction": "Rota otimizada do nível 23: aceite nos mesmos clientes, compartilhe abates e faça a entrega em bloco.",
+      "instruction": "Pegue a missão com Kalam Decom. Entregue ao Ferreiro Gorg Veramon e confirme Diamantes no questlog antes de ir aos Carniçais Ferozes.",
       "steps": [
         {
           "id": "e1",
-          "action": "Fale com o Ferreiro Gorg Veramon (556, 623) no Sul da Cidade do Dragão",
-          "markerX": 556,
-          "markerY": 623,
+          "action": "Aceite a missão com Kalam Decom (571, 677)",
+          "markerX": 571,
+          "markerY": 677,
           "routeOrder": 1203200,
-          "title": "Tarefa de Kalam Decom"
+          "title": "Tarefa de Kalam Decom",
+          "memoryTaskId": 887
         },
         {
           "id": "e2",
-          "action": "NPC Final: Ferreiro Gorg Veramon (556, 623)",
-          "markerX": 556,
+          "action": "Entregue a missão para Ferreiro Gorg Veramon (566, 623)",
+          "markerX": 566,
           "markerY": 623,
           "routeOrder": 1203300,
-          "title": "Tarefa de Kalam Decom"
+          "title": "Tarefa de Kalam Decom",
+          "memoryTaskId": 887
         },
         {
           "id": "e3",
-          "action": "Pegar (20) Diamante matando Carniçal Feroz (Mina – Monte do Arco Quebrado) (472, 672)",
+          "action": "Colete 7 Diamantes de Carniçal Feroz (472, 672)",
           "markerX": 472,
           "markerY": 672,
           "routeOrder": 1205000,
-          "title": "Diamantes"
+          "title": "Diamantes",
+          "memoryTaskId": 888
         },
         {
           "id": "e4",
-          "action": "NPC Final: Kalam Decom (570, 677)",
-          "markerX": 570,
+          "action": "Entregue a missão para Kalam Decom (571, 677)",
+          "markerX": 571,
           "markerY": 677,
           "routeOrder": 1205900,
-          "title": "Diamantes"
+          "title": "Diamantes",
+          "memoryTaskId": 888
         }
       ],
-      "historyTaskGroups": [[887]]
+      "historyTaskGroups": [[887], [888]]
     },
     {
       "id": "COMMON|ALL|24|A Batalha da Mina",
@@ -7642,7 +7756,7 @@
       "xp3": 29400,
       "priority": "Alta",
       "benefit": "XP ×3 e progresso concentrado",
-      "instruction": "Rota otimizada do nível 24: aceite nos mesmos clientes, compartilhe abates e faça a entrega em bloco.",
+      "instruction": "Termine As Esperanças do General e confirme a nova cadeia na mesma visita ao General Lotor Akre.",
       "steps": [
         {
           "id": "e1",
@@ -7654,15 +7768,17 @@
         },
         {
           "id": "e2",
-          "action": "Matar (15) Goblin Aprendiz (Mina – Monte do Arco Quebrado) ()",
+          "action": "Matar (5) Goblin Aprendiz (Mina – Monte do Arco Quebrado) ()",
           "routeOrder": 1204100,
-          "title": "Matar Goblin Aprendiz"
+          "title": "Matar Goblin Aprendiz",
+          "memoryTaskId": 843
         },
         {
           "id": "e3",
-          "action": "Matar (15) Bruxo Ouriço (Mina – Monte do Arco Quebrado) ()",
+          "action": "Matar (5) Bruxo Ouriço (Mina – Monte do Arco Quebrado) ()",
           "routeOrder": 1204200,
-          "title": "Bruxo Ouriço"
+          "title": "Bruxo Ouriço",
+          "memoryTaskId": 849
         },
         {
           "id": "e4",
@@ -7670,19 +7786,22 @@
           "markerX": 521,
           "markerY": 629,
           "routeOrder": 1204300,
-          "title": "Volte à cidade e reporte"
+          "title": "Volte à cidade e reporte",
+          "memoryTaskId": 850
         },
         {
           "id": "e5",
           "action": "Matar (15) Ilusionista Flamenjante (Mina – Monte do Arco Quebrado) ()",
           "routeOrder": 1204400,
-          "title": "Ilusionistas Flamejantes"
+          "title": "Ilusionistas Flamejantes",
+          "memoryTaskId": 861
         },
         {
           "id": "e6",
-          "action": "Matar (15) Feiticeiro Ouriço (Mina – Monte do Arco Quebrado) ()",
+          "action": "Matar (5) Feiticeiro Ouriço (Mina – Monte do Arco Quebrado) ()",
           "routeOrder": 1204500,
-          "title": "Matar Feiticeiros Ouriços"
+          "title": "Matar Feiticeiros Ouriços",
+          "memoryTaskId": 862
         },
         {
           "id": "e7",
@@ -7690,15 +7809,17 @@
           "markerX": 521,
           "markerY": 629,
           "routeOrder": 1204600,
-          "title": "Volte à cidade e reporte"
+          "title": "Volte à cidade e reporte",
+          "memoryTaskId": 869
         },
         {
           "id": "e8",
-          "action": "Matar (15) Guerreiro Lobo da Terra (Monte do Arco Quebrado) (453, 715)",
+          "action": "Matar (5) Guerreiro Lobo da Terra (Monte do Arco Quebrado) (453, 715)",
           "markerX": 453,
           "markerY": 715,
           "routeOrder": 1205100,
-          "title": "Mate Guerreiros Lobos da Terr"
+          "title": "Mate Guerreiros Lobos da Terr",
+          "memoryTaskId": 881
         },
         {
           "id": "e9",
@@ -7706,7 +7827,8 @@
           "markerX": 453,
           "markerY": 715,
           "routeOrder": 1205200,
-          "title": "Mate Vigia Duende"
+          "title": "Mate Vigia Duende",
+          "memoryTaskId": 884
         },
         {
           "id": "e10",
@@ -7714,10 +7836,11 @@
           "markerX": 460,
           "markerY": 725,
           "routeOrder": 1205300,
-          "title": "Mate Pao chi"
+          "title": "Mate Pao chi",
+          "memoryTaskId": 1094
         }
       ],
-      "historyTaskGroups": [[824]]
+      "historyTaskGroups": [[824], [859], [857]]
     },
     {
       "id": "COMMON|ALL|24|Altar de Pedra",
@@ -7889,7 +8012,7 @@
       "expectedLevel": 25,
       "maxLevel": "Sem limite",
       "name": "Amor Perdido",
-      "npc": "Lara Heldric (563, 687)",
+      "npc": "Lara Heldric (564, 688)",
       "location": "Norte da Cidade do Dragão (563, 687)",
       "baseXp": 8500,
       "xp3": 25500,
@@ -7897,6 +8020,15 @@
       "benefit": "XP ×3 e progresso concentrado",
       "instruction": "Rota otimizada do nível 25: aceite nos mesmos clientes, compartilhe abates e faça a entrega em bloco.",
       "steps": [
+        {
+          "id": "aceite-confirmado",
+          "routeOrder": 1205999,
+          "memoryTaskId": 23,
+          "title": "Amor Perdido",
+          "action": "Aceite a missão com Lara Heldric (564, 688)",
+          "markerX": 564,
+          "markerY": 688
+        },
         {
           "id": "e1",
           "action": "Fale com o Veterano Alado no Norte da Cidade do Dragão (556, 669)",
@@ -7972,7 +8104,7 @@
       "classScope": "ALL",
       "minLevel": 25,
       "expectedLevel": 25,
-      "maxLevel": "Sem limite",
+      "maxLevel": "28",
       "name": "Ruolen",
       "npc": "Kalam Decom (570, 677)",
       "location": "Cidade do Dragão Oeste (570, 677)",
@@ -7992,9 +8124,10 @@
         },
         {
           "id": "e2",
-          "action": "Matar (30) Centopéia-Rei Coral",
+          "action": "Matar (10) Centopéia-Rei Coral",
           "routeOrder": 1206100,
-          "title": "Mate a Centopéia-Rei"
+          "title": "Mate a Centopéia-Rei",
+          "memoryTaskId": 2835
         },
         {
           "id": "e3",
@@ -8141,40 +8274,86 @@
       "expectedLevel": 26,
       "maxLevel": "Sem limite",
       "name": "Um Ataque Pesado",
-      "npc": "Ferreiro Chess Kright (563, 682)",
-      "location": "Norte Cidade do Dragão (563, 682)",
+      "npc": "General Lotor Akre (521, 630), depois Ferreiro Chess Kright (564, 683)",
+      "location": "Cidade do Dragão e Rampa dos Estandartes",
       "baseXp": 11700,
       "xp3": 35100,
       "priority": "Alta",
       "benefit": "XP ×3 e progresso concentrado",
-      "instruction": "Rota otimizada do nível 26: aceite nos mesmos clientes, compartilhe abates e faça a entrega em bloco.",
+      "instruction": "Conclua Contramedidas para liberar Um Ataque Pesado. Faça os chacais e entregue ao Velho Forjador na mesma passagem.",
       "steps": [
         {
+          "id": "contramedidas-aceite",
+          "title": "Contramedidas",
+          "memoryTaskId": 1032,
+          "action": "Aceite Contramedidas com General Lotor Akre (521, 630)",
+          "routeOrder": 1206401,
+          "markerX": 521,
+          "markerY": 630
+        },
+        {
+          "id": "contramedidas-coleta",
+          "title": "Capture o Veículo",
+          "memoryTaskId": 1033,
+          "action": "Colete 10 Plantas da Torre de Corpo de Artesão na Rampa dos Estandartes (589, 754)",
+          "routeOrder": 1206402,
+          "markerX": 589,
+          "markerY": 754
+        },
+        {
+          "id": "contramedidas-anciao",
+          "title": "Entrega dos Esboços",
+          "memoryTaskId": 1034,
+          "action": "Fale com o Ancião da Cidade do Dragão (571, 648)",
+          "routeOrder": 1206403,
+          "markerX": 571,
+          "markerY": 648
+        },
+        {
+          "id": "contramedidas-ferreiro",
+          "title": "Decodifique os Esboços",
+          "memoryTaskId": 1035,
+          "action": "Entregue 10 Plantas da Torre ao Ferreiro indicado no questlog, no norte da Cidade do Dragão",
+          "routeOrder": 1206404
+        },
+        {
+          "id": "ataque-aceite",
+          "title": "Um Ataque Pesado",
+          "memoryTaskId": 1036,
+          "action": "Aceite Um Ataque Pesado com Ferreiro Chess Kright (564, 683)",
+          "routeOrder": 1206405,
+          "markerX": 564,
+          "markerY": 683
+        },
+        {
           "id": "e1",
-          "action": "Fale com o Velho Forjador de Espadas (563, 755)",
-          "markerX": 563,
-          "markerY": 755,
+          "action": "Fale com o Velho Forjador de Espadas (537, 756)",
+          "markerX": 537,
+          "markerY": 756,
           "routeOrder": 1206500,
-          "title": "Velho Ferreiro"
+          "title": "Velho Ferreiro",
+          "memoryTaskId": 1037
         },
         {
           "id": "e2",
-          "action": "Matar (35) Chacal Sorrateiro (Floresta Verdejante – Rampa dos Estandartes) (539, 751)",
+          "action": "Matar (10) Chacal Sorrateiro (Floresta Verdejante – Rampa dos Estandartes) (539, 751)",
           "markerX": 539,
           "markerY": 751,
-          "routeOrder": 1207600,
-          "title": "Chacais Ferozes"
+          "routeOrder": 1206501,
+          "title": "Chacais Ferozes",
+          "memoryTaskId": 1038
         },
         {
           "id": "e3",
-          "action": "NPC Final: Velho Forjador de Espadas (563, 755)",
-          "markerX": 563,
-          "markerY": 755,
-          "routeOrder": 1207700,
-          "title": "Chacais Ferozes"
+          "action": "Entregue ao Velho Forjador de Espadas (537, 756)",
+          "markerX": 537,
+          "markerY": 756,
+          "routeOrder": 1206502,
+          "title": "Chacais Ferozes",
+          "memoryTaskId": 1038
         }
       ],
-      "historyTaskGroups": [[1036]]
+      "historyTaskGroups": [[1032], [1036]]
     },
     {
       "id": "COMMON|ALL|27|O Último Material",
@@ -8195,7 +8374,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Pegar (30) Chifre de Centopéia-Rei Verde matando Centopéia-Rei Verde (Norte do Templo das Orquídeas) ()",
+          "action": "Pegar (10) Chifre de Centopéia-Rei Verde matando Centopéia-Rei Verde (Norte do Templo das Orquídeas) ()",
           "routeOrder": 1207800,
           "title": "O Último Material"
         },
@@ -8219,7 +8398,7 @@
       "expectedLevel": 27,
       "maxLevel": "Sem limite",
       "name": "Tigre Voador",
-      "npc": "Anciã (327, 427)",
+      "npc": "Anciã da Cidade das Plumas (328, 428)",
       "location": "Cidade das Plumas (327, 427)",
       "baseXp": 7200,
       "xp3": 21600,
@@ -8227,6 +8406,15 @@
       "benefit": "XP ×3 e progresso concentrado",
       "instruction": "Rota otimizada do nível 27: aceite nos mesmos clientes, compartilhe abates e faça a entrega em bloco.",
       "steps": [
+        {
+          "id": "aceite-confirmado",
+          "routeOrder": 1209699,
+          "memoryTaskId": 2801,
+          "title": "Tigre Voador",
+          "action": "Aceite a missão com Anciã da Cidade das Plumas (328, 428)",
+          "markerX": 328,
+          "markerY": 428
+        },
         {
           "id": "e1",
           "action": "Fale com a Asceta Alada na Montanha Branca (319, 330)",
@@ -8324,7 +8512,7 @@
       "expectedLevel": 28,
       "maxLevel": "Sem limite",
       "name": "Limpar a Área do Arado",
-      "npc": "General Lotor Akre (521, 629)",
+      "npc": "General Lotor Akre (521, 630)",
       "location": "Sul da Cidade do Dragão (521, 629)",
       "baseXp": 7000,
       "xp3": 21000,
@@ -8332,6 +8520,15 @@
       "benefit": "XP ×3 e progresso concentrado",
       "instruction": "Rota otimizada do nível 28: aceite nos mesmos clientes, compartilhe abates e faça a entrega em bloco.",
       "steps": [
+        {
+          "id": "aceite-confirmado",
+          "routeOrder": 1208699,
+          "memoryTaskId": 544,
+          "title": "Limpar a Área do Arado",
+          "action": "Aceite a missão com General Lotor Akre (521, 630)",
+          "markerX": 521,
+          "markerY": 630
+        },
         {
           "id": "e1",
           "action": "Matar (10) Arqueiro Lobo (Vale das Orquídeas) (525, 573)",
@@ -8554,7 +8751,7 @@
       "classScope": "ALL",
       "minLevel": 31,
       "expectedLevel": 31,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "Árvore-monstro",
       "npc": "Eremita (467, 567)",
       "location": "Cidade da Dor Celestial (467, 567)",
@@ -8566,7 +8763,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Matar (50) Raiz Maligna (Vale das Orquídeas) (542, 548)",
+          "action": "Matar (10) Raiz Maligna (Vale das Orquídeas) (542, 548)",
           "markerX": 542,
           "markerY": 548,
           "routeOrder": 1212300,
@@ -8591,7 +8788,7 @@
       "classScope": "ALL",
       "minLevel": 31,
       "expectedLevel": 31,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "Visita Indesejada",
       "npc": "Convidado Tranquilo (443, 563)",
       "location": "Residência do Lago Espelhado (443, 563)",
@@ -8603,7 +8800,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Matar (50) Membro do Conselho das Presas (Vale das Orquídeas) (542, 548)",
+          "action": "Matar (10) Membro do Conselho das Presas (Vale das Orquídeas) (542, 548)",
           "markerX": 542,
           "markerY": 548,
           "routeOrder": 1212400,
@@ -8673,7 +8870,7 @@
       "expectedLevel": 32,
       "maxLevel": "Sem limite",
       "name": "Memória do Herói",
-      "npc": "Ancião da Cidade dos Dragões (570, 648)",
+      "npc": "Ancião da Cidade do Dragão (571, 648)",
       "location": "Cidade do Dragão (570, 648)",
       "baseXp": 10800,
       "xp3": 32400,
@@ -8681,6 +8878,15 @@
       "benefit": "XP ×3 e progresso concentrado",
       "instruction": "Rota otimizada do nível 32: aceite nos mesmos clientes, compartilhe abates e faça a entrega em bloco.",
       "steps": [
+        {
+          "id": "aceite-confirmado",
+          "routeOrder": 1214099,
+          "memoryTaskId": 1953,
+          "title": "Memória do Herói",
+          "action": "Aceite a missão com Ancião da Cidade do Dragão (571, 648)",
+          "markerX": 571,
+          "markerY": 648
+        },
         {
           "id": "e1",
           "action": "Fale com o Velho Forjador de Espadas (536, 755) na Floresta Verdejante",
@@ -8691,11 +8897,12 @@
         },
         {
           "id": "e2",
-          "action": "Pegar (25) Osso Sangrento matando Esqueleto Arqueiro (Floresta Verdejante) (538, 756)",
+          "action": "Pegar (10) Osso Sangrento matando Esqueleto Arqueiro (Floresta Verdejante) (538, 756)",
           "markerX": 538,
           "markerY": 756,
           "routeOrder": 1214200,
-          "title": "Ossos Sangrentos"
+          "title": "Ossos Sangrentos",
+          "memoryTaskId": 1955
         },
         {
           "id": "e3",
@@ -8715,11 +8922,12 @@
         },
         {
           "id": "e5",
-          "action": "Matar (15) Chama Fantasma Guardiã (Dentro da Passagem Secreta para o Túmulo do Herói) (405, 527)",
+          "action": "Matar (10) Chama Fantasma Guardiã (Dentro da Passagem Secreta para o Túmulo do Herói) (405, 527)",
           "markerX": 405,
           "markerY": 527,
           "routeOrder": 1217200,
-          "title": "Eliminar a Chama Fanta"
+          "title": "Eliminar a Chama Fanta",
+          "memoryTaskId": 1957
         },
         {
           "id": "e6",
@@ -8755,7 +8963,7 @@
       "classScope": "ALL",
       "minLevel": 33,
       "expectedLevel": 33,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "Montanha Solitária",
       "npc": "Excêntrico (470, 570)",
       "location": "Cidade da Dor Celestial (470, 570)",
@@ -8767,7 +8975,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Pegar (35) Ferrão Nocivo matando Ferrão Nocivo (Leste do Vale das Orquídeas) (570, 559)",
+          "action": "Pegar (10) Ferrão Nocivo matando Ferrão Nocivo (Leste do Vale das Orquídeas) (570, 559)",
           "markerX": 570,
           "markerY": 559,
           "routeOrder": 1213000,
@@ -8792,7 +9000,7 @@
       "classScope": "ALL",
       "minLevel": 33,
       "expectedLevel": 33,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "Ameaça das Aranhas",
       "npc": "Eremita (467, 567)",
       "location": "Cidade da Dor Celestial (467, 567)",
@@ -8804,7 +9012,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Pegar (25) Veneno de Aranha matando Aranha Listrada (Leste do Vale das Orquídeas) (570, 559)",
+          "action": "Pegar (10) Veneno de Aranha matando Aranha Listrada (Leste do Vale das Orquídeas) (570, 559)",
           "markerX": 570,
           "markerY": 559,
           "routeOrder": 1213100,
@@ -8829,7 +9037,7 @@
       "classScope": "ALL",
       "minLevel": 34,
       "expectedLevel": 34,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "Confiança em um Amigo",
       "npc": "Seraos Distan (586, 567)",
       "location": "Vila das Orquídeas (586, 567)",
@@ -8841,7 +9049,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Pegar (30) Ovo de Centopéia Escarlate matando Centopéia Escarlate (Sul da Vila das Orquídeas) (586, 531)",
+          "action": "Pegar (10) Ovo de Centopéia Escarlate matando Centopéia Escarlate (Sul da Vila das Orquídeas) (586, 531)",
           "markerX": 586,
           "markerY": 531,
           "routeOrder": 1213500,
@@ -8868,7 +9076,7 @@
       "expectedLevel": 34,
       "maxLevel": "Sem limite",
       "name": "A Comida",
-      "npc": "Werir Nepay (532, 657)",
+      "npc": "Werir Nepay (533, 657)",
       "location": "Oeste da Cidade do Dragão (532, 657)",
       "baseXp": 10200,
       "xp3": 30600,
@@ -8876,6 +9084,15 @@
       "benefit": "XP ×3 e progresso concentrado",
       "instruction": "Rota otimizada do nível 34: aceite nos mesmos clientes, compartilhe abates e faça a entrega em bloco.",
       "steps": [
+        {
+          "id": "aceite-confirmado",
+          "routeOrder": 1213299,
+          "memoryTaskId": 3408,
+          "title": "A Comida",
+          "action": "Aceite a missão com Werir Nepay (533, 657)",
+          "markerX": 533,
+          "markerY": 657
+        },
         {
           "id": "e1",
           "action": "Fale com o Excêntrico (470, 570) da Cidade da Dor Celestial",
@@ -9052,7 +9269,7 @@
       "expectedLevel": 35,
       "maxLevel": "Sem limite",
       "name": "Encontro de Amantes",
-      "npc": "Banqueiro Snider Tekesh (555, 635)",
+      "npc": "Banqueiro Snider Tekesh (556, 636)",
       "location": "Sul da Cidade do Dragão (555, 635)",
       "baseXp": 10300,
       "xp3": 30900,
@@ -9060,6 +9277,15 @@
       "benefit": "XP ×3 e progresso concentrado",
       "instruction": "Rota otimizada do nível 35: aceite nos mesmos clientes, compartilhe abates e faça a entrega em bloco.",
       "steps": [
+        {
+          "id": "aceite-confirmado",
+          "routeOrder": 1213699,
+          "memoryTaskId": 1571,
+          "title": "Encontro de Amantes",
+          "action": "Aceite a missão com Banqueiro Snider Tekesh (556, 636)",
+          "markerX": 556,
+          "markerY": 636
+        },
         {
           "id": "e1",
           "action": "Pegar (1) Pérola Brilhante matando Lâmina Rebelde Prateada (Leste do Vale das Orquídeas) (577, 564)",
@@ -9102,58 +9328,64 @@
       "xp3": 34200,
       "priority": "Alta",
       "benefit": "XP ×3 e progresso concentrado",
-      "instruction": "Rota otimizada do nível 36: aceite nos mesmos clientes, compartilhe abates e faça a entrega em bloco.",
+      "instruction": "Comece com Gonirer Klaber, passe por Glodonir Huray para os dois seguimentos e volte a Gonirer com a resposta.",
       "steps": [
         {
           "id": "e1",
-          "action": "Fale com o Glodonir Huray (611, 715)",
-          "markerX": 611,
-          "markerY": 715,
+          "action": "Aceite a missão com Gonirer Klaber (621, 724)",
+          "markerX": 621,
+          "markerY": 724,
           "routeOrder": 1215100,
-          "title": "Músico Gonirer Klaber"
+          "title": "Músico Gonirer Klaber",
+          "memoryTaskId": 1434
         },
         {
           "id": "e2",
-          "action": "NPC Final: Glodonir Huray (611, 715)",
+          "action": "Entregue a missão para Glodonir Huray (611, 715)",
           "markerX": 611,
           "markerY": 715,
           "routeOrder": 1215200,
-          "title": "Músico Gonirer Klaber"
+          "title": "Músico Gonirer Klaber",
+          "memoryTaskId": 1434
         },
         {
           "id": "e3",
-          "action": "Pegar (35) Vela matando Arqueiro Goblin-rei (Arredores do Campo das Tropas Aliadas – Costa da Saudade) (626, 715)",
+          "action": "Colete 10 Velas de Arqueiro Goblin-rei (626, 715)",
           "markerX": 626,
           "markerY": 715,
           "routeOrder": 1215400,
-          "title": "Músico Gonirer Klaber"
+          "title": "O Excêntrico G. Huray",
+          "memoryTaskId": 1268
         },
         {
           "id": "e4",
-          "action": "NPC Final: Glodonir Huray (611, 715)",
+          "action": "Entregue a missão para Glodonir Huray (611, 715)",
           "markerX": 611,
           "markerY": 715,
           "routeOrder": 1215500,
-          "title": "Músico Gonirer Klaber"
+          "title": "O Excêntrico G. Huray",
+          "memoryTaskId": 1268
         },
         {
           "id": "e5",
-          "action": "Fale com o Gonirer Klaber (621, 724)",
-          "markerX": 621,
-          "markerY": 724,
+          "action": "Receba Resposta de G. Huray com Glodonir Huray (611, 715)",
+          "markerX": 611,
+          "markerY": 715,
           "routeOrder": 1215700,
-          "title": "Músico Gonirer Klaber"
+          "title": "Resposta de G. Huray",
+          "memoryTaskId": 1346
         },
         {
           "id": "e6",
-          "action": "NPC Final: Gonirer Klaber (621, 724)",
+          "action": "Entregue a missão para Gonirer Klaber (621, 724)",
           "markerX": 621,
           "markerY": 724,
           "routeOrder": 1215800,
-          "title": "Músico Gonirer Klaber"
+          "title": "Resposta de G. Huray",
+          "memoryTaskId": 1346
         }
       ],
-      "historyTaskGroups": [[1434]]
+      "historyTaskGroups": [[1434], [1268], [1346]]
     },
     {
       "id": "COMMON|ALL|36|O Cavalo Amedrontado",
@@ -9162,7 +9394,7 @@
       "classScope": "ALL",
       "minLevel": 36,
       "expectedLevel": 36,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "O Cavalo Amedrontado",
       "npc": "Aldeão Refugiado (618, 721)",
       "location": "Campo das Tropas Aliadas (618, 721)",
@@ -9199,7 +9431,7 @@
       "classScope": "ALL",
       "minLevel": 37,
       "expectedLevel": 37,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "Oferenda",
       "npc": "Glodonir Huray (611, 715)",
       "location": "Campo das Tropas Aliadas (611, 715)",
@@ -9211,7 +9443,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Pegar (35) Barbatana de Tubarão matando Peixe Eclipse (Montanha do Farol – Dentro do Mar Wuji) (683, 767)",
+          "action": "Pegar (10) Barbatana de Tubarão matando Peixe Eclipse (Montanha do Farol – Dentro do Mar Wuji) (683, 767)",
           "markerX": 683,
           "markerY": 767,
           "routeOrder": 1215900,
@@ -9236,7 +9468,7 @@
       "classScope": "ALL",
       "minLevel": 37,
       "expectedLevel": 37,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "Teias de Aranha",
       "npc": "Pescador (639, 802)",
       "location": "Montanha do Farol (639, 802)",
@@ -9248,7 +9480,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Pegar (25) Teia de Aranha matando Centurião Aranha (Pátio Verdejante – Oeste da Vila dos Pescadores) (616, 818)",
+          "action": "Pegar (10) Teia de Aranha matando Centurião Aranha (Pátio Verdejante – Oeste da Vila dos Pescadores) (616, 818)",
           "markerX": 616,
           "markerY": 818,
           "routeOrder": 1216000,
@@ -9273,7 +9505,7 @@
       "classScope": "ALL",
       "minLevel": 38,
       "expectedLevel": 38,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "Peixe Sanguinário",
       "npc": "Pescador (639, 802)",
       "location": "Montanha do Farol (639, 802)",
@@ -9285,7 +9517,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Pegar (20) Barbatana de Peixe matando Piranha (Mar Wuji ao lado da Vila dos Pescadores) (677, 844)",
+          "action": "Pegar (10) Barbatana de Peixe matando Piranha (Mar Wuji ao lado da Vila dos Pescadores) (677, 844)",
           "markerX": 677,
           "markerY": 844,
           "routeOrder": 1216200,
@@ -9351,7 +9583,7 @@
         },
         {
           "id": "e4",
-          "action": "NPC Final: Ancião da Cidade Celestial (471, 567)",
+          "action": "NPC Final: Ancião da Cidade das Lágrimas (471, 567)",
           "markerX": 471,
           "markerY": 567,
           "routeOrder": 1217100,
@@ -9467,7 +9699,7 @@
       "expectedLevel": 40,
       "maxLevel": "Sem limite",
       "name": "Espada de Fogo",
-      "npc": "Ferreiro Chess Kright (563, 682)",
+      "npc": "Ferreiro Chess Kright (564, 683)",
       "location": "Norte da Cidade do Dragão (563, 682)",
       "baseXp": 14000,
       "xp3": 42000,
@@ -9475,6 +9707,15 @@
       "benefit": "XP ×3 e progresso concentrado",
       "instruction": "Rota otimizada do nível 40: aceite nos mesmos clientes, compartilhe abates e faça a entrega em bloco.",
       "steps": [
+        {
+          "id": "aceite-confirmado",
+          "routeOrder": 1218999,
+          "memoryTaskId": 1277,
+          "title": "Espada de Fogo",
+          "action": "Aceite a missão com Ferreiro Chess Kright (564, 683)",
+          "markerX": 564,
+          "markerY": 683
+        },
         {
           "id": "e1",
           "action": "Encontrar a Tumba das Espadas no Oeste do Templo das Orquídeas (596, 764)",
@@ -9545,7 +9786,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Matar (40) Dragão de Jade (Arredores da Vila dos Pescadores) (637, 831 A29)",
+          "action": "Matar (10) Dragão de Jade (Arredores da Vila dos Pescadores) (637, 831 A29)",
           "markerX": 637,
           "markerY": 831,
           "routeOrder": 1219100,
@@ -9569,7 +9810,7 @@
       "classScope": "ALL",
       "minLevel": 41,
       "expectedLevel": 41,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "O Retorno do Guerreiro",
       "npc": "Chefe da Tribo dos Ventos (368, 764)",
       "location": "Tribo dos Ventos (368, 764)",
@@ -9581,7 +9822,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Matar (45) Planta Carnívora (Floresta do Unicórnio) (415, 776)",
+          "action": "Matar (10) Planta Carnívora (Floresta do Unicórnio) (415, 776)",
           "markerX": 415,
           "markerY": 776,
           "routeOrder": 1219400,
@@ -9606,7 +9847,7 @@
       "classScope": "ALL",
       "minLevel": 41,
       "expectedLevel": 41,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "O Legado do Chacal",
       "npc": "Chefe da Tribo dos Ventos (368, 764)",
       "location": "Tribo dos Ventos (368, 764)",
@@ -9618,7 +9859,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Pegar (20) Dente de Chacal matando Chacal (Arredores da Tribo dos Ventos) (361, 768)",
+          "action": "Pegar (10) Dente de Chacal matando Chacal (Arredores da Tribo dos Ventos) (361, 768)",
           "markerX": 361,
           "markerY": 768,
           "routeOrder": 1219500,
@@ -9643,7 +9884,7 @@
       "classScope": "ALL",
       "minLevel": 42,
       "expectedLevel": 42,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "Vingança",
       "npc": "Sábio de Campo de Su Muer (334, 826)",
       "location": "Campo de Su Muer (334, 826)",
@@ -9655,7 +9896,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Matar (50) Ent Florido (Campos da Vitória) (310, 825)",
+          "action": "Matar (10) Ent Florido (Campos da Vitória) (310, 825)",
           "markerX": 310,
           "markerY": 825,
           "routeOrder": 1219900,
@@ -9680,7 +9921,7 @@
       "classScope": "ALL",
       "minLevel": 42,
       "expectedLevel": 42,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "S. O. S",
       "npc": "Chefe da Tribo dos Ventos (368, 764)",
       "location": "Tribo dos Ventos (368, 764)",
@@ -9717,7 +9958,7 @@
       "classScope": "ALL",
       "minLevel": 43,
       "expectedLevel": 43,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "A Encomenda do Boticá",
       "npc": "Boticário Dashel Hongstol (369, 763)",
       "location": "Tribo dos Ventos (369, 763)",
@@ -9729,7 +9970,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Pegar (30) Pétala de Planta Carnívora matando Raiz Mutante (Campos da Vitória) (369, 847)",
+          "action": "Pegar (10) Pétala de Planta Carnívora matando Raiz Mutante (Campos da Vitória) (369, 847)",
           "markerX": 369,
           "markerY": 847,
           "routeOrder": 1220200,
@@ -9754,7 +9995,7 @@
       "classScope": "ALL",
       "minLevel": 43,
       "expectedLevel": 43,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "O Ataque do Cão Selvag",
       "npc": "Comerciante Alexton Qin (369, 760)",
       "location": "Tribo dos Ventos (369, 760)",
@@ -9766,7 +10007,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Pegar (35) Casca vermelha? matando Cão Selvagem (Montanha de Burnham) (377, 782)",
+          "action": "Pegar (10) Casca vermelha? matando Cão Selvagem (Montanha de Burnham) (377, 782)",
           "markerX": 377,
           "markerY": 782,
           "routeOrder": 1220300,
@@ -9851,7 +10092,7 @@
       "classScope": "ALL",
       "minLevel": 44,
       "expectedLevel": 44,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "Perseguição ao Inimigo",
       "npc": "Alfaiate Emirana (368, 760)",
       "location": "Tribo dos Ventos (368, 760)",
@@ -9863,7 +10104,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Matar (45) Centopéia Vermelha (Campos da Vitória) (310, 825)",
+          "action": "Matar (10) Centopéia Vermelha (Campos da Vitória) (310, 825)",
           "markerX": 310,
           "markerY": 825,
           "routeOrder": 1220600,
@@ -9888,7 +10129,7 @@
       "classScope": "ALL",
       "minLevel": 45,
       "expectedLevel": 45,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "Prova de Força",
       "npc": "Guarda La Tu (331, 824) e Guarda Lu Tuni (332, 823)",
       "location": "Campo de Su Muer (331, 824) (332, 823)",
@@ -9925,7 +10166,7 @@
       "classScope": "ALL",
       "minLevel": 45,
       "expectedLevel": 45,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "O Pedido do Líder",
       "npc": "Sábio de Campo de Su Muer (334, 826)",
       "location": "Campo de Su Muer (334, 826)",
@@ -9937,7 +10178,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Matar (45) Arqueiro Leão Infernal (Campo de Su Muer) (323, 843)",
+          "action": "Matar (10) Arqueiro Leão Infernal (Campo de Su Muer) (323, 843)",
           "markerX": 323,
           "markerY": 843,
           "routeOrder": 1220800,
@@ -9962,7 +10203,7 @@
       "classScope": "ALL",
       "minLevel": 46,
       "expectedLevel": 46,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "Líder da Patrulha",
       "npc": "Ancião da Cidade do Pôr-do-Sol (127, 589)",
       "location": "Cidade do Pôr-do-Sol (127, 589)",
@@ -9974,7 +10215,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Pegar (30) Cabeça de Artilheiro Vândalo matando Artilheiro Vândalo (Planalto do Pôr-do-Sol) (118, 581)",
+          "action": "Pegar (10) Cabeça de Artilheiro Vândalo matando Artilheiro Vândalo (Planalto do Pôr-do-Sol) (118, 581)",
           "markerX": 118,
           "markerY": 581,
           "routeOrder": 1222200,
@@ -10001,7 +10242,7 @@
       "expectedLevel": 46,
       "maxLevel": "Sem limite",
       "name": "Continuação da históri",
-      "npc": "Banqueiro Snider Tekesh (555, 635)",
+      "npc": "Banqueiro Snider Tekesh (556, 636)",
       "location": "Sul da Cidade do Dragão (555, 635)",
       "baseXp": 11400,
       "xp3": 34200,
@@ -10010,12 +10251,22 @@
       "instruction": "Rota otimizada do nível 46: aceite nos mesmos clientes, compartilhe abates e faça a entrega em bloco.",
       "steps": [
         {
+          "id": "aceite-confirmado",
+          "routeOrder": 1221199,
+          "memoryTaskId": 1574,
+          "title": "Continuação da históri",
+          "action": "Aceite a missão com Banqueiro Snider Tekesh (556, 636)",
+          "markerX": 556,
+          "markerY": 636
+        },
+        {
           "id": "e1",
-          "action": "Pegar (66) Flor matando Planta Carnívora (Floresta do Unicórnio) (415, 776)",
+          "action": "Pegar (10) Flor matando Planta Carnívora (Floresta do Unicórnio) (415, 776)",
           "markerX": 415,
           "markerY": 776,
           "routeOrder": 1221200,
-          "title": "Colher Ervas"
+          "title": "Colher Ervas",
+          "memoryTaskId": 1611
         },
         {
           "id": "e2",
@@ -10043,7 +10294,7 @@
       "classScope": "ALL",
       "minLevel": 47,
       "expectedLevel": 47,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "Auxiliar de Comerciant",
       "npc": "Comerciante Alexton Qin (369, 760)",
       "location": "Tribo dos Ventos (369, 760)",
@@ -10078,7 +10329,7 @@
       "classScope": "ALL",
       "minLevel": 47,
       "expectedLevel": 47,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "Orelhas dos Guerreiros",
       "npc": "Guarda Xong Shili (142, 641)",
       "location": "Terra dos Dragões (142, 641)",
@@ -10090,7 +10341,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Pegar (40) Orelhas de Espadachin-bufálo Itens matando Espadachim Minotauro (Terra dos Dragões) (144, 653)",
+          "action": "Pegar (10) Orelhas de Espadachin-bufálo Itens matando Espadachim Minotauro (Terra dos Dragões) (144, 653)",
           "markerX": 144,
           "markerY": 653,
           "routeOrder": 1222400,
@@ -10115,7 +10366,7 @@
       "classScope": "ALL",
       "minLevel": 48,
       "expectedLevel": 48,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "A Morte dos Arqueiros",
       "npc": "Guarda Xong Shili (142, 641)",
       "location": "Terra dos Dragões (142, 641)",
@@ -10127,7 +10378,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Matar (50) Arqueiro Sorridente (Terra dos Dragões) (170, 666)",
+          "action": "Matar (10) Arqueiro Sorridente (Terra dos Dragões) (170, 666)",
           "markerX": 170,
           "markerY": 666,
           "routeOrder": 1222600,
@@ -10152,7 +10403,7 @@
       "classScope": "ALL",
       "minLevel": 48,
       "expectedLevel": 48,
-      "maxLevel": "Sem limite",
+      "maxLevel": "60",
       "name": "Matar Lobos da Lâmina",
       "npc": "Ancião da Cidade do Pôr-do-Sol (127, 589)",
       "location": "Cidade do Pôr-do-Sol (127, 589)",
@@ -10255,7 +10506,7 @@
       "xp3": 49455,
       "priority": "Essencial",
       "benefit": "Pré-requisito e grande XP ×3",
-      "instruction": "Complete junto com as demais tarefas da DG49.",
+      "instruction": "Reúna as jades e os troncos antes de voltar ao Eremita das Pedras. Leve a Lágrima do Guardião ao Ancião Recluso.",
       "steps": [
         {
           "id": "e1",
@@ -10281,14 +10532,24 @@
         },
         {
           "id": "e4",
-          "action": "Entregue materiais e volte ao Ancião Recluso (573, 664)",
-          "markerX": 573,
-          "markerY": 664,
+          "action": "Entregue 2 Jades Vermelhas, 2 Amarelas, 2 Laranjas e 3 Troncos ao Eremita das Pedras (243, 616)",
+          "markerX": 243,
+          "markerY": 616,
           "routeOrder": 1225100,
-          "title": "Recipiente"
+          "title": "Recipiente",
+          "memoryTaskId": 9205
+        },
+        {
+          "id": "e5",
+          "routeOrder": 1225101,
+          "memoryTaskId": 9206,
+          "title": "Restaurar a Pedra",
+          "action": "Entregue a Lágrima do Guardião ao Ancião Recluso (573, 664)",
+          "markerX": 573,
+          "markerY": 664
         }
       ],
-      "historyTaskGroups": [[9202]]
+      "historyTaskGroups": [[9202], [9206]]
     },
     {
       "id": "COMMON|ALL|50|Pilar Esquisito — cadeia completa",
@@ -10545,7 +10806,7 @@
       "classScope": "ALL",
       "minLevel": 52,
       "expectedLevel": 52,
-      "maxLevel": "Sem limite",
+      "maxLevel": "70",
       "name": "Céu Sobre Céu",
       "npc": "Takow Lech (469, 424)",
       "location": "King-Yu-Tripod (469, 424)",
@@ -10557,7 +10818,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Pegar (22) Pelagem de Vândalo matando Caçador de Cabeças Vândalo (King-Yu-Tripod) (458, 425)",
+          "action": "Pegar (10) Pelagem de Vândalo matando Caçador de Cabeças Vândalo (King-Yu-Tripod) (458, 425)",
           "markerX": 458,
           "markerY": 425,
           "routeOrder": 1226200,
@@ -10582,7 +10843,7 @@
       "classScope": "ALL",
       "minLevel": 53,
       "expectedLevel": 53,
-      "maxLevel": "Sem limite",
+      "maxLevel": "62",
       "name": "Explorar a Nova Terra",
       "npc": "Castelão da Cidade da Perdição (665, 968)",
       "location": "Cidade da Perdição (665, 968)",
@@ -10594,7 +10855,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Matar (55) Jibóia-rei Ancestral (Ilha próxima da Cidade da Perdição) (701, 946)",
+          "action": "Matar (10) Jibóia-rei Ancestral (Ilha próxima da Cidade da Perdição) (701, 946)",
           "markerX": 701,
           "markerY": 946,
           "routeOrder": 1228500,
@@ -10655,7 +10916,7 @@
       "expectedLevel": 54,
       "maxLevel": "Sem limite",
       "name": "Sentindo deprimido",
-      "npc": "Boloshy (581, 685)",
+      "npc": "Boloshy (582, 686)",
       "location": "Cidade do Dragão (581, 685)",
       "baseXp": 24000,
       "xp3": 72000,
@@ -10663,6 +10924,15 @@
       "benefit": "XP ×3 e progresso concentrado",
       "instruction": "Rota otimizada do nível 54: aceite nos mesmos clientes, compartilhe abates e faça a entrega em bloco.",
       "steps": [
+        {
+          "id": "aceite-confirmado",
+          "routeOrder": 1226899,
+          "memoryTaskId": 3123,
+          "title": "Sentindo deprimido",
+          "action": "Aceite a missão com Boloshy (582, 686)",
+          "markerX": 582,
+          "markerY": 686
+        },
         {
           "id": "e1",
           "action": "Fale com a Anciã (327, 427) na Cidade das Plumas",
@@ -10681,11 +10951,12 @@
         },
         {
           "id": "e3",
-          "action": "Pegar (25) Planta do Navio matando Conjurador Minotauro (Montanha Negra) (440, 356)",
+          "action": "Pegar (10) Planta do Navio matando Conjurador Minotauro (Montanha Negra) (440, 356)",
           "markerX": 440,
           "markerY": 356,
           "routeOrder": 1227100,
-          "title": "Navio fazendo ondas"
+          "title": "Navio fazendo ondas",
+          "memoryTaskId": 3158
         },
         {
           "id": "e4",
@@ -10721,7 +10992,7 @@
       "classScope": "ALL",
       "minLevel": 54,
       "expectedLevel": 54,
-      "maxLevel": "Sem limite",
+      "maxLevel": "70",
       "name": "Remédio Eficaz",
       "npc": "Coletor de Ervas (448, 425)",
       "location": "King-Yu-Tripod (448, 425)",
@@ -10733,7 +11004,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Pegar (45) Raíz Dourada matando Aprendiz Bruxo (Rampa King-Yu) (433, 388)",
+          "action": "Pegar (10) Raíz Dourada matando Aprendiz Bruxo (Rampa King-Yu) (433, 388)",
           "markerX": 433,
           "markerY": 388,
           "routeOrder": 1226600,
@@ -10756,7 +11027,7 @@
       "routeKey": "COMMON",
       "order": 15510,
       "classScope": "ALL",
-      "minLevel": 55,
+      "minLevel": 30,
       "expectedLevel": 55,
       "maxLevel": "Sem limite",
       "name": "Segredo da Família",
@@ -10860,96 +11131,149 @@
       "expectedLevel": 55,
       "maxLevel": "Sem limite",
       "name": "À Deriva",
-      "npc": "Tio Ah Xun (706, 907)",
-      "location": "Ilha Zhaodi (706, 907)",
+      "npc": "Lara Yaonovich (695, 912) e Tio Ah Xun (707, 908)",
+      "location": "Ilha Zhaodi e Cidade da Presa",
       "baseXp": 26500,
       "xp3": 79500,
       "priority": "Alta",
       "benefit": "XP ×3 e progresso concentrado",
-      "instruction": "Rota otimizada do nível 55: aceite nos mesmos clientes, compartilhe abates e faça a entrega em bloco.",
+      "instruction": "Pegue a pá com Lara e À Deriva com Tio Ah Xun na mesma visita à ilha. Faça as continuações na Cidade da Presa e entregue A Volta no próximo retorno à ilha.",
       "steps": [
         {
-          "id": "e1",
-          "action": "Fale com o Sacerdote da Cidade da Presa (447, 340)",
-          "markerX": 447,
-          "markerY": 340,
-          "routeOrder": 1226800,
-          "title": "À Deriva"
+          "id": "e3",
+          "action": "Aceite Pá de Ervas de Lara com Lara Yaonovich (695, 912)",
+          "markerX": 695,
+          "markerY": 912,
+          "routeOrder": 1227700,
+          "title": "Pá de Ervas de Lara",
+          "memoryTaskId": 1448
         },
         {
           "id": "e2",
-          "action": "NPC Final: Tio Ah Xun (706, 907)",
-          "markerX": 706,
-          "markerY": 907,
-          "routeOrder": 1227700,
-          "title": "À Deriva"
+          "action": "Aceite À Deriva com Tio Ah Xun (707, 908)",
+          "markerX": 707,
+          "markerY": 908,
+          "routeOrder": 1227701,
+          "title": "À Deriva",
+          "memoryTaskId": 3448
         },
         {
-          "id": "e3",
-          "action": "Fale com a Lara Yaonovich (694, 912)",
-          "markerX": 694,
-          "markerY": 912,
-          "routeOrder": 1227800,
-          "title": "Pá de Ervas de Lara"
+          "id": "lara-tio",
+          "title": "Pá de Ervas de Lara",
+          "memoryTaskId": 1448,
+          "action": "Entregue Pá de Ervas de Lara ao Tio Ah Xun (707, 908) e receba Eliminar Monstros",
+          "routeOrder": 1227702,
+          "markerX": 707,
+          "markerY": 908
+        },
+        {
+          "id": "lara-monstros",
+          "title": "Eliminar Monstros",
+          "memoryTaskId": 1499,
+          "action": "Mate 10 Escorpião-rei Negro e 10 Lâmina Verde Vândalo na Ilha Zhaodi (701, 905)",
+          "routeOrder": 1227703,
+          "markerX": 701,
+          "markerY": 905
+        },
+        {
+          "id": "lara-receba-enxada",
+          "title": "Eliminar Monstros",
+          "memoryTaskId": 1499,
+          "action": "Entregue Eliminar Monstros ao Tio Ah Xun (707, 908) para receber a enxada",
+          "routeOrder": 1227704,
+          "markerX": 707,
+          "markerY": 908
         },
         {
           "id": "e4",
-          "action": "NPC Final: Lara Yaonovich (694, 912)",
-          "markerX": 694,
+          "action": "Entregue a enxada para Lara Yaonovich (695, 912)",
+          "markerX": 695,
           "markerY": 912,
           "routeOrder": 1227900,
-          "title": "Devolver a Enxada de E"
+          "title": "Devolver a Enxada de E",
+          "memoryTaskId": 1449
+        },
+        {
+          "id": "e1",
+          "action": "Entregue À Deriva ao Sacerdote da Cidade da Presa (448, 340)",
+          "markerX": 448,
+          "markerY": 340,
+          "routeOrder": 1228601,
+          "title": "À Deriva",
+          "memoryTaskId": 3448
         },
         {
           "id": "e5",
-          "action": "Matar (20) Prisioneiro Determinado (Declive King-Yu) (471, 374)",
+          "action": "Mate 10 Prisioneiro Determinado perto da Cidade da Presa (471, 374)",
           "markerX": 471,
           "markerY": 374,
           "routeOrder": 1228700,
-          "title": "Prisioneiro da Cidade"
+          "title": "Prisioneiro da Cidade",
+          "memoryTaskId": 3449
         },
         {
           "id": "e6",
-          "action": "NPC Final: Sacerdote da Cidade da Presa (447, 340)",
-          "markerX": 447,
+          "action": "Entregue Prisioneiro da Cidade ao Sacerdote da Cidade da Presa (448, 340)",
+          "markerX": 448,
           "markerY": 340,
           "routeOrder": 1228800,
-          "title": "Prisioneiro da Cidade"
+          "title": "Prisioneiro da Cidade",
+          "memoryTaskId": 3449
         },
         {
           "id": "e7",
-          "action": "Fale com Almisted Hurd (458, 342)",
-          "markerX": 458,
+          "action": "Entregue O Amigo do Tio Ah Xun a Almisted Hurd (459, 342)",
+          "markerX": 459,
           "markerY": 342,
           "routeOrder": 1228900,
-          "title": "O Amigo do Tio Ah Xun"
+          "title": "O Amigo do Tio Ah Xun",
+          "memoryTaskId": 3450
         },
         {
           "id": "e8",
-          "action": "Pegar (10) Fruto de Floresta Negra matando Princesa Dourada (Montanha Negra) (492, 302)",
+          "action": "Colete 10 Frutos da Floresta Negra de Princesa Dourada (492, 302)",
           "markerX": 492,
           "markerY": 302,
           "routeOrder": 1229000,
-          "title": "Frutos da Floresta Neg"
+          "title": "Frutos da Floresta Neg",
+          "memoryTaskId": 3451
+        },
+        {
+          "id": "frutos-entrega",
+          "title": "Frutos da Floresta Neg",
+          "memoryTaskId": 3451,
+          "action": "Entregue os frutos ao Deus do Trovão no Vale do Desespero",
+          "routeOrder": 1229001
         },
         {
           "id": "e9",
-          "action": "Matar o Boss Gorila-rei de Fogo (Declive King-Yu) (480, 370)",
-          "markerX": 480,
-          "markerY": 370,
+          "action": "Mate 1 Gorila-rei de Fogo (478, 382)",
+          "markerX": 478,
+          "markerY": 382,
           "routeOrder": 1229100,
-          "title": "Grandes Problemas na C"
+          "title": "Grandes Problemas na C",
+          "memoryTaskId": 3452
+        },
+        {
+          "id": "gorila-entrega",
+          "title": "Grandes Problemas na C",
+          "memoryTaskId": 3452,
+          "action": "Entregue ao Sacerdote da Cidade da Presa (448, 340) e receba A Volta",
+          "routeOrder": 1229101,
+          "markerX": 448,
+          "markerY": 340
         },
         {
           "id": "e10",
-          "action": "NPC Final: Sacerdote da Cidade da Presa (447, 340)",
-          "markerX": 447,
-          "markerY": 340,
-          "routeOrder": 1229200,
-          "title": "A Volta"
+          "action": "Entregue A Volta ao Tio Ah Xun (707, 908), na volta à Ilha Zhaodi",
+          "markerX": 707,
+          "markerY": 908,
+          "routeOrder": 1231199,
+          "title": "A Volta",
+          "memoryTaskId": 3453
         }
       ],
-      "historyTaskGroups": [[3448]]
+      "historyTaskGroups": [[1448], [1499], [1449], [3448], [3449], [3450], [3451], [3452], [3453]]
     },
     {
       "id": "COMMON|ALL|56|Raposas Voadoras que Pertubam",
@@ -10958,7 +11282,7 @@
       "classScope": "ALL",
       "minLevel": 56,
       "expectedLevel": 56,
-      "maxLevel": "Sem limite",
+      "maxLevel": "70",
       "name": "Raposas Voadoras Que Perturba",
       "npc": "Almisted Hurd (458, 342)",
       "location": "Cidade da Presa (458, 342)",
@@ -10970,7 +11294,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Matar (60) Kitsune da Floresta (Cidade da Presa – Voando!) (477, 329 A30)",
+          "action": "Matar (10) Kitsune da Floresta (Cidade da Presa – Voando!) (477, 329 A30)",
           "markerX": 477,
           "markerY": 329,
           "routeOrder": 1229300,
@@ -10995,7 +11319,7 @@
       "classScope": "ALL",
       "minLevel": 56,
       "expectedLevel": 56,
-      "maxLevel": "Sem limite",
+      "maxLevel": "66",
       "name": "Remorso de um Rebelde",
       "npc": "Nativo (471, 331)",
       "location": "Cidade da Presa (471, 331)",
@@ -11007,7 +11331,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Pegar (45) Jaqueta matando Sacerdote Bruxo (Montanha Negra) (483, 332)",
+          "action": "Pegar (10) Jaqueta matando Sacerdote Bruxo (Montanha Negra) (483, 332)",
           "markerX": 483,
           "markerY": 332,
           "routeOrder": 1229400,
@@ -11031,7 +11355,7 @@
       "classScope": "ALL",
       "minLevel": 57,
       "expectedLevel": 57,
-      "maxLevel": "Sem limite",
+      "maxLevel": "70",
       "name": "Medo da Fome",
       "npc": "Lara Yaonovich (694, 912)",
       "location": "Ilha Zhaodi (694, 912)",
@@ -11043,7 +11367,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Pegar (40) Carne de Aranha-rainha matando Aranha-rei de Olhos Vermelhos (Ilha Zhaodi) (706, 907)",
+          "action": "Pegar (10) Carne de Aranha-rainha matando Aranha-rei de Olhos Vermelhos (Ilha Zhaodi) (706, 907)",
           "markerX": 706,
           "markerY": 907,
           "routeOrder": 1231200,
@@ -11068,7 +11392,7 @@
       "classScope": "ALL",
       "minLevel": 57,
       "expectedLevel": 57,
-      "maxLevel": "Sem limite",
+      "maxLevel": "70",
       "name": "Clarim de Batalha",
       "npc": "Ferreiro Sylern Udine (468, 319)",
       "location": "Cidade da Presa (468, 319)",
@@ -11080,7 +11404,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Pegar (40) Chifre do Trovão-metamorfo matando Feiticeiro Minotauro (Montanha Negra) (493, 339)",
+          "action": "Pegar (10) Chifre do Trovão-metamorfo matando Feiticeiro Minotauro (Montanha Negra) (493, 339)",
           "markerX": 493,
           "markerY": 339,
           "routeOrder": 1229600,
@@ -11105,7 +11429,7 @@
       "classScope": "ALL",
       "minLevel": 58,
       "expectedLevel": 58,
-      "maxLevel": "Sem limite",
+      "maxLevel": "70",
       "name": "Sangue por Sangue",
       "npc": "Guarda Norev Galar (484, 355)",
       "location": "Montanha Negra (484, 355)",
@@ -11117,7 +11441,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Matar (60) Prisioneiro Determinado (Montanha Negra) (483, 332)",
+          "action": "Matar (10) Prisioneiro Determinado (Montanha Negra) (483, 332)",
           "markerX": 483,
           "markerY": 332,
           "routeOrder": 1229800,
@@ -11141,7 +11465,7 @@
       "classScope": "ALL",
       "minLevel": 58,
       "expectedLevel": 58,
-      "maxLevel": "Sem limite",
+      "maxLevel": "70",
       "name": "Essência de Ouro",
       "npc": "Ferreiro Sylern Udine (468, 319)",
       "location": "Cidade da Presa (468, 319)",
@@ -11153,7 +11477,7 @@
       "steps": [
         {
           "id": "e1",
-          "action": "Pegar (45) Essência de Ouro matando Serviçal Dourada (Montanha Negra) (483, 332)",
+          "action": "Pegar (10) Essência de Ouro matando Serviçal Dourada (Montanha Negra) (483, 332)",
           "markerX": 483,
           "markerY": 332,
           "routeOrder": 1229900,
@@ -11268,7 +11592,7 @@
       "order": 16010,
       "classScope": "ALL",
       "minLevel": 60,
-      "expectedLevel": 60,
+      "expectedLevel": 70,
       "maxLevel": "Sem limite",
       "name": "Insígnia Nível 4",
       "npc": "Oficial Graduado (521, 626)",
@@ -11277,20 +11601,20 @@
       "xp3": null,
       "priority": "Importante",
       "benefit": "Rank 4 e Insígnia Nível 4; exige 5.000 de fama",
-      "instruction": "Marco final da rota 1–60. Faça somente se tiver Rank 3 e 5.000 de fama.",
+      "instruction": "Disponível a partir do nível 60, após Rank 4 e com 5.000 de fama. Pegue a insígnia depois de confirmar o Rank 4.",
       "steps": [
         {
           "id": "e1",
           "action": "Fale com Oficial Graduado (521, 626)",
           "markerX": 521,
           "markerY": 626,
-          "routeOrder": 1231900,
+          "routeOrder": 1390101,
           "title": "Insígnia Nível 4"
         },
         {
           "id": "e2",
           "action": "Receba Cargo Militar Nível 4 e a Insígnia Nível 4",
-          "routeOrder": 1232100,
+          "routeOrder": 1390102,
           "title": "Insígnia Nível 4"
         }
       ],
@@ -11980,7 +12304,7 @@
           "action": "Aceite a missão com Bibliotecário Yua (157, 250)",
           "markerX": 157,
           "markerY": 250,
-          "routeOrder": 20410,
+          "routeOrder": 20351,
           "memoryTaskId": 22526
         },
         {
@@ -12108,7 +12432,7 @@
           "action": "Aceite a missão com Vidente do Vazio (149, 245)",
           "markerX": 149,
           "markerY": 245,
-          "routeOrder": 20510,
+          "routeOrder": 20191,
           "memoryTaskId": 22514
         },
         {
@@ -12278,7 +12602,7 @@
           "action": "Aceite a missão com Vidente do Vazio (149, 245)",
           "markerX": 149,
           "markerY": 245,
-          "routeOrder": 20650,
+          "routeOrder": 20471,
           "memoryTaskId": 22527
         },
         {
@@ -12983,7 +13307,7 @@
           "action": "Mate 15 Guerreiro da Floresta Chimei na região de (267, 262).",
           "markerX": 267,
           "markerY": 262,
-          "routeOrder": 21130,
+          "routeOrder": 21101,
           "memoryTaskId": 23067
         },
         {
@@ -14017,7 +14341,7 @@
           "action": "Aceite a missão com Tarja Hermon — mundo principal (550, 373).",
           "markerX": 550,
           "markerY": 373,
-          "routeOrder": 1300030,
+          "routeOrder": 1300001,
           "memoryTaskId": 2527
         },
         {
@@ -14065,7 +14389,7 @@
           "action": "Aceite a missão com Sr. Oville Qwojer — mundo principal (547, 373).",
           "markerX": 547,
           "markerY": 373,
-          "routeOrder": 1300070,
+          "routeOrder": 1300011,
           "memoryTaskId": 2528
         },
         {
@@ -14533,7 +14857,7 @@
       "order": 24000,
       "classScope": "ALL",
       "minLevel": 49,
-      "expectedLevel": 65,
+      "expectedLevel": 59,
       "maxLevel": "150",
       "name": "Matar o Tigre-rei de Hades",
       "npc": "Continuação / missão automática",
@@ -14542,13 +14866,13 @@
       "xp3": 243000,
       "priority": "Essencial",
       "benefit": "Progressão de cultivo e liberação de habilidades",
-      "instruction": "Cultivo prioritário. Siga todas as submissões e combine os objetivos de DG com as moedas indicadas na própria rota. Pegue o Mapa de Águia Voadora do Tigre-Rei de Hades localizado ao sul do Castelo das Águias. É altamente recomendável, que você organize uma equipe para vencer essa ameaça. Assim que terminar, leve o Mapa de Águia Voadora ao Ancião de Cidade do Dragão. Revisão de pré-requisito anterior: se já concluiu no jogo, confirme pelo histórico/sincronização ou pule esta revisão.",
+      "instruction": "Conclua o Tigre-rei de Hades e entregue o mapa ao Ancião antes de ir ao Taoísta Dongming para o Cultivo 59.",
       "steps": [
         {
           "id": "t1592-1",
           "title": "Matar o Tigre-rei de Hades",
           "action": "Receba a missão de continuação da cadeia atual; confira o nome no questlog.",
-          "routeOrder": 1340000,
+          "routeOrder": 1230694,
           "memoryTaskId": 1592
         },
         {
@@ -14557,7 +14881,7 @@
           "action": "Colete 1 Mapa de Aguia Voadora de Tigre-rei de Hades — mundo principal (343, 564).",
           "markerX": 343,
           "markerY": 564,
-          "routeOrder": 1340010,
+          "routeOrder": 1230695,
           "memoryTaskId": 1592
         },
         {
@@ -14566,7 +14890,7 @@
           "action": "Entregue a missão para Ancião da Cidade do Dragão — mundo principal (571, 648).",
           "markerX": 571,
           "markerY": 648,
-          "routeOrder": 1340020,
+          "routeOrder": 1230696,
           "memoryTaskId": 1592
         }
       ],
@@ -14578,7 +14902,7 @@
       "order": 24004,
       "classScope": "ALL",
       "minLevel": 59,
-      "expectedLevel": 65,
+      "expectedLevel": 59,
       "maxLevel": "150",
       "name": "Guia de Cultivo Espiritual",
       "npc": "Continuação / missão automática",
@@ -14587,20 +14911,20 @@
       "xp3": 900,
       "priority": "Essencial",
       "benefit": "Progressão de cultivo e liberação de habilidades",
-      "instruction": "Cultivo prioritário. Siga todas as submissões e combine os objetivos de DG com as moedas indicadas na própria rota. Você já alcançou o Cultivo Destruição de Gelo. Está na hora de avançar para o próximo nível de cultivo. Revisão de pré-requisito anterior: se já concluiu no jogo, confirme pelo histórico/sincronização ou pule esta revisão.",
+      "instruction": "Após entregar o mapa, fale com Taoísta Dongming e aceite o Cultivo 59 na mesma visita.",
       "steps": [
         {
           "id": "t1765-1",
           "title": "Guia de Cultivo Espiritual",
           "action": "Receba a missão de continuação da cadeia atual; confira o nome no questlog.",
-          "routeOrder": 1340040,
+          "routeOrder": 1230697,
           "memoryTaskId": 1765
         },
         {
           "id": "t1865-1",
           "title": "Mensagem do Sistema",
           "action": "Mensagem do Sistema",
-          "routeOrder": 1340050,
+          "routeOrder": 1230698,
           "memoryTaskId": 1865
         },
         {
@@ -14609,7 +14933,7 @@
           "action": "Fale com Taoísta Dongming — mundo principal (470, 568).",
           "markerX": 470,
           "markerY": 568,
-          "routeOrder": 1340060,
+          "routeOrder": 1230699,
           "memoryTaskId": 1866
         }
       ],
@@ -14630,7 +14954,7 @@
       "xp3": 0,
       "priority": "Essencial",
       "benefit": "Progressão de cultivo e liberação de habilidades",
-      "instruction": "Cultivo prioritário. Siga todas as submissões e combine os objetivos de DG com as moedas indicadas na própria rota. Sobreviver aos Desastres é a parte mais difícil de um cultivador. Dizem que é fácil passar pelo Infante Primordial, mas também é fácil ser derrotado pelo estágio de Resistência ao Desastre. Talvez porque a questão de vida e morte e o renascimento da alma sejam a essência da natureza, enquanto nós queremos mudá-la pela cultivação. É o mesmo que querer privar-se do privilégio do paraíso e da terra e ofender o mito do sol e da lua. Na condição de criar os Imortais, os Desastres Naturais da Terra Perfeita são cinco: Triunfante, Final, Ruína, Vazio e Derrota que podem ser iniciados respectivamente pela Anta Púrpura, Imagem de Amostra, Aba Puxadora, Inseto Sem Pés e por Barghest. Se você conseguir sobreviver aos Desastres, seus poderes podem se elevar incrivelmente. Se falhar, na melhor das hipóteses você apenas perderá um pouco de cultivação. Na pior delas, você poderá morrer com o espírito despedaçado. Revisão de pré-requisito anterior: se já concluiu no jogo, confirme pelo histórico/sincronização ou pule esta revisão.",
+      "instruction": "Esta entrada histórica foi incorporada ao Cultivo 59. Siga a linha anterior junto da DG59 e sua moeda.",
       "steps": [
         {
           "id": "t925-1",
@@ -14686,7 +15010,8 @@
           "memoryTaskId": 998
         }
       ],
-      "historyTaskGroups": [[925]]
+      "historyTaskGroups": [[925]],
+      "aliasOf": "COMMON|ALL|59|Cultivo 59 — Cinco Desastres Naturais"
     },
     {
       "id": "ENDGAME|ALL|1603",
@@ -14694,7 +15019,7 @@
       "order": 24016,
       "classScope": "ALL",
       "minLevel": 59,
-      "expectedLevel": 65,
+      "expectedLevel": 59,
       "maxLevel": "150",
       "name": "Visitando o Ancião novamente",
       "npc": "Continuação / missão automática",
@@ -14709,7 +15034,7 @@
           "id": "t1603-1",
           "title": "Visitando o Ancião novamente",
           "action": "Receba a missão de continuação da cadeia atual; confira o nome no questlog.",
-          "routeOrder": 1340160,
+          "routeOrder": 1231801,
           "memoryTaskId": 1603
         },
         {
@@ -14718,7 +15043,7 @@
           "action": "Fale com Ancião da Cidade do Dragão — mundo principal (571, 648).",
           "markerX": 571,
           "markerY": 648,
-          "routeOrder": 1340170,
+          "routeOrder": 1231802,
           "memoryTaskId": 1603
         }
       ],
@@ -14935,7 +15260,7 @@
           "action": "Aceite a missão com Caçador Sem Alma — mundo principal (536, 415).",
           "markerX": 536,
           "markerY": 415,
-          "routeOrder": 1340360,
+          "routeOrder": 1340321,
           "memoryTaskId": 2498
         },
         {
@@ -15027,7 +15352,7 @@
           "action": "Aceite a missão com Dimitri Aoner — mundo principal (538, 417).",
           "markerX": 538,
           "markerY": 417,
-          "routeOrder": 1350000,
+          "routeOrder": 1340341,
           "memoryTaskId": 2519
         },
         {
@@ -19525,7 +19850,7 @@
           "action": "Aceite a missão com Edwin Brooks — mundo principal (128, 753).",
           "markerX": 128,
           "markerY": 753,
-          "routeOrder": 1540150,
+          "routeOrder": 1540001,
           "memoryTaskId": 2477
         },
         {
@@ -19534,7 +19859,7 @@
           "action": "Colete 1 Martelo das Vísceras em Chamas de Guerreiro de Magma — mundo principal (152, 783).",
           "markerX": 152,
           "markerY": 783,
-          "routeOrder": 1540160,
+          "routeOrder": 1540002,
           "memoryTaskId": 2477
         },
         {
@@ -19543,7 +19868,7 @@
           "action": "Entregue a missão para Edwin Brooks — mundo principal (128, 753).",
           "markerX": 128,
           "markerY": 753,
-          "routeOrder": 1540170,
+          "routeOrder": 1540003,
           "memoryTaskId": 2477
         }
       ],

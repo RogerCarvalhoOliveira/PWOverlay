@@ -41,6 +41,8 @@ namespace PWQuestOverlay.Tools
                 if (profile == null)
                     throw new InvalidDataException("Perfil desconhecido: " + profileId);
                 profile.Validate();
+                if (profile.identityOnly && watch)
+                    throw new ArgumentException("Para verificar a identidade no 1.2.6, execute sem --watch.");
                 TaskCatalog catalog = TaskCatalog.Load(catalogPath);
 
                 Process[] games = Process.GetProcessesByName("elementclient");
@@ -142,6 +144,21 @@ namespace PWQuestOverlay.Tools
             using (ProcessMemoryReader memory = ProcessMemoryReader.Open(
                 game, profile.module))
             {
+                profile.VerifyModule(memory.ModulePath);
+                if (profile.identityOnly)
+                {
+                    long identityPlayer = PlayerIdentityReader.ResolveConfiguredPlayer(memory, profile);
+                    PlayerIdentityMemory first = PlayerIdentityReader.Read(memory, identityPlayer, profile.identity);
+                    Thread.Sleep(250);
+                    long current = PlayerIdentityReader.ResolveConfiguredPlayer(memory, profile);
+                    PlayerIdentityMemory confirmed = PlayerIdentityReader.Read(memory, current, profile.identity);
+                    if (identityPlayer != current || first.Key != confirmed.Key ||
+                        current != PlayerIdentityReader.ResolveConfiguredPlayer(memory, profile))
+                        throw new InvalidDataException("O personagem mudou entre as leituras.");
+                    Console.WriteLine("PID {0} | Identidade por memória: {1} [{2}] | ID {3}",
+                        game.Id, confirmed.Name, confirmed.ClassCode, confirmed.RoleId);
+                    return;
+                }
                 long player = ResolvePlayer(memory, profile);
                 PlayerIdentityMemory identity = PlayerIdentityReader.Read(memory, player, profile.identity);
                 if (identity != null) Console.WriteLine("Identidade por memória: {0} [{1}] | ID {2}", identity.Name, identity.ClassCode, identity.RoleId);

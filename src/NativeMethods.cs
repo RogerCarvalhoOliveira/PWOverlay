@@ -21,7 +21,9 @@ namespace PWQuestOverlay
         internal const uint SWP_NOACTIVATE = 0x0010;
         internal const uint SWP_NOOWNERZORDER = 0x0200;
         internal const uint SWP_SHOWWINDOW = 0x0040;
+        internal const uint SWP_ASYNCWINDOWPOS = 0x4000;
         internal const int SW_SHOWNOACTIVATE = 4;
+        internal const int SW_RESTORE = 9;
         internal const uint MOD_ALT = 0x0001;
         internal const uint MOD_CONTROL = 0x0002;
         internal const uint MOD_SHIFT = 0x0004;
@@ -40,6 +42,9 @@ namespace PWQuestOverlay
         internal const uint MOUSEEVENTF_LEFTUP = 0x0004;
 
         internal static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
+        private static readonly int CurrentProcessId = GetCurrentProcessId();
+        private static readonly Dictionary<int, Tuple<long, ClientServer>> Installations =
+            new Dictionary<int, Tuple<long, ClientServer>>();
 
         internal delegate bool EnumWindowsProc(IntPtr window, IntPtr parameter);
 
@@ -49,6 +54,18 @@ namespace PWQuestOverlay
         private static extern bool GetProcessTimes(IntPtr process, out long created, out long exited, out long kernel, out long user);
         [DllImport("kernel32.dll")]
         private static extern bool CloseHandle(IntPtr handle);
+        [DllImport("kernel32.dll")]
+        private static extern int GetCurrentProcessId();
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        private static extern bool QueryFullProcessImageName(IntPtr process, int flags, StringBuilder path, ref int size);
+
+        internal static bool MemoryAccessDenied(int processId)
+        {
+            IntPtr handle = OpenProcess(0x1010, false, processId);
+            if (handle == IntPtr.Zero) return Marshal.GetLastWin32Error() == 5;
+            CloseHandle(handle);
+            return false;
+        }
 
         internal static long ProcessStartToken(int processId)
         {
@@ -57,6 +74,31 @@ namespace PWQuestOverlay
             if (handle == IntPtr.Zero) return 0;
             try { long created, exited, kernel, user; return GetProcessTimes(handle, out created, out exited, out kernel, out user) ? created : 0; }
             finally { CloseHandle(handle); }
+        }
+
+        private static ClientServer GetInstallation(int processId, long started, string title)
+        {
+            Tuple<long, ClientServer> known;
+            if (Installations.TryGetValue(processId, out known) && known.Item1 == started && known.Item2 != null)
+                return known.Item2;
+            IntPtr handle = OpenProcess(0x1000, false, processId);
+            if (handle != IntPtr.Zero)
+            {
+                try
+                {
+                    var path = new StringBuilder(512);
+                    int size = path.Capacity;
+                    if (QueryFullProcessImageName(handle, 0, path, ref size))
+                    {
+                        ClientServer server = ClientServer.ForInstallation(path.ToString(), title);
+                        if (Installations.Count > 64) Installations.Clear();
+                        Installations[processId] = Tuple.Create(started, server);
+                        return server;
+                    }
+                }
+                finally { CloseHandle(handle); }
+            }
+            return ClientServer.ForInstallation(null, title);
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -92,6 +134,12 @@ namespace PWQuestOverlay
 
         [DllImport("user32.dll")]
         internal static extern bool IsWindowVisible(IntPtr window);
+
+        [DllImport("user32.dll")]
+        internal static extern bool IsIconic(IntPtr window);
+
+        [DllImport("user32.dll")]
+        internal static extern bool ShowWindowAsync(IntPtr window, int command);
 
         [DllImport("user32.dll")]
         internal static extern bool GetClientRect(IntPtr window, out RECT rect);
@@ -183,7 +231,9 @@ namespace PWQuestOverlay
                     // Process start time prevents a recycled PID/HWND from inheriting a binding.
                     long started = ProcessStartToken(id);
                     if (started == 0) return null;
-                    return new ClientWindowInfo { Handle = window, ProcessId = id, Title = GetWindowTitle(window).Trim(),
+                    string title = GetWindowTitle(window).Trim();
+                    return new ClientWindowInfo { Handle = window, ProcessId = id, Title = title,
+                        Server = GetInstallation(id, started, title), ServerRequired = true,
                         SessionKey = id + ":" + started + ":" + window.ToInt64() };
                 }
             }
@@ -204,7 +254,7 @@ namespace PWQuestOverlay
 
         internal static bool WindowBelongsToCurrentProcess(IntPtr window)
         {
-            return window != IntPtr.Zero && GetProcessId(window) == Process.GetCurrentProcess().Id;
+            return window != IntPtr.Zero && GetProcessId(window) == CurrentProcessId;
         }
 
         internal static List<IntPtr> FindGameWindows()

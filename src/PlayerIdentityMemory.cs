@@ -16,6 +16,14 @@ namespace PWQuestOverlay.Memory
     {
         // IDs de profissão do cliente; a ordem difere da lista de classes da interface.
         private static readonly string[] Classes = { "WR", "MG", "ES", "WF", "WB", "MC", "EA", "EP", "SK", "MS" };
+        internal static long ResolveConfiguredPlayer(ProcessMemoryReader memory, MemoryLayoutProfile profile)
+        {
+            long player = memory.ResolvePointerChain(profile.PlayerBaseRva, profile.PlayerChain);
+            long vtable = memory.ModuleBase.ToInt64() + HexValue.Parse(profile.player.vtableRva);
+            if (player <= 0 || memory.ReadUInt32(player) != vtable)
+                throw new InvalidDataException("O cliente ainda não tem um personagem conectado.");
+            return player;
+        }
         internal static PlayerIdentityMemory Read(ProcessMemoryReader memory, long player, PlayerIdentityLayout layout)
         { return Read(memory.ReadUInt32, memory.ReadBytes, player, layout); }
 

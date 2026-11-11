@@ -36,6 +36,17 @@ internal static class ProgressionTests
                 Check(result.ActiveTasks.Count == 1 && result.ActiveTasks[0].TaskId == 1173 &&
                     result.FinishedTaskIds.SequenceEqual(new uint[] { 35, 1174 }),
                     "History-only reads must decode active and finished tasks without accessing the inventory.");
+                if (layout.FinishedIdBytes == 2)
+                {
+                    Marshal.WriteInt16(finished, layout.FinishedCountOffset, 3);
+                    int third = layout.FinishedEntriesOffset + 2 * layout.FinishedEntryStride;
+                    Marshal.WriteInt16(finished, third, unchecked((short)61531));
+                    Marshal.WriteByte(finished, third + 3, 7);
+                    Marshal.WriteByte(finished, layout.FinishedEntriesOffset + layout.finishedFailureFlagOffset, 1);
+                    result = reader.ReadFromInterface(player.ToInt64(), taskInterface.ToInt64(), false);
+                    Check(result.FinishedTaskIds.SequenceEqual(new uint[] { 1174, 61531 }),
+                        "1.2.6 history must ignore failed tasks and keep IDs separate from metadata.");
+                }
                 bool inventoryRejected = false;
                 try { reader.ReadFromInterface(player.ToInt64(), taskInterface.ToInt64(), true); }
                 catch (InvalidOperationException) { inventoryRejected = true; }
@@ -54,6 +65,81 @@ internal static class ProgressionTests
             Marshal.FreeHGlobal(active);
             Marshal.FreeHGlobal(finished);
         }
+    }
+
+    internal static void TestClassic126Mapping(string path, TaskCatalog catalog)
+    {
+        var local = new QuestMemorySnapshot();
+        local.FinishedTaskIds.AddRange(new uint[] { 60313, 60312, 61531, 61534, 65535 });
+        local.ActiveTasks.Add(new ActiveQuestMemoryEntry { TaskId = 61534 });
+        QuestMemorySnapshot translated = QuestProgression.TranslateHistory126(path, local);
+        Check(new HashSet<uint>(translated.FinishedTaskIds).SetEquals(new uint[] { 2566, 2569, 934 }),
+            "The EA aliases must resolve to EA roots. Unknown IDs and completed children are not proof of a completed chain.");
+        Check(QuestProgression.ActiveRoots(catalog, translated).SetEquals(new uint[] { 934 }),
+            "An active child must prevent importing the whole chain.");
+
+        local.PlayerLevel = 20;
+        translated = QuestProgression.TranslateHistory126(path, local);
+        Check(translated.Availability[2714] == QuestAvailability.Available,
+            "Confiança dos Guardas is still available at 20 in the 1.2.6 catalog.");
+        local.PlayerLevel = 40;
+        local.PlayerReputation = 500;
+        translated = QuestProgression.TranslateHistory126(path, local);
+        Check(translated.Availability[2714] == QuestAvailability.Expired &&
+            !translated.FinishedTaskIds.Contains(2714), "An expired mission is not completed history.");
+        Check(translated.Availability[6517] == QuestAvailability.Blocked,
+            "A rank event without an offer cannot be suggested just because the reputation requirement is met.");
+        Check(translated.Availability[990] == QuestAvailability.Blocked,
+            "A missing prerequisite must block automatic selection.");
+        local.FinishedTaskIds.Add(923);
+        translated = QuestProgression.TranslateHistory126(path, local);
+        Check(translated.Availability[990] == QuestAvailability.Available,
+            "Confirmed prerequisites must unlock eligible missions.");
+
+        var activeMission = Mission("active", 1, 100, false);
+        activeMission.historyTaskGroups = new[] { new uint[] { 934 } };
+        activeMission.steps[0].action = "Aceite a missão";
+        activeMission.steps.Add(new QuestStep { id = "deliver", title = "Aldeões Feridos", action = "Entregue a missão" });
+        var progress = new CharacterProgress();
+        Check(QuestProgression.ImportHistory(new[] { activeMission }, progress, catalog, translated) == 1 &&
+            progress.MissionStates.ContainsKey(QuestProgression.StageKey(activeMission, activeMission.steps[0])) &&
+            !progress.MissionStates.ContainsKey(activeMission.id),
+            "An active quest confirms its acceptance without recording the delivery.");
+    }
+
+    internal static void TestMineHistory(string path, TaskCatalog catalog, RouteRepository routes)
+    {
+        QuestMission mine = routes.GetClassMissions("EA").Single(mission => mission.name == "A Batalha da Mina");
+        var local = new QuestMemorySnapshot { PlayerLevel = 35 };
+        local.FinishedTaskIds.Add(824);
+        var progress = new CharacterProgress();
+        QuestMemorySnapshot translated = QuestProgression.TranslateHistory126(path, local);
+        QuestProgression.ImportHistory(new[] { mine }, progress, catalog, translated);
+        Check(progress.MissionStates.ContainsKey(QuestProgression.StageKey(mine, mine.steps[0])) &&
+            !progress.MissionStates.ContainsKey(QuestProgression.StageKey(mine, mine.steps[4])) &&
+            !QuestProgression.MissionDone(mine, progress), "The first mine delivery must not complete its continuations.");
+        local.FinishedTaskIds.AddRange(new uint[] { 61608, 61613 });
+        translated = QuestProgression.TranslateHistory126(path, local);
+        QuestProgression.ImportHistory(new[] { mine }, progress, catalog, translated);
+        Check(QuestProgression.MissionDone(mine, progress), "All three mine records, across verified IDs, complete the chain.");
+        QuestMission hero = routes.GetClassMissions("EA").Single(mission => mission.name == "Memória do Herói");
+        var localTasks = QuestProgression.LoadClassic126Tasks(path);
+        var heroActive = QuestProgression.TranslateActive126(localTasks, new uint[] { 60919, 60920 });
+        var unrelated = QuestProgression.TranslateActive126(localTasks, new uint[] { 60934 });
+        var bones = QuestProgression.TranslateActive126(localTasks, new uint[] { 60919, 60921 });
+        Check(QuestProgression.Classic126Evidence(hero, hero.steps[0], catalog, heroActive) != null &&
+            QuestProgression.Classic126Evidence(hero, hero.steps[0], catalog, unrelated) == null &&
+            QuestProgression.Classic126Evidence(hero, hero.steps[1], catalog, heroActive) == null,
+            "The 1.2.6 EA acceptance must match the right quest, and not advance talk steps.");
+        Check(QuestProgression.Classic126Evidence(hero, hero.steps[1], catalog, bones) != null &&
+            QuestProgression.Classic126Evidence(hero, hero.steps[2], catalog, bones) == null &&
+            QuestProgression.Classic126Evidence(hero, hero.steps[1], catalog, unrelated) == null,
+            "Bones appearing after the old blacksmith must advance only the completed step of the same ordered chain.");
+        translated.ActiveTasks.Add(new ActiveQuestMemoryEntry { TaskId = 1953 });
+        var saved = QuestProgression.RestoreImport(QuestProgression.RememberImport(new[] { hero }, catalog, translated));
+        Check(saved.PlayerLevel == 35 && saved.Availability.ContainsKey(1953) &&
+            saved.ActiveTasks.Count == 0 && saved.FinishedTaskIds.Count == 0,
+            "Reopening restores eligibility without replaying stale active or finished quest observations.");
     }
 
     internal static void Run(RouteRepository routes, TaskCatalog catalog)

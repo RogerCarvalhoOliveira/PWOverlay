@@ -10,6 +10,7 @@ const wb=await SpreadsheetFile.importXlsx(await FileBlob.load(filename));
 const sheets=[['Humanos - WR','WR'],['Selvagens - WB-WF','WBWF'],['Alados - EA-EP','EAEP'],['Abissais - MC','MC'],['Guardiões - SK-MS','SKMS']];
 const expand=process.argv.includes('--expand-classes');
 const extend=process.argv.includes('--extend-105');
+const audit=process.argv.includes('--sync-audit-fields');
 const levelCap=Math.max(...routes.missions.map(m=>m.expectedLevel));
 const titles={WR:'Humanos — WR / Guerreiro e MG / Mago',WBWF:'Selvagens — WB / Bárbaro e WF / Feiticeira',EAEP:'Alados — EA / Arqueiro e EP / Sacerdote',MC:'Abissais — MC / Mercenário e ES / Espiritualista',SKMS:'Guardiões — SK / Arcano e MS / Místico'};
 const pathLabel=m=>m.cultivationPath==='GOD'?'God':m.cultivationPath==='EVIL'?'Evil':'Ambos';
@@ -52,7 +53,9 @@ for(const [name,route] of sheets){
   }
   for(let i=0;!rebuild&&i<missions.length;i++){
     const mission=missions[i];
-    if(sheet.getRange(`F${i+8}`).values[0][0]!==mission.name)throw new Error(`Linha divergente ${name}/${i+8}`);
+    const existing=sheet.getRange(`B${i+8}:F${i+8}`).values[0];
+    if(audit ? existing[0]!==mission.order || existing[1]!==mission.classScope : existing[4]!==mission.name)
+      throw new Error(`Linha divergente ${name}/${i+8}`);
   }
   if(!process.argv.includes('--write'))continue;
   if(rebuild){
@@ -96,7 +99,25 @@ for(const [name,route] of sheets){
     sheet.getRange(`C8:C${last}`).values=missions.map(m=>[m.classScope]);
     sheet.getRange(`L8:M${last}`).values=missions.map(m=>[m.benefit,m.instruction]);
   }
-  sheet.getRange(`N8:N${last}`).values=missions.map(m=>[m.steps.map((s,i)=>`R${s.routeOrder} · ${i+1}. ${s.title} — ${s.action}`).join('\n')]);
+  if(audit){
+    sheet.getRange(`D8:H${last}`).values=missions.map(m=>[m.minLevel,m.maxLevel,m.name,m.npc,m.location]);
+    sheet.getRange(`M8:M${last}`).values=missions.map(m=>[m.instruction]);
+    sheet.getRange(`O8:O${last}`).values=missions.map(m=>[m.expectedLevel]);
+  }
+  const stageTexts=missions.map(m=>[m.aliasOf
+    ?'Siga a entrada Cultivo 59 no trecho da DG59.'
+    :m.steps.map((s,i)=>`R${s.routeOrder} · ${i+1}. ${s.title} — ${s.action}`).join('\n')]);
+  if(audit&&!rebuild){
+    const previous=sheet.getRange(`N8:N${last}`).values;
+    for(let i=0;i<stageTexts.length;i++){
+      const lines=stageTexts[i][0].split('\n');
+      if(lines.length<=String(previous[i][0]||'').split('\n').length)continue;
+      const row=sheet.getRange(`A${i+8}:P${i+8}`);
+      const needed=lines.reduce((total,line)=>total+Math.ceil(line.length/88),0)*14+14;
+      row.format.rowHeight=Math.min(409,Math.max(Number(row.format.rowHeight)||0,needed));
+    }
+  }
+  sheet.getRange(`N8:N${last}`).values=stageTexts;
   if(rebuild){
     // Bound each new row to Excel's maximum while allowing its full stage text.
     for(let i=0;i<missions.length;i++){
@@ -131,7 +152,7 @@ for(const {sheet,values,formulas,last} of snapshots){
   const after=sheet.getRange(`A8:O${last}`).values;
   const afterFormulas=sheet.getRange(`A8:O${last}`).formulas;
   for(let r=0;r<values.length;r++)for(let c=0;c<values[r].length;c++){
-    if(![13,...(expand?[2,11,12]:[])].includes(c)&&!formulas[r][c]&&JSON.stringify(values[r][c])!==JSON.stringify(after[r][c]))throw new Error(`Valor alterado ${sheet.name}/${r}/${c}`);
+    if(![13,...(expand?[2,11,12]:[]),...(audit?[3,4,5,6,7,12,14]:[])].includes(c)&&!formulas[r][c]&&JSON.stringify(values[r][c])!==JSON.stringify(after[r][c]))throw new Error(`Valor alterado ${sheet.name}/${r}/${c}`);
     if(formulas[r][c]!==afterFormulas[r][c])throw new Error('Fórmula alterada');
   }
   const preview=await wb.render({sheetName:sheet.name,range:previewRange,scale:1,format:'png'});

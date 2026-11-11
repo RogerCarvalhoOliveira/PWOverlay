@@ -8,9 +8,11 @@ O programa funciona com o PW aberto diretamente, sem precisar instalar ou execut
 
 Para usar sem compilar, abra a [versão mais recente](https://github.com/RogerCarvalhoOliveira/PWOverlay/releases/latest) e baixe:
 
-- `PWQuestOverlay-Setup-v0.13.0.exe` para instalar no Windows.
-- `PWQuestOverlay-Portatil-v0.13.0.zip` para uso portátil.
-- `SHA256SUMS-v0.13.0.txt` para conferir a integridade dos arquivos.
+- `PWQuestOverlay-Setup-v0.13.11.exe` para instalar no Windows.
+- `PWQuestOverlay-Portatil-v0.13.11.zip` para uso portátil.
+- `SHA256SUMS-v0.13.11.txt` para conferir a integridade dos arquivos.
+
+Após instalar, use **Procurar atualizações** na Central para baixar e abrir os próximos instaladores publicados.
 
 Abra o PW manualmente ou pelo PW Helper. Na **PW Overlay Central**, marque Overlay e/ou Windowed Fullscreen e clique em **Aplicar ao PW já aberto**. Para encerrar as ferramentas, use **Parar Overlay e Borderless**. A Central não abre o jogo nem exige configurar um launcher.
 
@@ -24,7 +26,7 @@ Abra o PW manualmente ou pelo PW Helper. Na **PW Overlay Central**, marque Overl
 - Suporte a personagens com o mesmo nome em classes diferentes.
 - Rotas do nível 1 ao 105 para as dez classes, preservando as etapas e o progresso anteriores.
 - Rota reduzida com XP ×3, nível previsto calculado a partir das missões concluídas e importação do histórico do personagem.
-- Calibração do marcador com F8 após detectar o PW em foco e sua resolução.
+- Calibração do marcador com mira, clique duplo e confirmação por ponto. O atalho F8 continua disponível.
 - Título explícito em todas as submissões para facilitar comparação com o questlog e diagnóstico de progresso.
 - Ordem global por ação do nível 1 ao 105: o overlay pode pegar várias missões de um polo, executar objetivos próximos e entregá-las somente no retorno planejado.
 - Após a Cidade do Dragão, as dez classes percorrem o mesmo circuito e se separam nas missões exclusivas de raça/classe. A rota do Místico inclui as quatro invocações e seis plantas até o nível 59.

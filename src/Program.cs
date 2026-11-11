@@ -8,8 +8,15 @@ namespace PWQuestOverlay
     internal static class Program
     {
         [STAThread]
-        private static void Main()
+        private static void Main(string[] args)
         {
+            if (string.Equals(Path.GetFileName(Application.ExecutablePath), ElevatedIdentityReader.WorkerFile,
+                StringComparison.OrdinalIgnoreCase))
+            {
+                if (args.Length == 2 && args[0] == ElevatedIdentityReader.WorkerArgument)
+                    ElevatedIdentityReader.Serve(args[1]);
+                return;
+            }
             bool createdNew;
             using (var instance = new Mutex(true, @"Local\PWQuestOverlay", out createdNew))
             {

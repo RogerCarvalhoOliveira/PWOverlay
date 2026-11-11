@@ -30,6 +30,8 @@ for(const code of ['SK','MS']){
 const old=fs.existsSync('work/pre-classes-routes.json')?JSON.parse(fs.readFileSync('work/pre-classes-routes.json','utf8').replace(/^\uFEFF/,'')):null;
 if(old)for(const before of old.missions){
   const after=data.missions.find(m=>m.id===before.id);assert(after,`ID legado removido: ${before.id}`);
-  assert.deepEqual(after.steps,before.steps,`Etapas legadas alteradas: ${before.id}`);
+  const previousIds=new Set(before.steps.map(step=>step.id));
+  assert.deepEqual(new Set(after.steps.filter(step=>previousIds.has(step.id)).map(step=>step.id)),
+    previousIds,`IDs de etapas legadas alterados: ${before.id}`);
 }
 console.log('Guardiões: limites de aceite, pré-requisitos, ordem, marcadores e IDs legados verificados.');

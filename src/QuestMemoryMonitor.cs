@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace PWQuestOverlay.Memory
 {
@@ -10,6 +12,7 @@ namespace PWQuestOverlay.Memory
     {
         private readonly HashSet<uint> _observedActive;
         private readonly HashSet<uint> _disappeared;
+        private readonly HashSet<uint> _newlyFinished = new HashSet<uint>();
 
         internal QuestMemoryClientState()
         {
@@ -46,7 +49,7 @@ namespace PWQuestOverlay.Memory
         }
 
         internal void InvalidateQuests()
-        { Ready = false; Snapshot = null; _observedActive.Clear(); _disappeared.Clear(); }
+        { Ready = false; Snapshot = null; _observedActive.Clear(); _disappeared.Clear(); _newlyFinished.Clear(); }
 
         internal void Observe(QuestMemorySnapshot snapshot)
         {
@@ -66,6 +69,8 @@ namespace PWQuestOverlay.Memory
                 else if (change.Kind == QuestMemoryEventKind.DisappearedAfterObservation &&
                     _observedActive.Contains(change.TaskId))
                     _disappeared.Add(change.TaskId);
+                else if (change.Kind == QuestMemoryEventKind.AddedToHistory)
+                    _newlyFinished.Add(change.TaskId);
             }
         }
 
@@ -82,6 +87,111 @@ namespace PWQuestOverlay.Memory
             // A new activation clears this evidence for a repeated quest.
             return _disappeared.Contains(taskId);
         }
+
+        internal bool HasNewlyFinished(uint taskId) { return _newlyFinished.Contains(taskId); }
+
+        internal QuestMemoryClientState CopyForUi()
+        {
+            var copy = new QuestMemoryClientState
+            {
+                Snapshot = Snapshot, Ready = Ready, SessionToken = SessionToken, Identity = Identity
+            };
+            copy._observedActive.UnionWith(_observedActive);
+            copy._disappeared.UnionWith(_disappeared);
+            copy._newlyFinished.UnionWith(_newlyFinished);
+            return copy;
+        }
+    }
+
+    // The overlay owns this adapter. Only its single worker touches the native reader.
+    internal sealed class QuestMemoryPolling : IDisposable
+    {
+        private readonly QuestMemoryMonitor _monitor;
+        private readonly Action<string> _log;
+        private readonly HashSet<int> _forgotten = new HashSet<int>();
+        private Dictionary<int, string> _requested = new Dictionary<int, string>();
+        private Dictionary<int, QuestMemoryClientState> _visible = new Dictionary<int, QuestMemoryClientState>();
+        private Task<Dictionary<int, QuestMemoryClientState>> _pending;
+        private bool _pendingReadQuests;
+
+        internal QuestMemoryPolling(string path, string profileId, Action<string> log)
+        {
+            _monitor = new QuestMemoryMonitor(path, profileId, log);
+            _log = log;
+        }
+
+        internal void Poll(IEnumerable<ClientWindowInfo> windows, bool readQuests)
+        {
+            var live = windows.GroupBy(window => window.ProcessId)
+                .ToDictionary(group => group.Key, group => group.First().SessionKey);
+            foreach (KeyValuePair<int, string> client in _requested)
+            {
+                string key;
+                if (!live.TryGetValue(client.Key, out key) || client.Value != key) Forget(client.Key);
+            }
+            if (_pendingReadQuests != readQuests)
+                foreach (QuestMemoryClientState state in _visible.Values) state.InvalidateQuests();
+
+            if (_pending != null)
+            {
+                if (!_pending.IsCompleted) return;
+                try
+                {
+                    var result = _pending.GetAwaiter().GetResult();
+                    if (_pendingReadQuests == readQuests)
+                    {
+                        foreach (int pid in _forgotten) result.Remove(pid);
+                        _visible = result;
+                    }
+                }
+                catch (Exception error)
+                {
+                    _visible.Clear();
+                    if (_log != null) _log("Falha na leitura em segundo plano: " + error.Message);
+                }
+                _pending = null;
+            }
+            if (live.Count == 0 && _forgotten.Count == 0) return;
+
+            int[] forgotten = _forgotten.ToArray();
+            _forgotten.Clear();
+            _requested = live;
+            _pendingReadQuests = readQuests;
+            _pending = Task.Run(delegate
+            {
+                foreach (int pid in forgotten) _monitor.Forget(pid);
+                _monitor.Poll(live.Keys, readQuests);
+                var result = new Dictionary<int, QuestMemoryClientState>();
+                foreach (int pid in live.Keys)
+                {
+                    QuestMemoryClientState state = _monitor.Find(pid);
+                    if (state != null) result.Add(pid, state.CopyForUi());
+                }
+                return result;
+            });
+        }
+
+        internal QuestMemoryClientState Find(int pid)
+        {
+            QuestMemoryClientState state;
+            return _visible.TryGetValue(pid, out state) ? state : null;
+        }
+
+        internal void Forget(int pid)
+        {
+            _visible.Remove(pid);
+            _forgotten.Add(pid);
+        }
+
+        public void Dispose()
+        {
+            if (_pending == null) _monitor.Dispose();
+            else _pending.ContinueWith(task =>
+            {
+                if (task.IsFaulted && _log != null) _log(task.Exception.GetBaseException().Message);
+                _monitor.Dispose();
+            }, TaskScheduler.Default);
+        }
     }
 
     internal sealed class QuestMemoryMonitor : IDisposable
@@ -96,11 +206,12 @@ namespace PWQuestOverlay.Memory
             string layoutPath,
             string profileId,
             Action<string> log)
+            : this(MemoryLayoutFile.Load(layoutPath).Find(profileId), log) { }
+
+        internal QuestMemoryMonitor(MemoryLayoutProfile profile, Action<string> log)
         {
-            MemoryLayoutFile layouts = MemoryLayoutFile.Load(layoutPath);
-            _profile = layouts.Find(profileId);
-            if (_profile == null)
-                throw new InvalidDataException("Perfil de memória desconhecido: " + profileId);
+            if (profile == null) throw new InvalidDataException("Perfil de memória desconhecido.");
+            _profile = profile;
             _profile.Validate();
             _sessions = new Dictionary<int, Session>();
             _reportedOpenFailures = new HashSet<int>();
@@ -153,6 +264,41 @@ namespace PWQuestOverlay.Memory
                 ? session.State : null;
         }
 
+        internal static QuestMemorySnapshot ReadHistory(int processId, MemoryLayoutProfile profile,
+            string expectedName, string expectedClass)
+        {
+            profile.Validate();
+            if (profile.quests == null || profile.identity == null)
+                throw new InvalidDataException("Histórico indisponível para este cliente.");
+            using (Process process = Process.GetProcessById(processId))
+            using (ProcessMemoryReader memory = ProcessMemoryReader.Open(process, profile.module))
+            {
+                profile.VerifyModule(memory.ModulePath);
+                long player = Session.ResolvePlayer(memory, profile);
+                PlayerIdentityMemory identity = PlayerIdentityReader.Read(memory, player, profile.identity);
+                if (!string.Equals(identity.Name, expectedName, StringComparison.OrdinalIgnoreCase) ||
+                    !string.Equals(identity.ClassCode, expectedClass, StringComparison.OrdinalIgnoreCase))
+                    throw new InvalidDataException("O personagem no jogo difere do perfil ativo.");
+                var reader = new QuestMemoryReader(memory, profile.quests, profile.inventory);
+                QuestMemorySnapshot first = reader.Read(player, false);
+                Thread.Sleep(100);
+                if (Session.ResolvePlayer(memory, profile) != player)
+                    throw new InvalidDataException("O personagem mudou durante a leitura.");
+                QuestMemorySnapshot second = reader.Read(player, false);
+                int level = memory.ReadInt32(player + profile.AttributeOffset("level"));
+                if (level < 1 || level > 150) throw new InvalidDataException("Nível do personagem inválido.");
+                second.PlayerLevel = level;
+                if (profile.attributes.ContainsKey("reputation"))
+                    second.PlayerReputation = memory.ReadInt32(player + profile.AttributeOffset("reputation"));
+                if (identity.Key != PlayerIdentityReader.Read(memory, player, profile.identity).Key ||
+                    first.TaskInterfaceAddress != second.TaskInterfaceAddress ||
+                    !first.FinishedTaskIds.SequenceEqual(second.FinishedTaskIds) ||
+                    !first.ActiveTasks.Select(task => task.TaskId).SequenceEqual(second.ActiveTasks.Select(task => task.TaskId)))
+                    throw new InvalidDataException("O histórico mudou durante a leitura. Tente importar novamente.");
+                return second;
+            }
+        }
+
         internal void Forget(int processId)
         {
             Session session;
@@ -199,7 +345,7 @@ namespace PWQuestOverlay.Memory
                 _reader = reader;
                 _player = player;
                 _profile = profile;
-                try { _configuredRoot = _memory.ResolvePointerChain(profile.PlayerBaseRva, profile.PlayerChain) == player; }
+                try { _configuredRoot = profile.identityOnly || _memory.ResolvePointerChain(profile.PlayerBaseRva, profile.PlayerChain) == player; }
                 catch { _configuredRoot = false; }
                 _log = log;
                 _tracker = new QuestStateTracker();
@@ -218,11 +364,12 @@ namespace PWQuestOverlay.Memory
                 try
                 {
                     memory = ProcessMemoryReader.Open(process, profile.module);
+                    profile.VerifyModule(memory.ModulePath);
                     long player = ResolvePlayer(memory, profile);
                     return new Session(
                         process,
                         memory,
-                        new QuestMemoryReader(memory, profile.quests, profile.inventory),
+                        profile.quests == null ? null : new QuestMemoryReader(memory, profile.quests, profile.inventory),
                         player,
                         profile,
                         log);
@@ -245,18 +392,26 @@ namespace PWQuestOverlay.Memory
                     // Never keep reading the previous character through a stale object pointer.
                     if (_configuredRoot)
                     {
-                        long current = _memory.ResolvePointerChain(_profile.PlayerBaseRva, _profile.PlayerChain);
+                        long current = _profile.identityOnly
+                            ? PlayerIdentityReader.ResolveConfiguredPlayer(_memory, _profile)
+                            : _memory.ResolvePointerChain(_profile.PlayerBaseRva, _profile.PlayerChain);
                         if (current != _player) { State.Invalidate(); return false; }
                     }
                     else if (!IsValidPlayer(_memory, _profile, _player)) { State.Invalidate(); return false; }
                     if (_profile.identity != null)
                     {
                         PlayerIdentityMemory identity;
-                        try { identity = PlayerIdentityReader.Read(_memory, _player, _profile.identity); }
+                        try
+                        {
+                            identity = PlayerIdentityReader.Read(_memory, _player, _profile.identity);
+                            if (_profile.identityOnly && PlayerIdentityReader.ResolveConfiguredPlayer(_memory, _profile) != _player)
+                            { State.Invalidate(); return false; }
+                        }
                         catch { State.ObserveIdentity(null); throw; }
                         if (!State.ObserveIdentity(identity))
                         { _candidateSignature = null; _committedSignature = null; _candidateCount = 0; return true; }
                     }
+                    if (_reader == null) { _readFailures = 0; return true; }
                     identityValidated = true;
                     if (_lastReadQuests != readQuests || (!readQuests && !readHistory))
                     {
@@ -269,7 +424,8 @@ namespace PWQuestOverlay.Memory
                     }
                     if (!readQuests && !readHistory) { _readFailures = 0; return true; }
                     if (DateTime.UtcNow < _questRetryAt) return true;
-                    QuestMemorySnapshot snapshot = _reader.Read(_player, readQuests);
+                    QuestMemorySnapshot snapshot = _profile.identityOnly && !readHistory
+                        ? _reader.ReadActive(_player) : _reader.Read(_player, readQuests && !_profile.identityOnly);
                     int level = _memory.ReadInt32(_player + _profile.AttributeOffset("level"));
                     if (level < 1 || level > 150) throw new InvalidDataException("Nível do personagem inválido.");
                     snapshot.PlayerLevel = level;
@@ -345,10 +501,11 @@ namespace PWQuestOverlay.Memory
                         .Select(pair => pair.Key + ":" + pair.Value));
             }
 
-            private static long ResolvePlayer(
+            internal static long ResolvePlayer(
                 ProcessMemoryReader memory,
                 MemoryLayoutProfile profile)
             {
+                if (profile.identityOnly) return PlayerIdentityReader.ResolveConfiguredPlayer(memory, profile);
                 try
                 {
                     long configured = memory.ResolvePointerChain(

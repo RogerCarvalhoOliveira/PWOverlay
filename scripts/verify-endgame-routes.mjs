@@ -7,6 +7,8 @@ const catalog=new Map(fs.readFileSync('data/task_catalog_144.tsv','utf8').trim()
 }));
 const generated=data.missions.filter(m=>m.id.startsWith('ENDGAME|'));
 const rootMission=new Map(generated.filter(m=>/^\d+$/.test(m.id.split('|')[2])).map(m=>[+m.id.split('|')[2],m]));
+const byMissionId=new Map(data.missions.map(m=>[m.id,m]));
+const routed=m=>m.aliasOf?byMissionId.get(m.aliasOf):m;
 const sourceEntry=new Map(source.facts.map(e=>[e.id,e]));
 for(const [id,dependencies] of Object.entries(source.pastAccessPlan?.additionalDependencies||{})){
   const entry=sourceEntry.get(+id);assert(entry);
@@ -21,7 +23,7 @@ for(const e of source.facts){
   if(e.task.maxLevel)assert(m.expectedLevel<=e.task.maxLevel,`Quest agendada depois do máximo: ${m.id}`);
   for(const id of e.previous){
     const previous=rootMission.get(id);assert(previous);
-    assert(previous.steps.at(-1).routeOrder<m.steps[0].routeOrder,`Pré-requisito fora de ordem: ${id} → ${e.id}`);
+    assert(routed(previous).steps.at(-1).routeOrder<routed(m).steps[0].routeOrder,`Pré-requisito fora de ordem: ${id} → ${e.id}`);
     const path=sourceEntry.get(id).path;
     if(path)assert.equal(e.path,path,`Pré-requisito de outro cultivo: ${id} → ${e.id}`);
   }

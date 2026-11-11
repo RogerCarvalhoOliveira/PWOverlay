@@ -16,17 +16,20 @@ namespace PWQuestOverlay.Memory
             int processId,
             IntPtr handle,
             IntPtr moduleBase,
-            int moduleSize)
+            int moduleSize,
+            string modulePath)
         {
             ProcessId = processId;
             _handle = handle;
             ModuleBase = moduleBase;
             ModuleSize = moduleSize;
+            ModulePath = modulePath;
         }
 
         internal int ProcessId { get; private set; }
         internal IntPtr ModuleBase { get; private set; }
         internal int ModuleSize { get; private set; }
+        internal string ModulePath { get; private set; }
 
         internal static ProcessMemoryReader Open(Process process, string moduleName)
         {
@@ -43,6 +46,7 @@ namespace PWQuestOverlay.Memory
             {
                 IntPtr moduleBase = IntPtr.Zero;
                 int moduleSize = 0;
+                string modulePath = null;
                 foreach (ProcessModule module in process.Modules)
                 {
                     if (string.Equals(module.ModuleName, moduleName,
@@ -50,6 +54,7 @@ namespace PWQuestOverlay.Memory
                     {
                         moduleBase = module.BaseAddress;
                         moduleSize = module.ModuleMemorySize;
+                        modulePath = module.FileName;
                         break;
                     }
                 }
@@ -57,7 +62,7 @@ namespace PWQuestOverlay.Memory
                     throw new InvalidOperationException(
                         "Módulo não encontrado no processo: " + moduleName);
                 return new ProcessMemoryReader(
-                    process.Id, handle, moduleBase, moduleSize);
+                    process.Id, handle, moduleBase, moduleSize, modulePath);
             }
             catch
             {

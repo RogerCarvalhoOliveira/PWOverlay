@@ -37,5 +37,6 @@ if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar os smoke tests.' }
 & $testExecutable `
     (Join-Path $projectRoot 'data\quest_routes.json') `
     (Join-Path $projectRoot 'data\memory_offsets.json') `
-    (Join-Path $projectRoot 'data\task_catalog_144.tsv')
+    (Join-Path $projectRoot 'data\task_catalog_144.tsv') `
+    (Join-Path $projectRoot 'data\task_history_126.tsv')
 if ($LASTEXITCODE -ne 0) { throw 'Smoke tests falharam.' }

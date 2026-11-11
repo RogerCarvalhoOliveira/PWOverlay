@@ -40,6 +40,7 @@ $brandingSource = Join-Path $sourceDirectory 'AppBranding.cs'
 $shutdownSource = Join-Path $sourceDirectory 'AppShutdown.cs'
 $maintenanceSource = Join-Path $sourceDirectory 'ToolMaintenance.cs'
 $overlayExecutable = Join-Path $distributionDirectory 'PW Quest Overlay.exe'
+$identityExecutable = Join-Path $distributionDirectory 'PW Identity Reader.exe'
 $borderlessExecutable = Join-Path $distributionDirectory 'PW Borderless.exe'
 $launcherExecutable = Join-Path $distributionDirectory 'PW Overlay Central.exe'
 $memoryProbeExecutable = Join-Path $distributionDirectory 'PW Memory Probe.exe'
@@ -47,6 +48,7 @@ $maintenanceExecutable = Join-Path $distributionDirectory 'PW Maintenance.exe'
 $routeDestination = Join-Path $distributionDirectory 'quest_routes.json'
 $memoryOffsetsDestination = Join-Path $distributionDirectory 'memory_offsets.json'
 $taskCatalogDestination = Join-Path $distributionDirectory 'task_catalog_144.tsv'
+$taskHistoryDestination = Join-Path $distributionDirectory 'task_history_126.tsv'
 $workbookDestination = Join-Path $distributionDirectory 'rota_leveling_pw_144.xlsx'
 $readmeDestination = Join-Path $distributionDirectory 'LEIA-ME.txt'
 $installationGuideDestination = Join-Path $distributionDirectory 'INSTALACAO.txt'
@@ -72,11 +74,13 @@ $overlaySources = @(
     (Join-Path $sourceDirectory 'RttiResolver.cs'),
     (Join-Path $sourceDirectory 'QuestMemoryReader.cs'),
     (Join-Path $sourceDirectory 'QuestStateTracker.cs'),
-    (Join-Path $sourceDirectory 'QuestMemoryMonitor.cs')
+    (Join-Path $sourceDirectory 'QuestMemoryMonitor.cs'),
+    (Join-Path $sourceDirectory 'ElevatedIdentityReader.cs')
 )
 
 & $compiler /nologo /target:winexe /optimize+ /platform:x86 `
     /win32icon:$iconPath "/resource:$iconPath,PWOverlay.App.ico" `
+    "/resource:$(Join-Path $dataDirectory 'memory_offsets.json'),PWOverlay.MemoryLayouts.json" `
     /out:$overlayExecutable `
     /reference:System.dll `
     /reference:System.Core.dll `
@@ -86,6 +90,7 @@ $overlaySources = @(
     /reference:Microsoft.CSharp.dll `
     $overlaySources $assemblyInfo $brandingSource $shutdownSource
 if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar o PW Quest Overlay.' }
+Copy-Item -LiteralPath $overlayExecutable -Destination $identityExecutable -Force
 
 & $compiler /nologo /target:winexe /optimize+ /platform:anycpu `
     /win32icon:$iconPath `
@@ -103,7 +108,8 @@ if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar o PW Borderless Monitor.' }
     /reference:System.Drawing.dll `
     /reference:System.Windows.Forms.dll `
     /reference:System.Web.Extensions.dll `
-    (Join-Path $sourceDirectory 'PWLauncher.cs') $assemblyInfo $brandingSource $shutdownSource $maintenanceSource
+    (Join-Path $sourceDirectory 'PWLauncher.cs') (Join-Path $sourceDirectory 'ReleaseUpdate.cs') `
+    $assemblyInfo $brandingSource $shutdownSource $maintenanceSource
 if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar o PW Overlay Central.' }
 
 & $compiler /nologo /target:exe /optimize+ /platform:x86 `
@@ -130,6 +136,7 @@ if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar o auxiliar de manutenção.'
 Copy-Item -LiteralPath (Join-Path $dataDirectory 'quest_routes.json') -Destination $routeDestination -Force
 Copy-Item -LiteralPath (Join-Path $dataDirectory 'memory_offsets.json') -Destination $memoryOffsetsDestination -Force
 Copy-Item -LiteralPath (Join-Path $dataDirectory 'task_catalog_144.tsv') -Destination $taskCatalogDestination -Force
+Copy-Item -LiteralPath (Join-Path $dataDirectory 'task_history_126.tsv') -Destination $taskHistoryDestination -Force
 Copy-Item -LiteralPath (Join-Path $dataDirectory 'rota_leveling_pw_144.xlsx') -Destination $workbookDestination -Force
 Copy-Item -LiteralPath (Join-Path $projectRoot 'docs\MANUAL-USUARIO.md') -Destination $readmeDestination -Force
 Copy-Item -LiteralPath (Join-Path $projectRoot 'docs\INSTALACAO.md') -Destination $installationGuideDestination -Force
@@ -147,6 +154,7 @@ if ($Package) {
     if (Test-Path -LiteralPath $packagePath) { Remove-Item -LiteralPath $packagePath -Force }
     Compress-Archive -LiteralPath @(
         $overlayExecutable,
+        $identityExecutable,
         $borderlessExecutable,
         $launcherExecutable,
         $memoryProbeExecutable,
@@ -154,6 +162,7 @@ if ($Package) {
         $routeDestination,
         $memoryOffsetsDestination,
         $taskCatalogDestination,
+        $taskHistoryDestination,
         $workbookDestination,
         $readmeDestination,
         $installationGuideDestination,

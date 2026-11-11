@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography;
 using System.Web.Script.Serialization;
 
 namespace PWQuestOverlay.Memory
@@ -14,9 +15,13 @@ namespace PWQuestOverlay.Memory
         {
             if (!File.Exists(path))
                 throw new FileNotFoundException("Arquivo de offsets não encontrado.", path);
+            return Parse(File.ReadAllText(path));
+        }
+
+        internal static MemoryLayoutFile Parse(string json)
+        {
             var serializer = new JavaScriptSerializer { MaxJsonLength = int.MaxValue };
-            MemoryLayoutFile file = serializer.Deserialize<MemoryLayoutFile>(
-                File.ReadAllText(path));
+            MemoryLayoutFile file = serializer.Deserialize<MemoryLayoutFile>(json);
             if (file == null || file.profiles == null || file.profiles.Count == 0)
                 throw new InvalidDataException("Nenhum perfil de memória foi configurado.");
             return file;
@@ -34,7 +39,9 @@ namespace PWQuestOverlay.Memory
         public string id { get; set; }
         public string label { get; set; }
         public string module { get; set; }
+        public string moduleSha256 { get; set; }
         public int pointerSize { get; set; }
+        public bool identityOnly { get; set; }
         public PointerRoot player { get; set; }
         public Dictionary<string, string> attributes { get; set; }
         public QuestMemoryLayout quests { get; set; }
@@ -72,6 +79,16 @@ namespace PWQuestOverlay.Memory
                     "A leitura de memória aceita somente clientes x86.");
             if (player == null || string.IsNullOrWhiteSpace(player.baseRva))
                 throw new InvalidDataException("Perfil sem raiz do personagem.");
+            if (identityOnly)
+            {
+                if (identity == null || string.IsNullOrWhiteSpace(player.vtableRva) ||
+                    string.IsNullOrWhiteSpace(moduleSha256) || moduleSha256.Length != 64)
+                    throw new InvalidDataException("Perfil de identidade exige o layout do jogador e o hash do executável.");
+                HexValue.Parse(player.vtableRva);
+                identity.Validate();
+                if (quests != null) quests.Validate();
+                return;
+            }
             AttributeOffset("level");
             AttributeOffset("hp");
             AttributeOffset("hpMax");
@@ -84,6 +101,18 @@ namespace PWQuestOverlay.Memory
                 "Perfil sem layout do inventário de missão.");
             inventory.Validate();
             if (identity != null) identity.Validate();
+        }
+
+        internal void VerifyModule(string path)
+        {
+            if (string.IsNullOrEmpty(moduleSha256)) return;
+            using (var file = File.OpenRead(path))
+            using (var sha = SHA256.Create())
+            {
+                string actual = BitConverter.ToString(sha.ComputeHash(file)).Replace("-", "");
+                if (!string.Equals(actual, moduleSha256, StringComparison.OrdinalIgnoreCase))
+                    throw new InvalidDataException("O executável do PW não corresponde ao perfil de memória selecionado.");
+            }
         }
     }
 
@@ -142,6 +171,8 @@ namespace PWQuestOverlay.Memory
     {
         public string className { get; set; }
         public string playerSearchSize { get; set; }
+        public string playerInterfacePointerOffset { get; set; }
+        public string interfaceVtableRva { get; set; }
         public string activeListPointerOffset { get; set; }
         public string activeCountOffset { get; set; }
         public string activeEntriesOffset { get; set; }
@@ -155,6 +186,8 @@ namespace PWQuestOverlay.Memory
         public string finishedCountOffset { get; set; }
         public string finishedEntriesOffset { get; set; }
         public string finishedEntryStride { get; set; }
+        public int finishedIdBytes { get; set; }
+        public int finishedFailureFlagOffset { get; set; }
         public int finishedMaximum { get; set; }
 
         internal int PlayerSearchSize { get { return ToInt(playerSearchSize); } }
@@ -176,11 +209,15 @@ namespace PWQuestOverlay.Memory
         internal int FinishedEntriesOffset { get { return ToInt(finishedEntriesOffset); } }
         internal int FinishedEntryStride { get { return ToInt(finishedEntryStride); } }
         internal int FinishedMaximum { get { return finishedMaximum; } }
+        internal int FinishedIdBytes { get { return finishedIdBytes == 0 ? 4 : finishedIdBytes; } }
 
         internal void Validate()
         {
             if (string.IsNullOrWhiteSpace(className))
                 throw new InvalidDataException("Classe RTTI de missões vazia.");
+            if (!string.IsNullOrEmpty(playerInterfacePointerOffset) &&
+                (ToInt(playerInterfacePointerOffset) >= PlayerSearchSize || HexValue.Parse(interfaceVtableRva) == 0))
+                throw new InvalidDataException("Ponteiro da interface de missões inválido.");
             if (PlayerSearchSize <= 0 || ActiveEntryStride < 4 ||
                 ActiveIdOffset < 0 || ActiveIdOffset + 2 > ActiveEntryStride ||
                 ActiveParentIndexOffset < 0 || ActiveParentIndexOffset >= ActiveEntryStride ||
@@ -188,7 +225,8 @@ namespace PWQuestOverlay.Memory
                 ActiveFirstMonsterCountOffset < 0 ||
                 ActiveFirstMonsterCountOffset + 2 > ActiveEntryStride ||
                 ActiveMaximum <= 0 || FinishedEntryStride < 4 ||
-                FinishedMaximum <= 0)
+                FinishedMaximum <= 0 || (FinishedIdBytes != 2 && FinishedIdBytes != 4) ||
+                (FinishedIdBytes == 2 && (finishedFailureFlagOffset < 2 || finishedFailureFlagOffset >= FinishedEntryStride)))
                 throw new InvalidDataException("Layout de missões inválido.");
         }
 
@@ -203,6 +241,7 @@ namespace PWQuestOverlay.Memory
         public string baseRva { get; set; }
         public List<string> chain { get; set; }
         public string className { get; set; }
+        public string vtableRva { get; set; }
     }
 
     internal static class HexValue

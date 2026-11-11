@@ -40,6 +40,7 @@ namespace PWQuestOverlay
         public string availabilityNote { get; set; }
         public uint[][] historyTaskGroups { get; set; }
         public bool xpOptional { get; set; }
+        public string aliasOf { get; set; }
         public List<QuestStep> steps { get; set; }
     }
 
@@ -59,16 +60,26 @@ namespace PWQuestOverlay
     {
         public string CharacterName { get; set; }
         public string ClassCode { get; set; }
+        public string ServerKey { get; set; }
+        public string ServerName { get; set; }
         public string CultivationPath { get; set; }
         public bool ManualClass { get; set; }
         public bool HasOverlayMarker { get; set; }
         public int OverlayMarkerCount { get; set; }
         public Dictionary<string, string> MissionStates { get; set; }
+        public ImportedRouteState ImportedRoute { get; set; }
 
         public CharacterProgress()
         {
             MissionStates = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         }
+    }
+
+    public sealed class ImportedRouteState
+    {
+        public int PlayerLevel { get; set; }
+        public bool UsesClassic126Catalog { get; set; }
+        public Dictionary<string, int> Availability { get; set; }
     }
 
     public sealed class SavedPosition
@@ -286,7 +297,25 @@ namespace PWQuestOverlay
                     return new List<QuestMission>();
             }
             IEnumerable<QuestMission> common = _missions.Where(m => m.routeKey == "COMMON" && m.classScope == "ALL");
-            return race.Concat(common).OrderBy(m => m.order).ToList();
+            return race.Concat(common).Where(m => string.IsNullOrEmpty(m.aliasOf)).OrderBy(m => m.order).ToList();
+        }
+
+        internal bool RestoreAliasProgress(IList<QuestMission> active, CharacterProgress progress)
+        {
+            bool changed = false;
+            foreach (QuestMission previous in _missions.Where(mission => !string.IsNullOrEmpty(mission.aliasOf)))
+            {
+                QuestMission current = active.FirstOrDefault(mission => mission.id == previous.aliasOf);
+                if (current == null || !QuestProgression.MissionDone(previous, progress)) continue;
+                foreach (QuestStep step in current.steps)
+                    progress.MissionStates[QuestProgression.StageKey(current, step)] = "done";
+                progress.MissionStates[current.id] = "done";
+                foreach (QuestStep step in previous.steps)
+                    progress.MissionStates.Remove(QuestProgression.StageKey(previous, step));
+                progress.MissionStates.Remove(previous.id);
+                changed = true;
+            }
+            return changed;
         }
     }
 
@@ -353,6 +382,7 @@ namespace PWQuestOverlay
         private readonly string _directory;
         private readonly string _statePath;
         private readonly string _logPath;
+        private readonly object _logLock = new object();
         private readonly JavaScriptSerializer _serializer;
 
         public string StatePath { get { return _statePath; } }
@@ -524,7 +554,8 @@ namespace PWQuestOverlay
             string log = File.ReadAllText(_logPath, Encoding.UTF8);
             foreach (CharacterProgress progress in state.Characters.Values)
             {
-                if (!progress.HasOverlayMarker && !string.IsNullOrWhiteSpace(progress.CharacterName) &&
+                if (!progress.HasOverlayMarker && string.IsNullOrEmpty(progress.ServerKey) &&
+                    !string.IsNullOrWhiteSpace(progress.CharacterName) &&
                     log.IndexOf(" " + progress.CharacterName + " marcou ", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
                     progress.HasOverlayMarker = true;
@@ -550,14 +581,17 @@ namespace PWQuestOverlay
 
         public void Log(string message)
         {
-            try
+            lock (_logLock)
             {
-                Directory.CreateDirectory(_directory);
-                File.AppendAllText(_logPath,
-                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + " " + message + Environment.NewLine,
-                    Encoding.UTF8);
+                try
+                {
+                    Directory.CreateDirectory(_directory);
+                    File.AppendAllText(_logPath,
+                        DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + " " + message + Environment.NewLine,
+                        Encoding.UTF8);
+                }
+                catch { }
             }
-            catch { }
         }
     }
 }

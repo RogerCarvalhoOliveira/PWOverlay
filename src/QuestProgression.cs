@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using PWQuestOverlay.Memory;
 
 namespace PWQuestOverlay
@@ -128,11 +130,125 @@ namespace PWQuestOverlay
             return matches.Count == 1 ? matches[0].Id : 0;
         }
 
+        internal static uint[] StageRoots(TaskCatalog catalog, QuestMission mission, QuestStep step)
+        {
+            uint[] review = CompoundReviewRoots(catalog, step);
+            if (review.Length > 0) return review;
+            TaskCatalogEntry task = catalog.Find(ResolveStageTaskId(catalog, mission, step));
+            if (task != null) return new[] { task.TopId };
+            return mission.historyTaskGroups == null ? new uint[0] :
+                mission.historyTaskGroups.SelectMany(group => group).Distinct().ToArray();
+        }
+
+        private static uint[] CompoundReviewRoots(TaskCatalog catalog, QuestStep step)
+        {
+            if (step.title == null || step.action == null ||
+                !step.action.TrimStart().StartsWith("Complete ", StringComparison.OrdinalIgnoreCase) ||
+                !step.title.Contains(" / ")) return new uint[0];
+            var roots = new HashSet<uint>();
+            foreach (string title in step.title.Split(new[] { " / " }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                uint[] candidates = catalog.FindByName(title).Select(task => task.TopId).Distinct().ToArray();
+                if (candidates.Length != 1) return new uint[0];
+                roots.Add(candidates[0]);
+            }
+            return roots.ToArray();
+        }
+
+        internal static QuestAvailability StageAvailability(QuestMission mission, uint[] roots, QuestMemorySnapshot snapshot)
+        {
+            if (snapshot.UsesClassic126Catalog && !mission.cultivationChoice)
+            {
+                return roots.Select(root =>
+                {
+                    QuestAvailability status;
+                    return snapshot.Availability.TryGetValue(root, out status) ? status : QuestAvailability.Unknown;
+                }).DefaultIfEmpty(QuestAvailability.Unknown).Max();
+            }
+            int maximum;
+            if (int.TryParse(mission.maxLevel, out maximum) && maximum > 0 && maximum < snapshot.PlayerLevel)
+                return QuestAvailability.Expired;
+            return snapshot.PlayerLevel < mission.minLevel ? QuestAvailability.Blocked : QuestAvailability.Available;
+        }
+
+        internal static bool IsAcceptStage(string action)
+        {
+            return Regex.IsMatch(action ?? string.Empty,
+                @"\b(?:aceite|pegue\s+a\s+miss[aã]o|receba\s+a\s+miss[aã]o|inicie\s+a\s+miss[aã]o)\b",
+                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        }
+
+        internal static Dictionary<uint, uint> LoadClassic126Tasks(string path)
+        {
+            var roots = new Dictionary<uint, uint>();
+            foreach (string line in File.ReadLines(path).Skip(1))
+            {
+                string[] fields = line.Split('\t');
+                uint local, root;
+                if (fields.Length != 10 || !uint.TryParse(fields[0], out local) || !uint.TryParse(fields[9], out root))
+                    throw new InvalidDataException("O mapa de missões do 1.2.6 está inválido.");
+                roots.Add(local, root);
+            }
+            return roots;
+        }
+
+        internal static HashSet<uint> TranslateActive126(Dictionary<uint, uint> localTasks, IEnumerable<uint> localActive)
+        {
+            var active = new HashSet<uint>();
+            foreach (uint local in localActive)
+            {
+                uint task;
+                if (localTasks.TryGetValue(local, out task)) active.Add(task);
+            }
+            return active;
+        }
+
+        internal static string Classic126Evidence(QuestMission mission, QuestStep step, TaskCatalog catalog, HashSet<uint> active)
+        {
+            if (mission.cultivationChoice) return null;
+            if (IsAcceptStage(step.action))
+            {
+                uint[] roots = StageRoots(catalog, mission, step);
+                if (roots.Length == 1 && active.Select(catalog.Find).Any(task => task != null && task.TopId == roots[0]))
+                    return "aceite confirmado na lista ativa do PW 1.2.6";
+            }
+            if (catalog.HasActiveLaterOrderedChild(ResolveStageTaskId(catalog, mission, step), active))
+                return "submissão posterior confirmada na mesma cadeia do PW 1.2.6";
+            return null;
+        }
+
+        internal static ImportedRouteState RememberImport(IEnumerable<QuestMission> missions, TaskCatalog catalog,
+            QuestMemorySnapshot snapshot)
+        {
+            var roots = new HashSet<uint>(missions.SelectMany(mission => mission.steps
+                .SelectMany(step => StageRoots(catalog, mission, step))));
+            return new ImportedRouteState
+            {
+                PlayerLevel = snapshot.PlayerLevel, UsesClassic126Catalog = snapshot.UsesClassic126Catalog,
+                Availability = snapshot.Availability.Where(pair => roots.Contains(pair.Key))
+                    .ToDictionary(pair => pair.Key.ToString(System.Globalization.CultureInfo.InvariantCulture), pair => (int)pair.Value)
+            };
+        }
+
+        internal static QuestMemorySnapshot RestoreImport(ImportedRouteState saved)
+        {
+            if (saved == null || saved.PlayerLevel < 1 || saved.PlayerLevel > 150) return null;
+            var result = new QuestMemorySnapshot { PlayerLevel = saved.PlayerLevel, UsesClassic126Catalog = saved.UsesClassic126Catalog };
+            if (saved.Availability == null) return result;
+            foreach (var pair in saved.Availability)
+            {
+                uint id;
+                if (uint.TryParse(pair.Key, out id) && pair.Value >= (int)QuestAvailability.Unknown &&
+                    pair.Value <= (int)QuestAvailability.Available)
+                    result.Availability[id] = (QuestAvailability)pair.Value;
+            }
+            return result;
+        }
+
         internal static int ImportHistory(IEnumerable<QuestMission> missions, CharacterProgress progress,
             TaskCatalog catalog, QuestMemorySnapshot snapshot)
         {
             var finished = new HashSet<uint>(snapshot.FinishedTaskIds);
-            if (finished.Count == 0) return 0;
             HashSet<uint> activeRoots = ActiveRoots(catalog, snapshot);
             finished.ExceptWith(activeRoots);
             int changed = 0;
@@ -140,9 +256,14 @@ namespace PWQuestOverlay
             {
                 if (mission.cultivationChoice || mission.repeatable) continue;
                 uint[][] groups = mission.historyTaskGroups;
+                var boundRoots = mission.steps.Where(step => step.memoryTaskId != 0)
+                    .Select(step => catalog.Find(ResolveStageTaskId(catalog, mission, step)))
+                    .Where(task => task != null).Select(task => task.TopId).Distinct();
+                var groupedRoots = groups == null ? new HashSet<uint>() : new HashSet<uint>(groups.SelectMany(group => group));
                 bool full = groups != null && groups.Length > 0 &&
                     groups.All(group => group.Any(finished.Contains)) &&
-                    !groups.Any(group => group.Any(activeRoots.Contains));
+                    !groups.Any(group => group.Any(activeRoots.Contains)) &&
+                    boundRoots.All(root => groupedRoots.Contains(root) || finished.Contains(root));
                 bool modified = false;
                 foreach (QuestStep step in mission.steps)
                 {
@@ -150,7 +271,14 @@ namespace PWQuestOverlay
                     {
                         uint taskId = ResolveStageTaskId(catalog, mission, step);
                         TaskCatalogEntry task = catalog.Find(taskId);
-                        if (task == null || !finished.Contains(task.TopId)) continue;
+                        uint[] review = CompoundReviewRoots(catalog, step);
+                        bool recorded = (task != null && finished.Contains(task.TopId)) ||
+                            (review.Length > 0 && review.All(finished.Contains));
+                        if (!recorded)
+                        {
+                            uint[] roots = StageRoots(catalog, mission, step);
+                            if (roots.Length != 1 || !activeRoots.Contains(roots[0]) || !IsAcceptStage(step.action)) continue;
+                        }
                     }
                     modified |= RecordDone(progress, StageKey(mission, step));
                 }
@@ -159,6 +287,41 @@ namespace PWQuestOverlay
                 if (modified) changed++;
             }
             return changed;
+        }
+
+        internal static QuestMemorySnapshot TranslateHistory126(string path, QuestMemorySnapshot source)
+        {
+            var active = new HashSet<uint>(source.ActiveTasks.Select(task => task.TaskId));
+            var finished = new HashSet<uint>(source.FinishedTaskIds);
+            var snapshot = new QuestMemorySnapshot
+            {
+                UsesClassic126Catalog = true, PlayerLevel = source.PlayerLevel, PlayerReputation = source.PlayerReputation
+            };
+            foreach (string line in File.ReadLines(path).Skip(1))
+            {
+                string[] fields = line.Split('\t');
+                uint local, root, canonicalTask;
+                if (fields.Length != 10 || !uint.TryParse(fields[0], out local) || !uint.TryParse(fields[1], out root) ||
+                    !uint.TryParse(fields[9], out canonicalTask))
+                    throw new InvalidDataException("O mapa de missões do 1.2.6 está inválido.");
+                if (active.Contains(local))
+                    snapshot.ActiveTasks.Add(new ActiveQuestMemoryEntry { TaskId = canonicalTask });
+                if (fields[2] != "1") continue;
+                if (finished.Contains(local)) snapshot.FinishedTaskIds.Add(root);
+                int minimum, maximum, reputation, required;
+                if (!int.TryParse(fields[3], out minimum) || !int.TryParse(fields[4], out maximum) ||
+                    !int.TryParse(fields[5], out reputation) || !int.TryParse(fields[6], out required)) continue;
+                QuestAvailability status = QuestAvailability.Available;
+                if (maximum > 0 && maximum < source.PlayerLevel) status = QuestAvailability.Expired;
+                else if (minimum > source.PlayerLevel || fields[8] == "1" ||
+                    (reputation > 0 && source.PlayerReputation.GetValueOrDefault() < reputation) ||
+                    (required > 0 && fields[7].Split(',').Count(id => finished.Contains(uint.Parse(id))) < required))
+                    status = QuestAvailability.Blocked;
+                QuestAvailability previous;
+                if (!snapshot.Availability.TryGetValue(root, out previous) || previous < status)
+                    snapshot.Availability[root] = status;
+            }
+            return snapshot;
         }
 
         private static bool RecordDone(CharacterProgress progress, string key)

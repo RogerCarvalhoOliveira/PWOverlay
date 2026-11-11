@@ -51,6 +51,50 @@
         "finishedEntryStride": "0x4",
         "finishedMaximum": 10000
       }
+    },
+    {
+      "id": "the_classic_126_identity",
+      "label": "The Classic 1.2.6 x86 — identidade",
+      "module": "elementclient.exe",
+      "moduleSha256": "0A707A7060728C4A991CC0735FCFE15A4E752ED1C60379B33CDE131AF9014B21",
+      "pointerSize": 4,
+      "identityOnly": true,
+      "player": {
+        "baseRva": "0xA39F5C",
+        "chain": ["0x1C", "0x2C"],
+        "vtableRva": "0x93B6C4"
+      },
+      "attributes": {
+        "level": "0x4C4",
+        "reputation": "0x650"
+      },
+      "identity": {
+        "roleIdOffset": "0x4B8",
+        "namePointerOffset": "0x6E0",
+        "classOffset": "0x6E4",
+        "maximumCharacters": 64
+      },
+      "quests": {
+        "className": "CECTaskInterface",
+        "playerSearchSize": "0x1800",
+        "playerInterfacePointerOffset": "0x14D8",
+        "interfaceVtableRva": "0x947208",
+        "activeListPointerOffset": "0x8",
+        "activeCountOffset": "0x0",
+        "activeEntriesOffset": "0x8",
+        "activeEntryStride": "0x20",
+        "activeIdOffset": "0x0",
+        "activeParentIndexOffset": "0x2",
+        "activeFlagsOffset": "0x7",
+        "activeMaximum": 175,
+        "finishedListPointerOffset": "0xC",
+        "finishedCountOffset": "0x0",
+        "finishedEntriesOffset": "0x4",
+        "finishedEntryStride": "0x4",
+        "finishedIdBytes": 2,
+        "finishedFailureFlagOffset": 2,
+        "finishedMaximum": 4080
+      }
     }
   ]
 }

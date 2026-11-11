@@ -1,5 +1,65 @@
 # Histórico de alterações
 
+## 0.13.11 - Avanço de submissões no 1.2.6
+
+- O overlay reconhece a etapa seguinte de cadeias sequenciais com IDs verificados no 1.2.6. Em **Memória do Herói**, **Ossos Sangrentos** ativo confirma a conversa com o **Velho Ferreiro**.
+
+## 0.13.10 - Autorização por sessão e aceite no 1.2.6
+
+- O leitor elevado reaproveita a autorização ao reabrir o overlay na mesma sessão do Windows. Fica aguardando sem consultar o jogo quando o overlay está fechado. O menu **Encerrar leitor elevado** termina essa autorização.
+- Com **Avançar etapas em andamento automaticamente** ativo, o 1.2.6 avança o aceite confirmado no questlog. A importação de missões concluídas continua sob demanda e a última disponibilidade calculada é salva no perfil.
+
+## 0.13.9 - Importação de cadeias com múltiplas entregas
+
+- **A Batalha da Mina** exige as três entregas da cadeia. O leitor reconhece os IDs originais e os equivalentes confirmados do 1.2.6 e importa cada parte de forma independente.
+- Etapas que pedem várias entregas podem ser confirmadas pelo histórico quando cada missão do grupo tem um registro válido.
+
+## 0.13.8 - Retomada por missões disponíveis
+
+- Após importar o histórico, o overlay prioriza missões ativas e verifica o nível de aceite. No The Classic 1.2.6, usa os limites e pré-requisitos do próprio cliente, além de requisitos de fama e etapas que dependem de um evento.
+- A disponibilidade afeta a próxima sugestão. Missões vencidas ou sem equivalência verificável ficam acessíveis em **Etapas**, com o progresso preservado.
+
+## 0.13.7 - Importação sob demanda de missões concluídas
+
+- Em **Etapas → Importar missões concluídas**, consulte o histórico do personagem ativo. The Classic 1.2.6 usa sua própria estrutura de memória e um mapa de equivalências com a rota 1.4.4. Cadeias ainda ativas e registros de falha do 1.2.6 ficam fora da importação.
+- A importação em lote ocorre apenas pelo botão. O avanço de etapas durante o jogo continua disponível separadamente no 1.4.4.
+
+## 0.13.6 - Revisão das rotas e identificação do PW 1.2.6 elevado
+
+- Três passagens pelo guia cruzaram nomes, coordenadas do NPC pelo ID, contadores por objetivo e encadeamento de missões. Corrigidos aceites e entregas em **À Deriva**, **Um Ataque Pesado**, **A Batalha da Mina** e **Caçada ao Dragão**, com a planilha na mesma ordem do overlay.
+- Em **Perfis**, o botão **Permitir leitura do PW elevado** aparece quando o Windows bloqueia a identificação do The Classic 1.2.6. Após a confirmação do Windows, um leitor separado identifica nome e classe, inclusive de personagens novos.
+
+## 0.13.5 - Auditoria do leveling e atualizações pelo instalador
+
+- Conferência das 585 entradas e de suas cadeias nas dez classes. Corrigidos 71 contadores de objetivos, 5 níveis mínimos e 138 níveis máximos a partir do catálogo 1.4.4. Os limites de 150 ficam fora da faixa jogável do guia.
+- Reordenadas as cadeias com pré-requisito invertido, incluindo DG19, Cidade das Tormentas, Ameaça Marinha, Amuleto de Aroma e A Batalha da Mina. Corrigidos o NPC de entrega do cultivo 19 dos Humanos e a sequência de NPCs de Kalam Decom, Músico Gonirer Klaber e Lágrima do Guardião.
+- O Cultivo 59 passa por seus pré-requisitos e usa uma única entrada de execução. A conclusão salva na antiga entrada repetida é reaproveitada.
+- **Procurar atualizações** no instalador e na Central. Consulta a release estável do GitHub, verifica o SHA-256 do Setup e abre o instalador após o usuário escolher baixar.
+
+## 0.13.4 - Agrupamento de etapas por região
+
+- A revisão das dez classes passou a comparar também objetivos, entregas e missões completas perto de uma visita já prevista. Cinco mudanças reordenam sete etapas, incluindo a missão completa **Martelo das Vísceras** antes da saída da Vila do Fogo.
+- **O Sonho de Nanke** e **Superando o Medo** aproveitam visitas próximas. Nos Abissais, o General Lu Guihai entra na mesma passagem pelo Konchi Priest. Nos Guardiões, o objetivo de **Ameaças Veladas** fica na mesma saída para coletar sangue de Touro de Iaque.
+
+## 0.13.3 - Missões na mesma visita e identificação do 1.2.6
+
+- Revisadas as dez classes e os caminhos God/Evil. Sete aceites passaram para uma visita anterior ao mesmo NPC, respeitando nível, pré-requisitos e etapas já em andamento. Três missões iniciais passaram para depois da entrega que as libera. A planilha usa a mesma ordem do overlay.
+- Nos Alados, aceite **Aldeões Feridos** com a Guarda Ewlen ao entregar **Presente para o Guarda**. Depois, siga ao Alfaiate Hevin e à Anciã para terminar **O Renascer dos Alados**.
+- O executável 1.2.6 identificado no perfil de memória passa a ter leitura independente de nome, ID e classe. A validação ao vivo ainda está pendente. Para missões, a leitura de histórico e o avanço por memória continuam no perfil 1.4.4.
+
+## 0.13.2 - Perfis por servidor e personagem
+
+- O progresso e as associações por título usam o servidor do cliente. The Classic 1.2.6 e 1.4.4 são identificados pelo executável. O painel **Perfis** permite indicar o mundo em instalações com mais de um servidor.
+- Perfis antigos aparecem como **Sem servidor**. Selecione o perfil e clique em **Usar** na linha do cliente para vincular suas marcações ao servidor escolhido.
+- A troca de personagem invalida a associação manual quando muda o título ou a identidade por memória. O histórico é importado quando nome e classe da leitura correspondem ao perfil.
+
+## 0.13.1 - Aplicação em segundo plano e calibração com mira
+
+- A Central continua responsiva ao aplicar as opções ou encerrar as ferramentas. O overlay lê a memória em segundo plano e recalcula a rota quando mudam o nível, as missões ativas ou o histórico.
+- **Selecionar ponto** coloca o cliente do PW em foco e abre uma mira. O clique duplo abre a confirmação da posição. O calibrador avança uma linha a cada ponto confirmado.
+- **Desinstalar** aparece em **Tarefas adicionais** quando existe uma instalação registrada. O desinstalador pede confirmação e preserva os perfis.
+- Quando o título da janela corresponde ao nome de um perfil salvo com classe única, a classe é recuperada automaticamente. Em **Perfis**, digitar o nome de um perfil salvo também preenche sua classe na associação.
+
 ## 0.13.0 - Calibração, nível previsto e rota reduzida
 
 - A calibração abre pelo menu da bandeja e aguarda o PW em foco. Mostra cliente/resolução, captura com F8 global, mantém os pontos no mesmo cliente/tamanho e permite voltar pelo Alt+Tab. Corrigido Restaurar padrão e validação antes de salvar.

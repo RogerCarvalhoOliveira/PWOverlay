@@ -9,7 +9,7 @@ $library = Join-Path $testDirectory 'OverlayCandidate.dll'
 $executable = Join-Path $testDirectory 'OverlayInteractionTests.exe'
 $sources = @('AppBranding','AppShutdown','Models','QuestProgression','ClientIdentity','ClientProfilesForm','NativeMethods','OverlayForm','CultivationChoiceForm','MarkerCalibrationForm','RouteEditorForm',
     'ProcessMemoryReader','MemoryLayout','PlayerIdentityMemory',
-    'TaskCatalog','RttiResolver','QuestMemoryReader','QuestStateTracker','QuestMemoryMonitor') |
+    'TaskCatalog','RttiResolver','QuestMemoryReader','QuestStateTracker','QuestMemoryMonitor','ElevatedIdentityReader') |
     ForEach-Object { Join-Path $projectRoot ('src\' + $_ + '.cs') }
 & $compiler /nologo /target:library /optimize+ /platform:x86 /out:$library `
     "/resource:$(Join-Path $projectRoot 'assets\branding\PWOverlay.ico'),PWOverlay.App.ico" `

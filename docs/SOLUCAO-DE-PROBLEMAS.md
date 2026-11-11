@@ -30,7 +30,7 @@ O botão só altera o perfil quando um cliente está ativo. Confirme também se 
 - Deixe o painel **Marcadores** fechado antes de clicar em **Marcar**.
 - Não mova o mouse nem troque de cliente durante cerca de um segundo.
 - Confirme que a etapa possui coordenadas; sem elas, o botão fica desativado.
-- Para outra resolução ou escala, abra **Calibrar marcador...** na bandeja, coloque o PW em foco e capture cada controle com **F8**. A janela mostra a resolução detectada. Use Alt+Tab para voltar e salvar.
+- Para outra resolução ou escala, abra **Calibrar marcador...** na bandeja. Use **Selecionar ponto**, dê um clique duplo em cada controle no PW e confirme com **OK**. Clique em **Salvar** ao terminar. Você também pode capturar com **F8** enquanto o PW estiver em foco.
 - Consulte `overlay.log` e procure por `Falha ao criar marcador`.
 
 ## O botão Marcar está acumulando PWOverlay antigos

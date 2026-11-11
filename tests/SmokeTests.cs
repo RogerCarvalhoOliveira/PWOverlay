@@ -5,7 +5,9 @@ using System.Drawing;
 using System.Linq;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using PWQuestOverlay;
 using PWQuestOverlay.Memory;
 
@@ -92,6 +94,8 @@ internal static class SmokeTests
                         monitor.Poll(new[] { process.Id }, false);
                         if (observed.Identity != null) throw new Exception("Logout não descartou identidade.");
                     }
+                    Marshal.WriteInt32(root, player.ToInt32());
+                    TestBackgroundMemory(path, fixture.id, process.Id);
                 }
                 finally { Marshal.FreeHGlobal(root); if (File.Exists(path)) File.Delete(path); }
             }
@@ -105,8 +109,11 @@ internal static class SmokeTests
         state.Ready = true; state.Snapshot = new QuestMemorySnapshot();
         state.Record(new[] { new QuestMemoryEvent { Kind = QuestMemoryEventKind.Activated, TaskId = 42 } });
         state.Record(new[] { new QuestMemoryEvent { Kind = QuestMemoryEventKind.DisappearedAfterObservation, TaskId = 42 } });
+        QuestMemoryClientState published = state.CopyForUi();
         if (state.ObserveIdentity(second) || state.Identity != null || state.Ready || state.Snapshot != null || state.HasObservedDisappearance(42))
             throw new Exception("Troca de personagem deve descartar evidências imediatamente.");
+        if (published.Identity != first || !published.Ready || !published.HasObservedDisappearance(42))
+            throw new Exception("O trabalhador modificou evidências já publicadas para a interface.");
         if (!state.ObserveIdentity(second) || state.SessionToken == "first") throw new Exception("Nova identidade precisa de novo token.");
         state.InvalidateQuests();
         if (state.Identity != second) throw new Exception("Falha nas missões não deve apagar uma identidade validada.");
@@ -114,17 +121,134 @@ internal static class SmokeTests
         if (state.Identity != null || state.ObserveIdentity(second)) throw new Exception("Falha de identidade exige nova confirmação.");
     }
 
+    private static void TestBackgroundMemory(string path, string profileId, int pid)
+    {
+        using (var entered = new ManualResetEventSlim())
+        using (var release = new ManualResetEventSlim())
+        using (var polling = new QuestMemoryPolling(path, profileId, message =>
+        {
+            if (!message.Contains("sessão aberta") || entered.IsSet) return;
+            entered.Set();
+            release.Wait(3000);
+        }))
+        {
+            var window = new ClientWindowInfo { ProcessId = pid, SessionKey = "first-window" };
+            var windows = new[] { window };
+            polling.Poll(windows, false);
+            if (!entered.Wait(2000) || release.IsSet)
+                throw new Exception("A leitura deveria continuar em segundo plano.");
+            var watch = Stopwatch.StartNew();
+            polling.Poll(windows, false);
+            if (watch.ElapsedMilliseconds > 500 || polling.Find(pid) != null)
+                throw new Exception("A interface aguardou uma leitura bloqueada.");
+            window.SessionKey = "reopened-window";
+            polling.Poll(windows, false);
+            release.Set();
+
+            QuestMemoryClientState state = null;
+            watch.Restart();
+            while (watch.ElapsedMilliseconds < 3000)
+            {
+                polling.Poll(windows, false);
+                state = polling.Find(pid);
+                if (state != null && state.Identity != null) break;
+                Thread.Sleep(20);
+            }
+            if (state == null || state.Identity == null || state.Identity.RoleId != 5678)
+                throw new Exception("A leitura nova não foi publicada após a troca de janela.");
+            polling.Forget(pid);
+            if (polling.Find(pid) != null)
+                throw new Exception("Evidência antiga sobreviveu à invalidação do cliente.");
+            polling.Poll(new ClientWindowInfo[0], false);
+        }
+    }
+
+    private static void TestIdentityOnlyMemory(MemoryLayoutProfile profile)
+    {
+        profile.Validate();
+        IntPtr fixtureMemory = Marshal.AllocHGlobal(0x900);
+        string path = Path.Combine(Path.GetTempPath(), "PWOverlay-identity126-" + Guid.NewGuid().ToString("N") + ".json");
+        try
+        {
+            Marshal.Copy(new byte[0x900], 0, fixtureMemory, 0x900);
+            IntPtr game = IntPtr.Add(fixtureMemory, 0x10), run = IntPtr.Add(fixtureMemory, 0x40);
+            IntPtr player = IntPtr.Add(fixtureMemory, 0x80), name = IntPtr.Add(fixtureMemory, 0x800);
+            using (Process process = Process.GetCurrentProcess())
+            {
+                var json = new System.Web.Script.Serialization.JavaScriptSerializer();
+                MemoryLayoutProfile fixture = json.Deserialize<MemoryLayoutProfile>(json.Serialize(profile));
+                int imageBase = process.MainModule.BaseAddress.ToInt32();
+                fixture.module = process.MainModule.ModuleName;
+                fixture.player.baseRva = "0x" + checked((uint)(fixtureMemory.ToInt64() - imageBase)).ToString("X");
+                fixture.player.vtableRva = "0x1000";
+                using (var file = File.OpenRead(process.MainModule.FileName))
+                using (var hash = SHA256.Create())
+                    fixture.moduleSha256 = BitConverter.ToString(hash.ComputeHash(file)).Replace("-", "");
+                Marshal.WriteInt32(fixtureMemory, game.ToInt32());
+                Marshal.WriteInt32(game, 0x1C, run.ToInt32());
+                Marshal.WriteInt32(run, 0x2C, player.ToInt32());
+                Marshal.WriteInt32(player, imageBase + 0x1000);
+                Marshal.WriteInt32(player, (int)fixture.identity.RoleIdOffset, 126);
+                Marshal.WriteInt32(player, (int)fixture.identity.ClassOffset, 7);
+                Marshal.WriteInt32(player, (int)fixture.identity.NamePointerOffset, name.ToInt32() + 12);
+                Marshal.WriteInt32(name, 0, 1);
+                Marshal.WriteInt32(name, 4, 5);
+                Marshal.WriteInt32(name, 8, 63);
+                byte[] encoded = Encoding.Unicode.GetBytes("Pluma\0");
+                Marshal.Copy(encoded, 0, IntPtr.Add(name, 12), encoded.Length);
+                File.WriteAllText(path, json.Serialize(new MemoryLayoutFile
+                { schemaVersion = 1, profiles = new List<MemoryLayoutProfile> { fixture } }));
+                using (var monitor = new QuestMemoryMonitor(path, fixture.id, null))
+                {
+                    var ids = new[] { process.Id };
+                    monitor.Poll(ids, true, true);
+                    if (monitor.Find(process.Id).Identity != null)
+                        throw new Exception("O 1.2.6 exige duas leituras para confirmar a identidade.");
+                    monitor.Poll(ids, true, true);
+                    QuestMemoryClientState state = monitor.Find(process.Id);
+                    if (state.Identity == null || state.Identity.Name != "Pluma" || state.Identity.ClassCode != "EP" ||
+                        state.Identity.RoleId != 126 || state.Ready || state.Snapshot != null)
+                        throw new Exception("O perfil do 1.2.6 deve identificar nome e classe sem ler missões.");
+                    Marshal.WriteInt32(player, imageBase + 0x2000);
+                    monitor.Poll(ids, true, true);
+                    if (state.Identity != null)
+                        throw new Exception("A identidade deve ser invalidada quando a tabela virtual muda.");
+                }
+                fixture.moduleSha256 = new string('0', 64);
+                bool rejected = false;
+                try { fixture.VerifyModule(process.MainModule.FileName); }
+                catch (InvalidDataException) { rejected = true; }
+                if (!rejected) throw new Exception("Um executável diferente deve ser rejeitado.");
+            }
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(fixtureMemory);
+            if (File.Exists(path)) File.Delete(path);
+        }
+    }
+
     private static void TestStandaloneClients()
     {
+        TestServerProfiles();
         var aliases = new Dictionary<string, string> { { "THE CLASSIC PW 1.4.4", "EP" }, { "CAUTON", "EP" } };
         var windows = new List<ClientWindowInfo> {
             new ClientWindowInfo { Handle = new IntPtr(11), ProcessId = 11, SessionKey = "11:100:11", Title = "The Classic PW 1.4.4" },
             new ClientWindowInfo { Handle = new IntPtr(12), ProcessId = 12, SessionKey = "12:100:12", Title = "The Classic PW 1.4.4" }
         };
         var bindings = new ClientBindings();
-        if (bindings.ObserveProfile("a", "FIRST|WB") || bindings.ObserveProfile("b", "SECOND|EP") ||
-            bindings.ObserveProfile("a", "FIRST|WB") || !bindings.ObserveProfile("a", "THIRD|MC"))
-            throw new Exception("Profile changes within one window must reset its memory evidence, while switching windows must not.");
+        var profiles = new List<CharacterProgress> { new CharacterProgress { CharacterName = "SemSigla", ClassCode = "WF" } };
+        windows[0].Title = "SemSigla";
+        if (ClientIdentities.Resolve(windows[0], windows, bindings, aliases, profiles).ProfileKey != "SEMSIGLA|WF")
+            throw new Exception("Título com nome salvo deve recuperar a classe sem sigla.");
+        profiles.Add(new CharacterProgress { CharacterName = "SemSigla", ClassCode = "WB" });
+        if (ClientIdentities.Resolve(windows[0], windows, bindings, aliases, profiles) != null)
+            throw new Exception("Classes diferentes para o mesmo nome exigem seleção manual.");
+        profiles.RemoveAt(1);
+        windows[1].Title = windows[0].Title;
+        if (ClientIdentities.Resolve(windows[0], windows, bindings, aliases, profiles) != null)
+            throw new Exception("Títulos repetidos não podem recuperar o mesmo perfil.");
+        windows[0].Title = windows[1].Title = "The Classic PW 1.4.4";
         if (ClientIdentities.Resolve(windows[0], windows, bindings, aliases) != null || ClientIdentities.FromTitle("The Classic PW 1.4.4", true, aliases) != null)
             throw new Exception("Generic/duplicate titles must never create a shared profile.");
         bindings.Set(windows[0].SessionKey, new ClientIdentity("Primeiro", "WB", true));
@@ -174,13 +298,79 @@ internal static class SmokeTests
         if (state.Ready || state.Snapshot != null || state.HasObservedDisappearance(42)) throw new Exception("Failed reads must discard stale memory evidence.");
     }
 
+    private static void TestServerProfiles()
+    {
+        ClientServer oldServer = ClientServer.ForInstallation(@"C:\PW\The Classic PW 1.2.6\ElementClient.exe", "Personagem");
+        ClientServer newServer = ClientServer.ForInstallation(@"D:\PW\The Classic PW 1.4.4\ElementClient.exe", "Personagem");
+        if (oldServer.Key == newServer.Key || !oldServer.IdentityMemoryOnly || newServer.IdentityMemoryOnly)
+            throw new Exception("A edição precisa vir do executável, inclusive com janela renomeada.");
+        var windows = new List<ClientWindowInfo>
+        {
+            new ClientWindowInfo { SessionKey = "old", Title = "Personagem", Server = oldServer, ServerRequired = true },
+            new ClientWindowInfo { SessionKey = "new", Title = "Personagem", Server = newServer, ServerRequired = true }
+        };
+        var oldProgress = new CharacterProgress { CharacterName = "Personagem", ClassCode = "EP", ServerKey = oldServer.Key };
+        var newProgress = new CharacterProgress { CharacterName = "Personagem", ClassCode = "EP", ServerKey = newServer.Key, CultivationPath = "evil" };
+        var bindings = new ClientBindings();
+        var aliases = new Dictionary<string, string>
+        {
+            { "PERSONAGEM", "WB" }, { ClientIdentities.TitleKey("Personagem", oldServer), "WF" }
+        };
+        ClientIdentity oldIdentity = ClientIdentities.Resolve(windows[0], windows, bindings, aliases, new[] { oldProgress, newProgress });
+        ClientIdentity newIdentity = ClientIdentities.Resolve(windows[1], windows, bindings, aliases, new[] { oldProgress, newProgress });
+        if (oldIdentity.ClassCode != "WF" || newIdentity.ClassCode != "EP")
+            throw new Exception("Classe e associações por título precisam ser limitadas ao servidor.");
+        aliases.Clear();
+        oldIdentity = ClientIdentities.Resolve(windows[0], windows, bindings, aliases, new[] { oldProgress, newProgress });
+        if (oldIdentity.ProfileKey == newIdentity.ProfileKey)
+            throw new Exception("Homônimos da mesma classe em servidores diferentes devem ter chaves distintas.");
+        bindings.Set(windows[1], newIdentity);
+        windows[1].Title = "Outro[WB]";
+        if (ClientIdentities.Resolve(windows[1], windows, bindings, aliases).Name != "Outro" || bindings.Find("new") != null)
+            throw new Exception("Uma associação antiga não pode acompanhar outro personagem na mesma janela.");
+        ClientServer world = ClientServer.ForSelection(newServer, "Mundo B");
+        if (!bindings.SetServer(windows[1], world) || bindings.ServerFor(windows[0]).Key != oldServer.Key)
+            throw new Exception("A troca de mundo deve ser individual por cliente.");
+        if (ClientIdentities.Resolve(windows[1], windows, bindings, aliases).Server.Key != world.Key)
+            throw new Exception("O mundo selecionado deve prevalecer para a identidade da janela.");
+        bindings.SetMemory("new", new ClientIdentity("Outro", "WB", false, true));
+        bindings.Set(windows[1], new ClientIdentity("Outro", "WB", true));
+        bindings.ObserveMemoryIdentity(windows[1], null);
+        if (bindings.Find("new") != null || ClientIdentities.Resolve(windows[1], windows, bindings, aliases) != null)
+            throw new Exception("Ao perder a identidade confirmada, nem a associação manual nem o título antigo devem reabrir o perfil.");
+        windows[1].Title = "Próximo[EP]";
+        if (ClientIdentities.Resolve(windows[1], windows, bindings, aliases).Name != "Próximo")
+            throw new Exception("Um título novo pode identificar o próximo personagem.");
+
+        var legacy = new CharacterProgress { CharacterName = "Personagem", ClassCode = "EP", CultivationPath = "god", HasOverlayMarker = true };
+        legacy.MissionStates["a"] = "done";
+        newProgress.MissionStates["a"] = "skipped";
+        newProgress.MissionStates["b"] = "done";
+        var saved = new Dictionary<string, CharacterProgress>
+        { { "PERSONAGEM|EP", legacy }, { oldIdentity.ProfileKey, oldProgress }, { newIdentity.ProfileKey, newProgress } };
+        ClientIdentities.AdoptLegacyProgress(saved, "PERSONAGEM|EP", newIdentity);
+        if (saved.ContainsKey("PERSONAGEM|EP") || oldProgress.MissionStates.Count != 0 ||
+            saved[newIdentity.ProfileKey].MissionStates.Count != 2 || newProgress.MissionStates["a"] != "done" ||
+            newProgress.CultivationPath != "evil" || newProgress.HasOverlayMarker)
+            throw new Exception("Vincular um perfil antigo deve somar progresso somente no servidor escolhido.");
+    }
+
     private static int Main(string[] args)
     {
         try
         {
-            if (args.Length != 3) throw new ArgumentException(
-                "Informe quest_routes.json, memory_offsets.json e task_catalog_144.tsv.");
+            if (args.Length != 4) throw new ArgumentException(
+                "Informe quest_routes.json, memory_offsets.json, task_catalog_144.tsv e task_history_126.tsv.");
             RouteRepository routes = RouteRepository.Load(args[0]);
+            QuestMission retiredCultivation = routes.AllMissions.Single(mission => mission.id == "ENDGAME|ALL|925");
+            var activeCultivation = routes.GetForClass("EP");
+            QuestMission currentCultivation = activeCultivation.Single(mission => mission.id == retiredCultivation.aliasOf);
+            var legacyCultivation = new CharacterProgress();
+            legacyCultivation.MissionStates[retiredCultivation.id] = "done-memory";
+            if (activeCultivation.Contains(retiredCultivation) || !routes.RestoreAliasProgress(activeCultivation, legacyCultivation) ||
+                !QuestProgression.MissionDone(currentCultivation, legacyCultivation) ||
+                routes.RestoreAliasProgress(activeCultivation, legacyCultivation))
+                throw new Exception("Cultivo 59 deve aparecer uma vez e reaproveitar a conclusão anterior.");
             TestStandaloneClients();
             string maintenanceRoot = Path.Combine(Path.GetTempPath(), "PWOverlay-scope-test");
             if (!PWOverlayShared.ToolMaintenance.BelongsToDirectory(Path.Combine(maintenanceRoot, "PW Quest Overlay.exe"), maintenanceRoot) ||
@@ -250,7 +440,9 @@ internal static class SmokeTests
 
             MemoryLayoutFile memoryLayouts = MemoryLayoutFile.Load(args[1]);
             TestMemoryIdentity(memoryLayouts.profiles[0]);
+            TestIdentityOnlyMemory(memoryLayouts.Find("the_classic_126_identity"));
             ProgressionTests.TestHistoryReader(memoryLayouts.profiles[0]);
+            ProgressionTests.TestHistoryReader(memoryLayouts.Find("the_classic_126_identity"));
             MemoryLayoutProfile memoryProfile = memoryLayouts.Find("the_classic_144");
             if (memoryProfile == null)
                 throw new InvalidDataException("Perfil de memória 1.4.4 ausente.");
@@ -268,6 +460,8 @@ internal static class SmokeTests
                 throw new InvalidDataException("Layout de memória 1.4.4 inesperado.");
 
             TaskCatalog taskCatalog = TaskCatalog.Load(args[2]);
+            ProgressionTests.TestClassic126Mapping(args[3], taskCatalog);
+            ProgressionTests.TestMineHistory(args[3], taskCatalog, routes);
             ProgressionTests.Run(routes, taskCatalog);
             TaskCatalogEntry bamboo = taskCatalog.Find(2646);
             TaskCatalogEntry bambooFlight = taskCatalog.Find(2655);

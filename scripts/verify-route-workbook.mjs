@@ -13,8 +13,10 @@ for(const [name,key] of [['Humanos - WR','WR'],['Selvagens - WB-WF','WBWF'],['Al
     const expected=[m.order,m.classScope,m.minLevel,m.maxLevel,m.name,m.npc,m.location,m.baseXp];
     assert.deepEqual(row.slice(1,9),expected,`${name}/${i+8}: dados`);
     assert.equal(row[14],m.expectedLevel,`${name}/${i+8}: nível previsto`);
+    assert.equal(row[12],m.instruction,`${name}/${i+8}: instrução`);
     assert.equal(row[15],m.cultivationPath==='GOD'?'God':m.cultivationPath==='EVIL'?'Evil':'Ambos',`${name}/${i+8}: cultivo`);
-    assert.equal(row[13],m.steps.map((s,j)=>`R${s.routeOrder} · ${j+1}. ${s.title} — ${s.action}`).join('\n'));
+    assert.equal(row[13],m.aliasOf?'Siga a entrada Cultivo 59 no trecho da DG59.':
+      m.steps.map((s,j)=>`R${s.routeOrder} · ${j+1}. ${s.title} — ${s.action}`).join('\n'));
     if(m.baseXp>0)assert.equal(row[9],m.baseXp*3,`${name}/${i+8}: XP`);
     else assert(row[9]===null||row[9]===''||row[9]===0);
     assert(formulas[i][0].includes(`I${i+8}`));

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
@@ -29,7 +30,12 @@ namespace PWOverlayCentral
         private readonly CheckBox _overlayBox;
         private readonly CheckBox _borderlessBox;
         private readonly Label _statusLabel;
+        private readonly Control[] _actionControls;
+        private const string OverlayFile = "PW Quest Overlay.exe";
+        private const string BorderlessFile = "PW Borderless.exe";
         private LauncherSettings _settings;
+        private bool _working;
+        private bool _closeWhenReady;
 
         internal LauncherForm()
         {
@@ -92,9 +98,13 @@ namespace PWOverlayCentral
             optionsPanel.Controls.Add(_borderlessBox);
 
             var applyButton = MakeButton("Aplicar ao PW já aberto", 20, 174, 250, 34, Color.FromArgb(21, 128, 61));
-            applyButton.Click += delegate { StartSelected(); };
+            applyButton.Click += async delegate { await ApplySelected(); };
             var stopButton = MakeButton("Parar Overlay e Borderless", 290, 174, 250, 34, Color.FromArgb(153, 27, 27));
-            stopButton.Click += delegate { StopTools(); };
+            stopButton.Click += async delegate
+            {
+                await RunOperation("Encerrando ferramentas...", delegate { StopTools(OverlayFile, BorderlessFile); },
+                    "Ferramentas desta instalação encerradas.", Color.FromArgb(253, 224, 71));
+            };
 
             _statusLabel = new Label
             {
@@ -113,8 +123,31 @@ namespace PWOverlayCentral
                 catch (Exception error) { ShowError(error.Message); }
             };
             Controls.Add(uninstall);
+            var updates = new LinkLabel { Text = "Procurar atualizações...", Location = new Point(20, 266),
+                Size = new Size(170, 20), LinkColor = Color.FromArgb(125, 211, 252), Visible = Program.HasUninstaller };
+            updates.LinkClicked += delegate
+            {
+                using (var dialog = new UpdateCheckForm(ReleaseUpdate.CurrentVersion))
+                {
+                    if (dialog.ShowDialog(this) != DialogResult.OK) return;
+                    try { dialog.LaunchInstaller(); Close(); }
+                    catch (Exception error) { ShowError(error.Message); }
+                }
+            };
+            Controls.Add(updates);
+            _actionControls = new Control[] { optionsPanel, applyButton, stopButton, uninstall, updates };
             if (!Program.HasUninstaller) Controls.Add(new Label { Text = "Versão portátil: não há desinstalador.", Location = new Point(20, 266), Size = new Size(365, 20), ForeColor = Color.FromArgb(148, 163, 184) });
-            FormClosing += delegate { SaveSettings(); };
+            FormClosing += delegate(object sender, FormClosingEventArgs e)
+            {
+                if (_working && e.CloseReason == CloseReason.UserClosing)
+                {
+                    _closeWhenReady = true;
+                    e.Cancel = true;
+                    return;
+                }
+                try { SaveSettings(); }
+                catch (Exception error) { _statusLabel.Text = error.Message; }
+            };
         }
 
         private static Button MakeButton(string text, int x, int y, int width, int height, Color color)
@@ -149,82 +182,84 @@ namespace PWOverlayCentral
             File.WriteAllText(_settingsPath, _serializer.Serialize(_settings), new UTF8Encoding(false));
         }
 
-        private void StartSelected()
+        private async Task ApplySelected()
         {
-            SaveSettings();
+            bool overlay = _overlayBox.Checked;
+            bool borderless = _borderlessBox.Checked;
             try
             {
-                if (_overlayBox.Checked) StartTool("PW Quest Overlay.exe");
-                else StopTool("PW Quest Overlay");
-                if (_borderlessBox.Checked) StartTool("PW Borderless.exe");
-                else StopBorderlessTool();
-                _statusLabel.Text = "Opções aplicadas. As ferramentas também acompanharão os próximos clientes abertos.";
-                _statusLabel.ForeColor = Color.FromArgb(134, 239, 172);
+                SaveSettings();
             }
             catch (Exception error)
             {
                 ShowError(error.Message);
+                return;
+            }
+            await RunOperation("Aplicando opções...", delegate
+            {
+                if (!overlay && !borderless) StopTools(OverlayFile, BorderlessFile);
+                else if (!overlay) StopTools(OverlayFile);
+                else if (!borderless) StopTools(BorderlessFile);
+                if (overlay) StartTool(OverlayFile);
+                if (borderless) StartTool(BorderlessFile);
+            }, "Opções aplicadas aos clientes abertos e aos próximos.", Color.FromArgb(134, 239, 172));
+        }
+
+        private async Task RunOperation(string pending, Action operation, string completed, Color color)
+        {
+            _working = true;
+            var previous = new bool[_actionControls.Length];
+            for (int i = 0; i < previous.Length; i++)
+            {
+                previous[i] = _actionControls[i].Enabled;
+                _actionControls[i].Enabled = false;
+            }
+            _statusLabel.Text = pending;
+            _statusLabel.ForeColor = Color.FromArgb(148, 163, 184);
+            try
+            {
+                await Task.Run(operation);
+                if (IsDisposed) return;
+                _statusLabel.Text = completed;
+                _statusLabel.ForeColor = color;
+            }
+            catch (Exception error)
+            {
+                if (!IsDisposed) ShowError(error.Message);
+            }
+            finally
+            {
+                _working = false;
+                if (!IsDisposed)
+                {
+                    for (int i = 0; i < previous.Length; i++) _actionControls[i].Enabled = previous[i];
+                    if (_closeWhenReady) Close();
+                }
             }
         }
 
         private void StartTool(string fileName)
         {
-            string processName = Path.GetFileNameWithoutExtension(fileName);
-            if (Process.GetProcessesByName(processName).Length > 0) return;
-            string path = Path.Combine(_appDirectory, fileName);
-            if (!File.Exists(path)) throw new FileNotFoundException("Ferramenta não encontrada: " + fileName, path);
-            Process.Start(new ProcessStartInfo(path) { WorkingDirectory = _appDirectory, UseShellExecute = true });
-        }
-
-        private static void StopTool(string processName)
-        {
-            foreach (Process process in Process.GetProcessesByName(processName))
-            {
-                try { process.Kill(); process.WaitForExit(2000); }
-                catch { }
-                finally { process.Dispose(); }
-            }
-        }
-
-        private static void StopBorderlessTool()
-        {
-            Process[] processes = Process.GetProcessesByName("PW Borderless");
-            if (processes.Length == 0) return;
-
+            Process[] running = Process.GetProcessesByName(Path.GetFileNameWithoutExtension(fileName));
             try
             {
-                using (EventWaitHandle disableEvent = EventWaitHandle.OpenExisting(
-                    @"Local\PWBorderlessDisableEvent"))
-                {
-                    disableEvent.Set();
-                }
+                int sessionId;
+                using (Process current = Process.GetCurrentProcess()) sessionId = current.SessionId;
+                foreach (Process process in running)
+                    if (process.SessionId == sessionId) return;
+                string path = Path.Combine(_appDirectory, fileName);
+                if (!File.Exists(path)) throw new FileNotFoundException("Ferramenta não encontrada: " + fileName, path);
+                using (Process started = Process.Start(new ProcessStartInfo(path)
+                    { WorkingDirectory = _appDirectory, UseShellExecute = false })) { }
             }
-            catch (WaitHandleCannotBeOpenedException)
-            {
-                // Compatibilidade com versões antigas que ainda não restauravam as janelas.
-            }
-
-            foreach (Process process in processes)
-            {
-                try
-                {
-                    if (!process.WaitForExit(2500))
-                    {
-                        process.Kill();
-                        process.WaitForExit(2000);
-                    }
-                }
-                catch { }
-                finally { process.Dispose(); }
-            }
+            finally { foreach (Process process in running) process.Dispose(); }
         }
 
-        private void StopTools()
+        private void StopTools(params string[] files)
         {
-            StopTool("PW Quest Overlay");
-            StopBorderlessTool();
-            _statusLabel.Text = "Overlay e PW Borderless encerrados. Os clientes do jogo continuam abertos.";
-            _statusLabel.ForeColor = Color.FromArgb(253, 224, 71);
+            string detail = null;
+            if (!PWOverlayShared.ToolMaintenance.Stop(_appDirectory, files, message => detail = message))
+                throw new InvalidOperationException("Não foi possível encerrar as ferramentas. " + detail);
         }
 
         private void ShowError(string message)
@@ -242,9 +277,8 @@ namespace PWOverlayCentral
         {
             string root = AppDomain.CurrentDomain.BaseDirectory;
             if (!HasUninstaller) throw new InvalidOperationException("Esta é a versão portátil. Feche as ferramentas e remova a pasta extraída; seus perfis ficam em %LOCALAPPDATA%\\PWQuestOverlay.");
-            if (!PWOverlayShared.ToolMaintenance.Stop(root, false, delegate { }))
-                throw new InvalidOperationException("Não foi possível fechar todas as ferramentas desta instalação. Feche-as e tente novamente.");
-            Process.Start(new ProcessStartInfo(Path.Combine(root, "unins000.exe")) { WorkingDirectory = root, UseShellExecute = true });
+            using (Process started = Process.Start(new ProcessStartInfo(Path.Combine(root, "unins000.exe"))
+                { WorkingDirectory = root, UseShellExecute = true })) { }
         }
 
         [STAThread]
@@ -252,6 +286,11 @@ namespace PWOverlayCentral
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            if (args.Length == 3 && args[0] == "--setup-update")
+            {
+                RunInstallerUpdateCheck(args[1], args[2]);
+                return;
+            }
             if (args.Length == 1 && args[0] == "--uninstall")
             {
                 try { Uninstall(); }
@@ -265,6 +304,27 @@ namespace PWOverlayCentral
             {
                 timer.Tick += delegate { if (shutdown.WaitOne(0)) form.Close(); };
                 timer.Start(); Application.Run(form);
+            }
+        }
+
+        private static void RunInstallerUpdateCheck(string resultFile, string installedVersion)
+        {
+            try
+            {
+                Version current = ReleaseUpdate.CurrentVersion;
+                Version installed;
+                if (Version.TryParse(installedVersion, out installed) && installed > current) current = installed;
+                using (var dialog = new UpdateCheckForm(current))
+                {
+                    if (dialog.ShowDialog() != DialogResult.OK) return;
+                    File.WriteAllLines(resultFile, new[] { dialog.InstallerPath, dialog.InstallerHash }, Encoding.UTF8);
+                    Environment.ExitCode = 10;
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "Procurar atualizações", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Environment.ExitCode = 1;
             }
         }
     }

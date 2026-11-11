@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace PWQuestOverlay.Memory
 {
+    internal enum QuestAvailability { Unknown, Expired, Blocked, Available }
+
     internal sealed class QuestMemorySnapshot
     {
         internal QuestMemorySnapshot()
@@ -10,10 +12,14 @@ namespace PWQuestOverlay.Memory
             ActiveTasks = new List<ActiveQuestMemoryEntry>();
             FinishedTaskIds = new List<uint>();
             TaskItemCounts = new Dictionary<uint, int>();
+            Availability = new Dictionary<uint, QuestAvailability>();
         }
 
         internal long TaskInterfaceAddress { get; set; }
         internal int PlayerLevel { get; set; }
+        internal int? PlayerReputation { get; set; }
+        internal bool UsesClassic126Catalog { get; set; }
+        internal Dictionary<uint, QuestAvailability> Availability { get; private set; }
         internal List<ActiveQuestMemoryEntry> ActiveTasks { get; private set; }
         internal List<uint> FinishedTaskIds { get; private set; }
         internal Dictionary<uint, int> TaskItemCounts { get; private set; }
@@ -48,7 +54,6 @@ namespace PWQuestOverlay.Memory
         {
             if (memory == null) throw new ArgumentNullException("memory");
             if (layout == null) throw new ArgumentNullException("layout");
-            if (inventory == null) throw new ArgumentNullException("inventory");
             _memory = memory;
             _layout = layout;
             _inventory = inventory;
@@ -62,24 +67,46 @@ namespace PWQuestOverlay.Memory
 
         internal QuestMemorySnapshot ReadFromInterface(long player, long taskInterface, bool readItems)
         {
+            QuestMemorySnapshot snapshot = ReadActiveFromInterface(taskInterface);
+            long finishedList = ReadRequiredPointer(taskInterface + _layout.FinishedListPointerOffset, "histórico de missões");
+            int finishedCount = _memory.ReadUInt16(finishedList + _layout.FinishedCountOffset);
+            if (finishedCount > _layout.FinishedMaximum)
+                throw new InvalidOperationException("Quantidade de missões concluídas inválida: " + finishedCount);
+            if (finishedCount > 0)
+            {
+                byte[] entries = _memory.ReadBytes(finishedList + _layout.FinishedEntriesOffset,
+                    checked(finishedCount * _layout.FinishedEntryStride));
+                for (int index = 0; index < finishedCount; index++)
+                {
+                    int entry = index * _layout.FinishedEntryStride;
+                    if (_layout.FinishedIdBytes == 2 && (entries[entry + _layout.finishedFailureFlagOffset] & 1) != 0)
+                        continue;
+                    uint taskId = _layout.FinishedIdBytes == 2
+                        ? BitConverter.ToUInt16(entries, entry)
+                        : BitConverter.ToUInt32(entries, entry);
+                    if (taskId != 0) snapshot.FinishedTaskIds.Add(taskId);
+                }
+            }
+            if (readItems) ReadTaskInventory(player, snapshot);
+            return snapshot;
+        }
+
+        internal QuestMemorySnapshot ReadActive(long player)
+        {
+            return ReadActiveFromInterface(FindTaskInterface(player));
+        }
+
+        private QuestMemorySnapshot ReadActiveFromInterface(long taskInterface)
+        {
             long activeList = ReadRequiredPointer(
                 taskInterface + _layout.ActiveListPointerOffset,
                 "lista de missões ativas");
-            long finishedList = ReadRequiredPointer(
-                taskInterface + _layout.FinishedListPointerOffset,
-                "histórico de missões");
 
             int activeCount = _memory.ReadByte(
                 activeList + _layout.ActiveCountOffset);
             if (activeCount > _layout.ActiveMaximum)
                 throw new InvalidOperationException(
                     "Quantidade de missões ativas inválida: " + activeCount);
-
-            int finishedCount = _memory.ReadUInt16(
-                finishedList + _layout.FinishedCountOffset);
-            if (finishedCount > _layout.FinishedMaximum)
-                throw new InvalidOperationException(
-                    "Quantidade de missões concluídas inválida: " + finishedCount);
 
             var snapshot = new QuestMemorySnapshot
             {
@@ -107,22 +134,12 @@ namespace PWQuestOverlay.Memory
                     RawData = raw
                 });
             }
-            if (finishedCount > 0)
-            {
-                byte[] entries = _memory.ReadBytes(finishedList + _layout.FinishedEntriesOffset,
-                    checked(finishedCount * _layout.FinishedEntryStride));
-                for (int index = 0; index < finishedCount; index++)
-                {
-                    uint taskId = BitConverter.ToUInt32(entries, index * _layout.FinishedEntryStride);
-                    if (taskId != 0) snapshot.FinishedTaskIds.Add(taskId);
-                }
-            }
-            if (readItems) ReadTaskInventory(player, snapshot);
             return snapshot;
         }
 
         private void ReadTaskInventory(long player, QuestMemorySnapshot snapshot)
         {
+            if (_inventory == null) throw new InvalidOperationException("Layout do inventário de missão indisponível.");
             long inventories = ReadRequiredPointer(
                 player + _inventory.PlayerPointerOffset,
                 "inventários do personagem");
@@ -155,6 +172,14 @@ namespace PWQuestOverlay.Memory
         private long FindTaskInterface(long player)
         {
             uint value;
+            if (!string.IsNullOrEmpty(_layout.playerInterfacePointerOffset))
+            {
+                long pointer = ReadRequiredPointer(player + HexValue.Parse(_layout.playerInterfacePointerOffset), "interface de missões");
+                if (_memory.ReadUInt32(pointer) != _memory.ModuleBase.ToInt64() + HexValue.Parse(_layout.interfaceVtableRva) ||
+                    _memory.ReadUInt32(pointer + 4) != player)
+                    throw new InvalidOperationException("A interface de missões não corresponde ao personagem atual.");
+                return pointer;
+            }
             if (_cachedPlayer == player && _cachedSlot != 0 &&
                 _memory.TryReadUInt32(_cachedSlot, out value))
             {
