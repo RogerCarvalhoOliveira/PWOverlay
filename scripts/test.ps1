@@ -18,6 +18,7 @@ $testExecutable = Join-Path $testDirectory 'SmokeTests.exe'
 & $compiler /nologo /target:exe /platform:x86 /optimize+ /out:$testExecutable `
     /reference:System.dll /reference:System.Core.dll /reference:System.Drawing.dll /reference:System.Web.Extensions.dll `
     (Join-Path $projectRoot 'src\Models.cs') `
+    (Join-Path $projectRoot 'src\QuestProgression.cs') `
     (Join-Path $projectRoot 'src\ClientIdentity.cs') `
     (Join-Path $projectRoot 'src\AppShutdown.cs') `
     (Join-Path $projectRoot 'src\ToolMaintenance.cs') `
@@ -29,7 +30,8 @@ $testExecutable = Join-Path $testDirectory 'SmokeTests.exe'
     (Join-Path $projectRoot 'src\QuestMemoryMonitor.cs') `
     (Join-Path $projectRoot 'src\ProcessMemoryReader.cs') `
     (Join-Path $projectRoot 'src\RttiResolver.cs') `
-    (Join-Path $projectRoot 'tests\SmokeTests.cs')
+    (Join-Path $projectRoot 'tests\SmokeTests.cs') `
+    (Join-Path $projectRoot 'tests\ProgressionTests.cs')
 if ($LASTEXITCODE -ne 0) { throw 'Falha ao compilar os smoke tests.' }
 
 & $testExecutable `

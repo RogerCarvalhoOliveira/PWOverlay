@@ -18,7 +18,7 @@ Profissões suportadas: `0 WR`, `1 MG`, `2 ES`, `3 WF`, `4 WB`, `5 MC`, `6 EA`, 
 
 `PlayerIdentityReader` reutiliza o handle somente de leitura já aberto para o cliente. `QuestMemoryMonitor` confirma duas amostras iguais por PID. ID/nome/classe formam a identidade da sessão, enquanto NOME|CLASSE permanece sendo a chave persistente do progresso. Mudanças invalidam evidências de missões imediatamente e geram um novo token ao confirmar a nova identidade; mudança do ponteiro ou logout também invalida a sessão.
 
-O monitor recebe separadamente a opção de ler missões. Desativar avanço/sincronização impede leitura das listas de missões e aplicação de progresso; a identificação continua ativa. Não há nova varredura de memória por nome: os campos vêm do objeto de jogador já localizado pela cadeia configurada ou RTTI.
+O monitor recebe separadamente a opção de acompanhar objetivos em andamento. A versão 0.13.0 mantém a identificação e a leitura do histórico com essa opção desativada. Os campos de identidade vêm do objeto de jogador localizado pela cadeia configurada ou RTTI.
 
 O resolvedor usa associação manual, depois memória e por último título identificável. Não usa título padrão/repetido. Recusa identidades que resultem no mesmo perfil em dois clientes. **Perfis** mostra o nome automático, a classe/origem na dica da coluna e permite definir um alias manual para servidores diferentes.
 
@@ -31,4 +31,4 @@ Nomes reais com sufixo de classe podem corresponder a perfis antigos cujo títul
 - Testes de estado/resolução cobrem estabilidade, descarte de evidências, token, títulos iguais, precedência, duplicatas e migração de sufixo.
 - Testes WinForms exercitam preenchimento automático, retorno do modo manual e salvamento.
 
-**Pendente:** validar em personagens conectados no cliente do servidor, com e sem Helper, duas instâncias e troca de personagem. Não havia clientes disponíveis nesta implementação. A análise estática e o processo de teste não substituem essa confirmação, nem asseguram offsets em outro executável. A release pública 0.11.1 permanece disponível enquanto a 0.12.0 é validada.
+O teste com personagens conectados, com e sem Helper, duas instâncias e troca de personagem permanece pendente. Os testes locais usam o layout do executável inspecionado acima.

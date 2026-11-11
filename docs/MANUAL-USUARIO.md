@@ -64,6 +64,10 @@ Para voltar a acompanhar a tela do cliente em foco, marque **Acompanhar monitor 
 
 As etapas seguem uma ordem global otimizada. O overlay pode mandar pegar uma missão, depois outra missão próxima, realizar os dois objetivos e somente mais tarde voltar às entregas. O nome da missão muda conforme a ação atual, mas cada missão mantém seu progresso independente.
 
+A opção **Rota reduzida (XP ×3)** fica ligada por padrão no menu da bandeja. Missões independentes de XP podem ser dispensadas quando o personagem já pode seguir o próximo trecho protegido. Quando falta nível, o planejador escolhe a maior recompensa disponível entre as candidatas verificadas. Cultivos, DGs/moedas, desbloqueios, pré-requisitos, recompensas importantes e missões já iniciadas permanecem no roteiro. Desmarque a opção para percorrer a lista completa ou selecione uma missão específica em **Etapas**.
+
+O histórico confirmado é importado ao identificar o personagem, mesmo com o avanço de etapas desligado. A importação percorre a rota inteira. O controle **Avançar etapas em andamento automaticamente** governa o acompanhamento de aceites, objetivos e entregas enquanto você joga. Missões repetíveis e etapas sem evidência suficiente precisam acompanhar o ciclo atual ou receber confirmação manual.
+
 Do nível 1 ao 105, a sequência foi organizada por região e dependências. Até a Cidade do Dragão, cada raça segue seu circuito; depois, todas usam a rota compartilhada e fazem os desvios exclusivos indicados. Pop-ups como **Aprenda sobre Habilidades de Forja** aguardam o retorno natural ao Ancião.
 
 No ponto de escolha do cultivo 89, o overlay pergunta **God ou Evil** e salva a resposta somente para aquele personagem/classe. Sem resposta, o guia aguarda nessa etapa. Os botões Concluir/Pular abrem a escolha novamente. Após salvar, aparecem as missões compartilhadas e apenas as cadeias de 89, 99 e 100 do caminho escolhido. O menu **Escolher/alterar cultivo God ou Evil...** permite escolher antes ou corrigir a preferência. O jogo continua exigindo que você escolha o cultivo no NPC.
@@ -93,7 +97,7 @@ Os atalhos avançam, voltam ou pulam uma etapa. Eles só modificam o progresso q
 
 ## Etapas e marcador
 
-O título mostra `Missão › Submissão`, por exemplo `Pérola de Lágrimas › Reportar ao Guarda Lufu`. A etiqueta colorida informa o tipo e a linha seguinte descreve exatamente a ação corrente. O canto inferior mostra **Etapa X/Y**, nível previsto e posição global; o overlay não pede nem salva o nível real do personagem. Concluir uma etapa não pula o restante da missão.
+O título mostra `Missão › Submissão`, por exemplo `Pérola de Lágrimas › Reportar ao Guarda Lufu`. A etiqueta colorida informa o tipo e a linha seguinte descreve a ação corrente. O canto inferior mostra **Nv. previsto** e **Etapa X/Y**. A previsão soma as recompensas XP ×3 cadastradas para missões concluídas e aplica a curva de evolução do cliente. Etapas puladas não geram XP. XP extra de combate ou diárias pode deixar o personagem acima dessa previsão. O nível lido do jogo orienta a escolha de missões disponíveis. Concluir uma etapa mantém as seguintes pendentes.
 
 Ao clicar em **Marcar**, não mova o mouse nem troque de cliente por cerca de um segundo. O overlay:
 
@@ -106,11 +110,11 @@ O fluxo padrão foi calibrado com o cliente 1.4.4 em 1920×1080 borderless e o P
 
 Versões anteriores a 0.7.1 usavam uma área vazia como referência da lista e podiam acumular `PWOverlay`. A configuração padrão é migrada automaticamente. Marcadores duplicados já existentes devem ser removidos uma única vez; depois disso, cada clique mantém somente o marcador mais recente.
 
-Para ajustar uma escala diferente, abra o menu do ícone ao lado do relógio e escolha **Calibrar marcador...**. Selecione uma linha, deixe o painel de Marcadores aberto, posicione o mouse sobre o controle indicado e pressione `F8`. Repita os controles e salve. O menu **Ao criar marcador** alterna entre substituir somente `PWOverlay` (recomendado) ou apagar todos.
+Para ajustar a resolução ou escala de interface, escolha **Calibrar marcador...** no menu da bandeja. A janela aguarda o PW em foco. Selecione uma linha, coloque o PW em foco, posicione o mouse sobre o controle indicado e pressione `F8`. O calibrador mostra o PID e o tamanho da área do jogo e avança para a próxima linha a cada captura. Abra Marcadores manualmente para capturar os controles internos. Depois volte pelo Alt+Tab e clique em **Salvar**. Os pontos ficam vinculados ao mesmo cliente e tamanho durante a captura. Se mudar a resolução no meio, restaure o padrão ou reabra a calibração. O menu **Ao criar marcador** permite substituir somente `PWOverlay` ou apagar todos.
 
 ## Selecionar uma etapa
 
-Clique em **Etapas**, escolha a missão e a etapa e confirme. Use essa função quando o personagem já avançou no jogo ou quando uma cadeia começou em uma etapa posterior. O programa marca as etapas anteriores como concluídas para manter os botões **Voltar** e **Etapa feita** coerentes.
+Clique em **Etapas**, escolha a missão e a etapa e confirme. Etapas anteriores sem conclusão confirmada são marcadas como puladas. As posteriores são reabertas. Conclusões anteriores são preservadas no cálculo de XP. A escolha também permite abrir uma missão dispensada pela rota reduzida.
 
 ## Backup e edição das rotas
 

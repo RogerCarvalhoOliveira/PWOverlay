@@ -13,6 +13,7 @@ namespace PWQuestOverlay
     {
         public int schemaVersion { get; set; }
         public string generatedFrom { get; set; }
+        public int[] xpToNextLevel { get; set; }
         public List<QuestMission> missions { get; set; }
     }
 
@@ -37,6 +38,8 @@ namespace PWQuestOverlay
         public bool cultivationChoice { get; set; }
         public bool repeatable { get; set; }
         public string availabilityNote { get; set; }
+        public uint[][] historyTaskGroups { get; set; }
+        public bool xpOptional { get; set; }
         public List<QuestStep> steps { get; set; }
     }
 
@@ -157,6 +160,7 @@ namespace PWQuestOverlay
         public string OverlayMonitorDeviceName { get; set; }
         public bool UserHidden { get; set; }
         public bool CompactMode { get; set; }
+        public bool OptimizeQuestXp { get; set; }
         public double Opacity { get; set; }
         public Dictionary<string, CharacterProgress> Characters { get; set; }
         public Dictionary<string, SavedPosition> Positions { get; set; }
@@ -166,7 +170,8 @@ namespace PWQuestOverlay
 
         public AppState()
         {
-            SchemaVersion = 11;
+            SchemaVersion = 12;
+            OptimizeQuestXp = true;
             Opacity = 0.82;
             Characters = new Dictionary<string, CharacterProgress>(StringComparer.OrdinalIgnoreCase);
             Positions = new Dictionary<string, SavedPosition>(StringComparer.OrdinalIgnoreCase);
@@ -180,6 +185,7 @@ namespace PWQuestOverlay
     {
         private readonly List<QuestMission> _missions;
         private readonly RoutePayload _payload;
+        internal int[] XpToNextLevel { get { return _payload.xpToNextLevel; } }
 
         private RouteRepository(RoutePayload payload)
         {
@@ -198,8 +204,14 @@ namespace PWQuestOverlay
             RoutePayload payload = serializer.Deserialize<RoutePayload>(File.ReadAllText(path, Encoding.UTF8));
             if (payload == null || payload.missions == null || payload.missions.Count == 0)
                 throw new InvalidDataException("O arquivo de rotas está vazio ou inválido.");
+            if (payload.xpToNextLevel != null &&
+                (payload.xpToNextLevel.Length != 104 || payload.xpToNextLevel.Any(xp => xp <= 0)))
+                throw new InvalidDataException("A curva de evolução precisa conter os 104 valores positivos do nível 1 ao 105.");
             foreach (QuestMission mission in payload.missions)
             {
+                if (mission.historyTaskGroups != null && mission.historyTaskGroups.Any(group =>
+                    group == null || group.Length == 0 || group.Any(id => id == 0)))
+                    throw new InvalidDataException("Vínculo de histórico inválido em " + mission.id);
                 if (mission.expectedLevel <= 0) mission.expectedLevel = mission.minLevel;
                 if (mission.steps == null || mission.steps.Count == 0)
                 {
@@ -237,6 +249,11 @@ namespace PWQuestOverlay
 
         public List<QuestMission> GetForClass(string classCode, string cultivationPath)
         {
+            return GetClassMissions(classCode).Where(mission => CultivationRouting.IsVisible(mission, cultivationPath)).ToList();
+        }
+
+        internal List<QuestMission> GetClassMissions(string classCode)
+        {
             classCode = (classCode ?? string.Empty).Trim().ToUpperInvariant();
             IEnumerable<QuestMission> race;
             switch (classCode)
@@ -269,8 +286,7 @@ namespace PWQuestOverlay
                     return new List<QuestMission>();
             }
             IEnumerable<QuestMission> common = _missions.Where(m => m.routeKey == "COMMON" && m.classScope == "ALL");
-            return race.Concat(common).Where(m => CultivationRouting.IsVisible(m, cultivationPath))
-                .OrderBy(m => m.order).ToList();
+            return race.Concat(common).OrderBy(m => m.order).ToList();
         }
     }
 
@@ -416,7 +432,7 @@ namespace PWQuestOverlay
                     if (progress.HasOverlayMarker && progress.OverlayMarkerCount <= 0)
                         progress.OverlayMarkerCount = 1;
                 if (state.Opacity < 0.60 || state.Opacity > 1.0) state.Opacity = 0.82;
-                state.SchemaVersion = Math.Max(11, state.SchemaVersion);
+                state.SchemaVersion = Math.Max(12, state.SchemaVersion);
                 return state;
             }
             catch (Exception error)
@@ -477,7 +493,7 @@ namespace PWQuestOverlay
                 progress.CultivationPath = CultivationRouting.Normalize(progress.CultivationPath);
                 if (progress.MissionStates == null) progress.MissionStates = new Dictionary<string, string>();
             }
-            state.SchemaVersion = Math.Max(11, state.SchemaVersion);
+            state.SchemaVersion = Math.Max(12, state.SchemaVersion);
             return state;
         }
 

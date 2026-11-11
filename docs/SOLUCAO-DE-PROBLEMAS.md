@@ -30,7 +30,7 @@ O botão só altera o perfil quando um cliente está ativo. Confirme também se 
 - Deixe o painel **Marcadores** fechado antes de clicar em **Marcar**.
 - Não mova o mouse nem troque de cliente durante cerca de um segundo.
 - Confirme que a etapa possui coordenadas; sem elas, o botão fica desativado.
-- O fluxo foi calibrado em 1920×1080 borderless. Escala personalizada da interface pode exigir ajuste dos pontos de referência em `OverlayForm.cs`.
+- Para outra resolução ou escala, abra **Calibrar marcador...** na bandeja, coloque o PW em foco e capture cada controle com **F8**. A janela mostra a resolução detectada. Use Alt+Tab para voltar e salvar.
 - Consulte `overlay.log` e procure por `Falha ao criar marcador`.
 
 ## O botão Marcar está acumulando PWOverlay antigos

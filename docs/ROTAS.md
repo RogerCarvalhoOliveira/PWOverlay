@@ -11,7 +11,7 @@ As rotas ficam em `data/quest_routes.json`. Normalmente o overlay somente lê e 
 | `order` | Ordem de exibição dentro da rota. |
 | `classScope` | Classe à qual a missão se aplica. |
 | `minLevel` | Nível mínimo para pegar a missão. |
-| `expectedLevel` | Nível em que a rota prevê fazer a missão. |
+| `expectedLevel` | Faixa planejada da missão no roteiro/planilha. O nível previsto do personagem é calculado com seu progresso. |
 | `maxLevel` | Nível máximo informado pela fonte, ou texto vazio quando não houver limite conhecido. |
 | `name` | Nome exibido no overlay. |
 | `npc` | NPC que inicia a missão. |
@@ -22,6 +22,8 @@ As rotas ficam em `data/quest_routes.json`. Normalmente o overlay somente lê e 
 | `cultivationPath` | `GOD`, `EVIL` ou vazio para missão compartilhada. |
 | `cultivationChoice` | Etapa que exige a escolha explícita do cultivo. |
 | `repeatable` | Atividade que pode ser repetida quando o servidor permitir. |
+| `historyTaskGroups` | Grupos de IDs que comprovam conclusão. Basta um ID registrado por grupo, com evidência em todos os grupos. |
+| `xpOptional` | Missão independente de XP que a rota reduzida pode dispensar. |
 | `availabilityNote` | Restrições adicionais de disponibilidade ou nível inferido da cadeia. |
 | `steps` | Lista ordenada das etapas exibidas no overlay. |
 
@@ -80,6 +82,8 @@ Os títulos exibidos pelo overlay não dependem mais das traduções desses site
 O comportamento do painel de marcadores foi conferido na interface 1.4.4 e comparado com a documentação oficial da tela básica: <https://perfectworld.com.br/o-jogo/primeiros-passos/a-tela-e-os-comandos-basicos>.
 
 ## Validar
+
+A propriedade `xpToNextLevel` contém os 104 valores positivos da curva do personagem, extraída do registro 202 de `elements.data`. O overlay soma a XP ×3 das conclusões do guia e aplica essa curva. A redução usa o nível lido do personagem para verificar o aceite quando ele está disponível. Os vínculos de histórico e as candidatas independentes podem ser regenerados com `scripts/enrich-route-progression.py`, fornecendo o extrato integral de `tasks.data` e as curvas extraídas de `elements.data`.
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\validate-data.ps1

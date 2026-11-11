@@ -57,6 +57,7 @@ $standaloneGuideDestination = Join-Path $distributionDirectory 'SEM-PW-HELPER.tx
 $overlaySources = @(
     (Join-Path $sourceDirectory 'Program.cs'),
     (Join-Path $sourceDirectory 'Models.cs'),
+    (Join-Path $sourceDirectory 'QuestProgression.cs'),
     (Join-Path $sourceDirectory 'ClientIdentity.cs'),
     (Join-Path $sourceDirectory 'ClientProfilesForm.cs'),
     (Join-Path $sourceDirectory 'NativeMethods.cs'),

@@ -1,6 +1,112 @@
 {
-  "schemaVersion": 8,
+  "schemaVersion": 9,
   "generatedFrom": "Guia 1–105, dez classes, XP ×3, cultivos God/Evil por personagem; fontes dataminadas do cliente.",
+  "xpToNextLevel": [
+    55,
+    220,
+    495,
+    880,
+    1400,
+    2010,
+    2765,
+    3640,
+    4635,
+    5750,
+    7040,
+    8400,
+    9945,
+    11620,
+    13500,
+    15440,
+    17595,
+    19890,
+    22325,
+    25000,
+    27825,
+    30800,
+    34040,
+    37440,
+    41125,
+    44980,
+    49140,
+    53480,
+    58000,
+    63000,
+    68045,
+    73600,
+    79365,
+    85510,
+    92050,
+    99000,
+    106190,
+    113810,
+    122070,
+    130600,
+    139810,
+    149520,
+    159745,
+    170720,
+    182250,
+    194350,
+    207270,
+    221040,
+    235445,
+    250750,
+    267240,
+    284440,
+    302895,
+    322380,
+    343200,
+    365120,
+    388455,
+    413540,
+    439845,
+    468000,
+    514186,
+    564426,
+    618633,
+    677751,
+    742105,
+    811633,
+    887040,
+    968679,
+    1057360,
+    1153044,
+    1257081,
+    1437950,
+    1640333,
+    1866865,
+    2119163,
+    2400221,
+    2712606,
+    3060712,
+    3446869,
+    3875270,
+    4350544,
+    4876697,
+    5457952,
+    6102480,
+    6813012,
+    7598918,
+    8464893,
+    9418742,
+    10470584,
+    11688300,
+    13394199,
+    14933072,
+    16613613,
+    18447312,
+    20448750,
+    22631232,
+    25006212,
+    27596408,
+    30412503,
+    66954000,
+    267816000,
+    535632000,
+    1339080000,
+    1750000000
+  ],
   "missions": [
     {
       "id": "WR|WR|1|Primeiro Teste / Exposição de Talento",
@@ -41,7 +147,8 @@
           "title": "Recruta / Exposição de Talento"
         }
       ],
-      "expectedLevel": 1
+      "expectedLevel": 1,
+      "historyTaskGroups": [[1173, 1198]]
     },
     {
       "id": "WR|WR|1|A Cidade das Espadas",
@@ -82,7 +189,8 @@
           "title": "A Cidade das Espadas"
         }
       ],
-      "expectedLevel": 1
+      "expectedLevel": 1,
+      "historyTaskGroups": [[1174, 1199]]
     },
     {
       "id": "WR|WR|1|Revitalizando a Pátria",
@@ -164,7 +272,8 @@
           "memoryTaskId": 454
         }
       ],
-      "expectedLevel": 1
+      "expectedLevel": 1,
+      "historyTaskGroups": [[35]]
     },
     {
       "id": "WR|WR|3|Duende Desertor / A Chama do Túmulo",
@@ -207,7 +316,8 @@
           "title": "Duende Desertor / a Chamas do Túmulo"
         }
       ],
-      "expectedLevel": 3
+      "expectedLevel": 3,
+      "historyTaskGroups": [[565, 566]]
     },
     {
       "id": "WR|WR|4|Teste de Salto",
@@ -250,7 +360,8 @@
           "title": "Teste de Salto"
         }
       ],
-      "expectedLevel": 4
+      "expectedLevel": 4,
+      "historyTaskGroups": [[3427]]
     },
     {
       "id": "WR|WR|4|Fazer Armas",
@@ -314,7 +425,8 @@
           "memoryTaskId": 437
         }
       ],
-      "expectedLevel": 4
+      "expectedLevel": 4,
+      "historyTaskGroups": [[74]]
     },
     {
       "id": "WR|WR|5|Aprenda sobre Habilidades de Forja",
@@ -347,7 +459,8 @@
           "routeOrder": 10210,
           "title": "Visitando o Ancião"
         }
-      ]
+      ],
+      "historyTaskGroups": [[6457]]
     },
     {
       "id": "WR|WR|5|Espinho de Ouriço",
@@ -390,7 +503,8 @@
           "title": "Espinho do Ouriço"
         }
       ],
-      "expectedLevel": 5
+      "expectedLevel": 5,
+      "historyTaskGroups": [[705]]
     },
     {
       "id": "WR|WR|6|Espírito do Fogo",
@@ -433,7 +547,9 @@
           "title": "Espírito do Fogo"
         }
       ],
-      "expectedLevel": 6
+      "expectedLevel": 6,
+      "historyTaskGroups": [[706]],
+      "xpOptional": true
     },
     {
       "id": "WR|WR|6|Vila dos Eremitas",
@@ -468,7 +584,8 @@
           "title": "Vila dos Eremitas"
         }
       ],
-      "expectedLevel": 6
+      "expectedLevel": 6,
+      "historyTaskGroups": [[2645]]
     },
     {
       "id": "WR|WR|7|Lágrimas do Dragão",
@@ -511,7 +628,8 @@
           "title": "Lágrima de Dragão"
         }
       ],
-      "expectedLevel": 7
+      "expectedLevel": 7,
+      "historyTaskGroups": [[568]]
     },
     {
       "id": "WR|WR|8|Castigo Local",
@@ -554,7 +672,9 @@
           "title": "Castigo Local"
         }
       ],
-      "expectedLevel": 8
+      "expectedLevel": 8,
+      "historyTaskGroups": [[940]],
+      "xpOptional": true
     },
     {
       "id": "WR|WR|8|Poder Dobrado",
@@ -597,7 +717,8 @@
           "title": "Poder Dobrado"
         }
       ],
-      "expectedLevel": 8
+      "expectedLevel": 8,
+      "historyTaskGroups": [[140]]
     },
     {
       "id": "WR|WR|8|Ouriço Retalhador",
@@ -638,7 +759,8 @@
           "title": "Ouriço Retalhador"
         }
       ],
-      "expectedLevel": 8
+      "expectedLevel": 8,
+      "historyTaskGroups": [[708]]
     },
     {
       "id": "WR|WR|9|Cultivo – Orientação de Cultivo",
@@ -673,7 +795,8 @@
           "title": "Taoísta Kalern Yoks"
         }
       ],
-      "expectedLevel": 9
+      "expectedLevel": 9,
+      "historyTaskGroups": [[1106]]
     },
     {
       "id": "WR|WR|9|O Surgimento de Lingxu",
@@ -724,7 +847,8 @@
           "title": "Sucesso!"
         }
       ],
-      "expectedLevel": 9
+      "expectedLevel": 9,
+      "historyTaskGroups": [[915]]
     },
     {
       "id": "WR|WR|10|Mandado do Ferreiro",
@@ -765,7 +889,9 @@
           "title": "Escamas de Víbora"
         }
       ],
-      "expectedLevel": 10
+      "expectedLevel": 10,
+      "historyTaskGroups": [[2130]],
+      "xpOptional": true
     },
     {
       "id": "WR|WR|11|Vila Quadrada",
@@ -800,7 +926,8 @@
           "title": "Vá para a Vila Quadrad"
         }
       ],
-      "expectedLevel": 11
+      "expectedLevel": 11,
+      "historyTaskGroups": [[2648]]
     },
     {
       "id": "WR|WR|11|Trabalho em Conjunto",
@@ -843,7 +970,9 @@
           "title": "Trabalho em Conjunto"
         }
       ],
-      "expectedLevel": 11
+      "expectedLevel": 11,
+      "historyTaskGroups": [[573]],
+      "xpOptional": true
     },
     {
       "id": "WR|WR|11|Esforços Concentrados",
@@ -886,7 +1015,9 @@
           "title": "Esforços Concentrados"
         }
       ],
-      "expectedLevel": 11
+      "expectedLevel": 11,
+      "historyTaskGroups": [[762]],
+      "xpOptional": true
     },
     {
       "id": "WR|WR|12|Intercomunicação",
@@ -937,7 +1068,8 @@
           "title": "Trocar Informações"
         }
       ],
-      "expectedLevel": 12
+      "expectedLevel": 12,
+      "historyTaskGroups": [[699]]
     },
     {
       "id": "WR|WR|13|Armadura do Lobo",
@@ -980,7 +1112,8 @@
           "title": "Armadura do Lobo"
         }
       ],
-      "expectedLevel": 13
+      "expectedLevel": 13,
+      "historyTaskGroups": [[753]]
     },
     {
       "id": "WR|WR|14|Emoção da Caça",
@@ -1043,7 +1176,9 @@
           "memoryTaskId": 6441
         }
       ],
-      "expectedLevel": 14
+      "expectedLevel": 14,
+      "historyTaskGroups": [[6430]],
+      "xpOptional": true
     },
     {
       "id": "WR|WR|15|A Promessa",
@@ -1116,7 +1251,9 @@
           "memoryTaskId": 2955
         }
       ],
-      "expectedLevel": 15
+      "expectedLevel": 15,
+      "historyTaskGroups": [[2950]],
+      "xpOptional": true
     },
     {
       "id": "WR|WR|16|Fortaleza da Montanha",
@@ -1151,7 +1288,8 @@
           "title": "Vá para a Montanha"
         }
       ],
-      "expectedLevel": 16
+      "expectedLevel": 16,
+      "historyTaskGroups": [[2651]]
     },
     {
       "id": "WR|WR|16|Vingança do Boticário",
@@ -1194,7 +1332,9 @@
           "title": "Vingança do Boticário"
         }
       ],
-      "expectedLevel": 16
+      "expectedLevel": 16,
+      "historyTaskGroups": [[6431]],
+      "xpOptional": true
     },
     {
       "id": "WR|WR|17|Flauta do Passado",
@@ -1253,7 +1393,8 @@
           "title": "A Montanha"
         }
       ],
-      "expectedLevel": 17
+      "expectedLevel": 17,
+      "historyTaskGroups": [[526]]
     },
     {
       "id": "WR|WR|18|A Lista de Xin",
@@ -1320,7 +1461,9 @@
           "title": "Familiares de Xin"
         }
       ],
-      "expectedLevel": 18
+      "expectedLevel": 18,
+      "historyTaskGroups": [[3532]],
+      "xpOptional": true
     },
     {
       "id": "WR|WR|19|Orientação de Cultivo – Aumentar Cultivo",
@@ -1355,7 +1498,8 @@
           "title": "Aperfeiçoando a Habilidade"
         }
       ],
-      "expectedLevel": 19
+      "expectedLevel": 19,
+      "historyTaskGroups": [[1663]]
     },
     {
       "id": "WR|WR|19|A Harmonia do Céu e a Terra",
@@ -1408,7 +1552,8 @@
           "memoryTaskId": 1931
         }
       ],
-      "expectedLevel": 19
+      "expectedLevel": 19,
+      "historyTaskGroups": [[921]]
     },
     {
       "id": "WR|WR|19|Moeda Sangrenta de Ferro",
@@ -1435,7 +1580,8 @@
           "title": "Moeda Sangrenta de Fer"
         }
       ],
-      "expectedLevel": 19
+      "expectedLevel": 19,
+      "historyTaskGroups": [[8738]]
     },
     {
       "id": "WR|WR|19|Missão Desafio – Portão de Devildom",
@@ -1482,7 +1628,8 @@
           "title": "Portão de Devildom"
         }
       ],
-      "expectedLevel": 19
+      "expectedLevel": 19,
+      "historyTaskGroups": [[113]]
     },
     {
       "id": "WR|WR|19|Aquecimento",
@@ -1551,7 +1698,9 @@
           "title": "Predador de Elite"
         }
       ],
-      "expectedLevel": 19
+      "expectedLevel": 19,
+      "historyTaskGroups": [[6432]],
+      "xpOptional": true
     },
     {
       "id": "WBWF|WB/WF|1|Primeira Viagem",
@@ -1595,7 +1744,8 @@
           "memoryTaskId": 1179
         }
       ],
-      "expectedLevel": 1
+      "expectedLevel": 1,
+      "historyTaskGroups": [[1177]]
     },
     {
       "id": "WBWF|WB/WF|1|A Cidade das Feras",
@@ -1639,7 +1789,8 @@
           "memoryTaskId": 1204
         }
       ],
-      "expectedLevel": 1
+      "expectedLevel": 1,
+      "historyTaskGroups": [[1204]]
     },
     {
       "id": "WBWF|WB/WF|1|Os Poderosos Selvagens",
@@ -1721,7 +1872,8 @@
           "memoryTaskId": 68
         }
       ],
-      "expectedLevel": 1
+      "expectedLevel": 1,
+      "historyTaskGroups": [[13]]
     },
     {
       "id": "WBWF|WF|3|Habilidade de Controle",
@@ -1764,7 +1916,8 @@
           "title": "Habilidade de controle"
         }
       ],
-      "expectedLevel": 3
+      "expectedLevel": 3,
+      "historyTaskGroups": [[5910]]
     },
     {
       "id": "WBWF|WB/WF|3|Injustiças",
@@ -1807,7 +1960,8 @@
           "title": "Para o Excêntrico"
         }
       ],
-      "expectedLevel": 3
+      "expectedLevel": 3,
+      "historyTaskGroups": [[468]]
     },
     {
       "id": "WBWF|WB/WF|4|Habilidade Primária",
@@ -1850,7 +2004,8 @@
           "title": "Portão da Cidade"
         }
       ],
-      "expectedLevel": 4
+      "expectedLevel": 4,
+      "historyTaskGroups": [[3429]]
     },
     {
       "id": "WBWF|WB/WF|4|União Contra o Inimigo",
@@ -1925,7 +2080,9 @@
           "title": "Falar com a Alfaiate"
         }
       ],
-      "expectedLevel": 4
+      "expectedLevel": 4,
+      "historyTaskGroups": [[14]],
+      "xpOptional": true
     },
     {
       "id": "WBWF|WB/WF|5|Aprenda sobre Habilidades de Forja",
@@ -1958,7 +2115,8 @@
           "routeOrder": 10270,
           "title": "Visitando o Ancião"
         }
-      ]
+      ],
+      "historyTaskGroups": [[6459]]
     },
     {
       "id": "WBWF|WB/WF|5|Armadura de Casco",
@@ -1999,7 +2157,8 @@
           "title": "Entregando os Cascos"
         }
       ],
-      "expectedLevel": 5
+      "expectedLevel": 5,
+      "historyTaskGroups": [[726]]
     },
     {
       "id": "WBWF|WB/WF|6|Mais Urgente",
@@ -2050,7 +2209,9 @@
           "memoryTaskId": 761
         }
       ],
-      "expectedLevel": 6
+      "expectedLevel": 6,
+      "historyTaskGroups": [[727]],
+      "xpOptional": true
     },
     {
       "id": "WBWF|WB/WF|6|Vila da Ponte Quebrada",
@@ -2085,7 +2246,8 @@
           "title": "Vá até a Vila"
         }
       ],
-      "expectedLevel": 6
+      "expectedLevel": 6,
+      "historyTaskGroups": [[2647]]
     },
     {
       "id": "WBWF|WF|7|Capturar Fera Psíquica",
@@ -2126,7 +2288,8 @@
           "title": "Retorno"
         }
       ],
-      "expectedLevel": 7
+      "expectedLevel": 7,
+      "historyTaskGroups": [[5919]]
     },
     {
       "id": "WBWF|WB/WF|7|Pescador Minotauro",
@@ -2167,7 +2330,9 @@
           "title": "Entregar as Ferraduras"
         }
       ],
-      "expectedLevel": 7
+      "expectedLevel": 7,
+      "historyTaskGroups": [[470]],
+      "xpOptional": true
     },
     {
       "id": "WBWF|WB/WF|7|Óleo Negro Mágico",
@@ -2208,7 +2373,8 @@
           "title": "Entregando Coque"
         }
       ],
-      "expectedLevel": 7
+      "expectedLevel": 7,
+      "historyTaskGroups": [[728]]
     },
     {
       "id": "WBWF|WB/WF|8|Uma Boa Estratégia",
@@ -2263,7 +2429,9 @@
           "title": "Dizer à Comerciante"
         }
       ],
-      "expectedLevel": 8
+      "expectedLevel": 8,
+      "historyTaskGroups": [[16]],
+      "xpOptional": true
     },
     {
       "id": "WBWF|WB/WF|9|Jornada Tranquila",
@@ -2304,7 +2472,9 @@
           "title": "Avise a Comerciante"
         }
       ],
-      "expectedLevel": 9
+      "expectedLevel": 9,
+      "historyTaskGroups": [[730]],
+      "xpOptional": true
     },
     {
       "id": "WBWF|WB/WF|9|Cultivo – Orientação de Cultivo",
@@ -2339,7 +2509,8 @@
           "title": "Taoísta Miao Miao"
         }
       ],
-      "expectedLevel": 9
+      "expectedLevel": 9,
+      "historyTaskGroups": [[1201]]
     },
     {
       "id": "WBWF|WB/WF|9|O Surgimento de Lingxu",
@@ -2388,7 +2559,8 @@
           "title": "Sucesso!"
         }
       ],
-      "expectedLevel": 9
+      "expectedLevel": 9,
+      "historyTaskGroups": [[970]]
     },
     {
       "id": "WBWF|WB/WF|10|Remédio Útil",
@@ -2437,7 +2609,9 @@
           "title": "Ajude o Boticário"
         }
       ],
-      "expectedLevel": 10
+      "expectedLevel": 10,
+      "historyTaskGroups": [[2159]],
+      "xpOptional": true
     },
     {
       "id": "WBWF|WB/WF|11|Irmandade",
@@ -2478,7 +2652,9 @@
           "title": "Escamas Brilhantes"
         }
       ],
-      "expectedLevel": 11
+      "expectedLevel": 11,
+      "historyTaskGroups": [[2166]],
+      "xpOptional": true
     },
     {
       "id": "WBWF|WB/WF|11|Garganta dos Ventos Ancestrais",
@@ -2515,7 +2691,8 @@
           "memoryTaskId": 2669
         }
       ],
-      "expectedLevel": 11
+      "expectedLevel": 11,
+      "historyTaskGroups": [[2650]]
     },
     {
       "id": "WBWF|WB/WF|12|O Rugido das Feras",
@@ -2582,7 +2759,8 @@
           "title": "Trocar Informações"
         }
       ],
-      "expectedLevel": 12
+      "expectedLevel": 12,
+      "historyTaskGroups": [[17]]
     },
     {
       "id": "WBWF|WB/WF|12|Sangue de Lobo Feroz",
@@ -2631,7 +2809,8 @@
           "title": "Visite o Boticário"
         }
       ],
-      "expectedLevel": 12
+      "expectedLevel": 12,
+      "historyTaskGroups": [[733]]
     },
     {
       "id": "WBWF|WB/WF|13|Pesadelo Perturbador",
@@ -2680,7 +2859,8 @@
           "title": "O Sonho de Altram"
         }
       ],
-      "expectedLevel": 13
+      "expectedLevel": 13,
+      "historyTaskGroups": [[735]]
     },
     {
       "id": "WBWF|WB/WF|14|Vantagens Sem Esforço",
@@ -2731,7 +2911,8 @@
           "memoryTaskId": 1084
         }
       ],
-      "expectedLevel": 14
+      "expectedLevel": 14,
+      "historyTaskGroups": [[736]]
     },
     {
       "id": "WBWF|WB/WF|15|Piggy",
@@ -2782,7 +2963,9 @@
           "title": "Piggy"
         }
       ],
-      "expectedLevel": 15
+      "expectedLevel": 15,
+      "historyTaskGroups": [[6433]],
+      "xpOptional": true
     },
     {
       "id": "WBWF|WB/WF|16|Fortaleza da Cidade do Rio",
@@ -2817,7 +3000,8 @@
           "title": "Vá para a Cidade do Ri"
         }
       ],
-      "expectedLevel": 16
+      "expectedLevel": 16,
+      "historyTaskGroups": [[2653]]
     },
     {
       "id": "WBWF|WB/WF|16|Cortar Montanhas",
@@ -2867,7 +3051,8 @@
           "memoryTaskId": 883
         }
       ],
-      "expectedLevel": 16
+      "expectedLevel": 16,
+      "historyTaskGroups": [[870]]
     },
     {
       "id": "WBWF|WF|17|Domesticar Marta-Rei",
@@ -2908,7 +3093,8 @@
           "title": "Domesticar Marta-Rei"
         }
       ],
-      "expectedLevel": 17
+      "expectedLevel": 17,
+      "historyTaskGroups": [[6038]]
     },
     {
       "id": "WBWF|WB/WF|17|A Sobrancelha de Zhang",
@@ -2963,7 +3149,9 @@
           "title": "A Sobrancelha de Zhang"
         }
       ],
-      "expectedLevel": 17
+      "expectedLevel": 17,
+      "historyTaskGroups": [[6434]],
+      "xpOptional": true
     },
     {
       "id": "WBWF|WB/WF|18|Beleza Divina",
@@ -3028,7 +3216,8 @@
           "title": "Pegar a Taça"
         }
       ],
-      "expectedLevel": 18
+      "expectedLevel": 18,
+      "historyTaskGroups": [[237]]
     },
     {
       "id": "WBWF|WB/WF|19|Orientação de Cultivo – Aumentar Cultivo",
@@ -3063,7 +3252,8 @@
           "title": "Aperfeiçoando a Habilidade"
         }
       ],
-      "expectedLevel": 19
+      "expectedLevel": 19,
+      "historyTaskGroups": [[1664]]
     },
     {
       "id": "WBWF|WB/WF|19|A Harmoniosa Céu-Terra",
@@ -3116,7 +3306,8 @@
           "memoryTaskId": 1933
         }
       ],
-      "expectedLevel": 19
+      "expectedLevel": 19,
+      "historyTaskGroups": [[978]]
     },
     {
       "id": "WBWF|WB/WF|19|Moeda Sangrenta de Ferro",
@@ -3143,7 +3334,8 @@
           "title": "Moeda Sangrenta de Fer"
         }
       ],
-      "expectedLevel": 19
+      "expectedLevel": 19,
+      "historyTaskGroups": [[8740]]
     },
     {
       "id": "WBWF|WB/WF|19|Missão Desafio – Despachos aos Alados",
@@ -3191,7 +3383,8 @@
           "title": "Despachos aos Alados"
         }
       ],
-      "expectedLevel": 19
+      "expectedLevel": 19,
+      "historyTaskGroups": [[22]]
     },
     {
       "id": "WBWF|WB/WF|19|Teste do Curandeiro",
@@ -3260,7 +3453,9 @@
           "title": "Teste do Curandeiro"
         }
       ],
-      "expectedLevel": 19
+      "expectedLevel": 19,
+      "historyTaskGroups": [[6435]],
+      "xpOptional": true
     },
     {
       "id": "EAEP|EA/EP|1|Nova Chegada / Primeira Visita",
@@ -3301,7 +3496,8 @@
           "title": "Matar Broto Carnívoro"
         }
       ],
-      "expectedLevel": 1
+      "expectedLevel": 1,
+      "historyTaskGroups": [[1181, 2566]]
     },
     {
       "id": "EAEP|EA/EP|1|Presente Para o Guarda",
@@ -3344,7 +3540,8 @@
           "title": "Presente para o Guarda"
         }
       ],
-      "expectedLevel": 1
+      "expectedLevel": 1,
+      "historyTaskGroups": [[1182, 2569]]
     },
     {
       "id": "EAEP|EA/EP|1|O Renascer dos Alados",
@@ -3426,7 +3623,8 @@
           "memoryTaskId": 48
         }
       ],
-      "expectedLevel": 1
+      "expectedLevel": 1,
+      "historyTaskGroups": [[1]]
     },
     {
       "id": "EAEP|EA/EP|3|Aldeões Feridos",
@@ -3485,7 +3683,8 @@
           "title": "Besouro de Chifres"
         }
       ],
-      "expectedLevel": 3
+      "expectedLevel": 3,
+      "historyTaskGroups": [[934]]
     },
     {
       "id": "EAEP|EA/EP|4|Primeiro Voo",
@@ -3528,7 +3727,8 @@
           "title": "Primeiro Vôo"
         }
       ],
-      "expectedLevel": 4
+      "expectedLevel": 4,
+      "historyTaskGroups": [[3424]]
     },
     {
       "id": "EAEP|EA/EP|4|O Cacto Espinhoso",
@@ -3571,7 +3771,9 @@
           "title": "O Cacto Espinhoso"
         }
       ],
-      "expectedLevel": 4
+      "expectedLevel": 4,
+      "historyTaskGroups": [[694]],
+      "xpOptional": true
     },
     {
       "id": "EAEP|EA/EP|4|Livro de Fundição – O Livro Perdido",
@@ -3632,7 +3834,9 @@
           "title": "As Matérias-Primas"
         }
       ],
-      "expectedLevel": 4
+      "expectedLevel": 4,
+      "historyTaskGroups": [[80]],
+      "xpOptional": true
     },
     {
       "id": "EAEP|EA/EP|5|Aprenda sobre Habilidades de Forja",
@@ -3665,7 +3869,8 @@
           "routeOrder": 10250,
           "title": "Visitando o Ancião"
         }
-      ]
+      ],
+      "historyTaskGroups": [[6458]]
     },
     {
       "id": "EAEP|EA/EP|5|Confiança dos Guardas",
@@ -3708,7 +3913,8 @@
           "title": "Confiança dos Guardas"
         }
       ],
-      "expectedLevel": 5
+      "expectedLevel": 5,
+      "historyTaskGroups": [[2714]]
     },
     {
       "id": "EAEP|EA/EP|6|Bambu dos Selvagens",
@@ -3751,7 +3957,9 @@
           "title": "Bambu dos Selvagens"
         }
       ],
-      "expectedLevel": 6
+      "expectedLevel": 6,
+      "historyTaskGroups": [[938]],
+      "xpOptional": true
     },
     {
       "id": "EAEP|EA/EP|6|Vila do Bambu",
@@ -3786,7 +3994,8 @@
           "title": "Voe para a Vila do Bam"
         }
       ],
-      "expectedLevel": 6
+      "expectedLevel": 6,
+      "historyTaskGroups": [[2646]]
     },
     {
       "id": "EAEP|EA/EP|7|Mãe e Coração de Ouro",
@@ -3829,7 +4038,8 @@
           "title": "Mão e Coração de Ouro"
         }
       ],
-      "expectedLevel": 7
+      "expectedLevel": 7,
+      "historyTaskGroups": [[942]]
     },
     {
       "id": "EAEP|EA/EP|8|Estar em Perigo",
@@ -3872,7 +4082,8 @@
           "title": "Estar em Perigo"
         }
       ],
-      "expectedLevel": 8
+      "expectedLevel": 8,
+      "historyTaskGroups": [[641]]
     },
     {
       "id": "EAEP|EA/EP|8|As Fadas das Águas",
@@ -3915,7 +4126,8 @@
           "title": "As Fadas das Águas"
         }
       ],
-      "expectedLevel": 8
+      "expectedLevel": 8,
+      "historyTaskGroups": [[406]]
     },
     {
       "id": "EAEP|EA/EP|8|O Desastre dos Espíritos das Águas",
@@ -3958,7 +4170,8 @@
           "title": "Matar Cobras Nagas"
         }
       ],
-      "expectedLevel": 8
+      "expectedLevel": 8,
+      "historyTaskGroups": [[407]]
     },
     {
       "id": "EAEP|EA/EP|8|Bênção de Aniversário",
@@ -4001,7 +4214,9 @@
           "title": "Benção de Aniversário"
         }
       ],
-      "expectedLevel": 8
+      "expectedLevel": 8,
+      "historyTaskGroups": [[943]],
+      "xpOptional": true
     },
     {
       "id": "EAEP|EA/EP|9|Força da Floresta",
@@ -4044,7 +4259,8 @@
           "title": "Nana Johnson"
         }
       ],
-      "expectedLevel": 9
+      "expectedLevel": 9,
+      "historyTaskGroups": [[471]]
     },
     {
       "id": "EAEP|EA/EP|9|Cultivo – Orientação de Cultivo",
@@ -4079,7 +4295,8 @@
           "title": "Taoísta Coranthir"
         }
       ],
-      "expectedLevel": 9
+      "expectedLevel": 9,
+      "historyTaskGroups": [[1200]]
     },
     {
       "id": "EAEP|EA/EP|9|O Surgimento de Lingxu",
@@ -4130,7 +4347,8 @@
           "title": "Sucesso!"
         }
       ],
-      "expectedLevel": 9
+      "expectedLevel": 9,
+      "historyTaskGroups": [[966]]
     },
     {
       "id": "EAEP|EA/EP|10|Emblema da Coragem",
@@ -4181,7 +4399,8 @@
           "title": "Passar pela Guarda"
         }
       ],
-      "expectedLevel": 10
+      "expectedLevel": 10,
+      "historyTaskGroups": [[945]]
     },
     {
       "id": "EAEP|EA/EP|10|Flor Sangrenta",
@@ -4224,7 +4443,9 @@
           "title": "Flor Sangrenta"
         }
       ],
-      "expectedLevel": 10
+      "expectedLevel": 10,
+      "historyTaskGroups": [[1104]],
+      "xpOptional": true
     },
     {
       "id": "EAEP|EA/EP|11|Vila Nanke",
@@ -4259,7 +4480,8 @@
           "title": "Vá para a Vila Nanke"
         }
       ],
-      "expectedLevel": 11
+      "expectedLevel": 11,
+      "historyTaskGroups": [[2649]]
     },
     {
       "id": "EAEP|EA/EP|12|Troca de Técnicas",
@@ -4310,7 +4532,8 @@
           "title": "Volte e se apresente"
         }
       ],
-      "expectedLevel": 12
+      "expectedLevel": 12,
+      "historyTaskGroups": [[928]]
     },
     {
       "id": "EAEP|EA/EP|13|O Sonho de Nanke",
@@ -4353,7 +4576,8 @@
           "title": "O Sonho de Nanke"
         }
       ],
-      "expectedLevel": 13
+      "expectedLevel": 13,
+      "historyTaskGroups": [[671]]
     },
     {
       "id": "EAEP|EA/EP|14|A Linha de Defesa",
@@ -4428,7 +4652,8 @@
           "title": "Alma de Aquynne"
         }
       ],
-      "expectedLevel": 14
+      "expectedLevel": 14,
+      "historyTaskGroups": [[2737]]
     },
     {
       "id": "EAEP|EA/EP|15|Veneno de Água Corrente",
@@ -4471,7 +4696,9 @@
           "title": "Veneno da Água Corrente"
         }
       ],
-      "expectedLevel": 15
+      "expectedLevel": 15,
+      "historyTaskGroups": [[6438]],
+      "xpOptional": true
     },
     {
       "id": "EAEP|EA/EP|16|Amostra da Cobra Venenosa",
@@ -4514,7 +4741,8 @@
           "title": "Amostra de Veneno"
         }
       ],
-      "expectedLevel": 16
+      "expectedLevel": 16,
+      "historyTaskGroups": [[672]]
     },
     {
       "id": "EAEP|EA/EP|17|Força na Perna",
@@ -4557,7 +4785,9 @@
           "title": "Força na Perna"
         }
       ],
-      "expectedLevel": 17
+      "expectedLevel": 17,
+      "historyTaskGroups": [[6436]],
+      "xpOptional": true
     },
     {
       "id": "EAEP|EA/EP|18|Morte Impiedosa",
@@ -4616,7 +4846,9 @@
           "title": "Encontrar Sogohy"
         }
       ],
-      "expectedLevel": 18
+      "expectedLevel": 18,
+      "historyTaskGroups": [[3459]],
+      "xpOptional": true
     },
     {
       "id": "EAEP|EA/EP|19|Orientação de Cultivo – Aumentar Cultivo",
@@ -4651,7 +4883,8 @@
           "title": "Aperfeiçoando a Habilidade"
         }
       ],
-      "expectedLevel": 19
+      "expectedLevel": 19,
+      "historyTaskGroups": [[1665]]
     },
     {
       "id": "EAEP|EA/EP|19|A União Harmoniosa",
@@ -4706,7 +4939,8 @@
           "memoryTaskId": 1935
         }
       ],
-      "expectedLevel": 19
+      "expectedLevel": 19,
+      "historyTaskGroups": [[977]]
     },
     {
       "id": "EAEP|EA/EP|19|Moeda Sangrenta de Ferro",
@@ -4733,7 +4967,8 @@
           "title": "Moeda Sangrenta de Fer"
         }
       ],
-      "expectedLevel": 19
+      "expectedLevel": 19,
+      "historyTaskGroups": [[8739]]
     },
     {
       "id": "EAEP|EA/EP|19|Missão Desafio – Exibição de Talento",
@@ -4781,7 +5016,8 @@
           "title": "Exibição de Talento"
         }
       ],
-      "expectedLevel": 19
+      "expectedLevel": 19,
+      "historyTaskGroups": [[9]]
     },
     {
       "id": "EAEP|EA/EP|19|Teste de Capacidade",
@@ -4856,7 +5092,9 @@
           "title": "Teste de Capacidade"
         }
       ],
-      "expectedLevel": 19
+      "expectedLevel": 19,
+      "historyTaskGroups": [[6437]],
+      "xpOptional": true
     },
     {
       "id": "EAEP|EA/EP|19|As Contramedidas",
@@ -4907,7 +5145,8 @@
           "title": "As Contramedidas"
         }
       ],
-      "expectedLevel": 19
+      "expectedLevel": 19,
+      "historyTaskGroups": [[960]]
     },
     {
       "id": "MC|MC|1|Primeira Missão",
@@ -4946,7 +5185,8 @@
           "title": "Filhotes Aquáticos"
         }
       ],
-      "expectedLevel": 1
+      "expectedLevel": 1,
+      "historyTaskGroups": [[20062]]
     },
     {
       "id": "MC|MC|2|Cidade das Tormentas",
@@ -5055,7 +5295,8 @@
           "memoryTaskId": 20176
         }
       ],
-      "expectedLevel": 2
+      "expectedLevel": 2,
+      "historyTaskGroups": [[20063]]
     },
     {
       "id": "MC|MC|2|Problema de Crustáceo",
@@ -5098,7 +5339,8 @@
           "title": "Problema de Crustáceo"
         }
       ],
-      "expectedLevel": 2
+      "expectedLevel": 2,
+      "historyTaskGroups": [[20064]]
     },
     {
       "id": "MC|MC|3|Item de Crédito",
@@ -5141,7 +5383,8 @@
           "title": "Item de Crédito"
         }
       ],
-      "expectedLevel": 3
+      "expectedLevel": 3,
+      "historyTaskGroups": [[20065]]
     },
     {
       "id": "MC|MC|4|Campo da Fonte Negra",
@@ -5188,7 +5431,8 @@
           "title": "Falar com Guarda"
         }
       ],
-      "expectedLevel": 4
+      "expectedLevel": 4,
+      "historyTaskGroups": [[20067]]
     },
     {
       "id": "MC|MC|4|Pular em Telhado",
@@ -5231,7 +5475,8 @@
           "title": "Pular em Telhados"
         }
       ],
-      "expectedLevel": 4
+      "expectedLevel": 4,
+      "historyTaskGroups": [[20069]]
     },
     {
       "id": "MC|MC|4|Ameaça Marinha",
@@ -5274,7 +5519,8 @@
           "title": "Ameaça Marinha"
         }
       ],
-      "expectedLevel": 4
+      "expectedLevel": 4,
+      "historyTaskGroups": [[20068]]
     },
     {
       "id": "MC|MC|5|Aprenda sobre Habilidades de Forja",
@@ -5307,7 +5553,8 @@
           "routeOrder": 10220,
           "title": "Visitando o Ancião"
         }
-      ]
+      ],
+      "historyTaskGroups": [[20475]]
     },
     {
       "id": "MC|MC|6|Ouvir Ensinamento",
@@ -5354,7 +5601,8 @@
           "title": "Ouvir Ensinamento"
         }
       ],
-      "expectedLevel": 6
+      "expectedLevel": 6,
+      "historyTaskGroups": [[20075]]
     },
     {
       "id": "MC|MC|7|Pérola de Lágrimas",
@@ -5441,7 +5689,8 @@
           "title": "Reportar ao Lu Fu"
         }
       ],
-      "expectedLevel": 7
+      "expectedLevel": 7,
+      "historyTaskGroups": [[20079]]
     },
     {
       "id": "MC|MC|8|Paz de Noite",
@@ -5484,7 +5733,9 @@
           "title": "Paz de Noite"
         }
       ],
-      "expectedLevel": 8
+      "expectedLevel": 8,
+      "historyTaskGroups": [[20085]],
+      "xpOptional": true
     },
     {
       "id": "MC|MC|9|Cultivo",
@@ -5511,7 +5762,8 @@
           "title": "Astuto de Hades"
         }
       ],
-      "expectedLevel": 9
+      "expectedLevel": 9,
+      "historyTaskGroups": [[20501]]
     },
     {
       "id": "MC|MC|9|O Surgimento de Lingxu",
@@ -5562,7 +5814,8 @@
           "title": "Volta da Missão"
         }
       ],
-      "expectedLevel": 9
+      "expectedLevel": 9,
+      "historyTaskGroups": [[20089]]
     },
     {
       "id": "MC|MC|10|Limpar Monstros",
@@ -5613,7 +5866,9 @@
           "title": "Limpar Monstros"
         }
       ],
-      "expectedLevel": 10
+      "expectedLevel": 10,
+      "historyTaskGroups": [[20093]],
+      "xpOptional": true
     },
     {
       "id": "MC|MC|10|Espinho Venenoso",
@@ -5658,7 +5913,8 @@
           "memoryTaskId": 20158
         }
       ],
-      "expectedLevel": 10
+      "expectedLevel": 10,
+      "historyTaskGroups": [[20094]]
     },
     {
       "id": "MC|MC|11|Veneno Contra Veneno",
@@ -5715,7 +5971,8 @@
           "title": "Acabar com Veneno"
         }
       ],
-      "expectedLevel": 11
+      "expectedLevel": 11,
+      "historyTaskGroups": [[20095]]
     },
     {
       "id": "MC|MC|12|Vingança do Oficial",
@@ -5758,7 +6015,8 @@
           "title": "Vingança do Oficial"
         }
       ],
-      "expectedLevel": 12
+      "expectedLevel": 12,
+      "historyTaskGroups": [[20127]]
     },
     {
       "id": "MC|MC|12|Perfect World",
@@ -5785,7 +6043,8 @@
           "title": "Perfect World"
         }
       ],
-      "expectedLevel": 12
+      "expectedLevel": 12,
+      "historyTaskGroups": [[20844]]
     },
     {
       "id": "MC|MC|12|O Tesouro I",
@@ -5828,7 +6087,8 @@
           "title": "Tesouro 1"
         }
       ],
-      "expectedLevel": 12
+      "expectedLevel": 12,
+      "historyTaskGroups": [[20875]]
     },
     {
       "id": "MC|MC|13|Uma Pedra Estranha",
@@ -5887,7 +6147,8 @@
           "title": "Reportar a Lu Miao"
         }
       ],
-      "expectedLevel": 13
+      "expectedLevel": 13,
+      "historyTaskGroups": [[20128]]
     },
     {
       "id": "MC|MC|13|Notícia Ruim",
@@ -5930,7 +6191,8 @@
           "title": "Notícia Ruim"
         }
       ],
-      "expectedLevel": 13
+      "expectedLevel": 13,
+      "historyTaskGroups": [[20148]]
     },
     {
       "id": "MC|MC|13|Minério Perdido",
@@ -5973,7 +6235,8 @@
           "title": "Reportar para Altar"
         }
       ],
-      "expectedLevel": 13
+      "expectedLevel": 13,
+      "historyTaskGroups": [[20162]]
     },
     {
       "id": "MC|MC|14|Pedido do Guarda",
@@ -6016,7 +6279,8 @@
           "title": "Pedido do Guarda"
         }
       ],
-      "expectedLevel": 14
+      "expectedLevel": 14,
+      "historyTaskGroups": [[20147]]
     },
     {
       "id": "MC|MC|15|Alma do Espantalho",
@@ -6059,7 +6323,9 @@
           "title": "Sucesso!"
         }
       ],
-      "expectedLevel": 15
+      "expectedLevel": 15,
+      "historyTaskGroups": [[20442]],
+      "xpOptional": true
     },
     {
       "id": "MC|MC|16|Nunca Mais Voltar",
@@ -6125,7 +6391,8 @@
           "title": "Leve de Volta a Promes"
         }
       ],
-      "expectedLevel": 16
+      "expectedLevel": 16,
+      "historyTaskGroups": [[20097]]
     },
     {
       "id": "MC|MC|16|Traição",
@@ -6175,7 +6442,9 @@
           "title": "Reportar para Tormenta"
         }
       ],
-      "expectedLevel": 16
+      "expectedLevel": 16,
+      "historyTaskGroups": [[20098]],
+      "xpOptional": true
     },
     {
       "id": "MC|MC|16|Planos do Inimigo",
@@ -6218,7 +6487,8 @@
           "title": "Informe o Sacerdote"
         }
       ],
-      "expectedLevel": 16
+      "expectedLevel": 16,
+      "historyTaskGroups": [[20099]]
     },
     {
       "id": "MC|MC|17|Chave – Monstro do Mar",
@@ -6261,7 +6531,8 @@
           "title": "Devolva a Chave"
         }
       ],
-      "expectedLevel": 17
+      "expectedLevel": 17,
+      "historyTaskGroups": [[20100]]
     },
     {
       "id": "MC|MC|18|Família Heirloom",
@@ -6304,7 +6575,9 @@
           "title": "Voltar a Iozo"
         }
       ],
-      "expectedLevel": 18
+      "expectedLevel": 18,
+      "historyTaskGroups": [[20446]],
+      "xpOptional": true
     },
     {
       "id": "MC|MC|18|Resgate Soldado",
@@ -6366,7 +6639,8 @@
           "title": "A Surpresa do Veterano"
         }
       ],
-      "expectedLevel": 18
+      "expectedLevel": 18,
+      "historyTaskGroups": [[20447]]
     },
     {
       "id": "MC|MC|19|Cultivo Espiritual",
@@ -6393,7 +6667,8 @@
           "title": "Aperfeiçoando a Habilidade"
         }
       ],
-      "expectedLevel": 19
+      "expectedLevel": 19,
+      "historyTaskGroups": [[20502]]
     },
     {
       "id": "MC|MC|19|A União Harmoniosa",
@@ -6448,7 +6723,8 @@
           "memoryTaskId": 20500
         }
       ],
-      "expectedLevel": 19
+      "expectedLevel": 19,
+      "historyTaskGroups": [[20102]]
     },
     {
       "id": "MC|MC|19|Matar o Monstro do Mar – DG19",
@@ -6495,7 +6771,8 @@
           "title": "Matar o Monstro do Mar"
         }
       ],
-      "expectedLevel": 19
+      "expectedLevel": 19,
+      "historyTaskGroups": [[20101]]
     },
     {
       "id": "MC|MC|19|Bandeira da Expedição",
@@ -6538,7 +6815,9 @@
           "title": "Estandarte dos Elfos"
         }
       ],
-      "expectedLevel": 19
+      "expectedLevel": 19,
+      "historyTaskGroups": [[20448]],
+      "xpOptional": true
     },
     {
       "id": "WBWF|WF|21|Vingança de Justine",
@@ -6579,7 +6858,8 @@
           "routeOrder": 1202403,
           "title": "Vingança de Justine"
         }
-      ]
+      ],
+      "historyTaskGroups": [[6039]]
     },
     {
       "id": "WBWF|WF|23|Afeição pela Filha",
@@ -6620,7 +6900,8 @@
           "routeOrder": 1205003,
           "title": "Afeição Pela Filha"
         }
-      ]
+      ],
+      "historyTaskGroups": [[6040]]
     },
     {
       "id": "WR|WR|23|O Segredo do Ancião",
@@ -6663,7 +6944,8 @@
           "routeOrder": 1203703,
           "title": "Busca pelo Tesouro"
         }
-      ]
+      ],
+      "historyTaskGroups": [[2841]]
     },
     {
       "id": "WBWF|WB/WF|23|O Segredo do Ancião",
@@ -6706,7 +6988,8 @@
           "routeOrder": 1203706,
           "title": "Busca pelo Tesouro"
         }
-      ]
+      ],
+      "historyTaskGroups": [[2841]]
     },
     {
       "id": "WR|WR|50|Os Melhores Amigos — Humanos",
@@ -6747,7 +7030,9 @@
           "routeOrder": 1225003,
           "title": "Matar a Serpente Cente"
         }
-      ]
+      ],
+      "historyTaskGroups": [[2212]],
+      "xpOptional": true
     },
     {
       "id": "WBWF|WB/WF|50|Os Melhores Amigos — Selvagens",
@@ -6788,7 +7073,9 @@
           "routeOrder": 1225006,
           "title": "Matar a Serpente Cente"
         }
-      ]
+      ],
+      "historyTaskGroups": [[2209]],
+      "xpOptional": true
     },
     {
       "id": "EAEP|EA/EP|50|Os Melhores Amigos — Alados",
@@ -6829,7 +7116,9 @@
           "routeOrder": 1225009,
           "title": "Matar a Serpente Cente"
         }
-      ]
+      ],
+      "historyTaskGroups": [[2220]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|20|Encontre o Caçador de Dragões",
@@ -6920,7 +7209,8 @@
           "routeOrder": 1201600,
           "title": "Encontre Sirier Varek"
         }
-      ]
+      ],
+      "historyTaskGroups": [[6365]]
     },
     {
       "id": "COMMON|ALL|20|Jamile e Max",
@@ -7001,7 +7291,9 @@
           "routeOrder": 1209900,
           "title": "Empréstimo"
         }
-      ]
+      ],
+      "historyTaskGroups": [[2794]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|21|Cultivo — Esperanças do General",
@@ -7059,7 +7351,8 @@
           "title": "Informe ao General Lotor Akre",
           "memoryTaskId": 1031
         }
-      ]
+      ],
+      "historyTaskGroups": [[1029]]
     },
     {
       "id": "COMMON|ALL|21|Por Amor (Continuação)",
@@ -7092,7 +7385,8 @@
           "routeOrder": 1201900,
           "title": "Amuleto de Aroma"
         }
-      ]
+      ],
+      "historyTaskGroups": [[890]]
     },
     {
       "id": "COMMON|ALL|21|Por Amor",
@@ -7125,7 +7419,8 @@
           "routeOrder": 1202000,
           "title": "Por Amor"
         }
-      ]
+      ],
+      "historyTaskGroups": [[889]]
     },
     {
       "id": "COMMON|ALL|22|Mineração de Ouro",
@@ -7190,7 +7485,8 @@
           "routeOrder": 1203100,
           "title": "Pedras Douradas"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1266]]
     },
     {
       "id": "COMMON|ALL|22|Lobisomens",
@@ -7223,7 +7519,8 @@
           "routeOrder": 1202200,
           "title": "Lobisomens"
         }
-      ]
+      ],
+      "historyTaskGroups": [[896]]
     },
     {
       "id": "COMMON|ALL|23|Remédio para Alma",
@@ -7274,7 +7571,9 @@
           "routeOrder": 1203700,
           "title": "Canção da Viúva"
         }
-      ]
+      ],
+      "historyTaskGroups": [[19]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|23|Tarefa de Kalam Decom",
@@ -7325,7 +7624,8 @@
           "routeOrder": 1205900,
           "title": "Diamantes"
         }
-      ]
+      ],
+      "historyTaskGroups": [[887]]
     },
     {
       "id": "COMMON|ALL|24|A Batalha da Mina",
@@ -7416,7 +7716,8 @@
           "routeOrder": 1205300,
           "title": "Mate Pao chi"
         }
-      ]
+      ],
+      "historyTaskGroups": [[824]]
     },
     {
       "id": "COMMON|ALL|24|Altar de Pedra",
@@ -7576,7 +7877,8 @@
           "routeOrder": 1211200,
           "title": "O Culpado"
         }
-      ]
+      ],
+      "historyTaskGroups": [[912]]
     },
     {
       "id": "COMMON|ALL|25|Amor Perdido",
@@ -7659,7 +7961,9 @@
           "routeOrder": 1210500,
           "title": "O Retorno de Caranin"
         }
-      ]
+      ],
+      "historyTaskGroups": [[23]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|25|Ruolen – Flor do Coração Jovem",
@@ -7716,7 +8020,9 @@
           "routeOrder": 1206400,
           "title": "Ruolen"
         }
-      ]
+      ],
+      "historyTaskGroups": [[2833]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|26|Garota Solitária",
@@ -7823,7 +8129,8 @@
           "routeOrder": 1207500,
           "title": "Pó Espanta-Fantasma"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1374]]
     },
     {
       "id": "COMMON|ALL|26|Um Ataque Pesado",
@@ -7866,7 +8173,8 @@
           "routeOrder": 1207700,
           "title": "Chacais Ferozes"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1036]]
     },
     {
       "id": "COMMON|ALL|27|O Último Material",
@@ -7899,7 +8207,8 @@
           "routeOrder": 1207900,
           "title": "O Último Material"
         }
-      ]
+      ],
+      "historyTaskGroups": [[906]]
     },
     {
       "id": "COMMON|ALL|27|Tigre Voador",
@@ -7950,7 +8259,9 @@
           "routeOrder": 1210600,
           "title": "Tigre Voador Sem Alma"
         }
-      ]
+      ],
+      "historyTaskGroups": [[2801]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|28|O Verdadeiro Pão Defumado",
@@ -8001,7 +8312,8 @@
           "routeOrder": 1208300,
           "title": "O Verdadeiro Pão Defum"
         }
-      ]
+      ],
+      "historyTaskGroups": [[3550]]
     },
     {
       "id": "COMMON|ALL|28|Limpar a Área do Arado",
@@ -8055,7 +8367,9 @@
           "routeOrder": 1209000,
           "title": "informe ao General"
         }
-      ]
+      ],
+      "historyTaskGroups": [[544]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|29|Cultivo 29 — O Infante Primordial",
@@ -8112,7 +8426,8 @@
           "routeOrder": 1211700,
           "title": "Tong Youke"
         }
-      ]
+      ],
+      "historyTaskGroups": [[922]]
     },
     {
       "id": "COMMON|ALL|29|DG29 — Moeda Sangrenta de Ferro 2 Peão",
@@ -8192,7 +8507,8 @@
           "routeOrder": 1212200,
           "title": "Insígnia Nível 1"
         }
-      ]
+      ],
+      "historyTaskGroups": [[6516]]
     },
     {
       "id": "COMMON|ALL|30|Remover missão de voo do questlog",
@@ -8264,7 +8580,9 @@
           "routeOrder": 1212500,
           "title": "Árvore-monstro"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1333]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|31|Visita Indesejada",
@@ -8299,7 +8617,9 @@
           "routeOrder": 1212900,
           "title": "Visita Indesejada"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1409]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|32|Cidade da Dor Celestial (Continuação)",
@@ -8425,7 +8745,8 @@
           "routeOrder": 1218200,
           "title": "Procurar o Cadáver"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1953]]
     },
     {
       "id": "COMMON|ALL|33|Montanha Solitária",
@@ -8460,7 +8781,9 @@
           "routeOrder": 1213200,
           "title": "Montanha Solitária"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1335]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|33|Ameaça das Aranhas",
@@ -8495,7 +8818,9 @@
           "routeOrder": 1213400,
           "title": "Ameaça das Aranhas"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1336]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|34|Confiança em um Amigo",
@@ -8530,7 +8855,9 @@
           "routeOrder": 1213600,
           "title": "Confiança em um Amigo"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1338]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|34|Uma Refeição Nada Suculenta",
@@ -8613,7 +8940,9 @@
           "routeOrder": 1218400,
           "title": "Por favor, coma!"
         }
-      ]
+      ],
+      "historyTaskGroups": [[3408]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|35|Missão Desafio – Flauta de Chun",
@@ -8710,7 +9039,9 @@
           "routeOrder": 1215000,
           "title": "Amor e Ódio"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1916]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|35|Encontro de Amantes",
@@ -8753,7 +9084,8 @@
           "routeOrder": 1217800,
           "title": "Pena Branca"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1571]]
     },
     {
       "id": "COMMON|ALL|36|Músico Gonirer Klaber",
@@ -8820,7 +9152,8 @@
           "routeOrder": 1215800,
           "title": "Músico Gonirer Klaber"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1434]]
     },
     {
       "id": "COMMON|ALL|36|O Cavalo Amedrontado",
@@ -8855,7 +9188,9 @@
           "routeOrder": 1215600,
           "title": "O Cavalo Amedrontado"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1267]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|37|Oferenda",
@@ -8890,7 +9225,9 @@
           "routeOrder": 1216400,
           "title": "Oferenda"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1269]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|37|Teias de Aranha",
@@ -8925,7 +9262,9 @@
           "routeOrder": 1216100,
           "title": "Teias de Aranha"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1343]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|38|Peixe Sanguinário",
@@ -8960,7 +9299,8 @@
           "routeOrder": 1216300,
           "title": "Peixe Sanguinário"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1276]]
     },
     {
       "id": "COMMON|ALL|38|Missão Desafio – Doutrina Secreta",
@@ -9017,7 +9357,9 @@
           "routeOrder": 1217100,
           "title": "Doutrina Secreta"
         }
-      ]
+      ],
+      "historyTaskGroups": [[2444]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|39|Cultivo 39 — Aparição do Vazio de Hades",
@@ -9066,7 +9408,8 @@
           "routeOrder": 1218700,
           "title": "A Cidade da Dor Celestial"
         }
-      ]
+      ],
+      "historyTaskGroups": [[990]]
     },
     {
       "id": "COMMON|ALL|39|DG39 — Moeda Sangrenta de Ferro 3 Fantasma",
@@ -9180,7 +9523,8 @@
           "routeOrder": 1221600,
           "title": "A Espada Divina"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1277]]
     },
     {
       "id": "COMMON|ALL|40|Atacar o Dragão Voador",
@@ -9215,7 +9559,8 @@
           "routeOrder": 1219200,
           "title": "Atacar o Dragão Voador"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1341]]
     },
     {
       "id": "COMMON|ALL|41|O Retorno do Guerreiro",
@@ -9250,7 +9595,9 @@
           "routeOrder": 1219600,
           "title": "O Retorno do Guerreiro"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1262]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|41|O Legado do Chacal",
@@ -9285,7 +9632,9 @@
           "routeOrder": 1219700,
           "title": "O Legado do Chacal"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1529]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|42|Vingança",
@@ -9320,7 +9669,9 @@
           "routeOrder": 1220000,
           "title": "Vingança"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1509]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|42|S.O.S",
@@ -9355,7 +9706,9 @@
           "routeOrder": 1220100,
           "title": "S. O. S"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1369]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|43|A Encomenda do Boticário",
@@ -9390,7 +9743,9 @@
           "routeOrder": 1220400,
           "title": "A Encomenda do Boticá"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1511]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|43|O Ataque do Cão Selvagem",
@@ -9425,7 +9780,9 @@
           "routeOrder": 1220500,
           "title": "O Ataque do Cão Selvag"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1510]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|44|Lâmina Sagrada de Meta",
@@ -9484,7 +9841,8 @@
           "routeOrder": 1222100,
           "title": "Lacre da Lâmina Mágica"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1881]]
     },
     {
       "id": "COMMON|ALL|44|Perseguição ao Inimigo",
@@ -9519,7 +9877,9 @@
           "routeOrder": 1220700,
           "title": "Perseguição ao Inimigo"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1512]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|45|Prova de Força",
@@ -9554,7 +9914,9 @@
           "routeOrder": 1221100,
           "title": "Prova de Força"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1514]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|45|O Pedido do Líder",
@@ -9589,7 +9951,9 @@
           "routeOrder": 1221000,
           "title": "O Pedido do Líder"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1513]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|46|Líder da Patrulha",
@@ -9624,7 +9988,9 @@
           "routeOrder": 1222300,
           "title": "Líder da Patrulha"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1516]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|46|Continuação da História",
@@ -9667,7 +10033,8 @@
           "routeOrder": 1223300,
           "title": "Entregar Elixir"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1574]]
     },
     {
       "id": "COMMON|ALL|47|Auxiliar de Comerciante",
@@ -9700,7 +10067,9 @@
           "routeOrder": 1223600,
           "title": "Auxiliar de Comerciant"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1462]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|47|Orelhas dos Guerreiros",
@@ -9735,7 +10104,9 @@
           "routeOrder": 1222500,
           "title": "Orelhas dos Guerreiros"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1518]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|48|A Morte dos Arqueiros",
@@ -9770,7 +10141,9 @@
           "routeOrder": 1222700,
           "title": "A Morte dos Arqueiros"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1517]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|48|Matar Lobos da Lâmina",
@@ -9811,7 +10184,9 @@
           "routeOrder": 1223000,
           "title": "Matar Lobos da Lâmina"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1469]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|49|Cultivo 49 — Andando Sobre o Gelo Fino",
@@ -9862,7 +10237,8 @@
           "routeOrder": 1224000,
           "title": "Aperfeiçoando a Habilidade"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1767]]
     },
     {
       "id": "COMMON|ALL|49|Preparação DG49 — Lágrimas do Guardião",
@@ -9911,7 +10287,8 @@
           "routeOrder": 1225100,
           "title": "Recipiente"
         }
-      ]
+      ],
+      "historyTaskGroups": [[9202]]
     },
     {
       "id": "COMMON|ALL|50|Pilar Esquisito — cadeia completa",
@@ -10158,7 +10535,8 @@
           "routeOrder": 1228400,
           "title": "Vingança dos Parentes"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1491]]
     },
     {
       "id": "COMMON|ALL|52|Céu Sobre Céu",
@@ -10193,7 +10571,9 @@
           "routeOrder": 1226300,
           "title": "Céu Sobre Céu"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1486]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|53|Explorar a Nova Terra",
@@ -10228,7 +10608,8 @@
           "routeOrder": 1228600,
           "title": "Explorar a Nova Terra"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1492]]
     },
     {
       "id": "COMMON|ALL|53|O Paladino Sentimental",
@@ -10330,7 +10711,8 @@
           "routeOrder": 1227500,
           "title": "Devolver os Grampo de"
         }
-      ]
+      ],
+      "historyTaskGroups": [[3123]]
     },
     {
       "id": "COMMON|ALL|54|Remédio Eficaz",
@@ -10365,7 +10747,9 @@
           "routeOrder": 1226700,
           "title": "Remédio Eficaz"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1482]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|55|Quest sem Tradução",
@@ -10464,7 +10848,8 @@
           "routeOrder": 1232000,
           "title": "Salvação"
         }
-      ]
+      ],
+      "historyTaskGroups": [[9090]]
     },
     {
       "id": "COMMON|ALL|55|À Deriva",
@@ -10563,7 +10948,8 @@
           "routeOrder": 1229200,
           "title": "A Volta"
         }
-      ]
+      ],
+      "historyTaskGroups": [[3448]]
     },
     {
       "id": "COMMON|ALL|56|Raposas Voadoras que Pertubam",
@@ -10598,7 +10984,9 @@
           "routeOrder": 1230200,
           "title": "Raposas Voadoras Que Perturba"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1508]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|56|Remorso de um Rebelde",
@@ -10633,7 +11021,8 @@
           "routeOrder": 1229500,
           "title": "Remorso de um Rebelde"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1475]]
     },
     {
       "id": "COMMON|ALL|57|Medo da Fome",
@@ -10668,7 +11057,9 @@
           "routeOrder": 1231300,
           "title": "Medo da Fome"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1497]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|57|Clarim de Batalha",
@@ -10703,7 +11094,9 @@
           "routeOrder": 1229700,
           "title": "Clarim de Batalha"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1485]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|58|Sangue por Sangue",
@@ -10738,7 +11131,8 @@
           "routeOrder": 1230000,
           "title": "Sangue por Sangue"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1477]]
     },
     {
       "id": "COMMON|ALL|58|Essência de Ouro",
@@ -10773,7 +11167,9 @@
           "routeOrder": 1230100,
           "title": "Essência de Ouro"
         }
-      ]
+      ],
+      "historyTaskGroups": [[1484]],
+      "xpOptional": true
     },
     {
       "id": "COMMON|ALL|59|Cultivo 59 — Cinco Desastres Naturais",
@@ -10822,7 +11218,8 @@
           "routeOrder": 1231700,
           "title": "Altar da Resistência"
         }
-      ]
+      ],
+      "historyTaskGroups": [[925]]
     },
     {
       "id": "COMMON|ALL|59|DG59 — Moeda Sangrenta de Ferro 5 Fera Sagrada",
@@ -10896,7 +11293,8 @@
           "routeOrder": 1232100,
           "title": "Insígnia Nível 4"
         }
-      ]
+      ],
+      "historyTaskGroups": [[6524]]
     },
     {
       "id": "SKMS|SK|22507",
@@ -10933,7 +11331,8 @@
           "routeOrder": 20020,
           "memoryTaskId": 22507
         }
-      ]
+      ],
+      "historyTaskGroups": [[22507]]
     },
     {
       "id": "SKMS|SK|22508",
@@ -10970,7 +11369,8 @@
           "routeOrder": 20040,
           "memoryTaskId": 22508
         }
-      ]
+      ],
+      "historyTaskGroups": [[22508]]
     },
     {
       "id": "SKMS|SK|22509",
@@ -11005,7 +11405,8 @@
           "routeOrder": 20060,
           "memoryTaskId": 22509
         }
-      ]
+      ],
+      "historyTaskGroups": [[22509]]
     },
     {
       "id": "SKMS|SK|22510",
@@ -11051,7 +11452,8 @@
           "routeOrder": 20090,
           "memoryTaskId": 22592
         }
-      ]
+      ],
+      "historyTaskGroups": [[22510]]
     },
     {
       "id": "SKMS|SK|22511",
@@ -11088,7 +11490,9 @@
           "routeOrder": 20110,
           "memoryTaskId": 22511
         }
-      ]
+      ],
+      "historyTaskGroups": [[22511]],
+      "xpOptional": true
     },
     {
       "id": "SKMS|SK|22512",
@@ -11152,7 +11556,8 @@
           "routeOrder": 20160,
           "memoryTaskId": 22595
         }
-      ]
+      ],
+      "historyTaskGroups": [[22512]]
     },
     {
       "id": "SKMS|SK|22513",
@@ -11198,7 +11603,8 @@
           "routeOrder": 20190,
           "memoryTaskId": 22909
         }
-      ]
+      ],
+      "historyTaskGroups": [[22513]]
     },
     {
       "id": "SKMS|MS|22520",
@@ -11235,7 +11641,8 @@
           "routeOrder": 20210,
           "memoryTaskId": 22520
         }
-      ]
+      ],
+      "historyTaskGroups": [[22520]]
     },
     {
       "id": "SKMS|MS|22521",
@@ -11272,7 +11679,8 @@
           "routeOrder": 20230,
           "memoryTaskId": 22521
         }
-      ]
+      ],
+      "historyTaskGroups": [[22521]]
     },
     {
       "id": "SKMS|MS|22522",
@@ -11307,7 +11715,8 @@
           "routeOrder": 20250,
           "memoryTaskId": 22522
         }
-      ]
+      ],
+      "historyTaskGroups": [[22522]]
     },
     {
       "id": "SKMS|MS|22523",
@@ -11353,7 +11762,8 @@
           "routeOrder": 20280,
           "memoryTaskId": 22610
         }
-      ]
+      ],
+      "historyTaskGroups": [[22523]]
     },
     {
       "id": "SKMS|MS|22524",
@@ -11423,7 +11833,8 @@
           "routeOrder": 20330,
           "memoryTaskId": 22625
         }
-      ]
+      ],
+      "historyTaskGroups": [[22524]]
     },
     {
       "id": "SKMS|MS|22525",
@@ -11460,7 +11871,8 @@
           "routeOrder": 20350,
           "memoryTaskId": 22525
         }
-      ]
+      ],
+      "historyTaskGroups": [[22525]]
     },
     {
       "id": "SKMS|MS|23202",
@@ -11495,7 +11907,8 @@
           "routeOrder": 20370,
           "memoryTaskId": 23207
         }
-      ]
+      ],
+      "historyTaskGroups": [[23202]]
     },
     {
       "id": "SKMS|MS|23029",
@@ -11541,7 +11954,8 @@
           "routeOrder": 20400,
           "memoryTaskId": 23029
         }
-      ]
+      ],
+      "historyTaskGroups": [[23029]]
     },
     {
       "id": "SKMS|MS|22526",
@@ -11623,7 +12037,8 @@
           "routeOrder": 20470,
           "memoryTaskId": 22911
         }
-      ]
+      ],
+      "historyTaskGroups": [[22526]]
     },
     {
       "id": "SKMS|SK/MS|23757",
@@ -11667,7 +12082,8 @@
           "routeOrder": 20500,
           "memoryTaskId": 23761
         }
-      ]
+      ],
+      "historyTaskGroups": [[23757]]
     },
     {
       "id": "SKMS|SK|22514",
@@ -11749,7 +12165,8 @@
           "routeOrder": 20570,
           "memoryTaskId": 22596
         }
-      ]
+      ],
+      "historyTaskGroups": [[22514]]
     },
     {
       "id": "SKMS|SK|22515",
@@ -11835,7 +12252,8 @@
           "routeOrder": 20640,
           "memoryTaskId": 22518
         }
-      ]
+      ],
+      "historyTaskGroups": [[22515]]
     },
     {
       "id": "SKMS|MS|22527",
@@ -11917,7 +12335,8 @@
           "routeOrder": 20710,
           "memoryTaskId": 22902
         }
-      ]
+      ],
+      "historyTaskGroups": [[22527]]
     },
     {
       "id": "SKMS|MS|22528",
@@ -11970,7 +12389,8 @@
           "routeOrder": 20750,
           "memoryTaskId": 22907
         }
-      ]
+      ],
+      "historyTaskGroups": [[22528]]
     },
     {
       "id": "SKMS|SK/MS|22530",
@@ -12025,7 +12445,8 @@
           "routeOrder": 20810,
           "memoryTaskId": 23042
         }
-      ]
+      ],
+      "historyTaskGroups": [[22530]]
     },
     {
       "id": "SKMS|SK/MS|22988",
@@ -12060,7 +12481,9 @@
           "routeOrder": 20780,
           "memoryTaskId": 22988
         }
-      ]
+      ],
+      "historyTaskGroups": [[22988]],
+      "xpOptional": true
     },
     {
       "id": "SKMS|SK/MS|22450",
@@ -12095,7 +12518,8 @@
           "routeOrder": 20830,
           "memoryTaskId": 22464
         }
-      ]
+      ],
+      "historyTaskGroups": [[22450]]
     },
     {
       "id": "SKMS|SK/MS|22486",
@@ -12130,7 +12554,9 @@
           "routeOrder": 20850,
           "memoryTaskId": 22489
         }
-      ]
+      ],
+      "historyTaskGroups": [[22486]],
+      "xpOptional": true
     },
     {
       "id": "SKMS|SK/MS|22487",
@@ -12185,7 +12611,8 @@
           "routeOrder": 20890,
           "memoryTaskId": 22492
         }
-      ]
+      ],
+      "historyTaskGroups": [[22487]]
     },
     {
       "id": "SKMS|SK/MS|22531",
@@ -12220,7 +12647,9 @@
           "routeOrder": 20910,
           "memoryTaskId": 22531
         }
-      ]
+      ],
+      "historyTaskGroups": [[22531]],
+      "xpOptional": true
     },
     {
       "id": "SKMS|MS|23177",
@@ -12255,7 +12684,8 @@
           "routeOrder": 20930,
           "memoryTaskId": 23190
         }
-      ]
+      ],
+      "historyTaskGroups": [[23177]]
     },
     {
       "id": "SKMS|MS|23033",
@@ -12310,7 +12740,8 @@
           "routeOrder": 20970,
           "memoryTaskId": 23045
         }
-      ]
+      ],
+      "historyTaskGroups": [[23033]]
     },
     {
       "id": "SKMS|SK/MS|22532",
@@ -12356,7 +12787,8 @@
           "routeOrder": 21000,
           "memoryTaskId": 23123
         }
-      ]
+      ],
+      "historyTaskGroups": [[22532]]
     },
     {
       "id": "SKMS|SK/MS|22534",
@@ -12393,7 +12825,9 @@
           "routeOrder": 21030,
           "memoryTaskId": 22534
         }
-      ]
+      ],
+      "historyTaskGroups": [[22534]],
+      "xpOptional": true
     },
     {
       "id": "SKMS|SK/MS|22535",
@@ -12457,7 +12891,9 @@
           "routeOrder": 21070,
           "memoryTaskId": 22537
         }
-      ]
+      ],
+      "historyTaskGroups": [[22535]],
+      "xpOptional": true
     },
     {
       "id": "SKMS|SK/MS|23066",
@@ -12512,7 +12948,8 @@
           "routeOrder": 21120,
           "memoryTaskId": 23141
         }
-      ]
+      ],
+      "historyTaskGroups": [[23066]]
     },
     {
       "id": "SKMS|SK/MS|23067",
@@ -12558,7 +12995,8 @@
           "routeOrder": 21140,
           "memoryTaskId": 23067
         }
-      ]
+      ],
+      "historyTaskGroups": [[23067]]
     },
     {
       "id": "SKMS|MS|23178",
@@ -12593,7 +13031,8 @@
           "routeOrder": 21160,
           "memoryTaskId": 23194
         }
-      ]
+      ],
+      "historyTaskGroups": [[23178]]
     },
     {
       "id": "SKMS|MS|23034",
@@ -12651,7 +13090,8 @@
           "routeOrder": 21210,
           "memoryTaskId": 23047
         }
-      ]
+      ],
+      "historyTaskGroups": [[23034]]
     },
     {
       "id": "SKMS|SK/MS|22494",
@@ -12686,7 +13126,8 @@
           "routeOrder": 21230,
           "memoryTaskId": 22500
         }
-      ]
+      ],
+      "historyTaskGroups": [[22494]]
     },
     {
       "id": "SKMS|SK/MS|22493",
@@ -12739,7 +13180,8 @@
           "routeOrder": 21270,
           "memoryTaskId": 22504
         }
-      ]
+      ],
+      "historyTaskGroups": [[22493]]
     },
     {
       "id": "SKMS|SK/MS|23214",
@@ -12792,7 +13234,8 @@
           "routeOrder": 21310,
           "memoryTaskId": 23218
         }
-      ]
+      ],
+      "historyTaskGroups": [[23214]]
     },
     {
       "id": "SKMS|SK/MS|23215",
@@ -12827,7 +13270,8 @@
           "routeOrder": 21330,
           "memoryTaskId": 23215
         }
-      ]
+      ],
+      "historyTaskGroups": [[23215]]
     },
     {
       "id": "SKMS|MS|23179",
@@ -12862,7 +13306,8 @@
           "routeOrder": 1201702,
           "memoryTaskId": 23195
         }
-      ]
+      ],
+      "historyTaskGroups": [[23179]]
     },
     {
       "id": "SKMS|MS|23035",
@@ -12920,7 +13365,8 @@
           "routeOrder": 1201707,
           "memoryTaskId": 23049
         }
-      ]
+      ],
+      "historyTaskGroups": [[23035]]
     },
     {
       "id": "SKMS|MS|23203",
@@ -12955,7 +13401,8 @@
           "routeOrder": 1203202,
           "memoryTaskId": 23209
         }
-      ]
+      ],
+      "historyTaskGroups": [[23203]]
     },
     {
       "id": "SKMS|MS|23030",
@@ -13026,7 +13473,8 @@
           "routeOrder": 1203208,
           "memoryTaskId": 23130
         }
-      ]
+      ],
+      "historyTaskGroups": [[23030]]
     },
     {
       "id": "SKMS|MS|23180",
@@ -13061,7 +13509,8 @@
           "routeOrder": 1208402,
           "memoryTaskId": 23197
         }
-      ]
+      ],
+      "historyTaskGroups": [[23180]]
     },
     {
       "id": "SKMS|MS|23036",
@@ -13119,7 +13568,8 @@
           "routeOrder": 1208407,
           "memoryTaskId": 23051
         }
-      ]
+      ],
+      "historyTaskGroups": [[23036]]
     },
     {
       "id": "SKMS|MS|23204",
@@ -13154,7 +13604,8 @@
           "routeOrder": 1213002,
           "memoryTaskId": 23211
         }
-      ]
+      ],
+      "historyTaskGroups": [[23204]]
     },
     {
       "id": "SKMS|MS|23031",
@@ -13226,7 +13677,8 @@
           "routeOrder": 1213009,
           "memoryTaskId": 23186
         }
-      ]
+      ],
+      "historyTaskGroups": [[23031]]
     },
     {
       "id": "SKMS|MS|23181",
@@ -13261,7 +13713,8 @@
           "routeOrder": 1216602,
           "memoryTaskId": 23199
         }
-      ]
+      ],
+      "historyTaskGroups": [[23181]]
     },
     {
       "id": "SKMS|MS|23037",
@@ -13319,7 +13772,8 @@
           "routeOrder": 1216607,
           "memoryTaskId": 23053
         }
-      ]
+      ],
+      "historyTaskGroups": [[23037]]
     },
     {
       "id": "SKMS|MS|23182",
@@ -13354,7 +13808,8 @@
           "routeOrder": 1223202,
           "memoryTaskId": 23201
         }
-      ]
+      ],
+      "historyTaskGroups": [[23182]]
     },
     {
       "id": "SKMS|MS|23038",
@@ -13412,7 +13867,8 @@
           "routeOrder": 1223207,
           "memoryTaskId": 23055
         }
-      ]
+      ],
+      "historyTaskGroups": [[23038]]
     },
     {
       "id": "SKMS|MS|23205",
@@ -13447,7 +13903,8 @@
           "routeOrder": 1230702,
           "memoryTaskId": 23213
         }
-      ]
+      ],
+      "historyTaskGroups": [[23205]]
     },
     {
       "id": "SKMS|MS|23032",
@@ -13496,7 +13953,8 @@
           "routeOrder": 1230706,
           "memoryTaskId": 23137
         }
-      ]
+      ],
+      "historyTaskGroups": [[23032]]
     },
     {
       "id": "ENDGAME|ALL|2424",
@@ -13533,7 +13991,8 @@
           "routeOrder": 1300010,
           "memoryTaskId": 2424
         }
-      ]
+      ],
+      "historyTaskGroups": [[2424]]
     },
     {
       "id": "ENDGAME|ALL|2527",
@@ -13579,7 +14038,9 @@
           "routeOrder": 1300050,
           "memoryTaskId": 2527
         }
-      ]
+      ],
+      "historyTaskGroups": [[2527]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|2528",
@@ -13625,7 +14086,8 @@
           "routeOrder": 1300090,
           "memoryTaskId": 2528
         }
-      ]
+      ],
+      "historyTaskGroups": [[2528]]
     },
     {
       "id": "ENDGAME|ALL|3123",
@@ -13707,7 +14169,8 @@
           "routeOrder": 1310060,
           "memoryTaskId": 3161
         }
-      ]
+      ],
+      "historyTaskGroups": [[3123]]
     },
     {
       "id": "ENDGAME|ALL|2423",
@@ -13744,7 +14207,8 @@
           "routeOrder": 1310090,
           "memoryTaskId": 2423
         }
-      ]
+      ],
+      "historyTaskGroups": [[2423]]
     },
     {
       "id": "ENDGAME|ALL|2525",
@@ -13805,7 +14269,8 @@
           "routeOrder": 1310140,
           "memoryTaskId": 2525
         }
-      ]
+      ],
+      "historyTaskGroups": [[2525]]
     },
     {
       "id": "ENDGAME|ALL|3163",
@@ -13869,7 +14334,8 @@
           "routeOrder": 1310200,
           "memoryTaskId": 3168
         }
-      ]
+      ],
+      "historyTaskGroups": [[3163]]
     },
     {
       "id": "ENDGAME|ALL|2522",
@@ -13915,7 +14381,9 @@
           "routeOrder": 1320060,
           "memoryTaskId": 2522
         }
-      ]
+      ],
+      "historyTaskGroups": [[2522]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|2524",
@@ -13961,7 +14429,9 @@
           "routeOrder": 1320040,
           "memoryTaskId": 2524
         }
-      ]
+      ],
+      "historyTaskGroups": [[2524]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|2521",
@@ -14007,7 +14477,8 @@
           "routeOrder": 1330020,
           "memoryTaskId": 2521
         }
-      ]
+      ],
+      "historyTaskGroups": [[2521]]
     },
     {
       "id": "ENDGAME|ALL|2520",
@@ -14053,7 +14524,8 @@
           "routeOrder": 1330060,
           "memoryTaskId": 2520
         }
-      ]
+      ],
+      "historyTaskGroups": [[2520]]
     },
     {
       "id": "ENDGAME|ALL|1592",
@@ -14097,7 +14569,8 @@
           "routeOrder": 1340020,
           "memoryTaskId": 1592
         }
-      ]
+      ],
+      "historyTaskGroups": [[1592]]
     },
     {
       "id": "ENDGAME|ALL|1765",
@@ -14139,7 +14612,8 @@
           "routeOrder": 1340060,
           "memoryTaskId": 1866
         }
-      ]
+      ],
+      "historyTaskGroups": [[1765]]
     },
     {
       "id": "ENDGAME|ALL|925",
@@ -14211,7 +14685,8 @@
           "routeOrder": 1340140,
           "memoryTaskId": 998
         }
-      ]
+      ],
+      "historyTaskGroups": [[925]]
     },
     {
       "id": "ENDGAME|ALL|1603",
@@ -14246,7 +14721,8 @@
           "routeOrder": 1340170,
           "memoryTaskId": 1603
         }
-      ]
+      ],
+      "historyTaskGroups": [[1603]]
     },
     {
       "id": "ENDGAME|ALL|1593",
@@ -14290,7 +14766,8 @@
           "routeOrder": 1340210,
           "memoryTaskId": 1593
         }
-      ]
+      ],
+      "historyTaskGroups": [[1593]]
     },
     {
       "id": "ENDGAME|ALL|2113",
@@ -14348,7 +14825,8 @@
           "routeOrder": 1340270,
           "memoryTaskId": 2115
         }
-      ]
+      ],
+      "historyTaskGroups": [[2113]]
     },
     {
       "id": "ENDGAME|ALL|2116",
@@ -14384,7 +14862,8 @@
           "routeOrder": 1340300,
           "memoryTaskId": 2116
         }
-      ]
+      ],
+      "historyTaskGroups": [[2116]]
     },
     {
       "id": "ENDGAME|ALL|2117",
@@ -14430,7 +14909,8 @@
           "routeOrder": 1340340,
           "memoryTaskId": 2117
         }
-      ]
+      ],
+      "historyTaskGroups": [[2117]]
     },
     {
       "id": "ENDGAME|ALL|2498",
@@ -14476,7 +14956,8 @@
           "routeOrder": 1340380,
           "memoryTaskId": 2498
         }
-      ]
+      ],
+      "historyTaskGroups": [[2498]]
     },
     {
       "id": "ENDGAME|ALL|2496",
@@ -14520,7 +15001,8 @@
           "routeOrder": 1340420,
           "memoryTaskId": 2496
         }
-      ]
+      ],
+      "historyTaskGroups": [[2496]]
     },
     {
       "id": "ENDGAME|ALL|2519",
@@ -14566,7 +15048,8 @@
           "routeOrder": 1350020,
           "memoryTaskId": 2519
         }
-      ]
+      ],
+      "historyTaskGroups": [[2519]]
     },
     {
       "id": "ENDGAME|ALL|2517",
@@ -14612,7 +15095,8 @@
           "routeOrder": 1350060,
           "memoryTaskId": 2517
         }
-      ]
+      ],
+      "historyTaskGroups": [[2517]]
     },
     {
       "id": "ENDGAME|ALL|2518",
@@ -14658,7 +15142,8 @@
           "routeOrder": 1350100,
           "memoryTaskId": 2518
         }
-      ]
+      ],
+      "historyTaskGroups": [[2518]]
     },
     {
       "id": "ENDGAME|ALL|2271",
@@ -14695,7 +15180,8 @@
           "routeOrder": 1360010,
           "memoryTaskId": 2271
         }
-      ]
+      ],
+      "historyTaskGroups": [[2271]]
     },
     {
       "id": "ENDGAME|ALL|2494",
@@ -14741,7 +15227,9 @@
           "routeOrder": 1360050,
           "memoryTaskId": 2494
         }
-      ]
+      ],
+      "historyTaskGroups": [[2494]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|2515",
@@ -14787,7 +15275,8 @@
           "routeOrder": 1360090,
           "memoryTaskId": 2515
         }
-      ]
+      ],
+      "historyTaskGroups": [[2515]]
     },
     {
       "id": "ENDGAME|ALL|2416",
@@ -14824,7 +15313,8 @@
           "routeOrder": 1370010,
           "memoryTaskId": 2416
         }
-      ]
+      ],
+      "historyTaskGroups": [[2416]]
     },
     {
       "id": "ENDGAME|ALL|2415",
@@ -14861,7 +15351,8 @@
           "routeOrder": 1370040,
           "memoryTaskId": 2415
         }
-      ]
+      ],
+      "historyTaskGroups": [[2415]]
     },
     {
       "id": "ENDGAME|ALL|2501",
@@ -14907,7 +15398,8 @@
           "routeOrder": 1370080,
           "memoryTaskId": 2501
         }
-      ]
+      ],
+      "historyTaskGroups": [[2501]]
     },
     {
       "id": "ENDGAME|ALL|2516",
@@ -14953,7 +15445,9 @@
           "routeOrder": 1370120,
           "memoryTaskId": 2516
         }
-      ]
+      ],
+      "historyTaskGroups": [[2516]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|2118",
@@ -14997,7 +15491,8 @@
           "routeOrder": 1380020,
           "memoryTaskId": 2121
         }
-      ]
+      ],
+      "historyTaskGroups": [[2118]]
     },
     {
       "id": "ENDGAME|ALL|2495",
@@ -15043,7 +15538,9 @@
           "routeOrder": 1380090,
           "memoryTaskId": 2495
         }
-      ]
+      ],
+      "historyTaskGroups": [[2495]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|2500",
@@ -15089,7 +15586,8 @@
           "routeOrder": 1380100,
           "memoryTaskId": 2500
         }
-      ]
+      ],
+      "historyTaskGroups": [[2500]]
     },
     {
       "id": "ENDGAME|ALL|6517",
@@ -15122,7 +15620,8 @@
           "routeOrder": 1390010,
           "memoryTaskId": 6517
         }
-      ]
+      ],
+      "historyTaskGroups": [[6517]]
     },
     {
       "id": "ENDGAME|ALL|6519",
@@ -15155,7 +15654,8 @@
           "routeOrder": 1390040,
           "memoryTaskId": 6519
         }
-      ]
+      ],
+      "historyTaskGroups": [[6519]]
     },
     {
       "id": "ENDGAME|ALL|6521",
@@ -15188,7 +15688,8 @@
           "routeOrder": 1390070,
           "memoryTaskId": 6521
         }
-      ]
+      ],
+      "historyTaskGroups": [[6521]]
     },
     {
       "id": "ENDGAME|ALL|6523",
@@ -15221,7 +15722,8 @@
           "routeOrder": 1390100,
           "memoryTaskId": 6523
         }
-      ]
+      ],
+      "historyTaskGroups": [[6523]]
     },
     {
       "id": "ENDGAME|ALL|2122",
@@ -15333,7 +15835,8 @@
           "routeOrder": 1390330,
           "memoryTaskId": 2134
         }
-      ]
+      ],
+      "historyTaskGroups": [[2122]]
     },
     {
       "id": "ENDGAME|ALL|7973",
@@ -15366,7 +15869,8 @@
           "routeOrder": 1390240,
           "memoryTaskId": 7973
         }
-      ]
+      ],
+      "historyTaskGroups": [[7973]]
     },
     {
       "id": "ENDGAME|ALL|8746",
@@ -15401,7 +15905,8 @@
           "routeOrder": 1390140,
           "memoryTaskId": 8746
         }
-      ]
+      ],
+      "historyTaskGroups": [[8746]]
     },
     {
       "id": "ENDGAME|ALL|3124",
@@ -15492,7 +15997,9 @@
           "routeOrder": 1390420,
           "memoryTaskId": 3239
         }
-      ]
+      ],
+      "historyTaskGroups": [[3124]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|3170",
@@ -15589,7 +16096,8 @@
           "routeOrder": 1390520,
           "memoryTaskId": 3177
         }
-      ]
+      ],
+      "historyTaskGroups": [[3170]]
     },
     {
       "id": "ENDGAME|ALL|6525",
@@ -15622,7 +16130,8 @@
           "routeOrder": 1390550,
           "memoryTaskId": 6525
         }
-      ]
+      ],
+      "historyTaskGroups": [[6525]]
     },
     {
       "id": "ENDGAME|ALL|6526",
@@ -15655,7 +16164,8 @@
           "routeOrder": 1390580,
           "memoryTaskId": 6526
         }
-      ]
+      ],
+      "historyTaskGroups": [[6526]]
     },
     {
       "id": "ENDGAME|ALL|7969",
@@ -15688,7 +16198,8 @@
           "routeOrder": 1390190,
           "memoryTaskId": 7969
         }
-      ]
+      ],
+      "historyTaskGroups": [[7969]]
     },
     {
       "id": "ENDGAME|ALL|7971",
@@ -15721,7 +16232,8 @@
           "routeOrder": 1390210,
           "memoryTaskId": 7971
         }
-      ]
+      ],
+      "historyTaskGroups": [[7971]]
     },
     {
       "id": "ENDGAME|ALL|2513",
@@ -15767,7 +16279,9 @@
           "routeOrder": 1400020,
           "memoryTaskId": 2513
         }
-      ]
+      ],
+      "historyTaskGroups": [[2513]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|2514",
@@ -15813,7 +16327,9 @@
           "routeOrder": 1400060,
           "memoryTaskId": 2514
         }
-      ]
+      ],
+      "historyTaskGroups": [[2514]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|2642",
@@ -15848,7 +16364,8 @@
           "routeOrder": 1400090,
           "memoryTaskId": 2644
         }
-      ]
+      ],
+      "historyTaskGroups": [[2642]]
     },
     {
       "id": "ENDGAME|ALL|2136",
@@ -15892,7 +16409,8 @@
           "routeOrder": 1400130,
           "memoryTaskId": 2136
         }
-      ]
+      ],
+      "historyTaskGroups": [[2136]]
     },
     {
       "id": "ENDGAME|ALL|2138",
@@ -15936,7 +16454,8 @@
           "routeOrder": 1400170,
           "memoryTaskId": 2138
         }
-      ]
+      ],
+      "historyTaskGroups": [[2138]]
     },
     {
       "id": "ENDGAME|ALL|2139",
@@ -15981,7 +16500,8 @@
           "routeOrder": 1400210,
           "memoryTaskId": 2139
         }
-      ]
+      ],
+      "historyTaskGroups": [[2139]]
     },
     {
       "id": "ENDGAME|ALL|2140",
@@ -16016,7 +16536,8 @@
           "routeOrder": 1400240,
           "memoryTaskId": 2140
         }
-      ]
+      ],
+      "historyTaskGroups": [[2140]]
     },
     {
       "id": "ENDGAME|ALL|2142",
@@ -16052,7 +16573,8 @@
           "routeOrder": 1400270,
           "memoryTaskId": 2142
         }
-      ]
+      ],
+      "historyTaskGroups": [[2142]]
     },
     {
       "id": "ENDGAME|ALL|2143",
@@ -16097,7 +16619,8 @@
           "routeOrder": 1400310,
           "memoryTaskId": 2143
         }
-      ]
+      ],
+      "historyTaskGroups": [[2143]]
     },
     {
       "id": "ENDGAME|ALL|2145",
@@ -16133,7 +16656,8 @@
           "routeOrder": 1400340,
           "memoryTaskId": 2145
         }
-      ]
+      ],
+      "historyTaskGroups": [[2145]]
     },
     {
       "id": "ENDGAME|ALL|2146",
@@ -16176,7 +16700,8 @@
           "routeOrder": 1400380,
           "memoryTaskId": 2146
         }
-      ]
+      ],
+      "historyTaskGroups": [[2146]]
     },
     {
       "id": "ENDGAME|ALL|2295",
@@ -16222,7 +16747,9 @@
           "routeOrder": 1410020,
           "memoryTaskId": 2297
         }
-      ]
+      ],
+      "historyTaskGroups": [[2295]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|2512",
@@ -16268,7 +16795,9 @@
           "routeOrder": 1410060,
           "memoryTaskId": 2512
         }
-      ]
+      ],
+      "historyTaskGroups": [[2512]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|2300",
@@ -16314,7 +16843,8 @@
           "routeOrder": 1420020,
           "memoryTaskId": 2301
         }
-      ]
+      ],
+      "historyTaskGroups": [[2300]]
     },
     {
       "id": "ENDGAME|ALL|2302",
@@ -16369,7 +16899,8 @@
           "routeOrder": 1420070,
           "memoryTaskId": 2305
         }
-      ]
+      ],
+      "historyTaskGroups": [[2302]]
     },
     {
       "id": "ENDGAME|ALL|2511",
@@ -16415,7 +16946,9 @@
           "routeOrder": 1420110,
           "memoryTaskId": 2511
         }
-      ]
+      ],
+      "historyTaskGroups": [[2511]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|2509",
@@ -16461,7 +16994,9 @@
           "routeOrder": 1430020,
           "memoryTaskId": 2509
         }
-      ]
+      ],
+      "historyTaskGroups": [[2509]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|3486",
@@ -16516,7 +17051,9 @@
           "routeOrder": 1430070,
           "memoryTaskId": 3490
         }
-      ]
+      ],
+      "historyTaskGroups": [[3486]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|7062",
@@ -16596,7 +17133,8 @@
           "routeOrder": 1440060,
           "memoryTaskId": 9455
         }
-      ]
+      ],
+      "historyTaskGroups": [[7062]]
     },
     {
       "id": "ENDGAME|ALL|7050",
@@ -16640,7 +17178,8 @@
           "routeOrder": 1440100,
           "memoryTaskId": 7050
         }
-      ]
+      ],
+      "historyTaskGroups": [[7050]]
     },
     {
       "id": "ENDGAME|ALL|7063",
@@ -16711,7 +17250,8 @@
           "routeOrder": 1440170,
           "memoryTaskId": 9472
         }
-      ]
+      ],
+      "historyTaskGroups": [[7063]]
     },
     {
       "id": "ENDGAME|ALL|7064",
@@ -16797,7 +17337,8 @@
           "routeOrder": 1440270,
           "memoryTaskId": 9477
         }
-      ]
+      ],
+      "historyTaskGroups": [[7064]]
     },
     {
       "id": "ENDGAME|ALL|2308",
@@ -16852,7 +17393,9 @@
           "routeOrder": 1450030,
           "memoryTaskId": 2310
         }
-      ]
+      ],
+      "historyTaskGroups": [[2308]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|2418",
@@ -16889,7 +17432,8 @@
           "routeOrder": 1450060,
           "memoryTaskId": 2418
         }
-      ]
+      ],
+      "historyTaskGroups": [[2418]]
     },
     {
       "id": "ENDGAME|ALL|2508",
@@ -16933,7 +17477,8 @@
           "routeOrder": 1450100,
           "memoryTaskId": 2508
         }
-      ]
+      ],
+      "historyTaskGroups": [[2508]]
     },
     {
       "id": "ENDGAME|ALL|2542",
@@ -16988,7 +17533,8 @@
           "routeOrder": 1460030,
           "memoryTaskId": 2545
         }
-      ]
+      ],
+      "historyTaskGroups": [[2542]]
     },
     {
       "id": "ENDGAME|ALL|2507",
@@ -17034,7 +17580,9 @@
           "routeOrder": 1460070,
           "memoryTaskId": 2507
         }
-      ]
+      ],
+      "historyTaskGroups": [[2507]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|2549",
@@ -17134,7 +17682,8 @@
           "routeOrder": 1460170,
           "memoryTaskId": 2554
         }
-      ]
+      ],
+      "historyTaskGroups": [[2549]]
     },
     {
       "id": "ENDGAME|ALL|2317",
@@ -17198,7 +17747,8 @@
           "routeOrder": 1470040,
           "memoryTaskId": 2321
         }
-      ]
+      ],
+      "historyTaskGroups": [[2317]]
     },
     {
       "id": "ENDGAME|ALL|2322",
@@ -17262,7 +17812,8 @@
           "routeOrder": 1470100,
           "memoryTaskId": 2330
         }
-      ]
+      ],
+      "historyTaskGroups": [[2322]]
     },
     {
       "id": "ENDGAME|ALL|2505",
@@ -17308,7 +17859,8 @@
           "routeOrder": 1470140,
           "memoryTaskId": 2505
         }
-      ]
+      ],
+      "historyTaskGroups": [[2505]]
     },
     {
       "id": "ENDGAME|ALL|2504",
@@ -17354,7 +17906,8 @@
           "routeOrder": 1470180,
           "memoryTaskId": 2504
         }
-      ]
+      ],
+      "historyTaskGroups": [[2504]]
     },
     {
       "id": "ENDGAME|ALL|8437",
@@ -17387,7 +17940,8 @@
           "routeOrder": 1480130,
           "memoryTaskId": 8437
         }
-      ]
+      ],
+      "historyTaskGroups": [[8437]]
     },
     {
       "id": "ENDGAME|ALL|8439",
@@ -17420,7 +17974,8 @@
           "routeOrder": 1480150,
           "memoryTaskId": 8439
         }
-      ]
+      ],
+      "historyTaskGroups": [[8439]]
     },
     {
       "id": "ENDGAME|ALL|8441",
@@ -17453,7 +18008,8 @@
           "routeOrder": 1480170,
           "memoryTaskId": 8441
         }
-      ]
+      ],
+      "historyTaskGroups": [[8441]]
     },
     {
       "id": "ENDGAME|ALL|2148",
@@ -17488,7 +18044,8 @@
           "routeOrder": 1480010,
           "memoryTaskId": 2150
         }
-      ]
+      ],
+      "historyTaskGroups": [[2148]]
     },
     {
       "id": "ENDGAME|ALL|2153",
@@ -17566,7 +18123,8 @@
           "routeOrder": 1480240,
           "memoryTaskId": 2158
         }
-      ]
+      ],
+      "historyTaskGroups": [[2153]]
     },
     {
       "id": "ENDGAME|ALL|7977",
@@ -17599,7 +18157,8 @@
           "routeOrder": 1480210,
           "memoryTaskId": 7977
         }
-      ]
+      ],
+      "historyTaskGroups": [[7977]]
     },
     {
       "id": "ENDGAME|ALL|8762",
@@ -17634,7 +18193,8 @@
           "routeOrder": 1480060,
           "memoryTaskId": 8762
         }
-      ]
+      ],
+      "historyTaskGroups": [[8762]]
     },
     {
       "id": "ENDGAME|ALL|1309",
@@ -17674,7 +18234,8 @@
           "routeOrder": 1490020,
           "memoryTaskId": 1326
         }
-      ]
+      ],
+      "historyTaskGroups": [[1309]]
     },
     {
       "id": "ENDGAME|ALL|1286",
@@ -17711,7 +18272,8 @@
           "routeOrder": 1490050,
           "memoryTaskId": 1304
         }
-      ]
+      ],
+      "historyTaskGroups": [[1286]]
     },
     {
       "id": "ENDGAME|ALL|1604",
@@ -17746,7 +18308,8 @@
           "routeOrder": 1490080,
           "memoryTaskId": 1604
         }
-      ]
+      ],
+      "historyTaskGroups": [[1604]]
     },
     {
       "id": "ENDGAME|ALL|2717",
@@ -17797,7 +18360,8 @@
           "routeOrder": 1490130,
           "memoryTaskId": 2717
         }
-      ]
+      ],
+      "historyTaskGroups": [[2717]]
     },
     {
       "id": "ENDGAME|ALL|2719",
@@ -17841,7 +18405,8 @@
           "routeOrder": 1490170,
           "memoryTaskId": 2719
         }
-      ]
+      ],
+      "historyTaskGroups": [[2719]]
     },
     {
       "id": "ENDGAME|ALL|6527",
@@ -17874,7 +18439,8 @@
           "routeOrder": 1490200,
           "memoryTaskId": 6527
         }
-      ]
+      ],
+      "historyTaskGroups": [[6527]]
     },
     {
       "id": "ENDGAME|ALL|6528",
@@ -17907,7 +18473,8 @@
           "routeOrder": 1490230,
           "memoryTaskId": 6528
         }
-      ]
+      ],
+      "historyTaskGroups": [[6528]]
     },
     {
       "id": "ENDGAME|ALL|2169",
@@ -17942,7 +18509,8 @@
           "routeOrder": 1500010,
           "memoryTaskId": 2171
         }
-      ]
+      ],
+      "historyTaskGroups": [[2169]]
     },
     {
       "id": "ENDGAME|ALL|2172",
@@ -17987,7 +18555,8 @@
           "routeOrder": 1500050,
           "memoryTaskId": 2172
         }
-      ]
+      ],
+      "historyTaskGroups": [[2172]]
     },
     {
       "id": "ENDGAME|ALL|2173",
@@ -18068,7 +18637,8 @@
           "routeOrder": 1500130,
           "memoryTaskId": 2175
         }
-      ]
+      ],
+      "historyTaskGroups": [[2173]]
     },
     {
       "id": "ENDGAME|ALL|2256",
@@ -18114,7 +18684,9 @@
           "routeOrder": 1500170,
           "memoryTaskId": 2256
         }
-      ]
+      ],
+      "historyTaskGroups": [[2256]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|2491",
@@ -18160,7 +18732,9 @@
           "routeOrder": 1500210,
           "memoryTaskId": 2491
         }
-      ]
+      ],
+      "historyTaskGroups": [[2491]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|2404",
@@ -18206,7 +18780,8 @@
           "routeOrder": 1510020,
           "memoryTaskId": 2404
         }
-      ]
+      ],
+      "historyTaskGroups": [[2404]]
     },
     {
       "id": "ENDGAME|ALL|2474",
@@ -18252,7 +18827,8 @@
           "routeOrder": 1510060,
           "memoryTaskId": 2474
         }
-      ]
+      ],
+      "historyTaskGroups": [[2474]]
     },
     {
       "id": "ENDGAME|ALL|2487",
@@ -18298,7 +18874,8 @@
           "routeOrder": 1510100,
           "memoryTaskId": 2487
         }
-      ]
+      ],
+      "historyTaskGroups": [[2487]]
     },
     {
       "id": "ENDGAME|ALL|2484",
@@ -18344,7 +18921,8 @@
           "routeOrder": 1520020,
           "memoryTaskId": 2484
         }
-      ]
+      ],
+      "historyTaskGroups": [[2484]]
     },
     {
       "id": "ENDGAME|ALL|2483",
@@ -18390,7 +18968,8 @@
           "routeOrder": 1520060,
           "memoryTaskId": 2483
         }
-      ]
+      ],
+      "historyTaskGroups": [[2483]]
     },
     {
       "id": "ENDGAME|ALL|2367",
@@ -18427,7 +19006,8 @@
           "routeOrder": 1520090,
           "memoryTaskId": 2367
         }
-      ]
+      ],
+      "historyTaskGroups": [[2367]]
     },
     {
       "id": "ENDGAME|ALL|2366",
@@ -18464,7 +19044,8 @@
           "routeOrder": 1520120,
           "memoryTaskId": 2366
         }
-      ]
+      ],
+      "historyTaskGroups": [[2366]]
     },
     {
       "id": "ENDGAME|ALL|2365",
@@ -18501,7 +19082,8 @@
           "routeOrder": 1520150,
           "memoryTaskId": 2365
         }
-      ]
+      ],
+      "historyTaskGroups": [[2365]]
     },
     {
       "id": "ENDGAME|ALL|2481",
@@ -18547,7 +19129,8 @@
           "routeOrder": 1520190,
           "memoryTaskId": 2481
         }
-      ]
+      ],
+      "historyTaskGroups": [[2481]]
     },
     {
       "id": "ENDGAME|ALL|2480",
@@ -18593,7 +19176,9 @@
           "routeOrder": 1530020,
           "memoryTaskId": 2480
         }
-      ]
+      ],
+      "historyTaskGroups": [[2480]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|2745",
@@ -18639,7 +19224,8 @@
           "routeOrder": 1530060,
           "memoryTaskId": 2745
         }
-      ]
+      ],
+      "historyTaskGroups": [[2745]]
     },
     {
       "id": "ENDGAME|ALL|2378",
@@ -18676,7 +19262,8 @@
           "routeOrder": 1530090,
           "memoryTaskId": 2378
         }
-      ]
+      ],
+      "historyTaskGroups": [[2378]]
     },
     {
       "id": "ENDGAME|ALL|2746",
@@ -18722,7 +19309,8 @@
           "routeOrder": 1530130,
           "memoryTaskId": 2746
         }
-      ]
+      ],
+      "historyTaskGroups": [[2746]]
     },
     {
       "id": "ENDGAME|ALL|2432",
@@ -18759,7 +19347,8 @@
           "routeOrder": 1540010,
           "memoryTaskId": 2432
         }
-      ]
+      ],
+      "historyTaskGroups": [[2432]]
     },
     {
       "id": "ENDGAME|ALL|2431",
@@ -18796,7 +19385,8 @@
           "routeOrder": 1540040,
           "memoryTaskId": 2431
         }
-      ]
+      ],
+      "historyTaskGroups": [[2431]]
     },
     {
       "id": "ENDGAME|ALL|2430",
@@ -18833,7 +19423,8 @@
           "routeOrder": 1540070,
           "memoryTaskId": 2430
         }
-      ]
+      ],
+      "historyTaskGroups": [[2430]]
     },
     {
       "id": "ENDGAME|ALL|2429",
@@ -18870,7 +19461,8 @@
           "routeOrder": 1540100,
           "memoryTaskId": 2429
         }
-      ]
+      ],
+      "historyTaskGroups": [[2429]]
     },
     {
       "id": "ENDGAME|ALL|2428",
@@ -18907,7 +19499,8 @@
           "routeOrder": 1540130,
           "memoryTaskId": 2428
         }
-      ]
+      ],
+      "historyTaskGroups": [[2428]]
     },
     {
       "id": "ENDGAME|ALL|2477",
@@ -18953,7 +19546,8 @@
           "routeOrder": 1540170,
           "memoryTaskId": 2477
         }
-      ]
+      ],
+      "historyTaskGroups": [[2477]]
     },
     {
       "id": "ENDGAME|ALL|2533",
@@ -18999,7 +19593,8 @@
           "routeOrder": 1550020,
           "memoryTaskId": 2533
         }
-      ]
+      ],
+      "historyTaskGroups": [[2533]]
     },
     {
       "id": "ENDGAME|ALL|2241",
@@ -19063,7 +19658,8 @@
           "routeOrder": 1550080,
           "memoryTaskId": 2246
         }
-      ]
+      ],
+      "historyTaskGroups": [[2241]]
     },
     {
       "id": "ENDGAME|ALL|2247",
@@ -19109,7 +19705,8 @@
           "routeOrder": 1550120,
           "memoryTaskId": 2249
         }
-      ]
+      ],
+      "historyTaskGroups": [[2247]]
     },
     {
       "id": "ENDGAME|ALL|2250",
@@ -19155,7 +19752,8 @@
           "routeOrder": 1550160,
           "memoryTaskId": 2250
         }
-      ]
+      ],
+      "historyTaskGroups": [[2250]]
     },
     {
       "id": "ENDGAME|ALL|2260",
@@ -19201,7 +19799,8 @@
           "routeOrder": 1550200,
           "memoryTaskId": 2260
         }
-      ]
+      ],
+      "historyTaskGroups": [[2260]]
     },
     {
       "id": "ENDGAME|ALL|2262",
@@ -19247,7 +19846,8 @@
           "routeOrder": 1550240,
           "memoryTaskId": 2262
         }
-      ]
+      ],
+      "historyTaskGroups": [[2262]]
     },
     {
       "id": "ENDGAME|ALL|2532",
@@ -19293,7 +19893,8 @@
           "routeOrder": 1550280,
           "memoryTaskId": 2532
         }
-      ]
+      ],
+      "historyTaskGroups": [[2532]]
     },
     {
       "id": "ENDGAME|ALL|2254",
@@ -19339,7 +19940,9 @@
           "routeOrder": 1560020,
           "memoryTaskId": 2254
         }
-      ]
+      ],
+      "historyTaskGroups": [[2254]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|3454",
@@ -19390,7 +19993,9 @@
           "routeOrder": 1560070,
           "memoryTaskId": 3458
         }
-      ]
+      ],
+      "historyTaskGroups": [[3454]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|2425",
@@ -19427,7 +20032,8 @@
           "routeOrder": 1570010,
           "memoryTaskId": 2425
         }
-      ]
+      ],
+      "historyTaskGroups": [[2425]]
     },
     {
       "id": "ENDGAME|ALL|2530",
@@ -19473,7 +20079,8 @@
           "routeOrder": 1570050,
           "memoryTaskId": 2530
         }
-      ]
+      ],
+      "historyTaskGroups": [[2530]]
     },
     {
       "id": "ENDGAME|ALL|2529",
@@ -19519,7 +20126,8 @@
           "routeOrder": 1570090,
           "memoryTaskId": 2529
         }
-      ]
+      ],
+      "historyTaskGroups": [[2529]]
     },
     {
       "id": "ENDGAME|ALL|2531",
@@ -19565,7 +20173,8 @@
           "routeOrder": 1570130,
           "memoryTaskId": 2531
         }
-      ]
+      ],
+      "historyTaskGroups": [[2531]]
     },
     {
       "id": "ENDGAME|ALL|CULTIVATION-CHOICE",
@@ -19707,7 +20316,8 @@
           "routeOrder": 1580250,
           "memoryTaskId": 2829
         }
-      ]
+      ],
+      "historyTaskGroups": [[2818]]
     },
     {
       "id": "ENDGAME|EVIL|7979",
@@ -19741,7 +20351,8 @@
           "routeOrder": 1580130,
           "memoryTaskId": 7979
         }
-      ]
+      ],
+      "historyTaskGroups": [[7979]]
     },
     {
       "id": "ENDGAME|EVIL|7981",
@@ -19775,7 +20386,8 @@
           "routeOrder": 1580180,
           "memoryTaskId": 7981
         }
-      ]
+      ],
+      "historyTaskGroups": [[7981]]
     },
     {
       "id": "ENDGAME|EVIL|7983",
@@ -19809,7 +20421,8 @@
           "routeOrder": 1580220,
           "memoryTaskId": 7983
         }
-      ]
+      ],
+      "historyTaskGroups": [[7983]]
     },
     {
       "id": "ENDGAME|EVIL|8779",
@@ -19845,7 +20458,8 @@
           "routeOrder": 1580040,
           "memoryTaskId": 8779
         }
-      ]
+      ],
+      "historyTaskGroups": [[8779]]
     },
     {
       "id": "ENDGAME|GOD|2804",
@@ -19972,7 +20586,8 @@
           "routeOrder": 1580510,
           "memoryTaskId": 2814
         }
-      ]
+      ],
+      "historyTaskGroups": [[2804]]
     },
     {
       "id": "ENDGAME|GOD|7985",
@@ -20006,7 +20621,8 @@
           "routeOrder": 1580410,
           "memoryTaskId": 7985
         }
-      ]
+      ],
+      "historyTaskGroups": [[7985]]
     },
     {
       "id": "ENDGAME|GOD|7987",
@@ -20040,7 +20656,8 @@
           "routeOrder": 1580450,
           "memoryTaskId": 7987
         }
-      ]
+      ],
+      "historyTaskGroups": [[7987]]
     },
     {
       "id": "ENDGAME|GOD|7989",
@@ -20074,7 +20691,8 @@
           "routeOrder": 1580500,
           "memoryTaskId": 7989
         }
-      ]
+      ],
+      "historyTaskGroups": [[7989]]
     },
     {
       "id": "ENDGAME|GOD|8778",
@@ -20110,7 +20728,8 @@
           "routeOrder": 1580290,
           "memoryTaskId": 8778
         }
-      ]
+      ],
+      "historyTaskGroups": [[8778]]
     },
     {
       "id": "ENDGAME|ALL|2472",
@@ -20156,7 +20775,9 @@
           "routeOrder": 1590020,
           "memoryTaskId": 2472
         }
-      ]
+      ],
+      "historyTaskGroups": [[2472]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|2473",
@@ -20202,7 +20823,9 @@
           "routeOrder": 1590060,
           "memoryTaskId": 2473
         }
-      ]
+      ],
+      "historyTaskGroups": [[2473]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|ALL|6529",
@@ -20235,7 +20858,8 @@
           "routeOrder": 1590090,
           "memoryTaskId": 6529
         }
-      ]
+      ],
+      "historyTaskGroups": [[6529]]
     },
     {
       "id": "ENDGAME|ALL|6530",
@@ -20268,7 +20892,8 @@
           "routeOrder": 1590120,
           "memoryTaskId": 6530
         }
-      ]
+      ],
+      "historyTaskGroups": [[6530]]
     },
     {
       "id": "ENDGAME|ALL|13781",
@@ -20429,7 +21054,8 @@
           "routeOrder": 1590290,
           "memoryTaskId": 14388
         }
-      ]
+      ],
+      "historyTaskGroups": [[13781]]
     },
     {
       "id": "ENDGAME|ALL|13760",
@@ -20498,7 +21124,8 @@
           "routeOrder": 1590360,
           "memoryTaskId": 14391
         }
-      ]
+      ],
+      "historyTaskGroups": [[13760]]
     },
     {
       "id": "ENDGAME|ALL|13765",
@@ -20610,7 +21237,8 @@
           "routeOrder": 1590480,
           "memoryTaskId": 14573
         }
-      ]
+      ],
+      "historyTaskGroups": [[13765]]
     },
     {
       "id": "ENDGAME|ALL|13768",
@@ -20717,7 +21345,8 @@
           "routeOrder": 1590580,
           "memoryTaskId": 14430
         }
-      ]
+      ],
+      "historyTaskGroups": [[13768]]
     },
     {
       "id": "ENDGAME|ALL|13778",
@@ -20752,7 +21381,8 @@
           "routeOrder": 1590610,
           "memoryTaskId": 13778
         }
-      ]
+      ],
+      "historyTaskGroups": [[13778]]
     },
     {
       "id": "ENDGAME|ALL|13823",
@@ -20869,7 +21499,8 @@
           "routeOrder": 1590740,
           "memoryTaskId": 13837
         }
-      ]
+      ],
+      "historyTaskGroups": [[13823]]
     },
     {
       "id": "ENDGAME|ALL|14545",
@@ -20916,7 +21547,8 @@
           "routeOrder": 1590790,
           "memoryTaskId": 14547
         }
-      ]
+      ],
+      "historyTaskGroups": [[14545]]
     },
     {
       "id": "ENDGAME|ALL|13824",
@@ -20963,7 +21595,8 @@
           "routeOrder": 1590840,
           "memoryTaskId": 13833
         }
-      ]
+      ],
+      "historyTaskGroups": [[13824]]
     },
     {
       "id": "ENDGAME|ALL|13825",
@@ -20996,7 +21629,8 @@
           "routeOrder": 1590870,
           "memoryTaskId": 13825
         }
-      ]
+      ],
+      "historyTaskGroups": [[13825]]
     },
     {
       "id": "ENDGAME|ALL|13856",
@@ -21029,7 +21663,8 @@
           "routeOrder": 1590900,
           "memoryTaskId": 13857
         }
-      ]
+      ],
+      "historyTaskGroups": [[13856]]
     },
     {
       "id": "ENDGAME|ALL|13840",
@@ -21063,7 +21698,8 @@
           "routeOrder": 1590930,
           "memoryTaskId": 13840
         }
-      ]
+      ],
+      "historyTaskGroups": [[13840]]
     },
     {
       "id": "ENDGAME|ALL|13842",
@@ -21104,7 +21740,8 @@
           "routeOrder": 1590970,
           "memoryTaskId": 13842
         }
-      ]
+      ],
+      "historyTaskGroups": [[13842]]
     },
     {
       "id": "ENDGAME|ALL|14340",
@@ -21138,7 +21775,8 @@
           "routeOrder": 1591000,
           "memoryTaskId": 14340
         }
-      ]
+      ],
+      "historyTaskGroups": [[14340]]
     },
     {
       "id": "ENDGAME|ALL|14341",
@@ -21231,7 +21869,8 @@
           "routeOrder": 1591110,
           "memoryTaskId": 14451
         }
-      ]
+      ],
+      "historyTaskGroups": [[14341]]
     },
     {
       "id": "ENDGAME|ALL|13843",
@@ -21264,7 +21903,8 @@
           "routeOrder": 1591140,
           "memoryTaskId": 13843
         }
-      ]
+      ],
+      "historyTaskGroups": [[13843]]
     },
     {
       "id": "ENDGAME|ALL|13844",
@@ -21304,7 +21944,8 @@
           "routeOrder": 1591180,
           "memoryTaskId": 13871
         }
-      ]
+      ],
+      "historyTaskGroups": [[13844]]
     },
     {
       "id": "ENDGAME|ALL|13868",
@@ -21351,7 +21992,8 @@
           "routeOrder": 1591230,
           "memoryTaskId": 13878
         }
-      ]
+      ],
+      "historyTaskGroups": [[13868]]
     },
     {
       "id": "ENDGAME|ALL|13872",
@@ -21391,7 +22033,8 @@
           "routeOrder": 1591270,
           "memoryTaskId": 13872
         }
-      ]
+      ],
+      "historyTaskGroups": [[13872]]
     },
     {
       "id": "ENDGAME|ALL|13873",
@@ -21438,7 +22081,8 @@
           "routeOrder": 1591320,
           "memoryTaskId": 13901
         }
-      ]
+      ],
+      "historyTaskGroups": [[13873]]
     },
     {
       "id": "ENDGAME|ALL|13874",
@@ -21471,7 +22115,8 @@
           "routeOrder": 1591350,
           "memoryTaskId": 13874
         }
-      ]
+      ],
+      "historyTaskGroups": [[13874]]
     },
     {
       "id": "ENDGAME|ALL|13875",
@@ -21571,7 +22216,8 @@
           "routeOrder": 1591460,
           "memoryTaskId": 14320
         }
-      ]
+      ],
+      "historyTaskGroups": [[13875]]
     },
     {
       "id": "ENDGAME|ALL|14310",
@@ -21684,7 +22330,8 @@
           "routeOrder": 1591590,
           "memoryTaskId": 14428
         }
-      ]
+      ],
+      "historyTaskGroups": [[14310]]
     },
     {
       "id": "ENDGAME|ALL|13892",
@@ -21717,7 +22364,8 @@
           "routeOrder": 1591620,
           "memoryTaskId": 13892
         }
-      ]
+      ],
+      "historyTaskGroups": [[13892]]
     },
     {
       "id": "ENDGAME|ALL|13846",
@@ -21750,7 +22398,8 @@
           "routeOrder": 1591650,
           "memoryTaskId": 13846
         }
-      ]
+      ],
+      "historyTaskGroups": [[13846]]
     },
     {
       "id": "ENDGAME|EVIL|2844",
@@ -21791,7 +22440,8 @@
           "routeOrder": 1600020,
           "memoryTaskId": 2844
         }
-      ]
+      ],
+      "historyTaskGroups": [[2844]]
     },
     {
       "id": "ENDGAME|EVIL|2876",
@@ -21832,7 +22482,8 @@
           "routeOrder": 1600060,
           "memoryTaskId": 2876
         }
-      ]
+      ],
+      "historyTaskGroups": [[2876]]
     },
     {
       "id": "ENDGAME|EVIL|2877",
@@ -21873,7 +22524,8 @@
           "routeOrder": 1600100,
           "memoryTaskId": 2877
         }
-      ]
+      ],
+      "historyTaskGroups": [[2877]]
     },
     {
       "id": "ENDGAME|GOD|3020",
@@ -21914,7 +22566,8 @@
           "routeOrder": 1600140,
           "memoryTaskId": 3020
         }
-      ]
+      ],
+      "historyTaskGroups": [[3020]]
     },
     {
       "id": "ENDGAME|GOD|3024",
@@ -21948,7 +22601,8 @@
           "routeOrder": 1600170,
           "memoryTaskId": 3024
         }
-      ]
+      ],
+      "historyTaskGroups": [[3024]]
     },
     {
       "id": "ENDGAME|GOD|3019",
@@ -21989,7 +22643,8 @@
           "routeOrder": 1600210,
           "memoryTaskId": 3019
         }
-      ]
+      ],
+      "historyTaskGroups": [[3019]]
     },
     {
       "id": "ENDGAME|GOD|3038",
@@ -22023,7 +22678,8 @@
           "routeOrder": 1600240,
           "memoryTaskId": 3038
         }
-      ]
+      ],
+      "historyTaskGroups": [[3038]]
     },
     {
       "id": "ENDGAME|GOD|3039",
@@ -22081,7 +22737,8 @@
           "routeOrder": 1600290,
           "memoryTaskId": 3039
         }
-      ]
+      ],
+      "historyTaskGroups": [[3039]]
     },
     {
       "id": "ENDGAME|EVIL|2879",
@@ -22115,7 +22772,8 @@
           "routeOrder": 1610010,
           "memoryTaskId": 2879
         }
-      ]
+      ],
+      "historyTaskGroups": [[2879]]
     },
     {
       "id": "ENDGAME|EVIL|2882",
@@ -22151,7 +22809,8 @@
           "routeOrder": 1610040,
           "memoryTaskId": 2882
         }
-      ]
+      ],
+      "historyTaskGroups": [[2882]]
     },
     {
       "id": "ENDGAME|EVIL|2884",
@@ -22196,7 +22855,8 @@
           "routeOrder": 1610080,
           "memoryTaskId": 2884
         }
-      ]
+      ],
+      "historyTaskGroups": [[2884]]
     },
     {
       "id": "ENDGAME|EVIL|3068",
@@ -22237,7 +22897,8 @@
           "routeOrder": 1610120,
           "memoryTaskId": 3068
         }
-      ]
+      ],
+      "historyTaskGroups": [[3068]]
     },
     {
       "id": "ENDGAME|GOD|3016",
@@ -22278,7 +22939,8 @@
           "routeOrder": 1610160,
           "memoryTaskId": 3016
         }
-      ]
+      ],
+      "historyTaskGroups": [[3016]]
     },
     {
       "id": "ENDGAME|GOD|3018",
@@ -22319,7 +22981,8 @@
           "routeOrder": 1610200,
           "memoryTaskId": 3018
         }
-      ]
+      ],
+      "historyTaskGroups": [[3018]]
     },
     {
       "id": "ENDGAME|ALL|2402",
@@ -22356,7 +23019,8 @@
           "routeOrder": 1620010,
           "memoryTaskId": 2402
         }
-      ]
+      ],
+      "historyTaskGroups": [[2402]]
     },
     {
       "id": "ENDGAME|ALL|2401",
@@ -22393,7 +23057,8 @@
           "routeOrder": 1620040,
           "memoryTaskId": 2401
         }
-      ]
+      ],
+      "historyTaskGroups": [[2401]]
     },
     {
       "id": "ENDGAME|ALL|2362",
@@ -22430,7 +23095,8 @@
           "routeOrder": 1620070,
           "memoryTaskId": 2362
         }
-      ]
+      ],
+      "historyTaskGroups": [[2362]]
     },
     {
       "id": "ENDGAME|ALL|2400",
@@ -22467,7 +23133,8 @@
           "routeOrder": 1620100,
           "memoryTaskId": 2400
         }
-      ]
+      ],
+      "historyTaskGroups": [[2400]]
     },
     {
       "id": "ENDGAME|ALL|2359",
@@ -22504,7 +23171,8 @@
           "routeOrder": 1620130,
           "memoryTaskId": 2359
         }
-      ]
+      ],
+      "historyTaskGroups": [[2359]]
     },
     {
       "id": "ENDGAME|ALL|2396",
@@ -22541,7 +23209,8 @@
           "routeOrder": 1620160,
           "memoryTaskId": 2396
         }
-      ]
+      ],
+      "historyTaskGroups": [[2396]]
     },
     {
       "id": "ENDGAME|ALL|2395",
@@ -22578,7 +23247,8 @@
           "routeOrder": 1620190,
           "memoryTaskId": 2395
         }
-      ]
+      ],
+      "historyTaskGroups": [[2395]]
     },
     {
       "id": "ENDGAME|ALL|2394",
@@ -22615,7 +23285,8 @@
           "routeOrder": 1620220,
           "memoryTaskId": 2394
         }
-      ]
+      ],
+      "historyTaskGroups": [[2394]]
     },
     {
       "id": "ENDGAME|ALL|2466",
@@ -22661,7 +23332,8 @@
           "routeOrder": 1620260,
           "memoryTaskId": 2466
         }
-      ]
+      ],
+      "historyTaskGroups": [[2466]]
     },
     {
       "id": "ENDGAME|ALL|2393",
@@ -22698,7 +23370,8 @@
           "routeOrder": 1620290,
           "memoryTaskId": 2393
         }
-      ]
+      ],
+      "historyTaskGroups": [[2393]]
     },
     {
       "id": "ENDGAME|ALL|2358",
@@ -22735,7 +23408,8 @@
           "routeOrder": 1620320,
           "memoryTaskId": 2358
         }
-      ]
+      ],
+      "historyTaskGroups": [[2358]]
     },
     {
       "id": "ENDGAME|ALL|2357",
@@ -22772,7 +23446,8 @@
           "routeOrder": 1620350,
           "memoryTaskId": 2357
         }
-      ]
+      ],
+      "historyTaskGroups": [[2357]]
     },
     {
       "id": "ENDGAME|ALL|2392",
@@ -22809,7 +23484,8 @@
           "routeOrder": 1620380,
           "memoryTaskId": 2392
         }
-      ]
+      ],
+      "historyTaskGroups": [[2392]]
     },
     {
       "id": "ENDGAME|ALL|2356",
@@ -22846,7 +23522,8 @@
           "routeOrder": 1620410,
           "memoryTaskId": 2356
         }
-      ]
+      ],
+      "historyTaskGroups": [[2356]]
     },
     {
       "id": "ENDGAME|ALL|2355",
@@ -22883,7 +23560,8 @@
           "routeOrder": 1620440,
           "memoryTaskId": 2355
         }
-      ]
+      ],
+      "historyTaskGroups": [[2355]]
     },
     {
       "id": "ENDGAME|ALL|2465",
@@ -22929,7 +23607,8 @@
           "routeOrder": 1620480,
           "memoryTaskId": 2465
         }
-      ]
+      ],
+      "historyTaskGroups": [[2465]]
     },
     {
       "id": "ENDGAME|EVIL|2899",
@@ -22967,7 +23646,8 @@
           "routeOrder": 1620510,
           "memoryTaskId": 2899
         }
-      ]
+      ],
+      "historyTaskGroups": [[2899]]
     },
     {
       "id": "ENDGAME|EVIL|3072",
@@ -23008,7 +23688,8 @@
           "routeOrder": 1620550,
           "memoryTaskId": 3072
         }
-      ]
+      ],
+      "historyTaskGroups": [[3072]]
     },
     {
       "id": "ENDGAME|EVIL|2900",
@@ -23042,7 +23723,8 @@
           "routeOrder": 1620580,
           "memoryTaskId": 2900
         }
-      ]
+      ],
+      "historyTaskGroups": [[2900]]
     },
     {
       "id": "ENDGAME|EVIL|2902",
@@ -23083,7 +23765,8 @@
           "routeOrder": 1620620,
           "memoryTaskId": 2902
         }
-      ]
+      ],
+      "historyTaskGroups": [[2902]]
     },
     {
       "id": "ENDGAME|EVIL|3071",
@@ -23124,7 +23807,8 @@
           "routeOrder": 1620660,
           "memoryTaskId": 3071
         }
-      ]
+      ],
+      "historyTaskGroups": [[3071]]
     },
     {
       "id": "ENDGAME|GOD|3013",
@@ -23165,7 +23849,8 @@
           "routeOrder": 1620700,
           "memoryTaskId": 3013
         }
-      ]
+      ],
+      "historyTaskGroups": [[3013]]
     },
     {
       "id": "ENDGAME|GOD|3022",
@@ -23199,7 +23884,8 @@
           "routeOrder": 1620730,
           "memoryTaskId": 3022
         }
-      ]
+      ],
+      "historyTaskGroups": [[3022]]
     },
     {
       "id": "ENDGAME|GOD|3015",
@@ -23240,7 +23926,8 @@
           "routeOrder": 1620770,
           "memoryTaskId": 3015
         }
-      ]
+      ],
+      "historyTaskGroups": [[3015]]
     },
     {
       "id": "ENDGAME|ALL|2361",
@@ -23277,7 +23964,8 @@
           "routeOrder": 1630010,
           "memoryTaskId": 2361
         }
-      ]
+      ],
+      "historyTaskGroups": [[2361]]
     },
     {
       "id": "ENDGAME|ALL|2360",
@@ -23314,7 +24002,8 @@
           "routeOrder": 1630040,
           "memoryTaskId": 2360
         }
-      ]
+      ],
+      "historyTaskGroups": [[2360]]
     },
     {
       "id": "ENDGAME|ALL|2399",
@@ -23351,7 +24040,8 @@
           "routeOrder": 1630070,
           "memoryTaskId": 2399
         }
-      ]
+      ],
+      "historyTaskGroups": [[2399]]
     },
     {
       "id": "ENDGAME|ALL|2469",
@@ -23398,7 +24088,8 @@
           "routeOrder": 1630110,
           "memoryTaskId": 2469
         }
-      ]
+      ],
+      "historyTaskGroups": [[2469]]
     },
     {
       "id": "ENDGAME|ALL|2398",
@@ -23435,7 +24126,8 @@
           "routeOrder": 1630140,
           "memoryTaskId": 2398
         }
-      ]
+      ],
+      "historyTaskGroups": [[2398]]
     },
     {
       "id": "ENDGAME|ALL|2468",
@@ -23481,7 +24173,8 @@
           "routeOrder": 1630180,
           "memoryTaskId": 2468
         }
-      ]
+      ],
+      "historyTaskGroups": [[2468]]
     },
     {
       "id": "ENDGAME|EVIL|3061",
@@ -23522,7 +24215,8 @@
           "routeOrder": 1630220,
           "memoryTaskId": 3061
         }
-      ]
+      ],
+      "historyTaskGroups": [[3061]]
     },
     {
       "id": "ENDGAME|EVIL|3070",
@@ -23563,7 +24257,8 @@
           "routeOrder": 1630260,
           "memoryTaskId": 3070
         }
-      ]
+      ],
+      "historyTaskGroups": [[3070]]
     },
     {
       "id": "ENDGAME|GOD|3014",
@@ -23604,7 +24299,8 @@
           "routeOrder": 1630300,
           "memoryTaskId": 3014
         }
-      ]
+      ],
+      "historyTaskGroups": [[3014]]
     },
     {
       "id": "ENDGAME|GOD|3023",
@@ -23638,7 +24334,8 @@
           "routeOrder": 1630330,
           "memoryTaskId": 3023
         }
-      ]
+      ],
+      "historyTaskGroups": [[3023]]
     },
     {
       "id": "ENDGAME|ALL|2467",
@@ -23684,7 +24381,9 @@
           "routeOrder": 1640020,
           "memoryTaskId": 2467
         }
-      ]
+      ],
+      "historyTaskGroups": [[2467]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|EVIL|3067",
@@ -23725,7 +24424,8 @@
           "routeOrder": 1640060,
           "memoryTaskId": 3067
         }
-      ]
+      ],
+      "historyTaskGroups": [[3067]]
     },
     {
       "id": "ENDGAME|EVIL|3066",
@@ -23766,7 +24466,8 @@
           "routeOrder": 1640100,
           "memoryTaskId": 3066
         }
-      ]
+      ],
+      "historyTaskGroups": [[3066]]
     },
     {
       "id": "ENDGAME|EVIL|3096",
@@ -23800,7 +24501,8 @@
           "routeOrder": 1640130,
           "memoryTaskId": 3096
         }
-      ]
+      ],
+      "historyTaskGroups": [[3096]]
     },
     {
       "id": "ENDGAME|EVIL|3101",
@@ -23834,7 +24536,8 @@
           "routeOrder": 1650010,
           "memoryTaskId": 3101
         }
-      ]
+      ],
+      "historyTaskGroups": [[3101]]
     },
     {
       "id": "ENDGAME|EVIL|3060",
@@ -23875,7 +24578,8 @@
           "routeOrder": 1650050,
           "memoryTaskId": 3060
         }
-      ]
+      ],
+      "historyTaskGroups": [[3060]]
     },
     {
       "id": "ENDGAME|EVIL|3069",
@@ -23916,7 +24620,8 @@
           "routeOrder": 1650090,
           "memoryTaskId": 3069
         }
-      ]
+      ],
+      "historyTaskGroups": [[3069]]
     },
     {
       "id": "ENDGAME|GOD|3054",
@@ -23957,7 +24662,8 @@
           "routeOrder": 1650130,
           "memoryTaskId": 3054
         }
-      ]
+      ],
+      "historyTaskGroups": [[3054]]
     },
     {
       "id": "ENDGAME|GOD|3055",
@@ -23998,7 +24704,8 @@
           "routeOrder": 1650170,
           "memoryTaskId": 3055
         }
-      ]
+      ],
+      "historyTaskGroups": [[3055]]
     },
     {
       "id": "ENDGAME|ALL|2389",
@@ -24035,7 +24742,8 @@
           "routeOrder": 1660010,
           "memoryTaskId": 2389
         }
-      ]
+      ],
+      "historyTaskGroups": [[2389]]
     },
     {
       "id": "ENDGAME|ALL|2464",
@@ -24082,7 +24790,8 @@
           "routeOrder": 1660050,
           "memoryTaskId": 2464
         }
-      ]
+      ],
+      "historyTaskGroups": [[2464]]
     },
     {
       "id": "ENDGAME|ALL|2388",
@@ -24128,7 +24837,8 @@
           "routeOrder": 1660090,
           "memoryTaskId": 2388
         }
-      ]
+      ],
+      "historyTaskGroups": [[2388]]
     },
     {
       "id": "ENDGAME|ALL|2387",
@@ -24165,7 +24875,8 @@
           "routeOrder": 1660120,
           "memoryTaskId": 2387
         }
-      ]
+      ],
+      "historyTaskGroups": [[2387]]
     },
     {
       "id": "ENDGAME|EVIL|3100",
@@ -24199,7 +24910,8 @@
           "routeOrder": 1660150,
           "memoryTaskId": 3100
         }
-      ]
+      ],
+      "historyTaskGroups": [[3100]]
     },
     {
       "id": "ENDGAME|EVIL|3065",
@@ -24240,7 +24952,8 @@
           "routeOrder": 1660190,
           "memoryTaskId": 3065
         }
-      ]
+      ],
+      "historyTaskGroups": [[3065]]
     },
     {
       "id": "ENDGAME|EVIL|3095",
@@ -24274,7 +24987,8 @@
           "routeOrder": 1660220,
           "memoryTaskId": 3095
         }
-      ]
+      ],
+      "historyTaskGroups": [[3095]]
     },
     {
       "id": "ENDGAME|GOD|3081",
@@ -24308,7 +25022,8 @@
           "routeOrder": 1660250,
           "memoryTaskId": 3081
         }
-      ]
+      ],
+      "historyTaskGroups": [[3081]]
     },
     {
       "id": "ENDGAME|GOD|3051",
@@ -24349,7 +25064,8 @@
           "routeOrder": 1660290,
           "memoryTaskId": 3051
         }
-      ]
+      ],
+      "historyTaskGroups": [[3051]]
     },
     {
       "id": "ENDGAME|GOD|3084",
@@ -24385,7 +25101,8 @@
           "routeOrder": 1660320,
           "memoryTaskId": 3084
         }
-      ]
+      ],
+      "historyTaskGroups": [[3084]]
     },
     {
       "id": "ENDGAME|GOD|3083",
@@ -24422,7 +25139,8 @@
           "routeOrder": 1660350,
           "memoryTaskId": 3083
         }
-      ]
+      ],
+      "historyTaskGroups": [[3083]]
     },
     {
       "id": "ENDGAME|GOD|3082",
@@ -24457,7 +25175,8 @@
           "routeOrder": 1660380,
           "memoryTaskId": 3082
         }
-      ]
+      ],
+      "historyTaskGroups": [[3082]]
     },
     {
       "id": "ENDGAME|GOD|3052",
@@ -24498,7 +25217,8 @@
           "routeOrder": 1660420,
           "memoryTaskId": 3052
         }
-      ]
+      ],
+      "historyTaskGroups": [[3052]]
     },
     {
       "id": "ENDGAME|EVIL|3094",
@@ -24532,7 +25252,8 @@
           "routeOrder": 1670010,
           "memoryTaskId": 3094
         }
-      ]
+      ],
+      "historyTaskGroups": [[3094]]
     },
     {
       "id": "ENDGAME|EVIL|3059",
@@ -24573,7 +25294,8 @@
           "routeOrder": 1670050,
           "memoryTaskId": 3059
         }
-      ]
+      ],
+      "historyTaskGroups": [[3059]]
     },
     {
       "id": "ENDGAME|EVIL|3099",
@@ -24607,7 +25329,8 @@
           "routeOrder": 1670080,
           "memoryTaskId": 3099
         }
-      ]
+      ],
+      "historyTaskGroups": [[3099]]
     },
     {
       "id": "ENDGAME|EVIL|3064",
@@ -24648,7 +25371,8 @@
           "routeOrder": 1670120,
           "memoryTaskId": 3064
         }
-      ]
+      ],
+      "historyTaskGroups": [[3064]]
     },
     {
       "id": "ENDGAME|GOD|3078",
@@ -24682,7 +25406,8 @@
           "routeOrder": 1670150,
           "memoryTaskId": 3078
         }
-      ]
+      ],
+      "historyTaskGroups": [[3078]]
     },
     {
       "id": "ENDGAME|ALL|6483",
@@ -24715,7 +25440,8 @@
           "routeOrder": 1680010,
           "memoryTaskId": 6483
         }
-      ]
+      ],
+      "historyTaskGroups": [[6483]]
     },
     {
       "id": "ENDGAME|ALL|6484",
@@ -24748,7 +25474,8 @@
           "routeOrder": 1680040,
           "memoryTaskId": 6484
         }
-      ]
+      ],
+      "historyTaskGroups": [[6484]]
     },
     {
       "id": "ENDGAME|EVIL|3198",
@@ -24792,7 +25519,8 @@
           "routeOrder": 1680080,
           "memoryTaskId": 3202
         }
-      ]
+      ],
+      "historyTaskGroups": [[3198]]
     },
     {
       "id": "ENDGAME|EVIL|3199",
@@ -24827,7 +25555,8 @@
           "routeOrder": 1680110,
           "memoryTaskId": 3199
         }
-      ]
+      ],
+      "historyTaskGroups": [[3199]]
     },
     {
       "id": "ENDGAME|EVIL|3200",
@@ -24869,7 +25598,8 @@
           "routeOrder": 1680150,
           "memoryTaskId": 3200
         }
-      ]
+      ],
+      "historyTaskGroups": [[3200]]
     },
     {
       "id": "ENDGAME|EVIL|3097",
@@ -24903,7 +25633,8 @@
           "routeOrder": 1680180,
           "memoryTaskId": 3097
         }
-      ]
+      ],
+      "historyTaskGroups": [[3097]]
     },
     {
       "id": "ENDGAME|EVIL|3058",
@@ -24944,7 +25675,8 @@
           "routeOrder": 1680220,
           "memoryTaskId": 3058
         }
-      ]
+      ],
+      "historyTaskGroups": [[3058]]
     },
     {
       "id": "ENDGAME|EVIL|3063",
@@ -24985,7 +25717,8 @@
           "routeOrder": 1680260,
           "memoryTaskId": 3063
         }
-      ]
+      ],
+      "historyTaskGroups": [[3063]]
     },
     {
       "id": "ENDGAME|EVIL|3204",
@@ -25098,7 +25831,8 @@
           "routeOrder": 1680550,
           "memoryTaskId": 3221
         }
-      ]
+      ],
+      "historyTaskGroups": [[3204]]
     },
     {
       "id": "ENDGAME|EVIL|7999",
@@ -25132,7 +25866,8 @@
           "routeOrder": 1680400,
           "memoryTaskId": 7999
         }
-      ]
+      ],
+      "historyTaskGroups": [[7999]]
     },
     {
       "id": "ENDGAME|EVIL|8001",
@@ -25166,7 +25901,8 @@
           "routeOrder": 1680450,
           "memoryTaskId": 8001
         }
-      ]
+      ],
+      "historyTaskGroups": [[8001]]
     },
     {
       "id": "ENDGAME|EVIL|8003",
@@ -25200,7 +25936,8 @@
           "routeOrder": 1680490,
           "memoryTaskId": 8003
         }
-      ]
+      ],
+      "historyTaskGroups": [[8003]]
     },
     {
       "id": "ENDGAME|EVIL|8005",
@@ -25234,7 +25971,8 @@
           "routeOrder": 1680540,
           "memoryTaskId": 8005
         }
-      ]
+      ],
+      "historyTaskGroups": [[8005]]
     },
     {
       "id": "ENDGAME|EVIL|8781",
@@ -25268,7 +26006,8 @@
           "routeOrder": 1680300,
           "memoryTaskId": 8781
         }
-      ]
+      ],
+      "historyTaskGroups": [[8781]]
     },
     {
       "id": "ENDGAME|GOD|3222",
@@ -25312,7 +26051,8 @@
           "routeOrder": 1680590,
           "memoryTaskId": 3226
         }
-      ]
+      ],
+      "historyTaskGroups": [[3222]]
     },
     {
       "id": "ENDGAME|GOD|3223",
@@ -25347,7 +26087,8 @@
           "routeOrder": 1680620,
           "memoryTaskId": 3223
         }
-      ]
+      ],
+      "historyTaskGroups": [[3223]]
     },
     {
       "id": "ENDGAME|GOD|3224",
@@ -25389,7 +26130,8 @@
           "routeOrder": 1680660,
           "memoryTaskId": 3224
         }
-      ]
+      ],
+      "historyTaskGroups": [[3224]]
     },
     {
       "id": "ENDGAME|GOD|3047",
@@ -25430,7 +26172,8 @@
           "routeOrder": 1680700,
           "memoryTaskId": 3047
         }
-      ]
+      ],
+      "historyTaskGroups": [[3047]]
     },
     {
       "id": "ENDGAME|GOD|3049",
@@ -25471,7 +26214,8 @@
           "routeOrder": 1680740,
           "memoryTaskId": 3049
         }
-      ]
+      ],
+      "historyTaskGroups": [[3049]]
     },
     {
       "id": "ENDGAME|GOD|3227",
@@ -25582,7 +26326,8 @@
           "routeOrder": 1681030,
           "memoryTaskId": 3237
         }
-      ]
+      ],
+      "historyTaskGroups": [[3227]]
     },
     {
       "id": "ENDGAME|GOD|7991",
@@ -25616,7 +26361,8 @@
           "routeOrder": 1680880,
           "memoryTaskId": 7991
         }
-      ]
+      ],
+      "historyTaskGroups": [[7991]]
     },
     {
       "id": "ENDGAME|GOD|7993",
@@ -25650,7 +26396,8 @@
           "routeOrder": 1680930,
           "memoryTaskId": 7993
         }
-      ]
+      ],
+      "historyTaskGroups": [[7993]]
     },
     {
       "id": "ENDGAME|GOD|7995",
@@ -25684,7 +26431,8 @@
           "routeOrder": 1680970,
           "memoryTaskId": 7995
         }
-      ]
+      ],
+      "historyTaskGroups": [[7995]]
     },
     {
       "id": "ENDGAME|GOD|7997",
@@ -25718,7 +26466,8 @@
           "routeOrder": 1681020,
           "memoryTaskId": 7997
         }
-      ]
+      ],
+      "historyTaskGroups": [[7997]]
     },
     {
       "id": "ENDGAME|GOD|8780",
@@ -25752,7 +26501,8 @@
           "routeOrder": 1680780,
           "memoryTaskId": 8780
         }
-      ]
+      ],
+      "historyTaskGroups": [[8780]]
     },
     {
       "id": "ENDGAME|ALL|9545",
@@ -25799,7 +26549,8 @@
           "routeOrder": 1690020,
           "memoryTaskId": 9545
         }
-      ]
+      ],
+      "historyTaskGroups": [[9545]]
     },
     {
       "id": "ENDGAME|ALL|11664",
@@ -25833,7 +26584,8 @@
           "routeOrder": 1690050,
           "memoryTaskId": 18810
         }
-      ]
+      ],
+      "historyTaskGroups": [[11664]]
     },
     {
       "id": "ENDGAME|ALL|2462",
@@ -25879,7 +26631,8 @@
           "routeOrder": 1690090,
           "memoryTaskId": 2462
         }
-      ]
+      ],
+      "historyTaskGroups": [[2462]]
     },
     {
       "id": "ENDGAME|ALL|6531",
@@ -25912,7 +26665,8 @@
           "routeOrder": 1690120,
           "memoryTaskId": 6531
         }
-      ]
+      ],
+      "historyTaskGroups": [[6531]]
     },
     {
       "id": "ENDGAME|ALL|6532",
@@ -25945,7 +26699,8 @@
           "routeOrder": 1690150,
           "memoryTaskId": 6532
         }
-      ]
+      ],
+      "historyTaskGroups": [[6532]]
     },
     {
       "id": "ENDGAME|ALL|PAST-ACCESS",
@@ -26004,7 +26759,8 @@
           "routeOrder": 1690200,
           "memoryTaskId": 3092
         }
-      ]
+      ],
+      "historyTaskGroups": [[3092]]
     },
     {
       "id": "ENDGAME|EVIL|3057",
@@ -26045,7 +26801,8 @@
           "routeOrder": 1690240,
           "memoryTaskId": 3057
         }
-      ]
+      ],
+      "historyTaskGroups": [[3057]]
     },
     {
       "id": "ENDGAME|EVIL|3056",
@@ -26086,7 +26843,8 @@
           "routeOrder": 1690280,
           "memoryTaskId": 3056
         }
-      ]
+      ],
+      "historyTaskGroups": [[3056]]
     },
     {
       "id": "ENDGAME|EVIL|3062",
@@ -26127,7 +26885,8 @@
           "routeOrder": 1690320,
           "memoryTaskId": 3062
         }
-      ]
+      ],
+      "historyTaskGroups": [[3062]]
     },
     {
       "id": "ENDGAME|EVIL|14016",
@@ -26379,7 +27138,8 @@
           "routeOrder": 1690600,
           "memoryTaskId": 14472
         }
-      ]
+      ],
+      "historyTaskGroups": [[14016]]
     },
     {
       "id": "ENDGAME|GOD|3046",
@@ -26420,7 +27180,8 @@
           "routeOrder": 1690640,
           "memoryTaskId": 3046
         }
-      ]
+      ],
+      "historyTaskGroups": [[3046]]
     },
     {
       "id": "ENDGAME|GOD|14161",
@@ -26495,7 +27256,8 @@
           "routeOrder": 1690720,
           "memoryTaskId": 14168
         }
-      ]
+      ],
+      "historyTaskGroups": [[14161]]
     },
     {
       "id": "ENDGAME|GOD|14015",
@@ -26696,7 +27458,8 @@
           "routeOrder": 1690960,
           "memoryTaskId": 14481
         }
-      ]
+      ],
+      "historyTaskGroups": [[14015]]
     },
     {
       "id": "ENDGAME|ALL|2461",
@@ -26742,7 +27505,8 @@
           "routeOrder": 1700020,
           "memoryTaskId": 2461
         }
-      ]
+      ],
+      "historyTaskGroups": [[2461]]
     },
     {
       "id": "ENDGAME|EVIL|3091",
@@ -26776,7 +27540,8 @@
           "routeOrder": 1700050,
           "memoryTaskId": 3091
         }
-      ]
+      ],
+      "historyTaskGroups": [[3091]]
     },
     {
       "id": "ENDGAME|GOD|3302",
@@ -26817,7 +27582,8 @@
           "routeOrder": 1700090,
           "memoryTaskId": 3302
         }
-      ]
+      ],
+      "historyTaskGroups": [[3302]]
     },
     {
       "id": "ENDGAME|ALL|2459",
@@ -26863,7 +27629,9 @@
           "routeOrder": 1710020,
           "memoryTaskId": 2459
         }
-      ]
+      ],
+      "historyTaskGroups": [[2459]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|EVIL|3310",
@@ -26899,7 +27667,8 @@
           "routeOrder": 1710050,
           "memoryTaskId": 3310
         }
-      ]
+      ],
+      "historyTaskGroups": [[3310]]
     },
     {
       "id": "ENDGAME|EVIL|3311",
@@ -26937,7 +27706,8 @@
           "routeOrder": 1710080,
           "memoryTaskId": 3311
         }
-      ]
+      ],
+      "historyTaskGroups": [[3311]]
     },
     {
       "id": "ENDGAME|ALL|2457",
@@ -26983,7 +27753,9 @@
           "routeOrder": 1720020,
           "memoryTaskId": 2457
         }
-      ]
+      ],
+      "historyTaskGroups": [[2457]],
+      "xpOptional": true
     },
     {
       "id": "ENDGAME|EVIL|3312",
@@ -27021,7 +27793,8 @@
           "routeOrder": 1720050,
           "memoryTaskId": 3312
         }
-      ]
+      ],
+      "historyTaskGroups": [[3312]]
     },
     {
       "id": "ENDGAME|EVIL|3313",
@@ -27055,7 +27828,8 @@
           "routeOrder": 1720080,
           "memoryTaskId": 3313
         }
-      ]
+      ],
+      "historyTaskGroups": [[3313]]
     },
     {
       "id": "ENDGAME|EVIL|3314",
@@ -27110,7 +27884,8 @@
           "routeOrder": 1720140,
           "memoryTaskId": 3316
         }
-      ]
+      ],
+      "historyTaskGroups": [[3314]]
     },
     {
       "id": "ENDGAME|ALL|2380",
@@ -27147,7 +27922,8 @@
           "routeOrder": 1730010,
           "memoryTaskId": 2380
         }
-      ]
+      ],
+      "historyTaskGroups": [[2380]]
     },
     {
       "id": "ENDGAME|ALL|2455",
@@ -27193,7 +27969,8 @@
           "routeOrder": 1730050,
           "memoryTaskId": 2455
         }
-      ]
+      ],
+      "historyTaskGroups": [[2455]]
     },
     {
       "id": "ENDGAME|ALL|2453",
@@ -27239,7 +28016,8 @@
           "routeOrder": 1730090,
           "memoryTaskId": 2453
         }
-      ]
+      ],
+      "historyTaskGroups": [[2453]]
     },
     {
       "id": "ENDGAME|EVIL|3320",
@@ -27273,7 +28051,8 @@
           "routeOrder": 1730120,
           "memoryTaskId": 3320
         }
-      ]
+      ],
+      "historyTaskGroups": [[3320]]
     },
     {
       "id": "ENDGAME|EVIL|3321",
@@ -27307,7 +28086,8 @@
           "routeOrder": 1730150,
           "memoryTaskId": 3321
         }
-      ]
+      ],
+      "historyTaskGroups": [[3321]]
     },
     {
       "id": "ENDGAME|GOD|3291",
@@ -27348,7 +28128,8 @@
           "routeOrder": 1730190,
           "memoryTaskId": 3291
         }
-      ]
+      ],
+      "historyTaskGroups": [[3291]]
     },
     {
       "id": "ENDGAME|EVIL|3322",
@@ -27389,7 +28170,8 @@
           "routeOrder": 1740020,
           "memoryTaskId": 3322
         }
-      ]
+      ],
+      "historyTaskGroups": [[3322]]
     },
     {
       "id": "ENDGAME|EVIL|3324",
@@ -27425,7 +28207,8 @@
           "routeOrder": 1740050,
           "memoryTaskId": 3324
         }
-      ]
+      ],
+      "historyTaskGroups": [[3324]]
     },
     {
       "id": "ENDGAME|EVIL|3337",
@@ -27472,7 +28255,8 @@
           "routeOrder": 1740090,
           "memoryTaskId": 3339
         }
-      ]
+      ],
+      "historyTaskGroups": [[3337]]
     },
     {
       "id": "ENDGAME|GOD|3290",
@@ -27513,7 +28297,8 @@
           "routeOrder": 1740130,
           "memoryTaskId": 3290
         }
-      ]
+      ],
+      "historyTaskGroups": [[3290]]
     },
     {
       "id": "ENDGAME|GOD|3293",
@@ -27554,7 +28339,8 @@
           "routeOrder": 1740170,
           "memoryTaskId": 3293
         }
-      ]
+      ],
+      "historyTaskGroups": [[3293]]
     },
     {
       "id": "ENDGAME|ALL|LEVEL105",

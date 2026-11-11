@@ -7,9 +7,18 @@ $routePath = Join-Path $projectRoot 'data\quest_routes.json'
 $payload = Get-Content -LiteralPath $routePath -Raw | ConvertFrom-Json
 $missions = @($payload.missions)
 $errors = New-Object System.Collections.Generic.List[string]
+if ($payload.schemaVersion -ge 9 -and
+    (@($payload.xpToNextLevel).Count -ne 104 -or @($payload.xpToNextLevel | Where-Object { $_ -le 0 }).Count -gt 0)) {
+    $errors.Add('Curva de XP inválida para os níveis 1 a 105.')
+}
 $requiredFields = @('id', 'routeKey', 'order', 'classScope', 'minLevel', 'expectedLevel', 'name', 'npc', 'location')
 
 foreach ($mission in $missions) {
+    if ($mission.xpOptional -and
+        ($mission.priority -notin @('Alta','Opcional') -or $mission.repeatable -or
+         -not $mission.historyTaskGroups -or $mission.xp3 -le 0)) {
+        $errors.Add("Missão de XP dispensável sem metadados válidos: $($mission.id)")
+    }
     foreach ($field in $requiredFields) {
         $value = $mission.$field
         if ($null -eq $value -or ($value -is [string] -and [string]::IsNullOrWhiteSpace($value))) {

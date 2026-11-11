@@ -13,6 +13,7 @@ namespace PWQuestOverlay.Memory
         }
 
         internal long TaskInterfaceAddress { get; set; }
+        internal int PlayerLevel { get; set; }
         internal List<ActiveQuestMemoryEntry> ActiveTasks { get; private set; }
         internal List<uint> FinishedTaskIds { get; private set; }
         internal Dictionary<uint, int> TaskItemCounts { get; private set; }
@@ -34,6 +35,11 @@ namespace PWQuestOverlay.Memory
         private readonly ProcessMemoryReader _memory;
         private readonly QuestMemoryLayout _layout;
         private readonly TaskInventoryMemoryLayout _inventory;
+        private List<uint> _taskVTables;
+        private long _cachedPlayer;
+        private long _cachedSlot;
+        private long _cachedInterface;
+        private uint _cachedVTable;
 
         internal QuestMemoryReader(
             ProcessMemoryReader memory,
@@ -48,9 +54,14 @@ namespace PWQuestOverlay.Memory
             _inventory = inventory;
         }
 
-        internal QuestMemorySnapshot Read(long player)
+        internal QuestMemorySnapshot Read(long player, bool readItems = true)
         {
             long taskInterface = FindTaskInterface(player);
+            return ReadFromInterface(player, taskInterface, readItems);
+        }
+
+        internal QuestMemorySnapshot ReadFromInterface(long player, long taskInterface, bool readItems)
+        {
             long activeList = ReadRequiredPointer(
                 taskInterface + _layout.ActiveListPointerOffset,
                 "lista de missões ativas");
@@ -96,14 +107,17 @@ namespace PWQuestOverlay.Memory
                     RawData = raw
                 });
             }
-            for (int index = 0; index < finishedCount; index++)
+            if (finishedCount > 0)
             {
-                long idAddress = finishedList + _layout.FinishedEntriesOffset +
-                    index * _layout.FinishedEntryStride;
-                uint taskId = _memory.ReadUInt32(idAddress);
-                if (taskId != 0) snapshot.FinishedTaskIds.Add(taskId);
+                byte[] entries = _memory.ReadBytes(finishedList + _layout.FinishedEntriesOffset,
+                    checked(finishedCount * _layout.FinishedEntryStride));
+                for (int index = 0; index < finishedCount; index++)
+                {
+                    uint taskId = BitConverter.ToUInt32(entries, index * _layout.FinishedEntryStride);
+                    if (taskId != 0) snapshot.FinishedTaskIds.Add(taskId);
+                }
             }
-            ReadTaskInventory(player, snapshot);
+            if (readItems) ReadTaskInventory(player, snapshot);
             return snapshot;
         }
 
@@ -140,28 +154,48 @@ namespace PWQuestOverlay.Memory
 
         private long FindTaskInterface(long player)
         {
-            List<uint> vtables = RttiResolver.FindVTables(
-                _memory, _layout.className);
-            if (vtables.Count == 0)
+            uint value;
+            if (_cachedPlayer == player && _cachedSlot != 0 &&
+                _memory.TryReadUInt32(_cachedSlot, out value))
+            {
+                if (_cachedSlot == _cachedInterface && value == _cachedVTable)
+                    return _cachedInterface;
+                uint vtable;
+                if (value == _cachedInterface && _memory.TryReadUInt32(value, out vtable) &&
+                    vtable == _cachedVTable) return _cachedInterface;
+            }
+
+            if (_taskVTables == null)
+                _taskVTables = RttiResolver.FindVTables(_memory, _layout.className);
+            if (_taskVTables.Count == 0)
                 throw new InvalidOperationException(
                     "RTTI não localizado: " + _layout.className);
 
             byte[] playerBytes = _memory.ReadBytes(
                 player, _layout.PlayerSearchSize);
-            foreach (uint vtable in vtables)
+            foreach (uint vtable in _taskVTables)
             {
                 for (int offset = 0; offset <= playerBytes.Length - 4; offset += 4)
                 {
-                    uint value = BitConverter.ToUInt32(playerBytes, offset);
-                    if (value == vtable) return player + offset;
+                    value = BitConverter.ToUInt32(playerBytes, offset);
+                    if (value == vtable) return CacheTaskInterface(player, offset, player + offset, vtable);
                     if (value < 0x10000 || value >= 0x7FFF0000) continue;
                     uint targetVTable;
                     if (_memory.TryReadUInt32(value, out targetVTable) &&
-                        targetVTable == vtable) return value;
+                        targetVTable == vtable) return CacheTaskInterface(player, offset, value, vtable);
                 }
             }
             throw new InvalidOperationException(
                 _layout.className + " não está associado ao jogador atual.");
+        }
+
+        private long CacheTaskInterface(long player, int offset, long address, uint vtable)
+        {
+            _cachedPlayer = player;
+            _cachedSlot = player + offset;
+            _cachedInterface = address;
+            _cachedVTable = vtable;
+            return address;
         }
 
         private long ReadRequiredPointer(long address, string description)

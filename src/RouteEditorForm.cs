@@ -66,7 +66,7 @@ namespace PWQuestOverlay
             Controls.Add(MakeLabel("Nível mínimo", 12, 188));
             _minLevel = MakeLevelBox(12, 210);
             Controls.Add(_minLevel);
-            Controls.Add(MakeLabel("Nível previsto", 142, 188));
+            Controls.Add(MakeLabel("Faixa da rota", 142, 188));
             _expectedLevel = MakeLevelBox(142, 210);
             Controls.Add(_expectedLevel);
             Controls.Add(MakeLabel("Cultivo do guia", 272, 188));

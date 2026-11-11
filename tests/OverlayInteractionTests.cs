@@ -70,6 +70,71 @@ internal static class OverlayInteractionTests
         }
     }
 
+    static void TestMarkerCalibration(Assembly assembly)
+    {
+        Type type = assembly.GetType("PWQuestOverlay.MarkerCalibrationForm");
+        Type windowType = assembly.GetType("PWQuestOverlay.ClientWindowInfo");
+        object client = Activator.CreateInstance(windowType, true);
+        windowType.GetProperty("ProcessId", Hidden).SetValue(client, 11, null);
+        windowType.GetProperty("SessionKey", Hidden).SetValue(client, "client-one", null);
+        object other = Activator.CreateInstance(windowType, true);
+        windowType.GetProperty("ProcessId", Hidden).SetValue(other, 12, null);
+        windowType.GetProperty("SessionKey", Hidden).SetValue(other, "client-two", null);
+        var settings = MarkerSettings.CreateDefault();
+        int originalX = settings.TrackerButton.X;
+        using (var dialog = (Form)Activator.CreateInstance(type, Hidden, null, new object[] { settings }, null))
+        {
+            var grid = (DataGridView)Field(dialog, "_grid");
+            var capture = type.GetMethod("TryCapture", Hidden);
+            var reset = type.GetMethod("ResetDefaults", Hidden);
+            Check(((Label)Field(dialog, "_targetLabel")).Text.Contains("Aguardando"),
+                "Calibration must open and wait for a game without requiring an active client.");
+            Check(!(bool)capture.Invoke(dialog, new object[] { null, Size.Empty, Point.Empty }),
+                "Calibration must wait when the game is not focused.");
+            Check(grid.Rows.Count == 9, "Calibration must have one row per captured control.");
+            foreach (Size size in new[] { new Size(1280, 720), new Size(1366, 768), new Size(2560, 1440), new Size(3440, 1440) })
+            {
+                reset.Invoke(dialog, null);
+                Point point = new Point(size.Width / 2, size.Height / 2);
+                Check((bool)capture.Invoke(dialog, new object[] { client, size, point }), "F8 capture must accept a valid client point.");
+                Check(Convert.ToInt32(grid.Rows[0].Cells[1].Value) == 960 &&
+                    Convert.ToInt32(grid.Rows[0].Cells[2].Value) == 540, "Client resolution must be converted to reference coordinates.");
+                Check(grid.CurrentRow.Index == 1, "Capturing must advance to the next control.");
+                Check(!(bool)capture.Invoke(dialog, new object[] { other, size, point }), "Another client must not receive this calibration.");
+                Check(!(bool)capture.Invoke(dialog, new object[] { client, new Size(800, 600), point }), "A changed resolution requires recapture.");
+                Check(!(bool)capture.Invoke(dialog, new object[] { client, size, new Point(-1, 20) }), "Points outside the client must be rejected.");
+            }
+            Check(settings.TrackerButton.X == originalX, "Capture and reset must not save settings before confirmation.");
+            reset.Invoke(dialog, null);
+            Check(Convert.ToInt32(grid.Rows[4].Cells[1].Value) == settings.CoordinateInput.X &&
+                Convert.ToInt32(grid.Rows[8].Cells[2].Value) == settings.PanelClose.Y,
+                "Restore defaults must align all nine rows and must not include the removed confirmation point.");
+            capture.Invoke(dialog, new object[] { client, new Size(1280, 720), new Point(640, 360) });
+            Check((bool)type.GetMethod("SaveGrid", Hidden).Invoke(dialog, null), "Valid calibration must save.");
+            Check(settings.TrackerButton.X == 960 && settings.TrackerButton.Y == 540, "Saved calibration must use the captured position.");
+        }
+        using (var canceled = (Form)Activator.CreateInstance(type, Hidden, null, new object[] { settings }, null))
+        {
+            type.GetMethod("TryCapture", Hidden).Invoke(canceled, new object[] { client, new Size(1280, 720), new Point(10, 20) });
+        }
+        Check(settings.TrackerButton.X == 960 && settings.TrackerButton.Y == 540, "Cancel must preserve the previous calibration.");
+    }
+
+    static void TestExpectedLevel(Form form, Type type, RouteRepository routes)
+    {
+        var missions = routes.GetForClass("WR");
+        var progress = new CharacterProgress { CharacterName = "Teste", ClassCode = "WR" };
+        progress.MissionStates[missions[0].id] = "done-memory";
+        type.GetField("_progress", Hidden).SetValue(form, progress);
+        type.GetField("_characterName", Hidden).SetValue(form, "Teste");
+        type.GetMethod("LoadRouteAndRefresh", Hidden).Invoke(form, null);
+        Check(((Label)Field(form, "_statusLabel")).Text.StartsWith("Nv. previsto 2"),
+            "The displayed level must reflect completed XP, not the next mission's configured level.");
+        type.GetMethod("SetProgressPoint", Hidden).Invoke(form, new object[] { 3, 0 });
+        Check(((Label)Field(form, "_statusLabel")).Text.StartsWith("Nv. previsto 2"),
+            "Selecting a later stage must not fabricate completed XP.");
+    }
+
     [STAThread]
     static int Main(string[] args)
     {
@@ -85,6 +150,7 @@ internal static class OverlayInteractionTests
             var state = new AppState();
             var type = typeof(RouteRepository).Assembly.GetType("PWQuestOverlay.OverlayForm");
             TestClientProfiles(type.Assembly);
+            TestMarkerCalibration(type.Assembly);
             var native = type.Assembly.GetType("PWQuestOverlay.NativeMethods");
             var startToken = native.GetMethod("ProcessStartToken", BindingFlags.Static | BindingFlags.NonPublic);
             int ownPid = System.Diagnostics.Process.GetCurrentProcess().Id;
@@ -145,6 +211,7 @@ internal static class OverlayInteractionTests
                     evil.Checked = true;
                     Check(!god.Checked && confirm.Enabled && (string)selected.GetValue(choice, null) == "EVIL", "Evil selection failed.");
                 }
+                TestExpectedLevel(form, type, RouteRepository.Load(Path.Combine(root, "data", "quest_routes.json")));
             }
             finally
             {
@@ -153,7 +220,7 @@ internal static class OverlayInteractionTests
                 if (memory != null) memory.Dispose();
                 form.Dispose();
             }
-            Console.WriteLine("Overlay interaction tests passed: independent client profiles, saved-profile selection, process lifetime token, dragging, monitor persistence, ten classes and God/Evil.");
+            Console.WriteLine("Overlay interaction tests passed: calibration focus/resolutions/reset/cancel, expected XP level, stage selection, client profiles, dragging and cultivation.");
             return 0;
         }
         catch (Exception error) { Console.Error.WriteLine(error); return 1; }

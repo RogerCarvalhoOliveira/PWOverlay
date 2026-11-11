@@ -107,7 +107,7 @@ namespace PWQuestOverlay.Memory
             _log = log ?? delegate { };
         }
 
-        internal void Poll(IEnumerable<int> processIds, bool readQuests = true)
+        internal void Poll(IEnumerable<int> processIds, bool readQuests = true, bool readHistory = false)
         {
             var live = new HashSet<int>(processIds.Where(id => id > 0));
             _reportedOpenFailures.RemoveWhere(id => !live.Contains(id));
@@ -142,7 +142,7 @@ namespace PWQuestOverlay.Memory
                         continue;
                     }
                 }
-                if (!session.Poll(readQuests)) Forget(processId);
+                if (!session.Poll(readQuests, readHistory)) Forget(processId);
             }
         }
 
@@ -182,6 +182,9 @@ namespace PWQuestOverlay.Memory
             private string _candidateSignature;
             private string _committedSignature;
             private int _candidateCount;
+            private bool? _lastReadQuests;
+            private DateTime _questRetryAt;
+            private string _lastQuestError;
 
             private Session(
                 Process process,
@@ -232,7 +235,7 @@ namespace PWQuestOverlay.Memory
                 }
             }
 
-            internal bool Poll(bool readQuests)
+            internal bool Poll(bool readQuests, bool readHistory)
             {
                 if (_process.HasExited) { State.Invalidate(); return false; }
                 bool identityValidated = false;
@@ -255,8 +258,22 @@ namespace PWQuestOverlay.Memory
                         { _candidateSignature = null; _committedSignature = null; _candidateCount = 0; return true; }
                     }
                     identityValidated = true;
-                    if (!readQuests) { State.InvalidateQuests(); _candidateSignature = null; _committedSignature = null; _candidateCount = 0; _readFailures = 0; return true; }
-                    QuestMemorySnapshot snapshot = _reader.Read(_player);
+                    if (_lastReadQuests != readQuests || (!readQuests && !readHistory))
+                    {
+                        State.InvalidateQuests();
+                        _candidateSignature = null;
+                        _committedSignature = null;
+                        _candidateCount = 0;
+                        _lastReadQuests = readQuests;
+                        _questRetryAt = DateTime.MinValue;
+                    }
+                    if (!readQuests && !readHistory) { _readFailures = 0; return true; }
+                    if (DateTime.UtcNow < _questRetryAt) return true;
+                    QuestMemorySnapshot snapshot = _reader.Read(_player, readQuests);
+                    int level = _memory.ReadInt32(_player + _profile.AttributeOffset("level"));
+                    if (level < 1 || level > 150) throw new InvalidDataException("Nível do personagem inválido.");
+                    snapshot.PlayerLevel = level;
+                    _lastQuestError = null;
                     _readFailures = 0;
                     string signature = Signature(snapshot);
                     if (string.Equals(signature, _candidateSignature, StringComparison.Ordinal))
@@ -290,11 +307,22 @@ namespace PWQuestOverlay.Memory
                     _committedSignature = signature;
                     return true;
                 }
-                catch
+                catch (Exception error)
                 {
                     // Failed reads cannot leave old quest evidence available to the UI.
-                    if (identityValidated) State.InvalidateQuests(); else State.Invalidate();
                     _candidateSignature = null; _committedSignature = null; _candidateCount = 0;
+                    if (identityValidated)
+                    {
+                        State.InvalidateQuests();
+                        _questRetryAt = DateTime.UtcNow.AddSeconds(2);
+                        if (_lastQuestError != error.Message)
+                        {
+                            _lastQuestError = error.Message;
+                            _log("Memória PID " + _process.Id + ": histórico temporariamente indisponível: " + error.Message);
+                        }
+                        return true;
+                    }
+                    State.Invalidate();
                     return ++_readFailures < 3;
                 }
             }
@@ -307,7 +335,7 @@ namespace PWQuestOverlay.Memory
 
             private static string Signature(QuestMemorySnapshot snapshot)
             {
-                return string.Join(",", snapshot.ActiveTasks
+                return snapshot.PlayerLevel + ":" + string.Join(",", snapshot.ActiveTasks
                     .Select(entry => entry.TaskId + ":" + entry.StateCode +
                         ":abates=" + entry.FirstMonsterKillCount)
                     .OrderBy(value => value)) + "|" +

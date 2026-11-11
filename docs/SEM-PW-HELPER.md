@@ -12,7 +12,7 @@ A identificação funciona mesmo com o avanço automático de missões desligado
 
 Ao reiniciar, a identificação automática retoma o perfil com o mesmo nome/classe. Se um título antigo retirava um sufixo como `[EP]` do nome real, o perfil correspondente da mesma classe é migrado, preservando suas marcações, quando não existe um perfil com o nome completo.
 
-A inspeção do executável e os testes locais passaram. O teste com personagens conectados ainda está pendente; a release pública 0.11.1 mantém o comportamento anterior por título/associação manual.
+A versão 0.13.0 inclui a identificação por memória e a importação das missões concluídas registradas no histórico. O teste com personagens conectados está pendente.
 
 ## Correção manual e perfis personalizados
 

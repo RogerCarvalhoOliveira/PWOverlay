@@ -250,6 +250,7 @@ internal static class SmokeTests
 
             MemoryLayoutFile memoryLayouts = MemoryLayoutFile.Load(args[1]);
             TestMemoryIdentity(memoryLayouts.profiles[0]);
+            ProgressionTests.TestHistoryReader(memoryLayouts.profiles[0]);
             MemoryLayoutProfile memoryProfile = memoryLayouts.Find("the_classic_144");
             if (memoryProfile == null)
                 throw new InvalidDataException("Perfil de memória 1.4.4 ausente.");
@@ -267,6 +268,7 @@ internal static class SmokeTests
                 throw new InvalidDataException("Layout de memória 1.4.4 inesperado.");
 
             TaskCatalog taskCatalog = TaskCatalog.Load(args[2]);
+            ProgressionTests.Run(routes, taskCatalog);
             TaskCatalogEntry bamboo = taskCatalog.Find(2646);
             TaskCatalogEntry bambooFlight = taskCatalog.Find(2655);
             TaskCatalogEntry beetleBlood = taskCatalog.Find(936);

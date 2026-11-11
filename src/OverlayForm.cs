@@ -68,10 +68,13 @@ namespace PWQuestOverlay
         private string _classCode;
         private CharacterProgress _progress;
         private List<QuestMission> _currentRoute;
+        private List<QuestMission> _classMissions = new List<QuestMission>();
+        private QuestMemorySnapshot _routeSnapshot;
+        private RouteStage _selectedStage;
+        private ToolStripMenuItem _reducedRouteItem;
         private QuestMission _currentMission;
         private QuestStep _currentStep;
         private int _currentStepIndex;
-        private int _currentRouteStageIndex;
         private List<RouteStage> _orderedStages;
         private Screen _currentScreen;
         private string _currentMonitorKey;
@@ -80,6 +83,7 @@ namespace PWQuestOverlay
         private Point _dragFormStart;
         private bool _allowExit;
         private bool _markerBusy;
+        private bool _markerCalibrationOpen;
         private string _memoryDiagnosticSignature;
         private bool _cultivationDialogOpen;
         private bool _profileDialogOpen;
@@ -263,9 +267,21 @@ namespace PWQuestOverlay
             _trayMenu.Items.Add("Restaurar backup de perfis...", null, delegate { RestoreBackup(); });
             _trayMenu.Items.Add(new ToolStripSeparator());
             _trayMenu.Items.Add("Calibrar marcador...", null, delegate { OpenMarkerCalibration(); });
+            _reducedRouteItem = new ToolStripMenuItem("Rota reduzida (XP ×3)")
+            {
+                CheckOnClick = true,
+                Checked = _state.OptimizeQuestXp
+            };
+            _reducedRouteItem.Click += delegate
+            {
+                _state.OptimizeQuestXp = _reducedRouteItem.Checked;
+                _store.Save(_state);
+                RefreshMissionDisplay();
+            };
+            _trayMenu.Items.Add(_reducedRouteItem);
             ToolStripMenuItem memoryMenu = new ToolStripMenuItem("Estado das missões por memória");
             _memoryAutoAdvanceItem = new ToolStripMenuItem(
-                "Sincronizar e avançar automaticamente")
+                "Avançar etapas em andamento automaticamente")
             {
                 CheckOnClick = true,
                 Checked = _state.Memory.AutoAdvanceEnabled,
@@ -278,7 +294,7 @@ namespace PWQuestOverlay
             memoryMenu.DropDownItems.Add(_memoryAutoAdvanceItem);
             memoryMenu.DropDownItems.Add(new ToolStripSeparator());
             memoryMenu.DropDownItems.Add(new ToolStripMenuItem(
-                "Somente nomes com ID único são avançados") { Enabled = false });
+                "Histórico confirmado é importado ao identificar o personagem") { Enabled = false });
             _trayMenu.Items.Add(memoryMenu);
             _trayMenu.Items.Add("Abrir guia de configuração...", null, delegate { OpenConfigurationGuide(); });
             _markerHotkeyItem = new ToolStripMenuItem("Atalho do marcador: verificando...") { Enabled = false };
@@ -407,6 +423,7 @@ namespace PWQuestOverlay
             }
             if (message.Msg == NativeMethods.WM_HOTKEY)
             {
+                if (_markerCalibrationOpen) return;
                 int id = message.WParam.ToInt32();
                 if (id == HotkeyDone) CompleteCurrent();
                 else if (id == HotkeyPrevious) GoBack();
@@ -510,7 +527,7 @@ namespace PWQuestOverlay
         private void MonitorTick()
         {
             if (_shutdown.WaitOne(0)) { ExitApplication(); return; }
-            if (_cultivationDialogOpen || _profileDialogOpen) return;
+            if (_cultivationDialogOpen || _profileDialogOpen || _markerCalibrationOpen) return;
             try
             {
                 List<IntPtr> games = NativeMethods.FindGameWindows();
@@ -530,7 +547,7 @@ namespace PWQuestOverlay
                     _memoryMonitor.Poll(games
                         .Select(NativeMethods.GetProcessId)
                         .Where(id => id > 0)
-                        .Distinct(), _state.Memory.AutoAdvanceEnabled);
+                        .Distinct(), _state.Memory.AutoAdvanceEnabled, readHistory: true);
                     foreach (ClientWindowInfo window in _clientWindows)
                     {
                         QuestMemoryClientState memory = _memoryMonitor.Find(window.ProcessId);
@@ -609,6 +626,7 @@ namespace PWQuestOverlay
                     }
                 }
 
+                RefreshMemoryHistory();
                 if (_state.Memory.AutoAdvanceEnabled)
                     ApplyMemoryProgress();
                 if (gameForeground && !_state.UserHidden && !_dragging)
@@ -630,6 +648,7 @@ namespace PWQuestOverlay
             if (identity == null)
             {
                 _characterKey = null; _characterName = null; _classCode = null; _progress = null;
+                _routeSnapshot = null; _selectedStage = null; _classMissions.Clear();
                 _windowTitleKey = titleKey; _currentRoute.Clear(); _orderedStages.Clear(); RefreshMissionDisplay(); return;
             }
             string parsedName = identity.Name, parsedClass = identity.ClassCode;
@@ -756,7 +775,11 @@ namespace PWQuestOverlay
         private void LoadRouteAndRefresh()
         {
             _classCode = _progress == null ? null : _progress.ClassCode;
-            _currentRoute = _routes.GetForClass(_classCode, _progress == null ? null : _progress.CultivationPath);
+            _routeSnapshot = null;
+            _selectedStage = null;
+            _classMissions = _routes.GetClassMissions(_classCode);
+            string path = _progress == null ? null : _progress.CultivationPath;
+            _currentRoute = _classMissions.Where(mission => CultivationRouting.IsVisible(mission, path)).ToList();
             _orderedStages = _currentRoute
                 .SelectMany(mission => mission.steps.Select((step, index) => new RouteStage
                 {
@@ -806,13 +829,35 @@ namespace PWQuestOverlay
                 return;
             }
 
-            RouteStage activeStage = _orderedStages.FirstOrDefault(stage => !IsStageComplete(stage));
+            int expectedLevel = QuestProgression.ExpectedLevel(_routes.XpToNextLevel,
+                QuestProgression.CompletedXp(_classMissions, _progress));
+            string levelText = "Nv. previsto " + (expectedLevel > 0 ? expectedLevel.ToString() : "—");
+            int availableLevel = _routeSnapshot == null || _routeSnapshot.PlayerLevel == 0
+                ? expectedLevel : _routeSnapshot.PlayerLevel;
+            var pending = _orderedStages.Where(stage => !IsStageComplete(stage)).ToList();
+            bool optimized = _state.OptimizeQuestXp && expectedLevel > 0;
+            RouteStage activeStage;
+            if (_selectedStage != null && pending.Contains(_selectedStage))
+                activeStage = _selectedStage;
+            else if (optimized)
+            {
+                var missions = pending.Select(stage => stage.Mission).Distinct().ToList();
+                QuestMission next = QuestProgression.NextMission(missions, _progress, availableLevel,
+                    QuestProgression.ActiveRoots(_taskCatalog, _routeSnapshot));
+                activeStage = pending.FirstOrDefault(stage => stage.Mission == next);
+            }
+            else
+                activeStage = pending.FirstOrDefault();
+
             if (activeStage == null)
             {
-                _questLabel.Text = "Rota concluída até o nível 105";
-                _npcLabel.Text = "Todas as missões da rota foram marcadas.";
+                _questLabel.Text = optimized && pending.Count > 0 ? "Rota reduzida concluída" : "Rota concluída";
+                _npcLabel.Text = optimized && pending.Count > 0
+                    ? "As missões de XP restantes estão disponíveis em Etapas."
+                    : "Todas as etapas da rota foram resolvidas.";
                 _locationLabel.Text = string.Empty;
-                _statusLabel.Text = finished + "/" + _currentRoute.Count;
+                _statusLabel.Text = levelText;
+                _currentMission = null;
                 _currentStep = null;
                 _stepTypeLabel.Text = "FIM";
                 _stepTypeLabel.BackColor = Color.FromArgb(22, 163, 74);
@@ -823,7 +868,6 @@ namespace PWQuestOverlay
             _currentMission = activeStage.Mission;
             _currentStep = activeStage.Step;
             _currentStepIndex = activeStage.StepIndex;
-            _currentRouteStageIndex = _orderedStages.IndexOf(activeStage);
             ApplyStepType(_currentStep.action);
 
             _questLabel.Text = _currentMission.name + "  ›  " + _currentStep.title;
@@ -831,9 +875,9 @@ namespace PWQuestOverlay
             _locationLabel.Text = _currentStep.markerX.HasValue && _currentStep.markerY.HasValue
                 ? "Marcador: " + _currentStep.markerX.Value + ", " + _currentStep.markerY.Value
                 : "Sem coordenada para esta etapa";
-            _statusLabel.Text = _currentMission.priority + " · Nv. " + _currentMission.expectedLevel +
-                " · Etapa " + (_currentStepIndex + 1) + "/" + _currentMission.steps.Count +
-                " · Ação " + (_currentRouteStageIndex + 1) + "/" + _orderedStages.Count;
+            if (optimized && _currentMission.minLevel > availableLevel)
+                _locationLabel.Text = "Disponível a partir do nível " + _currentMission.minLevel + ".";
+            _statusLabel.Text = levelText + " · " + (_currentStepIndex + 1) + "/" + _currentMission.steps.Count;
             _statusLabel.ForeColor = string.Equals(_currentMission.priority, "Opcional", StringComparison.OrdinalIgnoreCase)
                 ? Color.FromArgb(251, 191, 36)
                 : Color.FromArgb(203, 213, 225);
@@ -845,7 +889,8 @@ namespace PWQuestOverlay
             if (!CanChangeProgress() || _currentMission == null || _currentStep == null) return;
             if (_currentMission.cultivationChoice) { ChooseCultivation(); return; }
             _progress.MissionStates[StageKey(_currentMission, _currentStep)] = "done";
-            if (MissionStagesComplete(_currentMission)) _progress.MissionStates[_currentMission.id] = "done";
+            if (MissionStagesComplete(_currentMission))
+                _progress.MissionStates[_currentMission.id] = QuestProgression.MissionDone(_currentMission, _progress) ? "done" : "skipped";
             _store.Save(_state);
             _store.Log(_characterName + " concluiu etapa " + (_currentStepIndex + 1) + "/" +
                 _currentMission.steps.Count + ": " + _currentMission.name);
@@ -873,6 +918,7 @@ namespace PWQuestOverlay
             {
                 _progress.MissionStates.Remove(StageKey(previousStage.Mission, previousStage.Step));
                 _progress.MissionStates.Remove(previousStage.Mission.id);
+                _selectedStage = previousStage;
                 _store.Save(_state);
                 _store.Log(_characterName + " voltou uma ação em: " + previousStage.Mission.name);
                 RefreshMissionDisplay();
@@ -900,7 +946,7 @@ namespace PWQuestOverlay
 
         private static string StageKey(QuestMission mission, QuestStep step)
         {
-            return mission.id + "|STEP|" + step.id;
+            return QuestProgression.StageKey(mission, step);
         }
 
         private bool IsStageComplete(RouteStage stage)
@@ -1275,7 +1321,7 @@ namespace PWQuestOverlay
                 dialog.TopMost = true;
                 dialog.Font = new Font("Segoe UI", 9.0f);
 
-                description.Text = "Escolha o ponto exato da rota. Missões e etapas anteriores serão marcadas; as posteriores serão reabertas.";
+                description.Text = "Escolha o ponto da rota. Etapas anteriores sem conclusão confirmada serão puladas. As posteriores serão reabertas.";
                 description.Location = new Point(12, 12);
                 description.Size = new Size(596, 38);
                 missionBox.Location = new Point(12, 58);
@@ -1326,15 +1372,25 @@ namespace PWQuestOverlay
             RouteStage target = _orderedStages.First(stage => stage.Mission == targetMission && stage.Step == targetStep);
             int targetIndex = _orderedStages.IndexOf(target);
 
-            foreach (QuestMission mission in _currentRoute)
+            var completed = new HashSet<QuestMission>(_currentRoute.Where(mission => QuestProgression.MissionDone(mission, _progress)));
+            foreach (QuestMission mission in _currentRoute) _progress.MissionStates.Remove(mission.id);
+            for (int index = 0; index < _orderedStages.Count; index++)
             {
-                _progress.MissionStates.Remove(mission.id);
-                foreach (QuestStep step in mission.steps) _progress.MissionStates.Remove(StageKey(mission, step));
+                RouteStage stage = _orderedStages[index];
+                string key = StageKey(stage.Mission, stage.Step);
+                string existing;
+                if (index >= targetIndex) _progress.MissionStates.Remove(key);
+                else if (completed.Contains(stage.Mission))
+                {
+                    if (!_progress.MissionStates.ContainsKey(key)) _progress.MissionStates[key] = "done";
+                }
+                else if (!_progress.MissionStates.TryGetValue(key, out existing) || !QuestProgression.IsDone(existing))
+                    _progress.MissionStates[key] = "skipped";
             }
-            for (int index = 0; index < targetIndex; index++)
-                _progress.MissionStates[StageKey(_orderedStages[index].Mission, _orderedStages[index].Step)] = "done";
             foreach (QuestMission mission in _currentRoute)
-                if (MissionStagesComplete(mission)) _progress.MissionStates[mission.id] = "done";
+                if (MissionStagesComplete(mission))
+                    _progress.MissionStates[mission.id] = QuestProgression.MissionDone(mission, _progress) ? "done" : "skipped";
+            _selectedStage = target;
             _store.Save(_state);
             _store.Log(_characterName + " reposicionou a rota na ação global " + (targetIndex + 1) +
                 ": " + targetMission.name + " / etapa " + (stepIndex + 1));
@@ -1343,18 +1399,21 @@ namespace PWQuestOverlay
 
         private void OpenMarkerCalibration()
         {
-            if (_activeGame == IntPtr.Zero)
+            if (_markerCalibrationOpen || _markerBusy || _cultivationDialogOpen || _profileDialogOpen) return;
+            _markerCalibrationOpen = true;
+            try
             {
-                MessageBox.Show("Coloque o cliente que deseja calibrar em foco primeiro.", "PW Quest Overlay");
-                return;
-            }
-            using (var dialog = new MarkerCalibrationForm(_activeGame, _state.Marker))
-            {
-                if (dialog.ShowDialog() == DialogResult.OK)
+                if (Visible) Hide();
+                using (var dialog = new MarkerCalibrationForm(_state.Marker))
                 {
+                    if (dialog.ShowDialog() != DialogResult.OK) return;
                     _state.Marker.Calibrated = true;
                     _store.Save(_state);
                 }
+            }
+            finally
+            {
+                _markerCalibrationOpen = false;
             }
         }
 
@@ -1411,6 +1470,8 @@ namespace PWQuestOverlay
                 _followGameMonitorItem.Checked = string.IsNullOrWhiteSpace(_state.OverlayMonitorDeviceName);
                 _currentScreen = null;
                 _state.CompactMode = imported.CompactMode;
+                _state.OptimizeQuestXp = imported.OptimizeQuestXp;
+                _reducedRouteItem.Checked = _state.OptimizeQuestXp;
                 _state.Opacity = imported.Opacity;
                 _store.Save(_state);
                 Opacity = _state.Opacity;
@@ -1612,6 +1673,26 @@ namespace PWQuestOverlay
                 RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
         }
 
+        private void RefreshMemoryHistory()
+        {
+            if (_memoryMonitor == null || _taskCatalog == null || _activeGame == IntPtr.Zero || _progress == null)
+                return;
+            QuestMemoryClientState client = _memoryMonitor.Find(NativeMethods.GetProcessId(_activeGame));
+            QuestMemorySnapshot snapshot = client != null && client.Ready ? client.Snapshot : null;
+            if (object.ReferenceEquals(_routeSnapshot, snapshot) || !HasCurrentIdentity()) return;
+            _routeSnapshot = snapshot;
+            if (snapshot != null)
+            {
+                int changed = QuestProgression.ImportHistory(_classMissions, _progress, _taskCatalog, snapshot);
+                if (changed > 0)
+                {
+                    _store.Save(_state);
+                    _store.Log(_characterName + ": histórico atualizou " + changed + " missões do guia.");
+                }
+            }
+            RefreshMissionDisplay();
+        }
+
         private void ApplyMemoryProgress()
         {
             if (_memoryMonitor == null || _taskCatalog == null ||
@@ -1667,7 +1748,8 @@ namespace PWQuestOverlay
                     IsTalkStage(action);
                 bool disappeared = waitsForDisappearance &&
                     client.HasObservedDisappearance(taskId);
-                bool recordedComplete = _taskCatalog.IsChainRecordedComplete(taskId, client.Snapshot);
+                bool recordedComplete = !_currentMission.repeatable &&
+                    _taskCatalog.IsChainRecordedComplete(taskId, client.Snapshot);
                 bool orderedSuccessor = nextTaskResolved &&
                     (IsCollectionStage(action) || (currentTask != null && currentTask.IsAutomaticKillStage(action))) &&
                     _taskCatalog.HasActiveOrderedSuccessor(taskId, nextTaskId, client.Snapshot);
@@ -1746,31 +1828,7 @@ namespace PWQuestOverlay
             QuestStep step,
             out uint taskId)
         {
-            taskId = 0;
-            if (step == null || string.IsNullOrWhiteSpace(step.title)) return false;
-            if (step.memoryTaskId != 0)
-            {
-                TaskCatalogEntry bound = _taskCatalog.Find(step.memoryTaskId);
-                if (bound == null || !string.Equals(bound.Name, step.title,
-                    StringComparison.Ordinal)) return false;
-                taskId = bound.Id;
-                return true;
-            }
-            List<TaskCatalogEntry> matches = _taskCatalog.FindByName(step.title);
-            List<TaskCatalogEntry> missionMatches = mission == null
-                ? new List<TaskCatalogEntry>()
-                : _taskCatalog.FindByName(mission.name);
-            HashSet<uint> topIds = new HashSet<uint>(
-                missionMatches.Select(entry => entry.TopId));
-            if (topIds.Count > 0)
-            {
-                List<TaskCatalogEntry> sameChain = matches
-                    .Where(entry => topIds.Contains(entry.TopId))
-                    .ToList();
-                if (sameChain.Count > 0) matches = sameChain;
-            }
-            if (matches.Count != 1) return false;
-            taskId = matches[0].Id;
+            taskId = QuestProgression.ResolveStageTaskId(_taskCatalog, mission, step);
             return taskId != 0;
         }
 
@@ -1781,7 +1839,7 @@ namespace PWQuestOverlay
             int stepIndex = _currentStepIndex;
             _progress.MissionStates[StageKey(mission, step)] = "done-memory";
             if (MissionStagesComplete(mission))
-                _progress.MissionStates[mission.id] = "done-memory";
+                _progress.MissionStates[mission.id] = QuestProgression.MissionDone(mission, _progress) ? "done-memory" : "skipped";
             _store.Save(_state);
             _store.Log(_characterName + " avançou automaticamente por memória na etapa " +
                 (stepIndex + 1) + "/" + mission.steps.Count + ": " + mission.name +
@@ -1818,6 +1876,7 @@ namespace PWQuestOverlay
         private void PromptCultivationWhenNeeded()
         {
             if (_progress == null || _currentMission == null || !_currentMission.cultivationChoice ||
+                (_routeSnapshot != null && _routeSnapshot.PlayerLevel < _currentMission.minLevel) ||
                 CultivationRouting.Normalize(_progress.CultivationPath) != null ||
                 _cultivationDialogOpen || !IsHandleCreated || _cultivationPrompted.Contains(_characterKey)) return;
             string profileKey = _characterKey;

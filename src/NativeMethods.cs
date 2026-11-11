@@ -25,12 +25,14 @@ namespace PWQuestOverlay
         internal const uint MOD_ALT = 0x0001;
         internal const uint MOD_CONTROL = 0x0002;
         internal const uint MOD_SHIFT = 0x0004;
+        internal const uint MOD_NOREPEAT = 0x4000;
         internal const int VK_LEFT = 0x25;
         internal const int VK_RIGHT = 0x27;
         internal const int VK_DOWN = 0x28;
         internal const byte VK_RETURN = 0x0D;
         internal const int VK_M = 0x4D;
         internal const int VK_A = 0x41;
+        internal const int VK_F8 = 0x77;
         internal const byte VK_END = 0x23;
         internal const byte VK_BACK = 0x08;
         internal const uint KEYEVENTF_KEYUP = 0x0002;
@@ -117,6 +119,9 @@ namespace PWQuestOverlay
 
         [DllImport("user32.dll")]
         internal static extern bool GetCursorPos(out POINT point);
+
+        [DllImport("user32.dll")]
+        internal static extern IntPtr WindowFromPoint(POINT point);
 
         [DllImport("user32.dll")]
         internal static extern void mouse_event(uint flags, uint dx, uint dy, uint data, UIntPtr extraInfo);
@@ -295,8 +300,8 @@ namespace PWQuestOverlay
             if (!GetClientRect(window, out client) || client.Width <= 0 || client.Height <= 0) return;
             var point = new POINT
             {
-                X = (int)Math.Round(referenceX * client.Width / 1920.0),
-                Y = (int)Math.Round(referenceY * client.Height / 1080.0)
+                X = Math.Max(0, Math.Min(client.Width - 1, (int)Math.Round(referenceX * (double)client.Width / 1920))),
+                Y = Math.Max(0, Math.Min(client.Height - 1, (int)Math.Round(referenceY * (double)client.Height / 1080)))
             };
             if (!ClientToScreen(window, ref point)) return;
             SetCursorPos(point.X, point.Y);

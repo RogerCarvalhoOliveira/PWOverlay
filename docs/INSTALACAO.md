@@ -9,7 +9,7 @@
 
 ## Instalação recomendada
 
-1. Baixe `PWQuestOverlay-Setup-v0.11.1.exe` na página **Releases** do GitHub e copie-o para o outro computador.
+1. Baixe `PWQuestOverlay-Setup-v0.13.0.exe` na página **Releases** do GitHub e copie-o para o outro computador.
 2. Execute o instalador. Não é necessário acesso de administrador: o programa é instalado somente para o usuário atual.
 3. Escolha, se desejar, atalhos e inicialização automática. Deixe a inicialização direta do Overlay/PW Borderless desmarcada se quiser decidir a cada sessão.
 4. Abra o PW manualmente ou pelo PW Helper. Na **PW Overlay Central**, selecione as funções desejadas e use **Aplicar ao PW já aberto**.
@@ -27,16 +27,16 @@ A Central não abre o PW e não tem configuração de caminho do jogo. Para joga
 
 ## Configuração inicial
 
-1. Entre no personagem e coloque o cliente em foco. Na 0.12.0, nome e classe são identificados automaticamente pela memória, mesmo com título padrão. Se necessário, abra **Perfis**: cada linha mostra uma janela/PID; informe nome/classe ou aplique um perfil salvo. O PW Helper é opcional. A release pública 0.11.1 ainda exige Perfis ou título identificável.
+1. Entre no personagem e coloque o cliente em foco. Nome, classe e missões concluídas com registro são identificados pela memória, mesmo com título padrão. Se necessário, abra **Perfis** para informar nome/classe ou aplicar um perfil salvo. O PW Helper é opcional.
 2. Desbloqueie **Mover**, segure o botão esquerdo na barra superior, arraste e solte onde quiser, inclusive em outro monitor. Depois bloqueie novamente.
 3. Use o botão `−` para ativar a interface compacta; o botão `+` restaura a interface completa.
-4. Abra o menu do ícone do overlay ao lado do relógio e use **Calibrar marcador...**. Siga cada ponto com o painel de Marcadores do jogo aberto.
+4. Abra **Calibrar marcador...** no ícone ao lado do relógio. Coloque o PW em foco, aponte para cada controle e pressione **F8**. Volte ao calibrador pelo Alt+Tab e salve.
 5. Teste **Marcar** em uma etapa com coordenadas e confirme que somente o marcador `PWOverlay` foi substituído.
 6. Alterne entre todos os clientes e confirme que personagem, classe e progresso mudam junto com o foco.
 
 No cultivo 89, escolha God ou Evil quando o overlay perguntar. Cada personagem guarda sua própria opção; o menu **Escolher/alterar cultivo God ou Evil...** permite corrigi-la. Essa opção configura o guia: escolha o mesmo cultivo no NPC do jogo. Consulte `GUIA-61-105.txt` para os acessos exigidos no cultivo 100 e as atividades repetíveis da faixa final.
 
-A identificação por memória funciona mesmo com o avanço automático de missões desativado. Ao reiniciar, personagens detectados retomam o perfil pelo nome/classe. Uma troca de personagem descarta as evidências anteriores e exige duas leituras iguais. Associações manuais continuam sendo feitas por sessão; selecione novamente um nome personalizado ao reabrir o overlay. A validação da 0.12.0 com personagens conectados ainda está pendente.
+A identificação e a importação de histórico funcionam mesmo com o avanço de etapas desativado. Ao reiniciar, personagens detectados retomam o perfil pelo nome/classe. Uma troca de personagem descarta as evidências anteriores e exige duas leituras iguais. Selecione novamente um nome personalizado ao reabrir o overlay. A validação da 0.13.0 com personagens conectados está pendente.
 
 A associação de uma janela não é gravada por PID para a próxima execução: o Windows pode reutilizar esses identificadores. Isso evita atribuir o personagem errado a um cliente novo. Duas janelas não podem usar simultaneamente o mesmo perfil; para personagens distintos de mesmo nome/classe em servidores diferentes, informe um identificador diferente no nome do perfil.
 
@@ -48,7 +48,7 @@ O backup inclui os perfis, progresso, cultivo, associações antigas por título
 
 ## Versão portátil
 
-Baixe e extraia `PWQuestOverlay-Portatil-v0.11.1.zip` para uma pasta em que o usuário tenha permissão de escrita e execute `PW Overlay Central.exe`. Não mova apenas um EXE: mantenha juntos todos os arquivos do pacote, incluindo rotas, catálogo, offsets e planilha.
+Baixe e extraia `PWQuestOverlay-Portatil-v0.13.0.zip` para uma pasta em que o usuário tenha permissão de escrita e execute `PW Overlay Central.exe`. Mantenha juntos todos os arquivos do pacote, incluindo rotas, catálogo, offsets e planilha.
 
 O símbolo do check dentro dos anéis identifica o projeto na bandeja do Windows, nos atalhos e no instalador. O menu da bandeja informa a versão. O ícone está incorporado: não é necessário copiar um ICO separado para a instalação.
 

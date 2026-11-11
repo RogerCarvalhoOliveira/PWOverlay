@@ -42,7 +42,7 @@ O byte de estado é mantido em formato bruto. Valores diferentes foram observado
 - desaparecimento depois de presença confirmada para conversa ou entrega;
 - próxima submissão da mesma cadeia ativa para recuperar uma transição ocorrida antes de abrir o overlay.
 
-O toggle fica em `Estado das missões por memória > Sincronizar e avançar automaticamente`. O atalho `Ctrl + Shift + A` liga ou desliga essa função. O modo é separado por cliente e usa o PID associado à janela de jogo em foco.
+Na 0.13.0, o histórico é cruzado com a rota inteira quando o personagem é identificado. O menu **Estado das missões por memória > Avançar etapas em andamento automaticamente** e o atalho `Ctrl + Shift + A` controlam o avanço durante o jogo. Cada janela usa sua própria sessão de leitura. A importação exige IDs registrados e considera a lista ativa para distinguir cadeias em andamento.
 
 No teste validado de `Aldeões Feridos`, a submissão `Besouro de Chifres` (ID 936) avançou ao encontrar o item 3502 na quantidade 10. A entrega avançou quando o ID 936, previamente observado, desapareceu da lista ativa.
 

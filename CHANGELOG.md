@@ -1,5 +1,14 @@
 # Histórico de alterações
 
+## 0.13.0 - Calibração, nível previsto e rota reduzida
+
+- A calibração abre pelo menu da bandeja e aguarda o PW em foco. Mostra cliente/resolução, captura com F8 global, mantém os pontos no mesmo cliente/tamanho e permite voltar pelo Alt+Tab. Corrigido Restaurar padrão e validação antes de salvar.
+- O nível previsto passa a somar as recompensas XP ×3 das missões concluídas do personagem e aplicar a curva do cliente. Etapas puladas e seleção manual de um ponto posterior deixam de gerar XP fictícia. Apresentações duplicadas de uma missão contam uma vez.
+- Rota reduzida por padrão nas dez classes. Há 107 missões independentes de XP elegíveis para dispensa. O planejador conserva conteúdo protegido, dependências e missões iniciadas. Antes do próximo requisito de nível, escolhe a maior recompensa disponível. O menu permite exibir o roteiro completo.
+- Histórico importado em toda a rota, inclusive ao abrir perfis existentes com o avanço de etapas desativado. Há vínculos de conclusão para 573 entradas do guia. Receber uma moeda de DG comprova a aquisição da moeda. A conclusão da instância exige evidência dos objetivos.
+- Consulta do histórico em bloco e cache validado da interface de missões reduzem leituras por cliente. A versão inclui a identificação de nome/classe por memória da 0.12.0.
+- Testes locais de calibração em quatro resoluções, previsão de XP, planejamento e restauração nas dez classes. Validação com personagens conectados permanece pendente.
+
 ## 0.12.0 - Identificação do personagem por memória
 
 - Nome real UTF-16, ID e classe lidos diretamente do personagem, sem renomear a janela e sem PW Helper. Duas amostras iguais confirmam a identidade; títulos iguais continuam separados por cliente.
